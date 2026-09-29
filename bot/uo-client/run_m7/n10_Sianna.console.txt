@@ -1,0 +1,342 @@
+[17:30:02.914] INFO  session 0: 127.0.0.1:2593 user='RevolutionNew05' char=Sianna tag='n10_Sianna'
+[17:30:02.915] LOG   [n10_Sianna] event session_start: text log opened
+[17:30:02.915] LOG   [n10_Sianna] event net_connect_begin: connect 127.0.0.1:2593
+[17:30:02.915] INFO  [n10_Sianna] [net] connecting to 127.0.0.1:2593 ...
+[17:30:02.916] LOG   [n10_Sianna] event net_connected: connect 127.0.0.1:2593
+[17:30:02.916] INFO  [n10_Sianna] [net] connected.
+[17:30:02.916] INFO  [n10_Sianna] [seed] sent 0x7F000001 (plaintext)
+[17:30:02.916] LOG   [n10_Sianna] event seed_out: 0x7F000001 hex=7f000001
+[17:30:02.916] INFO  [life] loaded persistent state for Sianna (5 places, 0 suppliers, 10 events, 1 prior sessions)
+[17:30:02.916] INFO  [life] needs: reading 'archer' from the profession catalogue
+[17:30:02.916] INFO  [life] build plan 'archer': 400.0 resolved + 300.0 unresolved = 700.0/700.0, stats 70/100/55 = 225
+[17:30:02.916] INFO  [n10_Sianna] [life] autonomous player active for 'Sianna' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[17:30:02.928] INFO  [n10_Sianna] [0xA8] 1 server(s):
+[17:30:02.928] INFO  [n10_Sianna]   [0] MyShard                   1.0.0.127  full=2%  tz=0
+[17:30:02.943] INFO  [n10_Sianna] [0x8C] game server = 127.0.0.1:2593  seed=0x75102B18
+[17:30:02.943] LOG   [n10_Sianna] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x75102B18
+[17:30:02.943] INFO  [n10_Sianna] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:30:02.943] LOG   [n10_Sianna] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:30:02.943] INFO  [n10_Sianna] [0xB9] server features = 0x0005
+[17:30:02.943] INFO  [n10_Sianna] [0xA9] 5 slot(s) (populated 1):
+[17:30:02.943] INFO  [n10_Sianna]   [0] Sianna
+[17:30:02.943] INFO  [n10_Sianna]   [1] <empty>
+[17:30:02.943] INFO  [n10_Sianna]   [2] <empty>
+[17:30:02.943] INFO  [n10_Sianna]   [3] <empty>
+[17:30:02.943] INFO  [n10_Sianna]   [4] <empty>
+[17:30:02.943] INFO  [n10_Sianna] [ui] playing slot 0 ('Sianna')
+[17:30:02.957] INFO  [n10_Sianna] [0x1B] serial=0x0001330A body=0x0192 pos=(1276,3692,-1)
+[17:30:02.957] LOG   [n10_Sianna] event login_confirm: serial=0x0001330A body=0x0192 pos=(1276,3692,-1)
+[17:30:02.957] INFO  [n10_Sianna] [STATE] dead (body 0x0192)
+[17:30:02.957] LOG   [n10_Sianna] event state_dead: server body change
+[17:30:02.957] LOG   [n10_Sianna] event death_location: at=(1276,3692,-1) region=? via=body change
+[17:30:02.957] INFO  [n10_Sianna] [0x20] player @(1276,3692,-1) facing=6
+[17:30:02.957] INFO  [n10_Sianna] [0x55] login complete — entering world
+[17:30:02.957] LOG   [n10_Sianna] event in_world: 0x55 received
+[17:30:02.957] INFO  [n10_Sianna] [backpack] opening 0x40013308
+[17:30:02.957] INFO  [n10_Sianna] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:30:02.957] INFO  [n10_Sianna] [chat ascii] System: There are 6 other players here.
+[17:30:02.957] INFO  [n10_Sianna] [chat ascii] System: Last logged: 2026/08/29 16:37:23
+[17:30:02.961] INFO  [n10_Sianna] [action] requesting the skill list
+[17:30:02.961] INFO  [life] in world; asked the server for the skill list
+[17:30:02.969] INFO  [n10_Sianna] [chat ascii] System: Your ghostly hand passes through the object.
+[17:30:02.975] INFO  [n10_Sianna] [chat ascii] System: Ovid has arrived in Moonglow.
+[17:30:02.990] INFO  [n10_Sianna] [chat ascii] System: Thessaly has arrived in Britain.
+[17:30:03.020] INFO  [n10_Sianna] [chat ascii] System: Wystan has arrived in Britain.
+[17:30:03.045] INFO  [n10_Sianna] [chat ascii] System: Delwyn has arrived in The Rusty Anchor.
+[17:30:03.066] INFO  [n10_Sianna] [chat ascii] System: Rowan has arrived in Vesper Territory.
+[17:30:05.529] INFO  [n10_Sianna] [bot] world data loaded (0 blacklisted spot(s)).
+[17:30:05.529] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[17:30:05.529] INFO  [life]   gold         persisted=0          server=0          -> server value accepted
+[17:30:05.529] INFO  [life]   str          persisted=24         server=24         -> server value accepted
+[17:30:05.529] INFO  [life]   dex          persisted=48         server=48         -> server value accepted
+[17:30:05.529] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[17:30:05.529] INFO  [life]   skill_31     persisted=50.0       server=50.0       -> server value accepted
+[17:30:05.529] INFO  [life]   skill_8      persisted=50.0       server=50.0       -> server value accepted
+[17:30:05.529] INFO  [life]   skill_27     persisted=21.2       server=21.2       -> server value accepted
+[17:30:05.529] INFO  [life]   skill_1      persisted=30.0       server=30.0       -> server value accepted
+[17:30:05.529] INFO  [life]   skill_17     persisted=30.0       server=30.0       -> server value accepted
+[17:30:05.529] INFO  [life]   position     persisted=1276,3692  server=1276,3692  -> server value accepted
+[17:30:05.529] INFO  [life]   alive        persisted=dead       server=dead       -> server value accepted
+[17:30:05.529] INFO  [life]   restored objective KEPT: SURVIVE (progress 0)
+[17:30:05.529] INFO  [n10_Sianna] [survival] on
+[17:30:05.529] LOG   [n10_Sianna] event survival_mode: on
+[17:30:05.531] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:30:05.583] INFO  [n10_Sianna] [ACTION] resurrect start
+[17:30:05.583] INFO  [n10_Sianna] [ACTION] resurrect: waiting for the server to raise us
+[17:30:05.583] INFO  [life] dead: walking to a healer (trip 1)
+[17:30:05.583] INFO  [n10_Sianna] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1276,3692)
+[17:30:05.583] LOG   [n10_Sianna] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1276,3692)
+[17:30:05.583] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[17:30:05.583] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[17:30:05.583] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:05.584] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:05.584] LOG   [n10_Sianna] event travel_mode: walk
+[17:30:05.584] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[17:30:05.584] LOG   [n10_Sianna] event travel_escape: from=(1276,3692,-1) to=(1288,3688) attempt=1
+[17:30:05.584] INFO  [n10_Sianna] [action] goto (1288,3688) from (1276,3692,-1)
+[17:30:05.584] LOG   [n10_Sianna] event goto_start: target=(1288,3688) from=(1276,3692)
+[17:30:05.584] INFO  [n10_Sianna] [bot] running from (1276,3692,-1) to (1288,3688,z0)
+[17:30:05.584] INFO  [n10_Sianna] [bot] planning path to (1288,3688) in background
+[17:30:05.584] INFO  [n10_Sianna] [chat ascii] System: You are a ghost
+[17:30:05.584] INFO  [n10_Sianna] [0x1B] serial=0x0001330A body=0x0192 pos=(1276,3692,-1)
+[17:30:05.584] LOG   [n10_Sianna] event login_confirm: serial=0x0001330A body=0x0192 pos=(1276,3692,-1)
+[17:30:05.584] INFO  [n10_Sianna] [0x20] player @(1276,3692,-1) facing=6
+[17:30:05.584] INFO  [n10_Sianna] [0x55] login complete — entering world
+[17:30:05.584] LOG   [n10_Sianna] event in_world: 0x55 received
+[17:30:05.584] INFO  [n10_Sianna] [backpack] opening 0x40013308
+[17:30:05.584] INFO  [n10_Sianna] [action] goto finished at (1276,3692,-1); target (1288,3688); stopped short (off by 16 tile(s))
+[17:30:05.584] LOG   [n10_Sianna] event goto_done: at=(1276,3692) target=(1288,3688) arrived=0 off=16
+[17:30:05.584] INFO  [n10_Sianna] [travel] recovery walk fell short at (1276,3692,-1) (off 12); attempt 1/3
+[17:30:05.584] LOG   [n10_Sianna] event travel_recovery_done: reached=0 at=(1276,3692,-1) off=12 attempt=1
+[17:30:05.584] LOG   [n10_Sianna] event travel_escape: from=(1276,3692,-1) to=(1272,3704) attempt=2
+[17:30:05.584] INFO  [n10_Sianna] [action] goto (1272,3704) from (1276,3692,-1)
+[17:30:05.584] LOG   [n10_Sianna] event goto_start: target=(1272,3704) from=(1276,3692)
+[17:30:05.584] INFO  [n10_Sianna] [bot] running from (1276,3692,-1) to (1272,3704,z0)
+[17:30:05.584] INFO  [n10_Sianna] [bot] planning path to (1272,3704) in background
+[17:30:05.584] INFO  [n10_Sianna] [chat ascii] System: Your ghostly hand passes through the object.
+[17:30:05.598] INFO  [n10_Sianna] [bot] replan to (1272,3704): 13 steps in 151.7us
+[17:30:10.700] INFO  [n10_Sianna] [bot] arrived at (1272,3704,0)
+[17:30:10.700] INFO  [n10_Sianna] [action] goto finished at (1272,3704,0); target (1272,3704); ARRIVED (off by 0 tile(s))
+[17:30:10.700] LOG   [n10_Sianna] event goto_done: at=(1272,3704) target=(1272,3704) arrived=1 off=0
+[17:30:10.700] INFO  [n10_Sianna] [travel] recovery walk reached its anchor at (1272,3704,0) (off 0); attempt 1/3
+[17:30:10.700] LOG   [n10_Sianna] event travel_recovery_done: reached=1 at=(1272,3704,0) off=0 attempt=1
+[17:30:10.761] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[17:30:10.761] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[17:30:10.761] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:10.761] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:10.761] LOG   [n10_Sianna] event travel_mode: walk
+[17:30:10.761] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[17:30:10.761] LOG   [n10_Sianna] event travel_escape: from=(1272,3704,0) to=(1276,3692) attempt=3
+[17:30:10.761] INFO  [n10_Sianna] [action] goto (1276,3692) from (1272,3704,0)
+[17:30:10.761] LOG   [n10_Sianna] event goto_start: target=(1276,3692) from=(1272,3704)
+[17:30:10.761] INFO  [n10_Sianna] [bot] running from (1272,3704,0) to (1276,3692,z-2)
+[17:30:10.761] INFO  [n10_Sianna] [bot] planning path to (1276,3692) in background
+[17:30:10.823] INFO  [n10_Sianna] [bot] replan to (1276,3692): 13 steps in 1477.5us
+[17:30:15.850] INFO  [n10_Sianna] [bot] arrived at (1276,3692,-2)
+[17:30:15.850] INFO  [n10_Sianna] [action] goto finished at (1276,3692,-2); target (1276,3692); ARRIVED (off by 0 tile(s))
+[17:30:15.850] LOG   [n10_Sianna] event goto_done: at=(1276,3692) target=(1276,3692) arrived=1 off=0
+[17:30:15.850] INFO  [n10_Sianna] [travel] recovery walk reached its anchor at (1276,3692,-2) (off 0); attempt 2/3
+[17:30:15.850] LOG   [n10_Sianna] event travel_recovery_done: reached=1 at=(1276,3692,-2) off=0 attempt=2
+[17:30:15.910] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[17:30:15.910] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[17:30:15.910] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:15.910] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:15.910] LOG   [n10_Sianna] event travel_mode: walk
+[17:30:15.910] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[17:30:15.910] INFO  [n10_Sianna] [travel] Trinsic Healer healer FAILED at (1276,3692,-2) -- no world route to the destination
+[17:30:15.910] LOG   [n10_Sianna] event travel_failed: label='Trinsic Healer healer' ok=0 at=(1276,3692) legs=0 plans=1 why='no world route to the destination'
+[17:30:57.915] INFO  [n10_Sianna] [chat ascii] System: Nessa has arrived in Britain.
+[17:30:58.009] INFO  [n10_Sianna] [chat ascii] System: Cassia has arrived in Britain.
+[17:31:05.576] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:32:05.608] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:33:05.627] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:34:05.652] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:34:45.917] INFO  [n10_Sianna] [chat ascii] System: World save in 10 seconds
+[17:34:55.963] INFO  [n10_Sianna] [chat ascii] System: World save has been initiated.
+[17:35:05.531] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:35:05.531] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=nothing (target 0.0)
+[17:35:05.531] INFO  [life]   score=1000.0
+[17:35:05.531] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[17:35:05.531] INFO  [life]   reason: life=dead
+[17:35:05.656] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:36:05.690] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:37:05.733] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:38:05.760] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:39:05.794] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:39:46.261] INFO  [n10_Sianna] [chat ascii] System: World save in 10 seconds
+[17:39:56.309] INFO  [n10_Sianna] [chat ascii] System: World save has been initiated.
+[17:40:05.588] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:40:05.588] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=nothing (target 0.0)
+[17:40:05.588] INFO  [life]   score=1000.0
+[17:40:05.588] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[17:40:05.588] INFO  [life]   reason: life=dead
+[17:40:05.836] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:41:05.862] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:42:05.864] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:43:05.906] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:44:05.944] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:44:46.671] INFO  [n10_Sianna] [chat ascii] System: World save in 10 seconds
+[17:44:56.690] INFO  [n10_Sianna] [chat ascii] System: World save has been initiated.
+[17:45:05.604] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:45:05.604] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=nothing (target 0.0)
+[17:45:05.604] INFO  [life]   score=1000.0
+[17:45:05.604] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[17:45:05.604] INFO  [life]   reason: life=dead
+[17:45:05.604] LOG   [n10_Sianna] event action_result: resurrect timeout
+[17:45:05.666] INFO  [n10_Sianna] [ACTION] resurrect start
+[17:45:05.666] INFO  [n10_Sianna] [ACTION] resurrect: waiting for the server to raise us
+[17:45:05.666] INFO  [life] dead: walking to a healer (trip 2)
+[17:45:05.667] INFO  [n10_Sianna] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1276,3692)
+[17:45:05.667] LOG   [n10_Sianna] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1276,3692)
+[17:45:05.667] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[17:45:05.667] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[17:45:05.667] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:45:05.667] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:45:05.667] LOG   [n10_Sianna] event travel_mode: walk
+[17:45:05.667] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[17:45:05.667] LOG   [n10_Sianna] event travel_escape: from=(1276,3692,-2) to=(1288,3688) attempt=1
+[17:45:05.667] INFO  [n10_Sianna] [action] goto (1288,3688) from (1276,3692,-2)
+[17:45:05.667] LOG   [n10_Sianna] event goto_start: target=(1288,3688) from=(1276,3692)
+[17:45:05.667] INFO  [n10_Sianna] [bot] running from (1276,3692,-2) to (1288,3688,z0)
+[17:45:05.667] INFO  [n10_Sianna] [bot] planning path to (1288,3688) in background
+[17:45:05.682] INFO  [n10_Sianna] [chat ascii] System: You are a ghost
+[17:45:05.682] INFO  [n10_Sianna] [0x1B] serial=0x0001330A body=0x0192 pos=(1276,3692,-1)
+[17:45:05.682] LOG   [n10_Sianna] event login_confirm: serial=0x0001330A body=0x0192 pos=(1276,3692,-1)
+[17:45:05.682] INFO  [n10_Sianna] [0x20] player @(1276,3692,-1) facing=6
+[17:45:05.682] INFO  [n10_Sianna] [0x55] login complete — entering world
+[17:45:05.682] LOG   [n10_Sianna] event in_world: 0x55 received
+[17:45:05.682] INFO  [n10_Sianna] [backpack] opening 0x40013308
+[17:45:05.682] INFO  [n10_Sianna] [action] goto finished at (1276,3692,-1); target (1288,3688); stopped short (off by 16 tile(s))
+[17:45:05.682] LOG   [n10_Sianna] event goto_done: at=(1276,3692) target=(1288,3688) arrived=0 off=16
+[17:45:05.682] INFO  [n10_Sianna] [travel] recovery walk fell short at (1276,3692,-1) (off 12); attempt 1/3
+[17:45:05.682] LOG   [n10_Sianna] event travel_recovery_done: reached=0 at=(1276,3692,-1) off=12 attempt=1
+[17:45:05.682] LOG   [n10_Sianna] event travel_escape: from=(1276,3692,-1) to=(1272,3704) attempt=2
+[17:45:05.682] INFO  [n10_Sianna] [action] goto (1272,3704) from (1276,3692,-1)
+[17:45:05.682] LOG   [n10_Sianna] event goto_start: target=(1272,3704) from=(1276,3692)
+[17:45:05.682] INFO  [n10_Sianna] [bot] running from (1276,3692,-1) to (1272,3704,z0)
+[17:45:05.682] INFO  [n10_Sianna] [bot] planning path to (1272,3704) in background
+[17:45:05.682] INFO  [n10_Sianna] [chat ascii] System: Your ghostly hand passes through the object.
+[17:45:05.697] INFO  [n10_Sianna] [bot] replan to (1272,3704): 13 steps in 243.1us
+[17:45:05.948] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:45:10.752] INFO  [n10_Sianna] [bot] arrived at (1272,3704,0)
+[17:45:10.752] INFO  [n10_Sianna] [action] goto finished at (1272,3704,0); target (1272,3704); ARRIVED (off by 0 tile(s))
+[17:45:10.752] LOG   [n10_Sianna] event goto_done: at=(1272,3704) target=(1272,3704) arrived=1 off=0
+[17:45:10.752] INFO  [n10_Sianna] [travel] recovery walk reached its anchor at (1272,3704,0) (off 0); attempt 1/3
+[17:45:10.752] LOG   [n10_Sianna] event travel_recovery_done: reached=1 at=(1272,3704,0) off=0 attempt=1
+[17:45:10.812] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[17:45:10.812] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[17:45:10.812] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:45:10.812] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:45:10.812] LOG   [n10_Sianna] event travel_mode: walk
+[17:45:10.812] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[17:45:10.812] LOG   [n10_Sianna] event travel_escape: from=(1272,3704,0) to=(1276,3692) attempt=3
+[17:45:10.812] INFO  [n10_Sianna] [action] goto (1276,3692) from (1272,3704,0)
+[17:45:10.812] LOG   [n10_Sianna] event goto_start: target=(1276,3692) from=(1272,3704)
+[17:45:10.812] INFO  [n10_Sianna] [bot] running from (1272,3704,0) to (1276,3692,z-2)
+[17:45:10.812] INFO  [n10_Sianna] [bot] planning path to (1276,3692) in background
+[17:45:10.873] INFO  [n10_Sianna] [bot] replan to (1276,3692): 13 steps in 1369.4us
+[17:45:15.791] INFO  [n10_Sianna] [bot] arrived at (1276,3692,-2)
+[17:45:15.791] INFO  [n10_Sianna] [action] goto finished at (1276,3692,-2); target (1276,3692); ARRIVED (off by 0 tile(s))
+[17:45:15.791] LOG   [n10_Sianna] event goto_done: at=(1276,3692) target=(1276,3692) arrived=1 off=0
+[17:45:15.791] INFO  [n10_Sianna] [travel] recovery walk reached its anchor at (1276,3692,-2) (off 0); attempt 2/3
+[17:45:15.792] LOG   [n10_Sianna] event travel_recovery_done: reached=1 at=(1276,3692,-2) off=0 attempt=2
+[17:45:15.851] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[17:45:15.851] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[17:45:15.851] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:45:15.851] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:45:15.851] LOG   [n10_Sianna] event travel_mode: walk
+[17:45:15.851] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[17:45:15.851] INFO  [n10_Sianna] [travel] Trinsic Healer healer FAILED at (1276,3692,-2) -- no world route to the destination
+[17:45:15.851] LOG   [n10_Sianna] event travel_failed: label='Trinsic Healer healer' ok=0 at=(1276,3692) legs=0 plans=1 why='no world route to the destination'
+[17:46:05.985] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:47:06.036] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:48:06.077] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:49:06.129] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:49:47.029] INFO  [n10_Sianna] [chat ascii] System: World save in 10 seconds
+[17:49:57.051] INFO  [n10_Sianna] [chat ascii] System: World save has been initiated.
+[17:50:05.607] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:50:05.607] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=nothing (target 0.0)
+[17:50:05.607] INFO  [life]   score=1000.0
+[17:50:05.607] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[17:50:05.607] INFO  [life]   reason: life=dead
+[17:50:06.159] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:51:06.196] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:52:06.213] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:53:06.237] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:54:06.293] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:54:47.423] INFO  [n10_Sianna] [chat ascii] System: World save in 10 seconds
+[17:54:57.451] INFO  [n10_Sianna] [chat ascii] System: World save has been initiated.
+[17:55:05.609] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:55:05.609] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=nothing (target 0.0)
+[17:55:05.609] INFO  [life]   score=1000.0
+[17:55:05.609] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[17:55:05.609] INFO  [life]   reason: life=dead
+[17:55:06.347] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:55:11.070] INFO  [n10_Sianna] [chat ascii] System: Wystan has departed from Britain.
+[17:56:03.098] INFO  [n10_Sianna] [chat ascii] System: Thessaly has departed from Britain.
+[17:56:06.351] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:56:10.119] INFO  [n10_Sianna] [chat ascii] System: Maribel has departed from Britain.
+[17:56:54.784] INFO  [n10_Sianna] [chat ascii] System: Cassia has departed from Britain.
+[17:56:59.750] INFO  [n10_Sianna] [chat ascii] System: Halric has departed from Vesper Territory.
+[17:57:03.035] INFO  [n10_Sianna] [chat ascii] System: Edrik has departed from Vesper.
+[17:57:03.100] INFO  [n10_Sianna] [chat ascii] System: Corran has departed from Trinsic.
+[17:57:03.126] INFO  [n10_Sianna] [chat ascii] System: Ovid has departed from Moonglow.
+[17:57:03.173] INFO  [n10_Sianna] [chat ascii] System: Delwyn has departed from Vesper Territory.
+[17:57:03.250] INFO  [n10_Sianna] [chat ascii] System: Rowan has departed from Bog of Desolation.
+[17:57:06.392] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:57:47.515] INFO  [n10_Sianna] [chat ascii] System: Nessa has departed from Britain.
+[17:58:06.428] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:59:06.433] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[17:59:47.827] INFO  [n10_Sianna] [chat ascii] System: World save in 10 seconds
+[17:59:57.812] INFO  [n10_Sianna] [chat ascii] System: World save has been initiated.
+[18:00:05.666] INFO  [life] goal_changed=SURVIVE from=SURVIVE reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[18:00:05.666] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=nothing (target 0.0)
+[18:00:05.666] INFO  [life]   score=1000.0
+[18:00:05.666] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[18:00:05.666] INFO  [life]   reason: life=dead
+[18:00:05.666] LOG   [n10_Sianna] event action_result: resurrect timeout
+[18:00:05.726] INFO  [n10_Sianna] [ACTION] resurrect start
+[18:00:05.726] INFO  [n10_Sianna] [ACTION] resurrect: waiting for the server to raise us
+[18:00:05.726] INFO  [life] dead: walking to a healer (trip 3)
+[18:00:05.726] INFO  [n10_Sianna] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1276,3692)
+[18:00:05.726] LOG   [n10_Sianna] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1276,3692)
+[18:00:05.726] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[18:00:05.726] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[18:00:05.726] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:00:05.726] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:00:05.726] LOG   [n10_Sianna] event travel_mode: walk
+[18:00:05.726] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[18:00:05.726] LOG   [n10_Sianna] event travel_escape: from=(1276,3692,-2) to=(1288,3688) attempt=1
+[18:00:05.726] INFO  [n10_Sianna] [action] goto (1288,3688) from (1276,3692,-2)
+[18:00:05.726] LOG   [n10_Sianna] event goto_start: target=(1288,3688) from=(1276,3692)
+[18:00:05.726] INFO  [n10_Sianna] [bot] running from (1276,3692,-2) to (1288,3688,z0)
+[18:00:05.726] INFO  [n10_Sianna] [bot] planning path to (1288,3688) in background
+[18:00:05.741] INFO  [n10_Sianna] [chat ascii] System: You are a ghost
+[18:00:05.741] INFO  [n10_Sianna] [0x1B] serial=0x0001330A body=0x0192 pos=(1276,3692,-1)
+[18:00:05.741] LOG   [n10_Sianna] event login_confirm: serial=0x0001330A body=0x0192 pos=(1276,3692,-1)
+[18:00:05.741] INFO  [n10_Sianna] [0x20] player @(1276,3692,-1) facing=6
+[18:00:05.741] INFO  [n10_Sianna] [0x55] login complete — entering world
+[18:00:05.741] LOG   [n10_Sianna] event in_world: 0x55 received
+[18:00:05.742] INFO  [n10_Sianna] [backpack] opening 0x40013308
+[18:00:05.742] INFO  [n10_Sianna] [action] goto finished at (1276,3692,-1); target (1288,3688); stopped short (off by 16 tile(s))
+[18:00:05.742] LOG   [n10_Sianna] event goto_done: at=(1276,3692) target=(1288,3688) arrived=0 off=16
+[18:00:05.742] INFO  [n10_Sianna] [travel] recovery walk fell short at (1276,3692,-1) (off 12); attempt 1/3
+[18:00:05.742] LOG   [n10_Sianna] event travel_recovery_done: reached=0 at=(1276,3692,-1) off=12 attempt=1
+[18:00:05.742] LOG   [n10_Sianna] event travel_escape: from=(1276,3692,-1) to=(1272,3704) attempt=2
+[18:00:05.742] INFO  [n10_Sianna] [action] goto (1272,3704) from (1276,3692,-1)
+[18:00:05.742] LOG   [n10_Sianna] event goto_start: target=(1272,3704) from=(1276,3692)
+[18:00:05.742] INFO  [n10_Sianna] [bot] running from (1276,3692,-1) to (1272,3704,z0)
+[18:00:05.742] INFO  [n10_Sianna] [bot] planning path to (1272,3704) in background
+[18:00:05.742] INFO  [n10_Sianna] [chat ascii] System: Your ghostly hand passes through the object.
+[18:00:05.756] INFO  [n10_Sianna] [bot] replan to (1272,3704): 13 steps in 297.5us
+[18:00:06.449] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew05.sianna/state.json
+[18:00:10.744] INFO  [n10_Sianna] [bot] arrived at (1272,3704,0)
+[18:00:10.744] INFO  [n10_Sianna] [action] goto finished at (1272,3704,0); target (1272,3704); ARRIVED (off by 0 tile(s))
+[18:00:10.744] LOG   [n10_Sianna] event goto_done: at=(1272,3704) target=(1272,3704) arrived=1 off=0
+[18:00:10.744] INFO  [n10_Sianna] [travel] recovery walk reached its anchor at (1272,3704,0) (off 0); attempt 1/3
+[18:00:10.744] LOG   [n10_Sianna] event travel_recovery_done: reached=1 at=(1272,3704,0) off=0 attempt=1
+[18:00:10.804] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[18:00:10.804] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[18:00:10.804] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:00:10.804] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:00:10.804] LOG   [n10_Sianna] event travel_mode: walk
+[18:00:10.804] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[18:00:10.804] LOG   [n10_Sianna] event travel_escape: from=(1272,3704,0) to=(1276,3692) attempt=3
+[18:00:10.804] INFO  [n10_Sianna] [action] goto (1276,3692) from (1272,3704,0)
+[18:00:10.804] LOG   [n10_Sianna] event goto_start: target=(1276,3692) from=(1272,3704)
+[18:00:10.804] INFO  [n10_Sianna] [bot] running from (1272,3704,0) to (1276,3692,z-2)
+[18:00:10.804] INFO  [n10_Sianna] [bot] planning path to (1276,3692) in background
+[18:00:10.866] INFO  [n10_Sianna] [bot] replan to (1276,3692): 13 steps in 1548.4us
+[18:00:16.018] INFO  [n10_Sianna] [bot] arrived at (1276,3692,-2)
+[18:00:16.018] INFO  [n10_Sianna] [action] goto finished at (1276,3692,-2); target (1276,3692); ARRIVED (off by 0 tile(s))
+[18:00:16.018] LOG   [n10_Sianna] event goto_done: at=(1276,3692) target=(1276,3692) arrived=1 off=0
+[18:00:16.018] INFO  [n10_Sianna] [travel] recovery walk reached its anchor at (1276,3692,-2) (off 0); attempt 2/3
+[18:00:16.018] LOG   [n10_Sianna] event travel_recovery_done: reached=1 at=(1276,3692,-2) off=0 attempt=2
+[18:00:16.079] INFO  [n10_Sianna] [travel] mode walk             usable   <- chosen
+[18:00:16.079] INFO  [n10_Sianna] [travel] mode moongate         no: dead characters cannot use gates
+[18:00:16.079] INFO  [n10_Sianna] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:00:16.079] INFO  [n10_Sianna] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:00:16.079] LOG   [n10_Sianna] event travel_mode: walk
+[18:00:16.079] INFO  [n10_Sianna] [travel] plan Trinsic Healer healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=383
+[18:00:16.079] INFO  [n10_Sianna] [travel] Trinsic Healer healer FAILED at (1276,3692,-2) -- no world route to the destination
+[18:00:16.079] LOG   [n10_Sianna] event travel_failed: label='Trinsic Healer healer' ok=0 at=(1276,3692) legs=0 plans=1 why='no world route to the destination'

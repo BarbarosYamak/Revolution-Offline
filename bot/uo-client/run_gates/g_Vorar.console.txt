@@ -1,0 +1,877 @@
+[19:00:44.289] INFO  session 0: 127.0.0.1:2593 user='RevGen3_05' char=Vorar tag='g_Vorar'
+[19:00:44.290] LOG   [g_Vorar] event session_start: text log opened
+[19:00:44.290] LOG   [g_Vorar] event net_connect_begin: connect 127.0.0.1:2593
+[19:00:44.290] INFO  [g_Vorar] [net] connecting to 127.0.0.1:2593 ...
+[19:00:44.292] LOG   [g_Vorar] event net_connected: connect 127.0.0.1:2593
+[19:00:44.292] INFO  [g_Vorar] [net] connected.
+[19:00:44.292] INFO  [g_Vorar] [seed] sent 0x7F000001 (plaintext)
+[19:00:44.292] LOG   [g_Vorar] event seed_out: 0x7F000001 hex=7f000001
+[19:00:44.292] INFO  [life] loaded persistent state for Vorar (7 places, 1 suppliers, 6 events, 3 prior sessions)
+[19:00:44.292] INFO  [life] needs: reading 'lumberjack_swordsman' from the profession catalogue
+[19:00:44.292] INFO  [life] build plan 'lumberjack_swordsman': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[19:00:44.292] INFO  [g_Vorar] [life] autonomous player active for 'Vorar' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 5 min)
+[19:00:44.301] INFO  [g_Vorar] [0xA8] 1 server(s):
+[19:00:44.301] INFO  [g_Vorar]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[19:00:44.316] INFO  [g_Vorar] [0x8C] game server = 127.0.0.1:2593  seed=0x6D45B66B
+[19:00:44.316] LOG   [g_Vorar] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6D45B66B
+[19:00:44.316] INFO  [g_Vorar] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[19:00:44.316] LOG   [g_Vorar] event relay_same_socket: no seed re-sent; 0x91 follows
+[19:00:44.316] INFO  [g_Vorar] [0xB9] server features = 0x0005
+[19:00:44.316] INFO  [g_Vorar] [0xA9] 5 slot(s) (populated 1):
+[19:00:44.316] INFO  [g_Vorar]   [0] Vorar
+[19:00:44.316] INFO  [g_Vorar]   [1] <empty>
+[19:00:44.316] INFO  [g_Vorar]   [2] <empty>
+[19:00:44.316] INFO  [g_Vorar]   [3] <empty>
+[19:00:44.316] INFO  [g_Vorar]   [4] <empty>
+[19:00:44.316] INFO  [g_Vorar] [ui] playing slot 0 ('Vorar')
+[19:00:44.332] INFO  [g_Vorar] [0x1B] serial=0x00010407 body=0x0191 pos=(1655,1611,20)
+[19:00:44.332] LOG   [g_Vorar] event login_confirm: serial=0x00010407 body=0x0191 pos=(1655,1611,20)
+[19:00:44.332] INFO  [g_Vorar] [0x20] player @(1655,1611,20) facing=6
+[19:00:44.332] INFO  [g_Vorar] [0x55] login complete — entering world
+[19:00:44.332] LOG   [g_Vorar] event in_world: 0x55 received
+[19:00:44.332] INFO  [g_Vorar] [backpack] opening 0x400103FA
+[19:00:44.332] INFO  [g_Vorar] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[19:00:44.333] INFO  [g_Vorar] [chat ascii] System: There are 2 other players here.
+[19:00:44.333] INFO  [g_Vorar] [chat ascii] System: Last logged: 2026/09/04 18:52:07
+[19:00:44.333] INFO  [g_Vorar] [chat ascii] System: You are under the protection of the city guards
+[19:00:44.337] INFO  [g_Vorar] [action] requesting the skill list
+[19:00:44.337] INFO  [life] in world; asked the server for the skill list
+[19:00:44.337] INFO  [g_Vorar] [0x24] open container 0x400103FA gump=60
+[19:00:44.337] INFO  [g_Vorar] [0x3C] container contents: 14 item(s)
+[19:00:44.337] LOG   [g_Vorar] event backpack_contents: serial=0x400103FA items=14
+[19:00:46.922] INFO  [g_Vorar] [bot] world data loaded (0 blacklisted spot(s)).
+[19:00:46.923] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[19:00:46.923] INFO  [life]   gold         persisted=9036       server=9036       -> server value accepted
+[19:00:46.923] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[19:00:46.923] INFO  [life]   dex          persisted=25         server=25         -> server value accepted
+[19:00:46.923] INFO  [life]   int          persisted=5          server=5          -> server value accepted
+[19:00:46.923] INFO  [life]   skill_44     persisted=50.0       server=50.0       -> server value accepted
+[19:00:46.923] INFO  [life]   skill_40     persisted=50.1       server=50.1       -> server value accepted
+[19:00:46.923] INFO  [life]   skill_27     persisted=2.3        server=2.3        -> server value accepted
+[19:00:46.923] INFO  [life]   skill_1      persisted=0.0        server=0.0        -> server value accepted
+[19:00:46.923] INFO  [life]   skill_17     persisted=0.0        server=0.0        -> server value accepted
+[19:00:46.923] INFO  [life]   skill_11     persisted=20.0       server=20.0       -> server value accepted
+[19:00:46.923] INFO  [life]   position     persisted=1655,1611  server=1655,1611  -> server value accepted
+[19:00:46.923] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[19:00:46.923] INFO  [life]   restored objective KEPT: EXPLORE (progress 0)
+[19:00:46.923] INFO  [g_Vorar] [survival] on
+[19:00:46.923] LOG   [g_Vorar] event survival_mode: on
+[19:00:46.925] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:00:46.925] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:00:46.990] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[19:00:46.990] INFO  [g_Vorar] [travel] Britain banker -> (1650,1608) r=5 from (1655,1611)
+[19:00:46.990] LOG   [g_Vorar] event travel_start: label='Britain banker' target=(1650,1608) radius=5 from=(1655,1611)
+[19:00:46.990] INFO  [life] explore: nothing else to do, so going to 'britain_bank' -- somewhere new (7 place(s) known so far)
+[19:00:46.990] INFO  [g_Vorar] [travel] Britain banker ARRIVED at (1655,1611,20)
+[19:00:46.990] LOG   [g_Vorar] event travel_done: label='Britain banker' ok=1 at=(1655,1611) legs=0 plans=0 why=''
+[19:00:49.511] INFO  [life] explore: arrived at 1655,1611 -- reading who is here
+[19:00:49.511] INFO  [g_Vorar] [action] scanning nearby mobiles for names
+[19:00:49.511] INFO  [g_Vorar] [action] requested 2 paperdoll(s) for trade titles
+[19:00:49.511] INFO  [life] goal_completed=EXPLORE progress=1
+[19:00:49.514] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:00:49.526] INFO  [g_Vorar] [mobiles] nearby (2):
+[19:00:49.526] INFO  [g_Vorar]   Belinda 0x0000AFE8
+[19:00:49.526] INFO  [g_Vorar]   Tallulah 0x00009701
+[19:00:49.526] INFO  [g_Vorar] [0x20] player @(1655,1611,20) facing=7
+[19:00:49.526] INFO  [g_Vorar] [0x88] paperdoll 0x00009701: "Tallulah, the minter"
+[19:00:49.526] INFO  [g_Vorar] [world] Tallulah, the minter is a banker at (1648,1605)
+[19:00:49.526] INFO  [g_Vorar] [0x20] player @(1655,1611,20) facing=6
+[19:00:49.526] INFO  [g_Vorar] [0x88] paperdoll 0x0000AFE8: "Belinda, the banker"
+[19:00:49.526] INFO  [g_Vorar] [world] Belinda, the banker is a banker at (1648,1611)
+[19:00:49.527] INFO  [life] goal=BUY_SUPPLIES reason="no goal was running"
+[19:00:49.527] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:00:49.527] INFO  [life]   score=133.0
+[19:00:49.527] INFO  [life]   reason: NeedSupplies urgency 0.95 x 140 = 133.0
+[19:00:49.527] INFO  [life]   reason: i_board x5 needs 5 x i_log (can make 0 of 5)
+[19:00:49.527] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:00:49.527] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:00:49.527] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:00:51.929] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:00:52.524] INFO  [life] supplies: no NPC sells i_log and this life makes it -- handing the errand to GATHER_LOGS instead of shopping for it
+[19:00:52.524] INFO  [life] handoff=BUY_SUPPLIES->GATHER_LOGS reason="this life produces its own input"
+[19:00:52.586] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: this life produces its own input"
+[19:00:52.586] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:00:52.586] INFO  [life]   score=49.5
+[19:00:52.586] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 110 = 49.5
+[19:00:52.586] INFO  [life]   reason: Carpentry 20.0 -> 100.0, gold 9036 (fee is quoted on arrival, roughly 300)
+[19:00:52.586] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:00:52.586] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 119s after achieving nothing
+[19:00:52.586] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:00:52.586] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:00:54.563] INFO  [life] plan=practise reason="already at what an NPC of this kind can teach"
+[19:00:54.563] INFO  [life] handoff=TRAIN_AT_NPC->PRACTICE_SKILL reason="already at what an NPC of this kind can teach"
+[19:00:54.610] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: already at what an NPC of this kind can teach"
+[19:00:54.611] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:00:54.611] INFO  [life]   score=22.0
+[19:00:54.611] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[19:00:54.611] INFO  [life]   reason: str 50 gold 9036 reserve 10000 basic_armour=1
+[19:00:54.611] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:00:54.611] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[19:00:54.611] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 117s after achieving nothing
+[19:00:54.611] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:00:54.611] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:00:56.564] INFO  [life] gear: nothing carried is an upgrade, and 9036 gold is not clear of the 10400 reserve -- earning first
+[19:00:56.625] INFO  [life] goal=EXPLORE reason="previous goal abandoned: no upgrade and no spare money"
+[19:00:56.625] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:00:56.625] INFO  [life]   score=15.0
+[19:00:56.625] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:00:56.625] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:00:56.625] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 177s after achieving nothing
+[19:00:56.625] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 115s after achieving nothing
+[19:00:56.625] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 239s after achieving nothing
+[19:00:56.625] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:00:56.625] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:00:56.625] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[19:00:56.625] INFO  [g_Vorar] [travel] Britain jeweler -> (1650,1642) r=5 from (1655,1611)
+[19:00:56.625] LOG   [g_Vorar] event travel_start: label='Britain jeweler' target=(1650,1642) radius=5 from=(1655,1611)
+[19:00:56.625] INFO  [life] explore: nothing else to do, so going to 'britain_jeweler_2' -- somewhere new (8 place(s) known so far)
+[19:00:56.625] INFO  [g_Vorar] [travel] mode walk             usable   <- chosen
+[19:00:56.625] INFO  [g_Vorar] [travel] mode moongate         usable
+[19:00:56.625] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:00:56.625] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:00:56.625] LOG   [g_Vorar] event travel_mode: walk
+[19:00:56.625] INFO  [g_Vorar] [travel] plan Britain jeweler: ok legs=1 ~31 tiles transit=0 nodes=0
+[19:00:56.687] INFO  [g_Vorar] [action] goto (1650,1642) from (1655,1611,20)
+[19:00:56.687] LOG   [g_Vorar] event goto_start: target=(1650,1642) from=(1655,1611)
+[19:00:56.687] INFO  [g_Vorar] [bot] running from (1655,1611,20) to (1650,1642,z0)
+[19:00:56.687] INFO  [g_Vorar] [bot] planning path to (1650,1642) in background
+[19:00:56.748] INFO  [g_Vorar] [bot] replan to (1650,1642): 66 steps in 18708.5us
+[19:00:56.931] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:00:57.008] INFO  [g_Vorar] [bot] step (1655,1611,20)->(1656,1612,20) rejected; OpenDoor + retry
+[19:00:57.009] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:00:57.986] INFO  [g_Vorar] [bot] step (1656,1612,20)->(1657,1613,20) rejected; OpenDoor + retry
+[19:00:57.988] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:00:57.988] INFO  [g_Vorar] [0x20] player @(1656,1612,20) facing=4
+[19:00:57.988] INFO  [g_Vorar] [action] goto finished at (1656,1612,20); target (1650,1642); stopped short (off by 36 tile(s))
+[19:00:57.988] LOG   [g_Vorar] event goto_done: at=(1656,1612) target=(1650,1642) arrived=0 off=36
+[19:00:59.188] INFO  [g_Vorar] [action] goto (1650,1642) from (1656,1612,20)
+[19:00:59.188] LOG   [g_Vorar] event goto_start: target=(1650,1642) from=(1656,1612)
+[19:00:59.188] INFO  [g_Vorar] [bot] running from (1656,1612,20) to (1650,1642,z0)
+[19:00:59.188] INFO  [g_Vorar] [bot] planning path to (1650,1642) in background
+[19:00:59.249] INFO  [g_Vorar] [bot] replan to (1650,1642): 65 steps in 15861.9us
+[19:01:01.939] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:06.953] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:11.958] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:14.892] INFO  [g_Vorar] [bot] door ahead at (1655,1651,z0); OpenDoor before step
+[19:01:14.893] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:01:16.996] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:17.116] INFO  [g_Vorar] [travel] Britain jeweler ARRIVED at (1654,1647,0)
+[19:01:17.116] LOG   [g_Vorar] event travel_done: label='Britain jeweler' ok=1 at=(1654,1647) legs=1 plans=1 why=''
+[19:01:17.177] INFO  [life] explore: arrived at 1654,1647 -- reading who is here
+[19:01:17.183] INFO  [g_Vorar] [action] scanning nearby mobiles for names
+[19:01:17.205] INFO  [g_Vorar] [action] requested 1 paperdoll(s) for trade titles
+[19:01:17.205] INFO  [life] goal_completed=EXPLORE progress=1
+[19:01:17.208] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:01:17.209] INFO  [life] goal=EXPLORE reason="no goal was running"
+[19:01:17.209] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:01:17.209] INFO  [life]   score=15.0
+[19:01:17.209] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:01:17.209] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:01:17.209] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 157s after achieving nothing
+[19:01:17.209] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 95s after achieving nothing
+[19:01:17.209] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 219s after achieving nothing
+[19:01:17.209] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:01:17.209] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:01:17.224] INFO  [g_Vorar] [mobiles] nearby (2):
+[19:01:17.224] INFO  [g_Vorar]   Yetta 0x00004AB8
+[19:01:17.224] INFO  [g_Vorar]   Rat 0x000009BB
+[19:01:17.224] INFO  [g_Vorar] [0x20] player @(1654,1647,0) facing=6
+[19:01:17.224] INFO  [g_Vorar] [0x88] paperdoll 0x00004AB8: "Yetta, the jeweler"
+[19:01:17.224] INFO  [g_Vorar] [world] Yetta, the jeweler is a jeweler at (1648,1645)
+[19:01:20.177] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[19:01:20.177] INFO  [g_Vorar] [travel] Britain armorer -> (1637,1693) r=5 from (1654,1647)
+[19:01:20.177] LOG   [g_Vorar] event travel_start: label='Britain armorer' target=(1637,1693) radius=5 from=(1654,1647)
+[19:01:20.177] INFO  [life] explore: nothing else to do, so going to 'britain_armorer_2' -- somewhere new (9 place(s) known so far)
+[19:01:20.177] INFO  [g_Vorar] [travel] mode walk             usable   <- chosen
+[19:01:20.177] INFO  [g_Vorar] [travel] mode moongate         usable
+[19:01:20.177] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:01:20.177] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:01:20.177] LOG   [g_Vorar] event travel_mode: walk
+[19:01:20.177] INFO  [g_Vorar] [travel] plan Britain armorer: ok legs=2 ~56 tiles transit=0 nodes=23
+[19:01:20.240] INFO  [g_Vorar] [action] goto finished at (1654,1647,0); target (1650,1642); stopped short (off by 9 tile(s))
+[19:01:20.240] LOG   [g_Vorar] event goto_done: at=(1654,1647) target=(1650,1642) arrived=0 off=9
+[19:01:20.240] INFO  [g_Vorar] [action] goto (1656,1672) from (1654,1647,0)
+[19:01:20.240] LOG   [g_Vorar] event goto_start: target=(1656,1672) from=(1654,1647)
+[19:01:20.240] INFO  [g_Vorar] [bot] running from (1654,1647,0) to (1656,1672)
+[19:01:20.240] INFO  [g_Vorar] [bot] planning path to (1656,1672) in background
+[19:01:20.301] INFO  [g_Vorar] [bot] replan to (1656,1672): 28 steps in 5095.3us
+[19:01:22.054] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:22.178] INFO  [g_Vorar] [bot] door ahead at (1656,1652,z0); OpenDoor before step
+[19:01:22.192] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:01:27.112] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:29.859] INFO  [g_Vorar] [bot] arrived at (1656,1672,12)
+[19:01:29.860] INFO  [g_Vorar] [action] goto finished at (1656,1672,12); target (1656,1672); ARRIVED (off by 0 tile(s))
+[19:01:29.860] LOG   [g_Vorar] event goto_done: at=(1656,1672) target=(1656,1672) arrived=1 off=0
+[19:01:29.860] INFO  [g_Vorar] [action] goto (1637,1693) from (1656,1672,12)
+[19:01:29.860] LOG   [g_Vorar] event goto_start: target=(1637,1693) from=(1656,1672)
+[19:01:29.860] INFO  [g_Vorar] [bot] running from (1656,1672,12) to (1637,1693,z37)
+[19:01:29.860] INFO  [g_Vorar] [bot] planning path to (1637,1693) in background
+[19:01:29.922] INFO  [g_Vorar] [bot] replan to (1637,1693): 25 steps in 1264.5us
+[19:01:32.126] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:36.431] INFO  [g_Vorar] [travel] Britain armorer ARRIVED at (1642,1688,25)
+[19:01:36.431] LOG   [g_Vorar] event travel_done: label='Britain armorer' ok=1 at=(1642,1688) legs=2 plans=1 why=''
+[19:01:36.446] INFO  [life] explore: arrived at 1642,1688 -- reading who is here
+[19:01:36.446] INFO  [g_Vorar] [action] scanning nearby mobiles for names
+[19:01:36.446] INFO  [g_Vorar] [action] requested 2 paperdoll(s) for trade titles
+[19:01:36.446] INFO  [life] goal_completed=EXPLORE progress=1
+[19:01:36.449] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:01:36.450] INFO  [life] goal=EXPLORE reason="no goal was running"
+[19:01:36.450] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:01:36.450] INFO  [life]   score=15.0
+[19:01:36.450] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:01:36.450] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:01:36.450] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 138s after achieving nothing
+[19:01:36.450] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 76s after achieving nothing
+[19:01:36.450] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 200s after achieving nothing
+[19:01:36.450] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:01:36.450] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:01:36.460] INFO  [g_Vorar] [mobiles] nearby (2):
+[19:01:36.460] INFO  [g_Vorar]   Carla 0x0000AFBF
+[19:01:36.460] INFO  [g_Vorar]   Ferran 0x0000AFB1
+[19:01:36.460] INFO  [g_Vorar] [0x20] player @(1642,1688,25) facing=6
+[19:01:36.460] INFO  [g_Vorar] [0x88] paperdoll 0x0000AFBF: "Carla, the armorer"
+[19:01:36.460] INFO  [g_Vorar] [world] Carla, the armorer is a blacksmith at (1634,1691)
+[19:01:36.460] INFO  [g_Vorar] [0x88] paperdoll 0x0000AFB1: "Ferran, the weaponsmith"
+[19:01:36.460] INFO  [g_Vorar] [world] Ferran, the weaponsmith is a blacksmith at (1634,1689)
+[19:01:37.138] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:39.497] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[19:01:39.497] INFO  [g_Vorar] [travel] Britain provisioner -> (1602,1712) r=5 from (1642,1688)
+[19:01:39.497] LOG   [g_Vorar] event travel_start: label='Britain provisioner' target=(1602,1712) radius=5 from=(1642,1688)
+[19:01:39.497] INFO  [life] explore: nothing else to do, so going to 'britain_provisioner' -- somewhere new (10 place(s) known so far)
+[19:01:39.497] INFO  [g_Vorar] [travel] mode walk             usable   <- chosen
+[19:01:39.497] INFO  [g_Vorar] [travel] mode moongate         usable
+[19:01:39.497] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:01:39.497] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:01:39.497] LOG   [g_Vorar] event travel_mode: walk
+[19:01:39.497] INFO  [g_Vorar] [travel] plan Britain provisioner: ok legs=1 ~40 tiles transit=0 nodes=0
+[19:01:39.558] INFO  [g_Vorar] [action] goto finished at (1642,1688,25); target (1637,1693); stopped short (off by 10 tile(s))
+[19:01:39.558] LOG   [g_Vorar] event goto_done: at=(1642,1688) target=(1637,1693) arrived=0 off=10
+[19:01:39.558] INFO  [g_Vorar] [action] goto (1602,1712) from (1642,1688,25)
+[19:01:39.558] LOG   [g_Vorar] event goto_start: target=(1602,1712) from=(1642,1688)
+[19:01:39.558] INFO  [g_Vorar] [bot] running from (1642,1688,25) to (1602,1712,z20)
+[19:01:39.558] INFO  [g_Vorar] [bot] planning path to (1602,1712) in background
+[19:01:39.619] INFO  [g_Vorar] [bot] replan to (1602,1712): 96 steps in 47077.8us
+[19:01:42.171] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:47.174] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:52.234] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:01:55.351] INFO  [g_Vorar] [chat ascii] System: World save in 10 seconds
+[19:01:57.262] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:01.333] INFO  [g_Vorar] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=19 in 128.9us
+[19:02:02.299] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:05.412] INFO  [g_Vorar] [chat ascii] System: World save has been initiated.
+[19:02:05.742] INFO  [g_Vorar] [bot] door ahead at (1603,1719,z20); OpenDoor before step
+[19:02:05.743] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:02:07.329] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:07.741] INFO  [g_Vorar] [travel] Britain provisioner ARRIVED at (1602,1716,20)
+[19:02:07.741] LOG   [g_Vorar] event travel_done: label='Britain provisioner' ok=1 at=(1602,1716) legs=1 plans=1 why=''
+[19:02:07.803] INFO  [life] explore: arrived at 1602,1716 -- reading who is here
+[19:02:07.803] INFO  [g_Vorar] [action] scanning nearby mobiles for names
+[19:02:07.803] INFO  [g_Vorar] [action] requested 2 paperdoll(s) for trade titles
+[19:02:07.803] INFO  [life] goal_completed=EXPLORE progress=1
+[19:02:07.806] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:02:07.806] INFO  [g_Vorar] [0x20] player @(1602,1716,20) facing=1
+[19:02:07.806] INFO  [g_Vorar] [0x88] paperdoll 0x0000AFDB: "Wakanda, the provisioner"
+[19:02:07.806] INFO  [g_Vorar] [world] Wakanda, the provisioner is a provisioner at (1606,1710)
+[19:02:07.806] INFO  [g_Vorar] [0x88] paperdoll 0x0000AFCB: "Germain, the cobbler"
+[19:02:07.806] INFO  [g_Vorar] [world] Germain, the cobbler is a tailor at (1605,1710)
+[19:02:07.807] INFO  [life] goal=EXPLORE reason="no goal was running"
+[19:02:07.807] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:02:07.807] INFO  [life]   score=15.0
+[19:02:07.807] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:02:07.807] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:02:07.807] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 106s after achieving nothing
+[19:02:07.807] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 44s after achieving nothing
+[19:02:07.807] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 168s after achieving nothing
+[19:02:07.807] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:02:07.807] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:02:08.355] INFO  [g_Vorar] [mobiles] nearby (3):
+[19:02:08.355] INFO  [g_Vorar]   Wakanda 0x0000AFDB
+[19:02:08.355] INFO  [g_Vorar]   Germain 0x0000AFCB
+[19:02:08.355] INFO  [g_Vorar]   <unknown> 0x0000211D
+[19:02:10.812] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[19:02:10.812] INFO  [g_Vorar] [travel] Britain mage -> (1590,1654) r=5 from (1602,1716)
+[19:02:10.812] LOG   [g_Vorar] event travel_start: label='Britain mage' target=(1590,1654) radius=5 from=(1602,1716)
+[19:02:10.812] INFO  [life] explore: nothing else to do, so going to 'britain_mage_2' -- somewhere new (11 place(s) known so far)
+[19:02:10.812] INFO  [g_Vorar] [travel] mode moongate         usable   <- chosen
+[19:02:10.812] INFO  [g_Vorar] [travel] mode walk             usable
+[19:02:10.812] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:02:10.812] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:02:10.812] LOG   [g_Vorar] event travel_mode: moongate
+[19:02:10.812] INFO  [g_Vorar] [travel] plan Britain mage: ok legs=2 ~72 tiles transit=0 nodes=49
+[19:02:10.875] INFO  [g_Vorar] [action] goto finished at (1602,1716,20); target (1602,1712); stopped short (off by 4 tile(s))
+[19:02:10.876] LOG   [g_Vorar] event goto_done: at=(1602,1716) target=(1602,1712) arrived=0 off=4
+[19:02:10.876] INFO  [g_Vorar] [action] goto (1592,1688) from (1602,1716,20)
+[19:02:10.876] LOG   [g_Vorar] event goto_start: target=(1592,1688) from=(1602,1716)
+[19:02:10.876] INFO  [g_Vorar] [bot] running from (1602,1716,20) to (1592,1688)
+[19:02:10.876] INFO  [g_Vorar] [bot] planning path to (1592,1688) in background
+[19:02:10.936] INFO  [g_Vorar] [bot] replan to (1592,1688): 42 steps in 1812.0us
+[19:02:12.390] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:12.653] INFO  [g_Vorar] [bot] door ahead at (1602,1720,z20); OpenDoor before step
+[19:02:12.653] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:02:17.427] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:22.486] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:23.986] INFO  [g_Vorar] [bot] arrived at (1592,1688,10)
+[19:02:23.987] INFO  [g_Vorar] [action] goto finished at (1592,1688,10); target (1592,1688); ARRIVED (off by 0 tile(s))
+[19:02:23.987] LOG   [g_Vorar] event goto_done: at=(1592,1688) target=(1592,1688) arrived=1 off=0
+[19:02:23.988] INFO  [g_Vorar] [action] goto (1590,1654) from (1592,1688,10)
+[19:02:23.988] LOG   [g_Vorar] event goto_start: target=(1590,1654) from=(1592,1688)
+[19:02:23.988] INFO  [g_Vorar] [bot] running from (1592,1688,10) to (1590,1654,z10)
+[19:02:23.988] INFO  [g_Vorar] [bot] planning path to (1590,1654) in background
+[19:02:24.046] INFO  [g_Vorar] [bot] replan to (1590,1654): 34 steps in 893.2us
+[19:02:27.505] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:30.452] INFO  [g_Vorar] [bot] door ahead at (1591,1663,z10); OpenDoor before step
+[19:02:30.453] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:02:32.207] INFO  [g_Vorar] [travel] Britain mage ARRIVED at (1591,1659,10)
+[19:02:32.207] LOG   [g_Vorar] event travel_done: label='Britain mage' ok=1 at=(1591,1659) legs=2 plans=1 why=''
+[19:02:32.269] INFO  [life] explore: arrived at 1591,1659 -- reading who is here
+[19:02:32.269] INFO  [g_Vorar] [action] scanning nearby mobiles for names
+[19:02:32.269] INFO  [g_Vorar] [action] requested 4 paperdoll(s) for trade titles
+[19:02:32.269] INFO  [life] goal_completed=EXPLORE progress=1
+[19:02:32.272] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:02:32.273] INFO  [g_Vorar] [mobiles] nearby (4):
+[19:02:32.273] INFO  [g_Vorar]   Kenton 0x000010D1
+[19:02:32.273] INFO  [g_Vorar]   Rosalinde 0x000010A4
+[19:02:32.273] INFO  [g_Vorar]   Tong 0x0000E13B
+[19:02:32.273] INFO  [g_Vorar]   Olesia 0x0000126A
+[19:02:32.273] INFO  [g_Vorar] [0x20] player @(1591,1659,10) facing=2
+[19:02:32.273] INFO  [g_Vorar] [0x88] paperdoll 0x000010D1: "Kenton, the mage"
+[19:02:32.273] INFO  [g_Vorar] [world] Kenton, the mage is a mage at (1594,1658)
+[19:02:32.273] INFO  [g_Vorar] [0x20] player @(1591,1659,10) facing=0
+[19:02:32.273] INFO  [g_Vorar] [0x88] paperdoll 0x000010A4: "Rosalinde, the mage guildmistress"
+[19:02:32.273] INFO  [g_Vorar] [world] Rosalinde, the mage guildmistress is a mage at (1590,1656)
+[19:02:32.273] INFO  [g_Vorar] [0x88] paperdoll 0x0000E13B: "Tong, the scribe"
+[19:02:32.273] INFO  [g_Vorar] [world] Tong, the scribe is a scribe at (1590,1655)
+[19:02:32.273] INFO  [life] goal=EXPLORE reason="no goal was running"
+[19:02:32.273] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:02:32.273] INFO  [life]   score=15.0
+[19:02:32.273] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:02:32.273] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:02:32.273] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 82s after achieving nothing
+[19:02:32.273] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 20s after achieving nothing
+[19:02:32.273] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 144s after achieving nothing
+[19:02:32.273] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:02:32.273] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:02:32.284] INFO  [g_Vorar] [0x88] paperdoll 0x0000126A: "Olesia, the alchemist"
+[19:02:32.284] INFO  [g_Vorar] [world] Olesia, the alchemist is a alchemist at (1589,1652)
+[19:02:32.530] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:35.312] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[19:02:35.312] INFO  [g_Vorar] [travel] Britain tailor -> (1547,1659) r=5 from (1591,1659)
+[19:02:35.312] LOG   [g_Vorar] event travel_start: label='Britain tailor' target=(1547,1659) radius=5 from=(1591,1659)
+[19:02:35.312] INFO  [life] explore: nothing else to do, so going to 'britain_tailor' -- somewhere new (12 place(s) known so far)
+[19:02:35.312] INFO  [g_Vorar] [travel] mode walk             usable   <- chosen
+[19:02:35.312] INFO  [g_Vorar] [travel] mode moongate         usable
+[19:02:35.312] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:02:35.312] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:02:35.312] LOG   [g_Vorar] event travel_mode: walk
+[19:02:35.312] INFO  [g_Vorar] [travel] plan Britain tailor: ok legs=2 ~48 tiles transit=0 nodes=23
+[19:02:35.372] INFO  [g_Vorar] [action] goto finished at (1591,1659,10); target (1590,1654); stopped short (off by 6 tile(s))
+[19:02:35.372] LOG   [g_Vorar] event goto_done: at=(1591,1659) target=(1590,1654) arrived=0 off=6
+[19:02:35.372] INFO  [g_Vorar] [action] goto (1560,1656) from (1591,1659,10)
+[19:02:35.372] LOG   [g_Vorar] event goto_start: target=(1560,1656) from=(1591,1659)
+[19:02:35.372] INFO  [g_Vorar] [bot] running from (1591,1659,10) to (1560,1656)
+[19:02:35.372] INFO  [g_Vorar] [bot] planning path to (1560,1656) in background
+[19:02:35.434] INFO  [g_Vorar] [bot] planning path to (1558,1654) in background
+[19:02:36.065] INFO  [g_Vorar] [chat ascii] Tong: What is it thou wishest?
+[19:02:36.789] INFO  [g_Vorar] [action] goto finished at (1591,1659,10); target (1560,1656); stopped short (off by 34 tile(s))
+[19:02:36.789] LOG   [g_Vorar] event goto_done: at=(1591,1659) target=(1560,1656) arrived=0 off=34
+[19:02:37.571] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:38.051] INFO  [g_Vorar] [action] goto (1560,1656) from (1591,1659,10)
+[19:02:38.051] LOG   [g_Vorar] event goto_start: target=(1560,1656) from=(1591,1659)
+[19:02:38.051] INFO  [g_Vorar] [bot] running from (1591,1659,10) to (1560,1656)
+[19:02:38.051] INFO  [g_Vorar] [bot] planning path to (1560,1656) in background
+[19:02:38.112] INFO  [g_Vorar] [bot] planning path to (1558,1654) in background
+[19:02:39.341] INFO  [g_Vorar] [action] goto finished at (1591,1659,10); target (1560,1656); stopped short (off by 34 tile(s))
+[19:02:39.341] LOG   [g_Vorar] event goto_done: at=(1591,1659) target=(1560,1656) arrived=0 off=34
+[19:02:40.597] INFO  [g_Vorar] [action] goto (1560,1656) from (1591,1659,10)
+[19:02:40.597] LOG   [g_Vorar] event goto_start: target=(1560,1656) from=(1591,1659)
+[19:02:40.597] INFO  [g_Vorar] [bot] running from (1591,1659,10) to (1560,1656)
+[19:02:40.597] INFO  [g_Vorar] [bot] planning path to (1560,1656) in background
+[19:02:40.659] INFO  [g_Vorar] [bot] planning path to (1558,1654) in background
+[19:02:41.254] INFO  [g_Vorar] [chat ascii] Kenton: I am listening to thee.
+[19:02:41.748] INFO  [g_Vorar] [chat ascii] Olesia: Thou wishest to speak with me?
+[19:02:41.933] INFO  [g_Vorar] [action] goto finished at (1591,1659,10); target (1560,1656); stopped short (off by 34 tile(s))
+[19:02:41.933] LOG   [g_Vorar] event goto_done: at=(1591,1659) target=(1560,1656) arrived=0 off=34
+[19:02:42.610] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:43.150] INFO  [g_Vorar] [travel] mode walk             usable   <- chosen
+[19:02:43.150] INFO  [g_Vorar] [travel] mode moongate         usable
+[19:02:43.150] INFO  [g_Vorar] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:02:43.150] INFO  [g_Vorar] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:02:43.150] LOG   [g_Vorar] event travel_mode: walk
+[19:02:43.151] INFO  [g_Vorar] [travel] plan Britain tailor: ok legs=2 ~64 tiles transit=0 nodes=39
+[19:02:44.382] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:02:44.704] INFO  [g_Vorar] [action] goto (1560,1672) from (1591,1659,10)
+[19:02:44.704] LOG   [g_Vorar] event goto_start: target=(1560,1672) from=(1591,1659)
+[19:02:44.704] INFO  [g_Vorar] [bot] running from (1591,1659,10) to (1560,1672)
+[19:02:44.704] INFO  [g_Vorar] [bot] planning path to (1560,1672) in background
+[19:02:44.766] INFO  [g_Vorar] [bot] replan to (1560,1672): 37 steps in 758.6us
+[19:02:46.458] INFO  [g_Vorar] [bot] step (1591,1664,10)->(1590,1665,10) rejected; OpenDoor + retry
+[19:02:46.459] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:02:46.459] INFO  [g_Vorar] [0x20] player @(1591,1664,10) facing=6
+[19:02:46.460] INFO  [g_Vorar] [action] goto finished at (1591,1664,10); target (1560,1672); stopped short (off by 39 tile(s))
+[19:02:46.460] LOG   [g_Vorar] event goto_done: at=(1591,1664) target=(1560,1672) arrived=0 off=39
+[19:02:47.667] INFO  [g_Vorar] [action] goto (1560,1672) from (1591,1664,10)
+[19:02:47.667] LOG   [g_Vorar] event goto_start: target=(1560,1672) from=(1591,1664)
+[19:02:47.667] INFO  [g_Vorar] [bot] running from (1591,1664,10) to (1560,1672)
+[19:02:47.667] INFO  [g_Vorar] [bot] planning path to (1560,1672) in background
+[19:02:47.667] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:47.729] INFO  [g_Vorar] [bot] replan to (1560,1672): 32 steps in 566.0us
+[19:02:49.388] INFO  [life] goal_completed=EXPLORE progress=0
+[19:02:49.390] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:02:49.450] INFO  [life] goal=EXPLORE reason="no goal was running"
+[19:02:49.450] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:02:49.450] INFO  [life]   score=15.0
+[19:02:49.450] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:02:49.450] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:02:49.450] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 65s after achieving nothing
+[19:02:49.450] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 3s after achieving nothing
+[19:02:49.450] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 127s after achieving nothing
+[19:02:49.450] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:02:49.450] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:02:52.675] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:54.392] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:02:56.284] INFO  [g_Vorar] [bot] arrived at (1560,1672,20)
+[19:02:56.285] INFO  [g_Vorar] [action] goto finished at (1560,1672,20); target (1560,1672); ARRIVED (off by 0 tile(s))
+[19:02:56.285] LOG   [g_Vorar] event goto_done: at=(1560,1672) target=(1560,1672) arrived=1 off=0
+[19:02:56.285] INFO  [g_Vorar] [action] goto (1547,1659) from (1560,1672,20)
+[19:02:56.285] LOG   [g_Vorar] event goto_start: target=(1547,1659) from=(1560,1672)
+[19:02:56.285] INFO  [g_Vorar] [bot] running from (1560,1672,20) to (1547,1659,z26)
+[19:02:56.285] INFO  [g_Vorar] [bot] planning path to (1547,1659) in background
+[19:02:56.347] INFO  [g_Vorar] [bot] replan to (1547,1659): 18 steps in 860.2us
+[19:02:57.697] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:02:58.663] INFO  [g_Vorar] [bot] door ahead at (1555,1663,z26); OpenDoor before step
+[19:02:58.664] INFO  [g_Vorar] [chat ascii] System: Opening door...
+[19:03:01.137] INFO  [g_Vorar] [travel] Britain tailor ARRIVED at (1552,1661,26)
+[19:03:01.137] LOG   [g_Vorar] event travel_done: label='Britain tailor' ok=1 at=(1552,1661) legs=2 plans=2 why=''
+[19:03:02.702] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:07.724] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:09.468] INFO  [life] goal_changed=BUY_SUPPLIES from=EXPLORE reason="BUY_SUPPLIES 133.0 superseded EXPLORE 15.0"
+[19:03:09.468] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:03:09.468] INFO  [life]   score=133.0
+[19:03:09.468] INFO  [life]   reason: NeedSupplies urgency 0.95 x 140 = 133.0
+[19:03:09.468] INFO  [life]   reason: i_board x5 needs 5 x i_log (can make 0 of 5)
+[19:03:09.468] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:03:09.468] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 45s after achieving nothing
+[19:03:09.468] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 107s after achieving nothing
+[19:03:09.468] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:03:09.468] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:03:09.468] INFO  [life] supplies: no NPC sells i_log and this life makes it -- handing the errand to GATHER_LOGS instead of shopping for it
+[19:03:09.468] INFO  [life] handoff=BUY_SUPPLIES->GATHER_LOGS reason="this life produces its own input"
+[19:03:09.531] INFO  [life] goal=EXPLORE reason="previous goal abandoned: this life produces its own input"
+[19:03:09.531] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:03:09.531] INFO  [life]   score=15.0
+[19:03:09.531] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:03:09.531] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:03:09.531] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 45s after achieving nothing
+[19:03:09.531] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 119s after achieving nothing
+[19:03:09.531] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 107s after achieving nothing
+[19:03:09.531] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:03:09.531] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:03:11.484] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:03:12.771] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:17.806] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:22.849] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:26.545] INFO  [life] goal_completed=EXPLORE progress=0
+[19:03:26.547] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:03:26.606] INFO  [life] goal=EXPLORE reason="no goal was running"
+[19:03:26.606] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:03:26.606] INFO  [life]   score=15.0
+[19:03:26.606] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:03:26.606] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:03:26.606] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 27s after achieving nothing
+[19:03:26.606] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 102s after achieving nothing
+[19:03:26.606] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 89s after achieving nothing
+[19:03:26.606] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:03:26.606] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:03:27.900] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:28.308] INFO  [g_Vorar] [chat ascii] Paul: What is it thou wishest?
+[19:03:31.586] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:03:32.935] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:37.950] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:41.649] INFO  [life] goal_completed=EXPLORE progress=0
+[19:03:41.652] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:03:41.713] INFO  [life] goal=EXPLORE reason="no goal was running"
+[19:03:41.713] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:03:41.713] INFO  [life]   score=15.0
+[19:03:41.713] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:03:41.713] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:03:41.713] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 12s after achieving nothing
+[19:03:41.713] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 87s after achieving nothing
+[19:03:41.713] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 74s after achieving nothing
+[19:03:41.713] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:03:41.713] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:03:42.999] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:46.672] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:03:48.016] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:53.024] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:03:56.755] INFO  [life] goal_completed=EXPLORE progress=0
+[19:03:56.757] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:03:56.817] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[19:03:56.817] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:03:56.817] INFO  [life]   score=49.5
+[19:03:56.817] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 110 = 49.5
+[19:03:56.817] INFO  [life]   reason: Carpentry 20.0 -> 100.0, gold 9036 (fee is quoted on arrival, roughly 300)
+[19:03:56.817] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:03:56.817] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 72s after achieving nothing
+[19:03:56.817] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 59s after achieving nothing
+[19:03:56.817] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:03:56.817] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:03:58.064] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:01.787] INFO  [life] plan=practise reason="already at what an NPC of this kind can teach"
+[19:04:01.787] INFO  [life] handoff=TRAIN_AT_NPC->PRACTICE_SKILL reason="already at what an NPC of this kind can teach"
+[19:04:01.847] INFO  [life] goal=EXPLORE reason="previous goal abandoned: already at what an NPC of this kind can teach"
+[19:04:01.847] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:04:01.847] INFO  [life]   score=15.0
+[19:04:01.847] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:04:01.847] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:04:01.847] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[19:04:01.847] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 67s after achieving nothing
+[19:04:01.847] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 54s after achieving nothing
+[19:04:01.847] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:04:01.847] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:04:03.094] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:03.827] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:04:08.150] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:13.188] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:18.230] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:18.967] INFO  [life] goal_completed=EXPLORE progress=0
+[19:04:18.967] INFO  [life] goal_spinning=EXPLORE reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[19:04:18.969] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:04:19.028] INFO  [life] goal=GATHER_LOGS reason="no goal was running"
+[19:04:19.028] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:04:19.028] INFO  [life]   score=12.0
+[19:04:19.028] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[19:04:19.028] INFO  [life]   reason: no stand and no lead
+[19:04:19.028] INFO  [life]   reason: carrying 81% of capacity -40
+[19:04:19.028] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:04:19.028] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 162s after achieving nothing
+[19:04:19.028] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 50s after achieving nothing
+[19:04:19.028] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 37s after achieving nothing
+[19:04:19.028] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:04:19.028] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:04:19.028] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 59s after achieving nothing
+[19:04:23.290] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:23.994] INFO  [life] arming the axe: taking off 0x0F51 from layer 1 first
+[19:04:23.994] INFO  [g_Vorar] [ACTION] unequip start
+[19:04:23.994] INFO  [g_Vorar] [ACTION] unequip serial=0x400103C9 -> backpack 0x400103FA
+[19:04:23.994] INFO  [g_Vorar] [ITEM] drag serial=0x400103C9 amount=1
+[19:04:23.994] INFO  [g_Vorar] [ITEM] drop container=0x400103FA
+[19:04:24.008] INFO  [g_Vorar] [ACTION_RESULT] unequip success (15ms) item is in the destination
+[19:04:24.008] LOG   [g_Vorar] event action_result: unequip success took=15ms item is in the destination
+[19:04:25.427] INFO  [life] arming the axe
+[19:04:25.427] INFO  [g_Vorar] [ACTION] equip start
+[19:04:25.427] INFO  [g_Vorar] [ACTION] equip serial=0x400103B2 layer=0
+[19:04:25.427] INFO  [g_Vorar] [ITEM] drag serial=0x400103B2 amount=1
+[19:04:25.443] INFO  [g_Vorar] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[19:04:25.443] LOG   [g_Vorar] event action_result: equip success took=16ms worn on the requested layer
+[19:04:27.073] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:27.626] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:27.626] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:27.626] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:27.626] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:27.626] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:27.750] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:28.271] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:28.271] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:28.271] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:28.271] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:28.271] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:28.332] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:28.394] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:28.952] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:28.952] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:28.952] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:28.952] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:28.952] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:29.076] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:29.582] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:29.582] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:29.582] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:29.582] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:29.582] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:29.704] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:29.765] INFO  [life] goal_changed=GATHER_LOGS from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[19:04:29.765] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:04:29.765] INFO  [life]   score=32.0
+[19:04:29.765] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[19:04:29.765] INFO  [life]   reason: no stand and no lead
+[19:04:29.765] INFO  [life]   reason: axe already in hand +20
+[19:04:29.765] INFO  [life]   reason: carrying 81% of capacity -40
+[19:04:29.765] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:04:29.765] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 152s after achieving nothing
+[19:04:29.765] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 39s after achieving nothing
+[19:04:29.765] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 26s after achieving nothing
+[19:04:29.765] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:04:29.765] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:04:29.765] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 49s after achieving nothing
+[19:04:30.253] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:30.253] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:30.253] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:30.253] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:30.253] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:30.376] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:30.912] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:30.912] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:30.912] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:30.912] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:30.912] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:31.037] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:31.590] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:31.590] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:31.590] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:31.590] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:31.590] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:31.714] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:32.270] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:32.270] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:32.270] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:32.271] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:32.271] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:32.394] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:32.946] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:32.946] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:32.946] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:32.946] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:32.946] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:33.069] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:33.130] INFO  [life] goal_changed=GATHER_LOGS from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[19:04:33.130] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:04:33.130] INFO  [life]   score=32.0
+[19:04:33.130] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[19:04:33.130] INFO  [life]   reason: no stand and no lead
+[19:04:33.130] INFO  [life]   reason: axe already in hand +20
+[19:04:33.130] INFO  [life]   reason: carrying 81% of capacity -40
+[19:04:33.130] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:04:33.130] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 148s after achieving nothing
+[19:04:33.130] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 36s after achieving nothing
+[19:04:33.130] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 23s after achieving nothing
+[19:04:33.130] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:04:33.130] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:04:33.130] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 45s after achieving nothing
+[19:04:33.374] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:33.618] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:33.618] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:33.618] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:33.618] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:33.618] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:33.741] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:34.280] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:34.280] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:34.280] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:34.280] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:34.280] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:34.404] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:34.943] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:34.943] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:34.943] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:34.943] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:34.943] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:35.068] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:35.620] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:35.621] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:35.621] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:35.621] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:35.621] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:35.711] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:36.249] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:36.249] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:36.249] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:36.249] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:36.249] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:36.373] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:36.433] INFO  [life] goal_changed=GATHER_LOGS from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[19:04:36.433] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:04:36.433] INFO  [life]   score=32.0
+[19:04:36.433] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[19:04:36.433] INFO  [life]   reason: no stand and no lead
+[19:04:36.433] INFO  [life]   reason: axe already in hand +20
+[19:04:36.433] INFO  [life]   reason: carrying 81% of capacity -40
+[19:04:36.433] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:04:36.433] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 145s after achieving nothing
+[19:04:36.433] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 33s after achieving nothing
+[19:04:36.433] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 20s after achieving nothing
+[19:04:36.433] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:04:36.433] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:04:36.433] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 42s after achieving nothing
+[19:04:36.878] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:36.879] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:36.879] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:36.879] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:36.879] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:37.001] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:37.555] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:37.555] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:37.555] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:37.555] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:37.555] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:37.680] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:38.232] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:38.232] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:38.232] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:38.232] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:38.232] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:38.357] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:38.418] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:38.866] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:38.867] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:38.867] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:38.867] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:38.867] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:38.991] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:39.512] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:39.512] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:39.512] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:39.512] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:39.512] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:39.635] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:39.696] INFO  [life] goal_changed=GATHER_LOGS from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[19:04:39.696] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:04:39.696] INFO  [life]   score=32.0
+[19:04:39.696] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[19:04:39.696] INFO  [life]   reason: no stand and no lead
+[19:04:39.696] INFO  [life]   reason: axe already in hand +20
+[19:04:39.696] INFO  [life]   reason: carrying 81% of capacity -40
+[19:04:39.696] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:04:39.696] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 142s after achieving nothing
+[19:04:39.696] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 29s after achieving nothing
+[19:04:39.696] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 16s after achieving nothing
+[19:04:39.696] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:04:39.696] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:04:39.696] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 39s after achieving nothing
+[19:04:40.189] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:40.189] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:40.189] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:40.189] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:40.189] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:40.313] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:40.866] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:40.866] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:40.866] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:40.866] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:40.866] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:40.990] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:41.541] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:41.541] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:41.541] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:41.541] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:41.541] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:41.649] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:42.201] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:42.201] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:42.201] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:42.201] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:42.201] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:42.324] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:42.883] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[19:04:42.883] INFO  [g_Vorar] [travel] past_guard_line -> (1555,1661) r=4 from (1552,1661)
+[19:04:42.883] LOG   [g_Vorar] event travel_start: label='past_guard_line' target=(1555,1661) radius=4 from=(1552,1661)
+[19:04:42.883] INFO  [g_Vorar] [travel] past_guard_line ARRIVED at (1552,1661,26)
+[19:04:42.883] LOG   [g_Vorar] event travel_done: label='past_guard_line' ok=1 at=(1552,1661) legs=0 plans=0 why=''
+[19:04:43.006] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[19:04:43.068] INFO  [life] goal_changed=IDLE_BRIEFLY from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[19:04:43.068] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:04:43.068] INFO  [life]   score=10.0
+[19:04:43.068] INFO  [life]   reason: fallback: nothing else scored
+[19:04:43.068] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 60s after achieving nothing
+[19:04:43.068] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:04:43.068] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 138s after achieving nothing
+[19:04:43.068] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 26s after achieving nothing
+[19:04:43.068] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 13s after achieving nothing
+[19:04:43.068] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:04:43.068] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:04:43.068] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 35s after achieving nothing
+[19:04:43.068] INFO  [life] goal_spinning=GATHER_LOGS reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[19:04:43.436] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:43.560] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:04:48.475] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:53.512] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:58.532] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:04:58.656] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[19:04:58.658] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:04:58.718] INFO  [life] goal=UPGRADE_GEAR reason="no goal was running"
+[19:04:58.718] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:04:58.718] INFO  [life]   score=22.0
+[19:04:58.718] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[19:04:58.718] INFO  [life]   reason: str 50 gold 9036 reserve 10000 basic_armour=1
+[19:04:58.718] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 44s after achieving nothing
+[19:04:58.718] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:04:58.718] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 123s after achieving nothing
+[19:04:58.718] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 10s after achieving nothing
+[19:04:58.718] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:04:58.718] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:04:58.718] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 20s after achieving nothing
+[19:05:03.563] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:03.687] INFO  [life] gear: nothing carried is an upgrade, and 9036 gold is not clear of the 10400 reserve -- earning first
+[19:05:03.749] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: no upgrade and no spare money"
+[19:05:03.749] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:05:03.749] INFO  [life]   score=10.0
+[19:05:03.749] INFO  [life]   reason: fallback: nothing else scored
+[19:05:03.749] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 39s after achieving nothing
+[19:05:03.749] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:05:03.749] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 118s after achieving nothing
+[19:05:03.749] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 5s after achieving nothing
+[19:05:03.749] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 239s after achieving nothing
+[19:05:03.749] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:05:03.749] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:05:03.749] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 15s after achieving nothing
+[19:05:03.749] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:05:08.575] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:13.614] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:18.634] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:18.816] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[19:05:18.818] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:05:18.878] INFO  [life] goal=BUY_SUPPLIES reason="no goal was running"
+[19:05:18.878] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:05:18.878] INFO  [life]   score=133.0
+[19:05:18.878] INFO  [life]   reason: NeedSupplies urgency 0.95 x 140 = 133.0
+[19:05:18.878] INFO  [life]   reason: i_board x5 needs 5 x i_log (can make 0 of 5)
+[19:05:18.878] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 24s after achieving nothing
+[19:05:18.878] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:05:18.878] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 102s after achieving nothing
+[19:05:18.878] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 224s after achieving nothing
+[19:05:18.878] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:05:18.878] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:05:18.878] INFO  [life]   BLOCKED_NEED EXPLORE: on cooldown for another 0s after achieving nothing
+[19:05:23.664] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:23.849] INFO  [life] supplies: no NPC sells i_log and this life makes it -- handing the errand to GATHER_LOGS instead of shopping for it
+[19:05:23.849] INFO  [life] handoff=BUY_SUPPLIES->GATHER_LOGS reason="this life produces its own input"
+[19:05:23.909] INFO  [life] goal=EXPLORE reason="previous goal abandoned: this life produces its own input"
+[19:05:23.909] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:05:23.909] INFO  [life]   score=15.0
+[19:05:23.909] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:05:23.909] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 19s after achieving nothing
+[19:05:23.909] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:05:23.909] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 97s after achieving nothing
+[19:05:23.909] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 119s after achieving nothing
+[19:05:23.909] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 219s after achieving nothing
+[19:05:23.909] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:05:23.909] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:05:25.907] INFO  [life] plan=rest reason="somewhere safe, and the session is ending"
+[19:05:28.680] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:33.696] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:38.722] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:41.009] INFO  [life] goal_completed=EXPLORE progress=0
+[19:05:41.011] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:05:41.069] INFO  [life] goal=EXPLORE reason="no goal was running"
+[19:05:41.069] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedTraining(Anatomy BLOCKED 0.40) NeedTraining(Tactics BLOCKED 0.39) NeedTraining(Swordsmanship BLOCKED 0.27) NeedGear(gear 0.22) NeedMount(riding horse BLOCKED 0.05) NeedWoolIncome(wool BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[19:05:41.069] INFO  [life]   score=15.0
+[19:05:41.069] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[19:05:41.069] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 1s after achieving nothing
+[19:05:41.069] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Anatomy 0.0 -> 100.0)
+[19:05:41.069] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 80s after achieving nothing
+[19:05:41.069] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 102s after achieving nothing
+[19:05:41.069] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 202s after achieving nothing
+[19:05:41.069] INFO  [life]   BLOCKED_NEED BUY_MOUNT: on foot, but the purse does not clear the price plus this life's reserve (gold 9036 reserve 10000 price<=500 stood_down=0 last_fail_session=-1 session=4)
+[19:05:41.069] INFO  [life]   BLOCKED_NEED HARVEST_WOOL: already carrying a load -- sell it first (wool=7 gold=9036 reserve=10000 weight=81%)
+[19:05:41.577] INFO  [g_Vorar] [chat ascii] System: Kharain has departed from Minoc.
+[19:05:43.773] INFO  [g_Vorar] [survival] hp 50/50 (100%) -> fight
+[19:05:44.388] INFO  [life] session_end_requested reason="session time limit reached"
+[19:05:44.449] INFO  [life] session_summary duration=300s goals=13/26 gold=9036->9036 skills=122.4->122.4 logs=+0 kills=0 deaths=0 places=12 suppliers=1
+[19:05:44.449] INFO  [life] session_goals families=4 picks=26 top=54% varied=0 self_superseded=4 | upkeep=2(8%) work=8(31%) training=2(8%) wander=14(54%) | GATHER_LOGS=5(19%) TRAIN_AT_NPC=2(8%) BUY_SUPPLIES=3(12%) EXPLORE=12(46%) UPGRADE_GEAR=2(8%) IDLE_BRIEFLY=2(8%)
+[19:05:44.451] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_05.vorar/state.json
+[19:05:44.451] INFO  [life] logging out
+[19:05:44.451] INFO  [g_Vorar] [action] logout requested
+[19:05:44.451] LOG   [g_Vorar] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[19:05:44.451] INFO  [g_Vorar] [0xD1] logout acknowledged (accepted=1)
+[19:05:44.451] LOG   [g_Vorar] event logout_ack: accepted
+[19:05:44.451] INFO  [g_Vorar] [net] closing connection (logout acknowledged)
+[19:05:44.451] LOG   [g_Vorar] event logout_complete: acked

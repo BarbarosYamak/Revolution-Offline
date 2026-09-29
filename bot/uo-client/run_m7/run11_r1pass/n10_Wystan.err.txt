@@ -1,0 +1,427 @@
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[15:52:11.714] WARN  [n10_Wystan] [0x21] move REJECTED seq=41; server says (776,764,0) facing=7
+[15:52:12.890] WARN  [n10_Wystan] [bot] no path to (776,760) avoiding 0 block(s); stopping (search 1125135.7us)
+[15:52:12.890] WARN  [n10_Wystan] [bot] start (776,764,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 143 item(s), 12 mobile(s))
+[15:54:33.970] WARN  [n10_Wystan] [0x21] move REJECTED seq=35; server says (1432,1666,10) facing=1
+[15:54:34.726] WARN  [n10_Wystan] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[15:55:30.084] WARN  [n10_Wystan] [bot] 0x20 resync; aborting path
+[15:55:34.269] WARN  [n10_Wystan] [bot] no path to (1487,1547) avoiding 0 block(s); stopping (search 1576267.0us)
+[15:55:34.270] WARN  [n10_Wystan] [bot] start (1490,1552,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 858 item(s), 7 mobile(s))
+[15:55:37.337] WARN  [n10_Wystan] [bot] no path to (1487,1547) avoiding 0 block(s); stopping (search 1768848.1us)
+[15:55:37.337] WARN  [n10_Wystan] [bot] start (1490,1552,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 858 item(s), 7 mobile(s))
+[15:55:40.187] WARN  [n10_Wystan] [bot] goal (1487,1547) is not walkable; skipping A* and stopping
+[15:55:41.563] WARN  [n10_Wystan] [bot] goal (1487,1547) is not walkable; skipping A* and stopping
+[15:55:42.842] WARN  [n10_Wystan] [bot] goal (1487,1547) is not walkable; skipping A* and stopping
+[15:55:45.183] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1810055.3us)
+[15:55:45.183] WARN  [n10_Wystan] [bot] start (1490,1552,30) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 858 item(s), 7 mobile(s))
+[15:55:49.000] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2491805.7us)
+[15:55:49.000] WARN  [n10_Wystan] [bot] start (1490,1552,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 858 item(s), 7 mobile(s))
+[15:55:53.887] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1997741.3us)
+[15:55:53.887] WARN  [n10_Wystan] [bot] start (1490,1552,30) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 858 item(s), 7 mobile(s))
+[15:55:53.948] WARN  [n10_Wystan] [travel] reached (1490,1552,30) but the target is on another floor; not arrived
+[15:55:59.902] WARN  [n10_Wystan] [bot] no path to (1484,1546) avoiding 0 block(s); stopping (search 2300382.5us)
+[15:55:59.902] WARN  [n10_Wystan] [bot] start (1484,1547,45) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 859 item(s), 7 mobile(s))
+[15:56:32.027] WARN  [n10_Wystan] [bot] no path to (1489,1548) avoiding 0 block(s); stopping (search 1437688.5us)
+[15:56:32.027] WARN  [n10_Wystan] [bot] start (1484,1547,45) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 859 item(s), 7 mobile(s))
+[15:56:32.088] WARN  [n10_Wystan] [travel] reached (1484,1547,45) but the target is on another floor; not arrived
+[15:56:46.894] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:56:46.894] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:56:46.894] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:56:55.942] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:56:55.942] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:56:55.942] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:04.995] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:04.995] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:04.995] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:14.054] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:14.054] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:14.054] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:23.071] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:23.071] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:23.071] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:32.100] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:32.100] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:32.100] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:41.101] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:41.101] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:41.101] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:50.118] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:50.118] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:50.118] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:57:59.153] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:57:59.153] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:57:59.153] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:09.670] WARN  [n10_Wystan] [bot] no path to (1485,1547) avoiding 0 block(s); stopping (search 1406537.7us)
+[15:58:09.670] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[15:58:12.476] WARN  [n10_Wystan] [bot] no path to (1485,1547) avoiding 0 block(s); stopping (search 1496727.8us)
+[15:58:12.476] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[15:58:16.445] WARN  [n10_Wystan] [bot] no path to (1488,1547) avoiding 0 block(s); stopping (search 1762009.7us)
+[15:58:16.445] WARN  [n10_Wystan] [bot] start (1486,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[15:58:19.847] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:19.847] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:19.847] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:28.899] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:28.899] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:28.899] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:37.928] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:37.928] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:37.928] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:46.938] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:46.938] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:46.938] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:58:55.955] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:58:55.955] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:58:55.955] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:05.012] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:05.012] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:05.012] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:14.040] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:14.041] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:14.041] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:23.058] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:23.058] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:23.058] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:32.094] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:32.094] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:32.094] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:41.138] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:41.138] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:41.138] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:50.197] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:50.197] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:50.197] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[15:59:59.237] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[15:59:59.237] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[15:59:59.237] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:00:10.494] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2149167.0us)
+[16:00:10.495] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:13.798] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1937026.3us)
+[16:00:13.798] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:19.171] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2474481.9us)
+[16:00:19.171] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:21.973] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1518043.4us)
+[16:00:21.973] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:28.082] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1767882.9us)
+[16:00:28.082] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:31.676] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2237686.8us)
+[16:00:31.676] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:39.582] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2113211.0us)
+[16:00:39.582] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:43.076] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2181173.9us)
+[16:00:43.076] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:45.451] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2225911.5us)
+[16:00:45.451] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:48.489] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1737819.9us)
+[16:00:48.489] WARN  [n10_Wystan] [bot] start (1488,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:00:52.356] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:00:52.356] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:00:52.356] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:01:03.432] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:01:03.432] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:01:03.432] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:01:14.123] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1534584.9us)
+[16:01:14.123] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:01:17.155] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1723808.6us)
+[16:01:17.155] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:01:20.783] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2289516.7us)
+[16:01:20.783] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:01:25.774] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2147078.1us)
+[16:01:25.774] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:01:29.205] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 2104529.1us)
+[16:01:29.205] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:01:35.170] WARN  [n10_Wystan] [bot] no path to (1484,1547) avoiding 0 block(s); stopping (search 1644138.5us)
+[16:01:35.171] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:01:37.734] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:01:37.734] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:01:37.734] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:01:48.581] WARN  [n10_Wystan] [bot] no path to (1489,1547) avoiding 0 block(s); stopping (search 1733412.6us)
+[16:01:48.581] WARN  [n10_Wystan] [bot] start (1484,1547,70) exits: open=3 terrain=5 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:01:51.830] WARN  [n10_Wystan] [bot] no path to (1489,1547) avoiding 0 block(s); stopping (search 1924899.6us)
+[16:01:51.830] WARN  [n10_Wystan] [bot] start (1484,1547,70) exits: open=3 terrain=5 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 5 mobile(s))
+[16:01:57.680] WARN  [n10_Wystan] [bot] no path to (1486,1549) avoiding 0 block(s); stopping (search 2163444.1us)
+[16:01:57.680] WARN  [n10_Wystan] [bot] start (1486,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:02:02.616] WARN  [n10_Wystan] [bot] no path to (1486,1549) avoiding 0 block(s); stopping (search 2097051.4us)
+[16:02:02.616] WARN  [n10_Wystan] [bot] start (1486,1547,70) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:02:07.641] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:07.641] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:07.641] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:16.687] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:16.687] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:16.687] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:25.689] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:25.689] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:25.689] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:34.734] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:34.734] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:34.734] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:43.741] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:43.741] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:43.741] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:02:52.750] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:02:52.750] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:02:52.750] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:01.809] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:01.809] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:01.809] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:10.829] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:10.829] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:10.829] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:19.853] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:19.853] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:19.853] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:28.859] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:28.859] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:28.859] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:37.906] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:37.906] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:37.906] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:46.910] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:46.910] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:46.910] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:03:55.944] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:03:55.944] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:03:55.944] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:05.000] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:05.000] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:05.000] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:14.025] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:14.025] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:14.025] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:23.043] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:23.043] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:23.043] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:32.061] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:32.061] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:32.061] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:04:42.666] WARN  [n10_Wystan] [bot] no path to (1490,1549) avoiding 0 block(s); stopping (search 1479691.9us)
+[16:04:42.666] WARN  [n10_Wystan] [bot] start (1486,1549,70) exits: open=4 terrain=2 mobile=1 dynamic=0 door=1 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:04:47.098] WARN  [n10_Wystan] [bot] no path to (1487,1549) avoiding 0 block(s); stopping (search 1553902.2us)
+[16:04:47.098] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:04:51.601] WARN  [n10_Wystan] [bot] no path to (1487,1549) avoiding 0 block(s); stopping (search 1638494.5us)
+[16:04:51.601] WARN  [n10_Wystan] [bot] start (1489,1548,70) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 864 item(s), 6 mobile(s))
+[16:04:57.120] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:04:57.120] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:04:57.120] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:05:06.127] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:06.127] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:06.127] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:15.152] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:15.152] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:15.152] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:24.157] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:24.157] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:24.157] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:33.162] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:33.162] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:33.162] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:42.162] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:42.162] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:42.162] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:05:51.213] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:05:51.213] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:05:51.213] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:00.234] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:00.234] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:00.234] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:09.287] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:09.287] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:09.287] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:06:18.328] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:18.328] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:18.328] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:27.371] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:27.371] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:27.371] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:36.389] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:36.389] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:36.389] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:45.439] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:45.439] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:45.439] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:06:54.464] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:06:54.464] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:06:54.464] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:03.485] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:03.485] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:03.485] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:12.523] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:12.523] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:12.523] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:21.579] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:21.579] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:21.579] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:30.580] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:30.580] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:30.580] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:39.585] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:39.585] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:39.585] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:48.605] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:48.605] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:48.605] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:07:57.659] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:07:57.659] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:07:57.659] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:06.669] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:06.669] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:06.669] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:15.723] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:15.723] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:15.723] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:24.759] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:24.759] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:24.759] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:33.806] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:33.806] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:33.806] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:42.865] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:42.865] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:42.865] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:08:51.865] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:08:51.865] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:08:51.865] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:00.873] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:00.873] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:00.873] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:09.930] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:09.930] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:09.930] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:18.988] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:18.988] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:18.988] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:28.037] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:28.037] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:28.037] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:09:37.062] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:37.062] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:37.062] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:46.110] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:46.110] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:46.110] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:09:55.139] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:09:55.139] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:09:55.139] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:04.150] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:04.150] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:04.150] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:13.150] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:13.150] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:13.150] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:22.208] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:22.208] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:22.208] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:31.245] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:31.245] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:31.245] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:40.267] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:40.267] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:40.267] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:49.269] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:49.269] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:49.269] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:10:58.292] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:10:58.292] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:10:58.293] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:07.323] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:07.323] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:07.323] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:16.346] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:16.346] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:16.346] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:25.376] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:25.376] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:25.376] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:34.434] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:34.434] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:34.434] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:43.495] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:43.495] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:43.495] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:11:52.511] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:11:52.511] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:11:52.511] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:01.564] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:01.564] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:01.564] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:10.579] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:10.579] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:10.579] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:19.581] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:19.581] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:19.581] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:28.620] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:28.620] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:28.620] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:37.652] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:37.652] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:37.652] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:12:46.705] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:46.705] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:46.705] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:12:55.765] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:12:55.765] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:12:55.765] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:04.774] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:04.774] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:04.774] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:13.789] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:13.789] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:13.789] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:22.798] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:22.798] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:22.798] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:31.852] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:31.852] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:31.852] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:13:40.885] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:40.885] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:40.885] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:49.939] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:49.939] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:49.939] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:13:58.967] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:13:58.968] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:13:58.968] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:08.018] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:08.019] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:08.019] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:17.079] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:17.079] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:17.079] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:26.106] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:26.106] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:26.106] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:35.148] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:35.148] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:35.148] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (1ms) Revolution vendor policy refuses this NPC purchase
+[16:14:44.175] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:44.175] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:44.175] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:14:53.200] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:14:53.200] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:14:53.200] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:02.208] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:02.208] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:02.208] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:11.239] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:11.239] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:11.239] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:20.294] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:20.294] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:20.294] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:29.349] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:29.349] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:29.349] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:38.399] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:38.399] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:38.399] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:47.434] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:47.434] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:47.434] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:15:56.435] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:15:56.435] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:15:56.435] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase
+[16:16:05.442] WARN  [n10_Wystan] [policy] REFUSED NPC purchase of unmapped item (0x0EFA): graphic is not in the audited vendor matrix; refusing and recording an authenticity gap [UNKNOWN]
+[16:16:05.442] WARN  [n10_Wystan] [policy] AUTHENTICITY GAP: no Revolution evidence either way for whether an NPC sold this item
+[16:16:05.442] WARN  [n10_Wystan] [ACTION_RESULT] vendor_buy rejected (0ms) Revolution vendor policy refuses this NPC purchase

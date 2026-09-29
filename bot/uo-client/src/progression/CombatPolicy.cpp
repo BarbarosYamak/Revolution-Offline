@@ -23,14 +23,21 @@ i32 HealthPercent(const Vitals& v) {
 
 Tactic Decide(const Vitals& v) {
     const i32 pct = HealthPercent(v);
-    // Contact is anything that can hit us in the next few seconds: war mode, a
-    // target within a tile, or simply having been hit just now.
-    const bool contact = v.inCombat || v.enemyAdjacent || v.underAttack;
+
+    // CONTACT IS NOT WAR MODE. A character who never swings back is still
+    // being hit, and this policy used to read that as peace: v.inCombat is
+    // war mode and v.enemyAdjacent needs a chosen target, so a crafter with
+    // no weapon skill had both false all the way down her health bar.
+    const bool contact = v.inCombat || v.enemyAdjacent || v.hostilesNear > 0;
+    // Nothing in sight, and nothing has been in sight for long enough to
+    // believe it. See kRestAllClearSeconds for where the number comes from.
+    const bool allClear = v.hostilesNear <= 0 &&
+                          v.quietSeconds >= kRestAllClearSeconds;
 
     // UNKNOWN HEALTH IS NOT GOOD HEALTH. If we are fighting and cannot see our
     // own health, the safe answer is to break contact and find out, not to keep
     // swinging and hope. Out of combat it costs nothing to wait.
-    if (pct < 0) return v.inCombat ? Tactic::Disengage : Tactic::Rest;
+    if (pct < 0) return contact ? Tactic::Disengage : Tactic::Rest;
 
     // Healthy: fight.
     if (pct > kPotionPercent) return Tactic::Fight;
@@ -40,12 +47,6 @@ Tactic Decide(const Vitals& v) {
     // purpose: retreating from a fight you could have won by drinking is its own
     // kind of failure.
     if (v.healPotions > 0) return Tactic::DrinkPotion;
-
-    // The foe is nearly dead: finish it. Above the flee line only -- a nearly
-    // dead foe can still land the hit that kills a nearly dead bot.
-    if (contact && v.foeHpPercent >= 0 && v.foeHpPercent <= kFinishFoePercent &&
-        pct > kFleePercent)
-        return Tactic::Fight;
 
     // No potion. Below the disengage line, stop fighting first: a bandage takes
     // ~3 seconds and standing still next to something that hits is how a bot
@@ -58,6 +59,10 @@ Tactic Decide(const Vitals& v) {
             if (v.bandages <= 0 && pct <= kFleePercent) return Tactic::Flee;
             return Tactic::Disengage;
         }
+        // Out of contact but not yet out of danger: keep breaking away. A
+        // three-second bandage or a sit-down inside the window something can
+        // walk back into is how the last two minutes of Odessa's life went.
+        if (!allClear) return Tactic::Flee;
         if (v.bandages > 0) return Tactic::Bandage;
         return Tactic::Rest;
     }
@@ -65,7 +70,7 @@ Tactic Decide(const Vitals& v) {
     // Between the potion line and the disengage line with no potion: keep
     // fighting if still engaged -- the fight may be nearly over -- but bandage
     // the moment we are out of contact rather than walking away wounded.
-    if (!contact && v.bandages > 0) return Tactic::Bandage;
+    if (!contact && allClear && v.bandages > 0) return Tactic::Bandage;
     return Tactic::Fight;
 }
 

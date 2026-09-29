@@ -121,20 +121,6 @@ interface VendorItem {
  *  heard "buy"). `vendor` is the vendor mobile serial; pass it to Vendor.buy(). */
 interface VendorBuyEvent { vendor: number; items: VendorItem[]; }
 
-/** `vendor_sell`: what a vendor will BUY from us (0x9E), after saying "sell".
- *  Rows carry our own item serials and the vendor's price. The only source of
- *  market knowledge a bot is allowed. Pass rows to Vendor.sell(). */
-interface VendorSellEvent { vendor: number; items: { serial: UoSerial; graphic: number; amount: number; price: number; name: string }[]; }
-
-/** A ground item from World.items(). */
-interface UoGroundItem {
-    serial: UoSerial; graphic: number; x: number; y: number; z: number; name: string;
-    /** True for a corpse (0x2006). */
-    corpse: boolean;
-    /** Serial of the mobile whose corpse this is, when known; 0 otherwise. */
-    corpseOf: UoSerial;
-}
-
 /** `vendor_done`: a vendor transaction closed (0x3B). */
 interface VendorDoneEvent { vendor: number; flag: number; }
 
@@ -224,8 +210,6 @@ interface UoEventMap {
     vendor_buy: VendorBuyEvent;
     /** A vendor buy/sell transaction closed (0x3B). */
     vendor_done: VendorDoneEvent;
-    /** A vendor's sell list arrived after "sell" was spoken in range. */
-    vendor_sell: VendorSellEvent;
     /** A paperdoll (0x88) arrived after a double-click; carries the NPC title. */
     paperdoll: PaperdollEvent;
 }
@@ -311,24 +295,6 @@ interface UoPlayer extends UoEvents {
     follow(serial: UoSerial, distance?: number): void;
     follow(off: false): void;
     follow(off: 0 | null): void;
-    /** Trained skill value in tenths (500 = 50.0) by Sphere [SKILL n] index, or
-     *  -1 until the server reports it. Read-only: skills change only server-side. */
-    skill(index: number): number;
-    /** Sum of trained skills in tenths (what the 700.0 cap is measured against). */
-    readonly skillSum: number;
-    /** Ask the server for the full skill list (0x34 subtype 5). */
-    requestSkills(): void;
-    /** Skill-gump arrow for a skill (0x3A): 'up' | 'down' | 'locked'. */
-    setSkillLock(index: number, state: 'up' | 'down' | 'locked'): void;
-    /** The lock the server last reported, or null if the skill is unknown. */
-    skillLock(index: number): 'up' | 'down' | 'locked' | null;
-    /** Cast a spell (1..64) at a target serial (Player.serial for self). */
-    cast(spellId: number, targetSerial?: UoSerial): void;
-    /** Use a skill from the skill list, answering its cursor with targetSerial. */
-    useSkill(skillId: number, targetSerial?: UoSerial): void;
-    /** Ordinary logout (0xD1). Saves the M4.1 life and judges the spot safe --
-     *  walk somewhere guarded first. */
-    logout(): void;
     /** Abort any in-flight goto path and stop following. Makes a parked
      *  Player.goto() reject — the cancel primitive behaviour steps rely on. */
     stop(): void;
@@ -353,8 +319,6 @@ interface UoWorld extends UoEvents {
      * Use after a tree reports depleted to reflect the chop in the world view.
      */
     markStump(x: number, y: number, z: number, graphic: number, ttlMs?: number): void;
-    /** Ground items the client has seen around (x, y); radius default 8, max 24. */
-    items(x: number, y: number, radius?: number): UoGroundItem[];
 }
 
 /** Live mobile collection. Handles are live (see UoMobile). */
@@ -375,47 +339,7 @@ interface UoVendor extends UoEvents {
      *  offer's rows ({serial, qty}; layer defaults to 0x1A stock). Sends 0x3B and
      *  returns the number of rows sent. The server closes with `vendor_done`. */
     buy(vendorSerial: UoSerial, items: VendorBuyRequest[]): number;
-    /** Sell to a vendor: rows from a `vendor_sell` offer ({serial, qty}). Rows
-     *  the vendor did not list are dropped and quantities clamped to what it
-     *  listed. Sends 0x9F; returns the number of rows sent. */
-    sell(vendorSerial: UoSerial, items: { serial: UoSerial; qty: number }[]): number;
 }
-
-/** Secure trade (0x6F), over the client's trade state machine. The server
- *  completes an exchange only when BOTH sides accept. */
-interface UoTrade {
-    /** Open a trade by dragging ONE unit of `itemSerial` onto the partner. */
-    start(partnerSerial: UoSerial, itemSerial: UoSerial): void;
-    /** Add `amount` (default 1) of a pack item to our side. */
-    offer(itemSerial: UoSerial, amount?: number): void;
-    accept(on?: boolean): boolean;
-    cancel(): boolean;
-    readonly state: {
-        active: boolean; phase: string; partner: UoSerial; partnerName: string;
-        myContainer: UoSerial; theirContainer: UoSerial; myCheck: boolean; theirCheck: boolean;
-        /** none | both_accepted | we_cancelled | partner_cancelled | partner_gone */
-        closeReason: string;
-    };
-}
-declare const Trade: UoTrade;
-
-/** The persistent life (M4.1 record, M4.6 access). record is null without --life-dir. */
-interface UoLife {
-    readonly record: null | {
-        name: string; archetype: string; sessions: number; deaths: number;
-        targetBuild: { skill: number; tenths: number }[];
-        targetStr: number; targetDex: number; targetInt: number;
-        objective: { kind: string; target: string; attempts: number };
-        lastLogout: { valid: boolean; x: number; y: number; safe: boolean };
-    };
-    /** The script's own JSON saved last session ('' if none). */
-    readonly memory: string;
-    /** Store the script's JSON (<= 256 KB); saved with the life. */
-    setMemory(json: string): boolean;
-    setObjective(kind: string, target?: string): void;
-    save(): void;
-}
-declare const Life: UoLife;
 
 declare const Player: UoPlayer;
 declare const World: UoWorld;

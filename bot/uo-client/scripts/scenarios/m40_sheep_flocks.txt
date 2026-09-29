@@ -1,0 +1,41 @@
+# Add the Britain and Jhelom sheep flocks to the LIVE world.
+#
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+#
+# WHY
+#
+# runtime/scripts/functions/worldgen/spawns/felucca/TownsLife_spawns_felucca.scp
+# is a worldgen script: it runs once, creates i_worldgem_bit spawner items, and
+# those items then live in the save. Adding lines to it does NOT retro-create
+# spawners on a world that has already been generated, so the two new lines
+# (Britain North Pasture, Jhelom farm pasture) must also be executed once here.
+#
+# The command is the shard's own spawner factory, called with the SAME argument
+# vector the script lines use, so the created gems are identical to the three
+# Yew ones (i_worldgem_bit / t_custom_spawner_char / SPAWNID=c_sheep_woolly /
+# AMOUNT=15 / TIMELO=5 / TIMEHI=10 / MAXDIST=15).
+#
+# Argument layout, from f_create_spawner in
+# functions/worldgen/spawns/spawner_functions.scp:
+#   argv[0..5]  six spawn groups        argv[6..8]  x,y,z
+#   argv[10..12] morep = timelo,timehi,maxdist
+#   argv[15+n]  amount for group n
+#
+# NOT IDEMPOTENT. Running this file twice creates a second pair of spawners on
+# the same tiles and doubles both flocks. Run it exactly once.
+
+wait_world
+sleep 3000
+say .show p
+sleep 2500
+
+say .f_create_spawner Sheep,,,,,,1323,1351,0,2,5,10,15,10,1,15,0,0,0,0,0
+sleep 4000
+
+say .f_create_spawner Sheep,,,,,,1183,3607,0,2,5,10,15,10,1,15,0,0,0,0,0
+sleep 4000
+
+# The spawner gem is ATTR=080, i.e. NOT attr_static, so a plain .save writes it
+# to sphereworld.scp (verified: the Yew gem 040001d10 is in that file).
+say .save
+sleep 20000

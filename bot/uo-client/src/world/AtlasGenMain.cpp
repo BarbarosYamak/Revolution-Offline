@@ -207,6 +207,17 @@ struct Atlas {
         return best;
     }
 
+    // Any guarded region covering this tile. Gathering inside a guard zone is
+    // not a thing a player does (the trees a town owns are decoration, and the
+    // guards answer for the ground), so derived resource areas must skip it.
+    bool GuardedAt(i32 x, i32 y) const {
+        for (const GenRegion& r : regions) {
+            if (!(r.flags & kFlagGuarded)) continue;
+            if (r.Contains(x, y)) return true;
+        }
+        return false;
+    }
+
     std::string UniqueId(const std::string& base) {
         std::string id = base;
         int n = 2;
@@ -686,6 +697,57 @@ void ParseResourceSpawns(const std::string& path, wm::ResourceKind kind,
     }
 }
 
+// --- graveyard strong tier --------------------------------------------------
+//
+// Owner ruling 2026-09-06 (artifacts/graveyard_tier_split_2026-09-06.md,
+// memory .claude/agent-memory/revolution-god/graveyard-tiers-separated.md):
+// a graveyard's default skeleton/zombie band and its tougher undead
+// (skeletal knight, lich, lich lord) are deliberately non-overlapping rings,
+// a difficulty gradient a novice and a geared fighter should be able to tell
+// apart. DerivePlacesFromRegions only ever emits ONE PLACE per graveyard
+// AREADEF (its P= point), so it cannot express that split. This derives one
+// extra PLACE per strong-tier spawner directly from the spawn table -- same
+// source of truth Sphere itself reads -- so a future spawner move keeps the
+// atlas honest without a manual data-file edit.
+struct StrongTierEntry { const char* defname; const char* slug; const char* label; };
+constexpr StrongTierEntry kGraveyardStrongTier[] = {
+    {"c_skeleton_knight", "knights",   "Skeleton Knights"},
+    {"c_lich",            "lich",      "Lich"},
+    {"c_lich_lord",       "lich_lord", "Lich Lord"},
+};
+
+void DeriveGraveyardStrongTier(const std::string& path, Atlas& atlas) {
+    for (const SpawnerRow& row : ParseSpawners(path)) {
+        const StrongTierEntry* match = nullptr;
+        for (const std::string& list : row.lists) {
+            const std::string j = Lower(Trim(list));
+            for (const StrongTierEntry& e : kGraveyardStrongTier) {
+                if (j == e.defname) { match = &e; break; }
+            }
+            if (match) break;
+        }
+        if (!match) continue;
+
+        // Only inside a graveyard REGION -- a stray c_lich elsewhere on the
+        // shard is not this hunting-ground gradient.
+        const GenRegion* region = atlas.RegionAt(row.x, row.y, true);
+        if (!region || region->kind != wm::RegionKind::Graveyard) continue;
+        const std::string base = region->name.empty() ? region->id : region->name;
+
+        GenPlace p;
+        p.category = wm::PlaceCategory::Graveyard;
+        p.x = row.x;
+        p.y = row.y;
+        p.z = row.z;
+        // Same convention as ParseVendorSpawns' homeRange: the spawner's own
+        // wander range is the size of that undead's ring.
+        p.radius = row.walkRange > 0 ? row.walkRange : 3;
+        p.id = Slug(base) + "_" + match->slug;
+        p.name = base + " - " + match->label;
+        atlas.AddPlace(std::move(p));
+    }
+}
+
 // --- region-derived places -------------------------------------------------
 
 void DerivePlacesFromRegions(Atlas& atlas) {
@@ -711,11 +773,23 @@ void DerivePlacesFromRegions(Atlas& atlas) {
         } else if (r.kind == wm::RegionKind::Graveyard) {
             p.category = wm::PlaceCategory::Graveyard;
             p.radius = 12;
-        } else if (n.find("mine") != std::string::npos ||
-                   n.find("mining") != std::string::npos) {
+        } else if (r.kind != wm::RegionKind::Building &&
+                   (n.find("mine") != std::string::npos ||
+                    n.find("mining") != std::string::npos)) {
+            // Mining guilds and supply shops are buildings, not ore deposits.
             p.category = wm::PlaceCategory::ResourceArea;
             p.resources.push_back(wm::ResourceKind::Mining);
             p.radius = 20;
+        } else if (r.id.find("farmland") != std::string::npos ||
+                   r.id.find("_field_") != std::string::npos ||
+                   r.id.find("_fields") != std::string::npos) {
+            // The shard's AREADEFs name the crop grounds themselves
+            // (a_farmland*, a_field*, a_Britain_Fields).  Crops are a real,
+            // renewable food source: model the field rather than forcing a
+            // hungry character to treat a baker as the only option.
+            p.category = wm::PlaceCategory::ResourceArea;
+            p.resources.push_back(wm::ResourceKind::Food);
+            p.radius = 12;
         } else if (n.find("dock") != std::string::npos) {
             p.category = wm::PlaceCategory::Dock;
             p.resources.push_back(wm::ResourceKind::Fishing);
@@ -747,12 +821,26 @@ void DerivePlacesFromRegions(Atlas& atlas) {
 
 // Britannia has no "forest" table anywhere in the shard's data, so lumber
 // areas are measured off the client's own statics: the navgrid already marks
-// foliage-dense cells, and this collapses the densest 8x8-cell blocks
-// (128x128 tiles) into one place each. Derived, reproducible, and it moves if
-// the client data does.
+// foliage-dense cells, and this collapses blocks of them into one place each.
+// Derived, reproducible, and it moves if the client data does.
+//
+// Block size is a destination question, not a cartography one. The first pass
+// used 8x8 cells (128x128 tiles) and kept the three densest blocks per region,
+// which put the nearest woods 238 tiles from Britain's centre -- outside
+// life::kNewbieKnowledgeRadius (200), so a Britain lumberjack was seeded no
+// lead at all and fell back to hopping seven tiles out of the guard zone into
+// treeless street. 4x4 cells (64x64 tiles) at the same foliage share resolves
+// the copse Britain actually has to its south-west (~175 tiles), which is what
+// a player walks to.
 void DeriveForests(const uo::navgrid::NavGrid& grid, Atlas& atlas) {
-    constexpr i32 kBlockCells = 8;
-    constexpr u32 kMinForestCells = 20;   // of 64 -- a wood, not a hedgerow
+    // 4x4 cells = 64x64 tiles, and a quarter of them foliage-dense: a wood a
+    // lumberjack can work for a while, not a hedgerow.
+    constexpr i32 kBlockCells = 4;
+    constexpr u32 kMinForestCells = 4;    // of 16
+    // Two places closer together than this are the same wood twice. Keeping
+    // them apart spreads coverage instead of stacking rows on the densest
+    // corner of the map.
+    constexpr i32 kMinSeparationTiles = 48;
 
     struct Cluster { i32 cx, cy; u32 count; };
     std::vector<Cluster> clusters;
@@ -767,6 +855,8 @@ void DeriveForests(const uo::navgrid::NavGrid& grid, Atlas& atlas) {
     std::fprintf(stderr, "atlasgen: %zu forest cells, %zu water cells\n",
                  forestCells, waterCells);
 
+    usize guardedSkipped = 0, unreachableSkipped = 0;
+
     for (i32 by = 0; by + kBlockCells <= static_cast<i32>(grid.CellsY());
          by += kBlockCells) {
         for (i32 bx = 0; bx + kBlockCells <= static_cast<i32>(grid.CellsX());
@@ -775,21 +865,33 @@ void DeriveForests(const uo::navgrid::NavGrid& grid, Atlas& atlas) {
             i32 anchorX = 0, anchorY = 0;
             i8  anchorZ = 0;
             bool haveAnchor = false;
+            bool sawIsolated = false;
             for (i32 dy = 0; dy < kBlockCells; ++dy) {
                 for (i32 dx = 0; dx < kBlockCells; ++dx) {
                     const uo::navgrid::Cell* c = grid.At(bx + dx, by + dy);
                     if (!c) continue;
                     if (!(c->flags & uo::navgrid::kCellForest)) continue;
                     ++forest;
-                    if (!haveAnchor &&
-                        (c->flags & uo::navgrid::kCellPassable)) {
-                        grid.Anchor(bx + dx, by + dy, &anchorX, &anchorY,
-                                    &anchorZ);
-                        haveAnchor = true;
-                    }
+                    if (haveAnchor) continue;
+                    if (!(c->flags & uo::navgrid::kCellPassable)) continue;
+                    // A standable cell with no measured crossing to any
+                    // neighbour is an island: the walker cannot get there, so
+                    // publishing it as a destination only buys a failed trip.
+                    if (c->edges == 0) { sawIsolated = true; continue; }
+                    grid.Anchor(bx + dx, by + dy, &anchorX, &anchorY,
+                                &anchorZ);
+                    haveAnchor = true;
                 }
             }
-            if (forest < kMinForestCells || !haveAnchor) continue;
+            if (forest < kMinForestCells) continue;
+            if (!haveAnchor) {
+                if (sawIsolated) ++unreachableSkipped;
+                continue;
+            }
+            // NO GATHERING ON GUARDED GROUND (owner rule): the oaks inside
+            // Yew's town line are scenery a guard answers for, not a
+            // lumberjack's stand.
+            if (atlas.GuardedAt(anchorX, anchorY)) { ++guardedSkipped; continue; }
             clusters.push_back(Cluster{anchorX, anchorY, forest});
         }
     }
@@ -800,27 +902,41 @@ void DeriveForests(const uo::navgrid::NavGrid& grid, Atlas& atlas) {
     // Densest-first is the wrong answer on its own: Britannia's thickest
     // foliage is all in the southern jungle, so a global top-N would report
     // that the only woods on the continent are around Trinsic and leave a Yew
-    // lumberjack with nowhere to go. Keep the best few clusters *per region*
-    // instead, so every wooded area is represented at its own local density.
-    constexpr usize kMaxPerRegion = 3;
-    std::unordered_map<std::string, usize> perRegion;
-
+    // lumberjack with nowhere to go. Take the densest block first but refuse
+    // any that sits on top of one already taken, so what survives is every
+    // wooded area at its own local density.
+    std::vector<Cluster> kept;
+    usize crowded = 0;
     for (const Cluster& c : clusters) {
+        bool tooClose = false;
+        for (const Cluster& k : kept) {
+            const i32 d = std::max(std::abs(c.cx - k.cx), std::abs(c.cy - k.cy));
+            if (d < kMinSeparationTiles) { tooClose = true; break; }
+        }
+        if (tooClose) { ++crowded; continue; }
+        kept.push_back(c);
+
         const GenRegion* region = atlas.RegionAt(c.cx, c.cy, true);
         const std::string where = region ? region->name : std::string("wilds");
-        usize& taken = perRegion[where];
-        if (taken >= kMaxPerRegion) continue;
-        ++taken;
         GenPlace p;
         p.category = wm::PlaceCategory::ResourceArea;
         p.resources.push_back(wm::ResourceKind::Lumber);
         p.x = c.cx;
         p.y = c.cy;
-        p.radius = 48;
+        // The anchor IS a foliage-dense cell, so arriving near it arrives in
+        // the wood. A wide radius here just licenses the traveller to stop
+        // short of the trees (TravelToResource caps at 24).
+        p.radius = 16;
         p.id = Slug(where) + "_woods";
         p.name = where + " woods";
         atlas.AddPlace(std::move(p));
     }
+
+    std::fprintf(stderr,
+                 "atlasgen: %zu forest blocks -> %zu woods "
+                 "(%zu crowded out, %zu guarded, %zu unreachable)\n",
+                 clusters.size() + guardedSkipped + unreachableSkipped,
+                 kept.size(), crowded, guardedSkipped, unreachableSkipped);
 }
 
 // --- output ----------------------------------------------------------------
@@ -1062,6 +1178,9 @@ int main(int argc, char** argv) {
     ParseResourceSpawns(
         scriptsDir + "functions/worldgen/spawns/felucca/WildLife_spawns_felucca.scp",
         wm::ResourceKind::Hunting, "hunting", atlas);
+    DeriveGraveyardStrongTier(
+        scriptsDir + "functions/worldgen/spawns/felucca/Graveyards_spawns_felucca.scp",
+        atlas);
     DerivePlacesFromRegions(atlas);
     std::fprintf(stderr, "atlasgen: %zu places before forests\n",
                  atlas.places.size());
@@ -1114,6 +1233,26 @@ int main(int argc, char** argv) {
             return 1;
         }
         DeriveForests(grid, atlas);
+    } else {
+        // --skip-grid MUST NOT MEAN --skip-forests. A refresh that only
+        // wanted fresh regions used to drop every lumber place on the
+        // floor -- commit ad146a9 "atlas refreshed" took the atlas from
+        // 43 lumber rows to zero -- and the bots that gather wood then
+        // had nowhere in the world to go. The saved grid holds the same
+        // foliage flags the build pass measured, so read it back and
+        // derive from that rather than emitting a forestless atlas.
+        uo::navgrid::NavGrid saved;
+        if (saved.Load(outGrid.c_str())) {
+            std::fprintf(stderr,
+                         "atlasgen: --skip-grid: forests read back from %s\n",
+                         outGrid.c_str());
+            DeriveForests(saved, atlas);
+        } else {
+            std::fprintf(stderr,
+                         "atlasgen: WARNING --skip-grid with no grid at "
+                         "%s: this atlas will have NO lumber places\n",
+                         outGrid.c_str());
+        }
     }
 
     std::fprintf(stderr, "atlasgen: %zu places, %zu transits\n",

@@ -1,0 +1,58 @@
+start: Hector is a fencer and lives in Trinsic -> starting city index 4
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[02:10:00.927] WARN  [g_Hector] [0x21] move REJECTED seq=14; server says (1439,1693,0) facing=3
+[02:10:00.942] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[02:10:42.304] WARN  [g_Hector] [bot] no path to (1469,1609) avoiding 0 block(s); stopping (search 1485497.3us)
+[02:10:42.304] WARN  [g_Hector] [bot] start (1476,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 321 item(s), 6 mobile(s))
+[02:10:45.118] WARN  [g_Hector] [bot] no path to (1469,1609) avoiding 0 block(s); stopping (search 1497144.9us)
+[02:10:45.118] WARN  [g_Hector] [bot] start (1476,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 321 item(s), 6 mobile(s))
+[02:10:47.943] WARN  [g_Hector] [bot] no path to (1469,1609) avoiding 0 block(s); stopping (search 1520025.4us)
+[02:10:47.943] WARN  [g_Hector] [bot] start (1476,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 321 item(s), 6 mobile(s))
+[02:10:52.222] WARN  [g_Hector] [bot] no path to (1469,1609) avoiding 0 block(s); stopping (search 1404510.6us)
+[02:10:52.222] WARN  [g_Hector] [bot] start (1476,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 322 item(s), 5 mobile(s))
+[02:10:55.056] WARN  [g_Hector] [bot] no path to (1469,1609) avoiding 0 block(s); stopping (search 1496962.2us)
+[02:10:55.056] WARN  [g_Hector] [bot] start (1476,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 322 item(s), 5 mobile(s))
+[02:10:57.824] WARN  [g_Hector] [bot] no path to (1469,1609) avoiding 0 block(s); stopping (search 1432540.4us)
+[02:10:57.824] WARN  [g_Hector] [bot] start (1476,1612,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 322 item(s), 5 mobile(s))
+[02:11:22.451] WARN  [g_Hector] [0x21] move REJECTED seq=72; server says (1441,1591,20) facing=7
+[02:11:23.191] WARN  [g_Hector] [0x21] move REJECTED seq=0; server says (1441,1591,20) facing=7
+[02:12:51.194] WARN  [g_Hector] [ITEM] drag cancelled by server: cannot lift that (code 0)
+[02:12:51.194] WARN  [g_Hector] [ITEM] drag cancelled by server: unspecified (code 5)
+[02:12:55.455] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[02:16:08.817] WARN  [g_Hector] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:16:19.132] WARN  [g_Hector] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:16:24.270] WARN  [g_Hector] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:18:12.726] WARN  [g_Hector] [ACTION_RESULT] use_object timeout (no server confirmation)
+[02:19:11.174] WARN  [g_Hector] [ACTION_RESULT] open_container rejected (15ms) You can't reach that.
+[02:19:12.697] WARN  [g_Hector] [ACTION_RESULT] open_container rejected (15ms) You can't reach that.
+[02:19:14.192] WARN  [g_Hector] [ACTION_RESULT] open_container rejected (0ms) You can't reach that.
+[02:19:15.763] WARN  [g_Hector] [ACTION_RESULT] open_container rejected (15ms) You can't reach that.
+[02:19:17.302] WARN  [g_Hector] [ACTION_RESULT] open_container rejected (0ms) You can't reach that.
+[02:19:18.867] WARN  [g_Hector] [ACTION_RESULT] open_container rejected (15ms) You can't reach that.
+[02:19:20.371] WARN  [g_Hector] [ACTION_RESULT] open_container rejected (1ms) You can't reach that.
+[02:19:21.928] WARN  [g_Hector] [ACTION_RESULT] open_container rejected (15ms) You can't reach that.
+[02:19:25.499] WARN  [g_Hector] [bot] goal (1373,1480) is not walkable; snapping to nearest standable tile (1372,1479,10) instead
+[02:20:21.546] WARN  [g_Hector] [0x21] move REJECTED seq=62; server says (1417,1607,30) facing=5
+[02:21:24.844] WARN  [g_Hector] [0x21] move REJECTED seq=15; server says (1439,1693,0) facing=3
+[02:21:24.844] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[02:23:51.542] WARN  [g_Hector] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[02:24:06.824] WARN  [g_Hector] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[02:24:22.182] WARN  [g_Hector] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[02:25:50.471] WARN  [g_Hector] [0x21] move REJECTED seq=16; server says (1439,1693,0) facing=3
+[02:25:50.471] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[02:27:33.990] WARN  [g_Hector] [0x21] move REJECTED seq=8; server says (1475,1670,0) facing=5
+[02:27:33.990] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[02:29:27.002] WARN  [g_Hector] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[02:32:50.608] WARN  [g_Hector] [ACTION_RESULT] use_item_on timeout (no server confirmation)
+[02:35:28.199] WARN  [g_Hector] [0x21] move REJECTED seq=20; server says (564,1113,0) facing=1
+[02:35:28.200] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[02:35:53.271] WARN  [g_Hector] [bot] no path to (643,1083) avoiding 0 block(s); stopping (search 1881990.9us)
+[02:35:53.271] WARN  [g_Hector] [bot] start (632,1096,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1239 item(s), 3 mobile(s))
+[02:37:30.537] WARN  [g_Hector] [bot] goal (535,867) is not walkable; snapping to nearest standable tile (534,866,0) instead
+[02:39:20.728] WARN  [g_Hector] [bot] no path to (538,865) avoiding 0 block(s); stopping (search 1877065.2us)
+[02:39:20.728] WARN  [g_Hector] [bot] start (551,883,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1297 item(s), 5 mobile(s))
+[02:41:39.606] WARN  [g_Hector] [0x21] move REJECTED seq=40; server says (666,1191,0) facing=1
+[02:41:39.607] WARN  [g_Hector] [bot] 0x20 resync; aborting path
+[02:41:41.138] WARN  [g_Hector] [0x21] move REJECTED seq=1; server says (666,1191,0) facing=1
+[02:41:41.847] WARN  [g_Hector] [0x21] move REJECTED seq=0; server says (666,1191,0) facing=1

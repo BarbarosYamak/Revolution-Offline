@@ -1,0 +1,10 @@
+# Wait out one full strong-tier spawn cycle (knight/lich timer 3-7 min,
+# lich lord 10-15) and then .save, so tools/world_query.py can read the
+# settled creature counts out of sphereworld.scp.  Read-only apart from
+# the save.
+wait_world
+sleep 3000
+sleep 300000
+say .save
+sleep 30000
+logout

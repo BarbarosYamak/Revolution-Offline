@@ -1,0 +1,566 @@
+[18:52:20.923] INFO  session 0: 127.0.0.1:2593 user='RevGen3_20' char=Odessa tag='g_Odessa'
+[18:52:20.924] LOG   [g_Odessa] event session_start: text log opened
+[18:52:20.924] LOG   [g_Odessa] event net_connect_begin: connect 127.0.0.1:2593
+[18:52:20.924] INFO  [g_Odessa] [net] connecting to 127.0.0.1:2593 ...
+[18:52:20.925] LOG   [g_Odessa] event net_connected: connect 127.0.0.1:2593
+[18:52:20.925] INFO  [g_Odessa] [net] connected.
+[18:52:20.925] INFO  [g_Odessa] [seed] sent 0x7F000001 (plaintext)
+[18:52:20.925] LOG   [g_Odessa] event seed_out: 0x7F000001 hex=7f000001
+[18:52:20.926] INFO  [life] loaded persistent state for Odessa (39 places, 0 suppliers, 8 events, 5 prior sessions)
+[18:52:20.926] INFO  [life] needs: reading 'merchant_tinker' from the profession catalogue
+[18:52:20.926] INFO  [life] build plan 'merchant_tinker': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 100/75/50 = 225
+[18:52:20.926] INFO  [g_Odessa] [life] autonomous player active for 'Odessa' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 5 min)
+[18:52:20.965] INFO  [g_Odessa] [0xA8] 1 server(s):
+[18:52:20.965] INFO  [g_Odessa]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:52:20.980] INFO  [g_Odessa] [0x8C] game server = 127.0.0.1:2593  seed=0x2F192066
+[18:52:20.980] LOG   [g_Odessa] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x2F192066
+[18:52:20.980] INFO  [g_Odessa] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:52:20.980] LOG   [g_Odessa] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:52:20.981] INFO  [g_Odessa] [0xB9] server features = 0x0005
+[18:52:20.981] INFO  [g_Odessa] [0xA9] 5 slot(s) (populated 1):
+[18:52:20.981] INFO  [g_Odessa]   [0] Odessa
+[18:52:20.981] INFO  [g_Odessa]   [1] <empty>
+[18:52:20.981] INFO  [g_Odessa]   [2] <empty>
+[18:52:20.981] INFO  [g_Odessa]   [3] <empty>
+[18:52:20.981] INFO  [g_Odessa]   [4] <empty>
+[18:52:20.981] INFO  [g_Odessa] [ui] playing slot 0 ('Odessa')
+[18:52:20.996] INFO  [g_Odessa] [0x1B] serial=0x0000EE4B body=0x0191 pos=(1429,1691,0)
+[18:52:20.997] LOG   [g_Odessa] event login_confirm: serial=0x0000EE4B body=0x0191 pos=(1429,1691,0)
+[18:52:20.997] INFO  [g_Odessa] [0x20] player @(1429,1691,0) facing=6
+[18:52:20.997] INFO  [g_Odessa] [0x55] login complete — entering world
+[18:52:20.997] LOG   [g_Odessa] event in_world: 0x55 received
+[18:52:20.997] INFO  [g_Odessa] [backpack] opening 0x4000EE49
+[18:52:20.997] INFO  [g_Odessa] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:52:20.997] INFO  [g_Odessa] [chat ascii] System: There is 1 other player here.
+[18:52:20.997] INFO  [g_Odessa] [chat ascii] System: Last logged: 2026/09/05 15:36:21
+[18:52:20.997] INFO  [g_Odessa] [chat ascii] System: You are under the protection of the city guards
+[18:52:21.001] INFO  [g_Odessa] [action] requesting the skill list
+[18:52:21.001] INFO  [life] in world; asked the server for the skill list
+[18:52:21.001] INFO  [g_Odessa] [0x24] open container 0x4000EE49 gump=60
+[18:52:21.001] INFO  [g_Odessa] [0x3C] container contents: 10 item(s)
+[18:52:21.001] LOG   [g_Odessa] event backpack_contents: serial=0x4000EE49 items=10
+[18:52:23.599] INFO  [g_Odessa] [bot] world data loaded (0 blacklisted spot(s)).
+[18:52:23.599] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[18:52:23.599] INFO  [life]   gold         persisted=9326       server=9326       -> server value accepted
+[18:52:23.599] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[18:52:23.599] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[18:52:23.599] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[18:52:23.599] INFO  [life]   skill_37     persisted=50.0       server=50.0       -> server value accepted
+[18:52:23.599] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[18:52:23.600] INFO  [life]   position     persisted=1429,1691  server=1429,1691  -> server value accepted
+[18:52:23.600] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:52:23.600] INFO  [life]   restored objective KEPT: MINE (progress 1)
+[18:52:23.600] INFO  [g_Odessa] [survival] on
+[18:52:23.600] LOG   [g_Odessa] event survival_mode: on
+[18:52:23.602] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[18:52:23.602] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:52:23.655] INFO  [life] mine: the ore is 443 tiles off -- walking into the mining area first (trip 1)
+[18:52:23.655] INFO  [g_Odessa] [travel] Brit Mine1 -> (1443,1228) r=20 from (1429,1691)
+[18:52:23.655] LOG   [g_Odessa] event travel_start: label='Brit Mine1' target=(1443,1228) radius=20 from=(1429,1691)
+[18:52:23.655] INFO  [g_Odessa] [travel] mode moongate         usable   <- chosen
+[18:52:23.655] INFO  [g_Odessa] [travel] mode walk             usable
+[18:52:23.655] INFO  [g_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:52:23.655] INFO  [g_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:52:23.655] LOG   [g_Odessa] event travel_mode: moongate
+[18:52:23.656] INFO  [g_Odessa] [travel] plan Brit Mine1: ok legs=15 ~488 tiles transit=0 nodes=1812
+[18:52:23.715] INFO  [g_Odessa] [action] goto (1416,1656) from (1429,1691,0)
+[18:52:23.716] LOG   [g_Odessa] event goto_start: target=(1416,1656) from=(1429,1691)
+[18:52:23.716] INFO  [g_Odessa] [bot] running from (1429,1691,0) to (1416,1656)
+[18:52:23.716] INFO  [g_Odessa] [bot] planning path to (1416,1656) in background
+[18:52:23.779] INFO  [g_Odessa] [bot] replan to (1416,1656): 64 steps in 3202.8us
+[18:52:26.117] INFO  [g_Odessa] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[18:52:26.117] INFO  [g_Odessa] [chat ascii] System: Opening door...
+[18:52:27.264] INFO  [g_Odessa] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[18:52:27.264] INFO  [g_Odessa] [chat ascii] System: Opening door...
+[18:52:28.138] INFO  [g_Odessa] [chat ascii] System: World save in 10 seconds
+[18:52:28.644] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:52:33.697] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:52:38.153] INFO  [g_Odessa] [chat ascii] System: World save has been initiated.
+[18:52:38.716] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:52:42.916] INFO  [g_Odessa] [bot] arrived at (1416,1656,10)
+[18:52:42.917] INFO  [g_Odessa] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[18:52:42.917] LOG   [g_Odessa] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[18:52:42.917] INFO  [g_Odessa] [action] goto (1416,1624) from (1416,1656,10)
+[18:52:42.917] LOG   [g_Odessa] event goto_start: target=(1416,1624) from=(1416,1656)
+[18:52:42.917] INFO  [g_Odessa] [bot] running from (1416,1656,10) to (1416,1624)
+[18:52:42.917] INFO  [g_Odessa] [bot] planning path to (1416,1624) in background
+[18:52:42.978] INFO  [g_Odessa] [bot] replan to (1416,1624): 32 steps in 986.6us
+[18:52:43.626] INFO  [life] goal_changed=BUY_SUPPLIES from=MINE reason="BUY_SUPPLIES 133.0 superseded MINE 52.7"
+[18:52:43.627] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedEquipment(heal potions 0.50) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:52:43.627] INFO  [life]   score=133.0
+[18:52:43.627] INFO  [life]   reason: NeedSupplies urgency 0.95 x 140 = 133.0
+[18:52:43.627] INFO  [life]   reason: i_gears x5 needs 5 x i_ingot_iron (can make 0 of 5)
+[18:52:43.627] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:52:43.627] INFO  [life] supplies: i_ingot_iron is a player-market good -- no NPC may sell it, so this is a rendezvous, not a shopping trip
+[18:52:43.627] INFO  [life] handoff=BUY_SUPPLIES->TRADE_WITH_PLAYER reason="another profession makes this, not a shopkeeper"
+[18:52:43.688] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: another profession makes this, not a shopkeeper"
+[18:52:43.688] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedEquipment(heal potions 0.50) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:52:43.688] INFO  [life]   score=130.0
+[18:52:43.688] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[18:52:43.688] INFO  [life]   reason: potions=1 low=2 gold=9326 brews_own=0
+[18:52:43.688] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:52:43.688] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 119s after achieving nothing
+[18:52:43.751] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:52:45.659] INFO  [life] plan=buy reason="some held, more wanted"
+[18:52:48.796] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:52:51.459] INFO  [g_Odessa] [bot] arrived at (1416,1624,22)
+[18:52:51.459] INFO  [g_Odessa] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[18:52:51.459] LOG   [g_Odessa] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[18:52:51.459] INFO  [g_Odessa] [action] goto (1416,1592) from (1416,1624,22)
+[18:52:51.459] LOG   [g_Odessa] event goto_start: target=(1416,1592) from=(1416,1624)
+[18:52:51.459] INFO  [g_Odessa] [bot] running from (1416,1624,22) to (1416,1592)
+[18:52:51.459] INFO  [g_Odessa] [bot] planning path to (1416,1592) in background
+[18:52:51.519] INFO  [g_Odessa] [bot] replan to (1416,1592): 36 steps in 1742.0us
+[18:52:53.799] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:52:58.812] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:52:59.551] INFO  [g_Odessa] [bot] step (1423,1599,20)->(1422,1598,25) rejected; OpenDoor + retry
+[18:53:00.285] INFO  [g_Odessa] [bot] step (1423,1599,20)->(1422,1598,25) rejected; avoiding edge + rerouting
+[18:53:00.285] INFO  [g_Odessa] [bot] planning path to (1416,1592) in background
+[18:53:01.494] INFO  [g_Odessa] [action] goto finished at (1423,1599,20); target (1416,1592); stopped short (off by 14 tile(s))
+[18:53:01.494] LOG   [g_Odessa] event goto_done: at=(1423,1599) target=(1416,1592) arrived=0 off=14
+[18:53:02.723] INFO  [g_Odessa] [action] goto (1416,1592) from (1423,1599,20)
+[18:53:02.723] LOG   [g_Odessa] event goto_start: target=(1416,1592) from=(1423,1599)
+[18:53:02.723] INFO  [g_Odessa] [bot] running from (1423,1599,20) to (1416,1592)
+[18:53:02.723] INFO  [g_Odessa] [bot] planning path to (1416,1592) in background
+[18:53:03.828] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:03.889] INFO  [g_Odessa] [action] goto finished at (1423,1599,20); target (1416,1592); stopped short (off by 14 tile(s))
+[18:53:03.890] LOG   [g_Odessa] event goto_done: at=(1423,1599) target=(1416,1592) arrived=0 off=14
+[18:53:05.117] INFO  [g_Odessa] [travel] mode moongate         usable   <- chosen
+[18:53:05.117] INFO  [g_Odessa] [travel] mode walk             usable
+[18:53:05.117] INFO  [g_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:53:05.117] INFO  [g_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:53:05.117] LOG   [g_Odessa] event travel_mode: moongate
+[18:53:05.118] INFO  [g_Odessa] [travel] plan Brit Mine1: ok legs=12 ~384 tiles transit=0 nodes=1166
+[18:53:06.672] INFO  [g_Odessa] [action] goto (1432,1560) from (1423,1599,20)
+[18:53:06.672] LOG   [g_Odessa] event goto_start: target=(1432,1560) from=(1423,1599)
+[18:53:06.672] INFO  [g_Odessa] [bot] running from (1423,1599,20) to (1432,1560)
+[18:53:06.672] INFO  [g_Odessa] [bot] planning path to (1432,1560) in background
+[18:53:06.733] INFO  [g_Odessa] [bot] replan to (1432,1560): 42 steps in 1301.7us
+[18:53:08.859] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:13.896] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:18.899] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:19.268] INFO  [g_Odessa] [bot] arrived at (1432,1560,30)
+[18:53:19.268] INFO  [g_Odessa] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[18:53:19.268] LOG   [g_Odessa] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[18:53:19.268] INFO  [g_Odessa] [action] goto (1432,1528) from (1432,1560,30)
+[18:53:19.268] LOG   [g_Odessa] event goto_start: target=(1432,1528) from=(1432,1560)
+[18:53:19.268] INFO  [g_Odessa] [bot] running from (1432,1560,30) to (1432,1528)
+[18:53:19.268] INFO  [g_Odessa] [bot] planning path to (1432,1528) in background
+[18:53:19.329] INFO  [g_Odessa] [bot] replan to (1432,1528): 32 steps in 935.7us
+[18:53:23.615] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[18:53:23.920] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:28.010] INFO  [g_Odessa] [bot] arrived at (1432,1528,35)
+[18:53:28.010] INFO  [g_Odessa] [action] goto finished at (1432,1528,35); target (1432,1528); ARRIVED (off by 0 tile(s))
+[18:53:28.010] LOG   [g_Odessa] event goto_done: at=(1432,1528) target=(1432,1528) arrived=1 off=0
+[18:53:28.010] INFO  [g_Odessa] [action] goto (1432,1496) from (1432,1528,35)
+[18:53:28.010] LOG   [g_Odessa] event goto_start: target=(1432,1496) from=(1432,1528)
+[18:53:28.010] INFO  [g_Odessa] [bot] running from (1432,1528,35) to (1432,1496)
+[18:53:28.010] INFO  [g_Odessa] [bot] planning path to (1432,1496) in background
+[18:53:28.070] INFO  [g_Odessa] [bot] replan to (1432,1496): 35 steps in 15073.1us
+[18:53:28.930] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:32.660] INFO  [g_Odessa] [chat ascii] System: You have left the protection of the city guards
+[18:53:33.951] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:39.005] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:40.003] INFO  [g_Odessa] [bot] arrived at (1432,1496,25)
+[18:53:40.004] INFO  [g_Odessa] [action] goto finished at (1432,1496,25); target (1432,1496); ARRIVED (off by 0 tile(s))
+[18:53:40.004] LOG   [g_Odessa] event goto_done: at=(1432,1496) target=(1432,1496) arrived=1 off=0
+[18:53:40.004] INFO  [g_Odessa] [action] goto (1432,1462) from (1432,1496,25)
+[18:53:40.004] LOG   [g_Odessa] event goto_start: target=(1432,1462) from=(1432,1496)
+[18:53:40.004] INFO  [g_Odessa] [bot] running from (1432,1496,25) to (1432,1462)
+[18:53:40.004] INFO  [g_Odessa] [bot] planning path to (1432,1462) in background
+[18:53:40.065] INFO  [g_Odessa] [bot] replan to (1432,1462): 35 steps in 9919.2us
+[18:53:44.066] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:49.103] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:52.748] INFO  [g_Odessa] [bot] arrived at (1432,1462,0)
+[18:53:52.748] INFO  [g_Odessa] [action] goto finished at (1432,1462,0); target (1432,1462); ARRIVED (off by 0 tile(s))
+[18:53:52.748] LOG   [g_Odessa] event goto_done: at=(1432,1462) target=(1432,1462) arrived=1 off=0
+[18:53:52.748] INFO  [g_Odessa] [action] goto (1432,1432) from (1432,1462,0)
+[18:53:52.748] LOG   [g_Odessa] event goto_start: target=(1432,1432) from=(1432,1462)
+[18:53:52.748] INFO  [g_Odessa] [bot] running from (1432,1462,0) to (1432,1432)
+[18:53:52.748] INFO  [g_Odessa] [bot] planning path to (1432,1432) in background
+[18:53:52.809] INFO  [g_Odessa] [bot] replan to (1432,1432): 32 steps in 8659.5us
+[18:53:54.131] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:53:59.146] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:03.417] INFO  [g_Odessa] [bot] arrived at (1432,1432,0)
+[18:54:03.418] INFO  [g_Odessa] [action] goto finished at (1432,1432,0); target (1432,1432); ARRIVED (off by 0 tile(s))
+[18:54:03.418] LOG   [g_Odessa] event goto_done: at=(1432,1432) target=(1432,1432) arrived=1 off=0
+[18:54:03.418] INFO  [g_Odessa] [action] goto (1432,1400) from (1432,1432,0)
+[18:54:03.418] LOG   [g_Odessa] event goto_start: target=(1432,1400) from=(1432,1432)
+[18:54:03.418] INFO  [g_Odessa] [bot] running from (1432,1432,0) to (1432,1400)
+[18:54:03.418] INFO  [g_Odessa] [bot] planning path to (1432,1400) in background
+[18:54:03.479] INFO  [g_Odessa] [bot] replan to (1432,1400): 33 steps in 8580.7us
+[18:54:04.171] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:09.212] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:14.260] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:15.089] INFO  [g_Odessa] [bot] arrived at (1432,1400,0)
+[18:54:15.090] INFO  [g_Odessa] [action] goto finished at (1432,1400,0); target (1432,1400); ARRIVED (off by 0 tile(s))
+[18:54:15.090] LOG   [g_Odessa] event goto_done: at=(1432,1400) target=(1432,1400) arrived=1 off=0
+[18:54:15.090] INFO  [g_Odessa] [action] goto (1432,1368) from (1432,1400,0)
+[18:54:15.090] LOG   [g_Odessa] event goto_start: target=(1432,1368) from=(1432,1400)
+[18:54:15.090] INFO  [g_Odessa] [bot] running from (1432,1400,0) to (1432,1368)
+[18:54:15.090] INFO  [g_Odessa] [bot] planning path to (1432,1368) in background
+[18:54:15.150] INFO  [g_Odessa] [bot] replan to (1432,1368): 32 steps in 10567.7us
+[18:54:19.276] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:23.645] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[18:54:24.318] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:24.869] INFO  [g_Odessa] [chat ascii] Noogugh: *Noogugh is attacking you!*
+[18:54:24.869] INFO  [life] goal_changed=SURVIVE from=REPLACE_EQUIPMENT reason="SURVIVE 900.0 superseded REPLACE_EQUIPMENT 130.0 (emergency preempt)"
+[18:54:24.870] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) StayAlive(a fight already started 0.90) NeedEquipment(heal potions 0.50) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:54:24.870] INFO  [life]   score=900.0
+[18:54:24.870] INFO  [life]   reason: StayAlive urgency 0.90 x 1000 = 900.0
+[18:54:24.870] INFO  [life]   reason: attackers=1 hostiles_seen=1 hp=100%
+[18:54:24.870] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:54:24.870] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 18s after achieving nothing
+[18:54:24.870] INFO  [life] interrupt=FLEE reason="HP 100%; 1 attacker(s); bail at 40%"
+[18:54:24.870] INFO  [life] disengage=yes attackers=1 in_reach=1 tolerate=2 hp=100% bandages=0 reason="this life avoids combat"
+[18:54:24.870] INFO  [g_Odessa] [travel] Brit Mine1 FAILED at (1430,1371,0) -- survival retreat supersedes the old errand
+[18:54:24.870] LOG   [g_Odessa] event travel_failed: label='Brit Mine1' ok=0 at=(1430,1371) legs=12 plans=2 why='survival retreat supersedes the old errand'
+[18:54:25.677] INFO  [g_Odessa] [travel] place: skipping The British Grille banker -- 1288 tiles and 1 gate for a service Britain banker offers
+[18:54:25.677] INFO  [g_Odessa] [travel] place: skipping Vesper banker -- 1408 tiles and 1 gate for a service Britain banker offers
+[18:54:25.677] INFO  [g_Odessa] [travel] place: skipping Bank of Britannia - Trinsic Branch banker -- 1264 tiles and 1 gate for a service Britain banker offers
+[18:54:25.677] INFO  [g_Odessa] [travel] place: skipping Delucia banker -- 2012 tiles and 3 gates for a service Britain banker offers
+[18:54:25.677] INFO  [g_Odessa] [travel] Britain banker -> (1425,1690) r=5 from (1430,1371)
+[18:54:25.677] LOG   [g_Odessa] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1371)
+[18:54:25.677] INFO  [g_Odessa] [travel] mode moongate         usable   <- chosen
+[18:54:25.677] INFO  [g_Odessa] [travel] mode walk             usable
+[18:54:25.677] INFO  [g_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:54:25.677] INFO  [g_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:54:25.677] LOG   [g_Odessa] event travel_mode: moongate
+[18:54:25.678] INFO  [g_Odessa] [travel] plan Britain banker: ok legs=10 ~336 tiles transit=0 nodes=743
+[18:54:25.678] INFO  [g_Odessa] [action] goto finished at (1430,1371,0); target (1432,1368); stopped short (off by 5 tile(s))
+[18:54:25.678] LOG   [g_Odessa] event goto_done: at=(1430,1371) target=(1432,1368) arrived=0 off=5
+[18:54:25.678] INFO  [g_Odessa] [action] goto (1432,1400) from (1430,1371,0)
+[18:54:25.678] LOG   [g_Odessa] event goto_start: target=(1432,1400) from=(1430,1371)
+[18:54:25.678] INFO  [g_Odessa] [bot] running from (1430,1371,0) to (1432,1400)
+[18:54:25.678] INFO  [g_Odessa] [bot] planning path to (1432,1400) in background
+[18:54:25.729] INFO  [g_Odessa] [bot] replan to (1432,1400): 29 steps in 9378.3us
+[18:54:26.917] INFO  [life] interrupt=FLEE reason="HP 100%; 1 attacker(s); bail at 40%"
+[18:54:26.917] INFO  [life] disengage=yes attackers=1 in_reach=1 tolerate=2 hp=100% bandages=0 reason="this life avoids combat"
+[18:54:28.917] INFO  [life] interrupt=FLEE reason="HP 100%; 1 attacker(s); bail at 40%"
+[18:54:28.917] INFO  [life] disengage=yes attackers=1 in_reach=1 tolerate=2 hp=100% bandages=0 reason="this life avoids combat"
+[18:54:29.343] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:30.970] INFO  [life] interrupt=FLEE reason="HP 100%; 1 attacker(s); bail at 40%"
+[18:54:30.970] INFO  [life] disengage=yes attackers=1 in_reach=1 tolerate=2 hp=100% bandages=0 reason="this life avoids combat"
+[18:54:33.014] INFO  [life] interrupt=FLEE reason="HP 100%; 0 attacker(s); bail at 40%"
+[18:54:33.015] INFO  [life] disengage=yes attackers=0 in_reach=1 tolerate=2 hp=100% bandages=0 reason="this life avoids combat"
+[18:54:33.077] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=SURVIVE reason="previous goal abandoned: attempts 5 >= 5"
+[18:54:33.077] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedEquipment(heal potions 0.50) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:54:33.077] INFO  [life]   score=130.0
+[18:54:33.077] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[18:54:33.077] INFO  [life]   reason: potions=1 low=2 gold=9326 brews_own=0
+[18:54:33.077] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:54:33.077] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 10s after achieving nothing
+[18:54:34.369] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:35.050] INFO  [life] plan=buy reason="some held, more wanted"
+[18:54:35.298] INFO  [g_Odessa] [bot] arrived at (1432,1400,0)
+[18:54:35.298] INFO  [g_Odessa] [action] goto finished at (1432,1400,0); target (1432,1400); ARRIVED (off by 0 tile(s))
+[18:54:35.298] LOG   [g_Odessa] event goto_done: at=(1432,1400) target=(1432,1400) arrived=1 off=0
+[18:54:35.298] INFO  [g_Odessa] [action] goto (1432,1432) from (1432,1400,0)
+[18:54:35.298] LOG   [g_Odessa] event goto_start: target=(1432,1432) from=(1432,1400)
+[18:54:35.298] INFO  [g_Odessa] [bot] running from (1432,1400,0) to (1432,1432)
+[18:54:35.298] INFO  [g_Odessa] [bot] planning path to (1432,1432) in background
+[18:54:35.358] INFO  [g_Odessa] [bot] replan to (1432,1432): 33 steps in 8784.8us
+[18:54:39.389] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:44.391] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:46.690] INFO  [g_Odessa] [bot] arrived at (1432,1432,0)
+[18:54:46.690] INFO  [g_Odessa] [action] goto finished at (1432,1432,0); target (1432,1432); ARRIVED (off by 0 tile(s))
+[18:54:46.690] LOG   [g_Odessa] event goto_done: at=(1432,1432) target=(1432,1432) arrived=1 off=0
+[18:54:46.690] INFO  [g_Odessa] [action] goto (1432,1462) from (1432,1432,0)
+[18:54:46.690] LOG   [g_Odessa] event goto_start: target=(1432,1462) from=(1432,1432)
+[18:54:46.690] INFO  [g_Odessa] [bot] running from (1432,1432,0) to (1432,1462)
+[18:54:46.690] INFO  [g_Odessa] [bot] planning path to (1432,1462) in background
+[18:54:46.750] INFO  [g_Odessa] [bot] replan to (1432,1462): 31 steps in 9446.0us
+[18:54:49.409] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:54.469] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:54:57.506] INFO  [g_Odessa] [bot] arrived at (1432,1462,0)
+[18:54:57.507] INFO  [g_Odessa] [action] goto finished at (1432,1462,0); target (1432,1462); ARRIVED (off by 0 tile(s))
+[18:54:57.507] LOG   [g_Odessa] event goto_done: at=(1432,1462) target=(1432,1462) arrived=1 off=0
+[18:54:57.507] INFO  [g_Odessa] [action] goto (1432,1496) from (1432,1462,0)
+[18:54:57.507] LOG   [g_Odessa] event goto_start: target=(1432,1496) from=(1432,1462)
+[18:54:57.507] INFO  [g_Odessa] [bot] running from (1432,1462,0) to (1432,1496)
+[18:54:57.507] INFO  [g_Odessa] [bot] planning path to (1432,1496) in background
+[18:54:57.553] INFO  [g_Odessa] [bot] replan to (1432,1496): 35 steps in 10419.1us
+[18:54:59.525] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:55:04.577] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:55:09.580] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:55:10.582] INFO  [g_Odessa] [bot] arrived at (1432,1496,25)
+[18:55:10.583] INFO  [g_Odessa] [action] goto finished at (1432,1496,25); target (1432,1496); ARRIVED (off by 0 tile(s))
+[18:55:10.583] LOG   [g_Odessa] event goto_done: at=(1432,1496) target=(1432,1496) arrived=1 off=0
+[18:55:10.583] INFO  [g_Odessa] [action] goto (1432,1528) from (1432,1496,25)
+[18:55:10.583] LOG   [g_Odessa] event goto_start: target=(1432,1528) from=(1432,1496)
+[18:55:10.583] INFO  [g_Odessa] [bot] running from (1432,1496,25) to (1432,1528)
+[18:55:10.583] INFO  [g_Odessa] [bot] planning path to (1432,1528) in background
+[18:55:10.643] INFO  [g_Odessa] [bot] replan to (1432,1528): 35 steps in 9137.8us
+[18:55:11.121] LOG   [g_Odessa] event threat: HP 50 -> 45
+[18:55:11.122] INFO  [g_Odessa] [action] goto finished at (1431,1496,24); target (1432,1528); stopped short (off by 33 tile(s))
+[18:55:11.122] LOG   [g_Odessa] event goto_done: at=(1431,1496) target=(1432,1528) arrived=0 off=33
+[18:55:12.293] INFO  [life] goal_changed=HEAL from=REPLACE_EQUIPMENT reason="HEAL 308.0 superseded REPLACE_EQUIPMENT 130.0"
+[18:55:12.293] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedEquipment(heal potions 0.50) Heal(bandage 0.44) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:55:12.294] INFO  [life]   score=308.0
+[18:55:12.294] INFO  [life]   reason: Heal urgency 0.44 x 700 = 308.0
+[18:55:12.294] INFO  [life]   reason: hp=38/50 bandages=0
+[18:55:12.294] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:55:12.294] INFO  [g_Odessa] [war] leaving war mode
+[18:55:12.294] INFO  [life] plan=drink a potion reason="nothing else to hand"
+[18:55:12.294] INFO  [g_Odessa] [ACTION] use_object start
+[18:55:12.294] INFO  [g_Odessa] [ACTION] use_object serial=0x4000E552
+[18:55:12.369] INFO  [g_Odessa] [action] goto (1432,1528) from (1431,1496,24)
+[18:55:12.369] LOG   [g_Odessa] event goto_start: target=(1432,1528) from=(1431,1496)
+[18:55:12.369] INFO  [g_Odessa] [bot] running from (1431,1496,24) to (1432,1528)
+[18:55:12.369] INFO  [g_Odessa] [bot] planning path to (1432,1528) in background
+[18:55:12.430] INFO  [g_Odessa] [bot] replan to (1432,1528): 34 steps in 7736.0us
+[18:55:14.588] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:55:14.832] INFO  [life] goal_completed=HEAL progress=1
+[18:55:14.834] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[18:55:14.834] INFO  [life] goal=BUY_SUPPLIES reason="no goal was running"
+[18:55:14.834] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedEquipment(heal potions 0.50) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:55:14.834] INFO  [life]   score=133.0
+[18:55:14.834] INFO  [life]   reason: NeedSupplies urgency 0.95 x 140 = 133.0
+[18:55:14.834] INFO  [life]   reason: i_gears x5 needs 5 x i_ingot_iron (can make 0 of 5)
+[18:55:14.834] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:55:14.834] LOG   [g_Odessa] event action_result: use_object invalid_state took=2541ms no goal was running
+[18:55:14.834] INFO  [life] goal_exit=HEAL->BUY_SUPPLIES dropped action reason="no goal was running"
+[18:55:14.834] INFO  [life] supplies: i_ingot_iron is a player-market good -- no NPC may sell it, so this is a rendezvous, not a shopping trip
+[18:55:14.834] INFO  [life] handoff=BUY_SUPPLIES->TRADE_WITH_PLAYER reason="another profession makes this, not a shopkeeper"
+[18:55:14.893] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: another profession makes this, not a shopkeeper"
+[18:55:14.893] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedEquipment(heal potions 0.50) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:55:14.893] INFO  [life]   score=130.0
+[18:55:14.893] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[18:55:14.893] INFO  [life]   reason: potions=0 low=2 gold=9326 brews_own=0
+[18:55:14.893] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:55:14.893] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 119s after achieving nothing
+[18:55:16.851] INFO  [life] plan=buy reason="none held, and it may be bought"
+[18:55:19.378] INFO  [g_Odessa] [chat ascii] System: You are now under the protection of the city guards
+[18:55:19.608] INFO  [g_Odessa] [survival] hp 50/50 (100%) -> fight
+[18:55:23.819] INFO  [g_Odessa] [bot] arrived at (1432,1528,35)
+[18:55:23.819] INFO  [g_Odessa] [action] goto finished at (1432,1528,35); target (1432,1528); ARRIVED (off by 0 tile(s))
+[18:55:23.819] LOG   [g_Odessa] event goto_done: at=(1432,1528) target=(1432,1528) arrived=1 off=0
+[18:55:23.819] INFO  [g_Odessa] [action] goto (1432,1560) from (1432,1528,35)
+[18:55:23.819] LOG   [g_Odessa] event goto_start: target=(1432,1560) from=(1432,1528)
+[18:55:23.819] INFO  [g_Odessa] [bot] running from (1432,1528,35) to (1432,1560)
+[18:55:23.819] INFO  [g_Odessa] [bot] planning path to (1432,1560) in background
+[18:55:23.880] INFO  [g_Odessa] [bot] replan to (1432,1560): 32 steps in 891.7us
+[18:55:24.310] LOG   [g_Odessa] event threat: HP 50 -> 43
+[18:55:24.310] INFO  [g_Odessa] [action] goto finished at (1432,1528,35); target (1432,1560); stopped short (off by 32 tile(s))
+[18:55:24.310] LOG   [g_Odessa] event goto_done: at=(1432,1528) target=(1432,1560) arrived=0 off=32
+[18:55:24.664] INFO  [g_Odessa] [survival] hp 43/50 (86%) -> fight
+[18:55:25.538] INFO  [g_Odessa] [action] goto (1432,1560) from (1432,1528,35)
+[18:55:25.538] LOG   [g_Odessa] event goto_start: target=(1432,1560) from=(1432,1528)
+[18:55:25.538] INFO  [g_Odessa] [bot] running from (1432,1528,35) to (1432,1560)
+[18:55:25.538] INFO  [g_Odessa] [bot] planning path to (1432,1560) in background
+[18:55:25.599] INFO  [g_Odessa] [bot] replan to (1432,1560): 32 steps in 1072.7us
+[18:55:29.666] INFO  [g_Odessa] [survival] hp 43/50 (86%) -> fight
+[18:55:33.945] INFO  [g_Odessa] [bot] arrived at (1432,1560,30)
+[18:55:33.945] INFO  [g_Odessa] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[18:55:33.945] LOG   [g_Odessa] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[18:55:33.945] INFO  [g_Odessa] [action] goto (1416,1592) from (1432,1560,30)
+[18:55:33.945] LOG   [g_Odessa] event goto_start: target=(1416,1592) from=(1432,1560)
+[18:55:33.945] INFO  [g_Odessa] [bot] running from (1432,1560,30) to (1416,1592)
+[18:55:33.945] INFO  [g_Odessa] [bot] planning path to (1416,1592) in background
+[18:55:34.692] INFO  [g_Odessa] [survival] hp 43/50 (86%) -> fight
+[18:55:35.275] INFO  [g_Odessa] [action] goto finished at (1432,1560,30); target (1416,1592); stopped short (off by 48 tile(s))
+[18:55:35.275] LOG   [g_Odessa] event goto_done: at=(1432,1560) target=(1416,1592) arrived=0 off=48
+[18:55:36.530] INFO  [g_Odessa] [action] goto (1416,1592) from (1432,1560,30)
+[18:55:36.530] LOG   [g_Odessa] event goto_start: target=(1416,1592) from=(1432,1560)
+[18:55:36.530] INFO  [g_Odessa] [bot] running from (1432,1560,30) to (1416,1592)
+[18:55:36.530] INFO  [g_Odessa] [bot] planning path to (1416,1592) in background
+[18:55:36.971] INFO  [g_Odessa] [0x20] player @(1432,1560,30) facing=0
+[18:55:36.971] INFO  [g_Odessa] [action] goto finished at (1432,1560,30); target (1416,1592); stopped short (off by 48 tile(s))
+[18:55:36.971] LOG   [g_Odessa] event goto_done: at=(1432,1560) target=(1416,1592) arrived=0 off=48
+[18:55:38.224] INFO  [g_Odessa] [action] goto (1416,1592) from (1432,1560,30)
+[18:55:38.224] LOG   [g_Odessa] event goto_start: target=(1416,1592) from=(1432,1560)
+[18:55:38.224] INFO  [g_Odessa] [bot] running from (1432,1560,30) to (1416,1592)
+[18:55:38.224] INFO  [g_Odessa] [bot] planning path to (1416,1592) in background
+[18:55:39.508] INFO  [g_Odessa] [action] goto finished at (1432,1560,30); target (1416,1592); stopped short (off by 48 tile(s))
+[18:55:39.508] LOG   [g_Odessa] event goto_done: at=(1432,1560) target=(1416,1592) arrived=0 off=48
+[18:55:39.740] INFO  [g_Odessa] [survival] hp 43/50 (86%) -> fight
+[18:55:40.709] INFO  [g_Odessa] [travel] mode moongate         usable   <- chosen
+[18:55:40.709] INFO  [g_Odessa] [travel] mode walk             usable
+[18:55:40.709] INFO  [g_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:55:40.709] INFO  [g_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:55:40.709] LOG   [g_Odessa] event travel_mode: moongate
+[18:55:40.709] INFO  [g_Odessa] [travel] plan Britain banker: ok legs=4 ~160 tiles transit=0 nodes=184
+[18:55:42.221] INFO  [g_Odessa] [action] goto (1448,1592) from (1432,1560,30)
+[18:55:42.221] LOG   [g_Odessa] event goto_start: target=(1448,1592) from=(1432,1560)
+[18:55:42.221] INFO  [g_Odessa] [bot] running from (1432,1560,30) to (1448,1592)
+[18:55:42.221] INFO  [g_Odessa] [bot] planning path to (1448,1592) in background
+[18:55:42.284] INFO  [g_Odessa] [bot] replan to (1448,1592): 46 steps in 6619.0us
+[18:55:42.514] LOG   [g_Odessa] event threat: HP 44 -> 38
+[18:55:42.514] INFO  [life] goal_changed=HEAL from=REPLACE_EQUIPMENT reason="HEAL 308.0 superseded REPLACE_EQUIPMENT 130.0"
+[18:55:42.514] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedEquipment(heal potions 0.50) Heal(bandage 0.44) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:55:42.514] INFO  [life]   score=308.0
+[18:55:42.514] INFO  [life]   reason: Heal urgency 0.44 x 700 = 308.0
+[18:55:42.514] INFO  [life]   reason: hp=38/50 bandages=0
+[18:55:42.514] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:55:42.514] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 92s after achieving nothing
+[18:55:42.514] INFO  [g_Odessa] [war] leaving war mode
+[18:55:42.514] INFO  [life] plan=buy supplies reason="nothing to hand, but enough gold to fix that"
+[18:55:42.514] INFO  [life] plan=buy reason="none held, and it may be bought"
+[18:55:42.514] INFO  [g_Odessa] [action] goto finished at (1432,1560,30); target (1448,1592); stopped short (off by 48 tile(s))
+[18:55:42.514] LOG   [g_Odessa] event goto_done: at=(1432,1560) target=(1448,1592) arrived=0 off=48
+[18:55:43.729] INFO  [g_Odessa] [action] goto (1448,1592) from (1432,1560,30)
+[18:55:43.729] LOG   [g_Odessa] event goto_start: target=(1448,1592) from=(1432,1560)
+[18:55:43.729] INFO  [g_Odessa] [bot] running from (1432,1560,30) to (1448,1592)
+[18:55:43.729] INFO  [g_Odessa] [bot] planning path to (1448,1592) in background
+[18:55:43.791] INFO  [g_Odessa] [bot] replan to (1448,1592): 46 steps in 6533.2us
+[18:55:44.791] INFO  [g_Odessa] [survival] hp 38/50 (76%) -> fight
+[18:55:49.835] INFO  [g_Odessa] [survival] hp 38/50 (76%) -> fight
+[18:55:53.604] INFO  [g_Odessa] [bot] door ahead at (1444,1583,z20); OpenDoor before step
+[18:55:53.604] INFO  [g_Odessa] [chat ascii] System: Opening door...
+[18:55:53.604] INFO  [g_Odessa] [0x20] player @(1443,1584,20) facing=0
+[18:55:53.604] INFO  [g_Odessa] [action] goto finished at (1443,1584,20); target (1448,1592); stopped short (off by 13 tile(s))
+[18:55:53.604] LOG   [g_Odessa] event goto_done: at=(1443,1584) target=(1448,1592) arrived=0 off=13
+[18:55:54.847] INFO  [g_Odessa] [action] goto (1448,1592) from (1443,1584,20)
+[18:55:54.847] LOG   [g_Odessa] event goto_start: target=(1448,1592) from=(1443,1584)
+[18:55:54.847] INFO  [g_Odessa] [bot] running from (1443,1584,20) to (1448,1592)
+[18:55:54.847] INFO  [g_Odessa] [bot] planning path to (1448,1592) in background
+[18:55:54.847] INFO  [g_Odessa] [survival] hp 38/50 (76%) -> fight
+[18:55:54.909] INFO  [g_Odessa] [bot] replan to (1448,1592): 17 steps in 1266.3us
+[18:55:59.872] INFO  [g_Odessa] [survival] hp 38/50 (76%) -> fight
+[18:56:00.998] INFO  [g_Odessa] [bot] arrived at (1448,1592,20)
+[18:56:00.999] INFO  [g_Odessa] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[18:56:00.999] LOG   [g_Odessa] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[18:56:00.999] INFO  [g_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:56:00.999] INFO  [g_Odessa] [action] goto (1464,1624) from (1448,1592,20)
+[18:56:00.999] LOG   [g_Odessa] event goto_start: target=(1464,1624) from=(1448,1592)
+[18:56:00.999] INFO  [g_Odessa] [bot] running from (1448,1592,20) to (1464,1624)
+[18:56:00.999] INFO  [g_Odessa] [bot] planning path to (1464,1624) in background
+[18:56:01.060] INFO  [g_Odessa] [bot] replan to (1464,1624): 34 steps in 1759.5us
+[18:56:03.474] INFO  [g_Odessa] [bot] door ahead at (1456,1599,z20); OpenDoor before step
+[18:56:03.488] INFO  [g_Odessa] [chat ascii] System: Opening door...
+[18:56:04.926] INFO  [g_Odessa] [survival] hp 38/50 (76%) -> fight
+[18:56:09.977] INFO  [g_Odessa] [survival] hp 38/50 (76%) -> fight
+[18:56:11.086] INFO  [g_Odessa] [bot] arrived at (1464,1624,20)
+[18:56:11.087] INFO  [g_Odessa] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[18:56:11.087] LOG   [g_Odessa] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[18:56:11.087] INFO  [g_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:56:11.087] INFO  [g_Odessa] [action] goto (1464,1656) from (1464,1624,20)
+[18:56:11.087] LOG   [g_Odessa] event goto_start: target=(1464,1656) from=(1464,1624)
+[18:56:11.087] INFO  [g_Odessa] [bot] running from (1464,1624,20) to (1464,1656)
+[18:56:11.087] INFO  [g_Odessa] [bot] planning path to (1464,1656) in background
+[18:56:11.147] INFO  [g_Odessa] [bot] replan to (1464,1656): 32 steps in 1212.6us
+[18:56:14.864] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[18:56:14.986] INFO  [g_Odessa] [survival] hp 38/50 (76%) -> fight
+[18:56:20.005] INFO  [g_Odessa] [survival] hp 38/50 (76%) -> fight
+[18:56:20.865] INFO  [g_Odessa] [bot] arrived at (1464,1656,10)
+[18:56:20.865] INFO  [g_Odessa] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[18:56:20.865] LOG   [g_Odessa] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[18:56:20.865] INFO  [g_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:56:20.865] INFO  [g_Odessa] [action] goto (1425,1690) from (1464,1656,10)
+[18:56:20.865] LOG   [g_Odessa] event goto_start: target=(1425,1690) from=(1464,1656)
+[18:56:20.865] INFO  [g_Odessa] [bot] running from (1464,1656,10) to (1425,1690,z0)
+[18:56:20.865] INFO  [g_Odessa] [bot] planning path to (1425,1690) in background
+[18:56:20.926] INFO  [g_Odessa] [bot] replan to (1425,1690): 61 steps in 15818.9us
+[18:56:25.056] INFO  [g_Odessa] [survival] hp 39/50 (78%) -> fight
+[18:56:30.117] INFO  [g_Odessa] [survival] hp 39/50 (78%) -> fight
+[18:56:33.866] INFO  [g_Odessa] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[18:56:33.866] INFO  [g_Odessa] [chat ascii] System: Opening door...
+[18:56:35.130] INFO  [g_Odessa] [survival] hp 39/50 (78%) -> fight
+[18:56:37.646] INFO  [g_Odessa] [chat ascii] Lyndon: Aye?
+[18:56:37.939] INFO  [g_Odessa] [travel] Britain banker ARRIVED at (1429,1690,0)
+[18:56:37.939] LOG   [g_Odessa] event travel_done: label='Britain banker' ok=1 at=(1429,1690) legs=4 plans=2 why=''
+[18:56:38.000] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[18:56:38.039] INFO  [g_Odessa] [travel] place: skipping Cove healer -- 1248 tiles and 1 gate for a service Britain healer offers
+[18:56:38.039] INFO  [g_Odessa] [travel] place: skipping Delucia healer -- 1860 tiles and 4 gates for a service Britain healer offers
+[18:56:38.039] INFO  [g_Odessa] [travel] Britain healer -> (1471,1611) r=5 from (1429,1690)
+[18:56:38.039] LOG   [g_Odessa] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1429,1690)
+[18:56:38.039] INFO  [life] potions: walking to a 'healer' (trip 1)
+[18:56:38.039] INFO  [g_Odessa] [travel] mode moongate         usable   <- chosen
+[18:56:38.040] INFO  [g_Odessa] [travel] mode walk             usable
+[18:56:38.040] INFO  [g_Odessa] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:56:38.040] INFO  [g_Odessa] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:56:38.040] LOG   [g_Odessa] event travel_mode: moongate
+[18:56:38.040] INFO  [g_Odessa] [travel] plan Britain healer: ok legs=3 ~96 tiles transit=0 nodes=74
+[18:56:38.092] INFO  [g_Odessa] [action] goto finished at (1429,1690,0); target (1425,1690); stopped short (off by 4 tile(s))
+[18:56:38.092] LOG   [g_Odessa] event goto_done: at=(1429,1690) target=(1425,1690) arrived=0 off=4
+[18:56:38.092] INFO  [g_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:56:38.092] INFO  [g_Odessa] [action] goto (1448,1656) from (1429,1690,0)
+[18:56:38.092] LOG   [g_Odessa] event goto_start: target=(1448,1656) from=(1429,1690)
+[18:56:38.092] INFO  [g_Odessa] [bot] running from (1429,1690,0) to (1448,1656)
+[18:56:38.092] INFO  [g_Odessa] [bot] planning path to (1448,1656) in background
+[18:56:38.153] INFO  [g_Odessa] [bot] replan to (1448,1656): 60 steps in 9907.5us
+[18:56:40.142] INFO  [g_Odessa] [survival] hp 39/50 (78%) -> fight
+[18:56:41.863] INFO  [g_Odessa] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[18:56:41.878] INFO  [g_Odessa] [chat ascii] System: Opening door...
+[18:56:41.878] INFO  [g_Odessa] [0x20] player @(1439,1693,0) facing=2
+[18:56:41.878] INFO  [g_Odessa] [action] goto finished at (1439,1693,0); target (1448,1656); stopped short (off by 46 tile(s))
+[18:56:41.878] LOG   [g_Odessa] event goto_done: at=(1439,1693) target=(1448,1656) arrived=0 off=46
+[18:56:43.121] INFO  [g_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:56:43.121] INFO  [g_Odessa] [action] goto (1448,1656) from (1439,1693,0)
+[18:56:43.121] LOG   [g_Odessa] event goto_start: target=(1448,1656) from=(1439,1693)
+[18:56:43.121] INFO  [g_Odessa] [bot] running from (1439,1693,0) to (1448,1656)
+[18:56:43.121] INFO  [g_Odessa] [bot] planning path to (1448,1656) in background
+[18:56:43.182] INFO  [g_Odessa] [bot] replan to (1448,1656): 49 steps in 9580.4us
+[18:56:45.170] INFO  [g_Odessa] [survival] hp 39/50 (78%) -> fight
+[18:56:50.229] INFO  [g_Odessa] [survival] hp 39/50 (78%) -> fight
+[18:56:55.242] INFO  [g_Odessa] [survival] hp 39/50 (78%) -> fight
+[18:56:57.227] INFO  [g_Odessa] [bot] arrived at (1448,1656,10)
+[18:56:57.227] INFO  [g_Odessa] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[18:56:57.227] LOG   [g_Odessa] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[18:56:57.227] INFO  [g_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:56:57.227] INFO  [g_Odessa] [action] goto (1464,1624) from (1448,1656,10)
+[18:56:57.227] LOG   [g_Odessa] event goto_start: target=(1464,1624) from=(1448,1656)
+[18:56:57.227] INFO  [g_Odessa] [bot] running from (1448,1656,10) to (1464,1624)
+[18:56:57.227] INFO  [g_Odessa] [bot] planning path to (1464,1624) in background
+[18:56:57.288] INFO  [g_Odessa] [bot] replan to (1464,1624): 43 steps in 3844.8us
+[18:57:00.278] INFO  [g_Odessa] [survival] hp 39/50 (78%) -> fight
+[18:57:01.872] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=HEAL reason="REPLACE_EQUIPMENT 130.0 superseded HEAL 0.0"
+[18:57:01.872] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.95) NeedEquipment(heal potions 0.50) NeedOre(ore 0.41) NeedBank(put unsold stock away 0.40) NeedSmelt(ingots 0.33) NeedMount(riding horse 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17)  | tools defined=2 held=[tinker tools,pickaxe,] want_train=nothing (target 0.0)
+[18:57:01.872] INFO  [life]   score=130.0
+[18:57:01.872] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[18:57:01.872] INFO  [life]   reason: potions=0 low=2 gold=9326 brews_own=0
+[18:57:01.872] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (1 x i_tinker_tools spare, and no buyer known -- on this shard it is a player-market good)
+[18:57:01.872] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 12s after achieving nothing
+[18:57:01.872] INFO  [life] goal_exit=HEAL->REPLACE_EQUIPMENT dropped errand reason="REPLACE_EQUIPMENT 130.0 superseded HEAL 0.0"
+[18:57:01.872] INFO  [life] plan=buy reason="none held, and it may be bought"
+[18:57:05.326] INFO  [g_Odessa] [survival] hp 40/50 (80%) -> fight
+[18:57:10.382] INFO  [g_Odessa] [survival] hp 40/50 (80%) -> fight
+[18:57:10.890] INFO  [g_Odessa] [bot] arrived at (1464,1624,20)
+[18:57:10.890] INFO  [g_Odessa] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[18:57:10.890] LOG   [g_Odessa] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[18:57:10.890] INFO  [g_Odessa] [travel] avoiding 2 teleporter pad(s) on this leg
+[18:57:10.890] INFO  [g_Odessa] [action] goto (1471,1611) from (1464,1624,20)
+[18:57:10.890] LOG   [g_Odessa] event goto_start: target=(1471,1611) from=(1464,1624)
+[18:57:10.890] INFO  [g_Odessa] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[18:57:10.890] INFO  [g_Odessa] [bot] planning path to (1471,1611) in background
+[18:57:10.951] INFO  [g_Odessa] [bot] replan to (1471,1611): 31 steps in 7743.7us
+[18:57:14.900] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[18:57:15.392] INFO  [g_Odessa] [survival] hp 40/50 (80%) -> fight
+[18:57:18.279] INFO  [g_Odessa] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[18:57:18.293] INFO  [g_Odessa] [chat ascii] System: Opening door...
+[18:57:20.269] INFO  [g_Odessa] [travel] Britain healer ARRIVED at (1474,1612,20)
+[18:57:20.269] LOG   [g_Odessa] event travel_done: label='Britain healer' ok=1 at=(1474,1612) legs=3 plans=1 why=''
+[18:57:20.329] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[18:57:20.369] INFO  [g_Odessa] [travel] place: skipping Cove healer -- 1352 tiles and 1 gate for a service Britain healer offers
+[18:57:20.369] INFO  [g_Odessa] [travel] place: skipping Delucia healer -- 1828 tiles and 3 gates for a service Britain healer offers
+[18:57:20.369] INFO  [g_Odessa] [travel] Britain healer -> (1471,1611) r=5 from (1474,1612)
+[18:57:20.369] LOG   [g_Odessa] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1474,1612)
+[18:57:20.370] INFO  [g_Odessa] [travel] Britain healer ARRIVED at (1474,1612,20)
+[18:57:20.370] LOG   [g_Odessa] event travel_done: label='Britain healer' ok=1 at=(1474,1612) legs=0 plans=0 why=''
+[18:57:20.420] INFO  [g_Odessa] [action] scanning nearby mobiles for names
+[18:57:20.420] INFO  [g_Odessa] [action] requested 3 paperdoll(s) for trade titles
+[18:57:20.420] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[18:57:20.420] INFO  [g_Odessa] [survival] hp 40/50 (80%) -> fight
+[18:57:20.435] INFO  [g_Odessa] [mobiles] nearby (3):
+[18:57:20.435] INFO  [g_Odessa]   Dale 0x000010C1
+[18:57:20.435] INFO  [g_Odessa]   Natasha 0x00001194
+[18:57:20.435] INFO  [g_Odessa]   Caimile 0x00001239
+[18:57:20.435] INFO  [g_Odessa] [0x20] player @(1474,1612,20) facing=7
+[18:57:20.435] INFO  [g_Odessa] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[18:57:20.435] INFO  [g_Odessa] [world] Natasha, the healer guildmistress is a healer at (1468,1609)
+[18:57:20.435] INFO  [g_Odessa] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[18:57:20.435] INFO  [g_Odessa] [world] Dale, the healer is a healer at (1469,1609)
+[18:57:20.435] INFO  [g_Odessa] [0x20] player @(1474,1612,20) facing=0
+[18:57:20.435] INFO  [g_Odessa] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[18:57:21.052] INFO  [life] goal_exit=REPLACE_EQUIPMENT->REPLACE_EQUIPMENT dropped errand reason="session time limit reached"
+[18:57:21.052] INFO  [life] session_end_requested reason="session time limit reached"
+[18:57:21.112] INFO  [life] session_summary duration=300s goals=1/9 gold=9326->9326 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=39 suppliers=0
+[18:57:21.112] INFO  [life] session_goals families=3 picks=9 top=44% varied=0 self_superseded=0 | emergency=3(33%) upkeep=4(44%) work=2(22%) | SURVIVE=1(11%) HEAL=2(22%) REPLACE_EQUIPMENT=4(44%) BUY_SUPPLIES=2(22%)
+[18:57:21.115] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_20.odessa/state.json
+[18:57:21.115] INFO  [life] logging out
+[18:57:21.115] INFO  [g_Odessa] [action] logout requested
+[18:57:21.115] LOG   [g_Odessa] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[18:57:21.115] INFO  [g_Odessa] [0xD1] logout acknowledged (accepted=1)
+[18:57:21.115] LOG   [g_Odessa] event logout_ack: accepted
+[18:57:21.115] INFO  [g_Odessa] [net] closing connection (logout acknowledged)
+[18:57:21.115] LOG   [g_Odessa] event logout_complete: acked

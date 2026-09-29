@@ -1,0 +1,33 @@
+start: Titus is a archer and lives in Skara Brae -> starting city index 7
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:30:00.342] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=17; server says (1384,1867,0) facing=7
+[17:30:01.063] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=0; server says (1384,1867,0) facing=7
+[17:31:23.324] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=35; server says (1432,1666,10) facing=1
+[17:31:24.080] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[17:31:57.522] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1470,1611) avoiding 0 block(s); stopping (search 1890540.2us)
+[17:31:57.523] WARN  [wave10_RevGen3_28_Titus] [bot] start (1476,1611,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 450 item(s), 5 mobile(s))
+[17:32:00.428] WARN  [wave10_RevGen3_28_Titus] [ACTION_RESULT] vendor_buy rejected (2ms) You can't reach the Vendor
+[17:33:01.265] WARN  [wave10_RevGen3_28_Titus] [ACTION_RESULT] move_item server_failure (15ms) item 0x40018037 landed in 0x4001807D, not the destination 0x40018099
+[17:33:11.906] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=14; server says (1439,1693,0) facing=3
+[17:33:11.922] WARN  [wave10_RevGen3_28_Titus] [bot] 0x20 resync; aborting path
+[17:33:51.065] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1452,1618) avoiding 0 block(s); stopping (search 2279905.6us)
+[17:33:51.065] WARN  [wave10_RevGen3_28_Titus] [bot] start (1454,1614,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 533 item(s), 3 mobile(s))
+[17:34:44.818] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 2513312.1us)
+[17:34:44.818] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 3 mobile(s))
+[17:34:48.524] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 2378156.7us)
+[17:34:48.525] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 3 mobile(s))
+[17:34:53.758] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 2395233.4us)
+[17:34:53.758] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 3 mobile(s))
+[17:34:57.417] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 2356983.9us)
+[17:34:57.417] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 4 mobile(s))
+[17:35:03.393] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 1641071.4us)
+[17:35:03.394] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 4 mobile(s))
+[17:35:08.761] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 4022110.6us)
+[17:35:08.762] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 4 mobile(s))
+[17:35:28.888] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1388,1588) avoiding 0 block(s); stopping (search 284.2us)
+[17:35:28.895] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1549,30) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 786 item(s), 5 mobile(s))
+[17:35:30.272] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1388,1588) avoiding 0 block(s); stopping (search 604.7us)
+[17:35:30.273] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1549,30) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 786 item(s), 5 mobile(s))
+[17:35:31.623] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1388,1588) avoiding 0 block(s); stopping (search 235.3us)
+[17:35:31.628] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1549,30) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 786 item(s), 5 mobile(s))

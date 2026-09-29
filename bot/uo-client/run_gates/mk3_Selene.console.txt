@@ -1,0 +1,879 @@
+[00:19:39.213] INFO  session 0: 127.0.0.1:2593 user='RevGen3_15' char=Selene tag='mk3_Selene'
+[00:19:39.215] LOG   [mk3_Selene] event session_start: text log opened
+[00:19:39.215] LOG   [mk3_Selene] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:39.215] INFO  [mk3_Selene] [net] connecting to 127.0.0.1:2593 ...
+[00:19:39.216] LOG   [mk3_Selene] event net_connected: connect 127.0.0.1:2593
+[00:19:39.216] INFO  [mk3_Selene] [net] connected.
+[00:19:39.216] INFO  [mk3_Selene] [seed] sent 0x7F000001 (plaintext)
+[00:19:39.216] LOG   [mk3_Selene] event seed_out: 0x7F000001 hex=7f000001
+[00:19:39.216] INFO  [life] no prior state for revgen3_15.selene: a new Alchemist
+[00:19:39.216] INFO  [life] creation request: Alchemy 50.0 + Magery 50.0, stats 32/16/32 = 80
+[00:19:39.216] INFO  [life] needs: reading 'alchemist' from the profession catalogue
+[00:19:39.216] INFO  [life] home: Selene lives in Magincia
+[00:19:39.216] INFO  [life] build plan 'alchemist': 200.0 resolved + 450.0 unresolved = 650.0/700.0, stats 50/25/100 = 175
+[00:19:39.216] INFO  [mk3_Selene] [life] autonomous player active for 'Selene' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:39.239] INFO  [mk3_Selene] [0xA8] 1 server(s):
+[00:19:39.239] INFO  [mk3_Selene]   [0] MyShard                   1.0.0.127  full=5%  tz=0
+[00:19:39.254] INFO  [mk3_Selene] [0x8C] game server = 127.0.0.1:2593  seed=0x745E872A
+[00:19:39.254] LOG   [mk3_Selene] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x745E872A
+[00:19:39.254] INFO  [mk3_Selene] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:39.254] LOG   [mk3_Selene] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:39.270] INFO  [mk3_Selene] [0xB9] server features = 0x0005
+[00:19:39.270] INFO  [mk3_Selene] [0xA9] 5 slot(s) (populated 0):
+[00:19:39.270] INFO  [mk3_Selene]   [0] <empty>
+[00:19:39.270] INFO  [mk3_Selene]   [1] <empty>
+[00:19:39.270] INFO  [mk3_Selene]   [2] <empty>
+[00:19:39.270] INFO  [mk3_Selene]   [3] <empty>
+[00:19:39.270] INFO  [mk3_Selene]   [4] <empty>
+[00:19:39.270] INFO  [mk3_Selene] create: appearance sex=F skin=0x041C hair=0x2049/0x045F shirt=0x03B4 pants=0x0152
+[00:19:39.270] INFO  [mk3_Selene] [0x00] starting city index 5
+[00:19:39.270] INFO  [mk3_Selene] [0x00] requested skills 0:50 25:50 46:0
+[00:19:39.270] INFO  [mk3_Selene] [0x00] requested stats STR 32 DEX 16 INT 32
+[00:19:39.270] INFO  [mk3_Selene] [0x00] creating character 'Selene' in slot 0
+[00:19:39.270] LOG   [mk3_Selene] event char_create_sent: Selene
+[00:19:39.272] INFO  [mk3_Selene] [0x1B] serial=0x00010BC9 body=0x0191 pos=(3734,2222,20)
+[00:19:39.272] LOG   [mk3_Selene] event login_confirm: serial=0x00010BC9 body=0x0191 pos=(3734,2222,20)
+[00:19:39.272] INFO  [mk3_Selene] [0x20] player @(3734,2222,20) facing=3
+[00:19:39.272] INFO  [mk3_Selene] [0x55] login complete — entering world
+[00:19:39.272] LOG   [mk3_Selene] event in_world: 0x55 received
+[00:19:39.272] INFO  [mk3_Selene] [backpack] opening 0x40010BA3
+[00:19:39.272] INFO  [mk3_Selene] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:39.272] INFO  [mk3_Selene] [chat ascii] System: There are 14 other players here.
+[00:19:39.272] INFO  [mk3_Selene] [chat ascii] System: You are under the protection of the town guards
+[00:19:39.277] INFO  [mk3_Selene] [action] requesting the skill list
+[00:19:39.277] INFO  [life] in world; asked the server for the skill list
+[00:19:39.285] INFO  [mk3_Selene] [0x24] open container 0x40010BA3 gump=60
+[00:19:39.285] INFO  [mk3_Selene] [0x3C] container contents: 10 item(s)
+[00:19:39.285] LOG   [mk3_Selene] event backpack_contents: serial=0x40010BA3 items=10
+[00:19:41.864] INFO  [mk3_Selene] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:41.864] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:41.864] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:41.864] INFO  [life]   str          persisted=0          server=32         -> server value accepted
+[00:19:41.864] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:19:41.864] INFO  [life]   int          persisted=0          server=32         -> server value accepted
+[00:19:41.864] INFO  [life]   skill_0      persisted=0.0        server=50.0       -> server value accepted
+[00:19:41.864] INFO  [life]   skill_25     persisted=0.0        server=50.0       -> server value accepted
+[00:19:41.864] INFO  [life]   skill_46     persisted=0.0        server=0.0        -> server value accepted
+[00:19:41.864] INFO  [life]   position     persisted=0,0        server=3734,2222  -> server value accepted
+[00:19:41.864] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:41.864] INFO  [mk3_Selene] [survival] on
+[00:19:41.864] LOG   [mk3_Selene] event survival_mode: on
+[00:19:41.866] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:19:41.866] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:19:41.929] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:41.929] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:19:41.929] INFO  [life]   score=150.0
+[00:19:41.929] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:41.929] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=600 carry=1100 spare=8900 risk=1.00
+[00:19:41.929] INFO  [life]   reason: no bank learned yet -30
+[00:19:41.929] INFO  [mk3_Selene] [action] scanning nearby mobiles for names
+[00:19:41.929] INFO  [mk3_Selene] [action] requested 5 paperdoll(s) for trade titles
+[00:19:41.929] INFO  [life] bank: asking who is standing in the bank
+[00:19:41.945] INFO  [mk3_Selene] [mobiles] nearby (8):
+[00:19:41.945] INFO  [mk3_Selene]   Elara 0x00011030
+[00:19:41.945] INFO  [mk3_Selene]   Maris 0x000025E9
+[00:19:41.945] INFO  [mk3_Selene]   Chantal 0x000026FA
+[00:19:41.945] INFO  [mk3_Selene]   Amala 0x00002733
+[00:19:41.945] INFO  [mk3_Selene]   Dog 0x000106ED
+[00:19:41.945] INFO  [mk3_Selene]   Bailey 0x00002055
+[00:19:41.945] INFO  [mk3_Selene]   Rat 0x00017F25
+[00:19:41.945] INFO  [mk3_Selene]   Cat 0x0000E7E2
+[00:19:41.945] INFO  [mk3_Selene] [0x20] player @(3734,2222,20) facing=5
+[00:19:41.945] INFO  [mk3_Selene] [0x88] paperdoll 0x00002733: "Amala, the waitress"
+[00:19:41.945] INFO  [mk3_Selene] [0x20] player @(3734,2222,20) facing=6
+[00:19:41.945] INFO  [mk3_Selene] [0x88] paperdoll 0x000026FA: "Chantal, the cook"
+[00:19:41.945] INFO  [mk3_Selene] [world] Chantal, the cook is a cook at (3727,2225)
+[00:19:41.945] INFO  [mk3_Selene] [0x88] paperdoll 0x000025E9: "Maris, the tavernkeeper"
+[00:19:41.945] INFO  [mk3_Selene] [world] Maris, the tavernkeeper is a innkeeper at (3731,2222)
+[00:19:41.945] INFO  [mk3_Selene] [0x88] paperdoll 0x00002055: "Bailey, the tavernkeeper"
+[00:19:41.945] INFO  [mk3_Selene] [world] Bailey, the tavernkeeper is a innkeeper at (3724,2224)
+[00:19:41.945] INFO  [mk3_Selene] [0x88] paperdoll 0x00011030: "Elara, Apprentice Mage"
+[00:19:42.315] INFO  [mk3_Selene] [chat ascii] Maris: What's thee wantin'?
+[00:19:42.315] INFO  [mk3_Selene] [chat ascii] Maris: I'm listenin'.
+[00:19:42.350] INFO  [mk3_Selene] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:43.956] INFO  [life] bank: no banker in sight
+[00:19:43.956] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:44.019] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:44.019] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:19:44.019] INFO  [life]   score=130.0
+[00:19:44.019] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:44.019] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:44.019] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:45.357] INFO  [mk3_Selene] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:46.921] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:19:48.422] INFO  [mk3_Selene] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:48.983] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:48.983] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:48.983] INFO  [mk3_Selene] [travel] Magincia healer -> (3687,2227) r=5 from (3734,2222)
+[00:19:48.983] LOG   [mk3_Selene] event travel_start: label='Magincia healer' target=(3687,2227) radius=5 from=(3734,2222)
+[00:19:48.983] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:48.984] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:19:48.984] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:19:48.984] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:48.984] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:48.984] LOG   [mk3_Selene] event travel_mode: walk
+[00:19:48.984] INFO  [mk3_Selene] [travel] plan Magincia healer: ok legs=2 ~56 tiles transit=0 nodes=9
+[00:19:49.045] INFO  [mk3_Selene] [action] goto (3704,2232) from (3734,2222,20)
+[00:19:49.045] LOG   [mk3_Selene] event goto_start: target=(3704,2232) from=(3734,2222)
+[00:19:49.045] INFO  [mk3_Selene] [bot] running from (3734,2222,20) to (3704,2232)
+[00:19:49.045] INFO  [mk3_Selene] [bot] planning path to (3704,2232) in background
+[00:19:49.090] INFO  [mk3_Selene] [bot] replan to (3704,2232): 43 steps in 1847.8us
+[00:19:51.484] INFO  [mk3_Selene] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:51.942] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:19:54.532] INFO  [mk3_Selene] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:56.952] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:19:57.598] INFO  [mk3_Selene] [chat ascii] System: Serena has arrived in Britain.
+[00:20:00.310] INFO  [mk3_Selene] [bot] arrived at (3704,2232,20)
+[00:20:00.310] INFO  [mk3_Selene] [action] goto finished at (3704,2232,20); target (3704,2232); ARRIVED (off by 0 tile(s))
+[00:20:00.310] LOG   [mk3_Selene] event goto_done: at=(3704,2232) target=(3704,2232) arrived=1 off=0
+[00:20:00.310] INFO  [mk3_Selene] [action] goto (3687,2227) from (3704,2232,20)
+[00:20:00.310] LOG   [mk3_Selene] event goto_start: target=(3687,2227) from=(3704,2232)
+[00:20:00.310] INFO  [mk3_Selene] [bot] running from (3704,2232,20) to (3687,2227,z20)
+[00:20:00.310] INFO  [mk3_Selene] [bot] planning path to (3687,2227) in background
+[00:20:00.370] INFO  [mk3_Selene] [bot] replan to (3687,2227): 20 steps in 662.0us
+[00:20:00.645] INFO  [mk3_Selene] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:01.976] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:02.100] INFO  [mk3_Selene] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=13 in 70.5us
+[00:20:03.869] INFO  [mk3_Selene] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:04.865] INFO  [mk3_Selene] [travel] Magincia healer ARRIVED at (3690,2232,20)
+[00:20:04.865] LOG   [mk3_Selene] event travel_done: label='Magincia healer' ok=1 at=(3690,2232) legs=2 plans=1 why=''
+[00:20:04.925] INFO  [mk3_Selene] [action] scanning nearby mobiles for names
+[00:20:04.926] INFO  [mk3_Selene] [action] requested 6 paperdoll(s) for trade titles
+[00:20:04.926] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:04.926] INFO  [mk3_Selene] [mobiles] nearby (8):
+[00:20:04.926] INFO  [mk3_Selene]   Elara 0x00011030
+[00:20:04.926] INFO  [mk3_Selene]   Jocasa 0x00002723
+[00:20:04.926] INFO  [mk3_Selene]   Magena 0x0000265E
+[00:20:04.926] INFO  [mk3_Selene]   Corbey 0x0000264F
+[00:20:04.926] INFO  [mk3_Selene]   Arne 0x000026E6
+[00:20:04.926] INFO  [mk3_Selene]   Alanna 0x0000263D
+[00:20:04.926] INFO  [mk3_Selene]   Jin 0x0000E0B0
+[00:20:04.926] INFO  [mk3_Selene]   Dog 0x00011AB0
+[00:20:04.926] INFO  [mk3_Selene] [0x20] player @(3690,2232,20) facing=1
+[00:20:04.926] INFO  [mk3_Selene] [0x88] paperdoll 0x0000E0B0: "Jin, the scribe"
+[00:20:04.926] INFO  [mk3_Selene] [world] Jin, the scribe is a scribe at (3704,2217)
+[00:20:04.926] INFO  [mk3_Selene] [0x88] paperdoll 0x0000264F: "Corbey, the alchemist"
+[00:20:04.926] INFO  [mk3_Selene] [world] Corbey, the alchemist is a alchemist at (3700,2221)
+[00:20:04.926] INFO  [mk3_Selene] [0x88] paperdoll 0x000026E6: "Arne, the mage"
+[00:20:04.926] INFO  [mk3_Selene] [world] Arne, the mage is a mage at (3701,2221)
+[00:20:04.926] INFO  [mk3_Selene] [0x88] paperdoll 0x0000263D: "Alanna, the mage guildmistress"
+[00:20:04.926] INFO  [mk3_Selene] [world] Alanna, the mage guildmistress is a mage at (3696,2220)
+[00:20:04.926] INFO  [mk3_Selene] [0x20] player @(3690,2232,20) facing=0
+[00:20:04.926] INFO  [mk3_Selene] [0x88] paperdoll 0x00002723: "Jocasa, the healer"
+[00:20:04.926] INFO  [mk3_Selene] [world] Jocasa, the healer is a healer at (3688,2224)
+[00:20:04.926] INFO  [mk3_Selene] [0x20] player @(3690,2232,20) facing=7
+[00:20:04.926] INFO  [mk3_Selene] [0x88] paperdoll 0x0000265E: "Magena, the healer guildmistress"
+[00:20:04.926] INFO  [mk3_Selene] [world] Magena, the healer guildmistress is a healer at (3682,2228)
+[00:20:04.941] INFO  [mk3_Selene] [0x21] stale reject seq=19 (block already handled); pose resynced
+[00:20:06.978] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:06.980] INFO  [mk3_Selene] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:07.943] INFO  [life] potions: found a 'healer'
+[00:20:08.004] INFO  [mk3_Selene] [travel] mobile 0x00002723 -> (3688,2224) r=1 from (3690,2232)
+[00:20:08.004] LOG   [mk3_Selene] event travel_start: label='mobile 0x00002723' target=(3688,2224) radius=1 from=(3690,2232)
+[00:20:08.004] INFO  [life] potions: the 'healer' is 8 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:08.004] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:20:08.004] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:20:08.004] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:08.004] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:08.004] LOG   [mk3_Selene] event travel_mode: walk
+[00:20:08.004] INFO  [mk3_Selene] [travel] plan mobile 0x00002723: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:20:08.065] INFO  [mk3_Selene] [action] goto finished at (3690,2232,20); target (3687,2227); stopped short (off by 8 tile(s))
+[00:20:08.065] LOG   [mk3_Selene] event goto_done: at=(3690,2232) target=(3687,2227) arrived=0 off=8
+[00:20:08.065] INFO  [mk3_Selene] [action] goto (3688,2224) from (3690,2232,20)
+[00:20:08.065] LOG   [mk3_Selene] event goto_start: target=(3688,2224) from=(3690,2232)
+[00:20:08.065] INFO  [mk3_Selene] [bot] running from (3690,2232,20) to (3688,2224,z20)
+[00:20:08.065] INFO  [mk3_Selene] [bot] planning path to (3688,2224) in background
+[00:20:09.085] INFO  [mk3_Selene] [action] goto finished at (3690,2232,20); target (3688,2224); stopped short (off by 10 tile(s))
+[00:20:09.085] LOG   [mk3_Selene] event goto_done: at=(3690,2232) target=(3688,2224) arrived=0 off=10
+[00:20:10.022] INFO  [mk3_Selene] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:10.348] INFO  [mk3_Selene] [action] goto (3688,2224) from (3690,2232,20)
+[00:20:10.348] LOG   [mk3_Selene] event goto_start: target=(3688,2224) from=(3690,2232)
+[00:20:10.348] INFO  [mk3_Selene] [bot] running from (3690,2232,20) to (3688,2224,z20)
+[00:20:10.348] INFO  [mk3_Selene] [bot] planning path to (3688,2224) in background
+[00:20:11.274] INFO  [mk3_Selene] [action] goto finished at (3690,2232,20); target (3688,2224); stopped short (off by 10 tile(s))
+[00:20:11.274] LOG   [mk3_Selene] event goto_done: at=(3690,2232) target=(3688,2224) arrived=0 off=10
+[00:20:12.014] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:12.505] INFO  [mk3_Selene] [action] goto (3688,2224) from (3690,2232,20)
+[00:20:12.505] LOG   [mk3_Selene] event goto_start: target=(3688,2224) from=(3690,2232)
+[00:20:12.505] INFO  [mk3_Selene] [bot] running from (3690,2232,20) to (3688,2224,z20)
+[00:20:12.505] INFO  [mk3_Selene] [bot] planning path to (3688,2224) in background
+[00:20:13.076] INFO  [mk3_Selene] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.626] INFO  [mk3_Selene] [action] goto finished at (3690,2232,20); target (3688,2224); stopped short (off by 10 tile(s))
+[00:20:13.626] LOG   [mk3_Selene] event goto_done: at=(3690,2232) target=(3688,2224) arrived=0 off=10
+[00:20:14.887] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:20:14.887] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:20:14.887] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:14.887] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:14.887] LOG   [mk3_Selene] event travel_mode: walk
+[00:20:14.887] INFO  [mk3_Selene] [travel] plan mobile 0x00002723: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:20:16.106] INFO  [mk3_Selene] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.412] INFO  [mk3_Selene] [action] goto (3688,2224) from (3690,2232,20)
+[00:20:16.412] LOG   [mk3_Selene] event goto_start: target=(3688,2224) from=(3690,2232)
+[00:20:16.412] INFO  [mk3_Selene] [bot] running from (3690,2232,20) to (3688,2224,z20)
+[00:20:16.412] INFO  [mk3_Selene] [bot] planning path to (3688,2224) in background
+[00:20:17.058] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:17.489] INFO  [mk3_Selene] [action] goto finished at (3690,2232,20); target (3688,2224); stopped short (off by 10 tile(s))
+[00:20:17.489] LOG   [mk3_Selene] event goto_done: at=(3690,2232) target=(3688,2224) arrived=0 off=10
+[00:20:18.725] INFO  [mk3_Selene] [action] goto (3688,2224) from (3690,2232,20)
+[00:20:18.725] LOG   [mk3_Selene] event goto_start: target=(3688,2224) from=(3690,2232)
+[00:20:18.725] INFO  [mk3_Selene] [bot] running from (3690,2232,20) to (3688,2224,z20)
+[00:20:18.725] INFO  [mk3_Selene] [bot] planning path to (3688,2224) in background
+[00:20:19.161] INFO  [mk3_Selene] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.802] INFO  [mk3_Selene] [action] goto finished at (3690,2232,20); target (3688,2224); stopped short (off by 10 tile(s))
+[00:20:19.802] LOG   [mk3_Selene] event goto_done: at=(3690,2232) target=(3688,2224) arrived=0 off=10
+[00:20:21.037] INFO  [mk3_Selene] [action] goto (3688,2224) from (3690,2232,20)
+[00:20:21.037] LOG   [mk3_Selene] event goto_start: target=(3688,2224) from=(3690,2232)
+[00:20:21.037] INFO  [mk3_Selene] [bot] running from (3690,2232,20) to (3688,2224,z20)
+[00:20:21.037] INFO  [mk3_Selene] [bot] planning path to (3688,2224) in background
+[00:20:22.061] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:22.309] INFO  [mk3_Selene] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.492] INFO  [mk3_Selene] [action] goto finished at (3690,2232,20); target (3688,2224); stopped short (off by 10 tile(s))
+[00:20:22.492] LOG   [mk3_Selene] event goto_done: at=(3690,2232) target=(3688,2224) arrived=0 off=10
+[00:20:23.751] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:20:23.751] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:20:23.751] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:23.751] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:23.751] LOG   [mk3_Selene] event travel_mode: walk
+[00:20:23.751] INFO  [mk3_Selene] [travel] plan mobile 0x00002723: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:20:25.377] INFO  [mk3_Selene] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:26.795] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:20:26.795] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:20:26.795] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:26.795] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:26.795] LOG   [mk3_Selene] event travel_mode: walk
+[00:20:26.795] INFO  [mk3_Selene] [travel] plan mobile 0x00002723: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:20:26.856] INFO  [mk3_Selene] [action] goto (3691,2225) from (3690,2232,20)
+[00:20:26.856] LOG   [mk3_Selene] event goto_start: target=(3691,2225) from=(3690,2232)
+[00:20:26.856] INFO  [mk3_Selene] [bot] running from (3690,2232,20) to (3691,2225,z20)
+[00:20:26.856] INFO  [mk3_Selene] [bot] planning path to (3691,2225) in background
+[00:20:27.102] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:28.036] INFO  [mk3_Selene] [action] goto finished at (3690,2232,20); target (3691,2225); stopped short (off by 8 tile(s))
+[00:20:28.036] LOG   [mk3_Selene] event goto_done: at=(3690,2232) target=(3691,2225) arrived=0 off=8
+[00:20:29.248] INFO  [mk3_Selene] [action] goto (3691,2225) from (3690,2232,20)
+[00:20:29.248] LOG   [mk3_Selene] event goto_start: target=(3691,2225) from=(3690,2232)
+[00:20:29.248] INFO  [mk3_Selene] [bot] running from (3690,2232,20) to (3691,2225,z20)
+[00:20:29.248] INFO  [mk3_Selene] [bot] planning path to (3691,2225) in background
+[00:20:29.264] INFO  [mk3_Selene] [bot] replan to (3691,2225): 9 steps in 226.3us
+[00:20:29.617] INFO  [mk3_Selene] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=8 in 40.1us
+[00:20:29.691] INFO  [mk3_Selene] [chat ascii] Jocasa: Aye?
+[00:20:30.124] INFO  [mk3_Selene] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=7 in 81.9us
+[00:20:30.414] INFO  [mk3_Selene] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 81.5us
+[00:20:30.614] INFO  [mk3_Selene] [chat uni  ] Elara: Jocasa buy
+[00:20:30.614] INFO  [mk3_Selene] [chat ascii] Jocasa: Thou surely wants all the things that I can sell thee.
+[00:20:30.628] INFO  [mk3_Selene] [chat ascii] Jocasa: Here you are, Elara That will be 120 gold coins.  I thank thee for thy business.
+[00:20:32.144] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:32.588] INFO  [mk3_Selene] [travel] mobile 0x00002723 ARRIVED at (3691,2226,20)
+[00:20:32.588] LOG   [mk3_Selene] event travel_done: label='mobile 0x00002723' ok=1 at=(3691,2226) legs=1 plans=1 why=''
+[00:20:32.588] INFO  [mk3_Selene] [chat ascii] System: You shove Elara out of the way.
+[00:20:32.588] INFO  [mk3_Selene] [bot] arrived at (3691,2225,20)
+[00:20:32.588] INFO  [life] potions: within reach
+[00:20:32.649] INFO  [mk3_Selene] [ACTION] vendor_buy start
+[00:20:32.649] INFO  [mk3_Selene] [VENDOR] open vendor=0x00002723 say='Jocasa buy'
+[00:20:32.649] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:32.649] INFO  [mk3_Selene] [chat uni  ] : Jocasa buy
+[00:20:32.649] INFO  [mk3_Selene] [chat ascii] Jocasa: Excuse me Elara, but Selene wants to speak to me
+[00:20:32.649] INFO  [mk3_Selene] [chat ascii] Jocasa: Yes?
+[00:20:32.649] INFO  [mk3_Selene] [chat ascii] Jocasa: I got lots to sell!
+[00:20:32.649] INFO  [mk3_Selene] [0x3C] container contents: 4 item(s)
+[00:20:32.649] INFO  [mk3_Selene] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:20:32.649] INFO  [mk3_Selene] [0x74] vendor shop data: cont=0x40002719 4 item(s), layer=0x1A
+[00:20:32.649] INFO  [mk3_Selene] [0x74]   clean bandages               gfx=0x0E21 qty=8    price=1
+[00:20:32.649] INFO  [mk3_Selene] [0x74]   Ginseng                      gfx=0x0F85 qty=10   price=3
+[00:20:32.649] INFO  [mk3_Selene] [0x74]   Garlic                       gfx=0x0F84 qty=8    price=3
+[00:20:32.649] INFO  [mk3_Selene] [0x74]   Refresh                      gfx=0x0F0B qty=18   price=16
+[00:20:32.649] INFO  [mk3_Selene] [0x3C] container contents: 0 item(s)
+[00:20:32.649] INFO  [mk3_Selene] [0x74] vendor shop data: cont=0x400121EC 0 item(s), layer=0x1B
+[00:20:32.649] INFO  [mk3_Selene] [VENDOR] offer from 0x00002723: 4 item(s)
+[00:20:32.649] INFO  [mk3_Selene] [VENDOR]   0x4000DD06 clean bandages         x8   1 gp
+[00:20:32.649] INFO  [mk3_Selene] [VENDOR]   0x4000DCD9 Ginseng                x10  3 gp
+[00:20:32.649] INFO  [mk3_Selene] [VENDOR]   0x4000DCD7 Garlic                 x8   3 gp
+[00:20:32.649] INFO  [mk3_Selene] [VENDOR]   0x4000DCD6 Refresh                x18  16 gp
+[00:20:32.649] LOG   [mk3_Selene] event vendor_offer: vendor=0x00002723 items=4
+[00:20:32.649] INFO  [mk3_Selene] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:20:32.649] LOG   [mk3_Selene] event action_result: vendor_buy success took=1ms vendor offer received
+[00:20:32.649] INFO  [mk3_Selene] [0x24] vendor buy gump for 0x00002723
+[00:20:32.650] INFO  [life] potions: the shop is open
+[00:20:32.696] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:32.696] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:32.696] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:32.697] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:20:32.757] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:32.757] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:20:32.757] INFO  [life]   score=130.0
+[00:20:32.757] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:32.757] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:32.757] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 251s after achieving nothing
+[00:20:32.757] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:32.757] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:32.757] INFO  [life] potions: found a 'healer'
+[00:20:32.819] INFO  [life] potions: within reach
+[00:20:32.880] INFO  [life] potions: the shop is open
+[00:20:32.942] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:32.942] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:32.942] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:32.944] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:20:33.003] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:33.003] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:20:33.003] INFO  [life]   score=114.4
+[00:20:33.003] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:33.003] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:33.003] INFO  [life]   reason: same errand just now, easing off 12% (130.0 -> 114.4)
+[00:20:33.003] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 250s after achieving nothing
+[00:20:33.003] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:33.003] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:33.003] INFO  [life] potions: found a 'healer'
+[00:20:33.064] INFO  [life] potions: within reach
+[00:20:33.109] INFO  [life] potions: the shop is open
+[00:20:33.170] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:33.170] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:33.170] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:33.172] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:20:33.186] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:33.186] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:20:33.186] INFO  [life]   score=98.8
+[00:20:33.186] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:33.186] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:33.186] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[00:20:33.186] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 250s after achieving nothing
+[00:20:33.186] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:33.186] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:33.186] INFO  [life] potions: found a 'healer'
+[00:20:33.247] INFO  [life] potions: within reach
+[00:20:33.309] INFO  [life] potions: the shop is open
+[00:20:33.369] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:33.369] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:33.369] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:33.372] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:20:33.431] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[00:20:33.431] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:20:33.431] INFO  [life]   score=78.0
+[00:20:33.431] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:20:33.431] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:20:33.431] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[00:20:33.431] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 250s after achieving nothing
+[00:20:33.431] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:20:33.431] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:20:33.431] INFO  [life] potions: found a 'healer'
+[00:20:33.492] INFO  [life] potions: within reach
+[00:20:33.552] INFO  [life] potions: the shop is open
+[00:20:33.599] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:20:33.599] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:20:33.599] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:20:33.599] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[00:20:33.601] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:20:33.662] INFO  [life] goal=TRADE_WITH_PLAYER reason="no goal was running"
+[00:20:33.662] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedTrade(buy from a player 0.47) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:20:33.662] INFO  [life]   score=68.2
+[00:20:33.662] INFO  [life]   reason: NeedTrade urgency 0.47 x 145 = 68.2
+[00:20:33.662] INFO  [life]   reason: 16 x i_bottle_empty short
+[00:20:33.662] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:20:33.662] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 250s after achieving nothing
+[00:20:33.662] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:20:33.662] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=125s need=800s
+[00:20:33.724] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: not enough session left for the trip"
+[00:20:33.724] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:20:33.724] INFO  [life]   score=61.6
+[00:20:33.724] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:20:33.724] INFO  [life]   reason: i_potion_poison needs 10 x i_reag_nightshade
+[00:20:33.724] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:20:33.724] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 250s after achieving nothing
+[00:20:33.724] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:33.724] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_VENDOR_NOT_OBSERVED" this 'mage' does not stock i_reag_nightshade
+[00:20:33.784] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: this vendor does not stock it"
+[00:20:33.785] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:20:33.785] INFO  [life]   score=60.5
+[00:20:33.785] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:20:33.785] INFO  [life]   reason: Meditation 0.0 -> 50.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:20:33.785] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[00:20:33.785] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 250s after achieving nothing
+[00:20:33.785] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:33.785] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 59s after achieving nothing
+[00:20:33.785] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:20:33.785] INFO  [life] training: a 'mage guildmaster' is here -- asking them rather than the shopkeeper
+[00:20:33.785] INFO  [life] training: 'mage' is 5 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[00:20:33.785] INFO  [mk3_Selene] [travel] mobile 0x0000263D -> (3696,2220) r=1 from (3691,2225)
+[00:20:33.785] LOG   [mk3_Selene] event travel_start: label='mobile 0x0000263D' target=(3696,2220) radius=1 from=(3691,2225)
+[00:20:33.785] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:20:33.785] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:20:33.785] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:33.785] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:33.785] LOG   [mk3_Selene] event travel_mode: walk
+[00:20:33.785] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:33.847] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3691,2225); ARRIVED (off by 0 tile(s))
+[00:20:33.847] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3691,2225) arrived=1 off=0
+[00:20:33.847] INFO  [mk3_Selene] [action] goto (3696,2220) from (3691,2225,20)
+[00:20:33.847] LOG   [mk3_Selene] event goto_start: target=(3696,2220) from=(3691,2225)
+[00:20:33.847] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3696,2220,z20)
+[00:20:33.847] INFO  [mk3_Selene] [bot] planning path to (3696,2220) in background
+[00:20:35.256] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3696,2220); stopped short (off by 10 tile(s))
+[00:20:35.256] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3696,2220) arrived=0 off=10
+[00:20:36.495] INFO  [mk3_Selene] [action] goto (3696,2220) from (3691,2225,20)
+[00:20:36.495] LOG   [mk3_Selene] event goto_start: target=(3696,2220) from=(3691,2225)
+[00:20:36.495] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3696,2220,z20)
+[00:20:36.495] INFO  [mk3_Selene] [bot] planning path to (3696,2220) in background
+[00:20:37.159] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:37.654] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3696,2220); stopped short (off by 10 tile(s))
+[00:20:37.654] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3696,2220) arrived=0 off=10
+[00:20:38.902] INFO  [mk3_Selene] [action] goto (3696,2220) from (3691,2225,20)
+[00:20:38.902] LOG   [mk3_Selene] event goto_start: target=(3696,2220) from=(3691,2225)
+[00:20:38.902] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3696,2220,z20)
+[00:20:38.902] INFO  [mk3_Selene] [bot] planning path to (3696,2220) in background
+[00:20:40.476] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3696,2220); stopped short (off by 10 tile(s))
+[00:20:40.476] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3696,2220) arrived=0 off=10
+[00:20:41.724] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:20:41.724] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:20:41.724] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:41.724] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:41.724] LOG   [mk3_Selene] event travel_mode: walk
+[00:20:41.724] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:42.167] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:43.284] INFO  [mk3_Selene] [action] goto (3696,2220) from (3691,2225,20)
+[00:20:43.284] LOG   [mk3_Selene] event goto_start: target=(3696,2220) from=(3691,2225)
+[00:20:43.284] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3696,2220,z20)
+[00:20:43.284] INFO  [mk3_Selene] [bot] planning path to (3696,2220) in background
+[00:20:44.676] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3696,2220); stopped short (off by 10 tile(s))
+[00:20:44.676] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3696,2220) arrived=0 off=10
+[00:20:45.926] INFO  [mk3_Selene] [action] goto (3696,2220) from (3691,2225,20)
+[00:20:45.926] LOG   [mk3_Selene] event goto_start: target=(3696,2220) from=(3691,2225)
+[00:20:45.926] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3696,2220,z20)
+[00:20:45.926] INFO  [mk3_Selene] [bot] planning path to (3696,2220) in background
+[00:20:47.196] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:47.795] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3696,2220); stopped short (off by 10 tile(s))
+[00:20:47.795] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3696,2220) arrived=0 off=10
+[00:20:49.020] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:20:49.020] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:20:49.020] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:49.020] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:49.020] LOG   [mk3_Selene] event travel_mode: walk
+[00:20:49.020] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:52.041] INFO  [mk3_Selene] [action] goto (3696,2220) from (3691,2225,20)
+[00:20:52.041] LOG   [mk3_Selene] event goto_start: target=(3696,2220) from=(3691,2225)
+[00:20:52.041] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3696,2220,z20)
+[00:20:52.041] INFO  [mk3_Selene] [bot] planning path to (3696,2220) in background
+[00:20:52.224] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:53.312] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3696,2220); stopped short (off by 10 tile(s))
+[00:20:53.312] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3696,2220) arrived=0 off=10
+[00:20:54.565] INFO  [mk3_Selene] [action] goto (3696,2220) from (3691,2225,20)
+[00:20:54.565] LOG   [mk3_Selene] event goto_start: target=(3696,2220) from=(3691,2225)
+[00:20:54.565] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3696,2220,z20)
+[00:20:54.565] INFO  [mk3_Selene] [bot] planning path to (3696,2220) in background
+[00:20:56.007] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3696,2220); stopped short (off by 10 tile(s))
+[00:20:56.007] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3696,2220) arrived=0 off=10
+[00:20:57.227] INFO  [mk3_Selene] [action] goto (3696,2220) from (3691,2225,20)
+[00:20:57.227] LOG   [mk3_Selene] event goto_start: target=(3696,2220) from=(3691,2225)
+[00:20:57.227] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3696,2220,z20)
+[00:20:57.227] INFO  [mk3_Selene] [bot] planning path to (3696,2220) in background
+[00:20:57.227] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:20:58.757] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3696,2220); stopped short (off by 10 tile(s))
+[00:20:58.757] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3696,2220) arrived=0 off=10
+[00:20:59.991] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:20:59.991] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:20:59.991] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:59.991] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:59.991] LOG   [mk3_Selene] event travel_mode: walk
+[00:20:59.991] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:21:00.175] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:00.175] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:00.175] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:00.175] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:00.175] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:00.175] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:21:00.237] INFO  [mk3_Selene] [action] goto (3699,2222) from (3691,2225,20)
+[00:21:00.237] LOG   [mk3_Selene] event goto_start: target=(3699,2222) from=(3691,2225)
+[00:21:00.237] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3699,2222,z20)
+[00:21:00.237] INFO  [mk3_Selene] [bot] planning path to (3699,2222) in background
+[00:21:01.628] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3699,2222); stopped short (off by 11 tile(s))
+[00:21:01.628] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3699,2222) arrived=0 off=11
+[00:21:02.276] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:02.831] INFO  [mk3_Selene] [action] goto (3699,2222) from (3691,2225,20)
+[00:21:02.831] LOG   [mk3_Selene] event goto_start: target=(3699,2222) from=(3691,2225)
+[00:21:02.831] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3699,2222,z20)
+[00:21:02.831] INFO  [mk3_Selene] [bot] planning path to (3699,2222) in background
+[00:21:04.623] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3699,2222); stopped short (off by 11 tile(s))
+[00:21:04.623] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3699,2222) arrived=0 off=11
+[00:21:05.863] INFO  [mk3_Selene] [action] goto (3699,2222) from (3691,2225,20)
+[00:21:05.863] LOG   [mk3_Selene] event goto_start: target=(3699,2222) from=(3691,2225)
+[00:21:05.863] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3699,2222,z20)
+[00:21:05.863] INFO  [mk3_Selene] [bot] planning path to (3699,2222) in background
+[00:21:05.924] INFO  [mk3_Selene] [bot] replan to (3699,2222): 55 steps in 18502.3us
+[00:21:06.047] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:06.047] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:06.047] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:06.047] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:06.047] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:06.047] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~10 tiles transit=0 nodes=0
+[00:21:06.108] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3699,2222); stopped short (off by 11 tile(s))
+[00:21:06.108] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3699,2222) arrived=0 off=11
+[00:21:06.108] INFO  [mk3_Selene] [action] goto (3701,2219) from (3691,2225,20)
+[00:21:06.108] LOG   [mk3_Selene] event goto_start: target=(3701,2219) from=(3691,2225)
+[00:21:06.108] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3701,2219,z20)
+[00:21:06.108] INFO  [mk3_Selene] [bot] planning path to (3701,2219) in background
+[00:21:07.332] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:07.393] INFO  [mk3_Selene] [action] goto finished at (3691,2225,20); target (3701,2219); stopped short (off by 16 tile(s))
+[00:21:07.393] LOG   [mk3_Selene] event goto_done: at=(3691,2225) target=(3701,2219) arrived=0 off=16
+[00:21:08.633] INFO  [mk3_Selene] [action] goto (3701,2219) from (3691,2225,20)
+[00:21:08.633] LOG   [mk3_Selene] event goto_start: target=(3701,2219) from=(3691,2225)
+[00:21:08.633] INFO  [mk3_Selene] [bot] running from (3691,2225,20) to (3701,2219,z20)
+[00:21:08.633] INFO  [mk3_Selene] [bot] planning path to (3701,2219) in background
+[00:21:08.695] INFO  [mk3_Selene] [bot] replan to (3701,2219): 52 steps in 17139.2us
+[00:21:11.193] INFO  [mk3_Selene] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:12.355] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:14.524] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:14.524] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:14.524] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:14.524] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:14.524] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:14.524] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:21:14.534] INFO  [mk3_Selene] [action] goto finished at (3703,2232,20); target (3701,2219); stopped short (off by 15 tile(s))
+[00:21:14.534] LOG   [mk3_Selene] event goto_done: at=(3703,2232) target=(3701,2219) arrived=0 off=15
+[00:21:14.534] INFO  [mk3_Selene] [action] goto (3704,2219) from (3703,2232,20)
+[00:21:14.534] LOG   [mk3_Selene] event goto_start: target=(3704,2219) from=(3703,2232)
+[00:21:14.534] INFO  [mk3_Selene] [bot] running from (3703,2232,20) to (3704,2219,z20)
+[00:21:14.534] INFO  [mk3_Selene] [bot] planning path to (3704,2219) in background
+[00:21:14.571] INFO  [mk3_Selene] [chat ascii] System: Observer has departed from Minoc.
+[00:21:16.414] INFO  [mk3_Selene] [chat uni  ] : Jin buy
+[00:21:16.414] INFO  [mk3_Selene] [chat ascii] Jin: Yes?
+[00:21:16.414] INFO  [mk3_Selene] [chat ascii] Jin: I got lots to sell!
+[00:21:16.535] INFO  [mk3_Selene] [action] goto finished at (3703,2232,20); target (3704,2219); stopped short (off by 14 tile(s))
+[00:21:16.535] LOG   [mk3_Selene] event goto_done: at=(3703,2232) target=(3704,2219) arrived=0 off=14
+[00:21:17.396] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:17.793] INFO  [mk3_Selene] [action] goto (3704,2219) from (3703,2232,20)
+[00:21:17.793] LOG   [mk3_Selene] event goto_start: target=(3704,2219) from=(3703,2232)
+[00:21:17.793] INFO  [mk3_Selene] [bot] running from (3703,2232,20) to (3704,2219,z20)
+[00:21:17.793] INFO  [mk3_Selene] [bot] planning path to (3704,2219) in background
+[00:21:17.854] INFO  [mk3_Selene] [bot] replan to (3704,2219): 27 steps in 2599.5us
+[00:21:18.498] INFO  [mk3_Selene] [chat ascii] Corbey: Hmm?
+[00:21:18.745] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:18.745] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:18.745] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:18.745] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:18.745] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:18.745] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:18.746] INFO  [mk3_Selene] [action] goto finished at (3707,2232,20); target (3704,2219); stopped short (off by 16 tile(s))
+[00:21:18.746] LOG   [mk3_Selene] event goto_done: at=(3707,2232) target=(3704,2219) arrived=0 off=16
+[00:21:18.746] INFO  [mk3_Selene] [action] goto (3701,2216) from (3707,2232,20)
+[00:21:18.746] LOG   [mk3_Selene] event goto_start: target=(3701,2216) from=(3707,2232)
+[00:21:18.746] INFO  [mk3_Selene] [bot] running from (3707,2232,20) to (3701,2216,z20)
+[00:21:18.746] INFO  [mk3_Selene] [bot] planning path to (3701,2216) in background
+[00:21:20.337] INFO  [mk3_Selene] [action] goto finished at (3707,2232,20); target (3701,2216); stopped short (off by 22 tile(s))
+[00:21:20.338] LOG   [mk3_Selene] event goto_done: at=(3707,2232) target=(3701,2216) arrived=0 off=22
+[00:21:21.581] INFO  [mk3_Selene] [action] goto (3701,2216) from (3707,2232,20)
+[00:21:21.581] LOG   [mk3_Selene] event goto_start: target=(3701,2216) from=(3707,2232)
+[00:21:21.581] INFO  [mk3_Selene] [bot] running from (3707,2232,20) to (3701,2216,z20)
+[00:21:21.581] INFO  [mk3_Selene] [bot] planning path to (3701,2216) in background
+[00:21:21.643] INFO  [mk3_Selene] [bot] replan to (3701,2216): 27 steps in 2287.8us
+[00:21:21.859] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:21.859] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:21.859] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:21.859] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:21.859] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:21.859] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:21:21.906] INFO  [mk3_Selene] [action] goto finished at (3708,2232,20); target (3701,2216); stopped short (off by 23 tile(s))
+[00:21:21.906] LOG   [mk3_Selene] event goto_done: at=(3708,2232) target=(3701,2216) arrived=0 off=23
+[00:21:21.906] INFO  [mk3_Selene] [action] goto (3698,2216) from (3708,2232,20)
+[00:21:21.906] LOG   [mk3_Selene] event goto_start: target=(3698,2216) from=(3708,2232)
+[00:21:21.906] INFO  [mk3_Selene] [bot] running from (3708,2232,20) to (3698,2216,z20)
+[00:21:21.906] INFO  [mk3_Selene] [bot] planning path to (3698,2216) in background
+[00:21:22.442] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:23.752] INFO  [mk3_Selene] [action] goto finished at (3708,2232,20); target (3698,2216); stopped short (off by 26 tile(s))
+[00:21:23.752] LOG   [mk3_Selene] event goto_done: at=(3708,2232) target=(3698,2216) arrived=0 off=26
+[00:21:24.965] INFO  [mk3_Selene] [action] goto (3698,2216) from (3708,2232,20)
+[00:21:24.966] LOG   [mk3_Selene] event goto_start: target=(3698,2216) from=(3708,2232)
+[00:21:24.966] INFO  [mk3_Selene] [bot] running from (3708,2232,20) to (3698,2216,z20)
+[00:21:24.966] INFO  [mk3_Selene] [bot] planning path to (3698,2216) in background
+[00:21:25.027] INFO  [mk3_Selene] [bot] replan to (3698,2216): 29 steps in 2269.1us
+[00:21:26.550] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:26.550] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:26.550] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:26.550] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:26.550] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:26.550] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~14 tiles transit=0 nodes=0
+[00:21:26.611] INFO  [mk3_Selene] [action] goto finished at (3712,2230,20); target (3698,2216); stopped short (off by 28 tile(s))
+[00:21:26.611] LOG   [mk3_Selene] event goto_done: at=(3712,2230) target=(3698,2216) arrived=0 off=28
+[00:21:26.611] INFO  [mk3_Selene] [action] goto (3698,2219) from (3712,2230,20)
+[00:21:26.611] LOG   [mk3_Selene] event goto_start: target=(3698,2219) from=(3712,2230)
+[00:21:26.611] INFO  [mk3_Selene] [bot] running from (3712,2230,20) to (3698,2219,z20)
+[00:21:26.611] INFO  [mk3_Selene] [bot] planning path to (3698,2219) in background
+[00:21:27.486] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:28.530] INFO  [mk3_Selene] [action] goto finished at (3712,2230,20); target (3698,2219); stopped short (off by 25 tile(s))
+[00:21:28.530] LOG   [mk3_Selene] event goto_done: at=(3712,2230) target=(3698,2219) arrived=0 off=25
+[00:21:29.774] INFO  [mk3_Selene] [action] goto (3698,2219) from (3712,2230,20)
+[00:21:29.774] LOG   [mk3_Selene] event goto_start: target=(3698,2219) from=(3712,2230)
+[00:21:29.774] INFO  [mk3_Selene] [bot] running from (3712,2230,20) to (3698,2219,z20)
+[00:21:29.774] INFO  [mk3_Selene] [bot] planning path to (3698,2219) in background
+[00:21:29.790] INFO  [mk3_Selene] [bot] replan to (3698,2219): 22 steps in 615.9us
+[00:21:31.313] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:31.313] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:31.313] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:31.313] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:31.313] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:31.314] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~12 tiles transit=0 nodes=0
+[00:21:31.375] INFO  [mk3_Selene] [action] goto finished at (3712,2223,20); target (3698,2219); stopped short (off by 18 tile(s))
+[00:21:31.375] LOG   [mk3_Selene] event goto_done: at=(3712,2223) target=(3698,2219) arrived=0 off=18
+[00:21:31.375] INFO  [mk3_Selene] [action] goto (3700,2216) from (3712,2223,20)
+[00:21:31.375] LOG   [mk3_Selene] event goto_start: target=(3700,2216) from=(3712,2223)
+[00:21:31.375] INFO  [mk3_Selene] [bot] running from (3712,2223,20) to (3700,2216,z20)
+[00:21:31.375] INFO  [mk3_Selene] [bot] planning path to (3700,2216) in background
+[00:21:32.524] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:33.120] INFO  [mk3_Selene] [action] goto finished at (3712,2223,20); target (3700,2216); stopped short (off by 19 tile(s))
+[00:21:33.120] LOG   [mk3_Selene] event goto_done: at=(3712,2223) target=(3700,2216) arrived=0 off=19
+[00:21:33.659] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=TRAIN_AT_NPC reason="REPLACE_EQUIPMENT 78.0 superseded TRAIN_AT_NPC 60.5"
+[00:21:33.659] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:21:33.659] INFO  [life]   score=78.0
+[00:21:33.659] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:21:33.659] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:21:33.659] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[00:21:33.659] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 190s after achieving nothing
+[00:21:33.659] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 540s after achieving nothing
+[00:21:33.659] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 0s after achieving nothing
+[00:21:33.659] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:21:33.662] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:21:34.338] INFO  [mk3_Selene] [action] goto (3700,2216) from (3712,2223,20)
+[00:21:34.338] LOG   [mk3_Selene] event goto_start: target=(3700,2216) from=(3712,2223)
+[00:21:34.338] INFO  [mk3_Selene] [bot] running from (3712,2223,20) to (3700,2216,z20)
+[00:21:34.338] INFO  [mk3_Selene] [bot] planning path to (3700,2216) in background
+[00:21:34.353] INFO  [mk3_Selene] [bot] replan to (3700,2216): 13 steps in 698.4us
+[00:21:34.475] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:34.475] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:34.475] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:34.475] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:34.475] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:34.475] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:21:34.491] INFO  [mk3_Selene] [action] goto finished at (3712,2222,20); target (3700,2216); stopped short (off by 18 tile(s))
+[00:21:34.491] LOG   [mk3_Selene] event goto_done: at=(3712,2222) target=(3700,2216) arrived=0 off=18
+[00:21:34.491] INFO  [mk3_Selene] [action] goto (3699,2213) from (3712,2222,20)
+[00:21:34.491] LOG   [mk3_Selene] event goto_start: target=(3699,2213) from=(3712,2222)
+[00:21:34.491] INFO  [mk3_Selene] [bot] running from (3712,2222,20) to (3699,2213,z20)
+[00:21:34.491] INFO  [mk3_Selene] [bot] planning path to (3699,2213) in background
+[00:21:35.979] INFO  [mk3_Selene] [action] goto finished at (3712,2222,20); target (3699,2213); stopped short (off by 22 tile(s))
+[00:21:35.979] LOG   [mk3_Selene] event goto_done: at=(3712,2222) target=(3699,2213) arrived=0 off=22
+[00:21:37.192] INFO  [mk3_Selene] [action] goto (3699,2213) from (3712,2222,20)
+[00:21:37.192] LOG   [mk3_Selene] event goto_start: target=(3699,2213) from=(3712,2222)
+[00:21:37.192] INFO  [mk3_Selene] [bot] running from (3712,2222,20) to (3699,2213,z20)
+[00:21:37.192] INFO  [mk3_Selene] [bot] planning path to (3699,2213) in background
+[00:21:37.254] INFO  [mk3_Selene] [bot] replan to (3699,2213): 17 steps in 1453.2us
+[00:21:37.545] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:38.208] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:38.208] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:38.208] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:38.208] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:38.208] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:38.208] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~8 tiles transit=0 nodes=0
+[00:21:38.271] INFO  [mk3_Selene] [action] goto finished at (3709,2220,20); target (3699,2213); stopped short (off by 17 tile(s))
+[00:21:38.271] LOG   [mk3_Selene] event goto_done: at=(3709,2220) target=(3699,2213) arrived=0 off=17
+[00:21:38.271] INFO  [mk3_Selene] [action] goto (3701,2216) from (3709,2220,20)
+[00:21:38.271] LOG   [mk3_Selene] event goto_start: target=(3701,2216) from=(3709,2220)
+[00:21:38.271] INFO  [mk3_Selene] [bot] running from (3709,2220,20) to (3701,2216,z20)
+[00:21:38.271] INFO  [mk3_Selene] [bot] planning path to (3701,2216) in background
+[00:21:39.777] INFO  [mk3_Selene] [action] goto finished at (3709,2220,20); target (3701,2216); stopped short (off by 12 tile(s))
+[00:21:39.777] LOG   [mk3_Selene] event goto_done: at=(3709,2220) target=(3701,2216) arrived=0 off=12
+[00:21:41.011] INFO  [mk3_Selene] [action] goto (3701,2216) from (3709,2220,20)
+[00:21:41.011] LOG   [mk3_Selene] event goto_start: target=(3701,2216) from=(3709,2220)
+[00:21:41.011] INFO  [mk3_Selene] [bot] running from (3709,2220,20) to (3701,2216,z20)
+[00:21:41.011] INFO  [mk3_Selene] [bot] planning path to (3701,2216) in background
+[00:21:41.072] INFO  [mk3_Selene] [bot] replan to (3701,2216): 10 steps in 751.0us
+[00:21:42.579] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:44.520] INFO  [mk3_Selene] [bot] arrived at (3701,2216,20)
+[00:21:44.520] INFO  [mk3_Selene] [action] goto finished at (3701,2216,20); target (3701,2216); ARRIVED (off by 0 tile(s))
+[00:21:44.520] LOG   [mk3_Selene] event goto_done: at=(3701,2216) target=(3701,2216) arrived=1 off=0
+[00:21:44.520] INFO  [mk3_Selene] [travel] mobile 0x0000263D ARRIVED at (3701,2216,20)
+[00:21:44.520] LOG   [mk3_Selene] event travel_done: label='mobile 0x0000263D' ok=1 at=(3701,2216) legs=1 plans=1 why=''
+[00:21:44.581] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:21:44.581] INFO  [life] potions: found a 'healer'
+[00:21:44.643] INFO  [mk3_Selene] [travel] mobile 0x00002723 -> (3686,2229) r=1 from (3701,2216)
+[00:21:44.643] LOG   [mk3_Selene] event travel_start: label='mobile 0x00002723' target=(3686,2229) radius=1 from=(3701,2216)
+[00:21:44.643] INFO  [life] potions: the 'healer' is 15 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:21:44.643] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:44.643] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:44.643] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:44.643] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:44.643] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:44.643] INFO  [mk3_Selene] [travel] plan mobile 0x00002723: ok legs=1 ~15 tiles transit=0 nodes=0
+[00:21:44.704] INFO  [mk3_Selene] [action] goto (3686,2229) from (3701,2216,20)
+[00:21:44.704] LOG   [mk3_Selene] event goto_start: target=(3686,2229) from=(3701,2216)
+[00:21:44.704] INFO  [mk3_Selene] [bot] running from (3701,2216,20) to (3686,2229,z20)
+[00:21:44.704] INFO  [mk3_Selene] [bot] planning path to (3686,2229) in background
+[00:21:45.732] INFO  [mk3_Selene] [action] goto finished at (3701,2216,20); target (3686,2229); stopped short (off by 28 tile(s))
+[00:21:45.732] LOG   [mk3_Selene] event goto_done: at=(3701,2216) target=(3686,2229) arrived=0 off=28
+[00:21:46.977] INFO  [mk3_Selene] [action] goto (3686,2229) from (3701,2216,20)
+[00:21:46.977] LOG   [mk3_Selene] event goto_start: target=(3686,2229) from=(3701,2216)
+[00:21:46.977] INFO  [mk3_Selene] [bot] running from (3701,2216,20) to (3686,2229,z20)
+[00:21:46.977] INFO  [mk3_Selene] [bot] planning path to (3686,2229) in background
+[00:21:47.621] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:48.334] INFO  [mk3_Selene] [action] goto finished at (3701,2216,20); target (3686,2229); stopped short (off by 28 tile(s))
+[00:21:48.334] LOG   [mk3_Selene] event goto_done: at=(3701,2216) target=(3686,2229) arrived=0 off=28
+[00:21:49.535] INFO  [mk3_Selene] [action] goto (3686,2229) from (3701,2216,20)
+[00:21:49.535] LOG   [mk3_Selene] event goto_start: target=(3686,2229) from=(3701,2216)
+[00:21:49.535] INFO  [mk3_Selene] [bot] running from (3701,2216,20) to (3686,2229,z20)
+[00:21:49.535] INFO  [mk3_Selene] [bot] planning path to (3686,2229) in background
+[00:21:51.086] INFO  [mk3_Selene] [action] goto finished at (3701,2216,20); target (3686,2229); stopped short (off by 28 tile(s))
+[00:21:51.086] LOG   [mk3_Selene] event goto_done: at=(3701,2216) target=(3686,2229) arrived=0 off=28
+[00:21:52.290] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:21:52.290] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:21:52.290] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:52.290] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:52.290] LOG   [mk3_Selene] event travel_mode: walk
+[00:21:52.290] INFO  [mk3_Selene] [travel] plan mobile 0x00002723: ok legs=1 ~15 tiles transit=0 nodes=0
+[00:21:52.677] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:53.850] INFO  [mk3_Selene] [action] goto (3686,2229) from (3701,2216,20)
+[00:21:53.850] LOG   [mk3_Selene] event goto_start: target=(3686,2229) from=(3701,2216)
+[00:21:53.850] INFO  [mk3_Selene] [bot] running from (3701,2216,20) to (3686,2229,z20)
+[00:21:53.850] INFO  [mk3_Selene] [bot] planning path to (3686,2229) in background
+[00:21:55.328] INFO  [mk3_Selene] [action] goto finished at (3701,2216,20); target (3686,2229); stopped short (off by 28 tile(s))
+[00:21:55.328] LOG   [mk3_Selene] event goto_done: at=(3701,2216) target=(3686,2229) arrived=0 off=28
+[00:21:55.526] INFO  [mk3_Selene] [chat ascii] Corbey: Aye?
+[00:21:56.551] INFO  [mk3_Selene] [action] goto (3686,2229) from (3701,2216,20)
+[00:21:56.551] LOG   [mk3_Selene] event goto_start: target=(3686,2229) from=(3701,2216)
+[00:21:56.551] INFO  [mk3_Selene] [bot] running from (3701,2216,20) to (3686,2229,z20)
+[00:21:56.551] INFO  [mk3_Selene] [bot] planning path to (3686,2229) in background
+[00:21:56.582] INFO  [mk3_Selene] [bot] replan to (3686,2229): 49 steps in 15517.7us
+[00:21:57.735] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Selene] [chat ascii] System: Draver has departed from Minoc.
+[00:22:02.737] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:22:07.759] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:22:09.046] INFO  [mk3_Selene] [travel] mobile 0x00002723 ARRIVED at (3687,2230,20)
+[00:22:09.046] LOG   [mk3_Selene] event travel_done: label='mobile 0x00002723' ok=1 at=(3687,2230) legs=1 plans=2 why=''
+[00:22:09.108] INFO  [life] potions: within reach
+[00:22:09.168] INFO  [life] potions: the shop is open
+[00:22:09.185] INFO  [life] potions: this 'healer' does not stock heal potion
+[00:22:09.185] INFO  [life] potions: none bought (this 'healer' does not stock heal potion)
+[00:22:09.185] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[00:22:09.187] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:22:09.232] INFO  [life] goal=BUY_SUPPLIES reason="no goal was running"
+[00:22:09.232] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:22:09.232] INFO  [life]   score=61.6
+[00:22:09.232] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:22:09.232] INFO  [life]   reason: i_potion_poison needs 10 x i_reag_nightshade
+[00:22:09.232] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 154s after achieving nothing
+[00:22:09.232] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 504s after achieving nothing
+[00:22:09.232] INFO  [life] goal_failed=BUY_SUPPLIES reason="REFUSE_VENDOR_NOT_OBSERVED" this 'mage' does not stock i_reag_nightshade
+[00:22:09.292] INFO  [life] goal=TRAIN_AT_NPC reason="previous goal abandoned: this vendor does not stock it"
+[00:22:09.292] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSpells(spells 0.70) NeedSkillTraining(Meditation 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Meditation 0.45) NeedSupplies(buy craft inputs 0.44) NeedFood(food 0.25) NeedTrade(buy from a player BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=Meditation (target 50.0)
+[00:22:09.292] INFO  [life]   score=60.5
+[00:22:09.292] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:22:09.292] INFO  [life]   reason: Meditation 0.0 -> 50.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[00:22:09.292] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 154s after achieving nothing
+[00:22:09.292] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 504s after achieving nothing
+[00:22:09.292] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 59s after achieving nothing
+[00:22:09.292] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:22:09.292] INFO  [life] training: 'mage' is 15 tiles and 0 z away -- walking to them before speaking (approach 2 of 3)
+[00:22:09.292] INFO  [mk3_Selene] [travel] mobile 0x0000263D -> (3702,2217) r=1 from (3687,2229)
+[00:22:09.292] LOG   [mk3_Selene] event travel_start: label='mobile 0x0000263D' target=(3702,2217) radius=1 from=(3687,2229)
+[00:22:09.292] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:22:09.292] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:22:09.292] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:09.292] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:09.292] LOG   [mk3_Selene] event travel_mode: walk
+[00:22:09.292] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~15 tiles transit=0 nodes=0
+[00:22:10.000] INFO  [mk3_Selene] [chat ascii] Jocasa: Thou'rt nearer to me than I like.
+[00:22:10.000] INFO  [mk3_Selene] [bot] reject at (3686,2229): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:22:10.000] INFO  [mk3_Selene] [bot] planning path to (3686,2229) in background
+[00:22:11.418] INFO  [mk3_Selene] [action] goto finished at (3687,2229,20); target (3686,2229); stopped short (off by 1 tile(s))
+[00:22:11.418] LOG   [mk3_Selene] event goto_done: at=(3687,2229) target=(3686,2229) arrived=0 off=1
+[00:22:11.418] INFO  [mk3_Selene] [action] goto (3702,2217) from (3687,2229,20)
+[00:22:11.418] LOG   [mk3_Selene] event goto_start: target=(3702,2217) from=(3687,2229)
+[00:22:11.418] INFO  [mk3_Selene] [bot] running from (3687,2229,20) to (3702,2217,z20)
+[00:22:11.418] INFO  [mk3_Selene] [bot] planning path to (3702,2217) in background
+[00:22:12.555] INFO  [mk3_Selene] [action] goto finished at (3687,2229,20); target (3702,2217); stopped short (off by 27 tile(s))
+[00:22:12.555] LOG   [mk3_Selene] event goto_done: at=(3687,2229) target=(3702,2217) arrived=0 off=27
+[00:22:12.787] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:22:13.776] INFO  [mk3_Selene] [action] goto (3702,2217) from (3687,2229,20)
+[00:22:13.776] LOG   [mk3_Selene] event goto_start: target=(3702,2217) from=(3687,2229)
+[00:22:13.777] INFO  [mk3_Selene] [bot] running from (3687,2229,20) to (3702,2217,z20)
+[00:22:13.777] INFO  [mk3_Selene] [bot] planning path to (3702,2217) in background
+[00:22:15.131] INFO  [mk3_Selene] [action] goto finished at (3687,2229,20); target (3702,2217); stopped short (off by 27 tile(s))
+[00:22:15.131] LOG   [mk3_Selene] event goto_done: at=(3687,2229) target=(3702,2217) arrived=0 off=27
+[00:22:16.335] INFO  [mk3_Selene] [action] goto (3702,2217) from (3687,2229,20)
+[00:22:16.335] LOG   [mk3_Selene] event goto_start: target=(3702,2217) from=(3687,2229)
+[00:22:16.335] INFO  [mk3_Selene] [bot] running from (3687,2229,20) to (3702,2217,z20)
+[00:22:16.335] INFO  [mk3_Selene] [bot] planning path to (3702,2217) in background
+[00:22:16.396] INFO  [mk3_Selene] [bot] replan to (3702,2217): 47 steps in 11574.5us
+[00:22:17.796] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:22:18.830] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:22:18.830] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:22:18.830] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:18.830] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:18.830] LOG   [mk3_Selene] event travel_mode: walk
+[00:22:18.830] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~15 tiles transit=0 nodes=0
+[00:22:18.877] INFO  [mk3_Selene] [action] goto finished at (3693,2232,20); target (3702,2217); stopped short (off by 24 tile(s))
+[00:22:18.877] LOG   [mk3_Selene] event goto_done: at=(3693,2232) target=(3702,2217) arrived=0 off=24
+[00:22:18.877] INFO  [mk3_Selene] [action] goto (3699,2217) from (3693,2232,20)
+[00:22:18.877] LOG   [mk3_Selene] event goto_start: target=(3699,2217) from=(3693,2232)
+[00:22:18.877] INFO  [mk3_Selene] [bot] running from (3693,2232,20) to (3699,2217,z20)
+[00:22:18.877] INFO  [mk3_Selene] [bot] planning path to (3699,2217) in background
+[00:22:19.957] INFO  [mk3_Selene] [action] goto finished at (3693,2232,20); target (3699,2217); stopped short (off by 21 tile(s))
+[00:22:19.957] LOG   [mk3_Selene] event goto_done: at=(3693,2232) target=(3699,2217) arrived=0 off=21
+[00:22:21.161] INFO  [mk3_Selene] [action] goto (3699,2217) from (3693,2232,20)
+[00:22:21.161] LOG   [mk3_Selene] event goto_start: target=(3699,2217) from=(3693,2232)
+[00:22:21.161] INFO  [mk3_Selene] [bot] running from (3693,2232,20) to (3699,2217,z20)
+[00:22:21.161] INFO  [mk3_Selene] [bot] planning path to (3699,2217) in background
+[00:22:21.223] INFO  [mk3_Selene] [bot] replan to (3699,2217): 42 steps in 7089.4us
+[00:22:22.820] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:22:26.324] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:22:26.324] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:22:26.324] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:26.324] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:26.324] LOG   [mk3_Selene] event travel_mode: walk
+[00:22:26.324] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~16 tiles transit=0 nodes=0
+[00:22:26.385] INFO  [mk3_Selene] [action] goto finished at (3712,2230,20); target (3699,2217); stopped short (off by 26 tile(s))
+[00:22:26.385] LOG   [mk3_Selene] event goto_done: at=(3712,2230) target=(3699,2217) arrived=0 off=26
+[00:22:26.385] INFO  [mk3_Selene] [action] goto (3697,2214) from (3712,2230,20)
+[00:22:26.385] LOG   [mk3_Selene] event goto_start: target=(3697,2214) from=(3712,2230)
+[00:22:26.385] INFO  [mk3_Selene] [bot] running from (3712,2230,20) to (3697,2214,z20)
+[00:22:26.385] INFO  [mk3_Selene] [bot] planning path to (3697,2214) in background
+[00:22:27.508] INFO  [mk3_Selene] [action] goto finished at (3712,2230,20); target (3697,2214); stopped short (off by 31 tile(s))
+[00:22:27.508] LOG   [mk3_Selene] event goto_done: at=(3712,2230) target=(3697,2214) arrived=0 off=31
+[00:22:27.830] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:22:28.751] INFO  [mk3_Selene] [action] goto (3697,2214) from (3712,2230,20)
+[00:22:28.752] LOG   [mk3_Selene] event goto_start: target=(3697,2214) from=(3712,2230)
+[00:22:28.752] INFO  [mk3_Selene] [bot] running from (3712,2230,20) to (3697,2214,z20)
+[00:22:28.752] INFO  [mk3_Selene] [bot] planning path to (3697,2214) in background
+[00:22:28.813] INFO  [mk3_Selene] [bot] replan to (3697,2214): 25 steps in 1636.7us
+[00:22:32.143] INFO  [mk3_Selene] [travel] mode walk             usable   <- chosen
+[00:22:32.143] INFO  [mk3_Selene] [travel] mode moongate         usable
+[00:22:32.143] INFO  [mk3_Selene] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:32.143] INFO  [mk3_Selene] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:32.143] LOG   [mk3_Selene] event travel_mode: walk
+[00:22:32.143] INFO  [mk3_Selene] [travel] plan mobile 0x0000263D: ok legs=1 ~7 tiles transit=0 nodes=0
+[00:22:32.204] INFO  [mk3_Selene] [action] goto finished at (3707,2220,20); target (3697,2214); stopped short (off by 16 tile(s))
+[00:22:32.204] LOG   [mk3_Selene] event goto_done: at=(3707,2220) target=(3697,2214) arrived=0 off=16
+[00:22:32.204] INFO  [mk3_Selene] [action] goto (3700,2216) from (3707,2220,20)
+[00:22:32.204] LOG   [mk3_Selene] event goto_start: target=(3700,2216) from=(3707,2220)
+[00:22:32.204] INFO  [mk3_Selene] [bot] running from (3707,2220,20) to (3700,2216,z20)
+[00:22:32.204] INFO  [mk3_Selene] [bot] planning path to (3700,2216) in background
+[00:22:32.835] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:22:33.423] INFO  [mk3_Selene] [action] goto finished at (3707,2220,20); target (3700,2216); stopped short (off by 11 tile(s))
+[00:22:33.423] LOG   [mk3_Selene] event goto_done: at=(3707,2220) target=(3700,2216) arrived=0 off=11
+[00:22:34.670] INFO  [mk3_Selene] [action] goto (3700,2216) from (3707,2220,20)
+[00:22:34.670] LOG   [mk3_Selene] event goto_start: target=(3700,2216) from=(3707,2220)
+[00:22:34.670] INFO  [mk3_Selene] [bot] running from (3707,2220,20) to (3700,2216,z20)
+[00:22:34.670] INFO  [mk3_Selene] [bot] planning path to (3700,2216) in background
+[00:22:34.731] INFO  [mk3_Selene] [bot] replan to (3700,2216): 8 steps in 264.9us
+[00:22:35.210] INFO  [mk3_Selene] [chat ascii] Jin: Aye?
+[00:22:35.364] INFO  [mk3_Selene] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=6 in 205.7us
+[00:22:36.369] INFO  [mk3_Selene] [chat ascii] System: You shove Alanna out of the way.
+[00:22:36.861] INFO  [mk3_Selene] [travel] mobile 0x0000263D ARRIVED at (3701,2219,20)
+[00:22:36.861] LOG   [mk3_Selene] event travel_done: label='mobile 0x0000263D' ok=1 at=(3701,2219) legs=0 plans=0 why=''
+[00:22:36.922] INFO  [life] training: asking the trainer about Meditation
+[00:22:36.922] INFO  [mk3_Selene] [ACTION] npc_train start
+[00:22:36.922] INFO  [mk3_Selene] [TRAIN] ask 0x0000263D say='Alanna train Meditation'
+[00:22:36.922] LOG   [mk3_Selene] event npc_train_ask: Alanna train Meditation
+[00:22:36.937] INFO  [mk3_Selene] [chat uni  ] : Alanna train Meditation
+[00:22:36.937] INFO  [mk3_Selene] [chat ascii] Alanna: For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[00:22:36.937] INFO  [mk3_Selene] [ACTION_RESULT] npc_train success (16ms) For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[00:22:36.938] LOG   [mk3_Selene] event action_result: npc_train success took=16ms For 300 gold I will train you in all I know of Meditation. For less gold I will teach you less
+[00:22:37.691] INFO  [mk3_Selene] [chat ascii] Arne: What's thee wantin'?
+[00:22:37.860] INFO  [mk3_Selene] [survival] hp 32/32 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Selene] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.316] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:39.377] INFO  [life] wind-down: arrived somewhere safe at 3701,2219
+[00:22:39.378] INFO  [life] session_summary duration=180s goals=6/12 gold=10000->10000 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:22:39.378] INFO  [life] session_goals families=4 picks=12 top=58% varied=0 self_superseded=0 | upkeep=7(58%) work=2(17%) training=2(17%) social=1(8%) | REPLACE_EQUIPMENT=6(50%) BANK=1(8%) TRAIN_AT_NPC=2(17%) TRADE_WITH_PLAYER=1(8%) BUY_SUPPLIES=2(17%)
+[00:22:39.380] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_15.selene/state.json
+[00:22:39.380] INFO  [life] logging out
+[00:22:39.380] INFO  [mk3_Selene] [action] logout requested
+[00:22:39.380] LOG   [mk3_Selene] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:22:39.393] INFO  [mk3_Selene] [0xD1] logout acknowledged (accepted=1)
+[00:22:39.393] LOG   [mk3_Selene] event logout_ack: accepted
+[00:22:39.393] INFO  [mk3_Selene] [net] closing connection (logout acknowledged)
+[00:22:39.393] LOG   [mk3_Selene] event logout_complete: acked

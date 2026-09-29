@@ -1,0 +1,175 @@
+[17:40:03.217] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak31' char=Bryn tag='slice_q'
+[17:40:03.218] LOG   [slice_q] event session_start: text log opened
+[17:40:03.218] LOG   [slice_q] event net_connect_begin: connect 127.0.0.1:2593
+[17:40:03.218] INFO  [slice_q] [net] connecting to 127.0.0.1:2593 ...
+[17:40:03.220] LOG   [slice_q] event net_connected: connect 127.0.0.1:2593
+[17:40:03.220] INFO  [slice_q] [net] connected.
+[17:40:03.220] INFO  [slice_q] [seed] sent 0x7F000001 (plaintext)
+[17:40:03.220] LOG   [slice_q] event seed_out: 0x7F000001 hex=7f000001
+[17:40:03.220] INFO  [life] no prior state for revolutionsoak31.bryn: a new Fisher
+[17:40:03.220] INFO  [life] creation request: Fishing 50.0 + Cooking 50.0, stats 25/15/10 = 50
+[17:40:03.220] INFO  [life] needs: reading 'fisher' from the profession catalogue
+[17:40:03.220] INFO  [life] build plan 'fisher': 150.0 resolved + 550.0 unresolved = 700.0/700.0, stats 80/50/45 = 175
+[17:40:03.220] INFO  [slice_q] [life] autonomous player active for 'Bryn' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 45 min)
+[17:40:03.232] INFO  [slice_q] [0xA8] 1 server(s):
+[17:40:03.232] INFO  [slice_q]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[17:40:03.247] INFO  [slice_q] [0x8C] game server = 127.0.0.1:2593  seed=0x26FC00BA
+[17:40:03.247] LOG   [slice_q] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x26FC00BA
+[17:40:03.247] INFO  [slice_q] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:40:03.247] LOG   [slice_q] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:40:03.247] INFO  [slice_q] [0xB9] server features = 0x0005
+[17:40:03.247] INFO  [slice_q] [0xA9] 5 slot(s) (populated 1):
+[17:40:03.247] INFO  [slice_q]   [0] Bryn
+[17:40:03.247] INFO  [slice_q]   [1] <empty>
+[17:40:03.247] INFO  [slice_q]   [2] <empty>
+[17:40:03.247] INFO  [slice_q]   [3] <empty>
+[17:40:03.247] INFO  [slice_q]   [4] <empty>
+[17:40:03.248] INFO  [slice_q] [ui] playing slot 0 ('Bryn')
+[17:40:03.263] INFO  [slice_q] [0x1B] serial=0x00012E10 body=0x0190 pos=(1448,1734,-1)
+[17:40:03.263] LOG   [slice_q] event login_confirm: serial=0x00012E10 body=0x0190 pos=(1448,1734,-1)
+[17:40:03.263] INFO  [slice_q] [0x20] player @(1448,1734,-1) facing=6
+[17:40:03.263] INFO  [slice_q] [0x55] login complete — entering world
+[17:40:03.263] LOG   [slice_q] event in_world: 0x55 received
+[17:40:03.263] INFO  [slice_q] [backpack] opening 0x40012DD6
+[17:40:03.263] INFO  [slice_q] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:40:03.263] INFO  [slice_q] [chat ascii] System: There is 1 other player here.
+[17:40:03.263] INFO  [slice_q] [chat ascii] System: Last logged: 2026/08/28 17:36:27
+[17:40:03.263] INFO  [slice_q] [chat ascii] System: You are under the protection of the city guards
+[17:40:03.267] INFO  [slice_q] [action] requesting the skill list
+[17:40:03.267] INFO  [life] in world; asked the server for the skill list
+[17:40:03.267] INFO  [slice_q] [0x24] open container 0x40012DD6 gump=60
+[17:40:03.267] INFO  [slice_q] [0x3C] container contents: 10 item(s)
+[17:40:03.267] LOG   [slice_q] event backpack_contents: serial=0x40012DD6 items=10
+[17:40:05.856] INFO  [slice_q] [bot] world data loaded (0 blacklisted spot(s)).
+[17:40:05.856] INFO  [life] common knowledge: Docks at 1479,1757 (31 tiles away)
+[17:40:05.856] INFO  [life] common knowledge: Skara Brae Ferry Dock at 726,2236 (722 tiles away)
+[17:40:05.856] INFO  [life] common knowledge: Cove Docks at 2255,1191 (807 tiles away)
+[17:40:05.856] INFO  [life] seeded 3 fish hint(s) of 17 the atlas knows -- everything else is earned
+[17:40:05.856] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[17:40:05.856] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[17:40:05.856] INFO  [life]   str          persisted=0          server=25         -> server value accepted
+[17:40:05.856] INFO  [life]   dex          persisted=0          server=15         -> server value accepted
+[17:40:05.857] INFO  [life]   int          persisted=0          server=10         -> server value accepted
+[17:40:05.857] INFO  [life]   skill_18     persisted=0.0        server=50.0       -> server value accepted
+[17:40:05.857] INFO  [life]   skill_13     persisted=0.0        server=50.0       -> server value accepted
+[17:40:05.857] INFO  [life]   position     persisted=0,0        server=1448,1734  -> server value accepted
+[17:40:05.857] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[17:40:05.857] INFO  [slice_q] [survival] on
+[17:40:05.857] LOG   [slice_q] event survival_mode: on
+[17:40:05.858] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[17:40:05.858] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:05.911] INFO  [life] goal=FISH reason="no goal was running"
+[17:40:05.911] INFO  [life] needs considered: NeedCatch(fish 0.45) NeedTraining(Fishing BLOCKED 0.28) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=1 held=[fishing pole,]
+[17:40:05.911] INFO  [life]   score=58.5
+[17:40:05.911] INFO  [life]   reason: NeedCatch urgency 0.45 x 130 = 58.5
+[17:40:05.911] INFO  [life]   reason: carrying 0
+[17:40:05.911] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Fishing 50.0 -> 100.0)
+[17:40:05.911] INFO  [life] fish: going to a dock (trip 1)
+[17:40:05.911] INFO  [slice_q] [travel] Docks -> (1479,1757) r=12 from (1448,1734)
+[17:40:05.911] LOG   [slice_q] event travel_start: label='Docks' target=(1479,1757) radius=12 from=(1448,1734)
+[17:40:05.911] INFO  [slice_q] [travel] mode walk             usable   <- chosen
+[17:40:05.911] INFO  [slice_q] [travel] mode moongate         usable
+[17:40:05.911] INFO  [slice_q] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:40:05.911] INFO  [slice_q] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:40:05.911] LOG   [slice_q] event travel_mode: walk
+[17:40:05.911] INFO  [slice_q] [travel] plan Docks: ok legs=1 ~31 tiles transit=0 nodes=0
+[17:40:05.971] INFO  [slice_q] [action] goto (1479,1757) from (1448,1734,-1)
+[17:40:05.971] LOG   [slice_q] event goto_start: target=(1479,1757) from=(1448,1734)
+[17:40:05.971] INFO  [slice_q] [bot] running from (1448,1734,-1) to (1479,1757)
+[17:40:05.971] INFO  [slice_q] [bot] planning path to (1479,1757) in background
+[17:40:06.031] INFO  [slice_q] [bot] replan to (1479,1757): 31 steps in 585.6us
+[17:40:10.860] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:11.556] INFO  [slice_q] [travel] Docks ARRIVED at (1468,1750,0)
+[17:40:11.556] LOG   [slice_q] event travel_done: label='Docks' ok=1 at=(1468,1750) legs=1 plans=1 why=''
+[17:40:11.633] INFO  [life] fish: at the water's edge (1468,1750), shore 1463,1754
+[17:40:11.634] INFO  [slice_q] [bot] lookahead patched around block at step 5: anchor=7 new segment=9 path=12 in 262.8us
+[17:40:11.649] INFO  [life] fish: water at 1460,1759 -- moving into casting range
+[17:40:13.570] INFO  [slice_q] [chat ascii] Buck: What's thee wantin'?
+[17:40:15.864] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:15.865] INFO  [slice_q] [bot] arrived at (1479,1757,-2)
+[17:40:15.879] INFO  [slice_q] [action] goto finished at (1479,1757,-2); target (1479,1757); ARRIVED (off by 0 tile(s))
+[17:40:15.879] LOG   [slice_q] event goto_done: at=(1479,1757) target=(1479,1757) arrived=1 off=0
+[17:40:15.879] INFO  [slice_q] [travel] waterline -> (1480,1766) r=4 from (1479,1757)
+[17:40:15.879] LOG   [slice_q] event travel_start: label='waterline' target=(1480,1766) radius=4 from=(1479,1757)
+[17:40:15.879] INFO  [slice_q] [travel] mode walk             usable   <- chosen
+[17:40:15.879] INFO  [slice_q] [travel] mode moongate         usable
+[17:40:15.879] INFO  [slice_q] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:40:15.879] INFO  [slice_q] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:40:15.880] LOG   [slice_q] event travel_mode: walk
+[17:40:15.880] INFO  [slice_q] [travel] plan waterline: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:40:15.936] INFO  [slice_q] [action] goto (1480,1766) from (1479,1757,-2)
+[17:40:15.936] LOG   [slice_q] event goto_start: target=(1480,1766) from=(1479,1757)
+[17:40:15.936] INFO  [slice_q] [bot] running from (1479,1757,-2) to (1480,1766)
+[17:40:15.936] INFO  [slice_q] [bot] planning path to (1480,1766) in background
+[17:40:15.997] INFO  [slice_q] [bot] replan to (1480,1766): 9 steps in 564.3us
+[17:40:17.766] INFO  [slice_q] [ACTION] use_object start
+[17:40:17.766] INFO  [slice_q] [ACTION] use_object serial=0x40012D7B
+[17:40:17.766] INFO  [slice_q] [chat ascii] System: Where would you like to fish?
+[17:40:17.766] INFO  [slice_q] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=1
+[17:40:17.766] LOG   [slice_q] event target_requested: id=0x000002CE type=1 subtype=0 gen=1
+[17:40:17.766] INFO  [slice_q] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[17:40:17.766] LOG   [slice_q] event action_result: use_object success took=0ms server armed a target cursor
+[17:40:17.949] INFO  [slice_q] [travel] waterline ARRIVED at (1482,1762,-2)
+[17:40:17.949] LOG   [slice_q] event travel_done: label='waterline' ok=1 at=(1482,1762) legs=1 plans=1 why=''
+[17:40:19.170] INFO  [slice_q] [bot] arrived at (1480,1766,-2)
+[17:40:20.919] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:25.931] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:26.816] INFO  [slice_q] [TARGET] reply ground=(1480,1766,-15) gen=1
+[17:40:26.816] INFO  [slice_q] [target] ground (1480,1766,-15)
+[17:40:26.817] INFO  [slice_q] [chat ascii] System: You cannot fish so close to yourself.
+[17:40:30.982] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:35.829] INFO  [slice_q] [ACTION] use_object start
+[17:40:35.829] INFO  [slice_q] [ACTION] use_object serial=0x40012D7B
+[17:40:35.829] INFO  [slice_q] [chat ascii] System: Where would you like to fish?
+[17:40:35.829] INFO  [slice_q] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=2
+[17:40:35.830] LOG   [slice_q] event target_requested: id=0x000002CE type=1 subtype=0 gen=2
+[17:40:35.830] INFO  [slice_q] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[17:40:35.830] LOG   [slice_q] event action_result: use_object success took=0ms server armed a target cursor
+[17:40:36.012] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:41.051] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:45.237] INFO  [slice_q] [TARGET] reply ground=(1480,1766,-15) gen=2
+[17:40:45.237] INFO  [slice_q] [target] ground (1480,1766,-15)
+[17:40:45.251] INFO  [slice_q] [chat ascii] System: You cannot fish so close to yourself.
+[17:40:46.109] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:51.111] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:40:54.656] INFO  [slice_q] [ACTION] use_object start
+[17:40:54.656] INFO  [slice_q] [ACTION] use_object serial=0x40012D7B
+[17:40:54.672] INFO  [slice_q] [chat ascii] System: Where would you like to fish?
+[17:40:54.672] INFO  [slice_q] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=3
+[17:40:54.672] LOG   [slice_q] event target_requested: id=0x000002CE type=1 subtype=0 gen=3
+[17:40:54.672] INFO  [slice_q] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:40:54.672] LOG   [slice_q] event action_result: use_object success took=16ms server armed a target cursor
+[17:40:56.133] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:01.165] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:03.663] INFO  [slice_q] [TARGET] reply ground=(1480,1766,-15) gen=3
+[17:41:03.664] INFO  [slice_q] [target] ground (1480,1766,-15)
+[17:41:03.664] INFO  [slice_q] [chat ascii] System: You cannot fish so close to yourself.
+[17:41:05.886] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak31.bryn/state.json
+[17:41:06.188] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:11.245] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:12.705] INFO  [slice_q] [ACTION] use_object start
+[17:41:12.705] INFO  [slice_q] [ACTION] use_object serial=0x40012D7B
+[17:41:12.705] INFO  [slice_q] [chat ascii] System: Where would you like to fish?
+[17:41:12.705] INFO  [slice_q] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=4
+[17:41:12.705] LOG   [slice_q] event target_requested: id=0x000002CE type=1 subtype=0 gen=4
+[17:41:12.705] INFO  [slice_q] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[17:41:12.705] LOG   [slice_q] event action_result: use_object success took=0ms server armed a target cursor
+[17:41:16.267] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:21.319] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:22.118] INFO  [slice_q] [TARGET] reply ground=(1480,1766,-15) gen=4
+[17:41:22.118] INFO  [slice_q] [target] ground (1480,1766,-15)
+[17:41:22.119] INFO  [slice_q] [chat ascii] System: You cannot fish so close to yourself.
+[17:41:26.360] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:31.143] INFO  [slice_q] [ACTION] use_object start
+[17:41:31.143] INFO  [slice_q] [ACTION] use_object serial=0x40012D7B
+[17:41:31.159] INFO  [slice_q] [chat ascii] System: Where would you like to fish?
+[17:41:31.159] INFO  [slice_q] [0x6C] TARGET requested id=0x000002CE type=ground subtype=0 gen=5
+[17:41:31.159] LOG   [slice_q] event target_requested: id=0x000002CE type=1 subtype=0 gen=5
+[17:41:31.159] INFO  [slice_q] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[17:41:31.159] LOG   [slice_q] event action_result: use_object success took=16ms server armed a target cursor
+[17:41:31.404] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:36.432] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight
+[17:41:40.555] INFO  [slice_q] [TARGET] reply ground=(1480,1766,-15) gen=5
+[17:41:40.555] INFO  [slice_q] [target] ground (1480,1766,-15)
+[17:41:40.555] INFO  [slice_q] [chat ascii] System: You cannot fish so close to yourself.
+[17:41:41.475] INFO  [slice_q] [survival] hp 25/25 (100%) -> fight

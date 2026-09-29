@@ -1,0 +1,452 @@
+[17:29:35.286] LOG   [wave10_RevGen3_23_Leand] event session_start: text log opened
+[17:29:35.287] LOG   [wave10_RevGen3_23_Leand] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.288] INFO  [wave10_RevGen3_23_Leand] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.290] LOG   [wave10_RevGen3_23_Leand] event net_connected: connect 127.0.0.1:2593
+[17:29:35.291] INFO  [wave10_RevGen3_23_Leand] [net] connected.
+[17:29:35.292] INFO  [wave10_RevGen3_23_Leand] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.293] LOG   [wave10_RevGen3_23_Leand] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.293] INFO  [wave10_RevGen3_23_Leand] [life] autonomous player active for 'Leander' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.306] INFO  [wave10_RevGen3_23_Leand] [0xA8] 1 server(s):
+[17:29:35.307] INFO  [wave10_RevGen3_23_Leand]   [0] MyShard                   1.0.0.127  full=9%  tz=0
+[17:29:35.309] INFO  [wave10_RevGen3_23_Leand] [0x8C] game server = 127.0.0.1:2593  seed=0xB61071DC
+[17:29:35.309] LOG   [wave10_RevGen3_23_Leand] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xB61071DC
+[17:29:35.310] INFO  [wave10_RevGen3_23_Leand] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.310] LOG   [wave10_RevGen3_23_Leand] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.318] INFO  [wave10_RevGen3_23_Leand] [0xB9] server features = 0x0005
+[17:29:35.319] INFO  [wave10_RevGen3_23_Leand] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.320] INFO  [wave10_RevGen3_23_Leand]   [0] Leander
+[17:29:35.320] INFO  [wave10_RevGen3_23_Leand]   [1] <empty>
+[17:29:35.320] INFO  [wave10_RevGen3_23_Leand]   [2] <empty>
+[17:29:35.320] INFO  [wave10_RevGen3_23_Leand]   [3] <empty>
+[17:29:35.321] INFO  [wave10_RevGen3_23_Leand]   [4] <empty>
+[17:29:35.321] INFO  [wave10_RevGen3_23_Leand] [ui] playing slot 0 ('Leander')
+[17:29:35.326] INFO  [wave10_RevGen3_23_Leand] [0x1B] serial=0x0001921F body=0x0191 pos=(1416,1704,9)
+[17:29:35.327] LOG   [wave10_RevGen3_23_Leand] event login_confirm: serial=0x0001921F body=0x0191 pos=(1416,1704,9)
+[17:29:35.328] INFO  [wave10_RevGen3_23_Leand] [0x20] player @(1416,1704,9) facing=1
+[17:29:35.329] INFO  [wave10_RevGen3_23_Leand] [0x55] login complete — entering world
+[17:29:35.330] LOG   [wave10_RevGen3_23_Leand] event in_world: 0x55 received
+[17:29:35.330] INFO  [wave10_RevGen3_23_Leand] [backpack] opening 0x4001921D
+[17:29:35.330] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.331] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: There are 25 other players here.
+[17:29:35.331] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.331] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.331] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.337] INFO  [wave10_RevGen3_23_Leand] [action] requesting the skill list
+[17:29:35.338] INFO  [wave10_RevGen3_23_Leand] [0x24] open container 0x4001921D gump=60
+[17:29:35.339] INFO  [wave10_RevGen3_23_Leand] [0x3C] container contents: 7 item(s)
+[17:29:35.340] LOG   [wave10_RevGen3_23_Leand] event backpack_contents: serial=0x4001921D items=7
+[17:29:35.341] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.361] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.371] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.435] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.260] INFO  [wave10_RevGen3_23_Leand] [chat uni  ] : WTS 10 i_ingot_iron 35gp
+[17:29:37.261] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Hyman: What?
+[17:29:37.926] INFO  [wave10_RevGen3_23_Leand] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.928] INFO  [wave10_RevGen3_23_Leand] [survival] on
+[17:29:37.928] LOG   [wave10_RevGen3_23_Leand] event survival_mode: on
+[17:29:37.931] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:29:37.933] INFO  [wave10_RevGen3_23_Leand] [chat uni  ] : WTB i_ingot_iron
+[17:29:37.934] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Hyman: Huh?
+[17:29:37.935] INFO  [wave10_RevGen3_23_Leand] [travel] Britain banker -> (1425,1690) r=5 from (1416,1704)
+[17:29:37.935] LOG   [wave10_RevGen3_23_Leand] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1416,1704)
+[17:29:37.935] INFO  [wave10_RevGen3_23_Leand] [travel] mode walk             usable   <- chosen
+[17:29:37.935] INFO  [wave10_RevGen3_23_Leand] [travel] mode moongate         usable
+[17:29:37.936] INFO  [wave10_RevGen3_23_Leand] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.936] INFO  [wave10_RevGen3_23_Leand] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.936] LOG   [wave10_RevGen3_23_Leand] event travel_mode: walk
+[17:29:37.936] INFO  [wave10_RevGen3_23_Leand] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:29:37.994] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:29:37.994] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:29:37.994] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:29:37.994] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:29:39.992] WARN  [wave10_RevGen3_23_Leand] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1982509.0us)
+[17:29:39.993] WARN  [wave10_RevGen3_23_Leand] [bot] start (1416,1704,9) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 15 mobile(s))
+[17:29:40.054] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:29:40.054] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:29:41.298] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:29:41.298] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:29:41.298] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:29:41.299] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:29:42.967] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:29:43.091] WARN  [wave10_RevGen3_23_Leand] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1746981.4us)
+[17:29:43.092] WARN  [wave10_RevGen3_23_Leand] [bot] start (1416,1704,9) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 15 mobile(s))
+[17:29:43.153] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:29:43.154] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:29:44.364] INFO  [wave10_RevGen3_23_Leand] [travel] mode walk             usable   <- chosen
+[17:29:44.365] INFO  [wave10_RevGen3_23_Leand] [travel] mode moongate         usable
+[17:29:44.365] INFO  [wave10_RevGen3_23_Leand] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:44.365] INFO  [wave10_RevGen3_23_Leand] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:44.365] LOG   [wave10_RevGen3_23_Leand] event travel_mode: walk
+[17:29:44.365] INFO  [wave10_RevGen3_23_Leand] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:29:45.922] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:29:45.923] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:29:45.923] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:29:45.923] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:29:47.352] WARN  [wave10_RevGen3_23_Leand] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1412338.4us)
+[17:29:47.353] WARN  [wave10_RevGen3_23_Leand] [bot] start (1416,1704,9) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 15 mobile(s))
+[17:29:47.414] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:29:47.414] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:29:48.028] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:29:48.616] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:29:48.616] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:29:48.616] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:29:48.616] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:29:50.320] WARN  [wave10_RevGen3_23_Leand] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1693667.5us)
+[17:29:50.320] WARN  [wave10_RevGen3_23_Leand] [bot] start (1416,1704,9) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 15 mobile(s))
+[17:29:50.382] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:29:50.382] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:29:51.632] INFO  [wave10_RevGen3_23_Leand] [travel] mode walk             usable   <- chosen
+[17:29:51.632] INFO  [wave10_RevGen3_23_Leand] [travel] mode moongate         usable
+[17:29:51.632] INFO  [wave10_RevGen3_23_Leand] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:51.632] INFO  [wave10_RevGen3_23_Leand] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:51.633] LOG   [wave10_RevGen3_23_Leand] event travel_mode: walk
+[17:29:51.633] INFO  [wave10_RevGen3_23_Leand] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:29:53.063] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:29:54.664] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:29:54.664] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:29:54.664] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:29:54.665] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:29:56.292] WARN  [wave10_RevGen3_23_Leand] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1626603.8us)
+[17:29:56.293] WARN  [wave10_RevGen3_23_Leand] [bot] start (1416,1704,9) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 16 mobile(s))
+[17:29:56.353] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:29:56.354] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:29:57.569] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:29:57.569] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:29:57.569] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:29:57.569] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:29:58.108] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:29:59.199] WARN  [wave10_RevGen3_23_Leand] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1585328.7us)
+[17:29:59.201] WARN  [wave10_RevGen3_23_Leand] [bot] start (1416,1704,9) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 16 mobile(s))
+[17:29:59.246] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:29:59.246] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:30:00.480] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:30:00.480] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:30:00.480] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:30:00.480] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:30:02.261] WARN  [wave10_RevGen3_23_Leand] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1740749.2us)
+[17:30:02.261] WARN  [wave10_RevGen3_23_Leand] [bot] start (1416,1704,9) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 35 item(s), 16 mobile(s))
+[17:30:02.322] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:30:02.322] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:30:03.152] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:03.535] INFO  [wave10_RevGen3_23_Leand] [travel] mode walk             usable   <- chosen
+[17:30:03.535] INFO  [wave10_RevGen3_23_Leand] [travel] mode moongate         usable
+[17:30:03.535] INFO  [wave10_RevGen3_23_Leand] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:03.535] INFO  [wave10_RevGen3_23_Leand] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:03.535] LOG   [wave10_RevGen3_23_Leand] event travel_mode: walk
+[17:30:03.535] INFO  [wave10_RevGen3_23_Leand] [travel] plan Britain banker: ok legs=1 ~14 tiles transit=0 nodes=0
+[17:30:08.086] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:30:08.086] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:30:08.086] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:30:08.086] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:30:08.208] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:09.218] WARN  [wave10_RevGen3_23_Leand] [bot] no path to (1425,1690) avoiding 0 block(s); stopping (search 1125598.6us)
+[17:30:0[17:30:09.281] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:30:09.281] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:30:09.819] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Hyman: I'm listenin'.
+[17:30:09.819] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Hyman: Hmm?
+[17:30:09.819] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Hyman: Hmm?
+[17:30:10.493] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:30:10.494] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:30:10.494] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:30:10.494] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:30:11.678] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:30:11.678] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:30:12.900] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1416,1704,9)
+[17:30:12.901] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1416,1704)
+[17:30:12.901] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1425,1690,z0)
+[17:30:12.901] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:30:13.223] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:14.153] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1704,9); target (1425,1690); stopped short (off by 23 tile(s))
+[17:30:14.153] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1704) target=(1425,1690) arrived=0 off=23
+[17:30:14.153] LOG   [wave10_RevGen3_23_Leand] event travel_escape: from=(1416,1704,9) to=(1402,1706) attempt=1
+[17:30:14.153] INFO  [wave10_RevGen3_23_Leand] [action] goto (1402,1706) from (1416,1704,9)
+[17:30:14.153] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1402,1706) from=(1416,1704)
+[17:30:14.153] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1704,9) to (1402,1706,z20)
+[17:30:14.153] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1402,1706) in background
+[17:30:14.185] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1402,1706): 18 steps in 263.1us
+[17:30:18.233] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:19.609] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1402,1706,20)
+[17:30:19.609] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1402,1706,20); target (1402,1706); ARRIVED (off by 0 tile(s))
+[17:30:19.609] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1402,1706) target=(1402,1706) arrived=1 off=0
+[17:30:19.609] INFO  [wave10_RevGen3_23_Leand] [travel] recovery walk reached its anchor at (1402,1706,20) (off 0); attempt 1/3
+[17:30:19.609] LOG   [wave10_RevGen3_23_Leand] event travel_recovery_done: reached=1 at=(1402,1706,20) off=0 attempt=1
+[17:30:19.670] INFO  [wave10_RevGen3_23_Leand] [travel] mode walk             usable   <- chosen
+[17:30:19.670] INFO  [wave10_RevGen3_23_Leand] [travel] mode moongate         usable
+[17:30:19.670] INFO  [wave10_RevGen3_23_Leand] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:19.670] INFO  [wave10_RevGen3_23_Leand] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:19.670] LOG   [wave10_RevGen3_23_Leand] event travel_mode: walk
+[17:30:19.671] INFO  [wave10_RevGen3_23_Leand] [travel] plan Britain banker: ok legs=1 ~23 tiles transit=0 nodes=0
+[17:30:19.731] INFO  [wave10_RevGen3_23_Leand] [action] goto (1425,1690) from (1402,1706,20)
+[17:30:19.731] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1425,1690) from=(1402,1706)
+[17:30:19.732] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1402,1706,20) to (1425,1690,z0)
+[17:30:19.732] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1425,1690) in background
+[17:30:19.792] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1425,1690): 51 steps in 8788.2us
+[17:30:23.252] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:25.950] INFO  [life] market: at the market to buy 20 i_scroll_blank -- listening 180s for somebody selling it
+[17:30:28.266] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:29.930] INFO  [wave10_RevGen3_23_Leand] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[17:30:29.944] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Opening door...
+[17:30:31.363] INFO  [wave10_RevGen3_23_Leand] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[17:30:31.363] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Opening door...
+[17:30:33.292] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:34.930] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: You shove Odessa out of the way.
+[17:30:35.176] INFO  [wave10_RevGen3_23_Leand] [travel] Britain banker ARRIVED at (1430,1691,0)
+[17:30:35.177] LOG   [wave10_RevGen3_23_Leand] event travel_done: label='Britain banker' ok=1 at=(1430,1691) legs=1 plans=1 why=''
+[17:30:37.952] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[17:30:38.318] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:43.361] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:48.402] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:53.449] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:30:58.455] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:03.501] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:08.561] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:13.568] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:18.623] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:20.792] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Hyman: I'm listenin'.
+[17:31:20.792] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Hyman: What's thee wantin'?
+[17:31:23.649] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:28.655] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:33.686] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:37.986] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[17:31:38.725] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:43.782] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:48.791] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:53.823] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:31:58.857] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:03.864] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:08.916] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:13.967] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:15.834] INFO  [wave10_RevGen3_23_Leand] [chat uni  ] : bank
+[17:32:15.834] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:18.995] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:24.013] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:29.051] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:34.101] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:38.013] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_23.leander/state.json
+[17:32:39.140] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:44.196] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:49.199] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:52.207] INFO  [wave10_RevGen3_23_Leand] [chat uni  ] : bank
+[17:32:52.208] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.208] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:54.236] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:32:59.246] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:04.303] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:09.316] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:12.850] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.850] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Lyndon: Aye?
+[17:33:12.850] INFO  [wave10_RevGen3_23_Leand] [chat ascii] Lyndon: I'm listenin'.
+[17:33:14.326] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:19.329] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:24.365] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:25.987] INFO  [life] market: nobody offered i_scroll_blank in 180s -- back to work
+[17:33:26.049] INFO  [life] goal=FILL_SPELLBOOK reason="previous goal abandoned: nobody was selling"
+[17:33:26.049] INFO  [life] needs considered: NeedSpells(spells 0.70) NeedPractice(Evaluating Intelligence 0.3[17:33:26.050] INFO  [wave10_RevGen3_23_Leand] [ACTION] use_object start
+[17:33:26.050] INFO  [wave10_RevGen3_23_Leand] [ACTION] use_object serial=0x4001920C
+[17:33:26.065] INFO  [wave10_RevGen3_23_Leand] [0x3C] container contents: 15 item(s)
+[17:33:26.065] INFO  [wave10_RevGen3_23_Leand] [ACTION_RESULT] use_object success (15ms) contents received
+[17:33:26.065] LOG   [wave10_RevGen3_23_Leand] event action_result: use_object success took=15ms contents received
+[17:33:28.590] INFO  [wave10_RevGen3_23_Leand] [travel] Britain scribe -> (1494,1715) r=5 from (1430,1691)
+[17:33:28.592] LOG   [wave10_RevGen3_23_Leand] event travel_start: label='Britain scribe' target=(1494,1715) radius=5 from=(1430,1691)
+[17:33:28.592] INFO  [wave10_RevGen3_23_Leand] [travel] mode moongate         usable   <- chosen
+[17:33:28.592] INFO  [wave10_RevGen3_23_Leand] [travel] mode walk             usable
+[17:33:28.592] INFO  [wave10_RevGen3_23_Leand] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:28.592] INFO  [wave10_RevGen3_23_Leand] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:28.592] LOG   [wave10_RevGen3_23_Leand] event travel_mode: moongate
+[17:33:28.593] INFO  [wave10_RevGen3_23_Leand] [travel] plan Britain scribe: ok legs=2 ~80 tiles transit=0 nodes=44
+[17:33:28.647] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1430,1691,0); target (1425,1690); stopped short (off by 6 tile(s))
+[17:33:28.648] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1430,1691) target=(1425,1690) arrived=0 off=6
+[17:33:28.648] INFO  [wave10_RevGen3_23_Leand] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:28.648] INFO  [wave10_RevGen3_23_Leand] [action] goto (1464,1688) from (1430,1691,0)
+[17:33:28.648] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1464,1688) from=(1430,1691)
+[17:33:28.648] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1430,1691,0) to (1464,1688)
+[17:33:28.649] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1464,1688) in background
+[17:33:28.663] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1464,1688): 35 steps in 1667.5us
+[17:33:29.367] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:29.368] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=34 in 183.1us
+[17:33:30.036] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=30 in 50.3us
+[17:33:30.282] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=30 in 91.8us
+[17:33:32.212] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: You shove Elara out of the way.
+[17:33:34.400] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:35.270] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=12 in 201.4us
+[17:33:38.752] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1464,1688,0)
+[17:33:38.753] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:33:38.753] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:33:38.753] INFO  [wave10_RevGen3_23_Leand] [action] goto (1494,1715) from (1464,1688,0)
+[17:33:38.753] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1494,1715) from=(1464,1688)
+[17:33:38.753] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1464,1688,0) to (1494,1715,z6)
+[17:33:38.753] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1494,1715) in background
+[17:33:38.815] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1494,1715): 53 steps in 18535.8us
+[17:33:39.401] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:44.458] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:47.669] INFO  [wave10_RevGen3_23_Leand] [travel] Britain scribe ARRIVED at (1489,1719,0)
+[17:33:47.669] LOG   [wave10_RevGen3_23_Leand] event travel_done: label='Britain scribe' ok=1 at=(1489,1719) legs=2 plans=1 why=''
+[17:33:47.747] INFO  [wave10_RevGen3_23_Leand] [travel] Lord British's Castle scribe -> (1409,1590) r=5 from (1489,1719)
+[17:33:47.747] LOG   [wave10_RevGen3_23_Leand] event travel_start: label='Lord British's Castle scribe' target=(1409,1590) radius=5 from=(1489,1719)
+[17:33:47.748] INFO  [wave10_RevGen3_23_Leand] [travel] mode moongate         usable   <- chosen
+[17:33:47.748] INFO  [wave10_RevGen3_23_Leand] [travel] mode walk             usable
+[17:33:47.748] INFO  [wave10_RevGen3_23_Leand] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:47.748] INFO  [wave10_RevGen3_23_Leand] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:47.748] LOG   [wave10_RevGen3_23_Leand] event travel_mode: moongate
+[17:33:47.748] INFO  [wave10_RevGen3_23_Leand] [travel] plan Lord British's Castle scribe: ok legs=5 ~176 tiles transit=0 nodes=197
+[17:33:47.749] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1489,1719,0); target (1494,1715); stopped short (off by 9 tile(s))
+[17:33:47.749] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1489,1719) target=(1494,1715) arrived=0 off=9
+[17:33:47.749] INFO  [wave10_RevGen3_23_Leand] [action] goto (1464,1688) from (1489,1719,0)
+[17:33:47.749] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1464,1688) from=(1489,1719)
+[17:33:47.749] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1489,1719,0) to (1464,1688)
+[17:33:47.749] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1464,1688) in background
+[17:33:47.809] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1464,1688): 35 steps in 3696.0us
+[17:33:48.892] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=31 in 53.1us
+[17:33:49.510] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:54.522] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: World save in 10 seconds
+[17:33:57.232] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1464,1688,0)
+[17:33:57.233] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1464,1688,0); target (1464,1688); ARRIVED (off by 0 tile(s))
+[17:33:57.233] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1464,1688) target=(1464,1688) arrived=1 off=0
+[17:33:57.233] INFO  [wave10_RevGen3_23_Leand] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:57.233] INFO  [wave10_RevGen3_23_Leand] [action] goto (1432,1672) from (1464,1688,0)
+[17:33:57.234] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1432,1672) from=(1464,1688)
+[17:33:57.234] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1464,1688,0) to (1432,1672)
+[17:33:57.234] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1432,1672) in background
+[17:33:57.293] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1432,1672): 38 steps in 2135.7us
+[17:33:59.542] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:04.564] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: World save has been initiated.
+[17:34:09.573] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:09.699] WARN  [wave10_RevGen3_23_Leand] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.762] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1444,1675,0); target (1432,1672); stopped short (off by 15 tile(s))
+[17:34:09.763] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1444,1675) target=(1432,1672) arrived=0 off=15
+[17:34:09.907] WARN  [wave10_RevGen3_23_Leand] [0x22] unsolicited ack seq=31
+[17:34:10.979] INFO  [wave10_RevGen3_23_Leand] [action] goto (1432,1672) from (1444,1675,0)
+[17:34:10.980] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1432,1672) from=(1444,1675)
+[17:34:10.980] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1444,1675,0) to (1432,1672)
+[17:34:10.980] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1432,1672) in background
+[17:34:11.042] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1432,1672): 12 steps in 369.3us
+[17:34:14.384] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1432,1672,10)
+[17:34:14.384] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1432,1672,10); target (1432,1672); ARRIVED (off by 0 tile(s))
+[17:34:14.384] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1432,1672) target=(1432,1672) arrived=1 off=0
+[17:34:14.384] INFO  [wave10_RevGen3_23_Leand] [action] goto (1416,1640) from (1432,1672,10)
+[17:34:14.384] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1416,1640) from=(1432,1672)
+[17:34:14.384] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1432,1672,10) to (1416,1640)
+[17:34:14.385] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1416,1640) in background
+[17:34:14.445] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1416,1640): 38 steps in 5050.3us
+[17:34:14.614] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:19.662] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:24.692] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:25.314] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1416,1640,20)
+[17:34:25.314] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1640,20); target (1416,1640); ARRIVED (off by 0 tile(s))
+[17:34:25.314] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1640) target=(1416,1640) arrived=1 off=0
+[17:34:25.314] INFO  [wave10_RevGen3_23_Leand] [action] goto (1416,1608) from (1416,1640,20)
+[17:34:25.314] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1416,1608) from=(1416,1640)
+[17:34:25.315] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1640,20) to (1416,1608)
+[17:34:25.315] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1416,1608) in background
+[17:34:25.375] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1416,1608): 59 steps in 27569.7us
+[17:34:29.718] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:30.598] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=40 in 183.3us
+[17:34:32.137] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=37 in 785.2us
+[17:34:34.747] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:36.733] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 350.3us
+[17:34:39.804] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:40.224] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 5: anchor=6 new segment=17 path=23 in 2873.3us
+[17:34:44.864] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:47.382] WARN  [wave10_RevGen3_23_Leand] [0x21] move REJECTED seq=94; server says (1417,1607,30) facing=5
+[17:34:47.382] INFO  [wave10_RevGen3_23_Leand] [bot] dynamic item blocks (1416,1608,30); rerouting
+[17:34:47.382] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1416,1608) in background
+[17:34:47.442] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1416,1608): 41 steps in 6817.2us
+[17:34:49.868] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:52.186] INFO  [wave10_RevGen3_23_Leand] [travel] Lord British's Castle scribe ARRIVED at (1410,1595,30)
+[17:34:52.187] LOG   [wave10_RevGen3_23_Leand] event travel_done: label='Lord British's Castle scribe' ok=1 at=(1410,1595) legs=5 plans=1 why=''
+[17:34:52.265] INFO  [wave10_RevGen3_23_Leand] [travel] Jhelom scribe -> (1387,3771) r=5 from (1410,1595)
+[17:34:52.265] LOG   [wave10_RevGen3_23_Leand] event travel_start: label='Jhelom scribe' target=(1387,3771) radius=5 from=(1410,1595)
+[17:34:52.265] INFO  [wave10_RevGen3_23_Leand] [travel] mode moongate         usable   <- chosen
+[17:34:52.265] INFO  [wave10_RevGen3_23_Leand] [travel] mode walk             usable
+[17:34:52.265] INFO  [wave10_RevGen3_23_Leand] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:52.266] INFO  [wave10_RevGen3_23_Leand] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:52.266] LOG   [wave10_RevGen3_23_Leand] event travel_mode: moongate
+[17:34:52.267] INFO  [wave10_RevGen3_23_Leand] [travel] plan Jhelom scribe: ok legs=18 ~688 tiles transit=1 nodes=3721
+[17:34:52.312] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1410,1595,30); target (1416,1608); stopped short (off by 19 tile(s))
+[17:34:52.312] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1410,1595) target=(1416,1608) arrived=0 off=19
+[17:34:52.312] INFO  [wave10_RevGen3_23_Leand] [action] goto (1416,1624) from (1410,1595,30)
+[17:34:52.312] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1416,1624) from=(1410,1595)
+[17:34:52.313] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1410,1595,30) to (1416,1624)
+[17:34:52.313] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1416,1624) in background
+[17:34:52.372] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1416,1624): 44 steps in 13121.4us
+[17:34:54.361] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=38 in 887.3us
+[17:34:54.810] INFO  [wave10_RevGen3_23_Leand] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=37 in 406.3us
+[17:34:54.871] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:34:59.877] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:35:04.901] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:35:06.180] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1416,1624,22)
+[17:35:06.182] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[17:35:06.182] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[17:35:06.182] INFO  [wave10_RevGen3_23_Leand] [action] goto (1416,1656) from (1416,1624,22)
+[17:35:06.182] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1416,1656) from=(1416,1624)
+[17:35:06.183] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1624,22) to (1416,1656)
+[17:35:06.183] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1416,1656) in background
+[17:35:06.242] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1416,1656): 32 steps in 2192.0us
+[17:35:09.919] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:35:14.957] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:35:15.863] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1416,1656,10)
+[17:35:15.863] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[17:35:15.864] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[17:35:15.864] INFO  [wave10_RevGen3_23_Leand] [action] goto (1416,1688) from (1416,1656,10)
+[17:35:15.864] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1416,1688) from=(1416,1656)
+[17:35:15.864] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1656,10) to (1416,1688)
+[17:35:15.864] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1416,1688) in background
+[17:35:15.925] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1416,1688): 32 steps in 436.9us
+[17:35:20.008] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:35:24.008] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1416,1688,0)
+[17:35:24.008] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[17:35:24.008] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[17:35:24.008] INFO  [wave10_RevGen3_23_Leand] [action] goto (1416,1720) from (1416,1688,0)
+[17:35:24.008] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1416,1720) from=(1416,1688)
+[17:35:24.009] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1688,0) to (1416,1720)
+[17:35:24.009] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1416,1720) in background
+[17:35:24.067] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1416,1720): 32 steps in 534.1us
+[17:35:25.055] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:35:30.071] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:35:31.810] INFO  [wave10_RevGen3_23_Leand] [bot] arrived at (1416,1720,20)
+[17:35:31.811] INFO  [wave10_RevGen3_23_Leand] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[17:35:31.811] LOG   [wave10_RevGen3_23_Leand] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[17:35:31.811] INFO  [wave10_RevGen3_23_Leand] [action] goto (1402,1760) from (1416,1720,20)
+[17:35:31.811] LOG   [wave10_RevGen3_23_Leand] event goto_start: target=(1402,1760) from=(1416,1720)
+[17:35:31.811] INFO  [wave10_RevGen3_23_Leand] [bot] running from (1416,1720,20) to (1402,1760)
+[17:35:31.812] INFO  [wave10_RevGen3_23_Leand] [bot] planning path to (1402,1760) in background
+[17:35:31.871] INFO  [wave10_RevGen3_23_Leand] [bot] replan to (1402,1760): 40 steps in 15662.1us
+[17:35:35.122] INFO  [wave10_RevGen3_23_Leand] [survival] hp 20/20 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.392] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.454] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Selene has departed from Britain Fields.
+9.377] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.392] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.422] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.423] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.438] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.454] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Falen has departed from Britain.
+[17:35:39.469] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Elvar has departed from Britain.
+[17:35:39.470] INFO  [wave10_RevGen3_23_Leand] [chat ascii] System: Selene has departed from Britain Fields.

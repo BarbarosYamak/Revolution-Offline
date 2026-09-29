@@ -1,0 +1,195 @@
+[rev] build: cmake --build build-m1
+[rev] cmd> cmake --build build-m1
+[1/42] Building CXX object tests\CMakeFiles\m38_closure.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[2/42] Building CXX object tests\CMakeFiles\m7_faucets.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[3/42] Building CXX object CMakeFiles\uo_econdump.dir\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[4/42] Building CXX object CMakeFiles\uo_viewer.dir\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[5/42] Building CXX object CMakeFiles\uo_client.dir\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[6/42] Building CXX object tests\CMakeFiles\m4_life.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[7/42] Building CXX object tests\CMakeFiles\m7_market.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[8/42] Building CXX object tests\CMakeFiles\hue_metal.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[9/42] Building CXX object tests\CMakeFiles\m37_economy.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[10/42] Building CXX object tests\CMakeFiles\m5_professions.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[11/42] Building CXX object tests\CMakeFiles\m8_market_trip.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[12/42] Building CXX object tests\CMakeFiles\m4_life.dir\__\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[13/42] Building CXX object tests\CMakeFiles\m5_professions.dir\__\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[14/42] Building CXX object CMakeFiles\uo_client.dir\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[15/42] Building CXX object CMakeFiles\uo_viewer.dir\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[16/42] Building CXX object tests\CMakeFiles\trade_verify.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[17/42] Building CXX object tests\CMakeFiles\trade_gear.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[18/42] Linking CXX executable uo_econdump.exe
+[19/42] Linking CXX executable tests\m38_closure.exe
+[20/42] Linking CXX executable tests\m37_economy.exe
+[21/42] Building CXX object tests\CMakeFiles\moongate_gump.dir\__\src\progression\VendorPolicy.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[22/42] Linking CXX executable tests\m5_professions.exe
+[23/42] Linking CXX executable tests\m7_market.exe
+[24/42] Linking CXX executable tests\m7_faucets.exe
+[25/42] Linking CXX executable tests\hue_metal.exe
+[26/42] Building CXX object tests\CMakeFiles\trade_gear.dir\__\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[27/42] Building CXX object tests\CMakeFiles\m8_market_trip.dir\__\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[28/42] Building CXX object tests\CMakeFiles\trade_verify.dir\__\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[29/42] Building CXX object tests\CMakeFiles\m4_life.dir\__\src\life\Needs.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[30/42] Linking CXX executable tests\trade_gear.exe
+[31/42] Building CXX object CMakeFiles\uo_client.dir\src\life\Needs.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[32/42] Linking CXX executable tests\m4_life.exe
+[33/42] Building CXX object tests\CMakeFiles\moongate_gump.dir\__\src\life\Identity.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[34/42] Building CXX object CMakeFiles\uo_viewer.dir\src\life\Needs.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[35/42] Linking CXX executable uo_client.exe
+[36/42] Linking CXX executable uo_viewer.exe
+[37/42] Building CXX object tests\CMakeFiles\m8_market_trip.dir\__\src\life\Needs.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[38/42] Linking CXX executable tests\m8_market_trip.exe
+[39/42] Building CXX object tests\CMakeFiles\trade_verify.dir\__\src\life\Needs.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[40/42] Building CXX object tests\CMakeFiles\moongate_gump.dir\__\src\life\Needs.cpp.obj
+cl : Command line warning D9025 : overriding '/EHs' with '/EHs-'
+cl : Command line warning D9025 : overriding '/EHc' with '/EHc-'
+[41/42] Linking CXX executable tests\trade_verify.exe
+[42/42] Linking CXX executable tests\moongate_gump.exe
+[rev] build: uo_client.exe -> 2026-09-05 10:17:13
+[rev] test: ctest --test-dir build-m1 --output-on-failure
+[rev] cmd> ctest --test-dir build-m1 --output-on-failure
+Test project C:/Projects/RevolutionOffline/bot/uo-client/build-m1
+      Start  1: sphere_regression
+ 1/43 Test  #1: sphere_regression ................   Passed    0.02 sec
+      Start  2: m2_actions
+ 2/43 Test  #2: m2_actions .......................   Passed    0.02 sec
+      Start  3: m25_world
+ 3/43 Test  #3: m25_world ........................   Passed    0.02 sec
+      Start  4: m3_progression
+ 4/43 Test  #4: m3_progression ...................   Passed    0.02 sec
+      Start  5: m35_authenticity
+ 5/43 Test  #5: m35_authenticity .................   Passed    0.25 sec
+      Start  6: m36_progression
+ 6/43 Test  #6: m36_progression ..................   Passed    0.02 sec
+      Start  7: viewer_safety
+ 7/43 Test  #7: viewer_safety ....................   Passed    0.02 sec
+      Start  8: m37_economy
+ 8/43 Test  #8: m37_economy ......................   Passed    0.05 sec
+      Start  9: m38_closure
+ 9/43 Test  #9: m38_closure ......................   Passed    0.05 sec
+      Start 10: m4_life
+10/43 Test #10: m4_life ..........................   Passed    0.07 sec
+      Start 11: m4_economy_invariant
+11/43 Test #11: m4_economy_invariant .............   Passed    0.02 sec
+      Start 12: trip_budget
+12/43 Test #12: trip_budget ......................   Passed    0.02 sec
+      Start 13: goal_snap
+13/43 Test #13: goal_snap ........................   Passed    0.02 sec
+      Start 14: m5_professions
+14/43 Test #14: m5_professions ...................   Passed    0.05 sec
+      Start 15: m6_targeting
+15/43 Test #15: m6_targeting .....................   Passed    0.02 sec
+      Start 16: m7_market
+16/43 Test #16: m7_market ........................   Passed    0.05 sec
+      Start 17: m7_faucets
+17/43 Test #17: m7_faucets .......................   Passed    0.05 sec
+      Start 18: interaction_progress
+18/43 Test #18: interaction_progress .............   Passed    0.02 sec
+      Start 19: cliloc_decode
+19/43 Test #19: cliloc_decode ....................   Passed    0.02 sec
+      Start 20: interaction_handshake
+20/43 Test #20: interaction_handshake ............   Passed    0.02 sec
+      Start 21: activity_buy
+21/43 Test #21: activity_buy .....................   Passed    0.02 sec
+      Start 22: activity_acquire
+22/43 Test #22: activity_acquire .................   Passed    0.02 sec
+      Start 23: interaction_rotation
+23/43 Test #23: interaction_rotation .............   Passed    0.02 sec
+      Start 24: activity_craft
+24/43 Test #24: activity_craft ...................   Passed    0.02 sec
+      Start 25: activity_train
+25/43 Test #25: activity_train ...................   Passed    0.25 sec
+      Start 26: activity_gather
+26/43 Test #26: activity_gather ..................   Passed    0.02 sec
+      Start 27: activity_tame
+27/43 Test #27: activity_tame ....................   Passed    0.02 sec
+      Start 28: strategy_combat
+28/43 Test #28: strategy_combat ..................   Passed    0.02 sec
+      Start 29: activity_recovery
+29/43 Test #29: activity_recovery ................   Passed    0.02 sec
+      Start 30: activity_heal
+30/43 Test #30: activity_heal ....................   Passed    0.02 sec
+      Start 31: activity_rest
+31/43 Test #31: activity_rest ....................   Passed    0.02 sec
+      Start 32: activity_eat
+32/43 Test #32: activity_eat .....................   Passed    0.02 sec
+      Start 33: activity_disposal
+33/43 Test #33: activity_disposal ................   Passed    0.02 sec
+      Start 34: hue_metal
+34/43 Test #34: hue_metal ........................   Passed    0.05 sec
+      Start 35: m8_market_trip
+35/43 Test #35: m8_market_trip ...................   Passed    0.06 sec
+      Start 36: m9_service_selection
+36/43 Test #36: m9_service_selection .............   Passed    2.49 sec
+      Start 37: mine_advance
+37/43 Test #37: mine_advance .....................   Passed    0.03 sec
+      Start 38: hunt_ground
+38/43 Test #38: hunt_ground ......................   Passed    0.02 sec
+      Start 39: trade_gear
+39/43 Test #39: trade_gear .......................   Passed    0.05 sec
+      Start 40: trade_verify
+40/43 Test #40: trade_verify .....................   Passed    0.09 sec
+      Start 41: appearance
+41/43 Test #41: appearance .......................   Passed    0.02 sec
+      Start 42: move_ack
+42/43 Test #42: move_ack .........................   Passed    0.02 sec
+      Start 43: moongate_gump
+43/43 Test #43: moongate_gump ....................   Passed    0.05 sec
+
+100% tests passed, 0 tests failed out of 43
+
+Total Test time (real) =   8.75 sec
+[rev] test: ctest rc=0

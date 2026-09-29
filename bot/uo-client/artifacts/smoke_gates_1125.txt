@@ -1,0 +1,5 @@
+[rev] gates: 2 characters, 5 min each, stagger 3s
+[rev] gate Castor: console still live (touched <120s ago, no logout_complete) -- skip
+[rev] gate Aurelius: pre-state snapshot -> g_Aurelius.state_before.json
+[rev] gate Aurelius: launched on RevGen3_22 as mage for 5 min
+[rev] gates: launched 1/2 (rest were live). wait with `python tools/rev.py wait`

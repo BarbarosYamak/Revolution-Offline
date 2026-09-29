@@ -1,0 +1,534 @@
+// Early-hunting-grounds resolver (memory: early-hunting-grounds.md, owner
+// 2026-08-31): "hunting ground can be graveyards for early hunting, brit
+// sewers maybe, but they need gear too."
+//
+// world_atlas::Atlas::NearestHuntingGround is the pure, Client-free half of
+// that rule -- picking WHERE a fighter with no fight in reach should walk
+// to. It is a named wrapper over NearestPlaceOfCategory(Graveyard, ...)
+// today; see the comment on the declaration (world/Atlas.h) for why Britain's
+// sewers (a_brit_sewers_1, a `dungeon`-category REGION, not a graveyard
+// PLACE) are not folded into it yet.
+//
+// This links only uo_world -- no Client, no navgrid, no route planner -- the
+// m25_world.cpp style, but against the REAL generated atlas (argv[1] = the
+// data directory) so a regenerated atlas that drops Britain's or Yew's
+// graveyard fails this suite rather than going unnoticed.
+
+#include "world/Atlas.h"
+#include "uo/combat.h"
+#include "uo/life.h"
+
+#include <algorithm>
+#include <cctype>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+#include <unordered_map>
+
+using namespace uo;
+
+namespace {
+
+int g_checks = 0;
+int g_failures = 0;
+
+// The shard-derived species table, read the same way the runner reads it
+// (RunnerShared.cpp LoadSeededCreatureDanger): defname, name, danger, maxdam,
+// armor, str, magery, taming -- tab separated, keyed by the lowercased
+// client-visible NAME because the name is all a client is ever sent. Parsed
+// here rather than linked, so this suite stays free of the runner, but it
+// reads the SAME generated file: a regenerated table that reorders the
+// graveyard fails this suite instead of going unnoticed.
+std::unordered_map<std::string, double> LoadSpeciesDanger(const std::string& dataDir) {
+    std::unordered_map<std::string, double> t;
+    std::FILE* f = std::fopen((dataDir + "/revolution_creatures.tsv").c_str(), "rb");
+    if (!f) return t;
+    char line[512];
+    bool first = true;
+    while (std::fgets(line, sizeof(line), f)) {
+        if (first) { first = false; continue; }          // header
+        std::string row(line);
+        const std::string::size_type t1 = row.find('\t');
+        if (t1 == std::string::npos) continue;
+        const std::string::size_type t2 = row.find('\t', t1 + 1);
+        if (t2 == std::string::npos) continue;
+        const std::string::size_type t3 = row.find('\t', t2 + 1);
+        std::string key = row.substr(t1 + 1, t2 - t1 - 1);
+        for (char& ch : key)
+            ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+        if (key.empty()) continue;
+        const std::string dg =
+            row.substr(t2 + 1, (t3 == std::string::npos ? row.size() : t3) - t2 - 1);
+        t[key] = std::atof(dg.c_str());
+    }
+    std::fclose(f);
+    return t;
+}
+
+void Check(bool ok, const char* what) {
+    ++g_checks;
+    if (!ok) {
+        ++g_failures;
+        std::printf("  FAIL: %s\n", what);
+    }
+}
+
+void Section(const char* name) { std::printf("[%s]\n", name); }
+
+}  // namespace
+
+int main(int argc, char** argv) {
+    if (argc < 2) {
+        std::printf("usage: hunt_ground <data-dir>\n");
+        return 2;
+    }
+
+    world_atlas::Atlas atlas;
+    std::string err;
+    const std::string atlasPath = std::string(argv[1]) + "/revolution_atlas.txt";
+    if (!atlas.Load(atlasPath.c_str(), &err)) {
+        Check(false, "the generated atlas loads");
+        std::printf("  (%s: %s)\n", atlasPath.c_str(), err.c_str());
+        std::printf("%d checks, %d failed\n", g_checks, g_failures);
+        return g_failures ? 1 : 0;
+    }
+
+    Section("nearest graveyard, from Yew");
+    {
+        std::vector<std::string> assigned;
+        for (u32 serial = 100; serial < 124; serial += 2) {
+            const auto* p = atlas.GroupHuntingGround(serial, 0);
+            Check(p && world_atlas::HuntTierOf(*p) == world_atlas::HuntTier::Weak,
+                  "groups are assigned weak graveyards");
+            if (!p) continue;
+            assigned.push_back(p->id);
+            Check(atlas.GroupHuntingGround(serial + 1, 0) == p,
+                  "paired hunters share an initial yard");
+            Check(atlas.GroupHuntingGround(serial, 1) != p,
+                  "a crowded or empty yard rotates to a different yard");
+            Check(p->position.x < 5120 && p->id.find("passage") == std::string::npos,
+                  "assignments exclude Lost Lands and transit landmarks");
+            const auto* region = atlas.RegionById(p->regionId.c_str());
+            Check(region && region->kind == wm::RegionKind::Graveyard,
+                  "assignments use an actual graveyard region, never a territory alias");
+            for (const auto& ring : atlas.Places()) {
+                if (ring.category != wm::PlaceCategory::Graveyard ||
+                    ring.regionId != p->regionId ||
+                    world_atlas::HuntTierOf(ring) != world_atlas::HuntTier::Strong)
+                    continue;
+                const int edge = std::max(std::abs(ring.position.x - p->position.x),
+                                          std::abs(ring.position.y - p->position.y)) - ring.radius;
+                Check(edge > p->radius + 2,
+                      "assignments keep a whole weak patrol clear of strong rings");
+            }
+            for (const auto& pt : atlas.HuntingPatrol(*p))
+                for (const auto& ring : atlas.Places())
+                    if (ring.category == wm::PlaceCategory::Graveyard && ring.regionId == p->regionId &&
+                        world_atlas::HuntTierOf(ring) == world_atlas::HuntTier::Strong)
+                        Check(std::max(std::abs(pt.x - ring.position.x), std::abs(pt.y - ring.position.y)) > ring.radius + 2,
+                              "group patrol avoids strong undead rings");
+        }
+        std::sort(assigned.begin(), assigned.end());
+        assigned.erase(std::unique(assigned.begin(), assigned.end()), assigned.end());
+        Check(assigned.size() >= 2, "fleet assignments rotate between vetted graveyards");
+    }
+    {
+        // Yew town centre (a_townYew, data/revolution_atlas.txt:757).
+        const wm::Place* p = atlas.NearestHuntingGround(546, 992);
+        Check(p != nullptr, "a hunting ground is found near Yew");
+        if (p) {
+            Check(p->id == "yew_graveyard_graveyard",
+                  "it is Yew Graveyard, not some farther cemetery");
+            Check(p->category == wm::PlaceCategory::Graveyard,
+                  "the resolved place is actually category Graveyard");
+        }
+    }
+
+    Section("nearest graveyard, from Britain (Britain graveyard first)");
+    {
+        // Britain town centre (a_townBritain, data/revolution_atlas.txt:902).
+        const wm::Place* p = atlas.NearestHuntingGround(1495, 1629);
+        Check(p != nullptr, "a hunting ground is found near Britain");
+        if (p) {
+            Check(p->id == "britain_graveyard_graveyard",
+                  "it is Britain Graveyard -- the owner's named first "
+                  "hunting ground -- not some farther cemetery");
+        }
+    }
+
+    Section("a hunting patrol stays inside its place's own RECT");
+    {
+        // Regression (wave30_bandage20_20260907/triage.md; consoles Calar/
+        // Nairdris/Baelos/Kharos): a tier=novice patrol on the weak band used
+        // to sweep the WHOLE region -- every RECT of a_britain_graveyard_1 --
+        // which reached straight into the strong undead's ring and killed
+        // four characters. The weak band's own anchor (1384,1492) and the
+        // strong rings (1385, y1446-1459) are all inside the SAME RECT
+        // (1336,1443)-(1391,1494) per the atlas / raw AREADEF
+        // (map0_areas.scp:2868-2875); the region's other RECT,
+        // (1336,1494)-(1376,1511), is unrelated ground south of the yard wall
+        // with no spawns in it. So a patrol must be scoped by the place's own
+        // ring (position +/- radius), not merely "which RECT" -- two places
+        // sharing one RECT still need disjoint patrols.
+        const auto* weak = atlas.PlaceById("britain_graveyard_graveyard");
+        const auto* knights = atlas.PlaceById("britain_graveyard_knights");
+        const auto* lich = atlas.PlaceById("britain_graveyard_lich");
+        const auto* lichLord = atlas.PlaceById("britain_graveyard_lich_lord");
+        const auto* region = atlas.RegionById("a_britain_graveyard_1");
+        Check(region && region->rects.size() == 2,
+              "the yard AREADEF still carries its two RECTs");
+
+        if (weak && knights && lich && lichLord && region) {
+            const auto weakPts = atlas.HuntingPatrol(*weak);
+            Check(!weakPts.empty(), "the weak band resolves a patrol");
+            for (const auto& point : weakPts) {
+                Check(region->Contains(point.x, point.y),
+                      "weak patrol stays inside the yard region");
+                // The strong rings top out at y=1462 (knights r3 centered
+                // 1459); a novice patrol must never reach that far north.
+                Check(point.y > 1462,
+                      "weak-band patrol point stays south of the strong rings");
+            }
+
+            for (const wm::Place* ring : {knights, lich, lichLord}) {
+                const auto pts = atlas.HuntingPatrol(*ring);
+                Check(!pts.empty(), "a strong ring resolves a patrol");
+                for (const auto& point : pts) {
+                    Check(region->Contains(point.x, point.y),
+                          "strong-ring patrol stays inside the yard region");
+                    const i32 dx = point.x > ring->position.x
+                                       ? point.x - ring->position.x
+                                       : ring->position.x - point.x;
+                    const i32 dy = point.y > ring->position.y
+                                       ? point.y - ring->position.y
+                                       : ring->position.y - point.y;
+                    Check(dx <= ring->radius && dy <= ring->radius,
+                          "strong-ring patrol point stays within that ring's "
+                          "own radius, not the whole yard");
+                }
+            }
+        } else {
+            Check(false, "Britain graveyard tier geometry exists");
+        }
+    }
+
+    Section("a single-RECT region's patrol is unchanged");
+    {
+        // A place whose ring comfortably covers its one-and-only RECT (radius
+        // far bigger than the RECT itself) must still sweep the whole thing,
+        // exactly as before this fix -- the new radius clip must never shrink
+        // coverage for the common, single-RECT case.
+        world_atlas::Atlas single;
+        std::string err;
+        const char* text =
+            "MAP\t0\t7168\t4096\n"
+            "REGION\ta_solo\ttown\t0\t100\t100\t0\tTest\tSolo Yard\n"
+            "RECT\ta_solo\t80\t80\t130\t130\n"
+            "PLACE\tsolo_yard\tgraveyard\ta_solo\t100\t100\t0\t60\t\t\tSolo Yard\n";
+        Check(single.LoadFromText(text, &err), "single-RECT fixture parses");
+        if (err.size()) std::printf("  (%s)\n", err.c_str());
+
+        const auto* place = single.PlaceById("solo_yard");
+        Check(place != nullptr, "solo place resolves");
+        if (place) {
+            const auto pts = single.HuntingPatrol(*place);
+            bool northwest = false, southeast = false;
+            for (const auto& point : pts) {
+                Check(point.x >= 83 && point.x <= 127 && point.y >= 83 &&
+                          point.y <= 127,
+                      "lane stays within the 3-tile margin of the one RECT");
+                northwest |= point.x < 90 && point.y < 90;
+                southeast |= point.x > 120 && point.y > 120;
+            }
+            Check(northwest && southeast,
+                  "coverage still reaches both corners of the single RECT");
+        }
+    }
+
+    Section("Britain graveyard: strong tier is distinct from the weak band");
+    {
+        // Owner ruling 2026-09-06 (artifacts/graveyard_tier_split_2026-09-06.md):
+        // the weak skeleton/zombie band and the strong undead (skeletal
+        // knight, lich, lich lord) are separate, non-overlapping rings so a
+        // novice fighter and a geared one can tell them apart. Coordinates
+        // verified live via tools/world_query.py against the current world
+        // save (--near 1385,1459/1452/1446 --type c_skeleton_knight/c_lich/
+        // c_lich_lord, each n>=1 inside radius 6). DeriveGraveyardStrongTier
+        // (AtlasGenMain.cpp) derives these from
+        // Graveyards_spawns_felucca.scp, not the AREADEF, so they are a
+        // second source alongside the existing per-region row.
+        const wm::Place* weak = atlas.PlaceById("britain_graveyard_graveyard");
+        const wm::Place* knights = atlas.PlaceById("britain_graveyard_knights");
+        const wm::Place* lich = atlas.PlaceById("britain_graveyard_lich");
+        const wm::Place* lichLord = atlas.PlaceById("britain_graveyard_lich_lord");
+        Check(weak != nullptr, "the weak band's own PLACE row still exists");
+        Check(knights != nullptr, "the strong knights ring is a distinct PLACE");
+        Check(lich != nullptr, "the strong lich ring is a distinct PLACE");
+        Check(lichLord != nullptr, "the strong lich lord ring is a distinct PLACE");
+
+        if (weak && knights && lich && lichLord) {
+            Check(knights->id != weak->id && lich->id != weak->id &&
+                      lichLord->id != weak->id,
+                  "strong-tier ids differ from the weak band's id");
+            Check(knights->category == wm::PlaceCategory::Graveyard &&
+                      lich->category == wm::PlaceCategory::Graveyard &&
+                      lichLord->category == wm::PlaceCategory::Graveyard,
+                  "strong-tier rings are still category Graveyard");
+
+            Check(knights->position.x == 1385 && knights->position.y == 1459,
+                  "knights ring matches the world_query-verified center");
+            Check(lich->position.x == 1385 && lich->position.y == 1452,
+                  "lich ring matches the world_query-verified center");
+            Check(lichLord->position.x == 1385 && lichLord->position.y == 1446,
+                  "lich lord ring matches the world_query-verified center");
+
+            auto cheby = [](const wm::Point& a, const wm::Point& b) {
+                const i32 dx = a.x > b.x ? a.x - b.x : b.x - a.x;
+                const i32 dy = a.y > b.y ? a.y - b.y : b.y - a.y;
+                return dx > dy ? dx : dy;
+            };
+            Check(cheby(knights->position, lich->position) > knights->radius &&
+                      cheby(knights->position, lich->position) > lich->radius,
+                  "knights ring and lich ring do not overlap");
+            Check(cheby(lich->position, lichLord->position) > lich->radius &&
+                      cheby(lich->position, lichLord->position) > lichLord->radius,
+                  "lich ring and lich lord ring do not overlap");
+            Check(cheby(weak->position, knights->position) > weak->radius,
+                  "the weak band's own radius does not reach the nearest strong ring");
+        }
+    }
+
+    Section("tiers: a novice never resolves a strong ring, a gated one can");
+    {
+        // The split put lethal undead inside the same Graveyard category as
+        // the weak band (chardef evidence: artifacts/hunt_tier_gate_2026-09-06
+        // .md -- c_skeleton_knight DAM 18,43 vs c_skeleton DAM 3,7), so the
+        // plain resolver has to mean "weak tier" and the strong tier has to be
+        // asked for by name.
+        for (const wm::Place& p : atlas.Places()) {
+            if (p.category != wm::PlaceCategory::Graveyard) continue;
+            const bool band = p.id.size() > 10 &&
+                              p.id.compare(p.id.size() - 10, 10, "_graveyard") == 0;
+            Check(world_atlas::HuntTierOf(p) ==
+                      (band ? world_atlas::HuntTier::Weak
+                            : world_atlas::HuntTier::Strong),
+                  "every graveyard row's tier follows its id, band or ring");
+        }
+
+        // Standing ON the lich lord ring, the untiered call still walks the
+        // novice out to the weak band -- this is the case that killed people.
+        const wm::Place* fromRing = atlas.NearestHuntingGround(1385, 1446);
+        Check(fromRing != nullptr, "a weak band is found from inside the rings");
+        if (fromRing) {
+            Check(fromRing->id == "britain_graveyard_graveyard",
+                  "from the lich lord ring the untiered resolver still returns "
+                  "the weak band, not the ring it is standing in");
+            Check(world_atlas::HuntTierOf(*fromRing) == world_atlas::HuntTier::Weak,
+                  "the untiered resolver is weak-tier by definition");
+        }
+
+        // And from Britain proper.
+        const wm::Place* novice = atlas.NearestHuntingGround(1495, 1629);
+        Check(novice && novice->id == "britain_graveyard_graveyard",
+              "a novice near Britain still gets the weak band");
+
+        // A character that clears the gate can ask for the hard part, and gets
+        // a real strong ring rather than nothing.
+        const wm::Place* strong = atlas.NearestHuntingGroundOfTier(
+            world_atlas::HuntTier::Strong, 1495, 1629);
+        Check(strong != nullptr, "a strong-tier ground is resolvable at all");
+        if (strong) {
+            Check(world_atlas::HuntTierOf(*strong) == world_atlas::HuntTier::Strong,
+                  "the strong-tier resolver returns a strong ring");
+            Check(strong->id != "britain_graveyard_graveyard",
+                  "the strong-tier answer is not the weak band");
+            Check(strong->id.rfind("britain_graveyard_", 0) == 0,
+                  "and it is Britain's own ring, not another city's");
+        }
+
+        // The leash still applies per tier: nothing strong near Yew's newbie
+        // yard, which has no strong ring at all ("NEWBIE YARD, KEEP IT WEAK",
+        // Graveyards_spawns_felucca.scp).
+        Check(atlas.NearestHuntingGroundOfTier(world_atlas::HuntTier::Strong,
+                                               724, 1134, 40) == nullptr,
+              "no strong ring within 40 tiles of the Yew newbie yard");
+    }
+
+    Section("refuses when the atlas has nothing in range");
+    {
+        // Yew Graveyard is ~178 Chebyshev tiles from Yew's own town centre
+        // (724,1134 vs 546,992) -- comfortably outside a 10-tile leash, and
+        // nothing else of category Graveyard is anywhere near Yew either.
+        const wm::Place* p = atlas.NearestHuntingGround(546, 992, 10);
+        Check(p == nullptr,
+              "no hunting ground within 10 tiles of Yew -- refused, not a "
+              "far-away graveyard reported as reachable");
+    }
+
+    // -----------------------------------------------------------------------
+    // A NOVICE DOES NOT PICK A FIGHT WITH A SKELETAL KNIGHT.
+    //
+    // Regression for artifacts/fleet122c30_20260907/triage_deaths.md: Eldian,
+    // Zaran, Leander and Rhalan -- all four under 60.0 weapon skill -- each
+    // logged `hunt: picked 'skeletal knight' ... verdict=lawful threat=0.35
+    // -0.67 learned_danger=0.00`, and all four died. The threat model scored
+    // the SITUATION only, so a knight idling at nine tiles read exactly like a
+    // zombie idling at nine tiles.
+    // -----------------------------------------------------------------------
+    Section("novices recognise strong undead");
+    {
+        const std::unordered_map<std::string, double> species =
+            LoadSpeciesDanger(argv[1]);
+        Check(!species.empty(),
+              "the shard-derived creature table loads "
+              "(data/revolution_creatures.tsv)");
+
+        auto Look = [&](const char* n) {
+            std::string k(n);
+            for (char& ch : k)
+                ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+            const auto it = species.find(k);
+            return it == species.end() ? -1.0 : it->second;
+        };
+
+        // The ranking this whole rule rests on is DATA, so assert the data.
+        const double zombie   = Look("zombie");
+        const double knight   = Look("skeletal knight");
+        const double lich     = Look("lich");
+        const double lichLord = Look("lich lord");
+        Check(zombie >= 0.0 && knight >= 0.0 && lich >= 0.0 && lichLord >= 0.0,
+              "zombie, skeletal knight, lich and lich lord are all in the table");
+        Check(zombie < knight && zombie < lich && zombie < lichLord,
+              "the generated ranking still puts a zombie below all three "
+              "strong undead");
+
+        auto Sighting = [&](const char* name, i32 dist, double learned) {
+            combat::Candidate c;
+            c.serial = 0x1000;
+            c.name = name;
+            c.noto = combat::Noto::Murderer;   // undead read red: lawful prey
+            c.dist = dist;
+            c.hpCur = 100; c.hpMax = 100;      // a full bar, the worst reading
+            const double seeded = Look(name);
+            c.speciesDanger = std::max(seeded < 0.0 ? 0.0 : seeded, learned);
+            return c;
+        };
+
+        combat::Stance me;                     // open ground, nothing on us
+        const combat::CrimeRules& rules = combat::RevolutionCrimeRules();
+
+        // A fencer at 50.0 -- Eldian's and Hector's profile.
+        combat::EngagePolicy novice;
+        novice.riskTolerance = 0.70;           // a fencer's nerve (Professions.cpp)
+        novice.maxSpeciesDanger = combat::SpeciesCeiling(500);
+
+        {
+            const combat::Candidate c = Sighting("skeletal knight", 8, 0.0);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, novice, 1.0);
+            Check(!v.engage,
+                  "a 50.0 fencer does NOT open on a skeletal knight at 8 tiles");
+            Check(std::strcmp(combat::VerdictName(v), "avoid") == 0,
+                  "and the verdict prints 'avoid', not 'lawful'");
+            Check(v.legality == combat::Legality::Lawful,
+                  "the refusal is about risk, not legality -- the swing would "
+                  "still have been lawful");
+        }
+        for (const char* strong : {"lich", "lich lord"}) {
+            const combat::Candidate c = Sighting(strong, 8, 0.0);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, novice, 1.0);
+            Check(!v.engage && std::strcmp(combat::VerdictName(v), "avoid") == 0,
+                  "a novice avoids the rest of the strong ring too");
+        }
+        {
+            const combat::Candidate c = Sighting("Zombie", 8, 0.0);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, novice, 1.0);
+            Check(v.engage, "the same novice DOES open on a Zombie at 8 tiles");
+            Check(std::strcmp(combat::VerdictName(v), "lawful") == 0,
+                  "and that verdict still prints 'lawful'");
+        }
+        {
+            // The weak band has to stay farmable, or this has only traded four
+            // deaths for zero training (Hector, 2026-09-07: five refusals,
+            // zero fights, ten minutes).
+            for (const char* weak : {"Skeleton", "Ghoul", "Spectre"}) {
+                const combat::Candidate c = Sighting(weak, 6, 0.0);
+                const combat::Classification v =
+                    combat::Classify(c, me, rules, novice, 1.0);
+                Check(v.engage, "the weak band is still engageable by a novice");
+            }
+        }
+
+        // A trained fighter is a different character, and the gate says so.
+        combat::EngagePolicy trained = novice;
+        trained.maxSpeciesDanger = combat::SpeciesCeiling(850);
+        {
+            const combat::Candidate c = Sighting("skeletal knight", 8, 0.0);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, trained, 1.0);
+            Check(v.engage, "a fighter at 85.0 DOES open on a skeletal knight");
+        }
+        Check(combat::SpeciesCeiling(500) < combat::SpeciesCeiling(700) &&
+                  combat::SpeciesCeiling(700) < combat::SpeciesCeiling(850),
+              "the ceiling rises with skill instead of flipping on one gain");
+
+        // The threat NUMBER carries the term too, not just the gate.
+        {
+            const combat::Classification kn = combat::Classify(
+                Sighting("skeletal knight", 8, 0.0), me, rules, trained, 1.0);
+            const combat::Classification zo = combat::Classify(
+                Sighting("Zombie", 8, 0.0), me, rules, trained, 1.0);
+            Check(kn.threat > zo.threat,
+                  "a knight scores a higher threat than a zombie on the same "
+                  "board -- the situational-only score is gone");
+        }
+
+        // -------------------------------------------------------------------
+        // AND A DEATH IS REMEMBERED BY SPECIES, ACROSS SESSIONS.
+        //
+        // Core.cpp's death edge used to tag the danger record with the literal
+        // string "death", so a character learned "this ground is lethal" and
+        // nothing at all about knights. It now names the killer -- the last
+        // thing that swung at us (Client::LastAttackerName) -- and files a
+        // creature verdict, so next session's pick reads learned_danger > 0.
+        // -------------------------------------------------------------------
+        const i64 died = 1000000;
+        life::Memory mem;
+        Check(mem.CreatureDanger("skeletal knight", died) == 0.0,
+              "a fresh character has learned nothing about knights");
+        mem.NoteDanger(1385, 1484, 20, "skeletal knight", 2.0, died);
+        mem.NoteCreatureOutcome("skeletal knight", life::kCreatureEvidenceDeath,
+                                died);
+
+        // Next session: the same saved memory, an hour later.
+        const i64 next = died + 60 * 60 * 1000;
+        const double learned = mem.CreatureDanger("skeletal knight", next);
+        Check(learned > 0.0,
+              "next session's pick shows learned_danger > 0 for the killer "
+              "species, not 0.00");
+        Check(mem.CreatureDanger("Zombie", next) == 0.0,
+              "and nothing was learned about the species that did NOT kill us");
+        bool placeNamesKiller = false;
+        for (const life::DangerMemory& d : mem.Dangers())
+            if (d.threat == "skeletal knight") placeNamesKiller = true;
+        Check(placeNamesKiller,
+              "the place record names the killer, not the generic \"death\"");
+
+        // With that on the sheet, even a TRAINED fighter reconsiders: the
+        // learned verdict pushes the species past its ceiling.
+        {
+            const combat::Candidate c = Sighting("skeletal knight", 8, learned);
+            const combat::Classification v =
+                combat::Classify(c, me, rules, trained, 1.0);
+            Check(!v.engage,
+                  "a species that has actually killed this character is avoided "
+                  "even above the skill gate");
+        }
+    }
+
+    std::printf("%d checks, %d failed\n", g_checks, g_failures);
+    return g_failures ? 1 : 0;
+}

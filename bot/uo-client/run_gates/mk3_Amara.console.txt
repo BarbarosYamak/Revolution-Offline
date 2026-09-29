@@ -1,0 +1,1134 @@
+[00:19:32.999] INFO  session 0: 127.0.0.1:2593 user='RevGen3_13' char=Amara tag='mk3_Amara'
+[00:19:33.001] LOG   [mk3_Amara] event session_start: text log opened
+[00:19:33.001] LOG   [mk3_Amara] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:33.001] INFO  [mk3_Amara] [net] connecting to 127.0.0.1:2593 ...
+[00:19:33.002] LOG   [mk3_Amara] event net_connected: connect 127.0.0.1:2593
+[00:19:33.002] INFO  [mk3_Amara] [net] connected.
+[00:19:33.002] INFO  [mk3_Amara] [seed] sent 0x7F000001 (plaintext)
+[00:19:33.002] LOG   [mk3_Amara] event seed_out: 0x7F000001 hex=7f000001
+[00:19:33.003] INFO  [life] no prior state for revgen3_13.amara: a new Tailor
+[00:19:33.003] INFO  [life] creation request: Tailoring 50.0 + Arms Lore 50.0, stats 24/24/32 = 80
+[00:19:33.003] INFO  [life] needs: reading 'tailor' from the profession catalogue
+[00:19:33.003] INFO  [life] home: Amara lives in Britain
+[00:19:33.003] INFO  [life] build plan 'tailor': 225.0 resolved + 475.0 unresolved = 700.0/700.0, stats 40/60/100 = 200
+[00:19:33.003] INFO  [mk3_Amara] [life] autonomous player active for 'Amara' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:33.047] INFO  [mk3_Amara] [0xA8] 1 server(s):
+[00:19:33.047] INFO  [mk3_Amara]   [0] MyShard                   1.0.0.127  full=5%  tz=0
+[00:19:33.062] INFO  [mk3_Amara] [0x8C] game server = 127.0.0.1:2593  seed=0x9D3D221F
+[00:19:33.062] LOG   [mk3_Amara] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x9D3D221F
+[00:19:33.062] INFO  [mk3_Amara] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:33.062] LOG   [mk3_Amara] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:33.063] INFO  [mk3_Amara] [0xB9] server features = 0x0005
+[00:19:33.063] INFO  [mk3_Amara] [0xA9] 5 slot(s) (populated 0):
+[00:19:33.063] INFO  [mk3_Amara]   [0] <empty>
+[00:19:33.063] INFO  [mk3_Amara]   [1] <empty>
+[00:19:33.063] INFO  [mk3_Amara]   [2] <empty>
+[00:19:33.063] INFO  [mk3_Amara]   [3] <empty>
+[00:19:33.063] INFO  [mk3_Amara]   [4] <empty>
+[00:19:33.063] INFO  [mk3_Amara] create: appearance sex=M skin=0x041C hair=0x203D/0x0460 shirt=0x0038 pants=0x01B7
+[00:19:33.063] INFO  [mk3_Amara] [0x00] starting city index 2
+[00:19:33.063] INFO  [mk3_Amara] [0x00] requested skills 34:50 4:50 37:0
+[00:19:33.063] INFO  [mk3_Amara] [0x00] requested stats STR 24 DEX 24 INT 32
+[00:19:33.063] INFO  [mk3_Amara] [0x00] creating character 'Amara' in slot 0
+[00:19:33.063] LOG   [mk3_Amara] event char_create_sent: Amara
+[00:19:33.080] INFO  [mk3_Amara] [0x1B] serial=0x00012E70 body=0x0190 pos=(1496,1628,10)
+[00:19:33.080] LOG   [mk3_Amara] event login_confirm: serial=0x00012E70 body=0x0190 pos=(1496,1628,10)
+[00:19:33.080] INFO  [mk3_Amara] [0x20] player @(1496,1628,10) facing=3
+[00:19:33.080] INFO  [mk3_Amara] [0x55] login complete — entering world
+[00:19:33.080] LOG   [mk3_Amara] event in_world: 0x55 received
+[00:19:33.080] INFO  [mk3_Amara] [backpack] opening 0x40011989
+[00:19:33.080] INFO  [mk3_Amara] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:33.080] INFO  [mk3_Amara] [chat ascii] System: There are 12 other players here.
+[00:19:33.080] INFO  [mk3_Amara] [chat ascii] System: You are under the protection of the city guards
+[00:19:33.084] INFO  [mk3_Amara] [action] requesting the skill list
+[00:19:33.084] INFO  [life] in world; asked the server for the skill list
+[00:19:33.093] INFO  [mk3_Amara] [0x24] open container 0x40011989 gump=60
+[00:19:33.093] INFO  [mk3_Amara] [0x3C] container contents: 8 item(s)
+[00:19:33.093] LOG   [mk3_Amara] event backpack_contents: serial=0x40011989 items=8
+[00:19:35.702] INFO  [mk3_Amara] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:35.703] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:35.703] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:35.703] INFO  [life]   str          persisted=0          server=24         -> server value accepted
+[00:19:35.703] INFO  [life]   dex          persisted=0          server=24         -> server value accepted
+[00:19:35.703] INFO  [life]   int          persisted=0          server=32         -> server value accepted
+[00:19:35.703] INFO  [life]   skill_34     persisted=0.0        server=50.0       -> server value accepted
+[00:19:35.703] INFO  [life]   skill_4      persisted=0.0        server=50.0       -> server value accepted
+[00:19:35.703] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[00:19:35.703] INFO  [life]   skill_25     persisted=0.0        server=0.0        -> server value accepted
+[00:19:35.703] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[00:19:35.703] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:35.703] INFO  [mk3_Amara] [survival] on
+[00:19:35.703] LOG   [mk3_Amara] event survival_mode: on
+[00:19:35.705] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_13.amara/state.json
+[00:19:35.705] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:19:35.705] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:35.705] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[00:19:35.705] INFO  [life]   score=150.0
+[00:19:35.705] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:35.705] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=400 carry=900 spare=9100 risk=1.00
+[00:19:35.705] INFO  [life]   reason: no bank learned yet -30
+[00:19:35.705] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:35.705] INFO  [mk3_Amara] [action] scanning nearby mobiles for names
+[00:19:35.706] INFO  [mk3_Amara] [action] requested 2 paperdoll(s) for trade titles
+[00:19:35.706] INFO  [life] bank: asking who is standing in the bank
+[00:19:35.712] INFO  [mk3_Amara] [mobiles] nearby (4):
+[00:19:35.712] INFO  [mk3_Amara]   Aelia 0x00013DA6
+[00:19:35.712] INFO  [mk3_Amara]   Audny 0x00001076
+[00:19:35.712] INFO  [mk3_Amara]   Starling 0x000013C5
+[00:19:35.712] INFO  [mk3_Amara]   Cyras 0x00015725
+[00:19:35.712] INFO  [mk3_Amara] [0x20] player @(1496,1628,10) facing=0
+[00:19:35.712] INFO  [mk3_Amara] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[00:19:35.712] INFO  [mk3_Amara] [world] Audny, the innkeeper is a innkeeper at (1493,1614)
+[00:19:35.712] INFO  [mk3_Amara] [0x88] paperdoll 0x00013DA6: "Aelia, Apprentice Tailor"
+[00:19:36.131] INFO  [mk3_Amara] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:37.745] INFO  [life] bank: no banker in sight
+[00:19:37.746] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:37.807] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:37.807] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[00:19:37.807] INFO  [life]   score=130.0
+[00:19:37.807] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:37.807] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:37.807] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:37.807] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:19:39.272] INFO  [mk3_Amara] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:40.755] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:19:42.350] INFO  [mk3_Amara] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:42.746] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:42.746] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:42.749] INFO  [mk3_Amara] [travel] place: skipping Cove healer -- 1344 tiles and 1 gate for a service Britain healer offers
+[00:19:42.749] INFO  [mk3_Amara] [travel] place: skipping Minoc healer -- 1704 tiles and 0 gates for a service Britain healer offers
+[00:19:42.749] INFO  [mk3_Amara] [travel] Britain healer -> (1471,1611) r=5 from (1496,1628)
+[00:19:42.749] LOG   [mk3_Amara] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1496,1628)
+[00:19:42.749] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:42.749] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:19:42.749] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:19:42.749] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:42.749] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:42.749] LOG   [mk3_Amara] event travel_mode: walk
+[00:19:42.749] INFO  [mk3_Amara] [travel] plan Britain healer: ok legs=1 ~25 tiles transit=0 nodes=0
+[00:19:42.808] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:19:42.808] INFO  [mk3_Amara] [action] goto (1471,1611) from (1496,1628,10)
+[00:19:42.808] LOG   [mk3_Amara] event goto_start: target=(1471,1611) from=(1496,1628)
+[00:19:42.808] INFO  [mk3_Amara] [bot] running from (1496,1628,10) to (1471,1611,z20)
+[00:19:42.808] INFO  [mk3_Amara] [bot] planning path to (1471,1611) in background
+[00:19:42.884] INFO  [mk3_Amara] [bot] replan to (1471,1611): 33 steps in 5398.3us
+[00:19:45.357] INFO  [mk3_Amara] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:45.796] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:19:46.569] INFO  [mk3_Amara] [chat uni  ] : Dale buy
+[00:19:46.569] INFO  [mk3_Amara] [chat ascii] Dale: Excuse me Vorar, but Halain wants to speak to me
+[00:19:46.569] INFO  [mk3_Amara] [chat ascii] Dale: Hello! ?
+[00:19:46.569] INFO  [mk3_Amara] [chat ascii] Dale: I got lots to sell!
+[00:19:48.176] INFO  [mk3_Amara] [chat uni  ] : Dale buy
+[00:19:48.176] INFO  [mk3_Amara] [chat ascii] Dale: Excuse me Halain, but Delras wants to speak to me
+[00:19:48.176] INFO  [mk3_Amara] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:19:48.176] INFO  [mk3_Amara] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:19:48.190] INFO  [mk3_Amara] [chat uni  ] : Dale buy
+[00:19:48.190] INFO  [mk3_Amara] [chat ascii] Dale: Excuse me Delras, but Cyras wants to speak to me
+[00:19:48.190] INFO  [mk3_Amara] [chat ascii] Dale: Hello!
+[00:19:48.190] INFO  [mk3_Amara] [chat ascii] Dale: I got lots to sell!
+[00:19:48.190] INFO  [mk3_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=17 in 98.7us
+[00:19:48.422] INFO  [mk3_Amara] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:50.562] INFO  [mk3_Amara] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=9 in 76.3us
+[00:19:50.820] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:19:51.314] INFO  [mk3_Amara] [travel] Britain healer ARRIVED at (1476,1611,20)
+[00:19:51.314] LOG   [mk3_Amara] event travel_done: label='Britain healer' ok=1 at=(1476,1611) legs=1 plans=1 why=''
+[00:19:51.315] INFO  [mk3_Amara] [action] scanning nearby mobiles for names
+[00:19:51.315] INFO  [mk3_Amara] [action] requested 6 paperdoll(s) for trade titles
+[00:19:51.315] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:19:51.329] INFO  [mk3_Amara] [bot] lookahead patched around block at step 1: anchor=5 new segment=12 path=13 in 252.3us
+[00:19:51.329] INFO  [mk3_Amara] [mobiles] nearby (10):
+[00:19:51.329] INFO  [mk3_Amara]   Aelia 0x00013DA6
+[00:19:51.329] INFO  [mk3_Amara]   Vorar 0x00016305
+[00:19:51.329] INFO  [mk3_Amara]   Halain 0x0001616D
+[00:19:51.329] INFO  [mk3_Amara]   Dale 0x000010C1
+[00:19:51.329] INFO  [mk3_Amara]   Cyras 0x00015725
+[00:19:51.329] INFO  [mk3_Amara]   Delras 0x00015A59
+[00:19:51.329] INFO  [mk3_Amara]   Natasha 0x00001194
+[00:19:51.329] INFO  [mk3_Amara]   Dog 0x00000230
+[00:19:51.329] INFO  [mk3_Amara]   Caimile 0x00001239
+[00:19:51.329] INFO  [mk3_Amara]   Audny 0x00001076
+[00:19:51.329] INFO  [mk3_Amara] [0x20] player @(1476,1611,20) facing=5
+[00:19:51.329] INFO  [mk3_Amara] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[00:19:51.329] INFO  [mk3_Amara] [0x20] player @(1476,1611,20) facing=6
+[00:19:51.329] INFO  [mk3_Amara] [0x88] paperdoll 0x00015A59: "Delras, Apprentice Lumberjack"
+[00:19:51.329] INFO  [mk3_Amara] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[00:19:51.329] INFO  [mk3_Amara] [world] Dale, the healer is a healer at (1471,1612)
+[00:19:51.329] INFO  [mk3_Amara] [0x88] paperdoll 0x00016305: "Vorar, Apprentice Lumberjack"
+[00:19:51.329] INFO  [mk3_Amara] [0x20] player @(1476,1611,20) facing=5
+[00:19:51.329] INFO  [mk3_Amara] [0x88] paperdoll 0x0001616D: "Halain, Apprentice Lumberjack"
+[00:19:51.329] INFO  [mk3_Amara] [0x20] player @(1476,1611,20) facing=6
+[00:19:51.329] INFO  [mk3_Amara] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[00:19:51.329] INFO  [mk3_Amara] [world] Natasha, the healer guildmistress is a healer at (1468,1611)
+[00:19:51.484] INFO  [mk3_Amara] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:54.334] INFO  [life] potions: found a 'healer'
+[00:19:54.350] INFO  [mk3_Amara] [travel] mobile 0x000010C1 -> (1471,1612) r=1 from (1476,1611)
+[00:19:54.350] LOG   [mk3_Amara] event travel_start: label='mobile 0x000010C1' target=(1471,1612) radius=1 from=(1476,1611)
+[00:19:54.350] INFO  [life] potions: the 'healer' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:19:54.350] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:19:54.350] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:19:54.350] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:54.350] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:54.350] LOG   [mk3_Amara] event travel_mode: walk
+[00:19:54.350] INFO  [mk3_Amara] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:19:54.410] INFO  [mk3_Amara] [action] goto finished at (1476,1611,20); target (1471,1611); stopped short (off by 5 tile(s))
+[00:19:54.411] LOG   [mk3_Amara] event goto_done: at=(1476,1611) target=(1471,1611) arrived=0 off=5
+[00:19:54.411] INFO  [mk3_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:54.411] INFO  [mk3_Amara] [action] goto (1471,1612) from (1476,1611,20)
+[00:19:54.411] LOG   [mk3_Amara] event goto_start: target=(1471,1612) from=(1476,1611)
+[00:19:54.411] INFO  [mk3_Amara] [bot] running from (1476,1611,20) to (1471,1612,z20)
+[00:19:54.411] INFO  [mk3_Amara] [bot] planning path to (1471,1612) in background
+[00:19:54.532] INFO  [mk3_Amara] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:55.726] INFO  [mk3_Amara] [action] goto finished at (1476,1611,20); target (1471,1612); stopped short (off by 6 tile(s))
+[00:19:55.726] LOG   [mk3_Amara] event goto_done: at=(1476,1611) target=(1471,1612) arrived=0 off=6
+[00:19:55.867] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:19:56.937] INFO  [mk3_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:56.937] INFO  [mk3_Amara] [action] goto (1471,1612) from (1476,1611,20)
+[00:19:56.937] LOG   [mk3_Amara] event goto_start: target=(1471,1612) from=(1476,1611)
+[00:19:56.937] INFO  [mk3_Amara] [bot] running from (1476,1611,20) to (1471,1612,z20)
+[00:19:56.937] INFO  [mk3_Amara] [bot] planning path to (1471,1612) in background
+[00:19:57.598] INFO  [mk3_Amara] [chat ascii] System: Serena has arrived in Britain.
+[00:19:58.303] INFO  [mk3_Amara] [action] goto finished at (1476,1611,20); target (1471,1612); stopped short (off by 6 tile(s))
+[00:19:58.303] LOG   [mk3_Amara] event goto_done: at=(1476,1611) target=(1471,1612) arrived=0 off=6
+[00:19:59.513] INFO  [mk3_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:19:59.513] INFO  [mk3_Amara] [action] goto (1471,1612) from (1476,1611,20)
+[00:19:59.513] LOG   [mk3_Amara] event goto_start: target=(1471,1612) from=(1476,1611)
+[00:19:59.513] INFO  [mk3_Amara] [bot] running from (1476,1611,20) to (1471,1612,z20)
+[00:19:59.513] INFO  [mk3_Amara] [bot] planning path to (1471,1612) in background
+[00:20:00.645] INFO  [mk3_Amara] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:00.905] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:01.243] INFO  [mk3_Amara] [action] goto finished at (1476,1611,20); target (1471,1612); stopped short (off by 6 tile(s))
+[00:20:01.243] LOG   [mk3_Amara] event goto_done: at=(1476,1611) target=(1471,1612) arrived=0 off=6
+[00:20:02.471] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:20:02.471] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:20:02.471] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:02.471] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:02.471] LOG   [mk3_Amara] event travel_mode: walk
+[00:20:02.471] INFO  [mk3_Amara] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:03.869] INFO  [mk3_Amara] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:03.988] INFO  [mk3_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:03.988] INFO  [mk3_Amara] [action] goto (1471,1612) from (1476,1611,20)
+[00:20:03.988] LOG   [mk3_Amara] event goto_start: target=(1471,1612) from=(1476,1611)
+[00:20:03.988] INFO  [mk3_Amara] [bot] running from (1476,1611,20) to (1471,1612,z20)
+[00:20:03.988] INFO  [mk3_Amara] [bot] planning path to (1471,1612) in background
+[00:20:05.004] INFO  [mk3_Amara] [chat ascii] Dale: Hmm?
+[00:20:05.004] INFO  [mk3_Amara] [chat ascii] Dale: Hmm?
+[00:20:05.699] INFO  [mk3_Amara] [action] goto finished at (1476,1611,20); target (1471,1612); stopped short (off by 6 tile(s))
+[00:20:05.699] LOG   [mk3_Amara] event goto_done: at=(1476,1611) target=(1471,1612) arrived=0 off=6
+[00:20:05.959] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:06.949] INFO  [mk3_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:06.949] INFO  [mk3_Amara] [action] goto (1471,1612) from (1476,1611,20)
+[00:20:06.949] LOG   [mk3_Amara] event goto_start: target=(1471,1612) from=(1476,1611)
+[00:20:06.949] INFO  [mk3_Amara] [bot] running from (1476,1611,20) to (1471,1612,z20)
+[00:20:06.949] INFO  [mk3_Amara] [bot] planning path to (1471,1612) in background
+[00:20:06.980] INFO  [mk3_Amara] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:08.438] INFO  [mk3_Amara] [action] goto finished at (1476,1611,20); target (1471,1612); stopped short (off by 6 tile(s))
+[00:20:08.438] LOG   [mk3_Amara] event goto_done: at=(1476,1611) target=(1471,1612) arrived=0 off=6
+[00:20:09.683] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:20:09.683] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:20:09.683] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:09.683] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:09.683] LOG   [mk3_Amara] event travel_mode: walk
+[00:20:09.683] INFO  [mk3_Amara] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:10.022] INFO  [mk3_Amara] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:11.015] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:12.186] INFO  [mk3_Amara] [chat uni  ] Aelia: Dale buy
+[00:20:12.186] INFO  [mk3_Amara] [chat ascii] Dale: I got lots to sell!
+[00:20:12.262] INFO  [mk3_Amara] [chat ascii] Dale: Here you are, Aelia That will be 120 gold coins.  I thank thee for thy business.
+[00:20:12.708] INFO  [mk3_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:12.708] INFO  [mk3_Amara] [action] goto (1471,1612) from (1476,1611,20)
+[00:20:12.708] LOG   [mk3_Amara] event goto_start: target=(1471,1612) from=(1476,1611)
+[00:20:12.708] INFO  [mk3_Amara] [bot] running from (1476,1611,20) to (1471,1612,z20)
+[00:20:12.708] INFO  [mk3_Amara] [bot] planning path to (1471,1612) in background
+[00:20:13.076] INFO  [mk3_Amara] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:14.719] INFO  [mk3_Amara] [action] goto finished at (1476,1611,20); target (1471,1612); stopped short (off by 6 tile(s))
+[00:20:14.719] LOG   [mk3_Amara] event goto_done: at=(1476,1611) target=(1471,1612) arrived=0 off=6
+[00:20:15.951] INFO  [mk3_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:15.951] INFO  [mk3_Amara] [action] goto (1471,1612) from (1476,1611,20)
+[00:20:15.951] LOG   [mk3_Amara] event goto_start: target=(1471,1612) from=(1476,1611)
+[00:20:15.951] INFO  [mk3_Amara] [bot] running from (1476,1611,20) to (1471,1612,z20)
+[00:20:15.951] INFO  [mk3_Amara] [bot] planning path to (1471,1612) in background
+[00:20:16.027] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:16.106] INFO  [mk3_Amara] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:17.707] INFO  [mk3_Amara] [action] goto finished at (1476,1611,20); target (1471,1612); stopped short (off by 6 tile(s))
+[00:20:17.707] LOG   [mk3_Amara] event goto_done: at=(1476,1611) target=(1471,1612) arrived=0 off=6
+[00:20:18.943] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:20:18.943] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:20:18.943] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:18.943] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:18.943] LOG   [mk3_Amara] event travel_mode: walk
+[00:20:18.943] INFO  [mk3_Amara] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:19.161] INFO  [mk3_Amara] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:21.038] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:21.726] INFO  [mk3_Amara] [chat uni  ] : Dale buy
+[00:20:21.726] INFO  [mk3_Amara] [chat ascii] Dale: Greetings. What can I help thee with?
+[00:20:21.726] INFO  [mk3_Amara] [chat ascii] Dale: I'm here to sell thee supplies.
+[00:20:21.803] INFO  [mk3_Amara] [chat ascii] Dale: Here you are, Odessa That will be 120 gold coins.  I thank thee for thy business.
+[00:20:22.309] INFO  [mk3_Amara] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:23.463] INFO  [mk3_Amara] [travel] avoiding 1 teleporter pad(s) on this leg
+[00:20:23.463] INFO  [mk3_Amara] [action] goto (1471,1612) from (1476,1611,20)
+[00:20:23.463] LOG   [mk3_Amara] event goto_start: target=(1471,1612) from=(1476,1611)
+[00:20:23.463] INFO  [mk3_Amara] [bot] running from (1476,1611,20) to (1471,1612,z20)
+[00:20:23.463] INFO  [mk3_Amara] [bot] planning path to (1471,1612) in background
+[00:20:23.480] INFO  [mk3_Amara] [bot] replan to (1471,1612): 5 steps in 53.0us
+[00:20:25.042] INFO  [mk3_Amara] [travel] mobile 0x000010C1 ARRIVED at (1472,1612,20)
+[00:20:25.042] LOG   [mk3_Amara] event travel_done: label='mobile 0x000010C1' ok=1 at=(1472,1612) legs=1 plans=4 why=''
+[00:20:25.044] INFO  [life] potions: within reach
+[00:20:25.055] INFO  [mk3_Amara] [bot] arrived at (1471,1612,20)
+[00:20:25.056] INFO  [mk3_Amara] [ACTION] vendor_buy start
+[00:20:25.056] INFO  [mk3_Amara] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[00:20:25.056] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:25.070] INFO  [mk3_Amara] [chat uni  ] : Dale buy
+[00:20:25.070] INFO  [mk3_Amara] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[00:20:25.070] INFO  [mk3_Amara] [0x3C] container contents: 4 item(s)
+[00:20:25.070] INFO  [mk3_Amara] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[00:20:25.070] INFO  [mk3_Amara] [0x74] vendor shop data: cont=0x400010BB 4 item(s), layer=0x1A
+[00:20:25.070] INFO  [mk3_Amara] [0x74]   Heal                         gfx=0x0F0C qty=2    price=30
+[00:20:25.070] INFO  [mk3_Amara] [0x74]   Ginseng                      gfx=0x0F85 qty=20   price=3
+[00:20:25.070] INFO  [mk3_Amara] [0x74]   Garlic                       gfx=0x0F84 qty=13   price=3
+[00:20:25.070] INFO  [mk3_Amara] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[00:20:25.070] INFO  [mk3_Amara] [0x3C] container contents: 0 item(s)
+[00:20:25.070] INFO  [mk3_Amara] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[00:20:25.070] INFO  [mk3_Amara] [VENDOR] offer from 0x000010C1: 4 item(s)
+[00:20:25.070] INFO  [mk3_Amara] [VENDOR]   0x4001823F Heal                   x2   30 gp
+[00:20:25.070] INFO  [mk3_Amara] [VENDOR]   0x40018237 Ginseng                x20  3 gp
+[00:20:25.070] INFO  [mk3_Amara] [VENDOR]   0x40018236 Garlic                 x13  3 gp
+[00:20:25.070] INFO  [mk3_Amara] [VENDOR]   0x40018232 Refresh                x19  16 gp
+[00:20:25.070] LOG   [mk3_Amara] event vendor_offer: vendor=0x000010C1 items=4
+[00:20:25.070] INFO  [mk3_Amara] [ACTION_RESULT] vendor_buy success (14ms) vendor offer received
+[00:20:25.070] LOG   [mk3_Amara] event action_result: vendor_buy success took=14ms vendor offer received
+[00:20:25.070] INFO  [mk3_Amara] [0x24] vendor buy gump for 0x000010C1
+[00:20:25.072] INFO  [life] potions: the shop is open
+[00:20:25.132] INFO  [mk3_Amara] [ACTION] vendor_buy start
+[00:20:25.132] INFO  [mk3_Amara] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:20:25.132] INFO  [mk3_Amara] [VENDOR] buy item=0x4001823F qty=2 from vendor=0x000010C1 gold=10000
+[00:20:25.132] INFO  [life] potions: buying 2 heal potion at 30 each from the 'healer' (shelf holds 2) -- waiting for the pack
+[00:20:25.146] INFO  [mk3_Amara] [ACTION_RESULT] vendor_buy success (14ms) purchased item delivered
+[00:20:25.146] LOG   [mk3_Amara] event action_result: vendor_buy success took=14ms purchased item delivered
+[00:20:25.146] INFO  [mk3_Amara] [chat ascii] Dale: Here you are, Amara That will be 60 gold coins.  I thank thee for thy business.
+[00:20:25.146] INFO  [mk3_Amara] [0x3B] vendor transaction closed: vendor=0x000010C1 flag=0
+[00:20:25.147] INFO  [life] goal_changed=GET_FOOD from=REPLACE_EQUIPMENT reason="GET_FOOD 62.5 superseded REPLACE_EQUIPMENT 0.0"
+[00:20:25.148] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedPractice(Magery 0.45) NeedFood(food 0.25) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[00:20:25.148] INFO  [life]   score=62.5
+[00:20:25.148] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[00:20:25.148] INFO  [life]   reason: food=0
+[00:20:25.148] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 252s after achieving nothing
+[00:20:25.148] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:25.159] INFO  [mk3_Amara] [travel] Britain baker -> (1450,1617) r=5 from (1471,1612)
+[00:20:25.159] LOG   [mk3_Amara] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1471,1612)
+[00:20:25.159] INFO  [life] food: walking to a 'baker' (trip 1)
+[00:20:25.159] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:20:25.159] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:20:25.159] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:25.159] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:25.159] LOG   [mk3_Amara] event travel_mode: walk
+[00:20:25.159] INFO  [mk3_Amara] [travel] plan Britain baker: ok legs=1 ~21 tiles transit=0 nodes=0
+[00:20:25.208] INFO  [mk3_Amara] [action] goto finished at (1471,1612,20); target (1471,1612); ARRIVED (off by 0 tile(s))
+[00:20:25.208] LOG   [mk3_Amara] event goto_done: at=(1471,1612) target=(1471,1612) arrived=1 off=0
+[00:20:25.208] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:25.208] INFO  [mk3_Amara] [action] goto (1450,1617) from (1471,1612,20)
+[00:20:25.208] LOG   [mk3_Amara] event goto_start: target=(1450,1617) from=(1471,1612)
+[00:20:25.208] INFO  [mk3_Amara] [bot] running from (1471,1612,20) to (1450,1617,z20)
+[00:20:25.208] INFO  [mk3_Amara] [bot] planning path to (1450,1617) in background
+[00:20:25.270] INFO  [mk3_Amara] [action] goto finished at (1471,1612,20); target (1450,1617); stopped short (off by 26 tile(s))
+[00:20:25.270] LOG   [mk3_Amara] event goto_done: at=(1471,1612) target=(1450,1617) arrived=0 off=26
+[00:20:25.377] INFO  [mk3_Amara] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:26.095] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:26.476] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:26.476] INFO  [mk3_Amara] [action] goto (1450,1617) from (1471,1612,20)
+[00:20:26.476] LOG   [mk3_Amara] event goto_start: target=(1450,1617) from=(1471,1612)
+[00:20:26.476] INFO  [mk3_Amara] [bot] running from (1471,1612,20) to (1450,1617,z20)
+[00:20:26.476] INFO  [mk3_Amara] [bot] planning path to (1450,1617) in background
+[00:20:26.537] INFO  [mk3_Amara] [bot] replan to (1450,1617): 46 steps in 7760.8us
+[00:20:29.126] INFO  [mk3_Amara] [bot] step (1478,1611,20)->(1479,1612,20) rejected; OpenDoor + retry
+[00:20:29.128] INFO  [mk3_Amara] [chat ascii] System: Opening door...
+[00:20:29.129] INFO  [mk3_Amara] [0x20] player @(1478,1611,20) facing=2
+[00:20:29.130] INFO  [mk3_Amara] [action] goto finished at (1478,1611,20); target (1450,1617); stopped short (off by 34 tile(s))
+[00:20:29.130] LOG   [mk3_Amara] event goto_done: at=(1478,1611) target=(1450,1617) arrived=0 off=34
+[00:20:30.384] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:30.384] INFO  [mk3_Amara] [action] goto (1450,1617) from (1478,1611,20)
+[00:20:30.384] LOG   [mk3_Amara] event goto_start: target=(1450,1617) from=(1478,1611)
+[00:20:30.384] INFO  [mk3_Amara] [bot] running from (1478,1611,20) to (1450,1617,z20)
+[00:20:30.384] INFO  [mk3_Amara] [bot] planning path to (1450,1617) in background
+[00:20:30.447] INFO  [mk3_Amara] [bot] replan to (1450,1617): 37 steps in 4522.3us
+[00:20:30.965] INFO  [mk3_Amara] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[00:20:30.967] INFO  [mk3_Amara] [chat ascii] System: Opening door...
+[00:20:31.104] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:35.715] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_13.amara/state.json
+[00:20:36.114] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:41.258] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:41.450] INFO  [mk3_Amara] [travel] Britain baker ARRIVED at (1455,1614,20)
+[00:20:41.450] LOG   [mk3_Amara] event travel_done: label='Britain baker' ok=1 at=(1455,1614) legs=1 plans=1 why=''
+[00:20:41.452] INFO  [mk3_Amara] [action] scanning nearby mobiles for names
+[00:20:41.452] INFO  [mk3_Amara] [action] requested 2 paperdoll(s) for trade titles
+[00:20:41.452] INFO  [life] food: at the shop, asking who is here (scan 1 of 3)
+[00:20:41.463] INFO  [mk3_Amara] [mobiles] nearby (8):
+[00:20:41.463] INFO  [mk3_Amara]   Odessa 0x000194DE
+[00:20:41.463] INFO  [mk3_Amara]   Halain 0x0001616D
+[00:20:41.463] INFO  [mk3_Amara]   Vorar 0x00016305
+[00:20:41.463] INFO  [mk3_Amara]   Aelia 0x00013DA6
+[00:20:41.463] INFO  [mk3_Amara]   Cyras 0x00015725
+[00:20:41.463] INFO  [mk3_Amara]   Delras 0x00015A59
+[00:20:41.463] INFO  [mk3_Amara]   Lionel 0x000010B3
+[00:20:41.463] INFO  [mk3_Amara]   Natasha 0x00001194
+[00:20:41.463] INFO  [mk3_Amara] [0x20] player @(1455,1614,20) facing=7
+[00:20:41.463] INFO  [mk3_Amara] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[00:20:41.463] INFO  [mk3_Amara] [0x20] player @(1455,1614,20) facing=6
+[00:20:41.463] INFO  [mk3_Amara] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[00:20:41.463] INFO  [mk3_Amara] [world] Lionel, the baker is a baker at (1449,1616)
+[00:20:44.493] INFO  [life] food: found a 'baker'
+[00:20:44.555] INFO  [mk3_Amara] [travel] mobile 0x000010B3 -> (1450,1616) r=1 from (1455,1614)
+[00:20:44.555] LOG   [mk3_Amara] event travel_start: label='mobile 0x000010B3' target=(1450,1616) radius=1 from=(1455,1614)
+[00:20:44.555] INFO  [life] food: the 'baker' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:44.555] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:20:44.555] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:20:44.555] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:44.555] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:44.555] LOG   [mk3_Amara] event travel_mode: walk
+[00:20:44.555] INFO  [mk3_Amara] [travel] plan mobile 0x000010B3: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:20:44.571] INFO  [mk3_Amara] [action] goto finished at (1455,1614,20); target (1450,1617); stopped short (off by 8 tile(s))
+[00:20:44.571] LOG   [mk3_Amara] event goto_done: at=(1455,1614) target=(1450,1617) arrived=0 off=8
+[00:20:44.571] INFO  [mk3_Amara] [action] goto (1450,1616) from (1455,1614,20)
+[00:20:44.571] LOG   [mk3_Amara] event goto_start: target=(1450,1616) from=(1455,1614)
+[00:20:44.571] INFO  [mk3_Amara] [bot] running from (1455,1614,20) to (1450,1616,z20)
+[00:20:44.571] INFO  [mk3_Amara] [bot] planning path to (1450,1616) in background
+[00:20:46.263] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:47.107] INFO  [mk3_Amara] [chat uni  ] Vorar: Lionel buy
+[00:20:47.120] INFO  [mk3_Amara] [chat uni  ] Halain: Lionel buy
+[00:20:47.120] INFO  [mk3_Amara] [chat ascii] Lionel: Yes?
+[00:20:47.120] INFO  [mk3_Amara] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:47.197] INFO  [mk3_Amara] [chat ascii] Lionel: Here you are, Halain That will be 16 gold coins.  I thank thee for thy business.
+[00:20:47.441] INFO  [mk3_Amara] [action] goto finished at (1455,1614,20); target (1450,1616); stopped short (off by 7 tile(s))
+[00:20:47.441] LOG   [mk3_Amara] event goto_done: at=(1455,1614) target=(1450,1616) arrived=0 off=7
+[00:20:48.698] INFO  [mk3_Amara] [action] goto (1450,1616) from (1455,1614,20)
+[00:20:48.698] LOG   [mk3_Amara] event goto_start: target=(1450,1616) from=(1455,1614)
+[00:20:48.698] INFO  [mk3_Amara] [bot] running from (1455,1614,20) to (1450,1616,z20)
+[00:20:48.698] INFO  [mk3_Amara] [bot] planning path to (1450,1616) in background
+[00:20:48.699] INFO  [mk3_Amara] [bot] replan to (1450,1616): 5 steps in 70.1us
+[00:20:50.263] INFO  [mk3_Amara] [bot] arrived at (1450,1616,20)
+[00:20:50.264] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1450,1616); ARRIVED (off by 0 tile(s))
+[00:20:50.264] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1450,1616) arrived=1 off=0
+[00:20:50.264] INFO  [mk3_Amara] [travel] mobile 0x000010B3 ARRIVED at (1450,1616,20)
+[00:20:50.264] LOG   [mk3_Amara] event travel_done: label='mobile 0x000010B3' ok=1 at=(1450,1616) legs=1 plans=1 why=''
+[00:20:50.324] INFO  [life] food: within reach
+[00:20:50.384] INFO  [mk3_Amara] [ACTION] vendor_buy start
+[00:20:50.384] INFO  [mk3_Amara] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[00:20:50.384] INFO  [life] food: asking the 'baker' to show something to eat (attempt 1)
+[00:20:50.400] INFO  [mk3_Amara] [chat uni  ] : Lionel buy
+[00:20:50.400] INFO  [mk3_Amara] [chat ascii] Lionel: Excuse me Halain, but Amara wants to speak to me
+[00:20:50.400] INFO  [mk3_Amara] [chat ascii] Lionel: Hello!
+[00:20:50.400] INFO  [mk3_Amara] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:20:50.400] INFO  [mk3_Amara] [0x3C] container contents: 11 item(s)
+[00:20:50.400] INFO  [mk3_Amara] [0x74] pairing: straight (straight 1, mirrored 0 of 11 rows)
+[00:20:50.400] INFO  [mk3_Amara] [0x74] vendor shop data: cont=0x400010A9 11 item(s), layer=0x1A
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   bread loaves                 gfx=0x103B qty=75   price=8
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   baked pie                    gfx=0x1041 qty=23   price=17
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   cake                         gfx=0x09E9 qty=22   price=38
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   muffins                      gfx=0x09EA qty=46   price=8
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   sack of flour                gfx=0x1039 qty=105  price=6
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   french bread                 gfx=0x098C qty=33   price=9
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   pan of cookies               gfx=0x160B qty=64   price=7
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   pizzas                       gfx=0x1040 qty=57   price=15
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   jars of honey                gfx=0x09EC qty=55   price=10
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   dough                        gfx=0x103D qty=45   price=12
+[00:20:50.400] INFO  [mk3_Amara] [0x74]   rolling pin                  gfx=0x1043 qty=5    price=9
+[00:20:50.400] INFO  [mk3_Amara] [0x3C] container contents: 0 item(s)
+[00:20:50.400] INFO  [mk3_Amara] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR] offer from 0x000010B3: 11 item(s)
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR]   0x400193BC bread loaves           x75  8 gp
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR]   0x400193BB baked pie              x23  17 gp
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR]   0x400193B8 cake                   x22  38 gp
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR]   0x400193B7 muffins                x46  8 gp
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR]   0x400193B5 sack of flour          x105 6 gp
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR]   0x400193B4 french bread           x33  9 gp
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR]   0x400193B2 pan of cookies         x64  7 gp
+[00:20:50.400] INFO  [mk3_Amara] [VENDOR]   0x400193AF pizzas                 x57  15 gp
+[00:20:50.400] LOG   [mk3_Amara] event vendor_offer: vendor=0x000010B3 items=11
+[00:20:50.400] INFO  [mk3_Amara] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[00:20:50.400] LOG   [mk3_Amara] event action_result: vendor_buy success took=16ms vendor offer received
+[00:20:50.400] INFO  [mk3_Amara] [0x24] vendor buy gump for 0x000010B3
+[00:20:50.402] INFO  [life] food: the shop is open
+[00:20:50.448] INFO  [life] food: the shop is open; the caller chooses
+[00:20:50.448] INFO  [life] food: buying bread loaves at 8 gold
+[00:20:50.448] INFO  [mk3_Amara] [ACTION] vendor_buy start
+[00:20:50.448] INFO  [mk3_Amara] [policy] allowed NPC purchase of i_bread_loaf (0x103B): basic food: a character with hunger enabled must be able to eat, and Revolution's cooking economy shows food was not an income good [BASIC_FOOD]
+[00:20:50.448] INFO  [mk3_Amara] [VENDOR] buy item=0x400193BC qty=2 from vendor=0x000010B3 gold=9940
+[00:20:50.448] INFO  [mk3_Amara] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:20:50.448] LOG   [mk3_Amara] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:20:50.448] INFO  [mk3_Amara] [chat ascii] Lionel: Here you are, Amara That will be 16 gold coins.  I thank thee for thy business.
+[00:20:50.448] INFO  [mk3_Amara] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[00:20:50.450] INFO  [life] goal_changed=TRAIN_AT_NPC from=GET_FOOD reason="TRAIN_AT_NPC 60.5 superseded GET_FOOD 0.0"
+[00:20:50.450] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedPractice(Magery 0.45) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[00:20:50.450] INFO  [life]   score=60.5
+[00:20:50.450] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[00:20:50.450] INFO  [life]   reason: Tinkering 0.0 -> 50.0, gold 9940 (fee is quoted on arrival, roughly 300)
+[00:20:50.450] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 227s after achieving nothing
+[00:20:50.450] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[00:20:51.271] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:56.328] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:20:57.212] INFO  [mk3_Amara] [chat uni  ] Vorar: Lionel buy
+[00:20:59.481] INFO  [life] plan=buy reason="below the ceiling, worth buying, and affordable"
+[00:20:59.481] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 1)
+[00:20:59.484] INFO  [mk3_Amara] [travel] place: skipping Minoc tinker -- 1912 tiles and 0 gates for a service Britain tinkerguildmaster offers
+[00:20:59.484] INFO  [mk3_Amara] [travel] place: skipping Vesper tinker -- 1960 tiles and 0 gates for a service Britain tinkerguildmaster offers
+[00:20:59.484] INFO  [mk3_Amara] [travel] place: skipping Papua tinkerguildmaster -- 1268 tiles and 3 gates for a service Britain tinkerguildmaster offers
+[00:20:59.484] INFO  [mk3_Amara] [travel] Britain tinkerguildmaster -> (1422,1654) r=5 from (1450,1616)
+[00:20:59.484] LOG   [mk3_Amara] event travel_start: label='Britain tinkerguildmaster' target=(1422,1654) radius=5 from=(1450,1616)
+[00:20:59.484] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:20:59.484] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:20:59.484] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:59.484] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:59.484] LOG   [mk3_Amara] event travel_mode: walk
+[00:20:59.484] INFO  [mk3_Amara] [travel] plan Britain tinkerguildmaster: ok legs=1 ~38 tiles transit=0 nodes=0
+[00:20:59.543] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:20:59.543] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:20:59.543] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:20:59.543] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:20:59.543] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:20:59.606] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:20:59.606] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:00.849] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:00.849] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:00.849] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:00.849] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:00.849] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:00.973] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:00.973] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:01.340] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:02.201] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:02.201] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:02.201] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:02.201] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:02.201] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:02.324] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:02.324] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:03.566] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:21:03.566] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:21:03.566] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:03.566] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:03.566] LOG   [mk3_Amara] event travel_mode: walk
+[00:21:03.566] INFO  [mk3_Amara] [travel] plan Britain tinkerguildmaster: ok legs=1 ~38 tiles transit=0 nodes=0
+[00:21:05.087] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:05.087] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:05.087] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:05.087] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:05.087] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:05.208] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:05.208] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:06.369] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:06.430] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:06.430] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:06.430] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:06.430] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:06.430] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:06.553] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:06.553] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:07.332] INFO  [mk3_Amara] [chat uni  ] Vorar: Lionel buy
+[00:21:07.763] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:07.763] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:07.763] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:07.763] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:07.763] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:07.886] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:07.886] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:09.019] INFO  [mk3_Amara] [chat uni  ] Aelia: Lionel buy
+[00:21:09.143] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:21:09.143] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:21:09.143] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:09.143] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:09.143] LOG   [mk3_Amara] event travel_mode: walk
+[00:21:09.143] INFO  [mk3_Amara] [travel] plan Britain tinkerguildmaster: ok legs=1 ~38 tiles transit=0 nodes=0
+[00:21:11.193] INFO  [mk3_Amara] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:11.372] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:12.173] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:12.173] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:12.173] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:12.173] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:12.173] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:12.296] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:12.296] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:13.524] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:13.524] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:13.524] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:13.524] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:13.524] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:13.648] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:13.648] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:14.571] INFO  [mk3_Amara] [chat ascii] System: Observer has departed from Minoc.
+[00:21:14.881] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:14.881] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:14.881] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:14.881] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:14.881] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:15.003] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:15.003] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:16.203] INFO  [mk3_Amara] [travel] mode walk             usable   <- chosen
+[00:21:16.203] INFO  [mk3_Amara] [travel] mode moongate         usable
+[00:21:16.203] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:16.203] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:16.203] LOG   [mk3_Amara] event travel_mode: walk
+[00:21:16.203] INFO  [mk3_Amara] [travel] plan Britain tinkerguildmaster: ok legs=1 ~38 tiles transit=0 nodes=0
+[00:21:16.415] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:19.066] INFO  [mk3_Amara] [chat uni  ] Aelia: Lionel buy
+[00:21:20.172] INFO  [mk3_Amara] [chat uni  ] : Lionel buy
+[00:21:20.569] INFO  [mk3_Amara] [chat uni  ] Odessa: Lionel buy
+[00:21:20.569] INFO  [mk3_Amara] [chat ascii] Lionel: Excuse me Amara, but Odessa wants to speak to me
+[00:21:20.569] INFO  [mk3_Amara] [chat ascii] Lionel: Greetings. What can I do for thee?
+[00:21:20.569] INFO  [mk3_Amara] [chat ascii] Lionel: I'm here to sell thee supplies.
+[00:21:20.754] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:20.754] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:20.754] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:20.754] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:20.754] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:20.878] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:20.878] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:21.429] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:22.106] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:22.106] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:22.106] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:22.106] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:22.106] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:22.230] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:22.230] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:23.461] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:23.462] INFO  [mk3_Amara] [action] goto (1422,1654) from (1450,1616,20)
+[00:21:23.462] LOG   [mk3_Amara] event goto_start: target=(1422,1654) from=(1450,1616)
+[00:21:23.462] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1422,1654,z10)
+[00:21:23.462] INFO  [mk3_Amara] [bot] planning path to (1422,1654) in background
+[00:21:23.537] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1422,1654); stopped short (off by 66 tile(s))
+[00:21:23.537] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1422,1654) arrived=0 off=66
+[00:21:23.537] LOG   [mk3_Amara] event travel_escape: from=(1450,1616,20) to=(1448,1608) attempt=1
+[00:21:23.537] INFO  [mk3_Amara] [action] goto (1448,1608) from (1450,1616,20)
+[00:21:23.537] LOG   [mk3_Amara] event goto_start: target=(1448,1608) from=(1450,1616)
+[00:21:23.538] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1448,1608,z20)
+[00:21:23.538] INFO  [mk3_Amara] [bot] planning path to (1448,1608) in background
+[00:21:23.661] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1448,1608); stopped short (off by 10 tile(s))
+[00:21:23.661] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1448,1608) arrived=0 off=10
+[00:21:23.661] INFO  [mk3_Amara] [travel] recovery walk fell short at (1450,1616,20) (off 8); attempt 1/3
+[00:21:23.661] LOG   [mk3_Amara] event travel_recovery_done: reached=0 at=(1450,1616,20) off=8 attempt=1
+[00:21:23.661] LOG   [mk3_Amara] event travel_escape: from=(1450,1616,20) to=(1464,1608) attempt=2
+[00:21:23.661] INFO  [mk3_Amara] [action] goto (1464,1608) from (1450,1616,20)
+[00:21:23.661] LOG   [mk3_Amara] event goto_start: target=(1464,1608) from=(1450,1616)
+[00:21:23.661] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1464,1608,z20)
+[00:21:23.661] INFO  [mk3_Amara] [bot] planning path to (1464,1608) in background
+[00:21:23.738] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1464,1608); stopped short (off by 22 tile(s))
+[00:21:23.738] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1464,1608) arrived=0 off=22
+[00:21:23.738] INFO  [mk3_Amara] [travel] recovery walk fell short at (1450,1616,20) (off 14); attempt 1/3
+[00:21:23.738] LOG   [mk3_Amara] event travel_recovery_done: reached=0 at=(1450,1616,20) off=14 attempt=1
+[00:21:23.738] LOG   [mk3_Amara] event travel_escape: from=(1450,1616,20) to=(1464,1624) attempt=3
+[00:21:23.738] INFO  [mk3_Amara] [action] goto (1464,1624) from (1450,1616,20)
+[00:21:23.738] LOG   [mk3_Amara] event goto_start: target=(1464,1624) from=(1450,1616)
+[00:21:23.738] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1464,1624,z20)
+[00:21:23.738] INFO  [mk3_Amara] [bot] planning path to (1464,1624) in background
+[00:21:23.861] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1464,1624); stopped short (off by 22 tile(s))
+[00:21:23.861] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1464,1624) arrived=0 off=22
+[00:21:23.861] INFO  [mk3_Amara] [travel] recovery walk fell short at (1450,1616,20) (off 14); attempt 1/3
+[00:21:23.861] LOG   [mk3_Amara] event travel_recovery_done: reached=0 at=(1450,1616,20) off=14 attempt=1
+[00:21:23.861] INFO  [mk3_Amara] [travel] Britain tinkerguildmaster FAILED at (1450,1616,20) -- sealed in; recovery exhausted
+[00:21:23.861] LOG   [mk3_Amara] event travel_failed: label='Britain tinkerguildmaster' ok=0 at=(1450,1616) legs=1 plans=4 why='sealed in; recovery exhausted'
+[00:21:23.923] INFO  [life] training: arrived at 1450,1616 -- asking who is here
+[00:21:23.923] INFO  [mk3_Amara] [action] scanning nearby mobiles for names
+[00:21:23.923] INFO  [mk3_Amara] [action] requested 3 paperdoll(s) for trade titles
+[00:21:23.937] INFO  [mk3_Amara] [mobiles] nearby (11):
+[00:21:23.937] INFO  [mk3_Amara]   Halain 0x0001616D
+[00:21:23.937] INFO  [mk3_Amara]   Lionel 0x000010B3
+[00:21:23.937] INFO  [mk3_Amara]   Aelia 0x00013DA6
+[00:21:23.937] INFO  [mk3_Amara]   Odessa 0x000194DE
+[00:21:23.937] INFO  [mk3_Amara]   Vorar 0x00016305
+[00:21:23.937] INFO  [mk3_Amara]   Faustus 0x000181F7
+[00:21:23.937] INFO  [mk3_Amara]   Serena 0x000193F7
+[00:21:23.937] INFO  [mk3_Amara]   Cyras 0x00015725
+[00:21:23.937] INFO  [mk3_Amara]   Delras 0x00015A59
+[00:21:23.937] INFO  [mk3_Amara]   Rhea 0x00017DD9
+[00:21:23.937] INFO  [mk3_Amara]   Jack 0x00001119
+[00:21:23.937] INFO  [mk3_Amara] [0x20] player @(1450,1616,20) facing=2
+[00:21:23.937] INFO  [mk3_Amara] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[00:21:23.937] INFO  [mk3_Amara] [0x20] player @(1450,1616,20) facing=1
+[00:21:23.937] INFO  [mk3_Amara] [0x88] paperdoll 0x000181F7: "Faustus, Apprentice Armsman"
+[00:21:23.937] INFO  [mk3_Amara] [0x88] paperdoll 0x00017DD9: "Rhea, Apprentice Tamer"
+[00:21:26.475] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 2)
+[00:21:26.479] INFO  [mk3_Amara] [travel] place: skipping Minoc tinker -- 1912 tiles and 0 gates for a service Jhelom tinker offers
+[00:21:26.479] INFO  [mk3_Amara] [travel] place: skipping Vesper tinker -- 1960 tiles and 0 gates for a service Jhelom tinker offers
+[00:21:26.479] INFO  [mk3_Amara] [travel] place: skipping Papua tinkerguildmaster -- 1268 tiles and 3 gates for a service Jhelom tinker offers
+[00:21:26.479] INFO  [mk3_Amara] [travel] Jhelom tinker -> (1404,3802) r=5 from (1450,1616)
+[00:21:26.479] LOG   [mk3_Amara] event travel_start: label='Jhelom tinker' target=(1404,3802) radius=5 from=(1450,1616)
+[00:21:26.479] INFO  [mk3_Amara] [travel] mode moongate         usable   <- chosen
+[00:21:26.479] INFO  [mk3_Amara] [travel] mode walk             usable
+[00:21:26.479] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:26.479] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:26.479] LOG   [mk3_Amara] event travel_mode: moongate
+[00:21:26.480] INFO  [mk3_Amara] [travel] plan Jhelom tinker: ok legs=16 ~664 tiles transit=1 nodes=271
+[00:21:26.480] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:26.537] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:26.537] INFO  [mk3_Amara] [action] goto (1416,1656) from (1450,1616,20)
+[00:21:26.537] LOG   [mk3_Amara] event goto_start: target=(1416,1656) from=(1450,1616)
+[00:21:26.537] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1416,1656)
+[00:21:26.537] INFO  [mk3_Amara] [bot] planning path to (1416,1656) in background
+[00:21:26.658] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1416,1656); stopped short (off by 74 tile(s))
+[00:21:26.658] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1416,1656) arrived=0 off=74
+[00:21:27.903] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:27.903] INFO  [mk3_Amara] [action] goto (1416,1656) from (1450,1616,20)
+[00:21:27.903] LOG   [mk3_Amara] event goto_start: target=(1416,1656) from=(1450,1616)
+[00:21:27.903] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1416,1656)
+[00:21:27.903] INFO  [mk3_Amara] [bot] planning path to (1416,1656) in background
+[00:21:28.024] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1416,1656); stopped short (off by 74 tile(s))
+[00:21:28.024] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1416,1656) arrived=0 off=74
+[00:21:29.207] INFO  [mk3_Amara] [chat uni  ] Aelia: Lionel buy
+[00:21:29.269] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:29.269] INFO  [mk3_Amara] [action] goto (1416,1656) from (1450,1616,20)
+[00:21:29.269] LOG   [mk3_Amara] event goto_start: target=(1416,1656) from=(1450,1616)
+[00:21:29.269] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1416,1656)
+[00:21:29.269] INFO  [mk3_Amara] [bot] planning path to (1416,1656) in background
+[00:21:29.377] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1416,1656); stopped short (off by 74 tile(s))
+[00:21:29.377] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1416,1656) arrived=0 off=74
+[00:21:30.269] INFO  [mk3_Amara] [chat uni  ] Faustus: Lionel buy
+[00:21:30.593] INFO  [mk3_Amara] [travel] mode moongate         usable   <- chosen
+[00:21:30.593] INFO  [mk3_Amara] [travel] mode walk             usable
+[00:21:30.593] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:30.593] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:30.593] LOG   [mk3_Amara] event travel_mode: moongate
+[00:21:30.594] INFO  [mk3_Amara] [travel] plan Jhelom tinker: ok legs=17 ~672 tiles transit=1 nodes=268
+[00:21:31.514] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:32.128] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:32.128] INFO  [mk3_Amara] [action] goto (1464,1656) from (1450,1616,20)
+[00:21:32.128] LOG   [mk3_Amara] event goto_start: target=(1464,1656) from=(1450,1616)
+[00:21:32.128] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1464,1656)
+[00:21:32.128] INFO  [mk3_Amara] [bot] planning path to (1464,1656) in background
+[00:21:32.252] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1464,1656); stopped short (off by 54 tile(s))
+[00:21:32.252] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1464,1656) arrived=0 off=54
+[00:21:33.474] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:33.474] INFO  [mk3_Amara] [action] goto (1464,1656) from (1450,1616,20)
+[00:21:33.474] LOG   [mk3_Amara] event goto_start: target=(1464,1656) from=(1450,1616)
+[00:21:33.474] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1464,1656)
+[00:21:33.474] INFO  [mk3_Amara] [bot] planning path to (1464,1656) in background
+[00:21:33.598] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1464,1656); stopped short (off by 54 tile(s))
+[00:21:33.598] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1464,1656) arrived=0 off=54
+[00:21:34.830] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:34.830] INFO  [mk3_Amara] [action] goto (1464,1656) from (1450,1616,20)
+[00:21:34.830] LOG   [mk3_Amara] event goto_start: target=(1464,1656) from=(1450,1616)
+[00:21:34.830] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1464,1656)
+[00:21:34.830] INFO  [mk3_Amara] [bot] planning path to (1464,1656) in background
+[00:21:34.952] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1464,1656); stopped short (off by 54 tile(s))
+[00:21:34.952] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1464,1656) arrived=0 off=54
+[00:21:35.750] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_13.amara/state.json
+[00:21:36.181] INFO  [mk3_Amara] [travel] mode moongate         usable   <- chosen
+[00:21:36.181] INFO  [mk3_Amara] [travel] mode walk             usable
+[00:21:36.181] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:36.181] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:36.181] LOG   [mk3_Amara] event travel_mode: moongate
+[00:21:36.181] INFO  [mk3_Amara] [travel] plan Jhelom tinker: ok legs=17 ~672 tiles transit=1 nodes=221
+[00:21:36.518] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:39.241] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:39.241] INFO  [mk3_Amara] [action] goto (1448,1656) from (1450,1616,20)
+[00:21:39.241] LOG   [mk3_Amara] event goto_start: target=(1448,1656) from=(1450,1616)
+[00:21:39.241] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1448,1656)
+[00:21:39.241] INFO  [mk3_Amara] [bot] planning path to (1448,1656) in background
+[00:21:39.365] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1448,1656); stopped short (off by 42 tile(s))
+[00:21:39.365] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1448,1656) arrived=0 off=42
+[00:21:40.412] INFO  [mk3_Amara] [chat uni  ] Faustus: Lionel buy
+[00:21:40.598] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:40.598] INFO  [mk3_Amara] [action] goto (1448,1656) from (1450,1616,20)
+[00:21:40.598] LOG   [mk3_Amara] event goto_start: target=(1448,1656) from=(1450,1616)
+[00:21:40.598] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1448,1656)
+[00:21:40.598] INFO  [mk3_Amara] [bot] planning path to (1448,1656) in background
+[00:21:40.720] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1448,1656); stopped short (off by 42 tile(s))
+[00:21:40.720] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1448,1656) arrived=0 off=42
+[00:21:41.519] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:41.950] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:41.950] INFO  [mk3_Amara] [action] goto (1448,1656) from (1450,1616,20)
+[00:21:41.950] LOG   [mk3_Amara] event goto_start: target=(1448,1656) from=(1450,1616)
+[00:21:41.950] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1448,1656)
+[00:21:41.950] INFO  [mk3_Amara] [bot] planning path to (1448,1656) in background
+[00:21:42.073] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1448,1656); stopped short (off by 42 tile(s))
+[00:21:42.073] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1448,1656) arrived=0 off=42
+[00:21:43.304] INFO  [mk3_Amara] [travel] mode moongate         usable   <- chosen
+[00:21:43.304] INFO  [mk3_Amara] [travel] mode walk             usable
+[00:21:43.304] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:43.304] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:43.304] LOG   [mk3_Amara] event travel_mode: moongate
+[00:21:43.305] INFO  [mk3_Amara] [travel] plan Jhelom tinker: ok legs=18 ~752 tiles transit=1 nodes=339
+[00:21:46.576] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:47.825] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:47.825] INFO  [mk3_Amara] [action] goto (1480,1624) from (1450,1616,20)
+[00:21:47.825] LOG   [mk3_Amara] event goto_start: target=(1480,1624) from=(1450,1616)
+[00:21:47.825] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1480,1624)
+[00:21:47.825] INFO  [mk3_Amara] [bot] planning path to (1480,1624) in background
+[00:21:47.949] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1480,1624); stopped short (off by 38 tile(s))
+[00:21:47.949] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1480,1624) arrived=0 off=38
+[00:21:49.151] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:49.151] INFO  [mk3_Amara] [action] goto (1480,1624) from (1450,1616,20)
+[00:21:49.151] LOG   [mk3_Amara] event goto_start: target=(1480,1624) from=(1450,1616)
+[00:21:49.151] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1480,1624)
+[00:21:49.151] INFO  [mk3_Amara] [bot] planning path to (1480,1624) in background
+[00:21:49.211] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1480,1624); stopped short (off by 38 tile(s))
+[00:21:49.211] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1480,1624) arrived=0 off=38
+[00:21:50.428] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:50.428] INFO  [mk3_Amara] [action] goto (1480,1624) from (1450,1616,20)
+[00:21:50.428] LOG   [mk3_Amara] event goto_start: target=(1480,1624) from=(1450,1616)
+[00:21:50.428] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1480,1624)
+[00:21:50.428] INFO  [mk3_Amara] [bot] planning path to (1480,1624) in background
+[00:21:50.550] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1480,1624); stopped short (off by 38 tile(s))
+[00:21:50.550] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1480,1624) arrived=0 off=38
+[00:21:50.550] LOG   [mk3_Amara] event travel_escape: from=(1450,1616,20) to=(1448,1608) attempt=1
+[00:21:50.550] INFO  [mk3_Amara] [action] goto (1448,1608) from (1450,1616,20)
+[00:21:50.550] LOG   [mk3_Amara] event goto_start: target=(1448,1608) from=(1450,1616)
+[00:21:50.550] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1448,1608,z20)
+[00:21:50.550] INFO  [mk3_Amara] [bot] planning path to (1448,1608) in background
+[00:21:50.613] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1448,1608); stopped short (off by 10 tile(s))
+[00:21:50.613] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1448,1608) arrived=0 off=10
+[00:21:50.613] INFO  [mk3_Amara] [travel] recovery walk fell short at (1450,1616,20) (off 8); attempt 1/3
+[00:21:50.613] LOG   [mk3_Amara] event travel_recovery_done: reached=0 at=(1450,1616,20) off=8 attempt=1
+[00:21:50.613] LOG   [mk3_Amara] event travel_escape: from=(1450,1616,20) to=(1464,1608) attempt=2
+[00:21:50.613] INFO  [mk3_Amara] [action] goto (1464,1608) from (1450,1616,20)
+[00:21:50.613] LOG   [mk3_Amara] event goto_start: target=(1464,1608) from=(1450,1616)
+[00:21:50.613] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1464,1608,z20)
+[00:21:50.613] INFO  [mk3_Amara] [bot] planning path to (1464,1608) in background
+[00:21:50.734] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1464,1608); stopped short (off by 22 tile(s))
+[00:21:50.734] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1464,1608) arrived=0 off=22
+[00:21:50.734] INFO  [mk3_Amara] [travel] recovery walk fell short at (1450,1616,20) (off 14); attempt 1/3
+[00:21:50.734] LOG   [mk3_Amara] event travel_recovery_done: reached=0 at=(1450,1616,20) off=14 attempt=1
+[00:21:50.734] LOG   [mk3_Amara] event travel_escape: from=(1450,1616,20) to=(1464,1624) attempt=3
+[00:21:50.734] INFO  [mk3_Amara] [action] goto (1464,1624) from (1450,1616,20)
+[00:21:50.734] LOG   [mk3_Amara] event goto_start: target=(1464,1624) from=(1450,1616)
+[00:21:50.734] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1464,1624,z20)
+[00:21:50.734] INFO  [mk3_Amara] [bot] planning path to (1464,1624) in background
+[00:21:50.857] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1464,1624); stopped short (off by 22 tile(s))
+[00:21:50.857] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1464,1624) arrived=0 off=22
+[00:21:50.857] INFO  [mk3_Amara] [travel] recovery walk fell short at (1450,1616,20) (off 14); attempt 1/3
+[00:21:50.857] LOG   [mk3_Amara] event travel_recovery_done: reached=0 at=(1450,1616,20) off=14 attempt=1
+[00:21:50.857] INFO  [mk3_Amara] [travel] Jhelom tinker FAILED at (1450,1616,20) -- sealed in; recovery exhausted
+[00:21:50.857] LOG   [mk3_Amara] event travel_failed: label='Jhelom tinker' ok=0 at=(1450,1616) legs=18 plans=4 why='sealed in; recovery exhausted'
+[00:21:50.873] INFO  [life] training: arrived at 1450,1616 -- asking who is here
+[00:21:50.873] INFO  [mk3_Amara] [action] scanning nearby mobiles for names
+[00:21:50.874] INFO  [mk3_Amara] [action] requested 1 paperdoll(s) for trade titles
+[00:21:50.889] INFO  [mk3_Amara] [mobiles] nearby (13):
+[00:21:50.889] INFO  [mk3_Amara]   Halain 0x0001616D
+[00:21:50.889] INFO  [mk3_Amara]   Lionel 0x000010B3
+[00:21:50.889] INFO  [mk3_Amara]   Odessa 0x000194DE
+[00:21:50.889] INFO  [mk3_Amara]   Aelia 0x00013DA6
+[00:21:50.889] INFO  [mk3_Amara]   Serena 0x000193F7
+[00:21:50.889] INFO  [mk3_Amara]   Cyras 0x00015725
+[00:21:50.889] INFO  [mk3_Amara]   Rhea 0x00017DD9
+[00:21:50.889] INFO  [mk3_Amara]   Delras 0x00015A59
+[00:21:50.889] INFO  [mk3_Amara]   Faustus 0x000181F7
+[00:21:50.889] INFO  [mk3_Amara]   Vorar 0x00016305
+[00:21:50.889] INFO  [mk3_Amara]   Jack 0x00001119
+[00:21:50.889] INFO  [mk3_Amara]   Natasha 0x00001194
+[00:21:50.889] INFO  [mk3_Amara]   Dale 0x000010C1
+[00:21:50.889] INFO  [mk3_Amara] [0x20] player @(1450,1616,20) facing=6
+[00:21:50.889] INFO  [mk3_Amara] [0x88] paperdoll 0x00001119: "Jack, the tanner"
+[00:21:50.889] INFO  [mk3_Amara] [world] Jack, the tanner is a tanner at (1435,1612)
+[00:21:51.612] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:53.403] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 3)
+[00:21:53.407] INFO  [mk3_Amara] [travel] place: skipping Minoc tinker -- 1912 tiles and 0 gates for a service Magincia tinker offers
+[00:21:53.407] INFO  [mk3_Amara] [travel] place: skipping Vesper tinker -- 1960 tiles and 0 gates for a service Magincia tinker offers
+[00:21:53.407] INFO  [mk3_Amara] [travel] place: skipping Papua tinkerguildmaster -- 1268 tiles and 3 gates for a service Magincia tinker offers
+[00:21:53.407] INFO  [mk3_Amara] [travel] Magincia tinker -> (3720,2126) r=5 from (1450,1616)
+[00:21:53.407] LOG   [mk3_Amara] event travel_start: label='Magincia tinker' target=(3720,2126) radius=5 from=(1450,1616)
+[00:21:53.407] INFO  [mk3_Amara] [travel] mode moongate         usable   <- chosen
+[00:21:53.407] INFO  [mk3_Amara] [travel] mode walk             usable
+[00:21:53.407] INFO  [mk3_Amara] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:53.407] INFO  [mk3_Amara] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:53.407] LOG   [mk3_Amara] event travel_mode: moongate
+[00:21:53.408] INFO  [mk3_Amara] [travel] plan Magincia tinker: ok legs=18 ~736 tiles transit=1 nodes=3165
+[00:21:53.409] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:53.409] INFO  [mk3_Amara] [action] goto (1416,1656) from (1450,1616,20)
+[00:21:53.409] LOG   [mk3_Amara] event goto_start: target=(1416,1656) from=(1450,1616)
+[00:21:53.409] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1416,1656)
+[00:21:53.409] INFO  [mk3_Amara] [bot] planning path to (1416,1656) in background
+[00:21:53.480] INFO  [mk3_Amara] [action] goto finished at (1450,1616,20); target (1416,1656); stopped short (off by 74 tile(s))
+[00:21:53.480] LOG   [mk3_Amara] event goto_done: at=(1450,1616) target=(1416,1656) arrived=0 off=74
+[00:21:54.685] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:54.685] INFO  [mk3_Amara] [action] goto (1416,1656) from (1450,1616,20)
+[00:21:54.685] LOG   [mk3_Amara] event goto_start: target=(1416,1656) from=(1450,1616)
+[00:21:54.685] INFO  [mk3_Amara] [bot] running from (1450,1616,20) to (1416,1656)
+[00:21:54.685] INFO  [mk3_Amara] [bot] planning path to (1416,1656) in background
+[00:21:54.763] INFO  [mk3_Amara] [bot] replan to (1416,1656): 85 steps in 26414.0us
+[00:21:56.613] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:21:58.243] INFO  [mk3_Amara] [bot] step (1458,1612,20)->(1459,1611,20) rejected; OpenDoor + retry
+[00:21:58.245] INFO  [mk3_Amara] [chat ascii] System: Opening door...
+[00:21:58.245] INFO  [mk3_Amara] [0x20] player @(1458,1612,20) facing=2
+[00:21:58.246] INFO  [mk3_Amara] [action] goto finished at (1458,1612,20); target (1416,1656); stopped short (off by 86 tile(s))
+[00:21:58.246] LOG   [mk3_Amara] event goto_done: at=(1458,1612) target=(1416,1656) arrived=0 off=86
+[00:21:58.644] INFO  [mk3_Amara] [chat ascii] System: Draver has departed from Minoc.
+[00:21:59.507] INFO  [mk3_Amara] [travel] avoiding 2 teleporter pad(s) on this leg
+[00:21:59.507] INFO  [mk3_Amara] [action] goto (1416,1656) from (1458,1612,20)
+[00:21:59.507] LOG   [mk3_Amara] event goto_start: target=(1416,1656) from=(1458,1612)
+[00:21:59.507] INFO  [mk3_Amara] [bot] running from (1458,1612,20) to (1416,1656)
+[00:21:59.507] INFO  [mk3_Amara] [bot] planning path to (1416,1656) in background
+[00:21:59.553] INFO  [mk3_Amara] [bot] replan to (1416,1656): 74 steps in 20330.2us
+[00:22:00.012] INFO  [mk3_Amara] [bot] door ahead at (1460,1613,z20); OpenDoor before step
+[00:22:00.027] INFO  [mk3_Amara] [chat ascii] System: Opening door...
+[00:22:01.625] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:06.630] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:11.664] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:16.672] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:19.447] INFO  [mk3_Amara] [bot] arrived at (1416,1656,10)
+[00:22:19.448] INFO  [mk3_Amara] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[00:22:19.448] LOG   [mk3_Amara] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[00:22:19.448] INFO  [mk3_Amara] [action] goto (1416,1688) from (1416,1656,10)
+[00:22:19.448] LOG   [mk3_Amara] event goto_start: target=(1416,1688) from=(1416,1656)
+[00:22:19.448] INFO  [mk3_Amara] [bot] running from (1416,1656,10) to (1416,1688)
+[00:22:19.448] INFO  [mk3_Amara] [bot] planning path to (1416,1688) in background
+[00:22:19.510] INFO  [mk3_Amara] [bot] replan to (1416,1688): 32 steps in 726.7us
+[00:22:21.719] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:26.768] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:27.152] INFO  [mk3_Amara] [bot] arrived at (1416,1688,0)
+[00:22:27.153] INFO  [mk3_Amara] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[00:22:27.153] LOG   [mk3_Amara] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[00:22:27.153] INFO  [mk3_Amara] [action] goto (1416,1720) from (1416,1688,0)
+[00:22:27.153] LOG   [mk3_Amara] event goto_start: target=(1416,1720) from=(1416,1688)
+[00:22:27.153] INFO  [mk3_Amara] [bot] running from (1416,1688,0) to (1416,1720)
+[00:22:27.153] INFO  [mk3_Amara] [bot] planning path to (1416,1720) in background
+[00:22:27.214] INFO  [mk3_Amara] [bot] replan to (1416,1720): 32 steps in 610.2us
+[00:22:31.823] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:33.130] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:34.330] INFO  [mk3_Amara] [bot] arrived at (1416,1720,20)
+[00:22:34.330] INFO  [mk3_Amara] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[00:22:34.330] LOG   [mk3_Amara] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[00:22:34.330] INFO  [mk3_Amara] [action] goto (1402,1760) from (1416,1720,20)
+[00:22:34.330] LOG   [mk3_Amara] event goto_start: target=(1402,1760) from=(1416,1720)
+[00:22:34.330] INFO  [mk3_Amara] [bot] running from (1416,1720,20) to (1402,1760)
+[00:22:34.330] INFO  [mk3_Amara] [bot] planning path to (1402,1760) in background
+[00:22:34.391] INFO  [mk3_Amara] [bot] replan to (1402,1760): 40 steps in 20679.7us
+[00:22:36.876] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Amara] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Amara] [chat ascii] System: Selene has departed from Magincia.
+[00:22:41.884] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:45.725] INFO  [mk3_Amara] [bot] arrived at (1402,1760,0)
+[00:22:45.725] INFO  [mk3_Amara] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[00:22:45.725] LOG   [mk3_Amara] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[00:22:45.725] INFO  [mk3_Amara] [action] goto (1368,1800) from (1402,1760,0)
+[00:22:45.725] LOG   [mk3_Amara] event goto_start: target=(1368,1800) from=(1402,1760)
+[00:22:45.725] INFO  [mk3_Amara] [bot] running from (1402,1760,0) to (1368,1800)
+[00:22:45.725] INFO  [mk3_Amara] [bot] planning path to (1368,1800) in background
+[00:22:45.785] INFO  [mk3_Amara] [bot] replan to (1368,1800): 79 steps in 39570.8us
+[00:22:46.896] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Amara] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:49.378] INFO  [mk3_Amara] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Amara] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:50.320] INFO  [mk3_Amara] [chat ascii] System: You have left the protection of the city guards
+[00:22:51.906] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:53.217] INFO  [mk3_Amara] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.536] INFO  [mk3_Amara] [bot] lookahead patched around block at step 1: anchor=5 new segment=3 path=48 in 40.4us
+[00:22:56.919] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Amara] [chat ascii] System: Falen has departed from Minoc.
+[00:22:59.429] INFO  [mk3_Amara] [chat ascii] System: World save has been initiated.
+[00:23:01.926] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:04.484] INFO  [mk3_Amara] [action] goto finished at (1368,1774,15); target (1368,1800); stopped short (off by 26 tile(s))
+[00:23:04.484] LOG   [mk3_Amara] event goto_done: at=(1368,1774) target=(1368,1800) arrived=0 off=26
+[00:23:05.714] INFO  [mk3_Amara] [action] goto (1368,1800) from (1368,1774,15)
+[00:23:05.714] LOG   [mk3_Amara] event goto_start: target=(1368,1800) from=(1368,1774)
+[00:23:05.714] INFO  [mk3_Amara] [bot] running from (1368,1774,15) to (1368,1800)
+[00:23:05.715] INFO  [mk3_Amara] [bot] planning path to (1368,1800) in background
+[00:23:05.777] INFO  [mk3_Amara] [bot] replan to (1368,1800): 26 steps in 9916.9us
+[00:23:05.777] INFO  [mk3_Amara] [chat ascii] System: Ghalor has departed from Minoc.
+[00:23:06.963] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:07.627] INFO  [mk3_Amara] [chat ascii] System: Cyras has departed from Britain.
+[00:23:10.033] INFO  [mk3_Amara] [chat ascii] System: Kharain has departed from Minoc.
+[00:23:12.009] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:12.347] INFO  [mk3_Amara] [chat ascii] System: Leander has departed from Moonglow.
+[00:23:14.183] INFO  [mk3_Amara] [bot] arrived at (1368,1800,3)
+[00:23:14.184] INFO  [mk3_Amara] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[00:23:14.184] LOG   [mk3_Amara] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[00:23:14.184] INFO  [mk3_Amara] [action] goto (1368,1832) from (1368,1800,3)
+[00:23:14.184] LOG   [mk3_Amara] event goto_start: target=(1368,1832) from=(1368,1800)
+[00:23:14.184] INFO  [mk3_Amara] [bot] running from (1368,1800,3) to (1368,1832)
+[00:23:14.184] INFO  [mk3_Amara] [bot] planning path to (1368,1832) in background
+[00:23:14.246] INFO  [mk3_Amara] [bot] replan to (1368,1832): 32 steps in 5590.9us
+[00:23:17.063] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:22.095] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:24.182] INFO  [mk3_Amara] [bot] arrived at (1368,1832,0)
+[00:23:24.182] INFO  [mk3_Amara] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[00:23:24.182] LOG   [mk3_Amara] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[00:23:24.182] INFO  [mk3_Amara] [action] goto (1368,1864) from (1368,1832,0)
+[00:23:24.182] LOG   [mk3_Amara] event goto_start: target=(1368,1864) from=(1368,1832)
+[00:23:24.182] INFO  [mk3_Amara] [bot] running from (1368,1832,0) to (1368,1864)
+[00:23:24.182] INFO  [mk3_Amara] [bot] planning path to (1368,1864) in background
+[00:23:24.244] INFO  [mk3_Amara] [bot] replan to (1368,1864): 38 steps in 10092.4us
+[00:23:25.736] INFO  [mk3_Amara] [chat ascii] System: Elara has departed from Magincia.
+[00:23:26.431] INFO  [mk3_Amara] [chat ascii] System: Xerxes has departed from Vesper.
+[00:23:27.124] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:32.141] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:33.132] INFO  [mk3_Amara] [chat ascii] System: Dorvar has departed from Skara Brae.
+[00:23:36.369] INFO  [mk3_Amara] [bot] arrived at (1368,1864,0)
+[00:23:36.369] INFO  [mk3_Amara] [action] goto finished at (1368,1864,0); target (1368,1864); ARRIVED (off by 0 tile(s))
+[00:23:36.369] LOG   [mk3_Amara] event goto_done: at=(1368,1864) target=(1368,1864) arrived=1 off=0
+[00:23:36.369] INFO  [mk3_Amara] [action] goto (1368,1894) from (1368,1864,0)
+[00:23:36.369] LOG   [mk3_Amara] event goto_start: target=(1368,1894) from=(1368,1864)
+[00:23:36.369] INFO  [mk3_Amara] [bot] running from (1368,1864,0) to (1368,1894)
+[00:23:36.369] INFO  [mk3_Amara] [bot] planning path to (1368,1894) in background
+[00:23:36.430] INFO  [mk3_Amara] [bot] replan to (1368,1894): 31 steps in 16701.9us
+[00:23:37.203] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:37.865] INFO  [mk3_Amara] [chat ascii] System: Odessa has departed from Britain.
+[00:23:38.949] INFO  [mk3_Amara] [chat ascii] System: Rhea has departed from Lord British's Castle.
+[00:23:42.226] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:43.199] INFO  [mk3_Amara] [chat ascii] System: Rhaler has departed from Minoc.
+[00:23:45.061] INFO  [mk3_Amara] [chat ascii] System: Ithion has departed from Skara Brae.
+[00:23:46.595] INFO  [mk3_Amara] [bot] arrived at (1368,1894,0)
+[00:23:46.595] INFO  [mk3_Amara] [action] goto finished at (1368,1894,0); target (1368,1894); ARRIVED (off by 0 tile(s))
+[00:23:46.595] LOG   [mk3_Amara] event goto_done: at=(1368,1894) target=(1368,1894) arrived=1 off=0
+[00:23:46.595] INFO  [mk3_Amara] [action] goto (1368,1928) from (1368,1894,0)
+[00:23:46.595] LOG   [mk3_Amara] event goto_start: target=(1368,1928) from=(1368,1894)
+[00:23:46.595] INFO  [mk3_Amara] [bot] running from (1368,1894,0) to (1368,1928)
+[00:23:46.595] INFO  [mk3_Amara] [bot] planning path to (1368,1928) in background
+[00:23:46.657] INFO  [mk3_Amara] [bot] replan to (1368,1928): 34 steps in 19766.0us
+[00:23:47.227] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:52.288] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:57.308] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:23:58.301] INFO  [mk3_Amara] [bot] arrived at (1368,1928,0)
+[00:23:58.301] INFO  [mk3_Amara] [action] goto finished at (1368,1928,0); target (1368,1928); ARRIVED (off by 0 tile(s))
+[00:23:58.301] LOG   [mk3_Amara] event goto_done: at=(1368,1928) target=(1368,1928) arrived=1 off=0
+[00:23:58.301] INFO  [mk3_Amara] [action] goto (1368,1960) from (1368,1928,0)
+[00:23:58.301] LOG   [mk3_Amara] event goto_start: target=(1368,1960) from=(1368,1928)
+[00:23:58.301] INFO  [mk3_Amara] [bot] running from (1368,1928,0) to (1368,1960)
+[00:23:58.301] INFO  [mk3_Amara] [bot] planning path to (1368,1960) in background
+[00:23:58.363] INFO  [mk3_Amara] [bot] replan to (1368,1960): 37 steps in 13720.3us
+[00:24:00.423] INFO  [mk3_Amara] [chat ascii] System: Faustus has departed from Britain.
+[00:24:01.868] INFO  [mk3_Amara] [chat ascii] System: Hector has departed from Bank of Britannia - Trinsic Branch.
+[00:24:02.318] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:24:02.609] INFO  [mk3_Amara] [chat ascii] System: Titus has departed from Magincia.
+[00:24:07.377] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:24:07.840] INFO  [mk3_Amara] [chat ascii] System: Aurelius has departed from Ocllo.
+[00:24:08.117] INFO  [mk3_Amara] [chat ascii] Kitaki: *Kitaki is attacking you!*
+[00:24:10.180] INFO  [mk3_Amara] [chat ascii] System: Serena has departed from Britain.
+[00:24:10.934] INFO  [mk3_Amara] [bot] arrived at (1368,1960,0)
+[00:24:10.934] INFO  [mk3_Amara] [action] goto finished at (1368,1960,0); target (1368,1960); ARRIVED (off by 0 tile(s))
+[00:24:10.934] LOG   [mk3_Amara] event goto_done: at=(1368,1960) target=(1368,1960) arrived=1 off=0
+[00:24:10.934] INFO  [mk3_Amara] [action] goto (1336,1992) from (1368,1960,0)
+[00:24:10.934] LOG   [mk3_Amara] event goto_start: target=(1336,1992) from=(1368,1960)
+[00:24:10.934] INFO  [mk3_Amara] [bot] running from (1368,1960,0) to (1336,1992)
+[00:24:10.934] INFO  [mk3_Amara] [bot] planning path to (1336,1992) in background
+[00:24:10.994] INFO  [mk3_Amara] [bot] replan to (1336,1992): 43 steps in 20298.7us
+[00:24:12.393] INFO  [mk3_Amara] [survival] hp 24/24 (100%) -> fight
+[00:24:13.679] INFO  [mk3_Amara] [war] leaving war mode
+[00:24:13.801] LOG   [mk3_Amara] event threat: HP 24 -> 19
+[00:24:13.801] INFO  [mk3_Amara] [action] goto finished at (1364,1967,0); target (1336,1992); stopped short (off by 53 tile(s))
+[00:24:13.801] LOG   [mk3_Amara] event goto_done: at=(1364,1967) target=(1336,1992) arrived=0 off=53
+[00:24:15.059] INFO  [mk3_Amara] [action] goto (1336,1992) from (1364,1967,0)
+[00:24:15.059] LOG   [mk3_Amara] event goto_start: target=(1336,1992) from=(1364,1967)
+[00:24:15.059] INFO  [mk3_Amara] [bot] running from (1364,1967,0) to (1336,1992)
+[00:24:15.059] INFO  [mk3_Amara] [bot] planning path to (1336,1992) in background
+[00:24:15.120] INFO  [mk3_Amara] [bot] replan to (1336,1992): 35 steps in 27379.7us
+[00:24:17.419] INFO  [mk3_Amara] [survival] hp 19/24 (79%) -> fight
+[00:24:22.431] INFO  [mk3_Amara] [survival] hp 20/24 (83%) -> fight
+[00:24:25.446] INFO  [mk3_Amara] [war] leaving war mode
+[00:24:25.461] LOG   [mk3_Amara] event threat: HP 20 -> 15
+[00:24:25.461] INFO  [mk3_Amara] [action] goto finished at (1336,1992,0); target (1336,1992); ARRIVED (off by 0 tile(s))
+[00:24:25.461] LOG   [mk3_Amara] event goto_done: at=(1336,1992) target=(1336,1992) arrived=1 off=0
+[00:24:25.461] INFO  [mk3_Amara] [action] goto (1336,1997) from (1336,1992,0)
+[00:24:25.461] LOG   [mk3_Amara] event goto_start: target=(1336,1997) from=(1336,1992)
+[00:24:25.461] INFO  [mk3_Amara] [bot] running from (1336,1992,0) to (1336,1997)
+[00:24:25.461] INFO  [mk3_Amara] [bot] planning path to (1336,1997) in background
+[00:24:25.523] INFO  [mk3_Amara] [bot] replan to (1336,1997): 5 steps in 174.9us
+[00:24:27.123] INFO  [mk3_Amara] [gump] 0x400028A0 context=0x80A0040F: 13 option(s), 15 text(s)
+[00:24:27.123] INFO  [mk3_Amara] [gump]   button 1000 = 'OKAY'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   button 0 = 'CANCEL'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   button 1 = 'Felucca'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 1 = 'Moonglow'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 2 = 'Britain'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 3 = 'Jhelom'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 4 = 'Yew'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 5 = 'New Magincia'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 6 = 'Minoc'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 7 = 'Trinsic'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 8 = 'Skara Brae'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 9 = 'Buccaneer's Den'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 0 = 'Pick your destination:'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 1 = 'OKAY'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 2 = 'CANCEL'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 3 = 'Felucca'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 4 = 'Felucca'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 5 = 'Moonglow'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 6 = 'Britain'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 7 = 'Jhelom'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 8 = 'Yew'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 9 = 'New Magincia'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 10 = 'Minoc'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 11 = 'Trinsic'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 12 = 'Skara Brae'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 13 = 'Buccaneer's Den'
+[00:24:27.123] INFO  [mk3_Amara] [gump]   text 14 = 'Ocllo (Newplayers)'
+[00:24:27.123] LOG   [mk3_Amara] event gump_open: serial=0x400028A0 context=0x80A0040F options=13
+[00:24:27.123] INFO  [mk3_Amara] [travel] gate gump: choosing 'New Magincia' (choice 5, button 1000)
+[00:24:27.123] LOG   [mk3_Amara] event moongate_use: destination='New Magincia' choice=5 button=1000
+[00:24:27.123] INFO  [mk3_Amara] [bot] arrived at (1336,1997,5)
+[00:24:27.123] INFO  [mk3_Amara] [action] goto finished at (1336,1997,5); target (1336,1997); ARRIVED (off by 0 tile(s))
+[00:24:27.123] LOG   [mk3_Amara] event goto_done: at=(1336,1997) target=(1336,1997) arrived=1 off=0
+[00:24:27.123] INFO  [mk3_Amara] [travel] using moongate 0x400028A0 for 'New Magincia' (gump active=0 serial=0x00000000)
+[00:24:27.124] INFO  [mk3_Amara] [0x20] player @(3564,2140,34) facing=4
+[00:24:27.124] INFO  [mk3_Amara] [0x20] player @(3564,2140,34) facing=4
+[00:24:27.137] INFO  [mk3_Amara] [chat ascii] System: You can't see the target
+[00:24:27.262] INFO  [mk3_Amara] [action] goto (3592,2136) from (3564,2140,34)
+[00:24:27.262] LOG   [mk3_Amara] event goto_start: target=(3592,2136) from=(3564,2140)
+[00:24:27.262] INFO  [mk3_Amara] [bot] running from (3564,2140,34) to (3592,2136)
+[00:24:27.262] INFO  [mk3_Amara] [bot] planning path to (3592,2136) in background
+[00:24:27.323] INFO  [mk3_Amara] [bot] replan to (3592,2136): 28 steps in 5748.2us
+[00:24:27.445] INFO  [mk3_Amara] [survival] hp 15/24 (62%) -> fight
+[00:24:27.568] INFO  [mk3_Amara] [chat ascii] System: You have been revealed
+[00:24:32.508] INFO  [mk3_Amara] [survival] hp 15/24 (62%) -> fight
+[00:24:35.955] INFO  [mk3_Amara] [bot] arrived at (3592,2136,66)
+[00:24:35.955] INFO  [mk3_Amara] [action] goto finished at (3592,2136,66); target (3592,2136); ARRIVED (off by 0 tile(s))
+[00:24:35.955] LOG   [mk3_Amara] event goto_done: at=(3592,2136) target=(3592,2136) arrived=1 off=0
+[00:24:35.955] INFO  [mk3_Amara] [action] goto (3624,2136) from (3592,2136,66)
+[00:24:35.955] LOG   [mk3_Amara] event goto_start: target=(3624,2136) from=(3592,2136)
+[00:24:35.955] INFO  [mk3_Amara] [bot] running from (3592,2136,66) to (3624,2136)
+[00:24:35.955] INFO  [mk3_Amara] [bot] planning path to (3624,2136) in background
+[00:24:36.016] INFO  [mk3_Amara] [bot] replan to (3624,2136): 34 steps in 10218.9us
+[00:24:37.554] INFO  [mk3_Amara] [survival] hp 15/24 (62%) -> fight
+[00:24:42.578] INFO  [mk3_Amara] [chat ascii] System: Lyra has departed from Moonglow.
+[00:24:42.578] INFO  [mk3_Amara] [survival] hp 15/24 (62%) -> fight
+[00:24:46.411] INFO  [mk3_Amara] [bot] step (3623,2139,86)->(3624,2138,85) rejected; OpenDoor + retry
+[00:24:47.180] INFO  [mk3_Amara] [bot] step (3623,2139,86)->(3624,2138,85) rejected; avoiding edge + rerouting
+[00:24:47.180] INFO  [mk3_Amara] [bot] planning path to (3624,2136) in background
+[00:24:47.241] INFO  [mk3_Amara] [bot] replan to (3624,2136): 4 steps in 139.4us
+[00:24:47.628] INFO  [mk3_Amara] [survival] hp 15/24 (62%) -> fight
+[00:24:49.172] INFO  [mk3_Amara] [bot] arrived at (3624,2136,84)
+[00:24:49.172] INFO  [mk3_Amara] [action] goto finished at (3624,2136,84); target (3624,2136); ARRIVED (off by 0 tile(s))
+[00:24:49.172] LOG   [mk3_Amara] event goto_done: at=(3624,2136) target=(3624,2136) arrived=1 off=0
+[00:24:49.172] INFO  [mk3_Amara] [action] goto (3656,2120) from (3624,2136,84)
+[00:24:49.172] LOG   [mk3_Amara] event goto_start: target=(3656,2120) from=(3624,2136)
+[00:24:49.172] INFO  [mk3_Amara] [bot] running from (3624,2136,84) to (3656,2120)
+[00:24:49.172] INFO  [mk3_Amara] [bot] planning path to (3656,2120) in background
+[00:24:49.232] INFO  [mk3_Amara] [bot] replan to (3656,2120): 34 steps in 15489.9us
+[00:24:50.174] INFO  [mk3_Amara] [bot] step (3624,2137,84)->(3625,2136,84) rejected; OpenDoor + retry
+[00:24:50.911] INFO  [mk3_Amara] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=34 in 275.0us
+[00:24:52.654] INFO  [mk3_Amara] [survival] hp 15/24 (62%) -> fight
+[00:24:57.692] INFO  [mk3_Amara] [survival] hp 15/24 (62%) -> fight
+[00:25:01.444] INFO  [mk3_Amara] [chat ascii] System: You are now under the protection of the town guards
+[00:25:01.769] INFO  [mk3_Amara] [chat ascii] System: Aelia has departed from Britain Territory.
+[00:25:02.095] INFO  [mk3_Amara] [bot] arrived at (3656,2120,20)
+[00:25:02.095] INFO  [mk3_Amara] [action] goto finished at (3656,2120,20); target (3656,2120); ARRIVED (off by 0 tile(s))
+[00:25:02.095] LOG   [mk3_Amara] event goto_done: at=(3656,2120) target=(3656,2120) arrived=1 off=0
+[00:25:02.095] INFO  [mk3_Amara] [action] goto (3688,2120) from (3656,2120,20)
+[00:25:02.095] LOG   [mk3_Amara] event goto_start: target=(3688,2120) from=(3656,2120)
+[00:25:02.095] INFO  [mk3_Amara] [bot] running from (3656,2120,20) to (3688,2120)
+[00:25:02.095] INFO  [mk3_Amara] [bot] planning path to (3688,2120) in background
+[00:25:02.156] INFO  [mk3_Amara] [bot] replan to (3688,2120): 32 steps in 6313.2us
+[00:25:02.730] INFO  [mk3_Amara] [survival] hp 16/24 (66%) -> fight
+[00:25:07.761] INFO  [mk3_Amara] [survival] hp 16/24 (66%) -> fight
+[00:25:10.854] INFO  [mk3_Amara] [bot] arrived at (3688,2120,20)
+[00:25:10.854] INFO  [mk3_Amara] [action] goto finished at (3688,2120,20); target (3688,2120); ARRIVED (off by 0 tile(s))
+[00:25:10.854] LOG   [mk3_Amara] event goto_done: at=(3688,2120) target=(3688,2120) arrived=1 off=0
+[00:25:10.854] INFO  [mk3_Amara] [action] goto (3720,2126) from (3688,2120,20)
+[00:25:10.854] LOG   [mk3_Amara] event goto_start: target=(3720,2126) from=(3688,2120)
+[00:25:10.854] INFO  [mk3_Amara] [bot] running from (3688,2120,20) to (3720,2126,z20)
+[00:25:10.854] INFO  [mk3_Amara] [bot] planning path to (3720,2126) in background
+[00:25:10.916] INFO  [mk3_Amara] [bot] replan to (3720,2126): 46 steps in 19129.4us
+[00:25:12.793] INFO  [mk3_Amara] [survival] hp 16/24 (66%) -> fight
+[00:25:13.869] INFO  [mk3_Amara] [chat ascii] System: Illyria has departed from Britain.
+[00:25:15.033] INFO  [mk3_Amara] [chat ascii] System: Halain has departed from Skara Brae.
+[00:25:17.852] INFO  [mk3_Amara] [survival] hp 16/24 (66%) -> fight
+[00:25:22.485] INFO  [mk3_Amara] [travel] Magincia tinker ARRIVED at (3715,2131,20)
+[00:25:22.485] LOG   [mk3_Amara] event travel_done: label='Magincia tinker' ok=1 at=(3715,2131) legs=18 plans=1 why=''
+[00:25:22.501] INFO  [life] wind-down: arrived somewhere safe at 3716,2130
+[00:25:22.562] INFO  [life] session_summary duration=349s goals=0/4 gold=10000->9924 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:25:22.562] INFO  [life] session_goals families=2 picks=4 top=75% varied=0 self_superseded=0 | upkeep=3(75%) training=1(25%) | REPLACE_EQUIPMENT=1(25%) BANK=1(25%) TRAIN_AT_NPC=1(25%) GET_FOOD=1(25%)
+[00:25:22.564] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_13.amara/state.json
+[00:25:22.564] INFO  [life] logging out
+[00:25:22.564] INFO  [mk3_Amara] [action] logout requested
+[00:25:22.564] LOG   [mk3_Amara] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:25:22.564] INFO  [mk3_Amara] [0xD1] logout acknowledged (accepted=1)
+[00:25:22.564] LOG   [mk3_Amara] event logout_ack: accepted
+[00:25:22.564] INFO  [mk3_Amara] [net] closing connection (logout acknowledged)
+[00:25:22.564] LOG   [mk3_Amara] event logout_complete: acked

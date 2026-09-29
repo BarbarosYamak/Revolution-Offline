@@ -1,0 +1,1997 @@
+[16:37:23.578] INFO  session 0: 127.0.0.1:2593 user='RevolutionNew01' char=Corran tag='n10_Corran'
+[16:37:23.580] LOG   [n10_Corran] event session_start: text log opened
+[16:37:23.580] LOG   [n10_Corran] event net_connect_begin: connect 127.0.0.1:2593
+[16:37:23.581] INFO  [n10_Corran] [net] connecting to 127.0.0.1:2593 ...
+[16:37:23.582] LOG   [n10_Corran] event net_connected: connect 127.0.0.1:2593
+[16:37:23.582] INFO  [n10_Corran] [net] connected.
+[16:37:23.582] INFO  [n10_Corran] [seed] sent 0x7F000001 (plaintext)
+[16:37:23.582] LOG   [n10_Corran] event seed_out: 0x7F000001 hex=7f000001
+[16:37:23.583] INFO  [life] loaded persistent state for Corran (0 places, 0 suppliers, 3 events, 1 prior sessions)
+[16:37:23.583] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[16:37:23.583] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[16:37:23.583] INFO  [n10_Corran] [life] autonomous player active for 'Corran' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[16:37:23.590] INFO  [n10_Corran] [0xA8] 1 server(s):
+[16:37:23.590] INFO  [n10_Corran]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[16:37:23.606] INFO  [n10_Corran] [0x8C] game server = 127.0.0.1:2593  seed=0x727DEF01
+[16:37:23.606] LOG   [n10_Corran] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x727DEF01
+[16:37:23.606] INFO  [n10_Corran] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[16:37:23.606] LOG   [n10_Corran] event relay_same_socket: no seed re-sent; 0x91 follows
+[16:37:23.606] INFO  [n10_Corran] [0xB9] server features = 0x0005
+[16:37:23.606] INFO  [n10_Corran] [0xA9] 5 slot(s) (populated 1):
+[16:37:23.606] INFO  [n10_Corran]   [0] Corran
+[16:37:23.606] INFO  [n10_Corran]   [1] <empty>
+[16:37:23.606] INFO  [n10_Corran]   [2] <empty>
+[16:37:23.606] INFO  [n10_Corran]   [3] <empty>
+[16:37:23.606] INFO  [n10_Corran]   [4] <empty>
+[16:37:23.606] INFO  [n10_Corran] [ui] playing slot 0 ('Corran')
+[16:37:23.618] INFO  [n10_Corran] [0x1B] serial=0x000135D8 body=0x0190 pos=(1864,2740,9)
+[16:37:23.618] LOG   [n10_Corran] event login_confirm: serial=0x000135D8 body=0x0190 pos=(1864,2740,9)
+[16:37:23.618] INFO  [n10_Corran] [0x20] player @(1864,2740,9) facing=4
+[16:37:23.618] INFO  [n10_Corran] [0x55] login complete — entering world
+[16:37:23.618] LOG   [n10_Corran] event in_world: 0x55 received
+[16:37:23.618] INFO  [n10_Corran] [backpack] opening 0x400135CE
+[16:37:23.618] INFO  [n10_Corran] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[16:37:23.618] INFO  [n10_Corran] [chat ascii] System: There is 1 other player here.
+[16:37:23.618] INFO  [n10_Corran] [chat ascii] System: Last logged: 1970/01/01 01:00:00
+[16:37:23.618] INFO  [n10_Corran] [chat ascii] System: You are under the protection of the town guards
+[16:37:23.624] INFO  [n10_Corran] [action] requesting the skill list
+[16:37:23.624] INFO  [life] in world; asked the server for the skill list
+[16:37:23.624] INFO  [n10_Corran] [0x24] open container 0x400135CE gump=60
+[16:37:23.624] INFO  [n10_Corran] [0x3C] container contents: 8 item(s)
+[16:37:23.624] LOG   [n10_Corran] event backpack_contents: serial=0x400135CE items=8
+[16:37:23.637] INFO  [n10_Corran] [chat ascii] System: Edrik has arrived in Britain Territory.
+[16:37:23.668] INFO  [n10_Corran] [chat ascii] System: Maribel has arrived in Britain Fields.
+[16:37:23.699] INFO  [n10_Corran] [chat ascii] System: Halric has arrived in Cove Territory.
+[16:37:23.730] INFO  [n10_Corran] [chat ascii] System: Sianna has arrived in The Trinsic Cut.
+[16:37:23.760] INFO  [n10_Corran] [chat ascii] System: Ovid has arrived in Moonglow.
+[16:37:23.913] INFO  [n10_Corran] [chat ascii] System: Thessaly has arrived in Britain.
+[16:37:23.928] INFO  [n10_Corran] [chat ascii] System: Wystan has arrived in Britain.
+[16:37:23.943] INFO  [n10_Corran] [chat ascii] System: Delwyn has arrived in Trinsic's Order of Engineers.
+[16:37:23.973] INFO  [n10_Corran] [chat ascii] System: Rowan has arrived in Vesper.
+[16:37:26.203] INFO  [n10_Corran] [bot] world data loaded (0 blacklisted spot(s)).
+[16:37:26.204] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[16:37:26.204] INFO  [life]   gold         persisted=10000      server=10000      -> server value accepted
+[16:37:26.204] INFO  [life]   str          persisted=56         server=56         -> server value accepted
+[16:37:26.204] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[16:37:26.204] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[16:37:26.204] INFO  [life]   skill_7      persisted=50.0       server=50.0       -> server value accepted
+[16:37:26.204] INFO  [life]   skill_45     persisted=50.0       server=50.0       -> server value accepted
+[16:37:26.204] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[16:37:26.204] INFO  [life]   skill_4      persisted=6.4        server=6.4        -> server value accepted
+[16:37:26.204] INFO  [life]   position     persisted=1864,2740  server=1864,2740  -> server value accepted
+[16:37:26.204] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[16:37:26.204] INFO  [life]   restored objective KEPT: TRAIN_AT_NPC (progress 0)
+[16:37:26.204] INFO  [n10_Corran] [survival] on
+[16:37:26.204] LOG   [n10_Corran] event survival_mode: on
+[16:37:26.206] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:37:26.206] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:37:26.262] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 1)
+[16:37:26.262] INFO  [n10_Corran] [travel] Vesper tinker -> (2899,790) r=5 from (1864,2740)
+[16:37:26.262] LOG   [n10_Corran] event travel_start: label='Vesper tinker' target=(2899,790) radius=5 from=(1864,2740)
+[16:37:26.262] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:37:26.262] INFO  [n10_Corran] [travel] mode walk             usable
+[16:37:26.262] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:37:26.262] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:37:26.262] LOG   [n10_Corran] event travel_mode: moongate
+[16:37:26.263] INFO  [n10_Corran] [travel] plan Vesper tinker: ok legs=24 ~1096 tiles transit=1 nodes=2732
+[16:37:26.324] INFO  [n10_Corran] [action] goto (1896,2776) from (1864,2740,9)
+[16:37:26.324] LOG   [n10_Corran] event goto_start: target=(1896,2776) from=(1864,2740)
+[16:37:26.324] INFO  [n10_Corran] [bot] running from (1864,2740,9) to (1896,2776)
+[16:37:26.324] INFO  [n10_Corran] [bot] planning path to (1896,2776) in background
+[16:37:26.385] INFO  [n10_Corran] [bot] replan to (1896,2776): 62 steps in 6162.6us
+[16:37:31.249] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:37:36.311] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:37:37.816] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=21 in 45.0us
+[16:37:41.328] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:37:43.519] INFO  [n10_Corran] [bot] arrived at (1896,2776,0)
+[16:37:43.519] INFO  [n10_Corran] [action] goto finished at (1896,2776,0); target (1896,2776); ARRIVED (off by 0 tile(s))
+[16:37:43.519] LOG   [n10_Corran] event goto_done: at=(1896,2776) target=(1896,2776) arrived=1 off=0
+[16:37:43.519] INFO  [n10_Corran] [action] goto (1928,2808) from (1896,2776,0)
+[16:37:43.519] LOG   [n10_Corran] event goto_start: target=(1928,2808) from=(1896,2776)
+[16:37:43.519] INFO  [n10_Corran] [bot] running from (1896,2776,0) to (1928,2808)
+[16:37:43.519] INFO  [n10_Corran] [bot] planning path to (1928,2808) in background
+[16:37:43.580] INFO  [n10_Corran] [bot] replan to (1928,2808): 81 steps in 42353.7us
+[16:37:46.341] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:37:51.355] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:37:56.389] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:01.423] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:06.099] INFO  [n10_Corran] [bot] arrived at (1928,2808,0)
+[16:38:06.100] INFO  [n10_Corran] [action] goto finished at (1928,2808,0); target (1928,2808); ARRIVED (off by 0 tile(s))
+[16:38:06.100] LOG   [n10_Corran] event goto_done: at=(1928,2808) target=(1928,2808) arrived=1 off=0
+[16:38:06.100] INFO  [n10_Corran] [action] goto (1960,2840) from (1928,2808,0)
+[16:38:06.100] LOG   [n10_Corran] event goto_start: target=(1960,2840) from=(1928,2808)
+[16:38:06.100] INFO  [n10_Corran] [bot] running from (1928,2808,0) to (1960,2840)
+[16:38:06.100] INFO  [n10_Corran] [bot] planning path to (1960,2840) in background
+[16:38:06.161] INFO  [n10_Corran] [bot] replan to (1960,2840): 46 steps in 14275.3us
+[16:38:06.473] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:06.871] INFO  [n10_Corran] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=46 in 135.2us
+[16:38:11.502] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:16.309] INFO  [n10_Corran] [bot] step (1946,2840,22)->(1947,2841,15) rejected; OpenDoor + retry
+[16:38:16.554] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:17.060] INFO  [n10_Corran] [bot] step (1946,2840,22)->(1947,2841,15) rejected; avoiding edge + rerouting
+[16:38:17.060] INFO  [n10_Corran] [bot] planning path to (1960,2840) in background
+[16:38:17.121] INFO  [n10_Corran] [bot] replan to (1960,2840): 17 steps in 2437.4us
+[16:38:21.570] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:23.350] INFO  [n10_Corran] [bot] arrived at (1960,2840,0)
+[16:38:23.351] INFO  [n10_Corran] [action] goto finished at (1960,2840,0); target (1960,2840); ARRIVED (off by 0 tile(s))
+[16:38:23.351] LOG   [n10_Corran] event goto_done: at=(1960,2840) target=(1960,2840) arrived=1 off=0
+[16:38:23.351] INFO  [n10_Corran] [action] goto (1990,2872) from (1960,2840,0)
+[16:38:23.351] LOG   [n10_Corran] event goto_start: target=(1990,2872) from=(1960,2840)
+[16:38:23.351] INFO  [n10_Corran] [bot] running from (1960,2840,0) to (1990,2872)
+[16:38:23.351] INFO  [n10_Corran] [bot] planning path to (1990,2872) in background
+[16:38:23.458] INFO  [n10_Corran] [action] goto finished at (1960,2840,0); target (1990,2872); stopped short (off by 62 tile(s))
+[16:38:23.458] LOG   [n10_Corran] event goto_done: at=(1960,2840) target=(1990,2872) arrived=0 off=62
+[16:38:23.705] INFO  [n10_Corran] [chat ascii] System: Nessa has arrived in Britain.
+[16:38:23.782] INFO  [n10_Corran] [chat ascii] System: Cassia has arrived in Britain.
+[16:38:24.673] INFO  [n10_Corran] [action] goto (1990,2872) from (1960,2840,0)
+[16:38:24.673] LOG   [n10_Corran] event goto_start: target=(1990,2872) from=(1960,2840)
+[16:38:24.673] INFO  [n10_Corran] [bot] running from (1960,2840,0) to (1990,2872)
+[16:38:24.673] INFO  [n10_Corran] [bot] planning path to (1990,2872) in background
+[16:38:24.734] INFO  [n10_Corran] [action] goto finished at (1960,2840,0); target (1990,2872); stopped short (off by 62 tile(s))
+[16:38:24.734] LOG   [n10_Corran] event goto_done: at=(1960,2840) target=(1990,2872) arrived=0 off=62
+[16:38:25.995] INFO  [n10_Corran] [action] goto (1990,2872) from (1960,2840,0)
+[16:38:25.995] LOG   [n10_Corran] event goto_start: target=(1990,2872) from=(1960,2840)
+[16:38:25.995] INFO  [n10_Corran] [bot] running from (1960,2840,0) to (1990,2872)
+[16:38:25.995] INFO  [n10_Corran] [bot] planning path to (1990,2872) in background
+[16:38:26.118] INFO  [n10_Corran] [action] goto finished at (1960,2840,0); target (1990,2872); stopped short (off by 62 tile(s))
+[16:38:26.118] LOG   [n10_Corran] event goto_done: at=(1960,2840) target=(1990,2872) arrived=0 off=62
+[16:38:26.243] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:38:26.612] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:27.366] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:38:27.366] INFO  [n10_Corran] [travel] mode walk             usable
+[16:38:27.366] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:38:27.366] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:38:27.366] LOG   [n10_Corran] event travel_mode: moongate
+[16:38:27.367] INFO  [n10_Corran] [travel] plan Vesper tinker: ok legs=21 ~936 tiles transit=1 nodes=2064
+[16:38:28.899] INFO  [n10_Corran] [action] goto (1992,2856) from (1960,2840,0)
+[16:38:28.899] LOG   [n10_Corran] event goto_start: target=(1992,2856) from=(1960,2840)
+[16:38:28.899] INFO  [n10_Corran] [bot] running from (1960,2840,0) to (1992,2856)
+[16:38:28.899] INFO  [n10_Corran] [bot] planning path to (1992,2856) in background
+[16:38:28.960] INFO  [n10_Corran] [bot] replan to (1992,2856): 38 steps in 3641.3us
+[16:38:31.647] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:36.702] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:40.344] INFO  [n10_Corran] [bot] arrived at (1992,2856,16)
+[16:38:40.344] INFO  [n10_Corran] [action] goto finished at (1992,2856,16); target (1992,2856); ARRIVED (off by 0 tile(s))
+[16:38:40.344] LOG   [n10_Corran] event goto_done: at=(1992,2856) target=(1992,2856) arrived=1 off=0
+[16:38:40.344] INFO  [n10_Corran] [action] goto (2008,2888) from (1992,2856,16)
+[16:38:40.344] LOG   [n10_Corran] event goto_start: target=(2008,2888) from=(1992,2856)
+[16:38:40.344] INFO  [n10_Corran] [bot] running from (1992,2856,16) to (2008,2888)
+[16:38:40.344] INFO  [n10_Corran] [bot] planning path to (2008,2888) in background
+[16:38:40.405] INFO  [n10_Corran] [bot] replan to (2008,2888): 41 steps in 1491.1us
+[16:38:41.739] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:46.741] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:51.749] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:38:52.886] INFO  [n10_Corran] [bot] step (2007,2887,5)->(2008,2888,5) rejected; OpenDoor + retry
+[16:38:53.620] INFO  [n10_Corran] [bot] step (2007,2887,5)->(2008,2888,5) rejected; avoiding edge + rerouting
+[16:38:53.620] INFO  [n10_Corran] [bot] planning path to (2008,2888) in background
+[16:38:55.340] INFO  [n10_Corran] [action] goto finished at (2007,2887,5); target (2008,2888); stopped short (off by 2 tile(s))
+[16:38:55.340] LOG   [n10_Corran] event goto_done: at=(2007,2887) target=(2008,2888) arrived=0 off=2
+[16:38:55.340] INFO  [n10_Corran] [action] goto (1992,2918) from (2007,2887,5)
+[16:38:55.340] LOG   [n10_Corran] event goto_start: target=(1992,2918) from=(2007,2887)
+[16:38:55.340] INFO  [n10_Corran] [bot] running from (2007,2887,5) to (1992,2918)
+[16:38:55.340] INFO  [n10_Corran] [bot] planning path to (1992,2918) in background
+[16:38:55.401] INFO  [n10_Corran] [bot] replan to (1992,2918): 33 steps in 2840.9us
+[16:38:56.799] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:01.859] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:02.227] INFO  [n10_Corran] [chat ascii] System: You have left the protection of the town guards
+[16:39:04.993] INFO  [n10_Corran] [bot] arrived at (1992,2918,0)
+[16:39:04.994] INFO  [n10_Corran] [action] goto finished at (1992,2918,0); target (1992,2918); ARRIVED (off by 0 tile(s))
+[16:39:04.994] LOG   [n10_Corran] event goto_done: at=(1992,2918) target=(1992,2918) arrived=1 off=0
+[16:39:04.994] INFO  [n10_Corran] [action] goto (1960,2936) from (1992,2918,0)
+[16:39:04.994] LOG   [n10_Corran] event goto_start: target=(1960,2936) from=(1992,2918)
+[16:39:04.994] INFO  [n10_Corran] [bot] running from (1992,2918,0) to (1960,2936)
+[16:39:04.994] INFO  [n10_Corran] [bot] planning path to (1960,2936) in background
+[16:39:05.055] INFO  [n10_Corran] [bot] replan to (1960,2936): 65 steps in 12573.4us
+[16:39:06.866] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:08.095] INFO  [n10_Corran] [chat ascii] System: You are now under the protection of the town guards
+[16:39:11.880] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:11.956] INFO  [n10_Corran] [chat ascii] System: You have left the protection of the town guards
+[16:39:16.922] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:19.191] INFO  [n10_Corran] [chat ascii] Ettin: *Ettin is attacking you!*
+[16:39:21.981] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:25.033] INFO  [n10_Corran] [bot] arrived at (1960,2936,0)
+[16:39:25.034] INFO  [n10_Corran] [action] goto finished at (1960,2936,0); target (1960,2936); ARRIVED (off by 0 tile(s))
+[16:39:25.034] LOG   [n10_Corran] event goto_done: at=(1960,2936) target=(1960,2936) arrived=1 off=0
+[16:39:25.034] INFO  [n10_Corran] [action] goto (1928,2936) from (1960,2936,0)
+[16:39:25.034] LOG   [n10_Corran] event goto_start: target=(1928,2936) from=(1960,2936)
+[16:39:25.034] INFO  [n10_Corran] [bot] running from (1960,2936,0) to (1928,2936)
+[16:39:25.034] INFO  [n10_Corran] [bot] planning path to (1928,2936) in background
+[16:39:25.095] INFO  [n10_Corran] [bot] replan to (1928,2936): 61 steps in 47073.9us
+[16:39:26.294] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:39:26.982] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:32.034] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:35.192] INFO  [n10_Corran] [chat ascii] Vitgut: *Vitgut is attacking you!*
+[16:39:37.060] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:41.650] INFO  [n10_Corran] [chat ascii] System: World save in 10 seconds
+[16:39:42.079] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:44.694] INFO  [n10_Corran] [bot] arrived at (1928,2936,39)
+[16:39:44.695] INFO  [n10_Corran] [action] goto finished at (1928,2936,39); target (1928,2936); ARRIVED (off by 0 tile(s))
+[16:39:44.695] LOG   [n10_Corran] event goto_done: at=(1928,2936) target=(1928,2936) arrived=1 off=0
+[16:39:44.695] INFO  [n10_Corran] [action] goto (1896,2952) from (1928,2936,39)
+[16:39:44.695] LOG   [n10_Corran] event goto_start: target=(1896,2952) from=(1928,2936)
+[16:39:44.695] INFO  [n10_Corran] [bot] running from (1928,2936,39) to (1896,2952)
+[16:39:44.695] INFO  [n10_Corran] [bot] planning path to (1896,2952) in background
+[16:39:44.755] INFO  [n10_Corran] [bot] replan to (1896,2952): 34 steps in 6865.7us
+[16:39:45.431] INFO  [n10_Corran] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=31 in 49.0us
+[16:39:47.086] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:51.757] INFO  [n10_Corran] [chat ascii] System: World save has been initiated.
+[16:39:52.135] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:39:56.274] INFO  [n10_Corran] [bot] arrived at (1896,2952,20)
+[16:39:56.275] INFO  [n10_Corran] [action] goto finished at (1896,2952,20); target (1896,2952); ARRIVED (off by 0 tile(s))
+[16:39:56.275] LOG   [n10_Corran] event goto_done: at=(1896,2952) target=(1896,2952) arrived=1 off=0
+[16:39:56.275] INFO  [n10_Corran] [action] goto (1864,2936) from (1896,2952,20)
+[16:39:56.275] LOG   [n10_Corran] event goto_start: target=(1864,2936) from=(1896,2952)
+[16:39:56.275] INFO  [n10_Corran] [bot] running from (1896,2952,20) to (1864,2936)
+[16:39:56.275] INFO  [n10_Corran] [bot] planning path to (1864,2936) in background
+[16:39:56.321] INFO  [n10_Corran] [bot] replan to (1864,2936): 34 steps in 5451.5us
+[16:39:57.140] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:02.163] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:07.180] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:07.409] INFO  [n10_Corran] [bot] arrived at (1864,2936,15)
+[16:40:07.410] INFO  [n10_Corran] [action] goto finished at (1864,2936,15); target (1864,2936); ARRIVED (off by 0 tile(s))
+[16:40:07.410] LOG   [n10_Corran] event goto_done: at=(1864,2936) target=(1864,2936) arrived=1 off=0
+[16:40:07.410] INFO  [n10_Corran] [action] goto (1832,2950) from (1864,2936,15)
+[16:40:07.410] LOG   [n10_Corran] event goto_start: target=(1832,2950) from=(1864,2936)
+[16:40:07.410] INFO  [n10_Corran] [bot] running from (1864,2936,15) to (1832,2950)
+[16:40:07.410] INFO  [n10_Corran] [bot] planning path to (1832,2950) in background
+[16:40:07.472] INFO  [n10_Corran] [bot] replan to (1832,2950): 39 steps in 35444.1us
+[16:40:12.187] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:17.233] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:18.845] INFO  [n10_Corran] [bot] arrived at (1832,2950,-25)
+[16:40:18.846] INFO  [n10_Corran] [action] goto finished at (1832,2950,-25); target (1832,2950); ARRIVED (off by 0 tile(s))
+[16:40:18.846] LOG   [n10_Corran] event goto_done: at=(1832,2950) target=(1832,2950) arrived=1 off=0
+[16:40:18.846] INFO  [n10_Corran] [action] goto (1828,2948) from (1832,2950,-25)
+[16:40:18.846] LOG   [n10_Corran] event goto_start: target=(1828,2948) from=(1832,2950)
+[16:40:18.846] INFO  [n10_Corran] [bot] running from (1832,2950,-25) to (1828,2948)
+[16:40:18.846] INFO  [n10_Corran] [bot] planning path to (1828,2948) in background
+[16:40:18.907] INFO  [n10_Corran] [bot] replan to (1828,2948): 4 steps in 102.3us
+[16:40:20.488] INFO  [n10_Corran] [gump] 0x4000289C context=0x80A00425: 13 option(s), 15 text(s)
+[16:40:20.488] INFO  [n10_Corran] [gump]   button 1000 = 'OKAY'
+[16:40:20.488] INFO  [n10_Corran] [gump]   button 0 = 'CANCEL'
+[16:40:20.488] INFO  [n10_Corran] [gump]   button 1 = 'Felucca'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 1 = 'Moonglow'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 2 = 'Britain'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 3 = 'Jhelom'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 4 = 'Yew'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 5 = 'New Magincia'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 6 = 'Minoc'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 7 = 'Trinsic'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 8 = 'Skara Brae'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 9 = 'Buccaneer's Den'
+[16:40:20.488] INFO  [n10_Corran] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 0 = 'Pick your destination:'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 1 = 'OKAY'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 2 = 'CANCEL'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 3 = 'Felucca'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 4 = 'Felucca'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 5 = 'Moonglow'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 6 = 'Britain'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 7 = 'Jhelom'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 8 = 'Yew'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 9 = 'New Magincia'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 10 = 'Minoc'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 11 = 'Trinsic'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 12 = 'Skara Brae'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 13 = 'Buccaneer's Den'
+[16:40:20.488] INFO  [n10_Corran] [gump]   text 14 = 'Ocllo (Newplayers)'
+[16:40:20.488] LOG   [n10_Corran] event gump_open: serial=0x4000289C context=0x80A00425 options=13
+[16:40:20.488] INFO  [n10_Corran] [travel] gate gump: choosing 'Minoc' (choice 6, button 1000)
+[16:40:20.488] LOG   [n10_Corran] event moongate_use: destination='Minoc' choice=6 button=1000
+[16:40:20.488] INFO  [n10_Corran] [bot] arrived at (1828,2948,-20)
+[16:40:20.489] INFO  [n10_Corran] [action] goto finished at (1828,2948,-20); target (1828,2948); ARRIVED (off by 0 tile(s))
+[16:40:20.489] LOG   [n10_Corran] event goto_done: at=(1828,2948) target=(1828,2948) arrived=1 off=0
+[16:40:20.489] INFO  [n10_Corran] [travel] using moongate 0x4000289C for 'Minoc' (gump active=0 serial=0x00000000)
+[16:40:20.502] INFO  [n10_Corran] [0x20] player @(2701,692,5) facing=7
+[16:40:20.502] INFO  [n10_Corran] [0x20] player @(2701,692,5) facing=7
+[16:40:20.502] INFO  [n10_Corran] [chat ascii] System: You can't see the target
+[16:40:20.751] INFO  [n10_Corran] [action] goto (2728,728) from (2701,692,5)
+[16:40:20.751] LOG   [n10_Corran] event goto_start: target=(2728,728) from=(2701,692)
+[16:40:20.751] INFO  [n10_Corran] [bot] running from (2701,692,5) to (2728,728)
+[16:40:20.751] INFO  [n10_Corran] [bot] planning path to (2728,728) in background
+[16:40:20.812] INFO  [n10_Corran] [bot] replan to (2728,728): 42 steps in 12716.3us
+[16:40:21.026] INFO  [n10_Corran] [chat ascii] System: You have been revealed
+[16:40:22.270] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:26.296] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:40:27.324] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:28.035] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 343.7us
+[16:40:32.385] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:36.152] INFO  [n10_Corran] [bot] arrived at (2728,728,0)
+[16:40:36.154] INFO  [n10_Corran] [action] goto finished at (2728,728,0); target (2728,728); ARRIVED (off by 0 tile(s))
+[16:40:36.154] LOG   [n10_Corran] event goto_done: at=(2728,728) target=(2728,728) arrived=1 off=0
+[16:40:36.154] INFO  [n10_Corran] [action] goto (2760,760) from (2728,728,0)
+[16:40:36.154] LOG   [n10_Corran] event goto_start: target=(2760,760) from=(2728,728)
+[16:40:36.154] INFO  [n10_Corran] [bot] running from (2728,728,0) to (2760,760)
+[16:40:36.154] INFO  [n10_Corran] [bot] planning path to (2760,760) in background
+[16:40:36.214] INFO  [n10_Corran] [bot] replan to (2760,760): 45 steps in 38936.7us
+[16:40:37.399] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:42.416] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:47.422] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:52.433] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:40:53.257] INFO  [n10_Corran] [bot] arrived at (2760,760,0)
+[16:40:53.258] INFO  [n10_Corran] [action] goto finished at (2760,760,0); target (2760,760); ARRIVED (off by 0 tile(s))
+[16:40:53.258] LOG   [n10_Corran] event goto_done: at=(2760,760) target=(2760,760) arrived=1 off=0
+[16:40:53.258] INFO  [n10_Corran] [action] goto (2792,790) from (2760,760,0)
+[16:40:53.258] LOG   [n10_Corran] event goto_start: target=(2792,790) from=(2760,760)
+[16:40:53.258] INFO  [n10_Corran] [bot] running from (2760,760,0) to (2792,790)
+[16:40:53.258] INFO  [n10_Corran] [bot] planning path to (2792,790) in background
+[16:40:53.320] INFO  [n10_Corran] [bot] replan to (2792,790): 42 steps in 17890.1us
+[16:40:57.444] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:02.446] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:07.043] INFO  [n10_Corran] [bot] arrived at (2792,790,0)
+[16:41:07.044] INFO  [n10_Corran] [action] goto finished at (2792,790,0); target (2792,790); ARRIVED (off by 0 tile(s))
+[16:41:07.044] LOG   [n10_Corran] event goto_done: at=(2792,790) target=(2792,790) arrived=1 off=0
+[16:41:07.044] INFO  [n10_Corran] [action] goto (2792,824) from (2792,790,0)
+[16:41:07.044] LOG   [n10_Corran] event goto_start: target=(2792,824) from=(2792,790)
+[16:41:07.044] INFO  [n10_Corran] [bot] running from (2792,790,0) to (2792,824)
+[16:41:07.044] INFO  [n10_Corran] [bot] planning path to (2792,824) in background
+[16:41:07.106] INFO  [n10_Corran] [bot] replan to (2792,824): 34 steps in 1479.7us
+[16:41:07.489] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:12.519] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:17.154] INFO  [n10_Corran] [bot] arrived at (2792,824,0)
+[16:41:17.155] INFO  [n10_Corran] [action] goto finished at (2792,824,0); target (2792,824); ARRIVED (off by 0 tile(s))
+[16:41:17.155] LOG   [n10_Corran] event goto_done: at=(2792,824) target=(2792,824) arrived=1 off=0
+[16:41:17.155] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:41:17.155] INFO  [n10_Corran] [action] goto (2792,856) from (2792,824,0)
+[16:41:17.155] LOG   [n10_Corran] event goto_start: target=(2792,856) from=(2792,824)
+[16:41:17.155] INFO  [n10_Corran] [bot] running from (2792,824,0) to (2792,856)
+[16:41:17.155] INFO  [n10_Corran] [bot] planning path to (2792,856) in background
+[16:41:17.215] INFO  [n10_Corran] [bot] replan to (2792,856): 32 steps in 1394.0us
+[16:41:17.522] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:22.565] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:26.055] INFO  [n10_Corran] [bot] arrived at (2792,856,0)
+[16:41:26.055] INFO  [n10_Corran] [action] goto finished at (2792,856,0); target (2792,856); ARRIVED (off by 0 tile(s))
+[16:41:26.055] LOG   [n10_Corran] event goto_done: at=(2792,856) target=(2792,856) arrived=1 off=0
+[16:41:26.056] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:41:26.056] INFO  [n10_Corran] [action] goto (2792,888) from (2792,856,0)
+[16:41:26.056] LOG   [n10_Corran] event goto_start: target=(2792,888) from=(2792,856)
+[16:41:26.056] INFO  [n10_Corran] [bot] running from (2792,856,0) to (2792,888)
+[16:41:26.056] INFO  [n10_Corran] [bot] planning path to (2792,888) in background
+[16:41:26.115] INFO  [n10_Corran] [bot] replan to (2792,888): 32 steps in 671.2us
+[16:41:26.298] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:41:27.576] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:32.608] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:34.844] INFO  [n10_Corran] [bot] arrived at (2792,888,0)
+[16:41:34.844] INFO  [n10_Corran] [action] goto finished at (2792,888,0); target (2792,888); ARRIVED (off by 0 tile(s))
+[16:41:34.844] LOG   [n10_Corran] event goto_done: at=(2792,888) target=(2792,888) arrived=1 off=0
+[16:41:34.844] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:41:34.844] INFO  [n10_Corran] [action] goto (2792,920) from (2792,888,0)
+[16:41:34.844] LOG   [n10_Corran] event goto_start: target=(2792,920) from=(2792,888)
+[16:41:34.844] INFO  [n10_Corran] [bot] running from (2792,888,0) to (2792,920)
+[16:41:34.844] INFO  [n10_Corran] [bot] planning path to (2792,920) in background
+[16:41:34.904] INFO  [n10_Corran] [bot] replan to (2792,920): 32 steps in 1599.5us
+[16:41:37.616] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:42.675] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:44.772] INFO  [n10_Corran] [bot] arrived at (2792,920,0)
+[16:41:44.773] INFO  [n10_Corran] [action] goto finished at (2792,920,0); target (2792,920); ARRIVED (off by 0 tile(s))
+[16:41:44.773] LOG   [n10_Corran] event goto_done: at=(2792,920) target=(2792,920) arrived=1 off=0
+[16:41:44.773] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:41:44.773] INFO  [n10_Corran] [action] goto (2826,888) from (2792,920,0)
+[16:41:44.773] LOG   [n10_Corran] event goto_start: target=(2826,888) from=(2792,920)
+[16:41:44.773] INFO  [n10_Corran] [bot] running from (2792,920,0) to (2826,888)
+[16:41:44.773] INFO  [n10_Corran] [bot] planning path to (2826,888) in background
+[16:41:44.896] INFO  [n10_Corran] [bot] replan to (2826,888): 121 steps in 71873.0us
+[16:41:47.729] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:52.756] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:41:53.392] INFO  [n10_Corran] [chat ascii] System: You are now under the protection of the town guards
+[16:41:54.635] INFO  [n10_Corran] [bot] step (2800,952,0)->(2801,953,5) rejected; OpenDoor + retry
+[16:41:55.400] INFO  [n10_Corran] [bot] step (2800,952,0)->(2801,953,5) rejected; avoiding edge + rerouting
+[16:41:55.400] INFO  [n10_Corran] [bot] planning path to (2826,888) in background
+[16:41:55.461] INFO  [n10_Corran] [bot] replan to (2826,888): 91 steps in 20647.0us
+[16:41:57.813] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:02.840] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:07.878] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:09.469] INFO  [n10_Corran] [bot] step (2827,927,0)->(2828,926,0) rejected; OpenDoor + retry
+[16:42:10.219] INFO  [n10_Corran] [bot] step (2827,927,0)->(2828,926,0) rejected; avoiding edge + rerouting
+[16:42:10.219] INFO  [n10_Corran] [bot] planning path to (2826,888) in background
+[16:42:10.280] INFO  [n10_Corran] [bot] replan to (2826,888): 39 steps in 1640.6us
+[16:42:12.933] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:14.680] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=24 in 202.6us
+[16:42:17.959] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:21.349] INFO  [n10_Corran] [bot] arrived at (2826,888,-2)
+[16:42:21.350] INFO  [n10_Corran] [action] goto finished at (2826,888,-2); target (2826,888); ARRIVED (off by 0 tile(s))
+[16:42:21.350] LOG   [n10_Corran] event goto_done: at=(2826,888) target=(2826,888) arrived=1 off=0
+[16:42:21.350] INFO  [n10_Corran] [action] goto (2856,856) from (2826,888,-2)
+[16:42:21.350] LOG   [n10_Corran] event goto_start: target=(2856,856) from=(2826,888)
+[16:42:21.350] INFO  [n10_Corran] [bot] running from (2826,888,-2) to (2856,856)
+[16:42:21.350] INFO  [n10_Corran] [bot] planning path to (2856,856) in background
+[16:42:21.411] INFO  [n10_Corran] [bot] replan to (2856,856): 54 steps in 5753.3us
+[16:42:22.961] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:26.216] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[16:42:26.216] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedCraft(make goods to sell 0.50) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,tongs,] want_train=Tinkering (target 50.0)
+[16:42:26.216] INFO  [life]   score=110.0
+[16:42:26.216] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[16:42:26.216] INFO  [life]   reason: Tinkering 0.0 -> 50.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[16:42:26.216] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[16:42:26.216] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[16:42:26.342] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:42:26.524] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=7 new segment=8 path=34 in 236.1us
+[16:42:28.010] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:33.040] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:38.095] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:38.309] INFO  [n10_Corran] [bot] arrived at (2856,856,0)
+[16:42:38.310] INFO  [n10_Corran] [action] goto finished at (2856,856,0); target (2856,856); ARRIVED (off by 0 tile(s))
+[16:42:38.310] LOG   [n10_Corran] event goto_done: at=(2856,856) target=(2856,856) arrived=1 off=0
+[16:42:38.310] INFO  [n10_Corran] [action] goto (2864,816) from (2856,856,0)
+[16:42:38.310] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2856,856)
+[16:42:38.310] INFO  [n10_Corran] [bot] running from (2856,856,0) to (2864,816)
+[16:42:38.310] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:42:38.371] INFO  [n10_Corran] [bot] replan to (2864,816): 54 steps in 15383.3us
+[16:42:43.113] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:48.163] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:51.478] INFO  [n10_Corran] [chat ascii] System: You shove Dog out of the way.
+[16:42:51.935] INFO  [n10_Corran] [bot] reject at (2857,816): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[16:42:51.935] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:42:53.193] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:54.053] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2864,816); stopped short (off by 8 tile(s))
+[16:42:54.053] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2864,816) arrived=0 off=8
+[16:42:55.283] INFO  [n10_Corran] [action] goto (2864,816) from (2856,816,0)
+[16:42:55.283] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2856,816)
+[16:42:55.283] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2864,816)
+[16:42:55.283] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:42:57.035] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2864,816); stopped short (off by 8 tile(s))
+[16:42:57.035] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2864,816) arrived=0 off=8
+[16:42:58.220] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:42:58.281] INFO  [n10_Corran] [travel] mode walk             usable   <- chosen
+[16:42:58.281] INFO  [n10_Corran] [travel] mode moongate         usable
+[16:42:58.282] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:42:58.282] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:42:58.282] LOG   [n10_Corran] event travel_mode: walk
+[16:42:58.282] INFO  [n10_Corran] [travel] plan Vesper tinker: ok legs=2 ~64 tiles transit=0 nodes=9
+[16:43:01.307] INFO  [n10_Corran] [action] goto (2890,800) from (2856,816,0)
+[16:43:01.307] LOG   [n10_Corran] event goto_start: target=(2890,800) from=(2856,816)
+[16:43:01.307] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2890,800)
+[16:43:01.307] INFO  [n10_Corran] [bot] planning path to (2890,800) in background
+[16:43:01.368] INFO  [n10_Corran] [bot] replan to (2890,800): 60 steps in 9957.8us
+[16:43:03.242] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:08.298] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:13.331] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:18.223] INFO  [n10_Corran] [bot] arrived at (2890,800,3)
+[16:43:18.223] INFO  [n10_Corran] [action] goto finished at (2890,800,3); target (2890,800); ARRIVED (off by 0 tile(s))
+[16:43:18.223] LOG   [n10_Corran] event goto_done: at=(2890,800) target=(2890,800) arrived=1 off=0
+[16:43:18.223] INFO  [n10_Corran] [action] goto (2899,790) from (2890,800,3)
+[16:43:18.223] LOG   [n10_Corran] event goto_start: target=(2899,790) from=(2890,800)
+[16:43:18.223] INFO  [n10_Corran] [bot] running from (2890,800,3) to (2899,790,z0)
+[16:43:18.223] INFO  [n10_Corran] [bot] planning path to (2899,790) in background
+[16:43:18.283] INFO  [n10_Corran] [bot] replan to (2899,790): 27 steps in 2716.6us
+[16:43:18.345] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:23.404] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:23.959] INFO  [n10_Corran] [bot] door ahead at (2903,796,z0); OpenDoor before step
+[16:43:23.960] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:43:25.901] INFO  [n10_Corran] [travel] Vesper tinker ARRIVED at (2902,794,0)
+[16:43:25.901] LOG   [n10_Corran] event travel_done: label='Vesper tinker' ok=1 at=(2902,794) legs=2 plans=3 why=''
+[16:43:25.916] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 2)
+[16:43:25.916] INFO  [n10_Corran] [travel] Minoc tinker -> (2461,457) r=5 from (2902,793)
+[16:43:25.916] LOG   [n10_Corran] event travel_start: label='Minoc tinker' target=(2461,457) radius=5 from=(2902,793)
+[16:43:25.916] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:43:25.916] INFO  [n10_Corran] [travel] mode walk             usable
+[16:43:25.916] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:43:25.916] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:43:25.916] LOG   [n10_Corran] event travel_mode: moongate
+[16:43:25.917] INFO  [n10_Corran] [travel] plan Minoc tinker: ok legs=19 ~864 tiles transit=0 nodes=668
+[16:43:26.347] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:43:28.256] INFO  [n10_Corran] [bot] arrived at (2899,790,0)
+[16:43:28.256] INFO  [n10_Corran] [action] goto finished at (2899,790,0); target (2899,790); ARRIVED (off by 0 tile(s))
+[16:43:28.256] LOG   [n10_Corran] event goto_done: at=(2899,790) target=(2899,790) arrived=1 off=0
+[16:43:28.256] INFO  [n10_Corran] [action] goto (2864,816) from (2899,790,0)
+[16:43:28.256] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2899,790)
+[16:43:28.256] INFO  [n10_Corran] [bot] running from (2899,790,0) to (2864,816)
+[16:43:28.257] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:43:28.316] INFO  [n10_Corran] [bot] replan to (2864,816): 93 steps in 37120.1us
+[16:43:28.440] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:31.673] INFO  [n10_Corran] [bot] door ahead at (2904,797,z0); OpenDoor before step
+[16:43:31.674] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:43:33.499] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:34.420] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=76 in 256.9us
+[16:43:38.561] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:41.757] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=55 in 579.0us
+[16:43:42.264] INFO  [n10_Corran] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=52 in 97.2us
+[16:43:43.595] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:48.629] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:53.671] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:53.978] INFO  [n10_Corran] [bot] reject at (2856,816): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[16:43:53.978] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:43:56.158] INFO  [n10_Corran] [action] goto finished at (2855,816,0); target (2864,816); stopped short (off by 9 tile(s))
+[16:43:56.158] LOG   [n10_Corran] event goto_done: at=(2855,816) target=(2864,816) arrived=0 off=9
+[16:43:57.391] INFO  [n10_Corran] [action] goto (2864,816) from (2855,816,0)
+[16:43:57.391] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2855,816)
+[16:43:57.391] INFO  [n10_Corran] [bot] running from (2855,816,0) to (2864,816)
+[16:43:57.391] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:43:58.679] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:43:59.018] INFO  [n10_Corran] [action] goto finished at (2855,816,0); target (2864,816); stopped short (off by 9 tile(s))
+[16:43:59.018] LOG   [n10_Corran] event goto_done: at=(2855,816) target=(2864,816) arrived=0 off=9
+[16:44:00.260] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:44:00.260] INFO  [n10_Corran] [travel] mode walk             usable
+[16:44:00.260] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:44:00.260] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:44:00.260] LOG   [n10_Corran] event travel_mode: moongate
+[16:44:00.260] INFO  [n10_Corran] [travel] plan Minoc tinker: ok legs=18 ~800 tiles transit=0 nodes=667
+[16:44:01.795] INFO  [n10_Corran] [action] goto (2856,856) from (2855,816,0)
+[16:44:01.795] LOG   [n10_Corran] event goto_start: target=(2856,856) from=(2855,816)
+[16:44:01.795] INFO  [n10_Corran] [bot] running from (2855,816,0) to (2856,856)
+[16:44:01.795] INFO  [n10_Corran] [bot] planning path to (2856,856) in background
+[16:44:01.856] INFO  [n10_Corran] [bot] replan to (2856,856): 45 steps in 3114.4us
+[16:44:03.713] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:08.747] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:13.806] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:14.872] INFO  [n10_Corran] [bot] arrived at (2856,856,0)
+[16:44:14.872] INFO  [n10_Corran] [action] goto finished at (2856,856,0); target (2856,856); ARRIVED (off by 0 tile(s))
+[16:44:14.872] LOG   [n10_Corran] event goto_done: at=(2856,856) target=(2856,856) arrived=1 off=0
+[16:44:14.872] INFO  [n10_Corran] [action] goto (2856,888) from (2856,856,0)
+[16:44:14.872] LOG   [n10_Corran] event goto_start: target=(2856,888) from=(2856,856)
+[16:44:14.872] INFO  [n10_Corran] [bot] running from (2856,856,0) to (2856,888)
+[16:44:14.872] INFO  [n10_Corran] [bot] planning path to (2856,888) in background
+[16:44:14.933] INFO  [n10_Corran] [bot] replan to (2856,888): 32 steps in 672.4us
+[16:44:18.835] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:22.576] INFO  [n10_Corran] [bot] arrived at (2856,888,0)
+[16:44:22.576] INFO  [n10_Corran] [action] goto finished at (2856,888,0); target (2856,888); ARRIVED (off by 0 tile(s))
+[16:44:22.576] LOG   [n10_Corran] event goto_done: at=(2856,888) target=(2856,888) arrived=1 off=0
+[16:44:22.576] INFO  [n10_Corran] [action] goto (2840,920) from (2856,888,0)
+[16:44:22.576] LOG   [n10_Corran] event goto_start: target=(2840,920) from=(2856,888)
+[16:44:22.576] INFO  [n10_Corran] [bot] running from (2856,888,0) to (2840,920)
+[16:44:22.576] INFO  [n10_Corran] [bot] planning path to (2840,920) in background
+[16:44:22.637] INFO  [n10_Corran] [bot] replan to (2840,920): 40 steps in 6136.5us
+[16:44:23.883] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:26.350] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:44:28.945] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:33.621] INFO  [n10_Corran] [bot] arrived at (2840,920,0)
+[16:44:33.621] INFO  [n10_Corran] [action] goto finished at (2840,920,0); target (2840,920); ARRIVED (off by 0 tile(s))
+[16:44:33.621] LOG   [n10_Corran] event goto_done: at=(2840,920) target=(2840,920) arrived=1 off=0
+[16:44:33.621] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:44:33.621] INFO  [n10_Corran] [action] goto (2804,888) from (2840,920,0)
+[16:44:33.621] LOG   [n10_Corran] event goto_start: target=(2804,888) from=(2840,920)
+[16:44:33.621] INFO  [n10_Corran] [bot] running from (2840,920,0) to (2804,888)
+[16:44:33.622] INFO  [n10_Corran] [bot] planning path to (2804,888) in background
+[16:44:33.790] INFO  [n10_Corran] [bot] replan to (2804,888): 125 steps in 142125.8us
+[16:44:33.929] INFO  [n10_Corran] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=126 in 251.0us
+[16:44:33.989] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:38.992] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:42.298] INFO  [n10_Corran] [chat ascii] System: World save in 10 seconds
+[16:44:44.009] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:49.045] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:52.161] INFO  [n10_Corran] [chat ascii] System: You have left the protection of the town guards
+[16:44:52.326] INFO  [n10_Corran] [chat ascii] System: World save has been initiated.
+[16:44:54.066] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:44:59.072] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:04.094] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:09.132] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:09.578] INFO  [n10_Corran] [bot] arrived at (2804,888,0)
+[16:45:09.579] INFO  [n10_Corran] [action] goto finished at (2804,888,0); target (2804,888); ARRIVED (off by 0 tile(s))
+[16:45:09.579] LOG   [n10_Corran] event goto_done: at=(2804,888) target=(2804,888) arrived=1 off=0
+[16:45:09.579] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:45:09.579] INFO  [n10_Corran] [action] goto (2804,856) from (2804,888,0)
+[16:45:09.579] LOG   [n10_Corran] event goto_start: target=(2804,856) from=(2804,888)
+[16:45:09.579] INFO  [n10_Corran] [bot] running from (2804,888,0) to (2804,856)
+[16:45:09.579] INFO  [n10_Corran] [bot] planning path to (2804,856) in background
+[16:45:09.640] INFO  [n10_Corran] [bot] replan to (2804,856): 39 steps in 7092.3us
+[16:45:14.173] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:19.222] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:20.524] INFO  [n10_Corran] [bot] arrived at (2804,856,0)
+[16:45:20.524] INFO  [n10_Corran] [action] goto finished at (2804,856,0); target (2804,856); ARRIVED (off by 0 tile(s))
+[16:45:20.524] LOG   [n10_Corran] event goto_done: at=(2804,856) target=(2804,856) arrived=1 off=0
+[16:45:20.524] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:45:20.524] INFO  [n10_Corran] [action] goto (2804,824) from (2804,856,0)
+[16:45:20.524] LOG   [n10_Corran] event goto_start: target=(2804,824) from=(2804,856)
+[16:45:20.524] INFO  [n10_Corran] [bot] running from (2804,856,0) to (2804,824)
+[16:45:20.524] INFO  [n10_Corran] [bot] planning path to (2804,824) in background
+[16:45:20.586] INFO  [n10_Corran] [bot] replan to (2804,824): 38 steps in 5211.8us
+[16:45:24.237] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:26.389] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:45:29.259] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:32.475] INFO  [n10_Corran] [bot] arrived at (2804,824,0)
+[16:45:32.476] INFO  [n10_Corran] [action] goto finished at (2804,824,0); target (2804,824); ARRIVED (off by 0 tile(s))
+[16:45:32.476] LOG   [n10_Corran] event goto_done: at=(2804,824) target=(2804,824) arrived=1 off=0
+[16:45:32.476] INFO  [n10_Corran] [action] goto (2776,790) from (2804,824,0)
+[16:45:32.476] LOG   [n10_Corran] event goto_start: target=(2776,790) from=(2804,824)
+[16:45:32.476] INFO  [n10_Corran] [bot] running from (2804,824,0) to (2776,790)
+[16:45:32.476] INFO  [n10_Corran] [bot] planning path to (2776,790) in background
+[16:45:32.535] INFO  [n10_Corran] [bot] replan to (2776,790): 43 steps in 10837.6us
+[16:45:34.314] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:39.347] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:44.389] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:47.983] INFO  [n10_Corran] [bot] arrived at (2776,790,0)
+[16:45:47.983] INFO  [n10_Corran] [action] goto finished at (2776,790,0); target (2776,790); ARRIVED (off by 0 tile(s))
+[16:45:47.983] LOG   [n10_Corran] event goto_done: at=(2776,790) target=(2776,790) arrived=1 off=0
+[16:45:47.983] INFO  [n10_Corran] [action] goto (2744,760) from (2776,790,0)
+[16:45:47.983] LOG   [n10_Corran] event goto_start: target=(2744,760) from=(2776,790)
+[16:45:47.983] INFO  [n10_Corran] [bot] running from (2776,790,0) to (2744,760)
+[16:45:47.983] INFO  [n10_Corran] [bot] planning path to (2744,760) in background
+[16:45:48.043] INFO  [n10_Corran] [bot] replan to (2744,760): 40 steps in 38315.5us
+[16:45:49.422] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:54.464] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:45:54.694] INFO  [n10_Corran] [chat ascii] grey wolf: *grey wolf is attacking you!*
+[16:45:59.470] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:01.030] INFO  [n10_Corran] [bot] arrived at (2744,760,0)
+[16:46:01.031] INFO  [n10_Corran] [action] goto finished at (2744,760,0); target (2744,760); ARRIVED (off by 0 tile(s))
+[16:46:01.031] LOG   [n10_Corran] event goto_done: at=(2744,760) target=(2744,760) arrived=1 off=0
+[16:46:01.031] INFO  [n10_Corran] [action] goto (2712,728) from (2744,760,0)
+[16:46:01.031] LOG   [n10_Corran] event goto_start: target=(2712,728) from=(2744,760)
+[16:46:01.031] INFO  [n10_Corran] [bot] running from (2744,760,0) to (2712,728)
+[16:46:01.031] INFO  [n10_Corran] [bot] planning path to (2712,728) in background
+[16:46:01.092] INFO  [n10_Corran] [bot] replan to (2712,728): 41 steps in 6264.7us
+[16:46:04.507] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:09.550] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:14.594] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:16.689] INFO  [n10_Corran] [bot] arrived at (2712,728,0)
+[16:46:16.690] INFO  [n10_Corran] [action] goto finished at (2712,728,0); target (2712,728); ARRIVED (off by 0 tile(s))
+[16:46:16.690] LOG   [n10_Corran] event goto_done: at=(2712,728) target=(2712,728) arrived=1 off=0
+[16:46:16.690] INFO  [n10_Corran] [action] goto (2680,694) from (2712,728,0)
+[16:46:16.690] LOG   [n10_Corran] event goto_start: target=(2680,694) from=(2712,728)
+[16:46:16.690] INFO  [n10_Corran] [bot] running from (2712,728,0) to (2680,694)
+[16:46:16.690] INFO  [n10_Corran] [bot] planning path to (2680,694) in background
+[16:46:16.751] INFO  [n10_Corran] [bot] replan to (2680,694): 41 steps in 7979.4us
+[16:46:19.613] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:24.644] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:26.396] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:46:28.341] INFO  [n10_Corran] [chat ascii] grey wolf: *grey wolf is attacking you!*
+[16:46:29.687] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:31.961] INFO  [n10_Corran] [bot] arrived at (2680,694,0)
+[16:46:31.962] INFO  [n10_Corran] [action] goto finished at (2680,694,0); target (2680,694); ARRIVED (off by 0 tile(s))
+[16:46:31.962] LOG   [n10_Corran] event goto_done: at=(2680,694) target=(2680,694) arrived=1 off=0
+[16:46:31.962] INFO  [n10_Corran] [action] goto (2648,664) from (2680,694,0)
+[16:46:31.962] LOG   [n10_Corran] event goto_start: target=(2648,664) from=(2680,694)
+[16:46:31.962] INFO  [n10_Corran] [bot] running from (2680,694,0) to (2648,664)
+[16:46:31.962] INFO  [n10_Corran] [bot] planning path to (2648,664) in background
+[16:46:32.022] INFO  [n10_Corran] [bot] replan to (2648,664): 38 steps in 4788.6us
+[16:46:34.737] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:39.793] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:44.437] INFO  [n10_Corran] [bot] arrived at (2648,664,0)
+[16:46:44.437] INFO  [n10_Corran] [action] goto finished at (2648,664,0); target (2648,664); ARRIVED (off by 0 tile(s))
+[16:46:44.437] LOG   [n10_Corran] event goto_done: at=(2648,664) target=(2648,664) arrived=1 off=0
+[16:46:44.437] INFO  [n10_Corran] [action] goto (2616,632) from (2648,664,0)
+[16:46:44.437] LOG   [n10_Corran] event goto_start: target=(2616,632) from=(2648,664)
+[16:46:44.437] INFO  [n10_Corran] [bot] running from (2648,664,0) to (2616,632)
+[16:46:44.437] INFO  [n10_Corran] [bot] planning path to (2616,632) in background
+[16:46:44.499] INFO  [n10_Corran] [bot] replan to (2616,632): 42 steps in 13654.1us
+[16:46:44.805] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:49.823] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:54.842] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:46:59.882] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:00.004] INFO  [n10_Corran] [bot] arrived at (2616,632,0)
+[16:47:00.004] INFO  [n10_Corran] [action] goto finished at (2616,632,0); target (2616,632); ARRIVED (off by 0 tile(s))
+[16:47:00.004] LOG   [n10_Corran] event goto_done: at=(2616,632) target=(2616,632) arrived=1 off=0
+[16:47:00.004] INFO  [n10_Corran] [action] goto (2584,600) from (2616,632,0)
+[16:47:00.004] LOG   [n10_Corran] event goto_start: target=(2584,600) from=(2616,632)
+[16:47:00.004] INFO  [n10_Corran] [bot] running from (2616,632,0) to (2584,600)
+[16:47:00.004] INFO  [n10_Corran] [bot] planning path to (2584,600) in background
+[16:47:00.065] INFO  [n10_Corran] [bot] replan to (2584,600): 53 steps in 24517.0us
+[16:47:03.832] INFO  [n10_Corran] [chat ascii] System: You are now under the protection of the town guards
+[16:47:04.902] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:09.914] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:14.116] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=13 in 905.6us
+[16:47:14.930] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:18.028] INFO  [n10_Corran] [bot] arrived at (2584,600,0)
+[16:47:18.028] INFO  [n10_Corran] [action] goto finished at (2584,600,0); target (2584,600); ARRIVED (off by 0 tile(s))
+[16:47:18.028] LOG   [n10_Corran] event goto_done: at=(2584,600) target=(2584,600) arrived=1 off=0
+[16:47:18.028] INFO  [n10_Corran] [action] goto (2552,568) from (2584,600,0)
+[16:47:18.028] LOG   [n10_Corran] event goto_start: target=(2552,568) from=(2584,600)
+[16:47:18.028] INFO  [n10_Corran] [bot] running from (2584,600,0) to (2552,568)
+[16:47:18.029] INFO  [n10_Corran] [bot] planning path to (2552,568) in background
+[16:47:18.090] INFO  [n10_Corran] [bot] replan to (2552,568): 52 steps in 14011.9us
+[16:47:19.983] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:20.136] INFO  [n10_Corran] [bot] lookahead patched around block at step 2: anchor=5 new segment=7 path=48 in 425.7us
+[16:47:25.005] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:26.261] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[16:47:26.261] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedCraft(make goods to sell 0.50) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,tongs,] want_train=Tinkering (target 50.0)
+[16:47:26.261] INFO  [life]   score=110.0
+[16:47:26.261] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[16:47:26.261] INFO  [life]   reason: Tinkering 0.0 -> 50.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[16:47:26.261] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[16:47:26.261] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[16:47:26.446] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:47:30.006] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:35.029] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:36.613] INFO  [n10_Corran] [bot] arrived at (2552,568,0)
+[16:47:36.614] INFO  [n10_Corran] [action] goto finished at (2552,568,0); target (2552,568); ARRIVED (off by 0 tile(s))
+[16:47:36.614] LOG   [n10_Corran] event goto_done: at=(2552,568) target=(2552,568) arrived=1 off=0
+[16:47:36.614] INFO  [n10_Corran] [action] goto (2520,536) from (2552,568,0)
+[16:47:36.614] LOG   [n10_Corran] event goto_start: target=(2520,536) from=(2552,568)
+[16:47:36.614] INFO  [n10_Corran] [bot] running from (2552,568,0) to (2520,536)
+[16:47:36.614] INFO  [n10_Corran] [bot] planning path to (2520,536) in background
+[16:47:36.674] INFO  [n10_Corran] [bot] replan to (2520,536): 52 steps in 12368.7us
+[16:47:40.051] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:45.068] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:50.089] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:47:51.587] INFO  [n10_Corran] [bot] arrived at (2520,536,0)
+[16:47:51.587] INFO  [n10_Corran] [action] goto finished at (2520,536,0); target (2520,536); ARRIVED (off by 0 tile(s))
+[16:47:51.587] LOG   [n10_Corran] event goto_done: at=(2520,536) target=(2520,536) arrived=1 off=0
+[16:47:51.587] INFO  [n10_Corran] [action] goto (2504,502) from (2520,536,0)
+[16:47:51.587] LOG   [n10_Corran] event goto_start: target=(2504,502) from=(2520,536)
+[16:47:51.587] INFO  [n10_Corran] [bot] running from (2520,536,0) to (2504,502)
+[16:47:51.587] INFO  [n10_Corran] [bot] planning path to (2504,502) in background
+[16:47:51.648] INFO  [n10_Corran] [bot] replan to (2504,502): 40 steps in 15342.3us
+[16:47:55.147] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:00.201] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:04.475] INFO  [n10_Corran] [bot] arrived at (2504,502,15)
+[16:48:04.476] INFO  [n10_Corran] [action] goto finished at (2504,502,15); target (2504,502); ARRIVED (off by 0 tile(s))
+[16:48:04.476] LOG   [n10_Corran] event goto_done: at=(2504,502) target=(2504,502) arrived=1 off=0
+[16:48:04.476] INFO  [n10_Corran] [action] goto (2472,472) from (2504,502,15)
+[16:48:04.476] LOG   [n10_Corran] event goto_start: target=(2472,472) from=(2504,502)
+[16:48:04.476] INFO  [n10_Corran] [bot] running from (2504,502,15) to (2472,472)
+[16:48:04.476] INFO  [n10_Corran] [bot] planning path to (2472,472) in background
+[16:48:04.537] INFO  [n10_Corran] [bot] replan to (2472,472): 42 steps in 10816.2us
+[16:48:05.230] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:10.241] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:15.249] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:17.877] INFO  [n10_Corran] [bot] arrived at (2472,472,15)
+[16:48:17.877] INFO  [n10_Corran] [action] goto finished at (2472,472,15); target (2472,472); ARRIVED (off by 0 tile(s))
+[16:48:17.877] LOG   [n10_Corran] event goto_done: at=(2472,472) target=(2472,472) arrived=1 off=0
+[16:48:17.877] INFO  [n10_Corran] [action] goto (2461,457) from (2472,472,15)
+[16:48:17.877] LOG   [n10_Corran] event goto_start: target=(2461,457) from=(2472,472)
+[16:48:17.877] INFO  [n10_Corran] [bot] running from (2472,472,15) to (2461,457,z15)
+[16:48:17.877] INFO  [n10_Corran] [bot] planning path to (2461,457) in background
+[16:48:17.937] INFO  [n10_Corran] [bot] replan to (2461,457): 26 steps in 2677.3us
+[16:48:20.299] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:22.489] INFO  [n10_Corran] [bot] door ahead at (2469,457,z15); OpenDoor before step
+[16:48:22.490] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:48:24.057] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=8 in 235.8us
+[16:48:24.835] INFO  [n10_Corran] [travel] Minoc tinker ARRIVED at (2465,456,15)
+[16:48:24.835] LOG   [n10_Corran] event travel_done: label='Minoc tinker' ok=1 at=(2465,456) legs=18 plans=2 why=''
+[16:48:24.896] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 3)
+[16:48:24.896] INFO  [n10_Corran] [travel] Britain tinkerguildmaster -> (1422,1654) r=5 from (2465,456)
+[16:48:24.897] LOG   [n10_Corran] event travel_start: label='Britain tinkerguildmaster' target=(1422,1654) radius=5 from=(2465,456)
+[16:48:24.897] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:48:24.897] INFO  [n10_Corran] [travel] mode walk             usable
+[16:48:24.897] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:48:24.897] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:48:24.897] LOG   [n10_Corran] event travel_mode: moongate
+[16:48:24.897] INFO  [n10_Corran] [travel] plan Britain tinkerguildmaster: ok legs=20 ~856 tiles transit=1 nodes=980
+[16:48:25.310] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:26.494] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:48:26.676] INFO  [n10_Corran] [bot] arrived at (2461,457,15)
+[16:48:26.677] INFO  [n10_Corran] [action] goto finished at (2461,457,15); target (2461,457); ARRIVED (off by 0 tile(s))
+[16:48:26.677] LOG   [n10_Corran] event goto_done: at=(2461,457) target=(2461,457) arrived=1 off=0
+[16:48:26.677] INFO  [n10_Corran] [action] goto (2472,488) from (2461,457,15)
+[16:48:26.677] LOG   [n10_Corran] event goto_start: target=(2472,488) from=(2461,457)
+[16:48:26.677] INFO  [n10_Corran] [bot] running from (2461,457,15) to (2472,488)
+[16:48:26.677] INFO  [n10_Corran] [bot] planning path to (2472,488) in background
+[16:48:26.737] INFO  [n10_Corran] [bot] replan to (2472,488): 40 steps in 3433.3us
+[16:48:30.350] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:35.397] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:37.896] INFO  [n10_Corran] [bot] arrived at (2472,488,15)
+[16:48:37.896] INFO  [n10_Corran] [action] goto finished at (2472,488,15); target (2472,488); ARRIVED (off by 0 tile(s))
+[16:48:37.896] LOG   [n10_Corran] event goto_done: at=(2472,488) target=(2472,488) arrived=1 off=0
+[16:48:37.896] INFO  [n10_Corran] [action] goto (2504,520) from (2472,488,15)
+[16:48:37.896] LOG   [n10_Corran] event goto_start: target=(2504,520) from=(2472,488)
+[16:48:37.896] INFO  [n10_Corran] [bot] running from (2472,488,15) to (2504,520)
+[16:48:37.897] INFO  [n10_Corran] [bot] planning path to (2504,520) in background
+[16:48:37.957] INFO  [n10_Corran] [bot] replan to (2504,520): 44 steps in 18583.9us
+[16:48:40.401] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:45.451] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:50.469] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:48:51.044] INFO  [n10_Corran] [bot] arrived at (2504,520,0)
+[16:48:51.045] INFO  [n10_Corran] [action] goto finished at (2504,520,0); target (2504,520); ARRIVED (off by 0 tile(s))
+[16:48:51.045] LOG   [n10_Corran] event goto_done: at=(2504,520) target=(2504,520) arrived=1 off=0
+[16:48:51.045] INFO  [n10_Corran] [action] goto (2536,552) from (2504,520,0)
+[16:48:51.045] LOG   [n10_Corran] event goto_start: target=(2536,552) from=(2504,520)
+[16:48:51.045] INFO  [n10_Corran] [bot] running from (2504,520,0) to (2536,552)
+[16:48:51.045] INFO  [n10_Corran] [bot] planning path to (2536,552) in background
+[16:48:51.105] INFO  [n10_Corran] [bot] replan to (2536,552): 50 steps in 49852.9us
+[16:48:55.476] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:00.483] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:05.515] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:05.760] INFO  [n10_Corran] [bot] arrived at (2536,552,0)
+[16:49:05.761] INFO  [n10_Corran] [action] goto finished at (2536,552,0); target (2536,552); ARRIVED (off by 0 tile(s))
+[16:49:05.761] LOG   [n10_Corran] event goto_done: at=(2536,552) target=(2536,552) arrived=1 off=0
+[16:49:05.761] INFO  [n10_Corran] [action] goto (2568,584) from (2536,552,0)
+[16:49:05.761] LOG   [n10_Corran] event goto_start: target=(2568,584) from=(2536,552)
+[16:49:05.761] INFO  [n10_Corran] [bot] running from (2536,552,0) to (2568,584)
+[16:49:05.761] INFO  [n10_Corran] [bot] planning path to (2568,584) in background
+[16:49:05.821] INFO  [n10_Corran] [bot] replan to (2568,584): 44 steps in 18126.4us
+[16:49:10.542] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:10.990] INFO  [n10_Corran] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=26 in 249.3us
+[16:49:11.679] INFO  [n10_Corran] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=24 in 247.7us
+[16:49:15.589] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:19.316] INFO  [n10_Corran] [bot] arrived at (2568,584,0)
+[16:49:19.317] INFO  [n10_Corran] [action] goto finished at (2568,584,0); target (2568,584); ARRIVED (off by 0 tile(s))
+[16:49:19.317] LOG   [n10_Corran] event goto_done: at=(2568,584) target=(2568,584) arrived=1 off=0
+[16:49:19.317] INFO  [n10_Corran] [action] goto (2602,616) from (2568,584,0)
+[16:49:19.317] LOG   [n10_Corran] event goto_start: target=(2602,616) from=(2568,584)
+[16:49:19.317] INFO  [n10_Corran] [bot] running from (2568,584,0) to (2602,616)
+[16:49:19.317] INFO  [n10_Corran] [bot] planning path to (2602,616) in background
+[16:49:19.377] INFO  [n10_Corran] [bot] replan to (2602,616): 49 steps in 13036.4us
+[16:49:20.636] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:25.640] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:26.519] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:49:30.661] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:35.665] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:36.324] INFO  [n10_Corran] [bot] arrived at (2602,616,0)
+[16:49:36.325] INFO  [n10_Corran] [action] goto finished at (2602,616,0); target (2602,616); ARRIVED (off by 0 tile(s))
+[16:49:36.325] LOG   [n10_Corran] event goto_done: at=(2602,616) target=(2602,616) arrived=1 off=0
+[16:49:36.325] INFO  [n10_Corran] [action] goto (2632,632) from (2602,616,0)
+[16:49:36.325] LOG   [n10_Corran] event goto_start: target=(2632,632) from=(2602,616)
+[16:49:36.325] INFO  [n10_Corran] [bot] running from (2602,616,0) to (2632,632)
+[16:49:36.325] INFO  [n10_Corran] [bot] planning path to (2632,632) in background
+[16:49:36.387] INFO  [n10_Corran] [bot] replan to (2632,632): 33 steps in 4962.0us
+[16:49:40.709] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:42.636] INFO  [n10_Corran] [chat ascii] System: World save in 10 seconds
+[16:49:44.751] INFO  [n10_Corran] [chat ascii] System: You have left the protection of the town guards
+[16:49:45.759] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:47.610] INFO  [n10_Corran] [bot] arrived at (2632,632,0)
+[16:49:47.610] INFO  [n10_Corran] [action] goto finished at (2632,632,0); target (2632,632); ARRIVED (off by 0 tile(s))
+[16:49:47.610] LOG   [n10_Corran] event goto_done: at=(2632,632) target=(2632,632) arrived=1 off=0
+[16:49:47.610] INFO  [n10_Corran] [action] goto (2664,664) from (2632,632,0)
+[16:49:47.610] LOG   [n10_Corran] event goto_start: target=(2664,664) from=(2632,632)
+[16:49:47.610] INFO  [n10_Corran] [bot] running from (2632,632,0) to (2664,664)
+[16:49:47.610] INFO  [n10_Corran] [bot] planning path to (2664,664) in background
+[16:49:47.671] INFO  [n10_Corran] [bot] replan to (2664,664): 43 steps in 5678.9us
+[16:49:50.761] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:49:52.689] INFO  [n10_Corran] [chat ascii] System: World save has been initiated.
+[16:49:55.777] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:00.831] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:04.104] INFO  [n10_Corran] [bot] arrived at (2664,664,5)
+[16:50:04.105] INFO  [n10_Corran] [action] goto finished at (2664,664,5); target (2664,664); ARRIVED (off by 0 tile(s))
+[16:50:04.105] LOG   [n10_Corran] event goto_done: at=(2664,664) target=(2664,664) arrived=1 off=0
+[16:50:04.105] INFO  [n10_Corran] [action] goto (2696,694) from (2664,664,5)
+[16:50:04.105] LOG   [n10_Corran] event goto_start: target=(2696,694) from=(2664,664)
+[16:50:04.105] INFO  [n10_Corran] [bot] running from (2664,664,5) to (2696,694)
+[16:50:04.105] INFO  [n10_Corran] [bot] planning path to (2696,694) in background
+[16:50:04.165] INFO  [n10_Corran] [bot] replan to (2696,694): 40 steps in 11862.2us
+[16:50:05.867] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:10.893] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:15.912] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:16.853] INFO  [n10_Corran] [bot] arrived at (2696,694,0)
+[16:50:16.853] INFO  [n10_Corran] [action] goto finished at (2696,694,0); target (2696,694); ARRIVED (off by 0 tile(s))
+[16:50:16.853] LOG   [n10_Corran] event goto_done: at=(2696,694) target=(2696,694) arrived=1 off=0
+[16:50:16.853] INFO  [n10_Corran] [action] goto (2701,692) from (2696,694,0)
+[16:50:16.853] LOG   [n10_Corran] event goto_start: target=(2701,692) from=(2696,694)
+[16:50:16.853] INFO  [n10_Corran] [bot] running from (2696,694,0) to (2701,692)
+[16:50:16.853] INFO  [n10_Corran] [bot] planning path to (2701,692) in background
+[16:50:16.914] INFO  [n10_Corran] [bot] replan to (2701,692): 5 steps in 184.5us
+[16:50:18.881] INFO  [n10_Corran] [gump] 0x4000289D context=0x80A00425: 13 option(s), 15 text(s)
+[16:50:18.881] INFO  [n10_Corran] [gump]   button 1000 = 'OKAY'
+[16:50:18.881] INFO  [n10_Corran] [gump]   button 0 = 'CANCEL'
+[16:50:18.881] INFO  [n10_Corran] [gump]   button 1 = 'Felucca'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 1 = 'Moonglow'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 2 = 'Britain'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 3 = 'Jhelom'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 4 = 'Yew'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 5 = 'New Magincia'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 6 = 'Minoc'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 7 = 'Trinsic'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 8 = 'Skara Brae'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 9 = 'Buccaneer's Den'
+[16:50:18.881] INFO  [n10_Corran] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[16:50:18.881] INFO  [n10_Corran] [gump]   text 0 = 'Pick your destination:'
+[16:50:18.881] INFO  [n10_Corran] [gump]   text 1 = 'OKAY'
+[16:50:18.881] INFO  [n10_Corran] [gump]   text 2 = 'CANCEL'
+[16:50:18.881] INFO  [n10_Corran] [gump]   text 3 = 'Felucca'
+[16:50:18.881] INFO  [n10_Corran] [gump]   text 4 = 'Felucca'
+[16:50:18.881] INFO  [n10_Corran] [gump]   text 5 = 'Moonglow'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 6 = 'Britain'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 7 = 'Jhelom'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 8 = 'Yew'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 9 = 'New Magincia'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 10 = 'Minoc'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 11 = 'Trinsic'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 12 = 'Skara Brae'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 13 = 'Buccaneer's Den'
+[16:50:18.882] INFO  [n10_Corran] [gump]   text 14 = 'Ocllo (Newplayers)'
+[16:50:18.882] LOG   [n10_Corran] event gump_open: serial=0x4000289D context=0x80A00425 options=13
+[16:50:18.882] INFO  [n10_Corran] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[16:50:18.882] LOG   [n10_Corran] event moongate_use: destination='Britain' choice=2 button=1000
+[16:50:18.882] INFO  [n10_Corran] [bot] arrived at (2701,692,5)
+[16:50:18.882] INFO  [n10_Corran] [action] goto finished at (2701,692,5); target (2701,692); ARRIVED (off by 0 tile(s))
+[16:50:18.882] LOG   [n10_Corran] event goto_done: at=(2701,692) target=(2701,692) arrived=1 off=0
+[16:50:18.882] INFO  [n10_Corran] [travel] using moongate 0x4000289D for 'Britain' (gump active=0 serial=0x00000000)
+[16:50:18.882] INFO  [n10_Corran] [0x20] player @(1336,1997,5) facing=2
+[16:50:18.882] INFO  [n10_Corran] [0x20] player @(1336,1997,5) facing=2
+[16:50:18.896] INFO  [n10_Corran] [chat ascii] System: You can't see the target
+[16:50:19.204] INFO  [n10_Corran] [action] goto (1336,1960) from (1336,1997,5)
+[16:50:19.204] LOG   [n10_Corran] event goto_start: target=(1336,1960) from=(1336,1997)
+[16:50:19.204] INFO  [n10_Corran] [bot] running from (1336,1997,5) to (1336,1960)
+[16:50:19.204] INFO  [n10_Corran] [bot] planning path to (1336,1960) in background
+[16:50:19.264] INFO  [n10_Corran] [bot] replan to (1336,1960): 37 steps in 26825.3us
+[16:50:19.509] INFO  [n10_Corran] [chat ascii] System: You have been revealed
+[16:50:20.967] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:25.995] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:26.566] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:50:31.003] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:31.574] INFO  [n10_Corran] [bot] arrived at (1336,1960,0)
+[16:50:31.575] INFO  [n10_Corran] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[16:50:31.575] LOG   [n10_Corran] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[16:50:31.575] INFO  [n10_Corran] [action] goto (1336,1928) from (1336,1960,0)
+[16:50:31.575] LOG   [n10_Corran] event goto_start: target=(1336,1928) from=(1336,1960)
+[16:50:31.575] INFO  [n10_Corran] [bot] running from (1336,1960,0) to (1336,1928)
+[16:50:31.575] INFO  [n10_Corran] [bot] planning path to (1336,1928) in background
+[16:50:31.635] INFO  [n10_Corran] [bot] replan to (1336,1928): 33 steps in 18040.7us
+[16:50:36.004] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:41.057] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:42.088] INFO  [n10_Corran] [bot] arrived at (1336,1928,0)
+[16:50:42.088] INFO  [n10_Corran] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[16:50:42.088] LOG   [n10_Corran] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[16:50:42.088] INFO  [n10_Corran] [action] goto (1336,1896) from (1336,1928,0)
+[16:50:42.088] LOG   [n10_Corran] event goto_start: target=(1336,1896) from=(1336,1928)
+[16:50:42.088] INFO  [n10_Corran] [bot] running from (1336,1928,0) to (1336,1896)
+[16:50:42.088] INFO  [n10_Corran] [bot] planning path to (1336,1896) in background
+[16:50:42.148] INFO  [n10_Corran] [bot] replan to (1336,1896): 32 steps in 23945.2us
+[16:50:46.110] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:51.163] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:50:53.606] INFO  [n10_Corran] [bot] arrived at (1336,1896,0)
+[16:50:53.607] INFO  [n10_Corran] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[16:50:53.607] LOG   [n10_Corran] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[16:50:53.607] INFO  [n10_Corran] [action] goto (1336,1864) from (1336,1896,0)
+[16:50:53.607] LOG   [n10_Corran] event goto_start: target=(1336,1864) from=(1336,1896)
+[16:50:53.607] INFO  [n10_Corran] [bot] running from (1336,1896,0) to (1336,1864)
+[16:50:53.607] INFO  [n10_Corran] [bot] planning path to (1336,1864) in background
+[16:50:53.668] INFO  [n10_Corran] [bot] replan to (1336,1864): 37 steps in 18506.7us
+[16:50:56.186] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:01.235] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:06.269] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:07.267] INFO  [n10_Corran] [bot] arrived at (1336,1864,0)
+[16:51:07.267] INFO  [n10_Corran] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[16:51:07.267] LOG   [n10_Corran] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[16:51:07.267] INFO  [n10_Corran] [action] goto (1336,1832) from (1336,1864,0)
+[16:51:07.267] LOG   [n10_Corran] event goto_start: target=(1336,1832) from=(1336,1864)
+[16:51:07.267] INFO  [n10_Corran] [bot] running from (1336,1864,0) to (1336,1832)
+[16:51:07.267] INFO  [n10_Corran] [bot] planning path to (1336,1832) in background
+[16:51:07.329] INFO  [n10_Corran] [bot] replan to (1336,1832): 33 steps in 13499.3us
+[16:51:11.292] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:16.309] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:19.686] INFO  [n10_Corran] [bot] arrived at (1336,1832,0)
+[16:51:19.686] INFO  [n10_Corran] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[16:51:19.686] LOG   [n10_Corran] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[16:51:19.686] INFO  [n10_Corran] [action] goto (1336,1800) from (1336,1832,0)
+[16:51:19.686] LOG   [n10_Corran] event goto_start: target=(1336,1800) from=(1336,1832)
+[16:51:19.686] INFO  [n10_Corran] [bot] running from (1336,1832,0) to (1336,1800)
+[16:51:19.687] INFO  [n10_Corran] [bot] planning path to (1336,1800) in background
+[16:51:19.749] INFO  [n10_Corran] [bot] replan to (1336,1800): 33 steps in 10277.7us
+[16:51:21.363] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:26.417] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:26.603] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:51:29.831] INFO  [n10_Corran] [bot] arrived at (1336,1800,0)
+[16:51:29.831] INFO  [n10_Corran] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[16:51:29.831] LOG   [n10_Corran] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[16:51:29.831] INFO  [n10_Corran] [action] goto (1352,1766) from (1336,1800,0)
+[16:51:29.831] LOG   [n10_Corran] event goto_start: target=(1352,1766) from=(1336,1800)
+[16:51:29.831] INFO  [n10_Corran] [bot] running from (1336,1800,0) to (1352,1766)
+[16:51:29.831] INFO  [n10_Corran] [bot] planning path to (1352,1766) in background
+[16:51:29.890] INFO  [n10_Corran] [bot] replan to (1352,1766): 49 steps in 25982.2us
+[16:51:31.425] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:36.456] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:41.497] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:44.549] INFO  [n10_Corran] [bot] arrived at (1352,1766,15)
+[16:51:44.549] INFO  [n10_Corran] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[16:51:44.550] LOG   [n10_Corran] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[16:51:44.550] INFO  [n10_Corran] [action] goto (1386,1728) from (1352,1766,15)
+[16:51:44.550] LOG   [n10_Corran] event goto_start: target=(1386,1728) from=(1352,1766)
+[16:51:44.550] INFO  [n10_Corran] [bot] running from (1352,1766,15) to (1386,1728)
+[16:51:44.550] INFO  [n10_Corran] [bot] planning path to (1386,1728) in background
+[16:51:44.610] INFO  [n10_Corran] [bot] replan to (1386,1728): 64 steps in 53540.2us
+[16:51:46.529] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:51.586] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:55.890] INFO  [n10_Corran] [chat ascii] System: You are now under the protection of the city guards
+[16:51:56.624] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:51:57.547] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 2164.7us
+[16:52:01.659] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:03.443] INFO  [n10_Corran] [chat ascii] System: You have left the protection of the city guards
+[16:52:03.871] INFO  [n10_Corran] [bot] arrived at (1386,1728,0)
+[16:52:03.872] INFO  [n10_Corran] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[16:52:03.872] LOG   [n10_Corran] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[16:52:03.872] INFO  [n10_Corran] [action] goto (1416,1688) from (1386,1728,0)
+[16:52:03.872] LOG   [n10_Corran] event goto_start: target=(1416,1688) from=(1386,1728)
+[16:52:03.872] INFO  [n10_Corran] [bot] running from (1386,1728,0) to (1416,1688)
+[16:52:03.872] INFO  [n10_Corran] [bot] planning path to (1416,1688) in background
+[16:52:03.932] INFO  [n10_Corran] [bot] replan to (1416,1688): 52 steps in 12004.8us
+[16:52:04.850] INFO  [n10_Corran] [chat ascii] System: You are now under the protection of the city guards
+[16:52:06.666] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:11.690] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:16.725] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:19.822] INFO  [n10_Corran] [bot] arrived at (1416,1688,0)
+[16:52:19.823] INFO  [n10_Corran] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[16:52:19.823] LOG   [n10_Corran] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[16:52:19.823] INFO  [n10_Corran] [action] goto (1422,1654) from (1416,1688,0)
+[16:52:19.823] LOG   [n10_Corran] event goto_start: target=(1422,1654) from=(1416,1688)
+[16:52:19.823] INFO  [n10_Corran] [bot] running from (1416,1688,0) to (1422,1654,z10)
+[16:52:19.824] INFO  [n10_Corran] [bot] planning path to (1422,1654) in background
+[16:52:19.883] INFO  [n10_Corran] [bot] replan to (1422,1654): 47 steps in 32191.9us
+[16:52:21.768] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:26.269] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[16:52:26.269] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedCraft(make goods to sell 0.50) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,tongs,] want_train=Tinkering (target 50.0)
+[16:52:26.269] INFO  [life]   score=110.0
+[16:52:26.269] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[16:52:26.269] INFO  [life]   reason: Tinkering 0.0 -> 50.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[16:52:26.269] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[16:52:26.269] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[16:52:26.656] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:52:26.716] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=25 in 860.8us
+[16:52:26.776] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:30.736] INFO  [n10_Corran] [bot] door ahead at (1431,1659,z10); OpenDoor before step
+[16:52:30.749] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:52:31.824] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:33.146] INFO  [n10_Corran] [travel] Britain tinkerguildmaster ARRIVED at (1426,1658,10)
+[16:52:33.146] LOG   [n10_Corran] event travel_done: label='Britain tinkerguildmaster' ok=1 at=(1426,1658) legs=20 plans=1 why=''
+[16:52:33.207] INFO  [life] goal_failed=TRAIN_AT_NPC reason="no 'tinker' reachable after 3 trips"
+[16:52:33.268] INFO  [life] goal=TRADE_WITH_PLAYER reason="previous goal abandoned: no trainer reachable"
+[16:52:33.268] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedCraft(make goods to sell 0.50) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,tongs,] want_train=Tinkering (target 50.0)
+[16:52:33.269] INFO  [life]   score=79.8
+[16:52:33.269] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[16:52:33.269] INFO  [life]   reason: 30 x i_ingot_iron spare
+[16:52:33.269] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[16:52:33.269] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[16:52:33.269] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[16:52:35.878] INFO  [n10_Corran] [bot] arrived at (1422,1654,10)
+[16:52:36.842] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:38.224] INFO  [life] trade: taking 30 i_ingot_iron to the Vesper market (trip 1)
+[16:52:38.224] INFO  [n10_Corran] [travel] Vesper banker -> (2881,684) r=5 from (1422,1654)
+[16:52:38.224] LOG   [n10_Corran] event travel_start: label='Vesper banker' target=(2881,684) radius=5 from=(1422,1654)
+[16:52:38.224] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:52:38.224] INFO  [n10_Corran] [travel] mode walk             usable
+[16:52:38.224] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:52:38.224] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:52:38.224] LOG   [n10_Corran] event travel_mode: moongate
+[16:52:38.225] INFO  [n10_Corran] [travel] plan Vesper banker: ok legs=27 ~1112 tiles transit=1 nodes=2646
+[16:52:38.286] INFO  [n10_Corran] [action] goto finished at (1422,1654,10); target (1422,1654); ARRIVED (off by 0 tile(s))
+[16:52:38.286] LOG   [n10_Corran] event goto_done: at=(1422,1654) target=(1422,1654) arrived=1 off=0
+[16:52:38.286] INFO  [n10_Corran] [action] goto (1416,1688) from (1422,1654,10)
+[16:52:38.286] LOG   [n10_Corran] event goto_start: target=(1416,1688) from=(1422,1654)
+[16:52:38.286] INFO  [n10_Corran] [bot] running from (1422,1654,10) to (1416,1688)
+[16:52:38.286] INFO  [n10_Corran] [bot] planning path to (1416,1688) in background
+[16:52:38.347] INFO  [n10_Corran] [bot] replan to (1416,1688): 48 steps in 6906.4us
+[16:52:41.898] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:42.470] INFO  [n10_Corran] [bot] door ahead at (1432,1660,z10); OpenDoor before step
+[16:52:42.484] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:52:46.904] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:51.929] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:52:54.277] INFO  [n10_Corran] [bot] arrived at (1416,1688,0)
+[16:52:54.278] INFO  [n10_Corran] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[16:52:54.278] LOG   [n10_Corran] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[16:52:54.278] INFO  [n10_Corran] [action] goto (1416,1720) from (1416,1688,0)
+[16:52:54.278] LOG   [n10_Corran] event goto_start: target=(1416,1720) from=(1416,1688)
+[16:52:54.278] INFO  [n10_Corran] [bot] running from (1416,1688,0) to (1416,1720)
+[16:52:54.278] INFO  [n10_Corran] [bot] planning path to (1416,1720) in background
+[16:52:54.338] INFO  [n10_Corran] [bot] replan to (1416,1720): 32 steps in 783.7us
+[16:52:56.976] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:01.982] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:02.424] INFO  [n10_Corran] [bot] arrived at (1416,1720,20)
+[16:53:02.425] INFO  [n10_Corran] [action] goto finished at (1416,1720,20); target (1416,1720); ARRIVED (off by 0 tile(s))
+[16:53:02.425] LOG   [n10_Corran] event goto_done: at=(1416,1720) target=(1416,1720) arrived=1 off=0
+[16:53:02.425] INFO  [n10_Corran] [action] goto (1402,1760) from (1416,1720,20)
+[16:53:02.425] LOG   [n10_Corran] event goto_start: target=(1402,1760) from=(1416,1720)
+[16:53:02.425] INFO  [n10_Corran] [bot] running from (1416,1720,20) to (1402,1760)
+[16:53:02.425] INFO  [n10_Corran] [bot] planning path to (1402,1760) in background
+[16:53:02.486] INFO  [n10_Corran] [bot] replan to (1402,1760): 40 steps in 17718.4us
+[16:53:07.024] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:12.058] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:13.392] INFO  [n10_Corran] [bot] step (1397,1755,0)->(1396,1756,0) rejected; OpenDoor + retry
+[16:53:14.148] INFO  [n10_Corran] [bot] step (1397,1755,0)->(1396,1756,0) rejected; avoiding edge + rerouting
+[16:53:14.148] INFO  [n10_Corran] [bot] planning path to (1402,1760) in background
+[16:53:14.209] INFO  [n10_Corran] [bot] replan to (1402,1760): 5 steps in 597.6us
+[16:53:15.870] INFO  [n10_Corran] [bot] arrived at (1402,1760,0)
+[16:53:15.871] INFO  [n10_Corran] [action] goto finished at (1402,1760,0); target (1402,1760); ARRIVED (off by 0 tile(s))
+[16:53:15.871] LOG   [n10_Corran] event goto_done: at=(1402,1760) target=(1402,1760) arrived=1 off=0
+[16:53:15.871] INFO  [n10_Corran] [action] goto (1368,1800) from (1402,1760,0)
+[16:53:15.871] LOG   [n10_Corran] event goto_start: target=(1368,1800) from=(1402,1760)
+[16:53:15.871] INFO  [n10_Corran] [bot] running from (1402,1760,0) to (1368,1800)
+[16:53:15.871] INFO  [n10_Corran] [bot] planning path to (1368,1800) in background
+[16:53:15.931] INFO  [n10_Corran] [bot] replan to (1368,1800): 79 steps in 39351.6us
+[16:53:17.114] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:20.459] INFO  [n10_Corran] [chat ascii] System: You have left the protection of the city guards
+[16:53:22.145] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:26.669] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:53:27.156] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:32.165] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:37.172] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:39.145] INFO  [n10_Corran] [bot] arrived at (1368,1800,3)
+[16:53:39.145] INFO  [n10_Corran] [action] goto finished at (1368,1800,3); target (1368,1800); ARRIVED (off by 0 tile(s))
+[16:53:39.145] LOG   [n10_Corran] event goto_done: at=(1368,1800) target=(1368,1800) arrived=1 off=0
+[16:53:39.145] INFO  [n10_Corran] [action] goto (1368,1832) from (1368,1800,3)
+[16:53:39.145] LOG   [n10_Corran] event goto_start: target=(1368,1832) from=(1368,1800)
+[16:53:39.145] INFO  [n10_Corran] [bot] running from (1368,1800,3) to (1368,1832)
+[16:53:39.145] INFO  [n10_Corran] [bot] planning path to (1368,1832) in background
+[16:53:39.205] INFO  [n10_Corran] [bot] replan to (1368,1832): 32 steps in 4715.6us
+[16:53:42.230] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:47.269] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:49.093] INFO  [n10_Corran] [bot] arrived at (1368,1832,0)
+[16:53:49.094] INFO  [n10_Corran] [action] goto finished at (1368,1832,0); target (1368,1832); ARRIVED (off by 0 tile(s))
+[16:53:49.094] LOG   [n10_Corran] event goto_done: at=(1368,1832) target=(1368,1832) arrived=1 off=0
+[16:53:49.094] INFO  [n10_Corran] [action] goto (1368,1864) from (1368,1832,0)
+[16:53:49.094] LOG   [n10_Corran] event goto_start: target=(1368,1864) from=(1368,1832)
+[16:53:49.094] INFO  [n10_Corran] [bot] running from (1368,1832,0) to (1368,1864)
+[16:53:49.094] INFO  [n10_Corran] [bot] planning path to (1368,1864) in background
+[16:53:49.156] INFO  [n10_Corran] [bot] replan to (1368,1864): 38 steps in 7487.4us
+[16:53:52.289] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:53:57.293] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:01.595] INFO  [n10_Corran] [bot] arrived at (1368,1864,0)
+[16:54:01.595] INFO  [n10_Corran] [action] goto finished at (1368,1864,0); target (1368,1864); ARRIVED (off by 0 tile(s))
+[16:54:01.595] LOG   [n10_Corran] event goto_done: at=(1368,1864) target=(1368,1864) arrived=1 off=0
+[16:54:01.595] INFO  [n10_Corran] [action] goto (1368,1894) from (1368,1864,0)
+[16:54:01.595] LOG   [n10_Corran] event goto_start: target=(1368,1894) from=(1368,1864)
+[16:54:01.595] INFO  [n10_Corran] [bot] running from (1368,1864,0) to (1368,1894)
+[16:54:01.595] INFO  [n10_Corran] [bot] planning path to (1368,1894) in background
+[16:54:01.656] INFO  [n10_Corran] [bot] replan to (1368,1894): 31 steps in 16384.3us
+[16:54:02.302] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:07.322] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:11.820] INFO  [n10_Corran] [bot] arrived at (1368,1894,0)
+[16:54:11.821] INFO  [n10_Corran] [action] goto finished at (1368,1894,0); target (1368,1894); ARRIVED (off by 0 tile(s))
+[16:54:11.821] LOG   [n10_Corran] event goto_done: at=(1368,1894) target=(1368,1894) arrived=1 off=0
+[16:54:11.821] INFO  [n10_Corran] [action] goto (1368,1928) from (1368,1894,0)
+[16:54:11.821] LOG   [n10_Corran] event goto_start: target=(1368,1928) from=(1368,1894)
+[16:54:11.821] INFO  [n10_Corran] [bot] running from (1368,1894,0) to (1368,1928)
+[16:54:11.821] INFO  [n10_Corran] [bot] planning path to (1368,1928) in background
+[16:54:11.883] INFO  [n10_Corran] [bot] replan to (1368,1928): 34 steps in 22399.0us
+[16:54:12.326] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:17.335] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:21.737] INFO  [n10_Corran] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=6 in 244.4us
+[16:54:22.346] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:24.261] INFO  [n10_Corran] [bot] arrived at (1368,1928,0)
+[16:54:24.263] INFO  [n10_Corran] [action] goto finished at (1368,1928,0); target (1368,1928); ARRIVED (off by 0 tile(s))
+[16:54:24.263] LOG   [n10_Corran] event goto_done: at=(1368,1928) target=(1368,1928) arrived=1 off=0
+[16:54:24.263] INFO  [n10_Corran] [action] goto (1368,1960) from (1368,1928,0)
+[16:54:24.263] LOG   [n10_Corran] event goto_start: target=(1368,1960) from=(1368,1928)
+[16:54:24.263] INFO  [n10_Corran] [bot] running from (1368,1928,0) to (1368,1960)
+[16:54:24.263] INFO  [n10_Corran] [bot] planning path to (1368,1960) in background
+[16:54:24.324] INFO  [n10_Corran] [bot] replan to (1368,1960): 39 steps in 17564.7us
+[16:54:26.678] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:54:27.398] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:32.405] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:37.445] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:37.936] INFO  [n10_Corran] [bot] arrived at (1368,1960,0)
+[16:54:37.937] INFO  [n10_Corran] [action] goto finished at (1368,1960,0); target (1368,1960); ARRIVED (off by 0 tile(s))
+[16:54:37.937] LOG   [n10_Corran] event goto_done: at=(1368,1960) target=(1368,1960) arrived=1 off=0
+[16:54:37.937] INFO  [n10_Corran] [action] goto (1336,1992) from (1368,1960,0)
+[16:54:37.937] LOG   [n10_Corran] event goto_start: target=(1336,1992) from=(1368,1960)
+[16:54:37.937] INFO  [n10_Corran] [bot] running from (1368,1960,0) to (1336,1992)
+[16:54:37.937] INFO  [n10_Corran] [bot] planning path to (1336,1992) in background
+[16:54:37.997] INFO  [n10_Corran] [bot] replan to (1336,1992): 43 steps in 31155.6us
+[16:54:42.454] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:42.988] INFO  [n10_Corran] [chat ascii] System: World save in 10 seconds
+[16:54:47.494] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:51.867] INFO  [n10_Corran] [bot] arrived at (1336,1992,0)
+[16:54:51.868] INFO  [n10_Corran] [action] goto finished at (1336,1992,0); target (1336,1992); ARRIVED (off by 0 tile(s))
+[16:54:51.868] LOG   [n10_Corran] event goto_done: at=(1336,1992) target=(1336,1992) arrived=1 off=0
+[16:54:51.868] INFO  [n10_Corran] [action] goto (1336,1997) from (1336,1992,0)
+[16:54:51.868] LOG   [n10_Corran] event goto_start: target=(1336,1997) from=(1336,1992)
+[16:54:51.868] INFO  [n10_Corran] [bot] running from (1336,1992,0) to (1336,1997)
+[16:54:51.868] INFO  [n10_Corran] [bot] planning path to (1336,1997) in background
+[16:54:51.927] INFO  [n10_Corran] [bot] replan to (1336,1997): 5 steps in 205.6us
+[16:54:52.555] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:54:53.025] INFO  [n10_Corran] [chat ascii] System: World save has been initiated.
+[16:54:53.443] INFO  [n10_Corran] [gump] 0x400028A0 context=0x80A00425: 13 option(s), 15 text(s)
+[16:54:53.443] INFO  [n10_Corran] [gump]   button 1000 = 'OKAY'
+[16:54:53.443] INFO  [n10_Corran] [gump]   button 0 = 'CANCEL'
+[16:54:53.443] INFO  [n10_Corran] [gump]   button 1 = 'Felucca'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 1 = 'Moonglow'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 2 = 'Britain'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 3 = 'Jhelom'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 4 = 'Yew'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 5 = 'New Magincia'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 6 = 'Minoc'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 7 = 'Trinsic'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 8 = 'Skara Brae'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 9 = 'Buccaneer's Den'
+[16:54:53.443] INFO  [n10_Corran] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 0 = 'Pick your destination:'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 1 = 'OKAY'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 2 = 'CANCEL'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 3 = 'Felucca'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 4 = 'Felucca'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 5 = 'Moonglow'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 6 = 'Britain'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 7 = 'Jhelom'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 8 = 'Yew'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 9 = 'New Magincia'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 10 = 'Minoc'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 11 = 'Trinsic'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 12 = 'Skara Brae'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 13 = 'Buccaneer's Den'
+[16:54:53.443] INFO  [n10_Corran] [gump]   text 14 = 'Ocllo (Newplayers)'
+[16:54:53.443] LOG   [n10_Corran] event gump_open: serial=0x400028A0 context=0x80A00425 options=13
+[16:54:53.443] INFO  [n10_Corran] [travel] gate gump: choosing 'Minoc' (choice 6, button 1000)
+[16:54:53.443] LOG   [n10_Corran] event moongate_use: destination='Minoc' choice=6 button=1000
+[16:54:53.443] INFO  [n10_Corran] [bot] arrived at (1336,1997,5)
+[16:54:53.444] INFO  [n10_Corran] [action] goto finished at (1336,1997,5); target (1336,1997); ARRIVED (off by 0 tile(s))
+[16:54:53.444] LOG   [n10_Corran] event goto_done: at=(1336,1997) target=(1336,1997) arrived=1 off=0
+[16:54:53.444] INFO  [n10_Corran] [travel] using moongate 0x400028A0 for 'Minoc' (gump active=0 serial=0x00000000)
+[16:54:53.456] INFO  [n10_Corran] [0x20] player @(2701,692,5) facing=4
+[16:54:53.457] INFO  [n10_Corran] [0x20] player @(2701,692,5) facing=4
+[16:54:53.457] INFO  [n10_Corran] [chat ascii] System: You can't see the target
+[16:54:53.642] INFO  [n10_Corran] [action] goto (2728,728) from (2701,692,5)
+[16:54:53.642] LOG   [n10_Corran] event goto_start: target=(2728,728) from=(2701,692)
+[16:54:53.642] INFO  [n10_Corran] [bot] running from (2701,692,5) to (2728,728)
+[16:54:53.642] INFO  [n10_Corran] [bot] planning path to (2728,728) in background
+[16:54:53.703] INFO  [n10_Corran] [bot] replan to (2728,728): 42 steps in 24588.0us
+[16:54:53.717] INFO  [n10_Corran] [chat ascii] System: You have been revealed
+[16:54:57.563] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:02.588] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:07.647] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:08.444] INFO  [n10_Corran] [bot] arrived at (2728,728,0)
+[16:55:08.444] INFO  [n10_Corran] [action] goto finished at (2728,728,0); target (2728,728); ARRIVED (off by 0 tile(s))
+[16:55:08.444] LOG   [n10_Corran] event goto_done: at=(2728,728) target=(2728,728) arrived=1 off=0
+[16:55:08.444] INFO  [n10_Corran] [action] goto (2760,760) from (2728,728,0)
+[16:55:08.444] LOG   [n10_Corran] event goto_start: target=(2760,760) from=(2728,728)
+[16:55:08.444] INFO  [n10_Corran] [bot] running from (2728,728,0) to (2760,760)
+[16:55:08.444] INFO  [n10_Corran] [bot] planning path to (2760,760) in background
+[16:55:08.504] INFO  [n10_Corran] [bot] replan to (2760,760): 45 steps in 45649.5us
+[16:55:12.702] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:17.711] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:22.757] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:24.856] INFO  [n10_Corran] [bot] arrived at (2760,760,0)
+[16:55:24.857] INFO  [n10_Corran] [action] goto finished at (2760,760,0); target (2760,760); ARRIVED (off by 0 tile(s))
+[16:55:24.857] LOG   [n10_Corran] event goto_done: at=(2760,760) target=(2760,760) arrived=1 off=0
+[16:55:24.857] INFO  [n10_Corran] [action] goto (2776,790) from (2760,760,0)
+[16:55:24.857] LOG   [n10_Corran] event goto_start: target=(2776,790) from=(2760,760)
+[16:55:24.857] INFO  [n10_Corran] [bot] running from (2760,760,0) to (2776,790)
+[16:55:24.857] INFO  [n10_Corran] [bot] planning path to (2776,790) in background
+[16:55:24.917] INFO  [n10_Corran] [bot] replan to (2776,790): 31 steps in 18174.0us
+[16:55:26.689] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:55:27.767] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:32.777] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:33.239] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRADE_WITH_PLAYER reason="TRAIN_AT_NPC 110.0 superseded TRADE_WITH_PLAYER 79.8"
+[16:55:33.239] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedCraft(make goods to sell 0.50) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,tongs,] want_train=Tinkering (target 50.0)
+[16:55:33.239] INFO  [life]   score=110.0
+[16:55:33.239] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[16:55:33.239] INFO  [life]   reason: Tinkering 0.0 -> 50.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[16:55:33.239] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[16:55:33.239] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[16:55:35.288] INFO  [n10_Corran] [bot] arrived at (2776,790,0)
+[16:55:35.288] INFO  [n10_Corran] [action] goto finished at (2776,790,0); target (2776,790); ARRIVED (off by 0 tile(s))
+[16:55:35.288] LOG   [n10_Corran] event goto_done: at=(2776,790) target=(2776,790) arrived=1 off=0
+[16:55:35.288] INFO  [n10_Corran] [action] goto (2776,824) from (2776,790,0)
+[16:55:35.288] LOG   [n10_Corran] event goto_start: target=(2776,824) from=(2776,790)
+[16:55:35.288] INFO  [n10_Corran] [bot] running from (2776,790,0) to (2776,824)
+[16:55:35.288] INFO  [n10_Corran] [bot] planning path to (2776,824) in background
+[16:55:35.349] INFO  [n10_Corran] [bot] replan to (2776,824): 34 steps in 24202.9us
+[16:55:37.793] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:42.850] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:47.868] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:48.314] INFO  [n10_Corran] [bot] arrived at (2776,824,0)
+[16:55:48.314] INFO  [n10_Corran] [action] goto finished at (2776,824,0); target (2776,824); ARRIVED (off by 0 tile(s))
+[16:55:48.314] LOG   [n10_Corran] event goto_done: at=(2776,824) target=(2776,824) arrived=1 off=0
+[16:55:48.314] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:55:48.314] INFO  [n10_Corran] [action] goto (2792,856) from (2776,824,0)
+[16:55:48.315] LOG   [n10_Corran] event goto_start: target=(2792,856) from=(2776,824)
+[16:55:48.315] INFO  [n10_Corran] [bot] running from (2776,824,0) to (2792,856)
+[16:55:48.315] INFO  [n10_Corran] [bot] planning path to (2792,856) in background
+[16:55:48.375] INFO  [n10_Corran] [bot] replan to (2792,856): 43 steps in 9783.9us
+[16:55:52.878] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:55:57.929] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:00.776] INFO  [n10_Corran] [bot] arrived at (2792,856,0)
+[16:56:00.777] INFO  [n10_Corran] [action] goto finished at (2792,856,0); target (2792,856); ARRIVED (off by 0 tile(s))
+[16:56:00.777] LOG   [n10_Corran] event goto_done: at=(2792,856) target=(2792,856) arrived=1 off=0
+[16:56:00.777] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:56:00.777] INFO  [n10_Corran] [action] goto (2792,888) from (2792,856,0)
+[16:56:00.777] LOG   [n10_Corran] event goto_start: target=(2792,888) from=(2792,856)
+[16:56:00.777] INFO  [n10_Corran] [bot] running from (2792,856,0) to (2792,888)
+[16:56:00.777] INFO  [n10_Corran] [bot] planning path to (2792,888) in background
+[16:56:00.838] INFO  [n10_Corran] [bot] replan to (2792,888): 32 steps in 836.6us
+[16:56:02.952] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:08.005] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:09.510] INFO  [n10_Corran] [bot] arrived at (2792,888,0)
+[16:56:09.511] INFO  [n10_Corran] [action] goto finished at (2792,888,0); target (2792,888); ARRIVED (off by 0 tile(s))
+[16:56:09.511] LOG   [n10_Corran] event goto_done: at=(2792,888) target=(2792,888) arrived=1 off=0
+[16:56:09.511] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:56:09.511] INFO  [n10_Corran] [action] goto (2792,920) from (2792,888,0)
+[16:56:09.511] LOG   [n10_Corran] event goto_start: target=(2792,920) from=(2792,888)
+[16:56:09.511] INFO  [n10_Corran] [bot] running from (2792,888,0) to (2792,920)
+[16:56:09.511] INFO  [n10_Corran] [bot] planning path to (2792,920) in background
+[16:56:09.573] INFO  [n10_Corran] [bot] replan to (2792,920): 32 steps in 4429.5us
+[16:56:13.048] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:18.102] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:19.374] INFO  [n10_Corran] [bot] arrived at (2792,920,0)
+[16:56:19.375] INFO  [n10_Corran] [action] goto finished at (2792,920,0); target (2792,920); ARRIVED (off by 0 tile(s))
+[16:56:19.375] LOG   [n10_Corran] event goto_done: at=(2792,920) target=(2792,920) arrived=1 off=0
+[16:56:19.375] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[16:56:19.375] INFO  [n10_Corran] [action] goto (2826,888) from (2792,920,0)
+[16:56:19.375] LOG   [n10_Corran] event goto_start: target=(2826,888) from=(2792,920)
+[16:56:19.375] INFO  [n10_Corran] [bot] running from (2792,920,0) to (2826,888)
+[16:56:19.375] INFO  [n10_Corran] [bot] planning path to (2826,888) in background
+[16:56:19.497] INFO  [n10_Corran] [bot] replan to (2826,888): 122 steps in 106933.1us
+[16:56:23.139] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:26.695] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:56:28.023] INFO  [n10_Corran] [chat ascii] System: You are now under the protection of the town guards
+[16:56:28.145] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:33.168] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:33.293] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=74 in 746.0us
+[16:56:34.523] INFO  [n10_Corran] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=71 in 598.2us
+[16:56:35.874] INFO  [n10_Corran] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=68 in 251.4us
+[16:56:38.183] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:43.195] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:44.670] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=36 in 994.2us
+[16:56:48.235] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:53.243] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:56:55.772] INFO  [n10_Corran] [bot] arrived at (2826,888,-2)
+[16:56:55.773] INFO  [n10_Corran] [action] goto finished at (2826,888,-2); target (2826,888); ARRIVED (off by 0 tile(s))
+[16:56:55.773] LOG   [n10_Corran] event goto_done: at=(2826,888) target=(2826,888) arrived=1 off=0
+[16:56:55.773] INFO  [n10_Corran] [action] goto (2840,856) from (2826,888,-2)
+[16:56:55.773] LOG   [n10_Corran] event goto_start: target=(2840,856) from=(2826,888)
+[16:56:55.773] INFO  [n10_Corran] [bot] running from (2826,888,-2) to (2840,856)
+[16:56:55.773] INFO  [n10_Corran] [bot] planning path to (2840,856) in background
+[16:56:55.834] INFO  [n10_Corran] [bot] replan to (2840,856): 59 steps in 18161.5us
+[16:56:58.277] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:03.337] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:08.383] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:12.453] INFO  [n10_Corran] [bot] arrived at (2840,856,0)
+[16:57:12.453] INFO  [n10_Corran] [action] goto finished at (2840,856,0); target (2840,856); ARRIVED (off by 0 tile(s))
+[16:57:12.453] LOG   [n10_Corran] event goto_done: at=(2840,856) target=(2840,856) arrived=1 off=0
+[16:57:12.453] INFO  [n10_Corran] [action] goto (2840,824) from (2840,856,0)
+[16:57:12.453] LOG   [n10_Corran] event goto_start: target=(2840,824) from=(2840,856)
+[16:57:12.453] INFO  [n10_Corran] [bot] running from (2840,856,0) to (2840,824)
+[16:57:12.453] INFO  [n10_Corran] [bot] planning path to (2840,824) in background
+[16:57:12.515] INFO  [n10_Corran] [bot] replan to (2840,824): 50 steps in 17983.9us
+[16:57:13.418] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:18.463] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:23.478] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:26.753] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:57:26.766] INFO  [n10_Corran] [bot] arrived at (2840,824,2)
+[16:57:26.766] INFO  [n10_Corran] [action] goto finished at (2840,824,2); target (2840,824); ARRIVED (off by 0 tile(s))
+[16:57:26.766] LOG   [n10_Corran] event goto_done: at=(2840,824) target=(2840,824) arrived=1 off=0
+[16:57:26.767] INFO  [n10_Corran] [action] goto (2878,786) from (2840,824,2)
+[16:57:26.767] LOG   [n10_Corran] event goto_start: target=(2878,786) from=(2840,824)
+[16:57:26.767] INFO  [n10_Corran] [bot] running from (2840,824,2) to (2878,786)
+[16:57:26.767] INFO  [n10_Corran] [bot] planning path to (2878,786) in background
+[16:57:26.827] INFO  [n10_Corran] [bot] replan to (2878,786): 62 steps in 12668.1us
+[16:57:28.487] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:33.529] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:38.555] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:43.601] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:45.767] INFO  [n10_Corran] [bot] arrived at (2878,786,5)
+[16:57:45.768] INFO  [n10_Corran] [action] goto finished at (2878,786,5); target (2878,786); ARRIVED (off by 0 tile(s))
+[16:57:45.768] LOG   [n10_Corran] event goto_done: at=(2878,786) target=(2878,786) arrived=1 off=0
+[16:57:45.768] INFO  [n10_Corran] [action] goto (2888,756) from (2878,786,5)
+[16:57:45.768] LOG   [n10_Corran] event goto_start: target=(2888,756) from=(2878,786)
+[16:57:45.768] INFO  [n10_Corran] [bot] running from (2878,786,5) to (2888,756)
+[16:57:45.768] INFO  [n10_Corran] [bot] planning path to (2888,756) in background
+[16:57:45.829] INFO  [n10_Corran] [bot] replan to (2888,756): 33 steps in 6542.5us
+[16:57:48.611] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:53.655] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:57:56.690] INFO  [n10_Corran] [bot] arrived at (2888,756,0)
+[16:57:56.690] INFO  [n10_Corran] [action] goto finished at (2888,756,0); target (2888,756); ARRIVED (off by 0 tile(s))
+[16:57:56.690] LOG   [n10_Corran] event goto_done: at=(2888,756) target=(2888,756) arrived=1 off=0
+[16:57:56.690] INFO  [n10_Corran] [action] goto (2872,728) from (2888,756,0)
+[16:57:56.690] LOG   [n10_Corran] event goto_start: target=(2872,728) from=(2888,756)
+[16:57:56.690] INFO  [n10_Corran] [bot] running from (2888,756,0) to (2872,728)
+[16:57:56.690] INFO  [n10_Corran] [bot] planning path to (2872,728) in background
+[16:57:56.751] INFO  [n10_Corran] [bot] replan to (2872,728): 35 steps in 2775.9us
+[16:57:58.672] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:03.686] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:08.455] INFO  [n10_Corran] [bot] arrived at (2872,728,0)
+[16:58:08.455] INFO  [n10_Corran] [action] goto finished at (2872,728,0); target (2872,728); ARRIVED (off by 0 tile(s))
+[16:58:08.455] LOG   [n10_Corran] event goto_done: at=(2872,728) target=(2872,728) arrived=1 off=0
+[16:58:08.455] INFO  [n10_Corran] [action] goto (2888,696) from (2872,728,0)
+[16:58:08.455] LOG   [n10_Corran] event goto_start: target=(2888,696) from=(2872,728)
+[16:58:08.455] INFO  [n10_Corran] [bot] running from (2872,728,0) to (2888,696)
+[16:58:08.456] INFO  [n10_Corran] [bot] planning path to (2888,696) in background
+[16:58:08.515] INFO  [n10_Corran] [bot] replan to (2888,696): 48 steps in 5826.8us
+[16:58:08.701] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:13.705] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:18.721] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:20.567] INFO  [n10_Corran] [bot] arrived at (2888,696,0)
+[16:58:20.568] INFO  [n10_Corran] [action] goto finished at (2888,696,0); target (2888,696); ARRIVED (off by 0 tile(s))
+[16:58:20.568] LOG   [n10_Corran] event goto_done: at=(2888,696) target=(2888,696) arrived=1 off=0
+[16:58:20.568] INFO  [n10_Corran] [action] goto (2881,684) from (2888,696,0)
+[16:58:20.568] LOG   [n10_Corran] event goto_start: target=(2881,684) from=(2888,696)
+[16:58:20.568] INFO  [n10_Corran] [bot] running from (2888,696,0) to (2881,684,z0)
+[16:58:20.568] INFO  [n10_Corran] [bot] planning path to (2881,684) in background
+[16:58:20.628] INFO  [n10_Corran] [bot] replan to (2881,684): 41 steps in 20549.8us
+[16:58:23.748] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:25.941] INFO  [n10_Corran] [bot] door ahead at (2895,676,z0); OpenDoor before step
+[16:58:25.955] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:58:26.758] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:58:28.779] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:28.779] INFO  [n10_Corran] [bot] door ahead at (2887,673,z0); OpenDoor before step
+[16:58:28.793] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:58:31.658] INFO  [n10_Corran] [bot] door ahead at (2883,679,z0); OpenDoor before step
+[16:58:31.659] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:58:32.811] INFO  [n10_Corran] [travel] Vesper banker ARRIVED at (2883,680,0)
+[16:58:32.811] LOG   [n10_Corran] event travel_done: label='Vesper banker' ok=1 at=(2883,680) legs=27 plans=1 why=''
+[16:58:32.873] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 1)
+[16:58:32.873] INFO  [n10_Corran] [travel] Magincia tinker -> (3720,2126) r=5 from (2883,680)
+[16:58:32.873] LOG   [n10_Corran] event travel_start: label='Magincia tinker' target=(3720,2126) radius=5 from=(2883,680)
+[16:58:32.873] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:58:32.873] INFO  [n10_Corran] [travel] mode walk             usable
+[16:58:32.873] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:58:32.873] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:58:32.873] LOG   [n10_Corran] event travel_mode: moongate
+[16:58:32.874] INFO  [n10_Corran] [travel] plan Magincia tinker: ok legs=21 ~920 tiles transit=1 nodes=906
+[16:58:33.792] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:34.053] INFO  [n10_Corran] [bot] arrived at (2881,684,0)
+[16:58:34.054] INFO  [n10_Corran] [action] goto finished at (2881,684,0); target (2881,684); ARRIVED (off by 0 tile(s))
+[16:58:34.054] LOG   [n10_Corran] event goto_done: at=(2881,684) target=(2881,684) arrived=1 off=0
+[16:58:34.054] INFO  [n10_Corran] [action] goto (2888,712) from (2881,684,0)
+[16:58:34.054] LOG   [n10_Corran] event goto_start: target=(2888,712) from=(2881,684)
+[16:58:34.054] INFO  [n10_Corran] [bot] running from (2881,684,0) to (2888,712)
+[16:58:34.054] INFO  [n10_Corran] [bot] planning path to (2888,712) in background
+[16:58:34.178] INFO  [n10_Corran] [action] goto finished at (2881,684,0); target (2888,712); stopped short (off by 35 tile(s))
+[16:58:34.178] LOG   [n10_Corran] event goto_done: at=(2881,684) target=(2888,712) arrived=0 off=35
+[16:58:35.410] INFO  [n10_Corran] [action] goto (2888,712) from (2881,684,0)
+[16:58:35.410] LOG   [n10_Corran] event goto_start: target=(2888,712) from=(2881,684)
+[16:58:35.410] INFO  [n10_Corran] [bot] running from (2881,684,0) to (2888,712)
+[16:58:35.410] INFO  [n10_Corran] [bot] planning path to (2888,712) in background
+[16:58:35.471] INFO  [n10_Corran] [bot] replan to (2888,712): 57 steps in 9668.4us
+[16:58:37.063] INFO  [n10_Corran] [bot] step (2882,681,0)->(2883,680,0) rejected; OpenDoor + retry
+[16:58:37.064] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:58:37.065] INFO  [n10_Corran] [0x20] player @(2882,681,0) facing=0
+[16:58:37.065] INFO  [n10_Corran] [action] goto finished at (2882,681,0); target (2888,712); stopped short (off by 37 tile(s))
+[16:58:37.065] LOG   [n10_Corran] event goto_done: at=(2882,681) target=(2888,712) arrived=0 off=37
+[16:58:38.294] INFO  [n10_Corran] [action] goto (2888,712) from (2882,681,0)
+[16:58:38.294] LOG   [n10_Corran] event goto_start: target=(2888,712) from=(2882,681)
+[16:58:38.294] INFO  [n10_Corran] [bot] running from (2882,681,0) to (2888,712)
+[16:58:38.294] INFO  [n10_Corran] [bot] planning path to (2888,712) in background
+[16:58:38.355] INFO  [n10_Corran] [bot] replan to (2888,712): 54 steps in 10789.6us
+[16:58:38.844] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:38.859] INFO  [n10_Corran] [bot] door ahead at (2883,679,z0); OpenDoor before step
+[16:58:38.860] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:58:42.986] INFO  [n10_Corran] [bot] step (2888,673,0)->(2889,674,0) rejected; OpenDoor + retry
+[16:58:43.001] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:58:43.001] INFO  [n10_Corran] [0x20] player @(2888,673,0) facing=4
+[16:58:43.002] INFO  [n10_Corran] [action] goto finished at (2888,673,0); target (2888,712); stopped short (off by 39 tile(s))
+[16:58:43.002] LOG   [n10_Corran] event goto_done: at=(2888,673) target=(2888,712) arrived=0 off=39
+[16:58:43.861] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:44.232] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:58:44.232] INFO  [n10_Corran] [travel] mode walk             usable
+[16:58:44.232] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:58:44.232] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:58:44.232] LOG   [n10_Corran] event travel_mode: moongate
+[16:58:44.232] INFO  [n10_Corran] [travel] plan Magincia tinker: ok legs=21 ~920 tiles transit=1 nodes=909
+[16:58:45.788] INFO  [n10_Corran] [action] goto (2872,710) from (2888,673,0)
+[16:58:45.788] LOG   [n10_Corran] event goto_start: target=(2872,710) from=(2888,673)
+[16:58:45.788] INFO  [n10_Corran] [bot] running from (2888,673,0) to (2872,710)
+[16:58:45.789] INFO  [n10_Corran] [bot] planning path to (2872,710) in background
+[16:58:45.849] INFO  [n10_Corran] [bot] replan to (2872,710): 44 steps in 7513.1us
+[16:58:48.223] INFO  [n10_Corran] [bot] door ahead at (2896,677,z0); OpenDoor before step
+[16:58:48.238] INFO  [n10_Corran] [chat ascii] System: Opening door...
+[16:58:48.892] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:53.904] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:58.928] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:58:59.249] INFO  [n10_Corran] [bot] arrived at (2872,710,0)
+[16:58:59.250] INFO  [n10_Corran] [action] goto finished at (2872,710,0); target (2872,710); ARRIVED (off by 0 tile(s))
+[16:58:59.250] LOG   [n10_Corran] event goto_done: at=(2872,710) target=(2872,710) arrived=1 off=0
+[16:58:59.250] INFO  [n10_Corran] [action] goto (2872,744) from (2872,710,0)
+[16:58:59.250] LOG   [n10_Corran] event goto_start: target=(2872,744) from=(2872,710)
+[16:58:59.250] INFO  [n10_Corran] [bot] running from (2872,710,0) to (2872,744)
+[16:58:59.250] INFO  [n10_Corran] [bot] planning path to (2872,744) in background
+[16:58:59.312] INFO  [n10_Corran] [bot] replan to (2872,744): 37 steps in 6764.4us
+[16:59:03.963] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:08.971] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:11.819] INFO  [n10_Corran] [bot] arrived at (2872,744,0)
+[16:59:11.820] INFO  [n10_Corran] [action] goto finished at (2872,744,0); target (2872,744); ARRIVED (off by 0 tile(s))
+[16:59:11.820] LOG   [n10_Corran] event goto_done: at=(2872,744) target=(2872,744) arrived=1 off=0
+[16:59:11.820] INFO  [n10_Corran] [action] goto (2888,780) from (2872,744,0)
+[16:59:11.820] LOG   [n10_Corran] event goto_start: target=(2888,780) from=(2872,744)
+[16:59:11.820] INFO  [n10_Corran] [bot] running from (2872,744,0) to (2888,780)
+[16:59:11.820] INFO  [n10_Corran] [bot] planning path to (2888,780) in background
+[16:59:11.882] INFO  [n10_Corran] [bot] replan to (2888,780): 40 steps in 8837.5us
+[16:59:14.030] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:19.058] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:24.111] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:24.249] INFO  [n10_Corran] [bot] arrived at (2888,780,0)
+[16:59:24.250] INFO  [n10_Corran] [action] goto finished at (2888,780,0); target (2888,780); ARRIVED (off by 0 tile(s))
+[16:59:24.250] LOG   [n10_Corran] event goto_done: at=(2888,780) target=(2888,780) arrived=1 off=0
+[16:59:24.250] INFO  [n10_Corran] [action] goto (2864,816) from (2888,780,0)
+[16:59:24.250] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2888,780)
+[16:59:24.250] INFO  [n10_Corran] [bot] running from (2888,780,0) to (2864,816)
+[16:59:24.250] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:59:24.312] INFO  [n10_Corran] [bot] replan to (2864,816): 69 steps in 33047.5us
+[16:59:26.776] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[16:59:29.130] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:34.165] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:38.891] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=23 in 633.0us
+[16:59:39.208] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:39.345] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=21 in 644.5us
+[16:59:43.381] INFO  [n10_Corran] [chat ascii] System: World save in 10 seconds
+[16:59:44.150] INFO  [n10_Corran] [chat ascii] System: You shove Dog out of the way.
+[16:59:44.211] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:44.999] INFO  [n10_Corran] [bot] reject at (2857,816): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[16:59:44.999] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:59:45.061] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2864,816); stopped short (off by 8 tile(s))
+[16:59:45.061] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2864,816) arrived=0 off=8
+[16:59:46.292] INFO  [n10_Corran] [action] goto (2864,816) from (2856,816,0)
+[16:59:46.292] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2856,816)
+[16:59:46.292] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2864,816)
+[16:59:46.292] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:59:46.416] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2864,816); stopped short (off by 8 tile(s))
+[16:59:46.416] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2864,816) arrived=0 off=8
+[16:59:47.633] INFO  [n10_Corran] [action] goto (2864,816) from (2856,816,0)
+[16:59:47.633] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2856,816)
+[16:59:47.633] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2864,816)
+[16:59:47.633] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[16:59:47.755] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2864,816); stopped short (off by 8 tile(s))
+[16:59:47.755] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2864,816) arrived=0 off=8
+[16:59:48.963] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:59:48.963] INFO  [n10_Corran] [travel] mode walk             usable
+[16:59:48.963] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:59:48.963] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:59:48.963] LOG   [n10_Corran] event travel_mode: moongate
+[16:59:48.963] INFO  [n10_Corran] [travel] plan Magincia tinker: ok legs=17 ~744 tiles transit=1 nodes=904
+[16:59:49.238] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:51.982] INFO  [n10_Corran] [action] goto (2856,856) from (2856,816,0)
+[16:59:51.982] LOG   [n10_Corran] event goto_start: target=(2856,856) from=(2856,816)
+[16:59:51.982] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2856,856)
+[16:59:51.982] INFO  [n10_Corran] [bot] planning path to (2856,856) in background
+[16:59:52.104] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2856,856); stopped short (off by 40 tile(s))
+[16:59:52.104] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2856,856) arrived=0 off=40
+[16:59:53.327] INFO  [n10_Corran] [action] goto (2856,856) from (2856,816,0)
+[16:59:53.327] LOG   [n10_Corran] event goto_start: target=(2856,856) from=(2856,816)
+[16:59:53.327] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2856,856)
+[16:59:53.327] INFO  [n10_Corran] [bot] planning path to (2856,856) in background
+[16:59:53.394] INFO  [n10_Corran] [chat ascii] System: World save has been initiated.
+[16:59:53.396] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2856,856); stopped short (off by 40 tile(s))
+[16:59:53.396] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2856,856) arrived=0 off=40
+[16:59:54.252] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[16:59:54.606] INFO  [n10_Corran] [action] goto (2856,856) from (2856,816,0)
+[16:59:54.606] LOG   [n10_Corran] event goto_start: target=(2856,856) from=(2856,816)
+[16:59:54.606] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2856,856)
+[16:59:54.606] INFO  [n10_Corran] [bot] planning path to (2856,856) in background
+[16:59:54.683] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2856,856); stopped short (off by 40 tile(s))
+[16:59:54.683] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2856,856) arrived=0 off=40
+[16:59:55.927] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[16:59:55.927] INFO  [n10_Corran] [travel] mode walk             usable
+[16:59:55.927] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[16:59:55.927] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[16:59:55.927] LOG   [n10_Corran] event travel_mode: moongate
+[16:59:55.927] INFO  [n10_Corran] [travel] plan Magincia tinker: ok legs=17 ~744 tiles transit=1 nodes=903
+[16:59:59.261] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:00.471] INFO  [n10_Corran] [action] goto (2840,856) from (2856,816,0)
+[17:00:00.471] LOG   [n10_Corran] event goto_start: target=(2840,856) from=(2856,816)
+[17:00:00.471] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2840,856)
+[17:00:00.471] INFO  [n10_Corran] [bot] planning path to (2840,856) in background
+[17:00:00.594] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2840,856); stopped short (off by 56 tile(s))
+[17:00:00.594] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2840,856) arrived=0 off=56
+[17:00:01.839] INFO  [n10_Corran] [action] goto (2840,856) from (2856,816,0)
+[17:00:01.839] LOG   [n10_Corran] event goto_start: target=(2840,856) from=(2856,816)
+[17:00:01.839] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2840,856)
+[17:00:01.839] INFO  [n10_Corran] [bot] planning path to (2840,856) in background
+[17:00:01.962] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2840,856); stopped short (off by 56 tile(s))
+[17:00:01.962] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2840,856) arrived=0 off=56
+[17:00:03.217] INFO  [n10_Corran] [action] goto (2840,856) from (2856,816,0)
+[17:00:03.217] LOG   [n10_Corran] event goto_start: target=(2840,856) from=(2856,816)
+[17:00:03.217] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2840,856)
+[17:00:03.217] INFO  [n10_Corran] [bot] planning path to (2840,856) in background
+[17:00:03.340] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2840,856); stopped short (off by 56 tile(s))
+[17:00:03.340] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2840,856) arrived=0 off=56
+[17:00:03.340] LOG   [n10_Corran] event travel_escape: from=(2856,816,0) to=(2856,808) attempt=1
+[17:00:03.340] INFO  [n10_Corran] [action] goto (2856,808) from (2856,816,0)
+[17:00:03.340] LOG   [n10_Corran] event goto_start: target=(2856,808) from=(2856,816)
+[17:00:03.340] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2856,808,z0)
+[17:00:03.340] INFO  [n10_Corran] [bot] planning path to (2856,808) in background
+[17:00:03.431] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2856,808); stopped short (off by 8 tile(s))
+[17:00:03.432] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2856,808) arrived=0 off=8
+[17:00:03.432] INFO  [n10_Corran] [travel] recovery walk fell short at (2856,816,0) (off 8); attempt 1/3
+[17:00:03.432] LOG   [n10_Corran] event travel_recovery_done: reached=0 at=(2856,816,0) off=8 attempt=1
+[17:00:03.432] LOG   [n10_Corran] event travel_escape: from=(2856,816,0) to=(2864,816) attempt=2
+[17:00:03.432] INFO  [n10_Corran] [action] goto (2864,816) from (2856,816,0)
+[17:00:03.432] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2856,816)
+[17:00:03.432] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2864,816,z0)
+[17:00:03.432] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[17:00:03.509] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2864,816); stopped short (off by 8 tile(s))
+[17:00:03.509] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2864,816) arrived=0 off=8
+[17:00:03.509] INFO  [n10_Corran] [travel] recovery walk fell short at (2856,816,0) (off 8); attempt 1/3
+[17:00:03.509] LOG   [n10_Corran] event travel_recovery_done: reached=0 at=(2856,816,0) off=8 attempt=1
+[17:00:03.509] LOG   [n10_Corran] event travel_escape: from=(2856,816,0) to=(2868,806) attempt=3
+[17:00:03.509] INFO  [n10_Corran] [action] goto (2868,806) from (2856,816,0)
+[17:00:03.509] LOG   [n10_Corran] event goto_start: target=(2868,806) from=(2856,816)
+[17:00:03.509] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2868,806,z0)
+[17:00:03.509] INFO  [n10_Corran] [bot] planning path to (2868,806) in background
+[17:00:03.630] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2868,806); stopped short (off by 22 tile(s))
+[17:00:03.630] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2868,806) arrived=0 off=22
+[17:00:03.630] INFO  [n10_Corran] [travel] recovery walk fell short at (2856,816,0) (off 12); attempt 1/3
+[17:00:03.630] LOG   [n10_Corran] event travel_recovery_done: reached=0 at=(2856,816,0) off=12 attempt=1
+[17:00:03.630] INFO  [n10_Corran] [travel] Magincia tinker FAILED at (2856,816,0) -- sealed in; recovery exhausted
+[17:00:03.630] LOG   [n10_Corran] event travel_failed: label='Magincia tinker' ok=0 at=(2856,816) legs=17 plans=4 why='sealed in; recovery exhausted'
+[17:00:03.692] INFO  [life] training: arrived at 2856,816 -- asking who is here
+[17:00:03.692] INFO  [n10_Corran] [action] scanning nearby mobiles for names
+[17:00:03.692] INFO  [n10_Corran] [action] requested 1 paperdoll(s) for trade titles
+[17:00:03.693] INFO  [n10_Corran] [mobiles] nearby (14):
+[17:00:03.693] INFO  [n10_Corran]   Rat 0x00013AF7
+[17:00:03.693] INFO  [n10_Corran]   Cat 0x00017CB8
+[17:00:03.693] INFO  [n10_Corran]   Dog 0x000112B7
+[17:00:03.693] INFO  [n10_Corran]   Justine 0x0000A85E
+[17:00:03.693] INFO  [n10_Corran]   magpie 0x0000EB9C
+[17:00:03.693] INFO  [n10_Corran]   magpie 0x00013FC1
+[17:00:03.693] INFO  [n10_Corran]   Rat 0x000129C7
+[17:00:03.693] INFO  [n10_Corran]   magpie 0x0001271C
+[17:00:03.693] INFO  [n10_Corran]   Cat 0x00013ADE
+[17:00:03.693] INFO  [n10_Corran]   Cat 0x0000A446
+[17:00:03.693] INFO  [n10_Corran]   magpie 0x0000E8D2
+[17:00:03.693] INFO  [n10_Corran]   Rat 0x000145A9
+[17:00:03.693] INFO  [n10_Corran]   Cat 0x0000D7AE
+[17:00:03.693] INFO  [n10_Corran]   Rat 0x00017F41
+[17:00:03.693] INFO  [n10_Corran] [0x20] player @(2856,816,0) facing=1
+[17:00:03.693] INFO  [n10_Corran] [0x88] paperdoll 0x0000A85E: "Justine, the bowyer"
+[17:00:03.693] INFO  [n10_Corran] [world] Justine, the bowyer is a bowyer at (2858,813)
+[17:00:04.277] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:06.226] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 2)
+[17:00:06.226] INFO  [n10_Corran] [travel] Sea Market tinker -> (4561,2328) r=3 from (2856,816)
+[17:00:06.226] LOG   [n10_Corran] event travel_start: label='Sea Market tinker' target=(4561,2328) radius=3 from=(2856,816)
+[17:00:06.226] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[17:00:06.226] INFO  [n10_Corran] [travel] mode walk             usable
+[17:00:06.226] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:00:06.226] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:00:06.226] LOG   [n10_Corran] event travel_mode: moongate
+[17:00:06.226] INFO  [n10_Corran] [travel] plan Sea Market tinker: no walkable ground near the destination legs=0 ~0 tiles transit=0 nodes=0
+[17:00:06.226] LOG   [n10_Corran] event travel_escape: from=(2856,816,0) to=(2856,808) attempt=1
+[17:00:06.226] INFO  [n10_Corran] [action] goto (2856,808) from (2856,816,0)
+[17:00:06.226] LOG   [n10_Corran] event goto_start: target=(2856,808) from=(2856,816)
+[17:00:06.226] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2856,808,z0)
+[17:00:06.226] INFO  [n10_Corran] [bot] planning path to (2856,808) in background
+[17:00:06.349] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2856,808); stopped short (off by 8 tile(s))
+[17:00:06.349] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2856,808) arrived=0 off=8
+[17:00:06.349] INFO  [n10_Corran] [travel] recovery walk fell short at (2856,816,0) (off 8); attempt 1/3
+[17:00:06.349] LOG   [n10_Corran] event travel_recovery_done: reached=0 at=(2856,816,0) off=8 attempt=1
+[17:00:06.349] LOG   [n10_Corran] event travel_escape: from=(2856,816,0) to=(2864,816) attempt=2
+[17:00:06.349] INFO  [n10_Corran] [action] goto (2864,816) from (2856,816,0)
+[17:00:06.349] LOG   [n10_Corran] event goto_start: target=(2864,816) from=(2856,816)
+[17:00:06.349] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2864,816,z0)
+[17:00:06.349] INFO  [n10_Corran] [bot] planning path to (2864,816) in background
+[17:00:06.473] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2864,816); stopped short (off by 8 tile(s))
+[17:00:06.473] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2864,816) arrived=0 off=8
+[17:00:06.473] INFO  [n10_Corran] [travel] recovery walk fell short at (2856,816,0) (off 8); attempt 1/3
+[17:00:06.473] LOG   [n10_Corran] event travel_recovery_done: reached=0 at=(2856,816,0) off=8 attempt=1
+[17:00:06.473] LOG   [n10_Corran] event travel_escape: from=(2856,816,0) to=(2868,806) attempt=3
+[17:00:06.473] INFO  [n10_Corran] [action] goto (2868,806) from (2856,816,0)
+[17:00:06.473] LOG   [n10_Corran] event goto_start: target=(2868,806) from=(2856,816)
+[17:00:06.473] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2868,806,z0)
+[17:00:06.473] INFO  [n10_Corran] [bot] planning path to (2868,806) in background
+[17:00:06.594] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2868,806); stopped short (off by 22 tile(s))
+[17:00:06.594] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2868,806) arrived=0 off=22
+[17:00:06.594] INFO  [n10_Corran] [travel] recovery walk fell short at (2856,816,0) (off 12); attempt 1/3
+[17:00:06.594] LOG   [n10_Corran] event travel_recovery_done: reached=0 at=(2856,816,0) off=12 attempt=1
+[17:00:06.594] INFO  [n10_Corran] [travel] Sea Market tinker FAILED at (2856,816,0) -- sealed in; recovery exhausted
+[17:00:06.594] LOG   [n10_Corran] event travel_failed: label='Sea Market tinker' ok=0 at=(2856,816) legs=0 plans=1 why='sealed in; recovery exhausted'
+[17:00:08.236] INFO  [life] training: arrived at 2856,816 -- asking who is here
+[17:00:08.236] INFO  [n10_Corran] [action] scanning nearby mobiles for names
+[17:00:08.237] INFO  [n10_Corran] [mobiles] nearby (14):
+[17:00:08.237] INFO  [n10_Corran]   Rat 0x00013AF7
+[17:00:08.237] INFO  [n10_Corran]   Cat 0x00017CB8
+[17:00:08.237] INFO  [n10_Corran]   Dog 0x000112B7
+[17:00:08.237] INFO  [n10_Corran]   Justine 0x0000A85E
+[17:00:08.237] INFO  [n10_Corran]   magpie 0x0000EB9C
+[17:00:08.237] INFO  [n10_Corran]   magpie 0x00013FC1
+[17:00:08.237] INFO  [n10_Corran]   Rat 0x000129C7
+[17:00:08.237] INFO  [n10_Corran]   magpie 0x0001271C
+[17:00:08.237] INFO  [n10_Corran]   Cat 0x0000A446
+[17:00:08.237] INFO  [n10_Corran]   Cat 0x00013ADE
+[17:00:08.237] INFO  [n10_Corran]   magpie 0x0000E8D2
+[17:00:08.237] INFO  [n10_Corran]   Rat 0x000145A9
+[17:00:08.237] INFO  [n10_Corran]   Cat 0x0000D7AE
+[17:00:08.237] INFO  [n10_Corran]   Rat 0x00017F41
+[17:00:09.313] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:10.785] INFO  [life] training: looking for a 'tinker' to teach Tinkering (trip 3)
+[17:00:10.785] INFO  [n10_Corran] [travel] Trinsic's Order of Engineers tinkerguildmaster -> (1848,2680) r=5 from (2856,816)
+[17:00:10.785] LOG   [n10_Corran] event travel_start: label='Trinsic's Order of Engineers tinkerguildmaster' target=(1848,2680) radius=5 from=(2856,816)
+[17:00:10.785] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[17:00:10.785] INFO  [n10_Corran] [travel] mode walk             usable
+[17:00:10.785] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:00:10.785] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:00:10.785] LOG   [n10_Corran] event travel_mode: moongate
+[17:00:10.785] INFO  [n10_Corran] [travel] plan Trinsic's Order of Engineers tinkerguildmaster: ok legs=25 ~1096 tiles transit=1 nodes=1408
+[17:00:10.848] INFO  [n10_Corran] [action] goto (2856,856) from (2856,816,0)
+[17:00:10.848] LOG   [n10_Corran] event goto_start: target=(2856,856) from=(2856,816)
+[17:00:10.848] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2856,856)
+[17:00:10.848] INFO  [n10_Corran] [bot] planning path to (2856,856) in background
+[17:00:10.970] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2856,856); stopped short (off by 40 tile(s))
+[17:00:10.970] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2856,856) arrived=0 off=40
+[17:00:12.196] INFO  [n10_Corran] [action] goto (2856,856) from (2856,816,0)
+[17:00:12.196] LOG   [n10_Corran] event goto_start: target=(2856,856) from=(2856,816)
+[17:00:12.196] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2856,856)
+[17:00:12.196] INFO  [n10_Corran] [bot] planning path to (2856,856) in background
+[17:00:12.318] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2856,856); stopped short (off by 40 tile(s))
+[17:00:12.318] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2856,856) arrived=0 off=40
+[17:00:13.521] INFO  [n10_Corran] [action] goto (2856,856) from (2856,816,0)
+[17:00:13.522] LOG   [n10_Corran] event goto_start: target=(2856,856) from=(2856,816)
+[17:00:13.522] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2856,856)
+[17:00:13.522] INFO  [n10_Corran] [bot] planning path to (2856,856) in background
+[17:00:13.644] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2856,856); stopped short (off by 40 tile(s))
+[17:00:13.644] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2856,856) arrived=0 off=40
+[17:00:14.322] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:14.889] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[17:00:14.889] INFO  [n10_Corran] [travel] mode walk             usable
+[17:00:14.889] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:00:14.889] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:00:14.889] LOG   [n10_Corran] event travel_mode: moongate
+[17:00:14.890] INFO  [n10_Corran] [travel] plan Trinsic's Order of Engineers tinkerguildmaster: ok legs=25 ~1096 tiles transit=1 nodes=1407
+[17:00:16.422] INFO  [n10_Corran] [action] goto (2840,856) from (2856,816,0)
+[17:00:16.422] LOG   [n10_Corran] event goto_start: target=(2840,856) from=(2856,816)
+[17:00:16.422] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2840,856)
+[17:00:16.422] INFO  [n10_Corran] [bot] planning path to (2840,856) in background
+[17:00:16.544] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2840,856); stopped short (off by 56 tile(s))
+[17:00:16.544] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2840,856) arrived=0 off=56
+[17:00:17.774] INFO  [n10_Corran] [action] goto (2840,856) from (2856,816,0)
+[17:00:17.774] LOG   [n10_Corran] event goto_start: target=(2840,856) from=(2856,816)
+[17:00:17.774] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2840,856)
+[17:00:17.774] INFO  [n10_Corran] [bot] planning path to (2840,856) in background
+[17:00:17.897] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2840,856); stopped short (off by 56 tile(s))
+[17:00:17.897] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2840,856) arrived=0 off=56
+[17:00:19.108] INFO  [n10_Corran] [action] goto (2840,856) from (2856,816,0)
+[17:00:19.108] LOG   [n10_Corran] event goto_start: target=(2840,856) from=(2856,816)
+[17:00:19.108] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2840,856)
+[17:00:19.108] INFO  [n10_Corran] [bot] planning path to (2840,856) in background
+[17:00:19.229] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2840,856); stopped short (off by 56 tile(s))
+[17:00:19.230] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2840,856) arrived=0 off=56
+[17:00:19.352] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:20.442] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[17:00:20.442] INFO  [n10_Corran] [travel] mode walk             usable
+[17:00:20.442] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:00:20.442] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:00:20.442] LOG   [n10_Corran] event travel_mode: moongate
+[17:00:20.443] INFO  [n10_Corran] [travel] plan Trinsic's Order of Engineers tinkerguildmaster: ok legs=25 ~1112 tiles transit=1 nodes=1405
+[17:00:23.490] INFO  [n10_Corran] [action] goto (2872,856) from (2856,816,0)
+[17:00:23.490] LOG   [n10_Corran] event goto_start: target=(2872,856) from=(2856,816)
+[17:00:23.490] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2872,856)
+[17:00:23.491] INFO  [n10_Corran] [bot] planning path to (2872,856) in background
+[17:00:23.611] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2872,856); stopped short (off by 56 tile(s))
+[17:00:23.611] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2872,856) arrived=0 off=56
+[17:00:24.411] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:24.842] INFO  [n10_Corran] [action] goto (2872,856) from (2856,816,0)
+[17:00:24.842] LOG   [n10_Corran] event goto_start: target=(2872,856) from=(2856,816)
+[17:00:24.842] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2872,856)
+[17:00:24.842] INFO  [n10_Corran] [bot] planning path to (2872,856) in background
+[17:00:24.964] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2872,856); stopped short (off by 56 tile(s))
+[17:00:24.964] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2872,856) arrived=0 off=56
+[17:00:26.207] INFO  [n10_Corran] [action] goto (2872,856) from (2856,816,0)
+[17:00:26.207] LOG   [n10_Corran] event goto_start: target=(2872,856) from=(2856,816)
+[17:00:26.207] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2872,856)
+[17:00:26.207] INFO  [n10_Corran] [bot] planning path to (2872,856) in background
+[17:00:26.330] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2872,856); stopped short (off by 56 tile(s))
+[17:00:26.331] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2872,856) arrived=0 off=56
+[17:00:26.798] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[17:00:27.552] INFO  [n10_Corran] [travel] mode moongate         usable   <- chosen
+[17:00:27.552] INFO  [n10_Corran] [travel] mode walk             usable
+[17:00:27.552] INFO  [n10_Corran] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:00:27.552] INFO  [n10_Corran] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:00:27.552] LOG   [n10_Corran] event travel_mode: moongate
+[17:00:27.552] INFO  [n10_Corran] [travel] plan Trinsic's Order of Engineers tinkerguildmaster: ok legs=25 ~1128 tiles transit=1 nodes=1402
+[17:00:29.453] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:32.104] INFO  [n10_Corran] [action] goto (2882,848) from (2856,816,0)
+[17:00:32.104] LOG   [n10_Corran] event goto_start: target=(2882,848) from=(2856,816)
+[17:00:32.104] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2882,848)
+[17:00:32.104] INFO  [n10_Corran] [bot] planning path to (2882,848) in background
+[17:00:32.228] INFO  [n10_Corran] [action] goto finished at (2856,816,0); target (2882,848); stopped short (off by 58 tile(s))
+[17:00:32.228] LOG   [n10_Corran] event goto_done: at=(2856,816) target=(2882,848) arrived=0 off=58
+[17:00:33.238] INFO  [life] goal_changed=TRAIN_AT_NPC from=TRAIN_AT_NPC reason="previous goal abandoned: ran 300s without finishing (limit 300s)"
+[17:00:33.238] INFO  [life] needs considered: NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedCraft(make goods to sell 0.50) NeedFood(food 0.25) NeedGear(gear 0.22)  | tools defined=2 held=[pickaxe,tongs,] want_train=Tinkering (target 50.0)
+[17:00:33.238] INFO  [life]   score=110.0
+[17:00:33.238] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 200 = 110.0
+[17:00:33.238] INFO  [life]   reason: Tinkering 0.0 -> 50.0, gold 10000 (fee is quoted on arrival, roughly 300)
+[17:00:33.238] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[17:00:33.238] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[17:00:33.485] INFO  [n10_Corran] [action] goto (2882,848) from (2856,816,0)
+[17:00:33.485] LOG   [n10_Corran] event goto_start: target=(2882,848) from=(2856,816)
+[17:00:33.485] INFO  [n10_Corran] [bot] running from (2856,816,0) to (2882,848)
+[17:00:33.485] INFO  [n10_Corran] [bot] planning path to (2882,848) in background
+[17:00:33.546] LOG   [n10_Corran] event path_soft_retry: enclosed by mobiles
+[17:00:33.546] INFO  [n10_Corran] [bot] planning path to (2882,848) in background
+[17:00:33.609] INFO  [n10_Corran] [bot] replan to (2882,848): 78 steps in 34175.7us
+[17:00:34.053] INFO  [n10_Corran] [bot] reject at (2855,816): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[17:00:34.053] INFO  [n10_Corran] [bot] planning path to (2882,848) in background
+[17:00:34.054] LOG   [n10_Corran] event path_soft_retry: enclosed by mobiles
+[17:00:34.054] INFO  [n10_Corran] [bot] planning path to (2882,848) in background
+[17:00:34.115] INFO  [n10_Corran] [bot] replan to (2882,848): 78 steps in 31072.3us
+[17:00:34.500] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:39.505] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:44.565] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:48.572] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=27 in 833.1us
+[17:00:49.599] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:54.639] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:00:55.410] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=9 in 1803.5us
+[17:00:58.600] INFO  [n10_Corran] [bot] arrived at (2882,848,0)
+[17:00:58.601] INFO  [n10_Corran] [action] goto finished at (2882,848,0); target (2882,848); ARRIVED (off by 0 tile(s))
+[17:00:58.601] LOG   [n10_Corran] event goto_done: at=(2882,848) target=(2882,848) arrived=1 off=0
+[17:00:58.601] INFO  [n10_Corran] [action] goto (2870,888) from (2882,848,0)
+[17:00:58.601] LOG   [n10_Corran] event goto_start: target=(2870,888) from=(2882,848)
+[17:00:58.601] INFO  [n10_Corran] [bot] running from (2882,848,0) to (2870,888)
+[17:00:58.601] INFO  [n10_Corran] [bot] planning path to (2870,888) in background
+[17:00:58.663] INFO  [n10_Corran] [bot] replan to (2870,888): 46 steps in 9317.5us
+[17:00:59.691] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:02.440] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=34 in 931.2us
+[17:01:04.720] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:09.723] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:12.862] INFO  [n10_Corran] [bot] arrived at (2870,888,0)
+[17:01:12.863] INFO  [n10_Corran] [action] goto finished at (2870,888,0); target (2870,888); ARRIVED (off by 0 tile(s))
+[17:01:12.863] LOG   [n10_Corran] event goto_done: at=(2870,888) target=(2870,888) arrived=1 off=0
+[17:01:12.863] INFO  [n10_Corran] [action] goto (2840,920) from (2870,888,0)
+[17:01:12.863] LOG   [n10_Corran] event goto_start: target=(2840,920) from=(2870,888)
+[17:01:12.863] INFO  [n10_Corran] [bot] running from (2870,888,0) to (2840,920)
+[17:01:12.863] INFO  [n10_Corran] [bot] planning path to (2840,920) in background
+[17:01:12.923] INFO  [n10_Corran] [bot] replan to (2840,920): 42 steps in 8214.6us
+[17:01:14.754] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:19.777] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:24.784] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:26.137] INFO  [n10_Corran] [bot] arrived at (2840,920,0)
+[17:01:26.138] INFO  [n10_Corran] [action] goto finished at (2840,920,0); target (2840,920); ARRIVED (off by 0 tile(s))
+[17:01:26.138] LOG   [n10_Corran] event goto_done: at=(2840,920) target=(2840,920) arrived=1 off=0
+[17:01:26.138] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:01:26.138] INFO  [n10_Corran] [action] goto (2804,888) from (2840,920,0)
+[17:01:26.138] LOG   [n10_Corran] event goto_start: target=(2804,888) from=(2840,920)
+[17:01:26.138] INFO  [n10_Corran] [bot] running from (2840,920,0) to (2804,888)
+[17:01:26.138] INFO  [n10_Corran] [bot] planning path to (2804,888) in background
+[17:01:26.384] INFO  [n10_Corran] [bot] replan to (2804,888): 125 steps in 199262.4us
+[17:01:26.847] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[17:01:29.818] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:34.824] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:39.858] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:44.887] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:45.347] INFO  [n10_Corran] [chat ascii] System: You have left the protection of the town guards
+[17:01:49.927] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:54.937] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:01:59.995] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:02.388] INFO  [n10_Corran] [bot] arrived at (2804,888,0)
+[17:02:02.389] INFO  [n10_Corran] [action] goto finished at (2804,888,0); target (2804,888); ARRIVED (off by 0 tile(s))
+[17:02:02.389] LOG   [n10_Corran] event goto_done: at=(2804,888) target=(2804,888) arrived=1 off=0
+[17:02:02.389] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:02:02.389] INFO  [n10_Corran] [action] goto (2804,856) from (2804,888,0)
+[17:02:02.389] LOG   [n10_Corran] event goto_start: target=(2804,856) from=(2804,888)
+[17:02:02.389] INFO  [n10_Corran] [bot] running from (2804,888,0) to (2804,856)
+[17:02:02.389] INFO  [n10_Corran] [bot] planning path to (2804,856) in background
+[17:02:02.448] INFO  [n10_Corran] [bot] replan to (2804,856): 39 steps in 27246.5us
+[17:02:05.049] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:10.068] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:13.205] INFO  [n10_Corran] [bot] arrived at (2804,856,0)
+[17:02:13.206] INFO  [n10_Corran] [action] goto finished at (2804,856,0); target (2804,856); ARRIVED (off by 0 tile(s))
+[17:02:13.206] LOG   [n10_Corran] event goto_done: at=(2804,856) target=(2804,856) arrived=1 off=0
+[17:02:13.206] INFO  [n10_Corran] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:02:13.206] INFO  [n10_Corran] [action] goto (2804,824) from (2804,856,0)
+[17:02:13.206] LOG   [n10_Corran] event goto_start: target=(2804,824) from=(2804,856)
+[17:02:13.206] INFO  [n10_Corran] [bot] running from (2804,856,0) to (2804,824)
+[17:02:13.206] INFO  [n10_Corran] [bot] planning path to (2804,824) in background
+[17:02:13.265] INFO  [n10_Corran] [bot] replan to (2804,824): 38 steps in 41615.8us
+[17:02:15.097] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:20.113] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:23.675] INFO  [life] session_end_requested reason="session time limit reached"
+[17:02:24.968] INFO  [n10_Corran] [bot] arrived at (2804,824,0)
+[17:02:24.968] INFO  [n10_Corran] [action] goto finished at (2804,824,0); target (2804,824); ARRIVED (off by 0 tile(s))
+[17:02:24.968] LOG   [n10_Corran] event goto_done: at=(2804,824) target=(2804,824) arrived=1 off=0
+[17:02:24.968] INFO  [n10_Corran] [action] goto (2792,790) from (2804,824,0)
+[17:02:24.968] LOG   [n10_Corran] event goto_start: target=(2792,790) from=(2804,824)
+[17:02:24.968] INFO  [n10_Corran] [bot] running from (2804,824,0) to (2792,790)
+[17:02:24.968] INFO  [n10_Corran] [bot] planning path to (2792,790) in background
+[17:02:25.028] INFO  [n10_Corran] [bot] replan to (2792,790): 40 steps in 9605.8us
+[17:02:25.152] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:30.167] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:35.167] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:38.612] INFO  [n10_Corran] [bot] arrived at (2792,790,0)
+[17:02:38.612] INFO  [n10_Corran] [action] goto finished at (2792,790,0); target (2792,790); ARRIVED (off by 0 tile(s))
+[17:02:38.612] LOG   [n10_Corran] event goto_done: at=(2792,790) target=(2792,790) arrived=1 off=0
+[17:02:38.612] INFO  [n10_Corran] [action] goto (2760,760) from (2792,790,0)
+[17:02:38.612] LOG   [n10_Corran] event goto_start: target=(2760,760) from=(2792,790)
+[17:02:38.612] INFO  [n10_Corran] [bot] running from (2792,790,0) to (2760,760)
+[17:02:38.612] INFO  [n10_Corran] [bot] planning path to (2760,760) in background
+[17:02:38.733] INFO  [n10_Corran] [bot] replan to (2760,760): 42 steps in 75285.3us
+[17:02:40.179] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:45.211] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:50.250] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:02:52.345] INFO  [n10_Corran] [bot] arrived at (2760,760,0)
+[17:02:52.345] INFO  [n10_Corran] [action] goto finished at (2760,760,0); target (2760,760); ARRIVED (off by 0 tile(s))
+[17:02:52.345] LOG   [n10_Corran] event goto_done: at=(2760,760) target=(2760,760) arrived=1 off=0
+[17:02:52.345] INFO  [n10_Corran] [action] goto (2728,728) from (2760,760,0)
+[17:02:52.345] LOG   [n10_Corran] event goto_start: target=(2728,728) from=(2760,760)
+[17:02:52.345] INFO  [n10_Corran] [bot] running from (2760,760,0) to (2728,728)
+[17:02:52.345] INFO  [n10_Corran] [bot] planning path to (2728,728) in background
+[17:02:52.406] INFO  [n10_Corran] [bot] replan to (2728,728): 45 steps in 46687.9us
+[17:02:55.271] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:00.221] INFO  [n10_Corran] [chat ascii] System: Ovid has departed from Moonglow.
+[17:03:00.281] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:04.322] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=14 in 857.4us
+[17:03:05.296] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:08.682] INFO  [n10_Corran] [chat ascii] System: Wystan has departed from Britain.
+[17:03:08.882] INFO  [n10_Corran] [bot] arrived at (2728,728,0)
+[17:03:08.882] INFO  [n10_Corran] [action] goto finished at (2728,728,0); target (2728,728); ARRIVED (off by 0 tile(s))
+[17:03:08.882] LOG   [n10_Corran] event goto_done: at=(2728,728) target=(2728,728) arrived=1 off=0
+[17:03:08.882] INFO  [n10_Corran] [action] goto (2696,694) from (2728,728,0)
+[17:03:08.882] LOG   [n10_Corran] event goto_start: target=(2696,694) from=(2728,728)
+[17:03:08.882] INFO  [n10_Corran] [bot] running from (2728,728,0) to (2696,694)
+[17:03:08.882] INFO  [n10_Corran] [bot] planning path to (2696,694) in background
+[17:03:08.944] INFO  [n10_Corran] [bot] replan to (2696,694): 43 steps in 10556.2us
+[17:03:10.300] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:15.331] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:20.373] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:23.598] INFO  [n10_Corran] [bot] arrived at (2696,694,0)
+[17:03:23.598] INFO  [n10_Corran] [action] goto finished at (2696,694,0); target (2696,694); ARRIVED (off by 0 tile(s))
+[17:03:23.598] LOG   [n10_Corran] event goto_done: at=(2696,694) target=(2696,694) arrived=1 off=0
+[17:03:23.598] INFO  [n10_Corran] [action] goto (2701,692) from (2696,694,0)
+[17:03:23.598] LOG   [n10_Corran] event goto_start: target=(2701,692) from=(2696,694)
+[17:03:23.598] INFO  [n10_Corran] [bot] running from (2696,694,0) to (2701,692)
+[17:03:23.598] INFO  [n10_Corran] [bot] planning path to (2701,692) in background
+[17:03:23.659] INFO  [n10_Corran] [bot] replan to (2701,692): 5 steps in 671.4us
+[17:03:25.421] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:25.932] INFO  [n10_Corran] [gump] 0x4000289D context=0x80A00425: 13 option(s), 15 text(s)
+[17:03:25.932] INFO  [n10_Corran] [gump]   button 1000 = 'OKAY'
+[17:03:25.932] INFO  [n10_Corran] [gump]   button 0 = 'CANCEL'
+[17:03:25.932] INFO  [n10_Corran] [gump]   button 1 = 'Felucca'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 1 = 'Moonglow'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 2 = 'Britain'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 3 = 'Jhelom'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 4 = 'Yew'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 5 = 'New Magincia'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 6 = 'Minoc'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 7 = 'Trinsic'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 8 = 'Skara Brae'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 9 = 'Buccaneer's Den'
+[17:03:25.932] INFO  [n10_Corran] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 0 = 'Pick your destination:'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 1 = 'OKAY'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 2 = 'CANCEL'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 3 = 'Felucca'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 4 = 'Felucca'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 5 = 'Moonglow'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 6 = 'Britain'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 7 = 'Jhelom'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 8 = 'Yew'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 9 = 'New Magincia'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 10 = 'Minoc'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 11 = 'Trinsic'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 12 = 'Skara Brae'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 13 = 'Buccaneer's Den'
+[17:03:25.932] INFO  [n10_Corran] [gump]   text 14 = 'Ocllo (Newplayers)'
+[17:03:25.932] LOG   [n10_Corran] event gump_open: serial=0x4000289D context=0x80A00425 options=13
+[17:03:25.932] INFO  [n10_Corran] [travel] gate gump: choosing 'Trinsic' (choice 7, button 1000)
+[17:03:25.932] LOG   [n10_Corran] event moongate_use: destination='Trinsic' choice=7 button=1000
+[17:03:25.932] INFO  [n10_Corran] [bot] arrived at (2701,692,5)
+[17:03:25.932] INFO  [n10_Corran] [action] goto finished at (2701,692,5); target (2701,692); ARRIVED (off by 0 tile(s))
+[17:03:25.932] LOG   [n10_Corran] event goto_done: at=(2701,692) target=(2701,692) arrived=1 off=0
+[17:03:25.932] INFO  [n10_Corran] [travel] using moongate 0x4000289D for 'Trinsic' (gump active=0 serial=0x00000000)
+[17:03:25.945] INFO  [n10_Corran] [0x20] player @(1828,2948,-20) facing=2
+[17:03:25.945] INFO  [n10_Corran] [0x20] player @(1828,2948,-20) facing=2
+[17:03:25.945] INFO  [n10_Corran] [chat ascii] System: You can't see the target
+[17:03:26.438] INFO  [n10_Corran] [action] goto (1864,2936) from (1828,2948,-20)
+[17:03:26.438] LOG   [n10_Corran] event goto_start: target=(1864,2936) from=(1828,2948)
+[17:03:26.438] INFO  [n10_Corran] [bot] running from (1828,2948,-20) to (1864,2936)
+[17:03:26.438] INFO  [n10_Corran] [bot] planning path to (1864,2936) in background
+[17:03:26.499] INFO  [n10_Corran] [bot] replan to (1864,2936): 45 steps in 31337.4us
+[17:03:26.761] INFO  [n10_Corran] [chat ascii] System: You have been revealed
+[17:03:30.450] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:35.493] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:40.253] INFO  [n10_Corran] [chat ascii] System: Thessaly has departed from Britain.
+[17:03:40.499] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:40.654] INFO  [n10_Corran] [chat ascii] Wuglat: *Wuglat is attacking you!*
+[17:03:41.024] INFO  [n10_Corran] [bot] arrived at (1864,2936,15)
+[17:03:41.024] INFO  [n10_Corran] [action] goto finished at (1864,2936,15); target (1864,2936); ARRIVED (off by 0 tile(s))
+[17:03:41.024] LOG   [n10_Corran] event goto_done: at=(1864,2936) target=(1864,2936) arrived=1 off=0
+[17:03:41.024] INFO  [n10_Corran] [action] goto (1896,2952) from (1864,2936,15)
+[17:03:41.024] LOG   [n10_Corran] event goto_start: target=(1896,2952) from=(1864,2936)
+[17:03:41.024] INFO  [n10_Corran] [bot] running from (1864,2936,15) to (1896,2952)
+[17:03:41.024] INFO  [n10_Corran] [bot] planning path to (1896,2952) in background
+[17:03:41.069] INFO  [n10_Corran] [bot] replan to (1896,2952): 35 steps in 9456.9us
+[17:03:45.537] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:50.580] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:52.368] INFO  [n10_Corran] [bot] arrived at (1896,2952,20)
+[17:03:52.368] INFO  [n10_Corran] [action] goto finished at (1896,2952,20); target (1896,2952); ARRIVED (off by 0 tile(s))
+[17:03:52.368] LOG   [n10_Corran] event goto_done: at=(1896,2952) target=(1896,2952) arrived=1 off=0
+[17:03:52.368] INFO  [n10_Corran] [action] goto (1928,2936) from (1896,2952,20)
+[17:03:52.368] LOG   [n10_Corran] event goto_start: target=(1928,2936) from=(1896,2952)
+[17:03:52.368] INFO  [n10_Corran] [bot] running from (1896,2952,20) to (1928,2936)
+[17:03:52.369] INFO  [n10_Corran] [bot] planning path to (1928,2936) in background
+[17:03:52.429] INFO  [n10_Corran] [bot] replan to (1928,2936): 33 steps in 18269.4us
+[17:03:55.636] INFO  [n10_Corran] [survival] hp 56/56 (100%) -> fight
+[17:03:56.631] INFO  [n10_Corran] [war] leaving war mode
+[17:03:56.647] LOG   [n10_Corran] event threat: HP 56 -> 49
+[17:03:56.647] INFO  [n10_Corran] [action] goto finished at (1906,2949,10); target (1928,2936); stopped short (off by 35 tile(s))
+[17:03:56.647] LOG   [n10_Corran] event goto_done: at=(1906,2949) target=(1928,2936) arrived=0 off=35
+[17:03:57.653] INFO  [n10_Corran] [war] leaving war mode
+[17:03:57.883] INFO  [n10_Corran] [action] goto (1928,2936) from (1906,2949,10)
+[17:03:57.883] LOG   [n10_Corran] event goto_start: target=(1928,2936) from=(1906,2949)
+[17:03:57.883] INFO  [n10_Corran] [bot] running from (1906,2949,10) to (1928,2936)
+[17:03:57.883] INFO  [n10_Corran] [bot] planning path to (1928,2936) in background
+[17:03:57.944] INFO  [n10_Corran] [bot] replan to (1928,2936): 22 steps in 7658.2us
+[17:04:00.639] INFO  [n10_Corran] [survival] hp 44/56 (78%) -> fight
+[17:04:00.883] INFO  [n10_Corran] [chat ascii] System: Maribel has departed from Britain.
+[17:04:04.190] INFO  [n10_Corran] [bot] arrived at (1928,2936,39)
+[17:04:04.190] INFO  [n10_Corran] [action] goto finished at (1928,2936,39); target (1928,2936); ARRIVED (off by 0 tile(s))
+[17:04:04.190] LOG   [n10_Corran] event goto_done: at=(1928,2936) target=(1928,2936) arrived=1 off=0
+[17:04:04.190] INFO  [n10_Corran] [action] goto (1960,2936) from (1928,2936,39)
+[17:04:04.190] LOG   [n10_Corran] event goto_start: target=(1960,2936) from=(1928,2936)
+[17:04:04.190] INFO  [n10_Corran] [bot] running from (1928,2936,39) to (1960,2936)
+[17:04:04.190] INFO  [n10_Corran] [bot] planning path to (1960,2936) in background
+[17:04:04.250] INFO  [n10_Corran] [bot] replan to (1960,2936): 62 steps in 15970.1us
+[17:04:05.644] INFO  [n10_Corran] [survival] hp 44/56 (78%) -> fight
+[17:04:10.674] INFO  [n10_Corran] [survival] hp 45/56 (80%) -> fight
+[17:04:14.085] INFO  [n10_Corran] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=34 in 615.1us
+[17:04:14.206] INFO  [n10_Corran] [chat ascii] System: Nessa has departed from Britain.
+[17:04:15.108] INFO  [n10_Corran] [bot] lookahead patched around block at step 1: anchor=5 new segment=6 path=33 in 594.4us
+[17:04:15.720] INFO  [n10_Corran] [survival] hp 45/56 (80%) -> fight
+[17:04:18.459] INFO  [n10_Corran] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=24 in 1117.7us
+[17:04:20.728] INFO  [n10_Corran] [survival] hp 45/56 (80%) -> fight
+[17:04:23.715] INFO  [life] wind-down: the trip has run past its deadline; abandoning it and logging out where I stand
+[17:04:23.715] INFO  [n10_Corran] [travel] Trinsic's Order of Engineers tinkerguildmaster FAILED at (1952,2940,0) -- wind-down deadline
+[17:04:23.715] LOG   [n10_Corran] event travel_failed: label='Trinsic's Order of Engineers tinkerguildmaster' ok=0 at=(1952,2940) legs=25 plans=4 why='wind-down deadline'
+[17:04:23.775] INFO  [life] wind-down: giving up on reaching a safe spot after 0 attempt(s); logging out at 1952,2940 and recording it
+[17:04:23.775] INFO  [life] session_summary duration=1620s goals=0/6 gold=10000->10000 skills=106.4->106.4 logs=+0 deaths=0 places=0 suppliers=0
+[17:04:23.775] INFO  [life] session_goals families=2 picks=6 top=83% varied=0 | training=5(83%) social=1(17%) | TRAIN_AT_NPC=5(83%) TRADE_WITH_PLAYER=1(17%)
+[17:04:23.777] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionnew01.corran/state.json
+[17:04:23.777] INFO  [life] logging out
+[17:04:23.777] INFO  [n10_Corran] [action] logout requested
+[17:04:23.777] LOG   [n10_Corran] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[17:04:23.777] INFO  [n10_Corran] [0xD1] logout acknowledged (accepted=1)
+[17:04:23.777] LOG   [n10_Corran] event logout_ack: accepted
+[17:04:23.777] INFO  [n10_Corran] [net] closing connection (logout acknowledged)
+[17:04:23.777] LOG   [n10_Corran] event logout_complete: acked

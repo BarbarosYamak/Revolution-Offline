@@ -1,0 +1,77 @@
+start: Sianna is a archer and lives in Trinsic -> starting city index 4
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[16:37:38.749] WARN  [n10_Sianna] [0x21] move REJECTED seq=52; server says (2000,2856,14) facing=7
+[16:37:39.500] WARN  [n10_Sianna] [0x21] move REJECTED seq=0; server says (2000,2856,14) facing=7
+[16:38:17.506] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:18.794] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:20.177] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:23.073] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:24.457] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:25.779] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:30.199] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:31.554] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:32.910] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:38.800] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:40.148] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:41.492] WARN  [n10_Sianna] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[16:38:41.554] WARN  [n10_Sianna] [travel] route exhausted at (1896,2824,6); trying to reach (1880,2808,10) to get somewhere routable (escape 1/3)
+[16:38:54.062] WARN  [n10_Sianna] [0x21] move REJECTED seq=16; server says (1884,2814,10) facing=5
+[16:38:54.062] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[16:39:43.889] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[16:39:48.207] WARN  [n10_Sianna] [bot] no path to (1850,2797) avoiding 0 block(s); stopping (search 1670993.6us)
+[16:39:48.207] WARN  [n10_Sianna] [bot] start (1853,2801,-4) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 436 item(s), 3 mobile(s))
+[16:39:51.531] WARN  [n10_Sianna] [bot] no path to (1850,2797) avoiding 0 block(s); stopping (search 2035002.1us)
+[16:39:51.531] WARN  [n10_Sianna] [bot] start (1853,2801,-4) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 436 item(s), 3 mobile(s))
+[16:39:56.089] WARN  [n10_Sianna] [bot] no path to (1850,2797) avoiding 0 block(s); stopping (search 1768931.1us)
+[16:39:56.089] WARN  [n10_Sianna] [bot] start (1853,2801,-4) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 436 item(s), 3 mobile(s))
+[16:40:16.661] WARN  [n10_Sianna] [ACTION_RESULT] vendor_buy timeout (no server confirmation)
+[16:40:20.488] WARN  [n10_Sianna] [0x21] move REJECTED seq=11; server says (1854,2800,-8) facing=3
+[16:40:20.502] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[16:42:37.971] WARN  [n10_Sianna] [0x21] move REJECTED seq=111; server says (1909,2947,20) facing=3
+[16:42:38.692] WARN  [n10_Sianna] [0x21] move REJECTED seq=0; server says (1909,2947,20) facing=3
+[16:44:21.057] WARN  [n10_Sianna] [travel] route exhausted at (1291,3719,0); trying to reach (1304,3720,0) to get somewhere routable (escape 1/3)
+[16:44:24.734] WARN  [n10_Sianna] [travel] route exhausted at (1304,3720,0); trying to reach (1288,3704,0) to get somewhere routable (escape 2/3)
+[16:44:30.252] WARN  [n10_Sianna] [travel] route exhausted at (1288,3704,0); trying to reach (1276,3692,-2) to get somewhere routable (escape 3/3)
+[16:45:46.045] WARN  [n10_Sianna] [0x21] move REJECTED seq=21; server says (1301,3722,0) facing=7
+[16:45:46.795] WARN  [n10_Sianna] [0x21] move REJECTED seq=0; server says (1301,3722,0) facing=7
+[16:46:29.717] WARN  [n10_Sianna] [bot] no path to (1364,3732) avoiding 0 block(s); stopping (search 1337.4us)
+[16:46:29.717] WARN  [n10_Sianna] [bot] start (1354,3754,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1161 item(s), 3 mobile(s))
+[16:46:31.069] WARN  [n10_Sianna] [bot] no path to (1364,3732) avoiding 0 block(s); stopping (search 899.0us)
+[16:46:31.070] WARN  [n10_Sianna] [bot] start (1354,3754,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1161 item(s), 3 mobile(s))
+[16:46:32.404] WARN  [n10_Sianna] [bot] no path to (1364,3732) avoiding 0 block(s); stopping (search 1027.8us)
+[16:46:32.404] WARN  [n10_Sianna] [bot] start (1354,3754,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1161 item(s), 3 mobile(s))
+[16:46:46.244] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[16:47:05.905] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[16:47:12.733] WARN  [n10_Sianna] [0x21] move REJECTED seq=15; server says (1400,3772,0) facing=3
+[16:47:12.749] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[16:47:56.418] WARN  [n10_Sianna] [0x21] move REJECTED seq=21; server says (1301,3722,0) facing=7
+[16:47:57.173] WARN  [n10_Sianna] [0x21] move REJECTED seq=0; server says (1301,3722,0) facing=7
+[16:48:02.157] WARN  [n10_Sianna] [bot] goal (1294,3723) is not walkable; skipping A* and stopping
+[16:48:03.371] WARN  [n10_Sianna] [bot] goal (1294,3723) is not walkable; skipping A* and stopping
+[16:48:04.615] WARN  [n10_Sianna] [bot] goal (1294,3723) is not walkable; skipping A* and stopping
+[16:48:05.837] WARN  [n10_Sianna] [bot] goal (1294,3723) is not walkable; skipping A* and stopping
+[16:48:07.063] WARN  [n10_Sianna] [bot] goal (1294,3723) is not walkable; skipping A* and stopping
+[16:48:10.792] WARN  [n10_Sianna] [bot] goal (1298,3723) is not walkable; skipping A* and stopping
+[16:48:11.995] WARN  [n10_Sianna] [bot] goal (1298,3723) is not walkable; skipping A* and stopping
+[16:48:13.255] WARN  [n10_Sianna] [bot] goal (1298,3723) is not walkable; skipping A* and stopping
+[16:48:14.482] WARN  [n10_Sianna] [bot] goal (1298,3723) is not walkable; skipping A* and stopping
+[16:48:15.724] WARN  [n10_Sianna] [bot] goal (1298,3723) is not walkable; skipping A* and stopping
+[16:48:16.941] WARN  [n10_Sianna] [bot] goal (1298,3723) is not walkable; skipping A* and stopping
+[16:48:18.168] WARN  [n10_Sianna] [bot] goal (1298,3723) is not walkable; skipping A* and stopping
+[16:48:21.952] WARN  [n10_Sianna] [bot] goal (1300,3722) is not walkable; skipping A* and stopping
+[16:48:23.209] WARN  [n10_Sianna] [bot] goal (1300,3723) is not walkable; skipping A* and stopping
+[16:48:55.538] WARN  [n10_Sianna] [travel] route exhausted at (1296,3721,0); trying to reach (1288,3720,0) to get somewhere routable (escape 1/3)
+[16:48:55.538] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[16:48:55.539] WARN  [n10_Sianna] [travel] route exhausted at (1296,3721,0); trying to reach (1288,3736,0) to get somewhere routable (escape 2/3)
+[16:49:02.130] WARN  [n10_Sianna] [travel] route exhausted at (1288,3736,0); trying to reach (1272,3720,0) to get somewhere routable (escape 3/3)
+[17:03:55.591] WARN  [n10_Sianna] [ACTION_RESULT] resurrect timeout (no server confirmation)
+[17:03:55.652] WARN  [n10_Sianna] [travel] route exhausted at (1272,3720,0); trying to reach (1256,3706,-1) to get somewhere routable (escape 1/3)
+[17:03:55.652] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[17:03:55.652] WARN  [n10_Sianna] [travel] route exhausted at (1272,3720,0); trying to reach (1272,3704,0) to get somewhere routable (escape 2/3)
+[17:04:10.753] WARN  [n10_Sianna] [travel] route exhausted at (1272,3704,0); trying to reach (1276,3692,-2) to get somewhere routable (escape 3/3)
+[17:18:55.699] WARN  [n10_Sianna] [ACTION_RESULT] resurrect timeout (no server confirmation)
+[17:18:55.761] WARN  [n10_Sianna] [travel] route exhausted at (1276,3692,-2); trying to reach (1288,3688,0) to get somewhere routable (escape 1/3)
+[17:18:55.776] WARN  [n10_Sianna] [bot] 0x20 resync; aborting path
+[17:18:55.776] WARN  [n10_Sianna] [travel] route exhausted at (1276,3692,-1); trying to reach (1272,3704,0) to get somewhere routable (escape 2/3)
+[17:19:00.819] WARN  [n10_Sianna] [travel] route exhausted at (1272,3704,0); trying to reach (1276,3692,-2) to get somewhere routable (escape 3/3)

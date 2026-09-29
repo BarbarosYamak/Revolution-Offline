@@ -1,0 +1,167 @@
+start: Maribel is a fencer and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[17:30:05.545] WARN  [n10_Maribel] [travel] route exhausted at (1429,1689,0); trying to reach (1416,1688,0) to get somewhere routable (escape 1/3)
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[17:30:16.456] WARN  [n10_Maribel] [travel] route exhausted at (1416,1688,0); trying to reach (1416,1704,8) to get somewhere routable (escape 2/3)
+[17:30:21.616] WARN  [n10_Maribel] [travel] route exhausted at (1416,1704,8); trying to reach (1402,1706,20) to get somewhere routable (escape 3/3)
+[17:31:21.593] WARN  [n10_Maribel] [bot] 0x20 resync; aborting path
+[17:31:25.424] WARN  [n10_Maribel] [bot] no path to (1352,1781) avoiding 0 block(s); stopping (search 1178073.7us)
+[17:31:25.424] WARN  [n10_Maribel] [bot] start (1352,1778,15) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 230 item(s), 3 mobile(s))
+[17:31:37.105] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:31:47.344] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:31:55.949] WARN  [n10_Maribel] [bot] no path to (1352,1776) avoiding 0 block(s); stopping (search 1662313.4us)
+[17:31:55.949] WARN  [n10_Maribel] [bot] start (1352,1781,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 230 item(s), 3 mobile(s))
+[17:32:06.481] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:32:14.516] WARN  [n10_Maribel] [bot] no path to (1347,1776) avoiding 0 block(s); stopping (search 1150879.2us)
+[17:32:14.516] WARN  [n10_Maribel] [bot] start (1352,1776,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 230 item(s), 3 mobile(s))
+[17:32:18.511] WARN  [n10_Maribel] [bot] no path to (1345,1777) avoiding 0 block(s); stopping (search 1210650.6us)
+[17:32:18.511] WARN  [n10_Maribel] [bot] start (1347,1776,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 230 item(s), 3 mobile(s))
+[17:32:22.588] WARN  [n10_Maribel] [bot] no path to (1345,1777) avoiding 0 block(s); stopping (search 1223959.6us)
+[17:32:22.588] WARN  [n10_Maribel] [bot] start (1347,1776,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 230 item(s), 3 mobile(s))
+[17:32:33.726] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:33:53.410] WARN  [n10_Maribel] [0x21] move REJECTED seq=32; server says (1423,1599,20) facing=7
+[17:33:54.161] WARN  [n10_Maribel] [0x21] move REJECTED seq=0; server says (1423,1599,20) facing=7
+[17:33:55.515] WARN  [n10_Maribel] [bot] no path to (1416,1592) avoiding 1 block(s); stopping (search 1340731.4us)
+[17:33:55.515] WARN  [n10_Maribel] [bot] start (1423,1599,20) exits: open=6 terrain=0 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 454 item(s), 6 mobile(s))
+[17:33:58.258] WARN  [n10_Maribel] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 1424282.1us)
+[17:33:58.258] WARN  [n10_Maribel] [bot] start (1423,1599,20) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 454 item(s), 6 mobile(s))
+[17:34:20.389] WARN  [n10_Maribel] [0x21] move REJECTED seq=27; server says (1427,1540,30) facing=7
+[17:34:21.141] WARN  [n10_Maribel] [0x21] move REJECTED seq=0; server says (1427,1540,30) facing=7
+[17:36:31.125] WARN  [n10_Maribel] [0x21] move REJECTED seq=76; server says (1549,1661,26) facing=7
+[17:36:31.858] WARN  [n10_Maribel] [0x21] move REJECTED seq=0; server says (1549,1661,26) facing=7
+[17:37:29.504] WARN  [n10_Maribel] [0x21] move REJECTED seq=15; server says (1488,1589,20) facing=3
+[17:37:29.520] WARN  [n10_Maribel] [bot] 0x20 resync; aborting path
+[17:38:43.655] WARN  [n10_Maribel] [bot] 0x20 resync; aborting path
+[17:39:07.608] WARN  [n10_Maribel] [bot] 0x20 resync; aborting path
+[17:39:38.417] WARN  [n10_Maribel] [bot] 0x20 resync; aborting path
+[17:40:39.425] WARN  [n10_Maribel] [bot] no path to (1640,1672) avoiding 0 block(s); stopping (search 2189605.8us)
+[17:40:39.425] WARN  [n10_Maribel] [bot] start (1640,1640,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1169 item(s), 2 mobile(s))
+[17:40:42.657] WARN  [n10_Maribel] [bot] no path to (1640,1672) avoiding 0 block(s); stopping (search 1925220.5us)
+[17:40:42.657] WARN  [n10_Maribel] [bot] start (1640,1640,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1169 item(s), 2 mobile(s))
+[17:41:10.227] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:41:10.227] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (5626ms) superseded
+[17:41:12.768] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:41:12.768] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2541ms) superseded
+[17:41:20.794] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:41:28.617] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:41:28.617] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2556ms) superseded
+[17:41:32.644] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:41:32.644] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (4027ms) superseded
+[17:41:35.157] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:41:35.158] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2513ms) superseded
+[17:41:43.198] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:41:50.949] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:41:50.949] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2557ms) superseded
+[17:41:58.950] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:42:02.107] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:42:02.107] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2509ms) superseded
+[17:42:10.159] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:42:19.475] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:42:19.475] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2556ms) superseded
+[17:42:25.071] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:42:25.071] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (5596ms) superseded
+[17:42:33.076] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:42:36.221] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:42:36.221] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2532ms) superseded
+[17:42:44.226] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:42:59.037] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:43:12.931] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:43:12.931] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (7119ms) superseded
+[17:43:15.490] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:43:15.490] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2558ms) superseded
+[17:43:18.049] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:43:18.049] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2560ms) superseded
+[17:43:20.559] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:43:20.559] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2510ms) superseded
+[17:43:23.066] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:43:23.066] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2507ms) superseded
+[17:43:31.086] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:43:43.462] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:43:43.462] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (5586ms) superseded
+[17:43:51.496] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:44:03.855] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:44:03.855] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (5589ms) superseded
+[17:44:06.358] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:44:06.358] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2503ms) superseded
+[17:44:14.411] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:44:26.138] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:44:36.369] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:44:51.218] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:44:55.937] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:44:55.937] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2524ms) superseded
+[17:45:03.944] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:45:14.760] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:45:14.760] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (5589ms) superseded
+[17:45:21.846] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:45:21.846] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (7086ms) superseded
+[17:45:29.859] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:45:34.529] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:45:34.529] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (4056ms) superseded
+[17:45:42.576] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:45:54.962] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:45:54.962] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (5611ms) superseded
+[17:45:57.499] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:45:57.499] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2537ms) superseded
+[17:46:00.026] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:46:00.026] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2527ms) superseded
+[17:46:07.121] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:46:07.121] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (7095ms) superseded
+[17:46:15.159] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:46:22.961] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:46:22.961] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2552ms) superseded
+[17:46:31.021] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:46:35.719] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:46:35.719] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (4081ms) superseded
+[17:46:38.271] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:46:38.271] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2552ms) superseded
+[17:46:46.310] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:47:01.137] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:47:15.916] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:47:22.219] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:47:22.219] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2547ms) superseded
+[17:47:30.242] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:47:39.629] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:47:39.629] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2543ms) superseded
+[17:47:47.654] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:47:58.589] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:47:58.589] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (4054ms) superseded
+[17:48:01.147] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:48:01.147] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2557ms) superseded
+[17:48:09.199] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:48:23.995] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:48:36.306] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:48:36.306] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (5539ms) superseded
+[17:48:38.826] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:48:38.826] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2520ms) superseded
+[17:48:41.348] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:48:41.348] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2522ms) superseded
+[17:48:43.871] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:48:43.871] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2522ms) superseded
+[17:48:51.033] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:48:51.033] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (7163ms) superseded
+[17:48:55.086] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:48:55.086] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (4053ms) superseded
+[17:49:02.236] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:49:02.236] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (7150ms) superseded
+[17:49:10.260] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:49:25.117] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:49:34.421] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:49:34.421] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2541ms) superseded
+[17:49:42.436] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:49:51.152] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:50:00.522] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:50:00.522] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2547ms) superseded
+[17:50:03.041] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:50:03.041] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (2519ms) superseded
+[17:50:11.041] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:50:21.879] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:50:21.879] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (4020ms) superseded
+[17:50:29.934] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:50:44.714] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:50:58.717] WARN  [n10_Maribel] [action] npc_train superseded by npc_train
+[17:50:58.717] WARN  [n10_Maribel] [ACTION_RESULT] npc_train invalid_state (7178ms) superseded
+[17:51:06.768] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:51:21.514] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:51:36.286] WARN  [n10_Maribel] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:51:43.277] WARN  [n10_Maribel] [bot] no path to (1608,1656) avoiding 0 block(s); stopping (search 289.4us)
+[17:51:43.277] WARN  [n10_Maribel] [bot] start (1634,1690,36) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1170 item(s), 2 mobile(s))

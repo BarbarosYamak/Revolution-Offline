@@ -69,6 +69,8 @@ void Client::ActionTradeOffer(u32 itemSerial, u16 amount) {
     BeginAction(act::Kind::MoveItem, 8000);
     action_.subject = itemSerial;
     action_.destination = trade_.MyContainer();
+    action_.amount = amount ? amount : 1;
+    NoteMoveSource(itemSerial);
     LogInfo("[trade] putting 0x%08X into the trade window\n", itemSerial);
     if (!SendLift(itemSerial, amount ? amount : 1)) {
         FinishAction(act::Result::Rejected, "could not lift the item");
@@ -114,6 +116,30 @@ void Client::OnSecureTrade(const u8* data, usize size) {
             char name[31];
             std::memset(name, 0, sizeof(name));
             if (size >= 47) std::memcpy(name, data + 17, 30);
+            // ONE WINDOW AT A TIME.
+            //
+            // Two sellers answering the same want both dropped goods on the
+            // buyer (2026-09-02 09:11:48 Kharain, 09:11:50 Elvar -> Odessa).
+            // The second OPEN overwrote myContainer_/theirContainer_, so the
+            // gold already in the first window and the accept tick that
+            // followed addressed containers this state no longer named: both
+            // deals timed out at 25s having moved nothing. A player refuses a
+            // second window by closing it, and so do we -- on the wire, not by
+            // ignoring the packet, which would leave the partner's window
+            // hanging open until its own timeout.
+            if (trade_.Active() && a != trade_.PartnerSerial()) {
+                LogWarn("[trade] declining a second window from '%s' (0x%08X); "
+                        "already trading with 0x%08X\n", name, a,
+                        trade_.PartnerSerial());
+                SendTradeAction(/*SECURE_TRADE_CLOSE=*/1, b, 0);
+                declinedTradePartner_ = a;
+                declinedTradeName_ = name;
+                char dev[96];
+                std::snprintf(dev, sizeof(dev), "partner=0x%08X name='%s'", a,
+                              name);
+                LogEvent("trade_declined", dev);
+                break;
+            }
             trade_.OnOpened(a, name, b, c, NowMs());
             LogInfo("[trade] window open with '%s' (0x%08X); mine=0x%08X "
                     "theirs=0x%08X\n", name, a, b, c);
@@ -127,6 +153,23 @@ void Client::OnSecureTrade(const u8* data, usize size) {
             break;
         }
         case 2: {   // CHANGE
+            // CHANGE has the same container identity as CLOSE.  A competing
+            // window may still produce its accept-state echo after we have
+            // declined it; applying that echo to the live deal can mark both
+            // boxes accepted before either trader approved the actual window.
+            // Source-X sends our container at [4..7], so accept state is
+            // meaningful only when it names this trade's two containers.
+            if (!trade_.Active() ||
+                (a != trade_.MyContainer() && a != trade_.TheirContainer())) {
+                const u32 active = trade_.Active() ? trade_.MyContainer() : 0;
+                LogWarn("[trade] ignoring accept state for window 0x%08X "
+                        "(active is 0x%08X)\n", a, active);
+                char dev[80];
+                std::snprintf(dev, sizeof(dev), "window=0x%08X active=0x%08X",
+                              a, active);
+                LogEvent("trade_change_ignored", dev);
+                break;
+            }
             const bool mine = b != 0;
             const bool theirs = c != 0;
             trade_.OnCheckChanged(mine, theirs, NowMs());
@@ -139,6 +182,34 @@ void Client::OnSecureTrade(const u8* data, usize size) {
             break;
         }
         case 1: {   // CLOSE
+            // A CLOSE ONLY CLOSES ITS OWN WINDOW.
+            //
+            // The serial at [4..7] is the container being deleted:
+            // `CItemContainer::Trade_Delete` builds the packet with
+            // `prepareClose(this)` and sends it to that container's own owner
+            // (Source-X CItemContainer.cpp:298-306, send.cpp:1902-1911), so a
+            // close meant for us always names one of OUR live trade's two
+            // containers. Any other serial belongs to a window this session is
+            // not trading in -- in practice the SECOND window we just declined
+            // above, whose container the server deletes on our own 0x6F CLOSE
+            // (receive.cpp:1137-1139) and reports back here. Applying it to
+            // trade_ killed the live deal instead: Kharos closed Wren's second
+            // window at 18:06:51.134 and lost the Aelia bandage trade 15ms
+            // later, while Aelia's client -- which never got a close -- sat
+            // until its own 25s timeout
+            // (artifacts/wave30_bandage20_20260907/Kharos.console.txt:432-441,
+            // Aelia.console.txt:805-812).
+            if (!trade_.Active() ||
+                (a != trade_.MyContainer() && a != trade_.TheirContainer())) {
+                const u32 active = trade_.Active() ? trade_.MyContainer() : 0;
+                LogWarn("[trade] ignoring close for window 0x%08X (active is "
+                        "0x%08X)\n", a, active);
+                char dev[80];
+                std::snprintf(dev, sizeof(dev), "window=0x%08X active=0x%08X",
+                              a, active);
+                LogEvent("trade_close_ignored", dev);
+                break;
+            }
             // Sphere sends CLOSE for both a completed trade and a cancelled
             // one. "Both boxes were ticked when it closed" is the only thing
             // that distinguishes them from here.

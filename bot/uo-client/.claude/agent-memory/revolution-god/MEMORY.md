@@ -1,0 +1,10 @@
+- [Crafters stock then sit](crafters-stock-then-sit.md) — owner rule: bulk materials first, long craft sittings, for every crafter; alchemist (89aa11e) is the template
+- [Sphere shutdown](sphere-shutdown.md) — close via sphere_console.ps1 "X#" (plain X refused by Secure mode); taskkill /F only after save
+- [Population ramp plan](population-ramp-plan.md) � after 3-char validation: 20 -> 50 -> 100 load test, 70/30 combat/craft hypothesis, crafters supply fighters
+- [Mage combat ladder](mage-combat-ladder.md) � owner rule: mage uses full offensive ladder within Magery (harm/poison/lightning), self-trains once funded
+- [Session 2026-09-06 validation](session-2026-09-06-validation.md) � read docs/SESSION_STATE_2026-09-06.md first; wave grades, D1-D14 ledger, sequential fix agents
+- [Newbie items survive death](newbie-items-survive-death.md) � ATTR=04 starter tools stay on death; corpse holds only earned/bought items
+- [Speed over hand-polling](feedback-speed-over-hand-polling.md) - owner-approved accelerators: commit often/worktrees, offline atlas harness, need<->handler contract; observer agent from minute 1
+- [Parallel fixer Astra](parallel-fixer-astra.md) - owner runs a second fixer session; ask what it holds before dispatching fix agents
+- [Graveyard tiers separated](graveyard-tiers-separated.md) - owner: keep strong undead in Britain graveyard but in a separate part from the weak band
+- [Meditation only for attack builds](meditation-only-for-attack-builds.md) - owner: crafters drop Meditation; Sphere refuses it at full mana

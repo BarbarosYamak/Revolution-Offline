@@ -10,7 +10,9 @@
 //     total skill      runtime 1000.0   Revolution 700.0
 //     Resisting Spells runtime enabled  Revolution officially inactive
 //     active skills    runtime 58       Revolution 38
-//     reagents         runtime not required (ReagentsRequired=0)
+//     reagents         runtime REQUIRED (sphere.ini ReagentsRequired=1 since
+//                      M3; an empty pouch is answered "You lack X for this
+//                      spell" -- the old "=0" note here misled 2026-09-02)
 //
 // So a build the server accepts is NOT therefore a Revolution build, and
 // authenticity cannot be delegated to Source-X. It has to be enforced where
@@ -67,15 +69,49 @@ enum SkillId : int {
     kMining           = 45,
     kMeditation       = 46,
 
-    // Combat skills (M4). The same Sphere SKILL_TYPE order as every id above;
-    // Swordsmanship = 40 is also what builders.h sends at character creation.
-    // NOT re-read off runtime/scripts/skills/*.scp this time -- the Scripts-X
-    // tree is not in this repository -- so check against it when it is to hand.
+    // Combat and support skills the M4 Slice 1 build plans against. Same
+    // sourcing rule as the production ids above: read off the runtime's own
+    // file names, runtime/scripts/skills/skill<N>_<name>.scp.
     kAnatomy          = 1,
     kHealing          = 17,
     kTactics          = 27,
     kSwordsmanship    = 40,
+
+    // M5 archetypes. Same sourcing rule: read off the runtime's own file
+    // names, runtime/scripts/skills/skill<N>_<name>.scp.
+    kAnimalLore       = 2,
+    kVeterinary       = 39,
+
+    // The other weapon schools. These lived as file-local constants in
+    // Professions.cpp, which was fine while only the catalogue named them --
+    // then the hunting behaviour needed to ask "does this build fight?" and
+    // could not see them. One source, here, like every other id.
+    kParrying         = 5,   // skill5_parrying.scp
+    kArchery          = 31,  // skill31_archery.scp
+    kMaceFighting     = 41,  // skill41_macefighting.scp
+    kFencing          = 42,  // skill42_fencing.scp
+    kWrestling        = 43,  // skill43_wrestling.scp
 };
+
+// The shard's own name for a skill id, or "skill <n>" when we do not have a
+// name for it. There used to be two of these -- one in the needs layer, one in
+// the runner -- and both stopped at the five M4 skills, so every M5 log line
+// about a mage read "skill 50.0 + skill 50.0". One table, everywhere.
+const char* SkillName(int skillId);
+
+// THE STRENGTH A SKILL CAN EVER GIVE ITS USER.
+//
+// Source-X CCharSkill.cpp Skill_Experience (~:459) rolls a stat gain on EVERY
+// use of a skill, success or failure -- but only toward that skill's own
+// STAT_x, and `if (uiStatVal >= bStatTarg) continue;` means a stat never grows
+// one point past it. So this table is the answer to "can this build's own work
+// ever reach its STR target", and it is why a pure caster (Magery STAT_STR=20,
+// Meditation 10) is stuck at whatever STR it was created with.
+//
+// Values are read off the shard's own skill files, runtime/scripts/skills/
+// skill<N>_<name>.scp, STAT_STR= line. -1 for an id we have no file for, so a
+// caller can tell "not in the table" from "this skill is worth no STR".
+int SkillStatStr(int skillId);
 
 struct Profile {
     std::string name = "revolution_2009_2010";

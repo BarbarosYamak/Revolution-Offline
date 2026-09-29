@@ -1,0 +1,245 @@
+===== SNAPSHOT 1 at 12:39:49 =====
+--- Lyra tail ---
+[12:39:44.465] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[12:39:46.532] INFO  [life] spellbook: adding scroll 0x1F2D to the book (15 spells so far)
+[12:39:46.532] INFO  [g_Lyra] [ACTION] move_item start
+[12:39:46.532] INFO  [g_Lyra] [ACTION] move_item serial=0x400177C5 amount=1 dest=0x4000F898
+[12:39:46.533] INFO  [g_Lyra] [ITEM] drag serial=0x400177C5 amount=1
+[12:39:46.533] INFO  [g_Lyra] [ITEM] drop container=0x4000F898
+[12:39:46.533] INFO  [g_Lyra] [ACTION_RESULT] move_item success (0ms) item consumed by the destination
+[12:39:46.533] LOG   [g_Lyra] event action_result: move_item success took=0ms item consumed by the destination
+[12:39:49.041] INFO  [life] spellbook: opening the book to see what is already in it
+[12:39:49.041] INFO  [g_Lyra] [ACTION] use_object start
+[12:39:49.041] INFO  [g_Lyra] [ACTION] use_object serial=0x4000F898
+[12:39:49.041] INFO  [g_Lyra] [0x3C] container contents: 16 item(s)
+[12:39:49.041] INFO  [g_Lyra] [ACTION_RESULT] use_object success (1ms) contents received
+[12:39:49.041] LOG   [g_Lyra] event action_result: use_object success took=1ms contents received
+[12:39:49.514] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+
+--- Thalia tail ---
+[12:39:49.330] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.392] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.452] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.468] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.530] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.592] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.655] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.655] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.715] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.776] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.837] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.899] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.900] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:49.961] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+[12:39:50.022] INFO  [life] food: Create Food is short of i_reag_garlic -- buying food instead this time
+
+===== SNAPSHOT 2 at 12:41:55 =====
+--- Lyra tail ---
+[12:41:40.787] INFO  [g_Lyra] [0x24] vendor buy gump for 0x0000E086
+[12:41:42.729] INFO  [g_Lyra] [chat ascii] System: World save in 10 seconds
+[12:41:45.241] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[12:41:47.323] INFO  [g_Lyra] [chat ascii] Chander: Well it was nice speaking to you Lyra but I must go about my business
+[12:41:49.819] INFO  [life] spellbook: buying a spell this book lacks ('Feeblemind Scroll', 0x1F30, spell 3) at 20 gold -- 3 of this shop's scrolls were already in the book
+[12:41:49.819] INFO  [g_Lyra] [ACTION] vendor_buy start
+[12:41:49.819] INFO  [g_Lyra] [policy] allowed NPC purchase of item (0x1F30): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [UNKNOWN]
+[12:41:49.819] INFO  [g_Lyra] [VENDOR] buy item=0x40012C40 qty=1 from vendor=0x0000E086 gold=8803
+[12:41:49.820] INFO  [g_Lyra] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[12:41:49.820] LOG   [g_Lyra] event action_result: vendor_buy success took=0ms purchased item delivered
+[12:41:49.820] INFO  [g_Lyra] [chat ascii] Ambrose: Here you are, Lyra That will be 20 gold coins.  I thank thee for thy business.
+[12:41:49.820] INFO  [g_Lyra] [0x3B] vendor transaction closed: vendor=0x0000E086 flag=0
+[12:41:50.267] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[12:41:52.778] INFO  [g_Lyra] [chat ascii] System: World save has been initiated.
+[12:41:55.325] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+
+--- Thalia tail ---
+[12:41:49.251] INFO  [g_Thalia] [ITEM] drag serial=0x40017354 amount=1
+[12:41:49.251] INFO  [g_Thalia] [ITEM] drop container=0x4000EFBA
+[12:41:49.251] INFO  [g_Thalia] [ACTION_RESULT] move_item success (0ms) item consumed by the destination
+[12:41:49.251] LOG   [g_Thalia] event action_result: move_item success took=0ms item consumed by the destination
+[12:41:51.791] INFO  [life] spellbook: opening the book to see what is already in it
+[12:41:51.791] INFO  [g_Thalia] [ACTION] use_object start
+[12:41:51.791] INFO  [g_Thalia] [ACTION] use_object serial=0x4000EFBA
+[12:41:51.792] INFO  [g_Thalia] [0x3C] container contents: 16 item(s)
+[12:41:51.792] INFO  [g_Thalia] [ACTION_RESULT] use_object success (0ms) contents received
+[12:41:51.792] LOG   [g_Thalia] event action_result: use_object success took=0ms contents received
+[12:41:52.778] INFO  [g_Thalia] [chat ascii] System: World save has been initiated.
+[12:41:53.457] INFO  [g_Thalia] [survival] hp 50/50 (100%) -> fight
+[12:41:54.331] INFO  [life] FILL_SPELLBOOK: asking the scribe to show a spell this book lacks
+[12:41:54.331] INFO  [g_Thalia] [ACTION] vendor_buy start
+[12:41:54.331] INFO  [g_Thalia] [VENDOR] open vendor=0x0000E071 say='Lamar buy'
+
+===== SNAPSHOT 3 at 12:42:50 =====
+--- Lyra tail ---
+[12:42:41.018] INFO  [g_Lyra] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[12:42:41.018] LOG   [g_Lyra] event action_result: vendor_buy success took=0ms purchased item delivered
+[12:42:41.018] INFO  [g_Lyra] [chat ascii] Ambrose: Here you are, Lyra That will be 21 gold coins.  I thank thee for thy business.
+[12:42:41.018] INFO  [g_Lyra] [0x3B] vendor transaction closed: vendor=0x0000E086 flag=0
+[12:42:41.154] INFO  [life] session_end_requested reason="session time limit reached"
+[12:42:41.199] INFO  [life] session_summary duration=300s goals=2/8 gold=9880->8742 skills=100.0->120.8 logs=+0 kills=0 deaths=0 places=4 suppliers=0
+[12:42:41.200] INFO  [life] session_goals families=3 picks=8 top=50% varied=0 self_superseded=0 | upkeep=3(38%) work=4(50%) training=1(12%) | TRAIN_AT_NPC=1(12%) BUY_SUPPLIES=2(25%) CRAFT=2(25%) GET_FOOD=1(12%) FILL_SPELLBOOK=2(25%)
+[12:42:41.202] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[12:42:41.202] INFO  [life] logging out
+[12:42:41.202] INFO  [g_Lyra] [action] logout requested
+[12:42:41.202] LOG   [g_Lyra] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[12:42:41.203] INFO  [g_Lyra] [0xD1] logout acknowledged (accepted=1)
+[12:42:41.203] LOG   [g_Lyra] event logout_ack: accepted
+[12:42:41.203] INFO  [g_Lyra] [net] closing connection (logout acknowledged)
+[12:42:41.203] LOG   [g_Lyra] event logout_complete: acked
+
+--- Thalia tail ---
+[12:42:43.085] INFO  [g_Thalia] [0x3C] container contents: 18 item(s)
+[12:42:43.085] INFO  [g_Thalia] [ACTION_RESULT] use_object success (0ms) contents received
+[12:42:43.085] LOG   [g_Thalia] event action_result: use_object success took=0ms contents received
+[12:42:43.851] INFO  [g_Thalia] [survival] hp 50/50 (100%) -> fight
+[12:42:44.247] INFO  [life] session_end_requested reason="session time limit reached"
+[12:42:44.308] INFO  [life] session_summary duration=300s goals=3/8 gold=9880->8725 skills=100.0->130.0 logs=+0 kills=0 deaths=0 places=5 suppliers=0
+[12:42:44.308] INFO  [life] session_goals families=3 picks=8 top=50% varied=0 self_superseded=1 | upkeep=3(38%) work=4(50%) training=1(12%) | TRAIN_AT_NPC=1(12%) BUY_SUPPLIES=1(12%) CRAFT=3(38%) GET_FOOD=2(25%) FILL_SPELLBOOK=1(12%)
+[12:42:44.310] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[12:42:44.310] INFO  [life] logging out
+[12:42:44.310] INFO  [g_Thalia] [action] logout requested
+[12:42:44.310] LOG   [g_Thalia] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[12:42:44.323] INFO  [g_Thalia] [0xD1] logout acknowledged (accepted=1)
+[12:42:44.324] LOG   [g_Thalia] event logout_ack: accepted
+[12:42:44.324] INFO  [g_Thalia] [net] closing connection (logout acknowledged)
+[12:42:44.324] LOG   [g_Thalia] event logout_complete: acked
+
+===== SNAPSHOT 4 at 12:43:47 =====
+--- Lyra tail ---
+[12:42:41.018] INFO  [g_Lyra] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[12:42:41.018] LOG   [g_Lyra] event action_result: vendor_buy success took=0ms purchased item delivered
+[12:42:41.018] INFO  [g_Lyra] [chat ascii] Ambrose: Here you are, Lyra That will be 21 gold coins.  I thank thee for thy business.
+[12:42:41.018] INFO  [g_Lyra] [0x3B] vendor transaction closed: vendor=0x0000E086 flag=0
+[12:42:41.154] INFO  [life] session_end_requested reason="session time limit reached"
+[12:42:41.199] INFO  [life] session_summary duration=300s goals=2/8 gold=9880->8742 skills=100.0->120.8 logs=+0 kills=0 deaths=0 places=4 suppliers=0
+[12:42:41.200] INFO  [life] session_goals families=3 picks=8 top=50% varied=0 self_superseded=0 | upkeep=3(38%) work=4(50%) training=1(12%) | TRAIN_AT_NPC=1(12%) BUY_SUPPLIES=2(25%) CRAFT=2(25%) GET_FOOD=1(12%) FILL_SPELLBOOK=2(25%)
+[12:42:41.202] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[12:42:41.202] INFO  [life] logging out
+[12:42:41.202] INFO  [g_Lyra] [action] logout requested
+[12:42:41.202] LOG   [g_Lyra] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[12:42:41.203] INFO  [g_Lyra] [0xD1] logout acknowledged (accepted=1)
+[12:42:41.203] LOG   [g_Lyra] event logout_ack: accepted
+[12:42:41.203] INFO  [g_Lyra] [net] closing connection (logout acknowledged)
+[12:42:41.203] LOG   [g_Lyra] event logout_complete: acked
+
+--- Thalia tail ---
+[12:42:43.085] INFO  [g_Thalia] [0x3C] container contents: 18 item(s)
+[12:42:43.085] INFO  [g_Thalia] [ACTION_RESULT] use_object success (0ms) contents received
+[12:42:43.085] LOG   [g_Thalia] event action_result: use_object success took=0ms contents received
+[12:42:43.851] INFO  [g_Thalia] [survival] hp 50/50 (100%) -> fight
+[12:42:44.247] INFO  [life] session_end_requested reason="session time limit reached"
+[12:42:44.308] INFO  [life] session_summary duration=300s goals=3/8 gold=9880->8725 skills=100.0->130.0 logs=+0 kills=0 deaths=0 places=5 suppliers=0
+[12:42:44.308] INFO  [life] session_goals families=3 picks=8 top=50% varied=0 self_superseded=1 | upkeep=3(38%) work=4(50%) training=1(12%) | TRAIN_AT_NPC=1(12%) BUY_SUPPLIES=1(12%) CRAFT=3(38%) GET_FOOD=2(25%) FILL_SPELLBOOK=1(12%)
+[12:42:44.310] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[12:42:44.310] INFO  [life] logging out
+[12:42:44.310] INFO  [g_Thalia] [action] logout requested
+[12:42:44.310] LOG   [g_Thalia] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[12:42:44.323] INFO  [g_Thalia] [0xD1] logout acknowledged (accepted=1)
+[12:42:44.324] LOG   [g_Thalia] event logout_ack: accepted
+[12:42:44.324] INFO  [g_Thalia] [net] closing connection (logout acknowledged)
+[12:42:44.324] LOG   [g_Thalia] event logout_complete: acked
+
+===== SNAPSHOT 5 at 12:44:48 =====
+--- Lyra tail ---
+[12:42:41.018] INFO  [g_Lyra] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[12:42:41.018] LOG   [g_Lyra] event action_result: vendor_buy success took=0ms purchased item delivered
+[12:42:41.018] INFO  [g_Lyra] [chat ascii] Ambrose: Here you are, Lyra That will be 21 gold coins.  I thank thee for thy business.
+[12:42:41.018] INFO  [g_Lyra] [0x3B] vendor transaction closed: vendor=0x0000E086 flag=0
+[12:42:41.154] INFO  [life] session_end_requested reason="session time limit reached"
+[12:42:41.199] INFO  [life] session_summary duration=300s goals=2/8 gold=9880->8742 skills=100.0->120.8 logs=+0 kills=0 deaths=0 places=4 suppliers=0
+[12:42:41.200] INFO  [life] session_goals families=3 picks=8 top=50% varied=0 self_superseded=0 | upkeep=3(38%) work=4(50%) training=1(12%) | TRAIN_AT_NPC=1(12%) BUY_SUPPLIES=2(25%) CRAFT=2(25%) GET_FOOD=1(12%) FILL_SPELLBOOK=2(25%)
+[12:42:41.202] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_16.lyra/state.json
+[12:42:41.202] INFO  [life] logging out
+[12:42:41.202] INFO  [g_Lyra] [action] logout requested
+[12:42:41.202] LOG   [g_Lyra] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[12:42:41.203] INFO  [g_Lyra] [0xD1] logout acknowledged (accepted=1)
+[12:42:41.203] LOG   [g_Lyra] event logout_ack: accepted
+[12:42:41.203] INFO  [g_Lyra] [net] closing connection (logout acknowledged)
+[12:42:41.203] LOG   [g_Lyra] event logout_complete: acked
+
+--- Thalia tail ---
+[12:42:43.085] INFO  [g_Thalia] [0x3C] container contents: 18 item(s)
+[12:42:43.085] INFO  [g_Thalia] [ACTION_RESULT] use_object success (0ms) contents received
+[12:42:43.085] LOG   [g_Thalia] event action_result: use_object success took=0ms contents received
+[12:42:43.851] INFO  [g_Thalia] [survival] hp 50/50 (100%) -> fight
+[12:42:44.247] INFO  [life] session_end_requested reason="session time limit reached"
+[12:42:44.308] INFO  [life] session_summary duration=300s goals=3/8 gold=9880->8725 skills=100.0->130.0 logs=+0 kills=0 deaths=0 places=5 suppliers=0
+[12:42:44.308] INFO  [life] session_goals families=3 picks=8 top=50% varied=0 self_superseded=1 | upkeep=3(38%) work=4(50%) training=1(12%) | TRAIN_AT_NPC=1(12%) BUY_SUPPLIES=1(12%) CRAFT=3(38%) GET_FOOD=2(25%) FILL_SPELLBOOK=1(12%)
+[12:42:44.310] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_17.thalia/state.json
+[12:42:44.310] INFO  [life] logging out
+[12:42:44.310] INFO  [g_Thalia] [action] logout requested
+[12:42:44.310] LOG   [g_Thalia] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[12:42:44.323] INFO  [g_Thalia] [0xD1] logout acknowledged (accepted=1)
+[12:42:44.324] LOG   [g_Thalia] event logout_ack: accepted
+[12:42:44.324] INFO  [g_Thalia] [net] closing connection (logout acknowledged)
+[12:42:44.324] LOG   [g_Thalia] event logout_complete: acked
+
+===== SNAPSHOT 6 at 12:45:44 =====
+--- Lyra tail ---
+[12:45:40.758] INFO  [g_Lyra] [ACTION_RESULT] use_object success (17ms) server opened a menu dialog
+[12:45:40.758] LOG   [g_Lyra] event action_result: use_object success took=17ms server opened a menu dialog
+[12:45:40.818] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[12:45:42.798] INFO  [g_Lyra] [0x7D] answering dialog id=0x0000F8EC menu=690 index=1
+[12:45:42.798] INFO  [life] craft: chose 'poison'
+[12:45:43.597] INFO  [g_Lyra] [bot] arrived at (4456,1112,0)
+[12:45:43.597] INFO  [g_Lyra] [action] goto finished at (4456,1112,0); target (4456,1112); ARRIVED (off by 0 tile(s))
+[12:45:43.598] LOG   [g_Lyra] event goto_done: at=(4456,1112) target=(4456,1112) arrived=1 off=0
+[12:45:43.598] INFO  [g_Lyra] [travel] avoiding 3 teleporter pad(s) on this leg
+[12:45:43.598] INFO  [g_Lyra] [action] goto (4449,1115) from (4456,1112,0)
+[12:45:43.598] LOG   [g_Lyra] event goto_start: target=(4449,1115) from=(4456,1112)
+[12:45:43.598] INFO  [g_Lyra] [bot] running from (4456,1112,0) to (4449,1115)
+[12:45:43.598] INFO  [g_Lyra] [bot] planning path to (4449,1115) in background
+[12:45:43.659] INFO  [g_Lyra] [bot] replan to (4449,1115): 22 steps in 3816.7us
+[12:45:44.058] INFO  [g_Lyra] [chat ascii] System: You put the Poison Scroll in your pack.
+
+--- Thalia tail ---
+[12:45:33.858] INFO  [g_Thalia] [action] goto finished at (3632,2539,0); target (3624,2504); stopped short (off by 43 tile(s))
+[12:45:33.858] LOG   [g_Thalia] event goto_done: at=(3632,2539) target=(3624,2504) arrived=0 off=43
+[12:45:35.084] INFO  [g_Thalia] [action] goto (3624,2504) from (3632,2539,0)
+[12:45:35.084] LOG   [g_Thalia] event goto_start: target=(3624,2504) from=(3632,2539)
+[12:45:35.084] INFO  [g_Thalia] [bot] running from (3632,2539,0) to (3624,2504)
+[12:45:35.084] INFO  [g_Thalia] [bot] planning path to (3624,2504) in background
+[12:45:35.146] INFO  [g_Thalia] [bot] replan to (3624,2504): 44 steps in 2673.2us
+[12:45:38.842] INFO  [g_Thalia] [survival] hp 50/50 (100%) -> fight
+[12:45:43.721] INFO  [life] goal_changed=EARN_GOLD from=FILL_SPELLBOOK reason="EARN_GOLD 67.5 superseded FILL_SPELLBOOK 56.4"
+[12:45:43.721] INFO  [life] needs considered: NeedSpells(spells 0.51) NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.45) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[12:45:43.721] INFO  [life]   score=67.5
+[12:45:43.721] INFO  [life]   reason: NeedGold urgency 0.45 x 150 = 67.5
+[12:45:43.721] INFO  [life]   reason: 15 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[12:45:43.721] INFO  [life]   BLOCKED_NEED BUY_MOUNT: no trainer could be reached in a recent session; resting the errand for a few sessions (gold 8725 reserve 5000 price<=500 stood_down=1 last_fail_session=1 session=3)
+[12:45:43.842] INFO  [g_Thalia] [survival] hp 50/50 (100%) -> fight
+
+===== SNAPSHOT 7 at 12:46:39 =====
+--- Lyra tail ---
+[12:46:31.339] INFO  [g_Lyra] [bot] arrived at (4456,1192,0)
+[12:46:31.339] INFO  [g_Lyra] [action] goto finished at (4456,1192,0); target (4456,1192); ARRIVED (off by 0 tile(s))
+[12:46:31.339] LOG   [g_Lyra] event goto_done: at=(4456,1192) target=(4456,1192) arrived=1 off=0
+[12:46:31.339] INFO  [g_Lyra] [action] goto (4456,1224) from (4456,1192,0)
+[12:46:31.339] LOG   [g_Lyra] event goto_start: target=(4456,1224) from=(4456,1192)
+[12:46:31.339] INFO  [g_Lyra] [bot] running from (4456,1192,0) to (4456,1224)
+[12:46:31.339] INFO  [g_Lyra] [bot] planning path to (4456,1224) in background
+[12:46:31.400] INFO  [g_Lyra] [bot] replan to (4456,1224): 32 steps in 5162.9us
+[12:46:32.884] INFO  [g_Lyra] [chat uni  ] : Remaining: 54
+[12:46:32.884] INFO  [g_Lyra] [chat ascii] System: You put the Poison Scroll in your pack.
+[12:46:35.111] INFO  [g_Lyra] [chat uni  ] : Remaining: 53
+[12:46:35.112] INFO  [g_Lyra] [chat ascii] System: You put the Poison Scroll in your pack.
+[12:46:36.107] INFO  [g_Lyra] [survival] hp 50/50 (100%) -> fight
+[12:46:37.376] INFO  [g_Lyra] [chat uni  ] : Remaining: 52
+[12:46:37.376] INFO  [g_Lyra] [chat ascii] System: You put the Poison Scroll in your pack.
+
+--- Thalia tail ---
+[12:46:34.375] LOG   [g_Thalia] event action_result: vendor_sell success took=17ms vendor sell list received
+[12:46:36.916] INFO  [life] earn_gold: 'mage' offers 25 gold each for i_scroll_poison; selling 15 in 4 lot(s)
+[12:46:36.916] INFO  [g_Thalia] [ACTION] vendor_sell start
+[12:46:36.916] INFO  [g_Thalia] [VENDOR] sell 4 item(s) totalling 15 to vendor=0x0000FDB4 gold=8725
+[12:46:36.916] INFO  [g_Thalia] [chat ascii] Merill: Here you are, 375 gold coins. I thank thee for thy business.
+[12:46:36.916] INFO  [g_Thalia] [0x3B] vendor transaction closed: vendor=0x0000FDB4 flag=0
+[12:46:36.916] INFO  [life] goal_changed=CRAFT from=EARN_GOLD reason="CRAFT 65.0 superseded EARN_GOLD 0.0"
+[12:46:36.917] INFO  [life] needs considered: NeedSpells(spells 0.51) NeedCraft(make goods to sell 0.50) NeedPractice(Magery 0.33) NeedPractice(Meditation 0.26) NeedFood(food 0.25) NeedMount(riding horse BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=nothing (target 0.0)
+[12:46:36.917] INFO  [life]   score=65.0
+[12:46:36.917] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[12:46:36.917] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[12:46:36.917] INFO  [life]   BLOCKED_NEED BUY_MOUNT: no trainer could be reached in a recent session; resting the errand for a few sessions (gold 8725 reserve 5000 price<=500 stood_down=1 last_fail_session=1 session=3)
+[12:46:36.946] INFO  [g_Thalia] [ACTION_RESULT] vendor_sell success (31ms) gold 8725 -> 9100
+[12:46:36.946] LOG   [g_Thalia] event action_result: vendor_sell success took=31ms gold 8725 -> 9100
+[12:46:39.189] INFO  [g_Thalia] [survival] hp 50/50 (100%) -> fight
+

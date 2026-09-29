@@ -1,0 +1,662 @@
+[00:19:23.738] INFO  session 0: 127.0.0.1:2593 user='RevGen3_10' char=Ghalor tag='mk3_Ghalor'
+[00:19:23.740] LOG   [mk3_Ghalor] event session_start: text log opened
+[00:19:23.740] LOG   [mk3_Ghalor] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:23.740] INFO  [mk3_Ghalor] [net] connecting to 127.0.0.1:2593 ...
+[00:19:23.741] LOG   [mk3_Ghalor] event net_connected: connect 127.0.0.1:2593
+[00:19:23.741] INFO  [mk3_Ghalor] [net] connected.
+[00:19:23.741] INFO  [mk3_Ghalor] [seed] sent 0x7F000001 (plaintext)
+[00:19:23.741] LOG   [mk3_Ghalor] event seed_out: 0x7F000001 hex=7f000001
+[00:19:23.741] INFO  [life] no prior state for revgen3_10.ghalor: a new Full Crafter
+[00:19:23.741] INFO  [life] creation request: Mining 50.0 + Blacksmithing 50.0, stats 50/20/10 = 80
+[00:19:23.741] INFO  [life] needs: reading 'full_crafter' from the profession catalogue
+[00:19:23.741] INFO  [life] home: Ghalor lives in Minoc
+[00:19:23.741] INFO  [life] build plan 'full_crafter': 550.0 resolved + 150.0 unresolved = 700.0/700.0, stats 100/60/65 = 225
+[00:19:23.741] INFO  [mk3_Ghalor] [life] autonomous player active for 'Ghalor' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:23.754] INFO  [mk3_Ghalor] [0xA8] 1 server(s):
+[00:19:23.754] INFO  [mk3_Ghalor]   [0] MyShard                   1.0.0.127  full=3%  tz=0
+[00:19:23.766] INFO  [mk3_Ghalor] [0x8C] game server = 127.0.0.1:2593  seed=0x043473A5
+[00:19:23.766] LOG   [mk3_Ghalor] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x043473A5
+[00:19:23.766] INFO  [mk3_Ghalor] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:23.766] LOG   [mk3_Ghalor] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:23.766] INFO  [mk3_Ghalor] [0xB9] server features = 0x0005
+[00:19:23.766] INFO  [mk3_Ghalor] [0xA9] 5 slot(s) (populated 0):
+[00:19:23.766] INFO  [mk3_Ghalor]   [0] <empty>
+[00:19:23.766] INFO  [mk3_Ghalor]   [1] <empty>
+[00:19:23.766] INFO  [mk3_Ghalor]   [2] <empty>
+[00:19:23.766] INFO  [mk3_Ghalor]   [3] <empty>
+[00:19:23.766] INFO  [mk3_Ghalor]   [4] <empty>
+[00:19:23.766] INFO  [mk3_Ghalor] create: appearance sex=F skin=0x03FA hair=0x2045/0x0474 shirt=0x01BB pants=0x0378
+[00:19:23.766] INFO  [mk3_Ghalor] [0x00] starting city index 1
+[00:19:23.766] INFO  [mk3_Ghalor] [0x00] requested skills 45:50 7:50 37:0
+[00:19:23.766] INFO  [mk3_Ghalor] [0x00] requested stats STR 50 DEX 20 INT 10
+[00:19:23.766] INFO  [mk3_Ghalor] [0x00] creating character 'Ghalor' in slot 0
+[00:19:23.766] LOG   [mk3_Ghalor] event char_create_sent: Ghalor
+[00:19:23.784] INFO  [mk3_Ghalor] [0x1B] serial=0x00014D61 body=0x0191 pos=(2476,413,15)
+[00:19:23.784] LOG   [mk3_Ghalor] event login_confirm: serial=0x00014D61 body=0x0191 pos=(2476,413,15)
+[00:19:23.784] INFO  [mk3_Ghalor] [0x20] player @(2476,413,15) facing=3
+[00:19:23.784] INFO  [mk3_Ghalor] [0x55] login complete — entering world
+[00:19:23.784] LOG   [mk3_Ghalor] event in_world: 0x55 received
+[00:19:23.784] INFO  [mk3_Ghalor] [backpack] opening 0x40014D5F
+[00:19:23.784] INFO  [mk3_Ghalor] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:23.784] INFO  [mk3_Ghalor] [chat ascii] System: There are 9 other players here.
+[00:19:23.784] INFO  [mk3_Ghalor] [chat ascii] System: You are under the protection of the town guards
+[00:19:23.787] INFO  [mk3_Ghalor] [action] requesting the skill list
+[00:19:23.787] INFO  [life] in world; asked the server for the skill list
+[00:19:23.787] INFO  [mk3_Ghalor] [0x24] open container 0x40014D5F gump=60
+[00:19:23.787] INFO  [mk3_Ghalor] [0x3C] container contents: 9 item(s)
+[00:19:23.787] LOG   [mk3_Ghalor] event backpack_contents: serial=0x40014D5F items=9
+[00:19:26.336] INFO  [mk3_Ghalor] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:26.336] INFO  [life] common knowledge: The Old Miner's Supplies at 2460,429 (16 tiles away)
+[00:19:26.336] INFO  [life] common knowledge: Minoc Miner's Guild at 2456,493 (80 tiles away)
+[00:19:26.336] INFO  [life] common knowledge: Minoc Mine 1 at 2558,499 (86 tiles away)
+[00:19:26.336] INFO  [life] seeded 3 ore hint(s) of 29 the atlas knows -- everything else is earned
+[00:19:26.336] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:26.336] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:26.336] INFO  [life]   str          persisted=0          server=50         -> server value accepted
+[00:19:26.336] INFO  [life]   dex          persisted=0          server=20         -> server value accepted
+[00:19:26.336] INFO  [life]   int          persisted=0          server=10         -> server value accepted
+[00:19:26.336] INFO  [life]   skill_45     persisted=0.0        server=50.0       -> server value accepted
+[00:19:26.336] INFO  [life]   skill_7      persisted=0.0        server=50.0       -> server value accepted
+[00:19:26.336] INFO  [life]   skill_44     persisted=0.0        server=0.0        -> server value accepted
+[00:19:26.336] INFO  [life]   skill_11     persisted=0.0        server=0.0        -> server value accepted
+[00:19:26.336] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[00:19:26.336] INFO  [life]   skill_34     persisted=0.0        server=0.0        -> server value accepted
+[00:19:26.336] INFO  [life]   skill_0      persisted=0.0        server=0.0        -> server value accepted
+[00:19:26.336] INFO  [life]   position     persisted=0,0        server=2476,413   -> server value accepted
+[00:19:26.336] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:26.336] INFO  [mk3_Ghalor] [survival] on
+[00:19:26.336] LOG   [mk3_Ghalor] event survival_mode: on
+[00:19:26.338] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_10.ghalor/state.json
+[00:19:26.338] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:19:26.389] INFO  [life] goal=GET_TOOL reason="no goal was running"
+[00:19:26.389] INFO  [life] needs considered: NeedTool(hatchet 0.90) NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedTrade(buy from a player 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedFood(food 0.25)  | tools defined=5 held=[pickaxe,smith hammer,] want_train=Tinkering (target 70.0)
+[00:19:26.389] INFO  [life]   score=468.0
+[00:19:26.389] INFO  [life]   reason: NeedTool urgency 0.90 x 520 = 468.0
+[00:19:26.389] INFO  [life]   reason: no known supplier of a hatchet
+[00:19:26.389] INFO  [life] plan=wear reason="it is in the pack and belongs on the paperdoll"
+[00:19:26.389] INFO  [life] tool: putting the pickaxe in hand (attempt 1 of 3)
+[00:19:26.389] INFO  [mk3_Ghalor] [ACTION] equip start
+[00:19:26.389] INFO  [mk3_Ghalor] [ACTION] equip serial=0x400148EF layer=1
+[00:19:26.389] INFO  [mk3_Ghalor] [ITEM] drag serial=0x400148EF amount=1
+[00:19:26.390] INFO  [mk3_Ghalor] [chat ascii] System: You put the smith's hammer in your pack.
+[00:19:26.390] INFO  [mk3_Ghalor] [ACTION_RESULT] equip success (0ms) worn on the requested layer
+[00:19:26.390] LOG   [mk3_Ghalor] event action_result: equip success took=0ms worn on the requested layer
+[00:19:26.825] INFO  [mk3_Ghalor] [chat ascii] System: Falen has arrived in Minoc.
+[00:19:27.624] INFO  [life] plan=done reason="already worn"
+[00:19:27.624] INFO  [life] tool: the pickaxe is in hand now
+[00:19:27.624] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:27.624] INFO  [life] get_tool: no remembered supplier; looking for a weaponsmith to sell a hatchet
+[00:19:27.642] INFO  [mk3_Ghalor] [travel] Minoc blacksmith -> (2471,564) r=5 from (2476,413)
+[00:19:27.642] LOG   [mk3_Ghalor] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2476,413)
+[00:19:27.642] INFO  [mk3_Ghalor] [travel] mode moongate         usable   <- chosen
+[00:19:27.642] INFO  [mk3_Ghalor] [travel] mode walk             usable
+[00:19:27.642] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:27.642] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:27.642] LOG   [mk3_Ghalor] event travel_mode: moongate
+[00:19:27.642] INFO  [mk3_Ghalor] [travel] plan Minoc blacksmith: ok legs=5 ~192 tiles transit=0 nodes=50
+[00:19:27.701] INFO  [mk3_Ghalor] [action] goto (2488,440) from (2476,413,15)
+[00:19:27.701] LOG   [mk3_Ghalor] event goto_start: target=(2488,440) from=(2476,413)
+[00:19:27.701] INFO  [mk3_Ghalor] [bot] running from (2476,413,15) to (2488,440)
+[00:19:27.701] INFO  [mk3_Ghalor] [bot] planning path to (2488,440) in background
+[00:19:27.762] INFO  [mk3_Ghalor] [bot] replan to (2488,440): 32 steps in 1366.9us
+[00:19:29.909] INFO  [mk3_Ghalor] [chat ascii] System: Aelia has arrived in Britain.
+[00:19:31.338] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:19:33.079] INFO  [mk3_Ghalor] [chat ascii] System: Amara has arrived in Britain.
+[00:19:35.991] INFO  [mk3_Ghalor] [bot] arrived at (2488,440,15)
+[00:19:35.991] INFO  [mk3_Ghalor] [action] goto finished at (2488,440,15); target (2488,440); ARRIVED (off by 0 tile(s))
+[00:19:35.991] LOG   [mk3_Ghalor] event goto_done: at=(2488,440) target=(2488,440) arrived=1 off=0
+[00:19:35.991] INFO  [mk3_Ghalor] [action] goto (2504,472) from (2488,440,15)
+[00:19:35.991] LOG   [mk3_Ghalor] event goto_start: target=(2504,472) from=(2488,440)
+[00:19:35.991] INFO  [mk3_Ghalor] [bot] running from (2488,440,15) to (2504,472)
+[00:19:35.991] INFO  [mk3_Ghalor] [bot] planning path to (2504,472) in background
+[00:19:36.052] INFO  [mk3_Ghalor] [bot] replan to (2504,472): 32 steps in 1481.6us
+[00:19:36.131] INFO  [mk3_Ghalor] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:36.390] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:19:39.272] INFO  [mk3_Ghalor] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:41.441] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:19:42.349] INFO  [mk3_Ghalor] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:45.357] INFO  [mk3_Ghalor] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:45.477] INFO  [mk3_Ghalor] [bot] arrived at (2504,472,15)
+[00:19:45.477] INFO  [mk3_Ghalor] [action] goto finished at (2504,472,15); target (2504,472); ARRIVED (off by 0 tile(s))
+[00:19:45.477] LOG   [mk3_Ghalor] event goto_done: at=(2504,472) target=(2504,472) arrived=1 off=0
+[00:19:45.477] INFO  [mk3_Ghalor] [action] goto (2504,502) from (2504,472,15)
+[00:19:45.477] LOG   [mk3_Ghalor] event goto_start: target=(2504,502) from=(2504,472)
+[00:19:45.477] INFO  [mk3_Ghalor] [bot] running from (2504,472,15) to (2504,502)
+[00:19:45.477] INFO  [mk3_Ghalor] [bot] planning path to (2504,502) in background
+[00:19:45.537] INFO  [mk3_Ghalor] [bot] replan to (2504,502): 31 steps in 11986.4us
+[00:19:46.476] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:19:48.422] INFO  [mk3_Ghalor] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:51.481] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:19:51.483] INFO  [mk3_Ghalor] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:54.532] INFO  [mk3_Ghalor] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:54.533] INFO  [mk3_Ghalor] [bot] arrived at (2504,502,15)
+[00:19:54.533] INFO  [mk3_Ghalor] [action] goto finished at (2504,502,15); target (2504,502); ARRIVED (off by 0 tile(s))
+[00:19:54.533] LOG   [mk3_Ghalor] event goto_done: at=(2504,502) target=(2504,502) arrived=1 off=0
+[00:19:54.533] INFO  [mk3_Ghalor] [action] goto (2504,536) from (2504,502,15)
+[00:19:54.533] LOG   [mk3_Ghalor] event goto_start: target=(2504,536) from=(2504,502)
+[00:19:54.533] INFO  [mk3_Ghalor] [bot] running from (2504,502,15) to (2504,536)
+[00:19:54.533] INFO  [mk3_Ghalor] [bot] planning path to (2504,536) in background
+[00:19:54.592] INFO  [mk3_Ghalor] [bot] replan to (2504,536): 34 steps in 5607.3us
+[00:19:56.495] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:19:57.598] INFO  [mk3_Ghalor] [chat ascii] System: Serena has arrived in Britain.
+[00:20:00.645] INFO  [mk3_Ghalor] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:01.505] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:03.868] INFO  [mk3_Ghalor] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:05.774] INFO  [mk3_Ghalor] [bot] arrived at (2504,536,0)
+[00:20:05.774] INFO  [mk3_Ghalor] [action] goto finished at (2504,536,0); target (2504,536); ARRIVED (off by 0 tile(s))
+[00:20:05.774] LOG   [mk3_Ghalor] event goto_done: at=(2504,536) target=(2504,536) arrived=1 off=0
+[00:20:05.774] INFO  [mk3_Ghalor] [action] goto (2471,564) from (2504,536,0)
+[00:20:05.774] LOG   [mk3_Ghalor] event goto_start: target=(2471,564) from=(2504,536)
+[00:20:05.774] INFO  [mk3_Ghalor] [bot] running from (2504,536,0) to (2471,564,z5)
+[00:20:05.774] INFO  [mk3_Ghalor] [bot] planning path to (2471,564) in background
+[00:20:05.912] INFO  [mk3_Ghalor] [bot] replan to (2471,564): 75 steps in 81423.6us
+[00:20:06.561] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:06.980] INFO  [mk3_Ghalor] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:10.022] INFO  [mk3_Ghalor] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:11.598] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:13.076] INFO  [mk3_Ghalor] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:16.106] INFO  [mk3_Ghalor] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.613] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:19.161] INFO  [mk3_Ghalor] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:21.618] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:22.309] INFO  [mk3_Ghalor] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:25.376] INFO  [mk3_Ghalor] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.894] INFO  [mk3_Ghalor] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=14 in 193.9us
+[00:20:26.340] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_10.ghalor/state.json
+[00:20:26.656] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:28.128] INFO  [mk3_Ghalor] [travel] Minoc blacksmith ARRIVED at (2475,569,5)
+[00:20:28.128] LOG   [mk3_Ghalor] event travel_done: label='Minoc blacksmith' ok=1 at=(2475,569) legs=5 plans=1 why=''
+[00:20:28.191] INFO  [mk3_Ghalor] [action] scanning nearby mobiles for names
+[00:20:28.191] INFO  [mk3_Ghalor] [action] requested 4 paperdoll(s) for trade titles
+[00:20:28.192] INFO  [mk3_Ghalor] [mobiles] nearby (5):
+[00:20:28.192] INFO  [mk3_Ghalor]   Rhaler 0x0001569C
+[00:20:28.192] INFO  [mk3_Ghalor]   Curtis 0x00009693
+[00:20:28.192] INFO  [mk3_Ghalor]   Olin 0x00009646
+[00:20:28.192] INFO  [mk3_Ghalor]   Falen 0x0001478E
+[00:20:28.192] INFO  [mk3_Ghalor]   Dog 0x0000A58D
+[00:20:28.192] INFO  [mk3_Ghalor] [0x20] player @(2475,569,5) facing=2
+[00:20:28.192] INFO  [mk3_Ghalor] [0x88] paperdoll 0x0001569C: "Rhaler, Apprentice Miner"
+[00:20:28.192] INFO  [mk3_Ghalor] [0x88] paperdoll 0x0001478E: "Falen, Apprentice Miner"
+[00:20:28.192] INFO  [mk3_Ghalor] [0x20] player @(2475,569,5) facing=7
+[00:20:28.192] INFO  [mk3_Ghalor] [0x88] paperdoll 0x00009693: "Curtis, the blacksmith"
+[00:20:28.192] INFO  [mk3_Ghalor] [world] Curtis, the blacksmith is a blacksmith at (2472,567)
+[00:20:28.192] INFO  [mk3_Ghalor] [0x20] player @(2475,569,5) facing=6
+[00:20:28.192] INFO  [mk3_Ghalor] [0x88] paperdoll 0x00009646: "Olin, the blacksmith"
+[00:20:28.192] INFO  [mk3_Ghalor] [world] Olin, the blacksmith is a blacksmith at (2467,567)
+[00:20:29.112] INFO  [mk3_Ghalor] [chat ascii] Curtis: What's thee wantin'?
+[00:20:30.704] INFO  [mk3_Ghalor] [travel] mobile 0x00009693 -> (2472,567) r=1 from (2475,569)
+[00:20:30.704] LOG   [mk3_Ghalor] event travel_start: label='mobile 0x00009693' target=(2472,567) radius=1 from=(2475,569)
+[00:20:30.704] INFO  [mk3_Ghalor] [travel] mode walk             usable   <- chosen
+[00:20:30.704] INFO  [mk3_Ghalor] [travel] mode moongate         usable
+[00:20:30.704] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:30.704] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:30.704] LOG   [mk3_Ghalor] event travel_mode: walk
+[00:20:30.704] INFO  [mk3_Ghalor] [travel] plan mobile 0x00009693: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:20:30.764] INFO  [mk3_Ghalor] [action] goto finished at (2475,569,5); target (2471,564); stopped short (off by 9 tile(s))
+[00:20:30.764] LOG   [mk3_Ghalor] event goto_done: at=(2475,569) target=(2471,564) arrived=0 off=9
+[00:20:30.764] INFO  [mk3_Ghalor] [action] goto (2472,567) from (2475,569,5)
+[00:20:30.764] LOG   [mk3_Ghalor] event goto_start: target=(2472,567) from=(2475,569)
+[00:20:30.764] INFO  [mk3_Ghalor] [bot] running from (2475,569,5) to (2472,567,z5)
+[00:20:30.764] INFO  [mk3_Ghalor] [bot] planning path to (2472,567) in background
+[00:20:31.150] INFO  [mk3_Ghalor] [chat ascii] Curtis: Hmm?
+[00:20:31.716] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:33.462] INFO  [mk3_Ghalor] [action] goto finished at (2475,569,5); target (2472,567); stopped short (off by 5 tile(s))
+[00:20:33.462] LOG   [mk3_Ghalor] event goto_done: at=(2475,569) target=(2472,567) arrived=0 off=5
+[00:20:33.832] INFO  [mk3_Ghalor] [chat uni  ] Falen: Curtis buy
+[00:20:33.832] INFO  [mk3_Ghalor] [chat ascii] Curtis: I'm here to sell thee supplies.
+[00:20:34.688] INFO  [mk3_Ghalor] [travel] mode walk             usable   <- chosen
+[00:20:34.688] INFO  [mk3_Ghalor] [travel] mode moongate         usable
+[00:20:34.688] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:34.688] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:34.688] LOG   [mk3_Ghalor] event travel_mode: walk
+[00:20:34.688] INFO  [mk3_Ghalor] [travel] plan mobile 0x00009693: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:20:36.234] INFO  [mk3_Ghalor] [action] goto (2472,567) from (2475,569,5)
+[00:20:36.234] LOG   [mk3_Ghalor] event goto_start: target=(2472,567) from=(2475,569)
+[00:20:36.234] INFO  [mk3_Ghalor] [bot] running from (2475,569,5) to (2472,567,z5)
+[00:20:36.234] INFO  [mk3_Ghalor] [bot] planning path to (2472,567) in background
+[00:20:36.294] INFO  [mk3_Ghalor] [bot] replan to (2472,567): 8 steps in 473.6us
+[00:20:36.310] INFO  [mk3_Ghalor] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=10 in 327.4us
+[00:20:36.372] INFO  [mk3_Ghalor] [chat ascii] Curtis: Here you are, Falen That will be 38 gold coins.  I thank thee for thy business.
+[00:20:36.757] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:37.175] INFO  [mk3_Ghalor] [chat uni  ] Rhaler: Curtis buy
+[00:20:37.175] INFO  [mk3_Ghalor] [chat ascii] Curtis: Excuse me Falen, but Rhaler wants to speak to me
+[00:20:37.175] INFO  [mk3_Ghalor] [chat ascii] Curtis: Hello!
+[00:20:37.175] INFO  [mk3_Ghalor] [chat ascii] Curtis: I got lots to sell!
+[00:20:39.714] INFO  [mk3_Ghalor] [chat ascii] Curtis: Here you are, Rhaler That will be 38 gold coins.  I thank thee for thy business.
+[00:20:40.084] INFO  [mk3_Ghalor] [chat ascii] System: You shove Rhaler out of the way.
+[00:20:40.084] INFO  [mk3_Ghalor] [bot] arrived at (2472,567,5)
+[00:20:40.085] INFO  [mk3_Ghalor] [action] goto finished at (2472,567,5); target (2472,567); ARRIVED (off by 0 tile(s))
+[00:20:40.085] LOG   [mk3_Ghalor] event goto_done: at=(2472,567) target=(2472,567) arrived=1 off=0
+[00:20:40.085] INFO  [mk3_Ghalor] [travel] mobile 0x00009693 ARRIVED at (2472,567,5)
+[00:20:40.085] LOG   [mk3_Ghalor] event travel_done: label='mobile 0x00009693' ok=1 at=(2472,567) legs=1 plans=2 why=''
+[00:20:40.129] INFO  [mk3_Ghalor] [travel] mobile 0x00009693 -> (2473,569) r=1 from (2472,567)
+[00:20:40.129] LOG   [mk3_Ghalor] event travel_start: label='mobile 0x00009693' target=(2473,569) radius=1 from=(2472,567)
+[00:20:40.129] INFO  [mk3_Ghalor] [travel] mode walk             usable   <- chosen
+[00:20:40.129] INFO  [mk3_Ghalor] [travel] mode moongate         usable
+[00:20:40.129] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:40.129] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:40.129] LOG   [mk3_Ghalor] event travel_mode: walk
+[00:20:40.129] INFO  [mk3_Ghalor] [travel] plan mobile 0x00009693: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:20:40.189] INFO  [mk3_Ghalor] [action] goto (2473,569) from (2472,567,5)
+[00:20:40.189] LOG   [mk3_Ghalor] event goto_start: target=(2473,569) from=(2472,567)
+[00:20:40.189] INFO  [mk3_Ghalor] [bot] running from (2472,567,5) to (2473,569,z5)
+[00:20:40.189] INFO  [mk3_Ghalor] [bot] planning path to (2473,569) in background
+[00:20:41.814] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:43.269] INFO  [mk3_Ghalor] [action] goto finished at (2472,567,5); target (2473,569); stopped short (off by 3 tile(s))
+[00:20:43.269] LOG   [mk3_Ghalor] event goto_done: at=(2472,567) target=(2473,569) arrived=0 off=3
+[00:20:44.492] INFO  [mk3_Ghalor] [travel] mode walk             usable   <- chosen
+[00:20:44.492] INFO  [mk3_Ghalor] [travel] mode moongate         usable
+[00:20:44.492] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:44.492] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:44.492] LOG   [mk3_Ghalor] event travel_mode: walk
+[00:20:44.492] INFO  [mk3_Ghalor] [travel] plan mobile 0x00009693: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:20:46.017] INFO  [mk3_Ghalor] [action] goto (2473,569) from (2472,567,5)
+[00:20:46.017] LOG   [mk3_Ghalor] event goto_start: target=(2473,569) from=(2472,567)
+[00:20:46.017] INFO  [mk3_Ghalor] [bot] running from (2472,567,5) to (2473,569,z5)
+[00:20:46.017] INFO  [mk3_Ghalor] [bot] planning path to (2473,569) in background
+[00:20:46.873] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:49.157] INFO  [mk3_Ghalor] [action] goto finished at (2472,567,5); target (2473,569); stopped short (off by 3 tile(s))
+[00:20:49.157] LOG   [mk3_Ghalor] event goto_done: at=(2472,567) target=(2473,569) arrived=0 off=3
+[00:20:50.399] INFO  [mk3_Ghalor] [travel] mode walk             usable   <- chosen
+[00:20:50.399] INFO  [mk3_Ghalor] [travel] mode moongate         usable
+[00:20:50.399] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:50.399] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:50.399] LOG   [mk3_Ghalor] event travel_mode: walk
+[00:20:50.399] INFO  [mk3_Ghalor] [travel] plan mobile 0x00009693: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:20:51.932] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:53.434] INFO  [mk3_Ghalor] [action] goto (2473,569) from (2472,567,5)
+[00:20:53.434] LOG   [mk3_Ghalor] event goto_start: target=(2473,569) from=(2472,567)
+[00:20:53.434] INFO  [mk3_Ghalor] [bot] running from (2472,567,5) to (2473,569,z5)
+[00:20:53.434] INFO  [mk3_Ghalor] [bot] planning path to (2473,569) in background
+[00:20:55.884] INFO  [mk3_Ghalor] [action] goto finished at (2472,567,5); target (2473,569); stopped short (off by 3 tile(s))
+[00:20:55.884] LOG   [mk3_Ghalor] event goto_done: at=(2472,567) target=(2473,569) arrived=0 off=3
+[00:20:56.983] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:20:57.134] INFO  [mk3_Ghalor] [travel] mode walk             usable   <- chosen
+[00:20:57.134] INFO  [mk3_Ghalor] [travel] mode moongate         usable
+[00:20:57.134] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:57.134] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:57.134] LOG   [mk3_Ghalor] event travel_mode: walk
+[00:20:57.134] INFO  [mk3_Ghalor] [travel] plan mobile 0x00009693: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:21:00.680] INFO  [mk3_Ghalor] [chat ascii] Olin: Aye?
+[00:21:01.644] INFO  [mk3_Ghalor] [action] goto (2473,569) from (2472,567,5)
+[00:21:01.644] LOG   [mk3_Ghalor] event goto_start: target=(2473,569) from=(2472,567)
+[00:21:01.644] INFO  [mk3_Ghalor] [bot] running from (2472,567,5) to (2473,569,z5)
+[00:21:01.644] INFO  [mk3_Ghalor] [bot] planning path to (2473,569) in background
+[00:21:02.029] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:04.901] INFO  [mk3_Ghalor] [action] goto finished at (2472,567,5); target (2473,569); stopped short (off by 3 tile(s))
+[00:21:04.901] LOG   [mk3_Ghalor] event goto_done: at=(2472,567) target=(2473,569) arrived=0 off=3
+[00:21:04.901] INFO  [mk3_Ghalor] [travel] mobile 0x00009693 ARRIVED at (2472,567,5) -- arrived nearby; the destination tile was not free
+[00:21:04.901] LOG   [mk3_Ghalor] event travel_done: label='mobile 0x00009693' ok=1 at=(2472,567) legs=1 plans=4 why='arrived nearby; the destination tile was not free'
+[00:21:04.963] INFO  [mk3_Ghalor] [action] scanning nearby mobiles for names
+[00:21:04.979] INFO  [mk3_Ghalor] [mobiles] nearby (4):
+[00:21:04.979] INFO  [mk3_Ghalor]   Curtis 0x00009693
+[00:21:04.979] INFO  [mk3_Ghalor]   Olin 0x00009646
+[00:21:04.979] INFO  [mk3_Ghalor]   Dog 0x0000A58D
+[00:21:04.979] INFO  [mk3_Ghalor]   Draver 0x00016DBB
+[00:21:07.056] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:07.484] INFO  [mk3_Ghalor] [ACTION] vendor_buy start
+[00:21:07.484] INFO  [mk3_Ghalor] [VENDOR] open vendor=0x00009693 say='Curtis buy'
+[00:21:07.501] INFO  [mk3_Ghalor] [chat uni  ] : Curtis buy
+[00:21:07.501] INFO  [mk3_Ghalor] [chat ascii] Curtis: I'm here to sell thee supplies.
+[00:21:07.501] INFO  [mk3_Ghalor] [0x3C] container contents: 65 item(s)
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74] pairing: straight (straight 10, mirrored 0 of 65 rows)
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74] vendor shop data: cont=0x4000968A 65 item(s), layer=0x1A
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   ringmail tunic               gfx=0x13EC qty=11   price=83
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   ringmail leggings            gfx=0x13F0 qty=14   price=74
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   ringmail sleeves             gfx=0x13EE qty=10   price=64
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   ringmail gloves              gfx=0x13EB qty=14   price=46
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   chainmail coif               gfx=0x13BB qty=10   price=46
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   chainmail tunic              gfx=0x13BF qty=12   price=92
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   chainmail leggings           gfx=0x13BE qty=14   price=83
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   platemail gorget             gfx=0x1413 qty=15   price=46
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   platemail                    gfx=0x1415 qty=14   price=115
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   platemail legs               gfx=0x1411 qty=10   price=92
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   platemail arms               gfx=0x1410 qty=10   price=83
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   platemail gloves             gfx=0x1414 qty=12   price=55
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   plate helm                   gfx=0x1412 qty=10   price=69
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   close helmet                 gfx=0x1408 qty=14   price=69
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   helmet                       gfx=0x140A qty=11   price=69
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   norse helm                   gfx=0x140E qty=14   price=69
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   bascinet                     gfx=0x140C qty=10   price=69
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   buckler                      gfx=0x1B73 qty=15   price=46
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   wooden shield                gfx=0x1B7A qty=15   price=32
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   tear kite shield             gfx=0x1B78 qty=15   price=41
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   kite shield                  gfx=0x1B74 qty=15   price=74
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   round shield                 gfx=0x1B72 qty=14   price=55
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   metal shield                 gfx=0x1B7B qty=12   price=64
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   heater shield                gfx=0x1B76 qty=11   price=83
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   hatchet                      gfx=0x0F43 qty=10   price=38
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   executioner's axe            gfx=0x0F45 qty=13   price=85
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   bardiche                     gfx=0x0F4D qty=14   price=128
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   battle axe                   gfx=0x0F47 qty=10   price=68
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   large battle axe             gfx=0x13FA qty=13   price=135
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   bow                          gfx=0x13B1 qty=11   price=23
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   butcher knife                gfx=0x13F6 qty=13   price=13
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   crossbow                     gfx=0x0F4F qty=250  price=38
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   heavy crossbow               gfx=0x13FC qty=12   price=40
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   cutlass                      gfx=0x1440 qty=10   price=104
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   dagger                       gfx=0x0F51 qty=11   price=24
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   halberd                      gfx=0x143E qty=10   price=154
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   hammer pick                  gfx=0x143C qty=14   price=58
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   katana                       gfx=0x13FE qty=12   price=64
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   kryss                        gfx=0x1400 qty=14   price=59
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   broadsword                   gfx=0x0F5E qty=11   price=77
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   longsword                    gfx=0x0F60 qty=12   price=110
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   long sword                   gfx=0x13B7 qty=11   price=97
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   viking sword                 gfx=0x13B9 qty=11   price=132
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   cleaver                      gfx=0x0EC2 qty=12   price=18
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   axe                          gfx=0x0F49 qty=10   price=71
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   double axe                   gfx=0x0F4B qty=11   price=118
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   pickaxe                      gfx=0x0E85 qty=11   price=28
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   pitchfork                    gfx=0x0E87 qty=10   price=32
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   scimitar                     gfx=0x13B5 qty=13   price=52
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   skinning knife               gfx=0x0EC4 qty=13   price=12
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   two handed axe               gfx=0x1442 qty=11   price=114
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   war axe                      gfx=0x13AF qty=13   price=78
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   black staff                  gfx=0x0DF0 qty=11   price=16
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   club                         gfx=0x13B3 qty=13   price=14
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   gnarled staff                gfx=0x13F8 qty=15   price=9
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   mace                         gfx=0x0F5C qty=12   price=40
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   maul                         gfx=0x143A qty=10   price=68
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   quarter staff                gfx=0x0E89 qty=13   price=12
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   crook                        gfx=0x13F4 qty=13   price=15
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   smith's hammer               gfx=0x13E3 qty=11   price=58
+[00:21:07.501] INFO  [mk3_Ghalor] [0x74]   short spear                  gfx=0x1402 qty=10   price=49
+[00:21:07.502] INFO  [mk3_Ghalor] [0x74]   long spear                   gfx=0x0F62 qty=14   price=98
+[00:21:07.502] INFO  [mk3_Ghalor] [0x74]   war hammer                   gfx=0x1438 qty=15   price=118
+[00:21:07.502] INFO  [mk3_Ghalor] [0x74]   war mace                     gfx=0x1406 qty=10   price=97
+[00:21:07.502] INFO  [mk3_Ghalor] [0x74]   tongs                        gfx=0x0FBB qty=4    price=15
+[00:21:07.502] INFO  [mk3_Ghalor] [0x3C] container contents: 0 item(s)
+[00:21:07.502] INFO  [mk3_Ghalor] [0x74] vendor shop data: cont=0x40009303 0 item(s), layer=0x1B
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR] offer from 0x00009693: 65 item(s)
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR]   0x400157EB ringmail tunic         x11  83 gp
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR]   0x400157E8 ringmail leggings      x14  74 gp
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR]   0x400157E7 ringmail sleeves       x10  64 gp
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR]   0x400157E6 ringmail gloves        x14  46 gp
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR]   0x400157E5 chainmail coif         x10  46 gp
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR]   0x400157E4 chainmail tunic        x12  92 gp
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR]   0x400157E2 chainmail leggings     x14  83 gp
+[00:21:07.502] INFO  [mk3_Ghalor] [VENDOR]   0x400157E1 platemail gorget       x15  46 gp
+[00:21:07.502] LOG   [mk3_Ghalor] event vendor_offer: vendor=0x00009693 items=65
+[00:21:07.502] INFO  [mk3_Ghalor] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[00:21:07.502] LOG   [mk3_Ghalor] event action_result: vendor_buy success took=17ms vendor offer received
+[00:21:07.502] INFO  [mk3_Ghalor] [0x24] vendor buy gump for 0x00009693
+[00:21:10.016] INFO  [life] memory_learned=SUPPLIER need=hatchet name="hatchet" price=38 qty=10
+[00:21:10.016] INFO  [mk3_Ghalor] [ACTION] vendor_buy start
+[00:21:10.016] INFO  [mk3_Ghalor] [policy] allowed NPC purchase of i_hatchet (0x0F43): a basic craft tool: a tool is not a resource, it shortcuts no chain, and without a purchasable first tool the craft tree cannot be bootstrapped at all [BASIC_CRAFT_TOOL]
+[00:21:10.016] INFO  [mk3_Ghalor] [VENDOR] buy item=0x400157B0 qty=1 from vendor=0x00009693 gold=10000
+[00:21:10.031] INFO  [mk3_Ghalor] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[00:21:10.031] LOG   [mk3_Ghalor] event action_result: vendor_buy success took=15ms purchased item delivered
+[00:21:10.031] INFO  [mk3_Ghalor] [chat ascii] Curtis: Here you are, Ghalor That will be 38 gold coins.  I thank thee for thy business.
+[00:21:10.031] INFO  [mk3_Ghalor] [0x3B] vendor transaction closed: vendor=0x00009693 flag=0
+[00:21:11.193] INFO  [mk3_Ghalor] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:12.110] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:12.554] INFO  [life] plan=wear reason="it is in the pack and belongs on the paperdoll"
+[00:21:12.554] INFO  [life] tool: putting the hatchet in hand (attempt 1 of 3)
+[00:21:12.554] INFO  [mk3_Ghalor] [ACTION] equip start
+[00:21:12.554] INFO  [mk3_Ghalor] [ACTION] equip serial=0x40018CD8 layer=2
+[00:21:12.554] INFO  [mk3_Ghalor] [ITEM] drag serial=0x40018CD8 amount=1
+[00:21:12.555] INFO  [mk3_Ghalor] [chat ascii] System: You put the pickaxe in your pack.
+[00:21:12.555] INFO  [mk3_Ghalor] [ACTION_RESULT] equip success (2ms) worn on the requested layer
+[00:21:12.555] LOG   [mk3_Ghalor] event action_result: equip success took=2ms worn on the requested layer
+[00:21:13.771] INFO  [life] plan=wear reason="it is in the pack and belongs on the paperdoll"
+[00:21:13.771] INFO  [life] tool: putting the pickaxe in hand (attempt 1 of 3)
+[00:21:13.771] INFO  [mk3_Ghalor] [ACTION] equip start
+[00:21:13.771] INFO  [mk3_Ghalor] [ACTION] equip serial=0x400148EF layer=1
+[00:21:13.771] INFO  [mk3_Ghalor] [ITEM] drag serial=0x400148EF amount=1
+[00:21:13.786] INFO  [mk3_Ghalor] [chat ascii] System: You put the hatchet in your pack.
+[00:21:13.787] INFO  [mk3_Ghalor] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[00:21:13.787] LOG   [mk3_Ghalor] event action_result: equip success took=16ms worn on the requested layer
+[00:21:14.571] INFO  [mk3_Ghalor] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.016] INFO  [life] plan=done reason="already worn"
+[00:21:15.016] INFO  [life] tool: the pickaxe is in hand now
+[00:21:15.016] INFO  [life] tool: putting the hatchet in hand (attempt 2 of 3)
+[00:21:15.016] INFO  [mk3_Ghalor] [ACTION] equip start
+[00:21:15.016] INFO  [mk3_Ghalor] [ACTION] equip serial=0x40018CD8 layer=2
+[00:21:15.016] INFO  [mk3_Ghalor] [ITEM] drag serial=0x40018CD8 amount=1
+[00:21:15.017] INFO  [mk3_Ghalor] [chat ascii] System: You put the pickaxe in your pack.
+[00:21:15.017] INFO  [mk3_Ghalor] [ACTION_RESULT] equip success (2ms) worn on the requested layer
+[00:21:15.017] LOG   [mk3_Ghalor] event action_result: equip success took=2ms worn on the requested layer
+[00:21:16.231] INFO  [life] plan=wear reason="it is in the pack and belongs on the paperdoll"
+[00:21:16.231] INFO  [life] tool: putting the pickaxe in hand (attempt 1 of 3)
+[00:21:16.231] INFO  [mk3_Ghalor] [ACTION] equip start
+[00:21:16.231] INFO  [mk3_Ghalor] [ACTION] equip serial=0x400148EF layer=1
+[00:21:16.231] INFO  [mk3_Ghalor] [ITEM] drag serial=0x400148EF amount=1
+[00:21:16.232] INFO  [mk3_Ghalor] [chat ascii] System: You put the hatchet in your pack.
+[00:21:16.232] INFO  [mk3_Ghalor] [ACTION_RESULT] equip success (1ms) worn on the requested layer
+[00:21:16.232] LOG   [mk3_Ghalor] event action_result: equip success took=1ms worn on the requested layer
+[00:21:17.136] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:17.441] INFO  [life] plan=done reason="already worn"
+[00:21:17.441] INFO  [life] tool: the pickaxe is in hand now
+[00:21:17.441] INFO  [life] tool: putting the hatchet in hand (attempt 3 of 3)
+[00:21:17.441] INFO  [mk3_Ghalor] [ACTION] equip start
+[00:21:17.441] INFO  [mk3_Ghalor] [ACTION] equip serial=0x40018CD8 layer=2
+[00:21:17.441] INFO  [mk3_Ghalor] [ITEM] drag serial=0x40018CD8 amount=1
+[00:21:17.458] INFO  [mk3_Ghalor] [chat ascii] System: You put the pickaxe in your pack.
+[00:21:17.458] INFO  [mk3_Ghalor] [ACTION_RESULT] equip success (17ms) worn on the requested layer
+[00:21:17.458] LOG   [mk3_Ghalor] event action_result: equip success took=17ms worn on the requested layer
+[00:21:18.651] INFO  [life] plan=wear reason="it is in the pack and belongs on the paperdoll"
+[00:21:18.651] INFO  [life] tool: putting the pickaxe in hand (attempt 1 of 3)
+[00:21:18.651] INFO  [mk3_Ghalor] [ACTION] equip start
+[00:21:18.651] INFO  [mk3_Ghalor] [ACTION] equip serial=0x400148EF layer=1
+[00:21:18.652] INFO  [mk3_Ghalor] [ITEM] drag serial=0x400148EF amount=1
+[00:21:18.668] INFO  [mk3_Ghalor] [chat ascii] System: You put the hatchet in your pack.
+[00:21:18.668] INFO  [mk3_Ghalor] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[00:21:18.668] LOG   [mk3_Ghalor] event action_result: equip success took=16ms worn on the requested layer
+[00:21:19.907] INFO  [life] plan=done reason="already worn"
+[00:21:19.907] INFO  [life] tool: the pickaxe is in hand now
+[00:21:19.907] INFO  [life] goal_blocked=GET_TOOL reason="the hatchet is in the pack but 3 equip attempts left the hand empty"
+[00:21:19.907] INFO  [life] handoff=GET_TOOL->BANK reason="the shard refuses to wield it"
+[00:21:19.908] INFO  [life] goal=BANK reason="previous goal abandoned: the shard refuses to wield it"
+[00:21:19.908] INFO  [life] needs considered: NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=5 held=[pickaxe,hatchet,smith hammer,] want_train=Tinkering (target 70.0)
+[00:21:19.908] INFO  [life]   score=150.0
+[00:21:19.908] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:21:19.908] INFO  [life]   reason: on_hand=9962 (total 9962) reserve=450 carry=950 spare=9012 risk=1.00
+[00:21:19.908] INFO  [life]   reason: no bank learned yet -30
+[00:21:19.908] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 239s after achieving nothing
+[00:21:21.951] INFO  [mk3_Ghalor] [action] scanning nearby mobiles for names
+[00:21:21.951] INFO  [life] bank: asking who is standing in the bank
+[00:21:21.966] INFO  [mk3_Ghalor] [mobiles] nearby (4):
+[00:21:21.966] INFO  [mk3_Ghalor]   Curtis 0x00009693
+[00:21:21.966] INFO  [mk3_Ghalor]   Olin 0x00009646
+[00:21:21.966] INFO  [mk3_Ghalor]   Draver 0x00016DBB
+[00:21:21.966] INFO  [mk3_Ghalor]   Kharain 0x00016AE8
+[00:21:22.151] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:23.951] INFO  [life] bank: no banker in sight
+[00:21:23.951] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:21:24.013] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:21:24.014] INFO  [life] needs considered: NeedTool(saw 0.90) NeedTool(mortar 0.90) NeedBank(deposit surplus gold 0.75) NeedTrade(buy from a player 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=5 held=[pickaxe,hatchet,smith hammer,] want_train=Tinkering (target 70.0)
+[00:21:24.014] INFO  [life]   score=130.0
+[00:21:24.014] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:21:24.014] INFO  [life]   reason: potions=0 low=2 gold=9962
+[00:21:24.014] INFO  [life]   BLOCKED_NEED GET_TOOL: on cooldown for another 235s after achieving nothing
+[00:21:24.014] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:21:26.354] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_10.ghalor/state.json
+[00:21:27.195] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:29.006] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:21:29.006] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:21:29.009] INFO  [mk3_Ghalor] [travel] place: skipping Deep Forest Healing healer -- 2304 tiles and 0 gates for a service Minoc healer offers
+[00:21:29.009] INFO  [mk3_Ghalor] [travel] Minoc healer -> (2577,599) r=5 from (2472,567)
+[00:21:29.009] LOG   [mk3_Ghalor] event travel_start: label='Minoc healer' target=(2577,599) radius=5 from=(2472,567)
+[00:21:29.009] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:21:29.009] INFO  [mk3_Ghalor] [travel] mode moongate         usable   <- chosen
+[00:21:29.009] INFO  [mk3_Ghalor] [travel] mode walk             usable
+[00:21:29.009] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:29.009] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:29.009] LOG   [mk3_Ghalor] event travel_mode: moongate
+[00:21:29.009] INFO  [mk3_Ghalor] [travel] plan Minoc healer: ok legs=4 ~128 tiles transit=0 nodes=25
+[00:21:29.021] INFO  [mk3_Ghalor] [action] goto (2504,568) from (2472,567,5)
+[00:21:29.021] LOG   [mk3_Ghalor] event goto_start: target=(2504,568) from=(2472,567)
+[00:21:29.021] INFO  [mk3_Ghalor] [bot] running from (2472,567,5) to (2504,568)
+[00:21:29.021] INFO  [mk3_Ghalor] [bot] planning path to (2504,568) in background
+[00:21:29.082] INFO  [mk3_Ghalor] [bot] replan to (2504,568): 34 steps in 11816.5us
+[00:21:30.113] INFO  [mk3_Ghalor] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=32 in 138.3us
+[00:21:32.019] INFO  [mk3_Ghalor] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=26 in 107.5us
+[00:21:32.204] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:35.181] INFO  [mk3_Ghalor] [chat ascii] Curtis: What's thee wantin'?
+[00:21:35.182] INFO  [mk3_Ghalor] [chat ascii] Curtis: Hmm?
+[00:21:37.254] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:40.719] INFO  [mk3_Ghalor] [bot] arrived at (2504,568,0)
+[00:21:40.720] INFO  [mk3_Ghalor] [action] goto finished at (2504,568,0); target (2504,568); ARRIVED (off by 0 tile(s))
+[00:21:40.720] LOG   [mk3_Ghalor] event goto_done: at=(2504,568) target=(2504,568) arrived=1 off=0
+[00:21:40.720] INFO  [mk3_Ghalor] [action] goto (2536,568) from (2504,568,0)
+[00:21:40.720] LOG   [mk3_Ghalor] event goto_start: target=(2536,568) from=(2504,568)
+[00:21:40.720] INFO  [mk3_Ghalor] [bot] running from (2504,568,0) to (2536,568)
+[00:21:40.720] INFO  [mk3_Ghalor] [bot] planning path to (2536,568) in background
+[00:21:40.796] INFO  [mk3_Ghalor] [bot] replan to (2536,568): 33 steps in 18180.2us
+[00:21:42.286] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:47.316] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:50.333] INFO  [mk3_Ghalor] [bot] arrived at (2536,568,0)
+[00:21:50.333] INFO  [mk3_Ghalor] [action] goto finished at (2536,568,0); target (2536,568); ARRIVED (off by 0 tile(s))
+[00:21:50.333] LOG   [mk3_Ghalor] event goto_done: at=(2536,568) target=(2536,568) arrived=1 off=0
+[00:21:50.333] INFO  [mk3_Ghalor] [action] goto (2568,584) from (2536,568,0)
+[00:21:50.333] LOG   [mk3_Ghalor] event goto_start: target=(2568,584) from=(2536,568)
+[00:21:50.333] INFO  [mk3_Ghalor] [bot] running from (2536,568,0) to (2568,584)
+[00:21:50.333] INFO  [mk3_Ghalor] [bot] planning path to (2568,584) in background
+[00:21:50.395] INFO  [mk3_Ghalor] [bot] replan to (2568,584): 35 steps in 23137.8us
+[00:21:52.352] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:57.379] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:21:58.644] INFO  [mk3_Ghalor] [chat ascii] System: Draver has departed from Minoc.
+[00:22:00.975] INFO  [mk3_Ghalor] [bot] arrived at (2568,584,0)
+[00:22:00.975] INFO  [mk3_Ghalor] [action] goto finished at (2568,584,0); target (2568,584); ARRIVED (off by 0 tile(s))
+[00:22:00.975] LOG   [mk3_Ghalor] event goto_done: at=(2568,584) target=(2568,584) arrived=1 off=0
+[00:22:00.975] INFO  [mk3_Ghalor] [action] goto (2577,599) from (2568,584,0)
+[00:22:00.975] LOG   [mk3_Ghalor] event goto_start: target=(2577,599) from=(2568,584)
+[00:22:00.975] INFO  [mk3_Ghalor] [bot] running from (2568,584,0) to (2577,599,z0)
+[00:22:00.975] INFO  [mk3_Ghalor] [bot] planning path to (2577,599) in background
+[00:22:01.035] INFO  [mk3_Ghalor] [bot] replan to (2577,599): 33 steps in 25055.3us
+[00:22:01.701] INFO  [mk3_Ghalor] [chat uni  ] : Erskine buy
+[00:22:01.701] INFO  [mk3_Ghalor] [chat ascii] Erskine: Good morrow!  How might I help thee?
+[00:22:01.702] INFO  [mk3_Ghalor] [chat ascii] Erskine: My shop sells many things.
+[00:22:02.381] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:07.419] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:09.644] INFO  [mk3_Ghalor] [travel] Minoc healer ARRIVED at (2573,603,0)
+[00:22:09.644] LOG   [mk3_Ghalor] event travel_done: label='Minoc healer' ok=1 at=(2573,603) legs=4 plans=1 why=''
+[00:22:09.706] INFO  [mk3_Ghalor] [action] scanning nearby mobiles for names
+[00:22:09.706] INFO  [mk3_Ghalor] [action] requested 2 paperdoll(s) for trade titles
+[00:22:09.706] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:22:09.722] INFO  [mk3_Ghalor] [mobiles] nearby (6):
+[00:22:09.722] INFO  [mk3_Ghalor]   Riley 0x0000960A
+[00:22:09.722] INFO  [mk3_Ghalor]   Erskine 0x00009619
+[00:22:09.722] INFO  [mk3_Ghalor]   Rhaler 0x0001569C
+[00:22:09.722] INFO  [mk3_Ghalor]   Falen 0x0001478E
+[00:22:09.722] INFO  [mk3_Ghalor]   Rat 0x0000960B
+[00:22:09.722] INFO  [mk3_Ghalor]   Rat 0x0000A5A5
+[00:22:09.722] INFO  [mk3_Ghalor] [0x20] player @(2573,603,0) facing=1
+[00:22:09.722] INFO  [mk3_Ghalor] [0x88] paperdoll 0x00009619: "Erskine, the healer"
+[00:22:09.722] INFO  [mk3_Ghalor] [world] Erskine, the healer is a healer at (2578,597)
+[00:22:09.722] INFO  [mk3_Ghalor] [0x88] paperdoll 0x0000960A: "Riley, the healer guildmaster"
+[00:22:09.722] INFO  [mk3_Ghalor] [world] Riley, the healer guildmaster is a healer at (2576,599)
+[00:22:10.215] INFO  [mk3_Ghalor] [chat uni  ] Rhaler: Erskine buy
+[00:22:10.215] INFO  [mk3_Ghalor] [chat ascii] Erskine: Greetings.  What might I help thee with?
+[00:22:10.215] INFO  [mk3_Ghalor] [chat ascii] Erskine: Thou mayst purchase supplies from me.
+[00:22:12.478] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:12.726] INFO  [life] potions: found a 'healer'
+[00:22:12.787] INFO  [mk3_Ghalor] [travel] mobile 0x00009619 -> (2578,597) r=1 from (2573,603)
+[00:22:12.787] LOG   [mk3_Ghalor] event travel_start: label='mobile 0x00009619' target=(2578,597) radius=1 from=(2573,603)
+[00:22:12.787] INFO  [life] potions: the 'healer' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:22:12.787] INFO  [mk3_Ghalor] [travel] mode walk             usable   <- chosen
+[00:22:12.787] INFO  [mk3_Ghalor] [travel] mode moongate         usable
+[00:22:12.787] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:12.787] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:12.787] LOG   [mk3_Ghalor] event travel_mode: walk
+[00:22:12.787] INFO  [mk3_Ghalor] [travel] plan mobile 0x00009619: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:22:12.802] INFO  [mk3_Ghalor] [action] goto finished at (2573,603,0); target (2577,599); stopped short (off by 8 tile(s))
+[00:22:12.802] LOG   [mk3_Ghalor] event goto_done: at=(2573,603) target=(2577,599) arrived=0 off=8
+[00:22:12.802] INFO  [mk3_Ghalor] [action] goto (2578,597) from (2573,603,0)
+[00:22:12.802] LOG   [mk3_Ghalor] event goto_start: target=(2578,597) from=(2573,603)
+[00:22:12.802] INFO  [mk3_Ghalor] [bot] running from (2573,603,0) to (2578,597,z0)
+[00:22:12.802] INFO  [mk3_Ghalor] [bot] planning path to (2578,597) in background
+[00:22:15.520] INFO  [mk3_Ghalor] [action] goto finished at (2573,603,0); target (2578,597); stopped short (off by 11 tile(s))
+[00:22:15.520] LOG   [mk3_Ghalor] event goto_done: at=(2573,603) target=(2578,597) arrived=0 off=11
+[00:22:16.731] INFO  [mk3_Ghalor] [action] goto (2578,597) from (2573,603,0)
+[00:22:16.731] LOG   [mk3_Ghalor] event goto_start: target=(2578,597) from=(2573,603)
+[00:22:16.731] INFO  [mk3_Ghalor] [bot] running from (2573,603,0) to (2578,597,z0)
+[00:22:16.732] INFO  [mk3_Ghalor] [bot] planning path to (2578,597) in background
+[00:22:17.535] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:19.310] INFO  [mk3_Ghalor] [action] goto finished at (2573,603,0); target (2578,597); stopped short (off by 11 tile(s))
+[00:22:19.310] LOG   [mk3_Ghalor] event goto_done: at=(2573,603) target=(2578,597) arrived=0 off=11
+[00:22:20.545] INFO  [mk3_Ghalor] [travel] mode walk             usable   <- chosen
+[00:22:20.545] INFO  [mk3_Ghalor] [travel] mode moongate         usable
+[00:22:20.545] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:20.545] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:20.545] LOG   [mk3_Ghalor] event travel_mode: walk
+[00:22:20.545] INFO  [mk3_Ghalor] [travel] plan mobile 0x00009619: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:22:22.086] INFO  [mk3_Ghalor] [action] goto (2578,597) from (2573,603,0)
+[00:22:22.086] LOG   [mk3_Ghalor] event goto_start: target=(2578,597) from=(2573,603)
+[00:22:22.086] INFO  [mk3_Ghalor] [bot] running from (2573,603,0) to (2578,597,z0)
+[00:22:22.086] INFO  [mk3_Ghalor] [bot] planning path to (2578,597) in background
+[00:22:22.147] INFO  [mk3_Ghalor] [bot] replan to (2578,597): 10 steps in 353.3us
+[00:22:22.561] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:23.820] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:24.996] INFO  [mk3_Ghalor] [travel] mobile 0x00009619 ARRIVED at (2577,598,0)
+[00:22:24.996] LOG   [mk3_Ghalor] event travel_done: label='mobile 0x00009619' ok=1 at=(2577,598) legs=1 plans=2 why=''
+[00:22:25.057] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:22:25.066] INFO  [mk3_Ghalor] [travel] Minoc banker -> (2503,552) r=5 from (2577,598)
+[00:22:25.066] LOG   [mk3_Ghalor] event travel_start: label='Minoc banker' target=(2503,552) radius=5 from=(2577,598)
+[00:22:25.066] INFO  [mk3_Ghalor] [travel] mode moongate         usable   <- chosen
+[00:22:25.066] INFO  [mk3_Ghalor] [travel] mode walk             usable
+[00:22:25.066] INFO  [mk3_Ghalor] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:25.066] INFO  [mk3_Ghalor] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:25.066] LOG   [mk3_Ghalor] event travel_mode: moongate
+[00:22:25.066] INFO  [mk3_Ghalor] [travel] plan Minoc banker: ok legs=3 ~104 tiles transit=0 nodes=26
+[00:22:25.428] INFO  [mk3_Ghalor] [bot] arrived at (2578,597,0)
+[00:22:25.428] INFO  [mk3_Ghalor] [action] goto finished at (2578,597,0); target (2578,597); ARRIVED (off by 0 tile(s))
+[00:22:25.428] LOG   [mk3_Ghalor] event goto_done: at=(2578,597) target=(2578,597) arrived=1 off=0
+[00:22:25.428] INFO  [mk3_Ghalor] [action] goto (2552,584) from (2578,597,0)
+[00:22:25.428] LOG   [mk3_Ghalor] event goto_start: target=(2552,584) from=(2578,597)
+[00:22:25.428] INFO  [mk3_Ghalor] [bot] running from (2578,597,0) to (2552,584)
+[00:22:25.428] INFO  [mk3_Ghalor] [bot] planning path to (2552,584) in background
+[00:22:25.458] INFO  [mk3_Ghalor] [bot] replan to (2552,584): 37 steps in 27500.7us
+[00:22:27.615] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:32.619] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:37.675] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:37.768] INFO  [mk3_Ghalor] [bot] arrived at (2552,584,0)
+[00:22:37.768] INFO  [mk3_Ghalor] [action] goto finished at (2552,584,0); target (2552,584); ARRIVED (off by 0 tile(s))
+[00:22:37.768] LOG   [mk3_Ghalor] event goto_done: at=(2552,584) target=(2552,584) arrived=1 off=0
+[00:22:37.768] INFO  [mk3_Ghalor] [action] goto (2520,568) from (2552,584,0)
+[00:22:37.768] LOG   [mk3_Ghalor] event goto_start: target=(2520,568) from=(2552,584)
+[00:22:37.768] INFO  [mk3_Ghalor] [bot] running from (2552,584,0) to (2520,568)
+[00:22:37.768] INFO  [mk3_Ghalor] [bot] planning path to (2520,568) in background
+[00:22:37.829] INFO  [mk3_Ghalor] [bot] replan to (2520,568): 43 steps in 15334.6us
+[00:22:38.419] INFO  [mk3_Ghalor] [chat ascii] System: Vorar has departed from Britain.
+[00:22:39.439] INFO  [mk3_Ghalor] [chat ascii] System: Selene has departed from Magincia.
+[00:22:39.563] INFO  [mk3_Ghalor] [bot] step (2549,587,0)->(2548,588,0) rejected; OpenDoor + retry
+[00:22:40.315] INFO  [mk3_Ghalor] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=40 in 126.3us
+[00:22:42.700] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:46.897] INFO  [mk3_Ghalor] [chat ascii] System: Zarthal has departed from Minoc.
+[00:22:47.331] INFO  [mk3_Ghalor] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=20 in 389.4us
+[00:22:47.702] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:49.378] INFO  [mk3_Ghalor] [chat ascii] System: World save in 10 seconds
+[00:22:50.319] INFO  [mk3_Ghalor] [chat ascii] System: Thalia has departed from Moonglow.
+[00:22:52.739] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:53.217] INFO  [mk3_Ghalor] [chat ascii] System: Elvar has departed from Minoc.
+[00:22:53.413] INFO  [mk3_Ghalor] [bot] arrived at (2519,569,0)
+[00:22:53.413] INFO  [mk3_Ghalor] [action] goto finished at (2519,569,0); target (2520,568); stopped short (off by 2 tile(s))
+[00:22:53.413] LOG   [mk3_Ghalor] event goto_done: at=(2519,569) target=(2520,568) arrived=0 off=2
+[00:22:53.413] INFO  [mk3_Ghalor] [action] goto (2503,552) from (2519,569,0)
+[00:22:53.413] LOG   [mk3_Ghalor] event goto_start: target=(2503,552) from=(2519,569)
+[00:22:53.413] INFO  [mk3_Ghalor] [bot] running from (2519,569,0) to (2503,552,z0)
+[00:22:53.413] INFO  [mk3_Ghalor] [bot] planning path to (2503,552) in background
+[00:22:53.473] INFO  [mk3_Ghalor] [bot] replan to (2503,552): 25 steps in 4279.0us
+[00:22:57.772] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:22:57.848] INFO  [mk3_Ghalor] [chat ascii] System: Falen has departed from Minoc.
+[00:22:58.062] INFO  [mk3_Ghalor] [bot] door ahead at (2505,560,z0); OpenDoor before step
+[00:22:58.078] INFO  [mk3_Ghalor] [chat ascii] System: Opening door...
+[00:22:59.278] INFO  [mk3_Ghalor] [bot] door ahead at (2504,559,z0); OpenDoor before step
+[00:22:59.279] INFO  [mk3_Ghalor] [chat ascii] System: Opening door...
+[00:22:59.429] INFO  [mk3_Ghalor] [chat ascii] System: World save has been initiated.
+[00:23:02.794] INFO  [mk3_Ghalor] [survival] hp 50/50 (100%) -> fight
+[00:23:05.607] INFO  [mk3_Ghalor] [travel] Minoc banker ARRIVED at (2505,556,0)
+[00:23:05.607] LOG   [mk3_Ghalor] event travel_done: label='Minoc banker' ok=1 at=(2505,556) legs=3 plans=1 why=''
+[00:23:05.667] INFO  [life] wind-down: arrived somewhere safe at 2505,556
+[00:23:05.729] INFO  [life] session_summary duration=221s goals=0/3 gold=10000->9962 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=1
+[00:23:05.730] INFO  [life] session_goals families=2 picks=3 top=67% varied=0 self_superseded=0 | emergency=1(33%) upkeep=2(67%) | GET_TOOL=1(33%) REPLACE_EQUIPMENT=1(33%) BANK=1(33%)
+[00:23:05.732] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_10.ghalor/state.json
+[00:23:05.732] INFO  [life] logging out
+[00:23:05.732] INFO  [mk3_Ghalor] [action] logout requested
+[00:23:05.732] LOG   [mk3_Ghalor] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:23:05.746] INFO  [mk3_Ghalor] [0xD1] logout acknowledged (accepted=1)
+[00:23:05.746] LOG   [mk3_Ghalor] event logout_ack: accepted
+[00:23:05.746] INFO  [mk3_Ghalor] [net] closing connection (logout acknowledged)
+[00:23:05.746] LOG   [mk3_Ghalor] event logout_complete: acked

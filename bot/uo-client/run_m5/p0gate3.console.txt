@@ -1,0 +1,1154 @@
+[00:35:48.555] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='p0gate3'
+[00:35:48.556] LOG   [p0gate3] event session_start: text log opened
+[00:35:48.557] LOG   [p0gate3] event net_connect_begin: connect 127.0.0.1:2593
+[00:35:48.557] INFO  [p0gate3] [net] connecting to 127.0.0.1:2593 ...
+[00:35:48.557] LOG   [p0gate3] event net_connected: connect 127.0.0.1:2593
+[00:35:48.557] INFO  [p0gate3] [net] connected.
+[00:35:48.558] INFO  [p0gate3] [seed] sent 0x7F000001 (plaintext)
+[00:35:48.558] LOG   [p0gate3] event seed_out: 0x7F000001 hex=7f000001
+[00:35:48.560] INFO  [life] loaded persistent state for Ysolde (1 places, 2 suppliers, 256 events, 0 prior sessions)
+[00:35:48.560] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[00:35:48.560] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[00:35:48.560] INFO  [p0gate3] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[00:35:48.560] INFO  [p0gate3] [0xA8] 1 server(s):
+[00:35:48.560] INFO  [p0gate3]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[00:35:48.569] INFO  [p0gate3] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[00:35:48.569] LOG   [p0gate3] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[00:35:48.569] INFO  [p0gate3] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:35:48.569] LOG   [p0gate3] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:35:48.569] INFO  [p0gate3] [0xB9] server features = 0x0005
+[00:35:48.569] INFO  [p0gate3] [0xA9] 5 slot(s) (populated 1):
+[00:35:48.569] INFO  [p0gate3]   [0] Ysolde
+[00:35:48.569] INFO  [p0gate3]   [1] <empty>
+[00:35:48.569] INFO  [p0gate3]   [2] <empty>
+[00:35:48.569] INFO  [p0gate3]   [3] <empty>
+[00:35:48.569] INFO  [p0gate3]   [4] <empty>
+[00:35:48.569] INFO  [p0gate3] [ui] playing slot 0 ('Ysolde')
+[00:35:48.585] INFO  [p0gate3] [0x1B] serial=0x00014261 body=0x0190 pos=(1485,1545,50)
+[00:35:48.585] LOG   [p0gate3] event login_confirm: serial=0x00014261 body=0x0190 pos=(1485,1545,50)
+[00:35:48.585] INFO  [p0gate3] [0x20] player @(1485,1545,50) facing=2
+[00:35:48.585] INFO  [p0gate3] [0x55] login complete — entering world
+[00:35:48.585] LOG   [p0gate3] event in_world: 0x55 received
+[00:35:48.585] INFO  [p0gate3] [backpack] opening 0x4001425D
+[00:35:48.585] INFO  [p0gate3] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:35:48.585] INFO  [p0gate3] [chat ascii] System: There are 0 other players here.
+[00:35:48.585] INFO  [p0gate3] [chat ascii] System: Last logged: 2026/08/29 00:29:05
+[00:35:48.585] INFO  [p0gate3] [chat ascii] System: You are under the protection of the city guards
+[00:35:48.589] INFO  [p0gate3] [action] requesting the skill list
+[00:35:48.589] INFO  [life] in world; asked the server for the skill list
+[00:35:48.589] INFO  [p0gate3] [0x24] open container 0x4001425D gump=60
+[00:35:48.589] INFO  [p0gate3] [0x3C] container contents: 5 item(s)
+[00:35:48.589] LOG   [p0gate3] event backpack_contents: serial=0x4001425D items=5
+[00:35:51.189] INFO  [p0gate3] [bot] world data loaded (0 blacklisted spot(s)).
+[00:35:51.190] INFO  [life] reconciliation: resuming a life, 2 field(s) differed
+[00:35:51.190] INFO  [life]   gold         persisted=145        server=145        -> server value accepted
+[00:35:51.190] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[00:35:51.190] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[00:35:51.190] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[00:35:51.190] INFO  [life]   skill_23     persisted=50.3       server=50.4       -> server value accepted
+[00:35:51.190] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[00:35:51.190] INFO  [life]   skill_46     persisted=21.9       server=21.9       -> server value accepted
+[00:35:51.190] INFO  [life]   position     persisted=1485,1550  server=1485,1545  -> server value accepted
+[00:35:51.190] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:35:51.190] INFO  [p0gate3] [survival] on
+[00:35:51.190] LOG   [p0gate3] event survival_mode: on
+[00:35:51.193] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:35:51.193] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:35:51.258] INFO  [life] goal=BUY_SUPPLIES reason="no goal was running"
+[00:35:51.258] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.33) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:35:51.259] INFO  [life]   score=61.6
+[00:35:51.259] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:35:51.259] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[00:35:51.259] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:35:51.259] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 145 (fee is quoted on arrival, roughly 300))
+[00:35:51.259] INFO  [life] supplies: looking for a 'mage' to sell 5 i_scroll_blank (trip 1)
+[00:35:51.259] INFO  [p0gate3] [travel] Britain mage -> (1485,1550) r=5 from (1485,1545)
+[00:35:51.259] LOG   [p0gate3] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1545)
+[00:35:51.259] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:35:51.259] INFO  [p0gate3] [travel] mode moongate         usable
+[00:35:51.259] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:35:51.259] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:35:51.259] LOG   [p0gate3] event travel_mode: walk
+[00:35:51.259] INFO  [p0gate3] [travel] plan Britain mage: ok legs=1 ~5 tiles transit=0 nodes=0
+[00:35:51.320] INFO  [p0gate3] [action] goto (1485,1550) from (1485,1545,50)
+[00:35:51.320] LOG   [p0gate3] event goto_start: target=(1485,1550) from=(1485,1545)
+[00:35:51.320] INFO  [p0gate3] [bot] running from (1485,1545,50) to (1485,1550,z30)
+[00:35:51.320] INFO  [p0gate3] [bot] planning path to (1485,1550) in background
+[00:35:51.381] INFO  [p0gate3] [bot] replan to (1485,1550): 5 steps in 54.3us
+[00:35:52.274] INFO  [p0gate3] [travel] Britain mage ARRIVED at (1485,1548,40)
+[00:35:52.274] LOG   [p0gate3] event travel_done: label='Britain mage' ok=1 at=(1485,1548) legs=1 plans=1 why=''
+[00:35:52.675] INFO  [p0gate3] [bot] arrived at (1485,1550,30)
+[00:35:53.291] INFO  [life] supplies: arrived at 1485,1550 -- asking who is here
+[00:35:53.292] INFO  [p0gate3] [action] scanning nearby mobiles for names
+[00:35:53.292] INFO  [p0gate3] [action] requested 4 paperdoll(s) for trade titles
+[00:35:53.292] INFO  [p0gate3] [mobiles] nearby (4):
+[00:35:53.292] INFO  [p0gate3]   Alenne 0x00001145
+[00:35:53.292] INFO  [p0gate3]   Xanthe 0x00001211
+[00:35:53.292] INFO  [p0gate3]   Caedmon 0x000012EE
+[00:35:53.292] INFO  [p0gate3]   Shunnar 0x0000E14F
+[00:35:53.292] INFO  [p0gate3] [0x20] player @(1485,1550,30) facing=1
+[00:35:53.292] INFO  [p0gate3] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[00:35:53.292] INFO  [p0gate3] [world] Caedmon, the mage guildmaster is a mage at (1489,1547)
+[00:35:53.292] INFO  [p0gate3] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[00:35:53.292] INFO  [p0gate3] [world] Xanthe, the alchemist is a alchemist at (1487,1547)
+[00:35:53.292] INFO  [p0gate3] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[00:35:53.292] INFO  [p0gate3] [world] Alenne, the mage is a mage at (1486,1548)
+[00:35:53.292] INFO  [p0gate3] [0x20] player @(1485,1550,30) facing=0
+[00:35:53.292] INFO  [p0gate3] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[00:35:53.292] INFO  [p0gate3] [world] Shunnar, the scribe is a scribe at (1486,1545)
+[00:35:55.832] INFO  [p0gate3] [travel] vendor -> (1487,1549) r=1 from (1485,1550)
+[00:35:55.832] LOG   [p0gate3] event travel_start: label='vendor' target=(1487,1549) radius=1 from=(1485,1550)
+[00:35:55.832] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:35:55.832] INFO  [p0gate3] [travel] mode moongate         usable
+[00:35:55.832] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:35:55.832] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:35:55.832] LOG   [p0gate3] event travel_mode: walk
+[00:35:55.832] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:35:55.893] INFO  [p0gate3] [action] goto finished at (1485,1550,30); target (1485,1550); ARRIVED (off by 0 tile(s))
+[00:35:55.893] LOG   [p0gate3] event goto_done: at=(1485,1550) target=(1485,1550) arrived=1 off=0
+[00:35:55.893] INFO  [p0gate3] [action] goto (1487,1549) from (1485,1550,30)
+[00:35:55.893] LOG   [p0gate3] event goto_start: target=(1487,1549) from=(1485,1550)
+[00:35:55.893] INFO  [p0gate3] [bot] running from (1485,1550,30) to (1487,1549)
+[00:35:55.893] INFO  [p0gate3] [bot] planning path to (1487,1549) in background
+[00:35:55.954] INFO  [p0gate3] [bot] replan to (1487,1549): 18 steps in 1670.8us
+[00:35:56.199] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:01.207] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:01.592] INFO  [p0gate3] [bot] arrived at (1487,1549,70)
+[00:36:01.592] INFO  [p0gate3] [action] goto finished at (1487,1549,70); target (1487,1549); ARRIVED (off by 0 tile(s))
+[00:36:01.592] LOG   [p0gate3] event goto_done: at=(1487,1549) target=(1487,1549) arrived=1 off=0
+[00:36:01.592] INFO  [p0gate3] [travel] vendor ARRIVED at (1487,1549,70)
+[00:36:01.592] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1487,1549) legs=1 plans=1 why=''
+[00:36:01.652] INFO  [p0gate3] [travel] vendor -> (1487,1547) r=1 from (1487,1549)
+[00:36:01.653] LOG   [p0gate3] event travel_start: label='vendor' target=(1487,1547) radius=1 from=(1487,1549)
+[00:36:01.653] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:36:01.653] INFO  [p0gate3] [travel] mode moongate         usable
+[00:36:01.653] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:36:01.653] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:36:01.653] LOG   [p0gate3] event travel_mode: walk
+[00:36:01.653] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:36:01.683] INFO  [p0gate3] [action] goto (1487,1547) from (1487,1549,70)
+[00:36:01.683] LOG   [p0gate3] event goto_start: target=(1487,1547) from=(1487,1549)
+[00:36:01.683] INFO  [p0gate3] [bot] running from (1487,1549,70) to (1487,1547)
+[00:36:01.683] INFO  [p0gate3] [bot] planning path to (1487,1547) in background
+[00:36:01.742] INFO  [p0gate3] [bot] replan to (1487,1547): 2 steps in 74.9us
+[00:36:02.156] INFO  [p0gate3] [travel] vendor ARRIVED at (1487,1548,70)
+[00:36:02.156] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1487,1548) legs=1 plans=1 why=''
+[00:36:02.463] INFO  [p0gate3] [bot] arrived at (1487,1547,70)
+[00:36:03.677] INFO  [p0gate3] [travel] vendor -> (1486,1549) r=1 from (1487,1547)
+[00:36:03.677] LOG   [p0gate3] event travel_start: label='vendor' target=(1486,1549) radius=1 from=(1487,1547)
+[00:36:03.677] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:36:03.677] INFO  [p0gate3] [travel] mode moongate         usable
+[00:36:03.677] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:36:03.677] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:36:03.677] LOG   [p0gate3] event travel_mode: walk
+[00:36:03.677] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:36:03.739] INFO  [p0gate3] [action] goto finished at (1487,1547,70); target (1487,1547); ARRIVED (off by 0 tile(s))
+[00:36:03.740] LOG   [p0gate3] event goto_done: at=(1487,1547) target=(1487,1547) arrived=1 off=0
+[00:36:03.740] INFO  [p0gate3] [action] goto (1486,1549) from (1487,1547,70)
+[00:36:03.740] LOG   [p0gate3] event goto_start: target=(1486,1549) from=(1487,1547)
+[00:36:03.740] INFO  [p0gate3] [bot] running from (1487,1547,70) to (1486,1549)
+[00:36:03.740] INFO  [p0gate3] [bot] planning path to (1486,1549) in background
+[00:36:03.801] INFO  [p0gate3] [bot] replan to (1486,1549): 2 steps in 68.2us
+[00:36:04.187] INFO  [p0gate3] [travel] vendor ARRIVED at (1487,1548,70)
+[00:36:04.187] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1487,1548) legs=1 plans=1 why=''
+[00:36:04.940] INFO  [p0gate3] [bot] arrived at (1486,1549,70)
+[00:36:05.707] INFO  [p0gate3] [travel] vendor -> (1487,1551) r=1 from (1486,1549)
+[00:36:05.707] LOG   [p0gate3] event travel_start: label='vendor' target=(1487,1551) radius=1 from=(1486,1549)
+[00:36:05.707] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:36:05.707] INFO  [p0gate3] [travel] mode moongate         usable
+[00:36:05.707] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:36:05.707] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:36:05.707] LOG   [p0gate3] event travel_mode: walk
+[00:36:05.707] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:36:05.767] INFO  [p0gate3] [action] goto finished at (1486,1549,70); target (1486,1549); ARRIVED (off by 0 tile(s))
+[00:36:05.767] LOG   [p0gate3] event goto_done: at=(1486,1549) target=(1486,1549) arrived=1 off=0
+[00:36:05.767] INFO  [p0gate3] [action] goto (1487,1551) from (1486,1549,70)
+[00:36:05.767] LOG   [p0gate3] event goto_start: target=(1487,1551) from=(1486,1549)
+[00:36:05.767] INFO  [p0gate3] [bot] running from (1486,1549,70) to (1487,1551)
+[00:36:05.767] INFO  [p0gate3] [bot] planning path to (1487,1551) in background
+[00:36:05.829] INFO  [p0gate3] [bot] replan to (1487,1551): 3 steps in 93.7us
+[00:36:05.844] INFO  [p0gate3] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[00:36:05.845] INFO  [p0gate3] [chat ascii] System: Opening door...
+[00:36:06.214] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:06.721] INFO  [p0gate3] [travel] vendor ARRIVED at (1486,1550,70)
+[00:36:06.721] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1486,1550) legs=1 plans=1 why=''
+[00:36:07.704] INFO  [p0gate3] [bot] arrived at (1487,1551,70)
+[00:36:07.765] INFO  [p0gate3] [travel] vendor -> (1487,1551) r=1 from (1487,1551)
+[00:36:07.765] LOG   [p0gate3] event travel_start: label='vendor' target=(1487,1551) radius=1 from=(1487,1551)
+[00:36:07.765] INFO  [p0gate3] [travel] vendor ARRIVED at (1487,1551,70)
+[00:36:07.765] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1487,1551) legs=0 plans=0 why=''
+[00:36:09.785] INFO  [p0gate3] [travel] vendor -> (1486,1551) r=1 from (1487,1551)
+[00:36:09.785] LOG   [p0gate3] event travel_start: label='vendor' target=(1486,1551) radius=1 from=(1487,1551)
+[00:36:09.785] INFO  [p0gate3] [travel] vendor ARRIVED at (1487,1551,70)
+[00:36:09.785] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1487,1551) legs=0 plans=0 why=''
+[00:36:11.221] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:11.838] INFO  [p0gate3] [travel] vendor -> (1486,1551) r=1 from (1487,1551)
+[00:36:11.838] LOG   [p0gate3] event travel_start: label='vendor' target=(1486,1551) radius=1 from=(1487,1551)
+[00:36:11.838] INFO  [p0gate3] [travel] vendor ARRIVED at (1487,1551,70)
+[00:36:11.838] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1487,1551) legs=0 plans=0 why=''
+[00:36:13.872] INFO  [p0gate3] [travel] vendor -> (1486,1551) r=1 from (1487,1551)
+[00:36:13.872] LOG   [p0gate3] event travel_start: label='vendor' target=(1486,1551) radius=1 from=(1487,1551)
+[00:36:13.872] INFO  [p0gate3] [travel] vendor ARRIVED at (1487,1551,70)
+[00:36:13.872] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1487,1551) legs=0 plans=0 why=''
+[00:36:15.929] INFO  [p0gate3] [travel] vendor -> (1486,1551) r=1 from (1487,1551)
+[00:36:15.929] LOG   [p0gate3] event travel_start: label='vendor' target=(1486,1551) radius=1 from=(1487,1551)
+[00:36:15.929] INFO  [p0gate3] [travel] vendor ARRIVED at (1487,1551,70)
+[00:36:15.929] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1487,1551) legs=0 plans=0 why=''
+[00:36:16.238] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:17.979] INFO  [p0gate3] [travel] vendor -> (1485,1551) r=1 from (1487,1551)
+[00:36:17.979] LOG   [p0gate3] event travel_start: label='vendor' target=(1485,1551) radius=1 from=(1487,1551)
+[00:36:17.979] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:36:17.979] INFO  [p0gate3] [travel] mode moongate         usable
+[00:36:17.979] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:36:17.979] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:36:17.979] LOG   [p0gate3] event travel_mode: walk
+[00:36:17.979] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:36:18.041] INFO  [p0gate3] [action] goto finished at (1487,1551,70); target (1487,1551); ARRIVED (off by 0 tile(s))
+[00:36:18.041] LOG   [p0gate3] event goto_done: at=(1487,1551) target=(1487,1551) arrived=1 off=0
+[00:36:18.041] INFO  [p0gate3] [action] goto (1485,1551) from (1487,1551,70)
+[00:36:18.041] LOG   [p0gate3] event goto_start: target=(1485,1551) from=(1487,1551)
+[00:36:18.041] INFO  [p0gate3] [bot] running from (1487,1551,70) to (1485,1551)
+[00:36:18.041] INFO  [p0gate3] [bot] planning path to (1485,1551) in background
+[00:36:18.103] INFO  [p0gate3] [bot] replan to (1485,1551): 2 steps in 136.9us
+[00:36:18.350] INFO  [p0gate3] [bot] door ahead at (1485,1551,z70); OpenDoor before step
+[00:36:18.350] INFO  [p0gate3] [chat ascii] System: Opening door...
+[00:36:18.532] INFO  [p0gate3] [travel] vendor ARRIVED at (1486,1551,70)
+[00:36:18.532] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1486,1551) legs=1 plans=1 why=''
+[00:36:19.104] INFO  [p0gate3] [bot] arrived at (1485,1551,70)
+[00:36:20.024] INFO  [p0gate3] [travel] vendor -> (1485,1551) r=1 from (1485,1551)
+[00:36:20.024] LOG   [p0gate3] event travel_start: label='vendor' target=(1485,1551) radius=1 from=(1485,1551)
+[00:36:20.024] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:20.024] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:21.255] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:22.068] INFO  [p0gate3] [travel] vendor -> (1485,1551) r=1 from (1485,1551)
+[00:36:22.068] LOG   [p0gate3] event travel_start: label='vendor' target=(1485,1551) radius=1 from=(1485,1551)
+[00:36:22.068] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:22.068] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:24.070] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:24.070] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:24.070] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:24.070] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:26.103] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:26.103] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:26.103] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:26.103] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:26.286] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:28.160] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:28.160] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:28.160] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:28.160] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:30.192] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:30.192] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:30.192] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:30.192] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:31.330] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:32.253] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:32.253] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:32.253] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:32.253] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:34.291] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:34.291] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:34.291] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:34.291] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:36.345] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:36.345] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:36.345] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:36.345] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:36.345] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:38.395] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:38.395] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:38.395] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:38.395] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:40.430] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:40.430] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:40.430] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:40.430] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:41.398] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:42.473] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:42.473] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:42.473] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:42.473] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:44.532] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:44.532] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:44.532] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:44.532] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:46.457] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:46.580] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:46.580] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:46.580] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:46.580] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:48.603] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:48.603] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:48.603] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:48.603] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:50.636] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:50.636] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:50.636] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:50.636] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:51.240] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:36:51.500] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:52.637] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:52.637] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:52.637] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:52.637] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:54.680] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:54.680] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:54.680] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:54.680] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:56.540] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:36:56.724] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:56.724] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:56.724] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:56.724] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:36:58.779] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:36:58.779] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:36:58.779] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:36:58.779] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:00.809] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:37:00.809] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:37:00.809] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:00.809] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:01.542] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:02.816] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:37:02.816] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:37:02.817] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:02.817] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:04.876] INFO  [p0gate3] [travel] vendor -> (1485,1550) r=1 from (1485,1551)
+[00:37:04.876] LOG   [p0gate3] event travel_start: label='vendor' target=(1485,1550) radius=1 from=(1485,1551)
+[00:37:04.876] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:04.876] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:06.570] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:06.937] INFO  [p0gate3] [travel] vendor -> (1485,1551) r=1 from (1485,1551)
+[00:37:06.937] LOG   [p0gate3] event travel_start: label='vendor' target=(1485,1551) radius=1 from=(1485,1551)
+[00:37:06.937] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:06.937] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:08.953] INFO  [p0gate3] [travel] vendor -> (1485,1551) r=1 from (1485,1551)
+[00:37:08.953] LOG   [p0gate3] event travel_start: label='vendor' target=(1485,1551) radius=1 from=(1485,1551)
+[00:37:08.953] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:08.953] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:10.983] INFO  [p0gate3] [travel] vendor -> (1485,1551) r=1 from (1485,1551)
+[00:37:10.983] LOG   [p0gate3] event travel_start: label='vendor' target=(1485,1551) radius=1 from=(1485,1551)
+[00:37:10.983] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:10.983] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:11.612] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:13.028] INFO  [p0gate3] [travel] vendor -> (1485,1551) r=1 from (1485,1551)
+[00:37:13.028] LOG   [p0gate3] event travel_start: label='vendor' target=(1485,1551) radius=1 from=(1485,1551)
+[00:37:13.028] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:13.028] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:15.032] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:37:15.032] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:37:15.032] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:15.032] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:16.629] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:17.088] INFO  [p0gate3] [travel] vendor -> (1484,1551) r=1 from (1485,1551)
+[00:37:17.088] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1485,1551)
+[00:37:17.088] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:17.088] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:19.109] INFO  [p0gate3] [travel] vendor -> (1484,1550) r=1 from (1485,1551)
+[00:37:19.109] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1550) radius=1 from=(1485,1551)
+[00:37:19.109] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1551,70)
+[00:37:19.109] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1551) legs=0 plans=0 why=''
+[00:37:21.134] INFO  [p0gate3] [travel] vendor -> (1484,1549) r=1 from (1485,1551)
+[00:37:21.134] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1549) radius=1 from=(1485,1551)
+[00:37:21.134] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:37:21.134] INFO  [p0gate3] [travel] mode moongate         usable
+[00:37:21.134] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:37:21.134] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:37:21.134] LOG   [p0gate3] event travel_mode: walk
+[00:37:21.134] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[00:37:21.195] INFO  [p0gate3] [action] goto finished at (1485,1551,70); target (1485,1551); ARRIVED (off by 0 tile(s))
+[00:37:21.195] LOG   [p0gate3] event goto_done: at=(1485,1551) target=(1485,1551) arrived=1 off=0
+[00:37:21.195] INFO  [p0gate3] [action] goto (1484,1549) from (1485,1551,70)
+[00:37:21.195] LOG   [p0gate3] event goto_start: target=(1484,1549) from=(1485,1551)
+[00:37:21.195] INFO  [p0gate3] [bot] running from (1485,1551,70) to (1484,1549)
+[00:37:21.195] INFO  [p0gate3] [bot] planning path to (1484,1549) in background
+[00:37:21.256] INFO  [p0gate3] [bot] replan to (1484,1549): 5 steps in 133.6us
+[00:37:21.656] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:21.718] INFO  [p0gate3] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[00:37:21.719] INFO  [p0gate3] [chat ascii] System: Opening door...
+[00:37:23.227] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1549,70)
+[00:37:23.227] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1549) legs=1 plans=1 why=''
+[00:37:23.291] INFO  [p0gate3] [travel] vendor -> (1484,1548) r=1 from (1485,1549)
+[00:37:23.291] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1548) radius=1 from=(1485,1549)
+[00:37:23.291] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1549,70)
+[00:37:23.291] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1549) legs=0 plans=0 why=''
+[00:37:23.616] INFO  [p0gate3] [bot] arrived at (1484,1549,70)
+[00:37:25.351] INFO  [p0gate3] [travel] vendor -> (1484,1546) r=1 from (1484,1549)
+[00:37:25.351] LOG   [p0gate3] event travel_start: label='vendor' target=(1484,1546) radius=1 from=(1484,1549)
+[00:37:25.351] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:37:25.351] INFO  [p0gate3] [travel] mode moongate         usable
+[00:37:25.351] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:37:25.351] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:37:25.351] LOG   [p0gate3] event travel_mode: walk
+[00:37:25.351] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:37:25.412] INFO  [p0gate3] [action] goto finished at (1484,1549,70); target (1484,1549); ARRIVED (off by 0 tile(s))
+[00:37:25.412] LOG   [p0gate3] event goto_done: at=(1484,1549) target=(1484,1549) arrived=1 off=0
+[00:37:25.412] INFO  [p0gate3] [action] goto (1484,1546) from (1484,1549,70)
+[00:37:25.412] LOG   [p0gate3] event goto_start: target=(1484,1546) from=(1484,1549)
+[00:37:25.412] INFO  [p0gate3] [bot] running from (1484,1549,70) to (1484,1546)
+[00:37:25.412] INFO  [p0gate3] [bot] planning path to (1484,1546) in background
+[00:37:25.534] INFO  [p0gate3] [action] goto finished at (1484,1549,70); target (1484,1546); stopped short (off by 3 tile(s))
+[00:37:25.534] LOG   [p0gate3] event goto_done: at=(1484,1549) target=(1484,1546) arrived=0 off=3
+[00:37:26.658] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:26.780] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:37:26.780] INFO  [p0gate3] [travel] mode moongate         usable
+[00:37:26.780] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:37:26.780] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:37:26.780] LOG   [p0gate3] event travel_mode: walk
+[00:37:26.780] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:37:28.326] INFO  [p0gate3] [action] goto (1484,1546) from (1484,1549,70)
+[00:37:28.326] LOG   [p0gate3] event goto_start: target=(1484,1546) from=(1484,1549)
+[00:37:28.326] INFO  [p0gate3] [bot] running from (1484,1549,70) to (1484,1546)
+[00:37:28.326] INFO  [p0gate3] [bot] planning path to (1484,1546) in background
+[00:37:29.434] INFO  [p0gate3] [action] goto finished at (1484,1549,70); target (1484,1546); stopped short (off by 3 tile(s))
+[00:37:29.434] LOG   [p0gate3] event goto_done: at=(1484,1549) target=(1484,1546) arrived=0 off=3
+[00:37:30.693] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:37:30.693] INFO  [p0gate3] [travel] mode moongate         usable
+[00:37:30.693] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:37:30.693] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:37:30.693] LOG   [p0gate3] event travel_mode: walk
+[00:37:30.693] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:37:31.710] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:33.746] INFO  [p0gate3] [action] goto (1484,1546) from (1484,1549,70)
+[00:37:33.746] LOG   [p0gate3] event goto_start: target=(1484,1546) from=(1484,1549)
+[00:37:33.746] INFO  [p0gate3] [bot] running from (1484,1549,70) to (1484,1546)
+[00:37:33.746] INFO  [p0gate3] [bot] planning path to (1484,1546) in background
+[00:37:33.808] INFO  [p0gate3] [bot] replan to (1484,1546): 16 steps in 744.8us
+[00:37:36.738] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:38.516] INFO  [p0gate3] [travel] vendor ARRIVED at (1485,1545,50)
+[00:37:38.516] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1485,1545) legs=1 plans=3 why=''
+[00:37:38.577] INFO  [p0gate3] [ACTION] vendor_buy start
+[00:37:38.577] INFO  [p0gate3] [VENDOR] open vendor=0x00001145 say='Alenne buy'
+[00:37:38.578] INFO  [p0gate3] [chat uni  ] : Alenne buy
+[00:37:38.578] INFO  [p0gate3] [chat ascii] Alenne: Thou mayst purchase supplies from me.
+[00:37:38.578] INFO  [p0gate3] [0x3C] container contents: 17 item(s)
+[00:37:38.578] INFO  [p0gate3] [0x74] pairing: straight (straight 10, mirrored 1 of 17 rows)
+[00:37:38.578] INFO  [p0gate3] [0x74] vendor shop data: cont=0x4000113C 17 item(s), layer=0x1A
+[00:37:38.578] INFO  [p0gate3] [0x74]   Weaken Scroll                gfx=0x1F34 qty=14   price=20
+[00:37:38.578] INFO  [p0gate3] [0x74]   Cure Scroll                  gfx=0x1F37 qty=5    price=21
+[00:37:38.578] INFO  [p0gate3] [0x74]   Teleport Scroll              gfx=0x1F42 qty=12   price=23
+[00:37:38.578] INFO  [p0gate3] [0x74]   Fire Field Scroll            gfx=0x1F48 qty=14   price=29
+[00:37:38.578] INFO  [p0gate3] [0x74]   Bones                        gfx=0x0F7E qty=128  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   pen and ink                  gfx=0x0FBF qty=10   price=13
+[00:37:38.578] INFO  [p0gate3] [0x74]   recall rune                  gfx=0x1F14 qty=5    price=23
+[00:37:38.578] INFO  [p0gate3] [0x74]   blank scrolls                gfx=0x0E34 qty=250  price=6
+[00:37:38.578] INFO  [p0gate3] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[00:37:38.578] INFO  [p0gate3] [0x74]   Spellbook                    gfx=0x0EFA qty=4    price=18
+[00:37:38.578] INFO  [p0gate3] [0x3C] container contents: 0 item(s)
+[00:37:38.578] INFO  [p0gate3] [0x74] vendor shop data: cont=0x40000841 0 item(s), layer=0x1B
+[00:37:38.578] INFO  [p0gate3] [VENDOR] offer from 0x00001145: 17 item(s)
+[00:37:38.578] INFO  [p0gate3] [VENDOR]   0x400098E6 Weaken Scroll          x14  20 gp
+[00:37:38.578] INFO  [p0gate3] [VENDOR]   0x400098E5 Cure Scroll            x5   21 gp
+[00:37:38.578] INFO  [p0gate3] [VENDOR]   0x400098DF Teleport Scroll        x12  23 gp
+[00:37:38.578] INFO  [p0gate3] [VENDOR]   0x400098DC Fire Field Scroll      x14  29 gp
+[00:37:38.578] INFO  [p0gate3] [VENDOR]   0x400098D2 Bones                  x128 3 gp
+[00:37:38.578] INFO  [p0gate3] [VENDOR]   0x40009863 pen and ink            x10  13 gp
+[00:37:38.578] INFO  [p0gate3] [VENDOR]   0x400094BD recall rune            x5   23 gp
+[00:37:38.578] INFO  [p0gate3] [VENDOR]   0x40009481 blank scrolls          x250 6 gp
+[00:37:38.578] LOG   [p0gate3] event vendor_offer: vendor=0x00001145 items=17
+[00:37:38.578] INFO  [p0gate3] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[00:37:38.578] LOG   [p0gate3] event action_result: vendor_buy success took=1ms vendor offer received
+[00:37:38.578] INFO  [p0gate3] [0x24] vendor buy gump for 0x00001145
+[00:37:39.133] INFO  [p0gate3] [chat ascii] Alenne: Please back away a bit, milord.
+[00:37:39.133] INFO  [p0gate3] [chat ascii] System: You shove Alenne out of the way.
+[00:37:39.133] INFO  [p0gate3] [bot] arrived at (1484,1546,50)
+[00:37:41.133] INFO  [life] supplies: buying 5 i_scroll_blank at 6 each from 'blank scrolls'
+[00:37:41.133] INFO  [p0gate3] [ACTION] vendor_buy start
+[00:37:41.133] INFO  [p0gate3] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:37:41.133] INFO  [p0gate3] [VENDOR] buy item=0x40009481 qty=5 from vendor=0x00001145 gold=145
+[00:37:41.149] INFO  [p0gate3] [ACTION_RESULT] vendor_buy success (16ms) purchased item delivered
+[00:37:41.150] LOG   [p0gate3] event action_result: vendor_buy success took=16ms purchased item delivered
+[00:37:41.150] INFO  [p0gate3] [chat ascii] Alenne: Here you are, Ysolde That will be 30 gold coins.  I thank thee for thy business.
+[00:37:41.150] INFO  [p0gate3] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:37:41.781] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:46.823] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:50.179] INFO  [life] supplies: the server took 30 gold for i_scroll_blank (purse 145 -> 115)
+[00:37:50.179] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:37:50.179] INFO  [p0gate3] [ACTION] vendor_buy start
+[00:37:50.179] INFO  [p0gate3] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:37:50.179] INFO  [p0gate3] [VENDOR] buy item=0x4000947B qty=5 from vendor=0x00001145 gold=115
+[00:37:50.179] INFO  [p0gate3] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:37:50.179] LOG   [p0gate3] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:37:50.179] INFO  [p0gate3] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:37:50.179] INFO  [p0gate3] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:37:50.179] INFO  [life] goal_changed=CRAFT from=BUY_SUPPLIES reason="CRAFT 65.0 superseded BUY_SUPPLIES 0.0"
+[00:37:50.179] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.33) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:37:50.179] INFO  [life]   score=65.0
+[00:37:50.179] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:37:50.179] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[00:37:50.179] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:37:50.179] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 115 (fee is quoted on arrival, roughly 300))
+[00:37:51.260] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:37:51.826] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:56.884] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:37:59.201] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:37:59.202] INFO  [p0gate3] [ACTION] use_object start
+[00:37:59.202] INFO  [p0gate3] [ACTION] use_object serial=0x4000A002
+[00:37:59.203] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:37:59.203] INFO  [p0gate3]         1) poison
+[00:37:59.203] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:38:01.918] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:03.239] LOG   [p0gate3] event action_result: use_object timeout
+[00:38:03.300] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:38:03.301] INFO  [life] craft: chose 'poison'
+[00:38:04.530] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:38:05.313] INFO  [life] craft: made one i_scroll_poison (1 this sitting)
+[00:38:05.313] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:38:05.313] INFO  [p0gate3] [ACTION] use_object start
+[00:38:05.313] INFO  [p0gate3] [ACTION] use_object serial=0x4000A002
+[00:38:05.314] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:38:05.314] INFO  [p0gate3]         1) poison
+[00:38:05.314] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:38:06.975] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:09.358] LOG   [p0gate3] event action_result: use_object timeout
+[00:38:09.419] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:38:09.419] INFO  [life] craft: chose 'poison'
+[00:38:10.677] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:38:11.433] INFO  [life] craft: made one i_scroll_poison (2 this sitting)
+[00:38:11.433] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:38:11.433] INFO  [p0gate3] [ACTION] use_object start
+[00:38:11.433] INFO  [p0gate3] [ACTION] use_object serial=0x4000A002
+[00:38:11.449] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:38:11.449] INFO  [p0gate3]         1) poison
+[00:38:11.449] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:38:12.005] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:15.489] LOG   [p0gate3] event action_result: use_object timeout
+[00:38:15.552] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:38:15.552] INFO  [life] craft: chose 'poison'
+[00:38:16.801] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:38:17.045] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:17.596] INFO  [life] craft: made one i_scroll_poison (3 this sitting)
+[00:38:17.596] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:38:17.596] INFO  [p0gate3] [ACTION] use_object start
+[00:38:17.596] INFO  [p0gate3] [ACTION] use_object serial=0x4000A002
+[00:38:17.612] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:38:17.612] INFO  [p0gate3]         1) poison
+[00:38:17.612] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:38:21.655] LOG   [p0gate3] event action_result: use_object timeout
+[00:38:21.716] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:38:21.716] INFO  [life] craft: chose 'poison'
+[00:38:22.055] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:22.947] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:38:23.734] INFO  [life] craft: made one i_scroll_poison (4 this sitting)
+[00:38:23.734] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:38:23.734] INFO  [p0gate3] [ACTION] use_object start
+[00:38:23.734] INFO  [p0gate3] [ACTION] use_object serial=0x4000A002
+[00:38:23.735] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:38:23.735] INFO  [p0gate3]         1) poison
+[00:38:23.735] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:38:27.068] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:27.738] LOG   [p0gate3] event action_result: use_object timeout
+[00:38:27.801] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:38:27.801] INFO  [life] craft: chose 'poison'
+[00:38:29.029] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:38:29.029] INFO  [life] goal_changed=EARN_GOLD from=CRAFT reason="EARN_GOLD 64.5 superseded CRAFT 0.0"
+[00:38:29.029] INFO  [life] needs considered: NeedGold(sell surplus 0.43) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25) NeedSupplies(buy craft inputs BLOCKED 0.00)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:38:29.029] INFO  [life]   score=64.5
+[00:38:29.029] INFO  [life]   reason: NeedGold urgency 0.43 x 150 = 64.5
+[00:38:29.029] INFO  [life]   reason: 14 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:38:29.029] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:38:29.029] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 100 (fee is quoted on arrival, roughly 300))
+[00:38:29.029] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: short of inputs AND of the gold to buy them -- what it has made has to be sold first (i_scroll_poison needs 5 x i_scroll_blank -- and the purse is empty)
+[00:38:29.825] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:38:29.825] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:38:29.825] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:38:29.841] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:38:29.841] INFO  [p0gate3] [chat ascii] Alenne: I may be interested in what thou have-let me see it. Otherwise thou art welcome to buy my goods.
+[00:38:29.841] INFO  [p0gate3] [VENDOR] sell list from 0x00001145: 2 item(s)
+[00:38:29.841] INFO  [p0gate3] [VENDOR]   0x4001048D Poison Scroll          x5   25 gp
+[00:38:29.841] INFO  [p0gate3] [VENDOR]   0x40009164 Poison Scroll          x8   25 gp
+[00:38:29.841] LOG   [p0gate3] event vendor_sell_list: vendor=0x00001145 items=2
+[00:38:29.841] INFO  [p0gate3] [ACTION_RESULT] vendor_sell success (16ms) vendor sell list received
+[00:38:29.841] LOG   [p0gate3] event action_result: vendor_sell success took=16ms vendor sell list received
+[00:38:32.128] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:32.344] INFO  [life] earn_gold: 'mage' offers 25 gold each for i_scroll_poison; selling 5
+[00:38:32.344] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:38:32.344] INFO  [p0gate3] [VENDOR] sell item=0x4001048D qty=5 to vendor=0x00001145 gold=100
+[00:38:32.359] INFO  [p0gate3] [chat ascii] Alenne: Here you are, 125 gold coins. I thank thee for thy business.
+[00:38:32.360] INFO  [p0gate3] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:38:32.453] INFO  [p0gate3] [ACTION_RESULT] vendor_sell success (109ms) gold 100 -> 225
+[00:38:32.453] LOG   [p0gate3] event action_result: vendor_sell success took=109ms gold 100 -> 225
+[00:38:35.392] INFO  [life] earn_gold: sold 5 i_scroll_poison for 125 gold (25 each) to a 'mage'
+[00:38:35.396] INFO  [life] checkpoint (sold to a vendor) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:38:35.396] INFO  [life] goal_completed=EARN_GOLD progress=1
+[00:38:35.399] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:38:35.453] INFO  [life] goal=BUY_SUPPLIES reason="no goal was running"
+[00:38:35.453] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.33) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:38:35.453] INFO  [life]   score=61.6
+[00:38:35.453] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:38:35.453] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[00:38:35.453] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:38:35.453] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 225 (fee is quoted on arrival, roughly 300))
+[00:38:35.453] INFO  [life] supplies: asked to buy i_reag_nightshade and the purse did not move -- nothing was bought
+[00:38:35.453] INFO  [life] supplies: buying 5 i_scroll_blank at 6 each from 'blank scrolls'
+[00:38:35.453] INFO  [p0gate3] [ACTION] vendor_buy start
+[00:38:35.453] INFO  [p0gate3] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:38:35.453] INFO  [p0gate3] [VENDOR] buy item=0x40009481 qty=5 from vendor=0x00001145 gold=225
+[00:38:35.454] INFO  [p0gate3] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[00:38:35.454] LOG   [p0gate3] event action_result: vendor_buy success took=1ms purchased item delivered
+[00:38:35.454] INFO  [p0gate3] [chat ascii] Alenne: Here you are, Ysolde That will be 30 gold coins.  I thank thee for thy business.
+[00:38:35.454] INFO  [p0gate3] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:38:37.183] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:42.224] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:44.483] INFO  [life] supplies: the server took 30 gold for i_scroll_blank (purse 225 -> 195)
+[00:38:44.483] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:38:44.483] INFO  [p0gate3] [ACTION] vendor_buy start
+[00:38:44.483] INFO  [p0gate3] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:38:44.483] INFO  [p0gate3] [VENDOR] buy item=0x4000947B qty=5 from vendor=0x00001145 gold=195
+[00:38:44.483] INFO  [p0gate3] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:38:44.483] LOG   [p0gate3] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:38:44.483] INFO  [p0gate3] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:38:44.483] INFO  [p0gate3] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:38:47.232] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:52.283] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:53.484] INFO  [life] supplies: the server took 15 gold for i_reag_nightshade (purse 195 -> 180)
+[00:38:53.484] INFO  [life] supplies: nothing short after all
+[00:38:53.484] INFO  [life] goal_completed=BUY_SUPPLIES progress=2
+[00:38:53.488] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:38:53.546] INFO  [life] goal=CRAFT reason="no goal was running"
+[00:38:53.546] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.33) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:38:53.546] INFO  [life]   score=65.0
+[00:38:53.546] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:38:53.546] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[00:38:53.546] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:38:53.546] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 180 (fee is quoted on arrival, roughly 300))
+[00:38:53.546] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:38:53.546] INFO  [p0gate3] [ACTION] use_object start
+[00:38:53.546] INFO  [p0gate3] [ACTION] use_object serial=0x40004E54
+[00:38:53.547] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:38:53.547] INFO  [p0gate3]         1) poison
+[00:38:53.547] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:38:57.326] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:38:57.574] LOG   [p0gate3] event action_result: use_object timeout
+[00:38:57.635] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:38:57.636] INFO  [life] craft: chose 'poison'
+[00:38:58.862] INFO  [p0gate3] [chat ascii] System: You fail to inscribe the scroll, and the scroll is ruined.
+[00:38:59.665] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:38:59.665] INFO  [p0gate3] [ACTION] use_object start
+[00:38:59.665] INFO  [p0gate3] [ACTION] use_object serial=0x40004E54
+[00:38:59.682] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:38:59.682] INFO  [p0gate3]         1) poison
+[00:38:59.682] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:39:02.363] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:03.716] LOG   [p0gate3] event action_result: use_object timeout
+[00:39:03.776] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:39:03.776] INFO  [life] craft: chose 'poison'
+[00:39:05.021] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:39:05.835] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:39:05.835] INFO  [p0gate3] [ACTION] use_object start
+[00:39:05.835] INFO  [p0gate3] [ACTION] use_object serial=0x40004E54
+[00:39:05.836] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:39:05.836] INFO  [p0gate3]         1) poison
+[00:39:05.836] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:39:07.405] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:09.851] LOG   [p0gate3] event action_result: use_object timeout
+[00:39:09.911] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:39:09.911] INFO  [life] craft: chose 'poison'
+[00:39:11.174] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:39:11.922] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:39:11.922] INFO  [p0gate3] [ACTION] use_object start
+[00:39:11.922] INFO  [p0gate3] [ACTION] use_object serial=0x40004E54
+[00:39:11.938] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:39:11.938] INFO  [p0gate3]         1) poison
+[00:39:11.938] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:39:12.433] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:15.950] LOG   [p0gate3] event action_result: use_object timeout
+[00:39:16.012] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:39:16.012] INFO  [life] craft: chose 'poison'
+[00:39:17.250] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:39:17.434] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:18.050] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:39:18.050] INFO  [p0gate3] [ACTION] use_object start
+[00:39:18.050] INFO  [p0gate3] [ACTION] use_object serial=0x40004E54
+[00:39:18.066] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:39:18.066] INFO  [p0gate3]         1) poison
+[00:39:18.066] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:39:21.892] INFO  [p0gate3] [chat ascii] Shunnar: Thou wishest to speak with me?
+[00:39:22.077] LOG   [p0gate3] event action_result: use_object timeout
+[00:39:22.139] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:39:22.139] INFO  [life] craft: chose 'poison'
+[00:39:22.464] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:23.400] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:39:23.400] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 61.6 superseded CRAFT 0.0"
+[00:39:23.400] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.41) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:39:23.400] INFO  [life]   score=61.6
+[00:39:23.400] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[00:39:23.400] INFO  [life]   reason: i_scroll_poison needs 5 x i_scroll_blank
+[00:39:23.400] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:39:23.400] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 180 (fee is quoted on arrival, roughly 300))
+[00:39:24.173] INFO  [life] supplies: buying 5 i_scroll_blank at 6 each from 'blank scrolls'
+[00:39:24.173] INFO  [p0gate3] [ACTION] vendor_buy start
+[00:39:24.173] INFO  [p0gate3] [policy] allowed NPC purchase of i_scroll_blank (0x0E34): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:39:24.173] INFO  [p0gate3] [VENDOR] buy item=0x40009481 qty=5 from vendor=0x00001145 gold=180
+[00:39:24.173] INFO  [p0gate3] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:39:24.173] LOG   [p0gate3] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:39:24.173] INFO  [p0gate3] [chat ascii] Alenne: Here you are, Ysolde That will be 30 gold coins.  I thank thee for thy business.
+[00:39:24.173] INFO  [p0gate3] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:39:27.510] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:32.536] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:33.217] INFO  [life] supplies: the server took 30 gold for i_scroll_blank (purse 180 -> 150)
+[00:39:33.217] INFO  [life] supplies: buying 5 i_reag_nightshade at 3 each from 'Nightshade'
+[00:39:33.217] INFO  [p0gate3] [ACTION] vendor_buy start
+[00:39:33.217] INFO  [p0gate3] [policy] allowed NPC purchase of i_reag_nightshade (0x0F88): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[00:39:33.217] INFO  [p0gate3] [VENDOR] buy item=0x4000947B qty=5 from vendor=0x00001145 gold=150
+[00:39:33.217] INFO  [p0gate3] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[00:39:33.217] LOG   [p0gate3] event action_result: vendor_buy success took=0ms purchased item delivered
+[00:39:33.217] INFO  [p0gate3] [chat ascii] Alenne: Here you are, Ysolde That will be 15 gold coins.  I thank thee for thy business.
+[00:39:33.217] INFO  [p0gate3] [0x3B] vendor transaction closed: vendor=0x00001145 flag=0
+[00:39:37.548] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:39.072] INFO  [p0gate3] [chat ascii] Alenne: Nice speaking to you Ysolde
+[00:39:42.275] INFO  [life] supplies: the server took 15 gold for i_reag_nightshade (purse 150 -> 135)
+[00:39:42.275] INFO  [life] supplies: nothing short after all
+[00:39:42.275] INFO  [life] goal_completed=BUY_SUPPLIES progress=2
+[00:39:42.279] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:39:42.337] INFO  [life] goal=CRAFT reason="no goal was running"
+[00:39:42.337] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.41) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:39:42.337] INFO  [life]   score=65.0
+[00:39:42.337] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:39:42.337] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[00:39:42.337] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:39:42.337] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:39:42.337] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:39:42.337] INFO  [p0gate3] [ACTION] use_object start
+[00:39:42.337] INFO  [p0gate3] [ACTION] use_object serial=0x4000136D
+[00:39:42.338] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:39:42.338] INFO  [p0gate3]         1) poison
+[00:39:42.338] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:39:42.583] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:46.382] LOG   [p0gate3] event action_result: use_object timeout
+[00:39:46.443] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:39:46.443] INFO  [life] craft: chose 'poison'
+[00:39:47.595] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:47.671] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:39:48.487] INFO  [life] craft: made one i_scroll_poison (5 this sitting)
+[00:39:48.487] INFO  [life] craft: 5 i_scroll_poison made -- enough for a trip to a buyer
+[00:39:48.487] INFO  [life] goal_completed=CRAFT progress=1
+[00:39:48.491] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:39:48.548] INFO  [life] goal=CRAFT reason="no goal was running"
+[00:39:48.548] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.43) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:39:48.548] INFO  [life]   score=65.0
+[00:39:48.548] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:39:48.548] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[00:39:48.548] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:39:48.548] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:39:48.548] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:39:48.548] INFO  [p0gate3] [ACTION] use_object start
+[00:39:48.548] INFO  [p0gate3] [ACTION] use_object serial=0x4000136D
+[00:39:48.549] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:39:48.549] INFO  [p0gate3]         1) poison
+[00:39:48.549] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:39:50.131] INFO  [p0gate3] [chat ascii] Alenne: I am listening to thee.
+[00:39:52.572] LOG   [p0gate3] event action_result: use_object timeout
+[00:39:52.635] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:39:52.635] INFO  [life] craft: chose 'poison'
+[00:39:52.635] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:53.863] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:39:54.690] INFO  [life] craft: made one i_scroll_poison (1 this sitting)
+[00:39:54.690] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:39:54.690] INFO  [p0gate3] [ACTION] use_object start
+[00:39:54.690] INFO  [p0gate3] [ACTION] use_object serial=0x4000136D
+[00:39:54.691] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:39:54.691] INFO  [p0gate3]         1) poison
+[00:39:54.691] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:39:57.682] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:39:58.708] LOG   [p0gate3] event action_result: use_object timeout
+[00:39:58.768] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:39:58.769] INFO  [life] craft: chose 'poison'
+[00:40:00.022] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:40:00.817] INFO  [life] craft: made one i_scroll_poison (2 this sitting)
+[00:40:00.817] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:40:00.817] INFO  [p0gate3] [ACTION] use_object start
+[00:40:00.817] INFO  [p0gate3] [ACTION] use_object serial=0x4000136D
+[00:40:00.833] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:40:00.833] INFO  [p0gate3]         1) poison
+[00:40:00.833] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:40:02.711] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:04.828] LOG   [p0gate3] event action_result: use_object timeout
+[00:40:04.889] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:40:04.889] INFO  [life] craft: chose 'poison'
+[00:40:06.118] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:40:06.917] INFO  [life] craft: made one i_scroll_poison (3 this sitting)
+[00:40:06.917] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[00:40:06.917] INFO  [p0gate3] [ACTION] use_object start
+[00:40:06.917] INFO  [p0gate3] [ACTION] use_object serial=0x4000136D
+[00:40:06.934] INFO  [p0gate3] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[00:40:06.934] INFO  [p0gate3]         1) poison
+[00:40:06.934] LOG   [p0gate3] event dialog: Spell Circle 3
+[00:40:07.732] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:10.917] LOG   [p0gate3] event action_result: use_object timeout
+[00:40:10.979] INFO  [p0gate3] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[00:40:10.979] INFO  [life] craft: chose 'poison'
+[00:40:12.219] INFO  [p0gate3] [chat ascii] System: You put the Poison Scroll in your pack.
+[00:40:12.219] INFO  [life] goal_changed=EARN_GOLD from=CRAFT reason="EARN_GOLD 76.5 superseded CRAFT 0.0"
+[00:40:12.219] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:40:12.219] INFO  [life]   score=76.5
+[00:40:12.219] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:40:12.219] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:40:12.219] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:40:12.219] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:40:12.788] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:13.034] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:40:13.034] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:40:13.034] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:40:13.035] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:40:13.035] INFO  [p0gate3] [chat ascii] Alenne: If thou dost wish to sell something to me, hand it over and I shall determine its value. Otherwise thou art welcome to buy some of my items.
+[00:40:13.035] INFO  [p0gate3] [VENDOR] sell list from 0x00001145: 3 item(s)
+[00:40:13.035] INFO  [p0gate3] [VENDOR]   0x400029E2 Poison Scroll          x11  25 gp
+[00:40:13.035] INFO  [p0gate3] [VENDOR]   0x400014EB Poison Scroll          x1   25 gp
+[00:40:13.035] INFO  [p0gate3] [VENDOR]   0x40018FC9 Poison Scroll          x5   25 gp
+[00:40:13.035] LOG   [p0gate3] event vendor_sell_list: vendor=0x00001145 items=3
+[00:40:13.035] INFO  [p0gate3] [ACTION_RESULT] vendor_sell success (1ms) vendor sell list received
+[00:40:13.035] LOG   [p0gate3] event action_result: vendor_sell success took=1ms vendor sell list received
+[00:40:15.533] INFO  [life] earn_gold: 'mage' offers 25 gold each for i_scroll_poison; selling 11
+[00:40:15.534] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:40:15.534] INFO  [p0gate3] [VENDOR] sell item=0x400029E2 qty=11 to vendor=0x00001145 gold=135
+[00:40:15.549] INFO  [p0gate3] [chat ascii] System: You can't reach the Vendor
+[00:40:15.549] LOG   [p0gate3] event action_result: vendor_sell rejected took=16ms You can't reach the Vendor
+[00:40:17.825] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:22.880] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:27.685] INFO  [life] earn_gold: offered 11 i_scroll_poison and the purse did not move (still 135) -- this buyer did not take them
+[00:40:27.930] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:29.221] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:40:29.283] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:40:29.283] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:40:29.283] INFO  [life]   score=76.5
+[00:40:29.283] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:40:29.283] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:40:29.283] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:40:29.283] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:40:29.283] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:40:29.283] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:40:29.283] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:40:29.284] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:40:29.284] INFO  [p0gate3] [chat ascii] Alenne: If thou dost wish to sell something to me, hand it over and I shall determine its value. Otherwise thou art welcome to buy some of my items.
+[00:40:29.284] INFO  [p0gate3] [VENDOR] sell list from 0x00001145: 3 item(s)
+[00:40:29.284] INFO  [p0gate3] [VENDOR]   0x400029E2 Poison Scroll          x11  25 gp
+[00:40:29.284] INFO  [p0gate3] [VENDOR]   0x400014EB Poison Scroll          x1   25 gp
+[00:40:29.284] INFO  [p0gate3] [VENDOR]   0x40018FC9 Poison Scroll          x5   25 gp
+[00:40:29.284] LOG   [p0gate3] event vendor_sell_list: vendor=0x00001145 items=3
+[00:40:29.284] INFO  [p0gate3] [ACTION_RESULT] vendor_sell success (1ms) vendor sell list received
+[00:40:29.284] LOG   [p0gate3] event action_result: vendor_sell success took=1ms vendor sell list received
+[00:40:31.782] INFO  [life] earn_gold: 'mage' offers 25 gold each for i_scroll_poison; selling 11
+[00:40:31.782] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:40:31.782] INFO  [p0gate3] [VENDOR] sell item=0x400029E2 qty=11 to vendor=0x00001145 gold=135
+[00:40:31.798] INFO  [p0gate3] [chat ascii] System: You can't reach the Vendor
+[00:40:31.798] LOG   [p0gate3] event action_result: vendor_sell rejected took=16ms You can't reach the Vendor
+[00:40:32.947] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:37.967] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:42.995] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:44.039] INFO  [life] earn_gold: offered 11 i_scroll_poison and the purse did not move (still 135) -- this buyer did not take them
+[00:40:45.571] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:40:45.632] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:40:45.632] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:40:45.632] INFO  [life]   score=76.5
+[00:40:45.632] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:40:45.632] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:40:45.632] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:40:45.632] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:40:45.632] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:40:45.632] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:40:45.632] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:40:45.633] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:40:45.633] INFO  [p0gate3] [chat ascii] Alenne: I may be interested in what thou have-let me see it. Otherwise thou art welcome to buy my goods.
+[00:40:45.633] INFO  [p0gate3] [VENDOR] sell list from 0x00001145: 3 item(s)
+[00:40:45.633] INFO  [p0gate3] [VENDOR]   0x400029E2 Poison Scroll          x11  25 gp
+[00:40:45.633] INFO  [p0gate3] [VENDOR]   0x400014EB Poison Scroll          x1   25 gp
+[00:40:45.633] INFO  [p0gate3] [VENDOR]   0x40018FC9 Poison Scroll          x5   25 gp
+[00:40:45.633] LOG   [p0gate3] event vendor_sell_list: vendor=0x00001145 items=3
+[00:40:45.633] INFO  [p0gate3] [ACTION_RESULT] vendor_sell success (1ms) vendor sell list received
+[00:40:45.633] LOG   [p0gate3] event action_result: vendor_sell success took=1ms vendor sell list received
+[00:40:48.001] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:48.187] INFO  [life] earn_gold: 'mage' offers 25 gold each for i_scroll_poison; selling 11
+[00:40:48.187] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:40:48.188] INFO  [p0gate3] [VENDOR] sell item=0x400029E2 qty=11 to vendor=0x00001145 gold=135
+[00:40:48.203] INFO  [p0gate3] [chat ascii] System: You can't reach the Vendor
+[00:40:48.203] LOG   [p0gate3] event action_result: vendor_sell rejected took=16ms You can't reach the Vendor
+[00:40:48.514] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:40:53.059] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:40:58.066] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:00.306] INFO  [life] earn_gold: offered 11 i_scroll_poison and the purse did not move (still 135) -- this buyer did not take them
+[00:41:01.839] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:01.900] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:01.900] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:01.900] INFO  [life]   score=76.5
+[00:41:01.900] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:01.900] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:01.900] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:01.900] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:01.900] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:01.900] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:01.900] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:01.917] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:01.917] INFO  [p0gate3] [chat ascii] Alenne: Let me see what thou art offering to sell me, if indeed that is what thou dost mean. Or thou couldst buy something of mine.
+[00:41:01.917] INFO  [p0gate3] [VENDOR] sell list from 0x00001145: 3 item(s)
+[00:41:01.917] INFO  [p0gate3] [VENDOR]   0x400029E2 Poison Scroll          x11  25 gp
+[00:41:01.917] INFO  [p0gate3] [VENDOR]   0x400014EB Poison Scroll          x1   25 gp
+[00:41:01.917] INFO  [p0gate3] [VENDOR]   0x40018FC9 Poison Scroll          x5   25 gp
+[00:41:01.917] LOG   [p0gate3] event vendor_sell_list: vendor=0x00001145 items=3
+[00:41:01.917] INFO  [p0gate3] [ACTION_RESULT] vendor_sell success (17ms) vendor sell list received
+[00:41:01.917] LOG   [p0gate3] event action_result: vendor_sell success took=17ms vendor sell list received
+[00:41:03.084] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:04.406] INFO  [life] earn_gold: 'mage' offers 25 gold each for i_scroll_poison; selling 11
+[00:41:04.406] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:04.406] INFO  [p0gate3] [VENDOR] sell item=0x400029E2 qty=11 to vendor=0x00001145 gold=135
+[00:41:04.407] INFO  [p0gate3] [chat ascii] System: You can't reach the Vendor
+[00:41:04.407] LOG   [p0gate3] event action_result: vendor_sell rejected took=1ms You can't reach the Vendor
+[00:41:08.118] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:13.163] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:16.544] INFO  [life] earn_gold: offered 11 i_scroll_poison and the purse did not move (still 135) -- this buyer did not take them
+[00:41:18.081] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:18.144] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:18.144] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:18.144] INFO  [life]   score=76.5
+[00:41:18.144] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:18.144] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:18.144] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:18.144] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:18.144] INFO  [life] earn_gold: the 'mage' is 4 tiles and 20 z away -- walking up before speaking, or the nearest other vendor answers instead
+[00:41:18.144] INFO  [p0gate3] [travel] vendor -> (1487,1550) r=1 from (1484,1546)
+[00:41:18.144] LOG   [p0gate3] event travel_start: label='vendor' target=(1487,1550) radius=1 from=(1484,1546)
+[00:41:18.144] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:41:18.144] INFO  [p0gate3] [travel] mode moongate         usable
+[00:41:18.144] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:41:18.144] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:41:18.144] LOG   [p0gate3] event travel_mode: walk
+[00:41:18.144] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~4 tiles transit=0 nodes=0
+[00:41:18.204] INFO  [p0gate3] [action] goto finished at (1484,1546,50); target (1484,1546); ARRIVED (off by 0 tile(s))
+[00:41:18.204] LOG   [p0gate3] event goto_done: at=(1484,1546) target=(1484,1546) arrived=1 off=0
+[00:41:18.204] INFO  [p0gate3] [action] goto (1487,1550) from (1484,1546,50)
+[00:41:18.204] LOG   [p0gate3] event goto_start: target=(1487,1550) from=(1484,1546)
+[00:41:18.204] INFO  [p0gate3] [bot] running from (1484,1546,50) to (1487,1550)
+[00:41:18.204] INFO  [p0gate3] [bot] planning path to (1487,1550) in background
+[00:41:18.204] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:19.373] INFO  [p0gate3] [action] goto finished at (1484,1546,50); target (1487,1550); stopped short (off by 7 tile(s))
+[00:41:19.373] LOG   [p0gate3] event goto_done: at=(1484,1546) target=(1487,1550) arrived=0 off=7
+[00:41:20.601] INFO  [p0gate3] [action] goto (1487,1550) from (1484,1546,50)
+[00:41:20.601] LOG   [p0gate3] event goto_start: target=(1487,1550) from=(1484,1546)
+[00:41:20.601] INFO  [p0gate3] [bot] running from (1484,1546,50) to (1487,1550)
+[00:41:20.601] INFO  [p0gate3] [bot] planning path to (1487,1550) in background
+[00:41:20.662] INFO  [p0gate3] [bot] replan to (1487,1550): 4 steps in 200.5us
+[00:41:21.924] INFO  [p0gate3] [travel] vendor ARRIVED at (1486,1549,35)
+[00:41:21.924] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1486,1549) legs=1 plans=1 why=''
+[00:41:21.985] INFO  [life] earn_gold: the 'mage' is 3 tiles and 3 z away -- walking up before speaking, or the nearest other vendor answers instead
+[00:41:21.985] INFO  [p0gate3] [travel] vendor -> (1489,1548) r=1 from (1486,1549)
+[00:41:21.985] LOG   [p0gate3] event travel_start: label='vendor' target=(1489,1548) radius=1 from=(1486,1549)
+[00:41:21.985] INFO  [p0gate3] [travel] mode walk             usable   <- chosen
+[00:41:21.985] INFO  [p0gate3] [travel] mode moongate         usable
+[00:41:21.985] INFO  [p0gate3] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:41:21.985] INFO  [p0gate3] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:41:21.985] LOG   [p0gate3] event travel_mode: walk
+[00:41:21.985] INFO  [p0gate3] [travel] plan vendor: ok legs=1 ~3 tiles transit=0 nodes=0
+[00:41:22.294] INFO  [p0gate3] [bot] arrived at (1487,1550,30)
+[00:41:22.295] INFO  [p0gate3] [action] goto finished at (1487,1550,30); target (1487,1550); ARRIVED (off by 0 tile(s))
+[00:41:22.295] LOG   [p0gate3] event goto_done: at=(1487,1550) target=(1487,1550) arrived=1 off=0
+[00:41:22.295] INFO  [p0gate3] [action] goto (1489,1548) from (1487,1550,30)
+[00:41:22.295] LOG   [p0gate3] event goto_start: target=(1489,1548) from=(1487,1550)
+[00:41:22.295] INFO  [p0gate3] [bot] running from (1487,1550,30) to (1489,1548)
+[00:41:22.295] INFO  [p0gate3] [bot] planning path to (1489,1548) in background
+[00:41:22.356] INFO  [p0gate3] [bot] replan to (1489,1548): 17 steps in 1879.2us
+[00:41:23.259] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:23.462] INFO  [p0gate3] [bot] lookahead patched around block at step 5: anchor=6 new segment=4 path=12 in 70.8us
+[00:41:26.752] INFO  [p0gate3] [travel] vendor ARRIVED at (1490,1548,70)
+[00:41:26.752] LOG   [p0gate3] event travel_done: label='vendor' ok=1 at=(1490,1548) legs=1 plans=1 why=''
+[00:41:26.799] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:26.799] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:26.799] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:26.799] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:27.630] INFO  [p0gate3] [bot] arrived at (1489,1548,70)
+[00:41:28.293] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:29.319] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:29.381] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:29.442] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:29.442] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:29.442] INFO  [life]   score=76.5
+[00:41:29.442] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:29.442] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:29.442] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:29.442] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:29.442] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:29.442] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2643ms superseded
+[00:41:29.442] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:29.442] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:29.442] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:31.975] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:31.975] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:32.036] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:32.036] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:32.036] INFO  [life]   score=76.5
+[00:41:32.036] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:32.036] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:32.036] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:32.036] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:32.036] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:32.036] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2594ms superseded
+[00:41:32.036] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:32.037] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:32.052] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:33.345] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:34.591] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:34.651] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:34.712] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:34.712] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:34.713] INFO  [life]   score=76.5
+[00:41:34.713] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:34.713] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:34.713] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:34.713] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:34.713] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:34.713] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2677ms superseded
+[00:41:34.713] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:34.713] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:34.713] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:37.246] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:37.308] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:37.368] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:37.369] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:37.369] INFO  [life]   score=76.5
+[00:41:37.369] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:37.369] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:37.369] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:37.369] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:37.369] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:37.369] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2656ms superseded
+[00:41:37.369] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:37.369] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:37.384] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:38.370] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:39.871] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:39.933] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:39.995] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:39.995] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:39.995] INFO  [life]   score=76.5
+[00:41:39.995] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:39.995] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:39.995] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:39.995] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:39.995] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:39.995] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2626ms superseded
+[00:41:39.995] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:39.995] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:39.995] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:42.547] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:42.609] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:42.670] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:42.670] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:42.670] INFO  [life]   score=76.5
+[00:41:42.670] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:42.670] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:42.670] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:42.670] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:42.670] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:42.670] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2675ms superseded
+[00:41:42.670] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:42.670] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:42.671] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:43.403] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:45.195] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:45.256] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:45.317] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:45.317] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:45.317] INFO  [life]   score=76.5
+[00:41:45.317] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:45.317] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:45.317] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:45.317] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:45.317] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:45.317] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2647ms superseded
+[00:41:45.317] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:45.317] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:45.318] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:47.829] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:47.892] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:47.954] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:47.954] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:47.954] INFO  [life]   score=76.5
+[00:41:47.954] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:47.954] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:47.954] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:47.954] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:47.954] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:47.954] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2637ms superseded
+[00:41:47.954] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:47.954] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:47.969] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:48.462] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:48.526] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[00:41:50.491] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:50.550] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:50.613] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:50.613] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:50.613] INFO  [life]   score=76.5
+[00:41:50.613] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:50.613] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:50.613] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:50.613] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:50.613] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:50.613] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2659ms superseded
+[00:41:50.613] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:50.613] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:50.613] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:53.131] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:53.193] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:53.254] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:53.254] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:53.254] INFO  [life]   score=76.5
+[00:41:53.254] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:53.254] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:53.254] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:53.254] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:53.254] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:53.254] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2641ms superseded
+[00:41:53.254] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:53.254] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:53.270] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:53.518] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:55.793] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:55.808] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:55.870] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:55.870] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:55.870] INFO  [life]   score=76.5
+[00:41:55.870] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:55.870] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:55.870] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:55.870] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:55.870] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:55.870] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2616ms superseded
+[00:41:55.870] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:55.870] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:55.886] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:41:58.424] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:41:58.485] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:41:58.547] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:41:58.547] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:41:58.547] INFO  [life]   score=76.5
+[00:41:58.547] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:41:58.547] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:41:58.547] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:41:58.547] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:41:58.547] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:41:58.548] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2677ms superseded
+[00:41:58.548] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:41:58.548] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:41:58.548] INFO  [p0gate3] [survival] hp 10/10 (100%) -> fight
+[00:41:58.548] INFO  [p0gate3] [chat uni  ] : Alenne sell
+[00:42:01.063] INFO  [life] earn_gold: this 'mage' does not take i_scroll_poison after all; trying the next trade
+[00:42:01.124] INFO  [life] goal_failed=EARN_GOLD reason="tried all 1 trades that buy i_scroll_poison"
+[00:42:01.186] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no buyer took the goods"
+[00:42:01.186] INFO  [life] needs considered: NeedGold(sell surplus 0.51) NeedSupplies(buy craft inputs 0.44) NeedSkillTraining(Meditation BLOCKED 0.30) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Inscription BLOCKED 0.27) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,] want_train=Meditation (target 40.0)
+[00:42:01.186] INFO  [life]   score=76.5
+[00:42:01.186] INFO  [life]   reason: NeedGold urgency 0.51 x 150 = 76.5
+[00:42:01.186] INFO  [life]   reason: 18 x i_scroll_poison spare, a load is 20, buyer: an NPC
+[00:42:01.186] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Magery 50.0 -> 100.0)
+[00:42:01.186] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (Meditation 21.9 -> 40.0, gold 135 (fee is quoted on arrival, roughly 300))
+[00:42:01.186] INFO  [life] earn_gold: asking the 'mage' what it buys
+[00:42:01.186] LOG   [p0gate3] event action_result: vendor_sell invalid_state took=2639ms superseded
+[00:42:01.186] INFO  [p0gate3] [ACTION] vendor_sell start
+[00:42:01.186] INFO  [p0gate3] [VENDOR] open sell vendor=0x00001145 say='Alenne sell'
+[00:42:01.202] INFO  [p0gate3] [chat uni  ] : Alenne sell

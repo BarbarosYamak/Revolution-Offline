@@ -1,0 +1,505 @@
+#include "uo/life.h"
+
+#include <algorithm>
+#include <cmath>
+#include <cstdlib>
+
+namespace uo::life {
+
+namespace {
+
+i32 TileDist(i32 ax, i32 ay, i32 bx, i32 by) {
+    // Chebyshev -- UO's own notion of distance; a diagonal step is one tile.
+    return std::max(std::abs(ax - bx), std::abs(ay - by));
+}
+
+// Two learned spots within this many tiles are the same spot. Without it a
+// forest stand becomes forty near-identical records after one shift.
+constexpr i32 kSameSpotTiles = 6;
+
+template <typename T>
+void CapOldestFirst(std::vector<T>& v, usize cap, i64 T::*stamp) {
+    if (v.size() <= cap) return;
+    std::sort(v.begin(), v.end(), [stamp](const T& a, const T& b) {
+        return a.*stamp > b.*stamp;   // newest first
+    });
+    v.resize(cap);
+}
+
+}  // namespace
+
+void Memory::NotePlace(const char* kind, const char* name, i32 x, i32 y, i8 z,
+                       i64 nowMs) {
+    if (!kind || !kind[0]) return;
+    for (KnownPlace& p : places_) {
+        if (p.kind == kind && TileDist(p.x, p.y, x, y) <= kSameSpotTiles) {
+            p.lastVerifiedMs = nowMs;
+            p.visits++;
+            if (name && name[0]) p.name = name;
+            return;
+        }
+    }
+    KnownPlace p;
+    p.kind = kind;
+    p.name = name ? name : "";
+    p.x = x; p.y = y; p.z = z;
+    p.learnedMs = nowMs;
+    p.lastVerifiedMs = nowMs;
+    p.visits = 1;
+    places_.push_back(std::move(p));
+    CapOldestFirst(places_, kMaxPlaces, &KnownPlace::lastVerifiedMs);
+}
+
+void Memory::NoteResource(const char* resource, i32 x, i32 y, i8 z, bool success,
+                          i64 nowMs) {
+    if (!resource || !resource[0]) return;
+    for (KnownResourceSource& r : resources_) {
+        if (r.resource == resource && TileDist(r.x, r.y, x, y) <= kSameSpotTiles) {
+            r.lastSeenMs = nowMs;
+            if (success) { r.successes++; r.lastSuccessMs = nowMs; }
+            else         { r.failures++; }
+            return;
+        }
+    }
+    KnownResourceSource r;
+    r.resource = resource;
+    r.x = x; r.y = y; r.z = z;
+    r.lastSeenMs = nowMs;
+    if (success) { r.successes = 1; r.lastSuccessMs = nowMs; }
+    else         { r.failures = 1; }
+    resources_.push_back(std::move(r));
+    CapOldestFirst(resources_, kMaxResources, &KnownResourceSource::lastSeenMs);
+}
+
+void Memory::NoteResourceSeen(const char* resource, i32 x, i32 y, i8 z, i64 nowMs) {
+    if (!resource || !resource[0]) return;
+    for (KnownResourceSource& r : resources_) {
+        if (r.resource == resource && TileDist(r.x, r.y, x, y) <= kSameSpotTiles) {
+            r.lastSeenMs = nowMs;
+            return;
+        }
+    }
+    KnownResourceSource r;
+    r.resource = resource;
+    r.x = x; r.y = y; r.z = z;
+    r.lastSeenMs = nowMs;
+    resources_.push_back(std::move(r));
+    CapOldestFirst(resources_, kMaxResources, &KnownResourceSource::lastSeenMs);
+}
+
+void Memory::HintResource(const char* resource, const char* label, i32 x, i32 y,
+                          i8 z, i64 nowMs) {
+    if (!resource || !resource[0]) return;
+    for (const KnownResourceSource& r : resources_) {
+        // A hint never overwrites anything, least of all a proven stand.
+        if (r.resource == resource && TileDist(r.x, r.y, x, y) <= kSameSpotTiles) return;
+    }
+    KnownResourceSource r;
+    r.resource = resource;
+    r.label = label ? label : "";
+    r.x = x; r.y = y; r.z = z;
+    r.hinted = true;
+    r.lastSeenMs = nowMs;
+    resources_.push_back(std::move(r));
+    CapOldestFirst(resources_, kMaxResources, &KnownResourceSource::lastSeenMs);
+}
+
+const KnownResourceSource* Memory::BestProvenResource(const char* resource,
+                                                      i32 fromX, i32 fromY,
+                                                      i64 nowMs) const {
+    if (!resource) return nullptr;
+    const KnownResourceSource* best = nullptr;
+    double bestScore = -1e18;
+    for (const KnownResourceSource& r : resources_) {
+        if (r.resource != resource) continue;
+        if (r.successes <= 0) continue;   // PROVEN means it actually yielded
+        const double dist = static_cast<double>(TileDist(r.x, r.y, fromX, fromY));
+        const double score = static_cast<double>(r.successes) * 20.0 -
+                             static_cast<double>(r.failures) * 4.0 - dist * 0.05 -
+                             DangerHeatAt(r.x, r.y, nowMs) * 40.0;
+        if (score > bestScore) { bestScore = score; best = &r; }
+    }
+    return best;
+}
+
+const KnownResourceSource* Memory::BestHint(const char* resource, i32 fromX,
+                                            i32 fromY, i64 nowMs) const {
+    if (!resource) return nullptr;
+    const KnownResourceSource* best = nullptr;
+    double bestScore = -1e18;
+    for (const KnownResourceSource& r : resources_) {
+        if (r.resource != resource) continue;
+        if (!r.hinted) continue;
+        const double dist = static_cast<double>(TileDist(r.x, r.y, fromX, fromY));
+        // Nearest first, but a lead that has already disappointed drops down
+        // the list rather than being walked to again and again.
+        const double score = -dist * 0.05 - static_cast<double>(r.failures) * 30.0 -
+                             DangerHeatAt(r.x, r.y, nowMs) * 40.0;
+        if (score > bestScore) { bestScore = score; best = &r; }
+    }
+    return best;
+}
+
+void Memory::NoteSupplier(const KnownSupplier& s) {
+    for (KnownSupplier& k : suppliers_) {
+        if (k.serial == s.serial && k.need == s.need) {
+            k = s;
+            return;
+        }
+    }
+    suppliers_.push_back(s);
+    CapOldestFirst(suppliers_, kMaxSuppliers, &KnownSupplier::lastVerifiedMs);
+}
+
+void Memory::NoteDanger(i32 x, i32 y, i32 radius, const char* threat, double heat,
+                        i64 nowMs) {
+    if (heat <= 0.0) return;
+    for (DangerMemory& d : danger_) {
+        if (TileDist(d.x, d.y, x, y) <= std::max(d.radius, radius)) {
+            // Compound onto the DECAYED value, not the raw one -- otherwise a
+            // spot that scared us an hour ago is treated as if it just did.
+            const double halves =
+                static_cast<double>(nowMs - d.atMs) / static_cast<double>(kDangerHalfLifeMs);
+            const double current = d.heat * std::pow(0.5, halves);
+            // CAPPED. Heat compounds on repeat trouble, which is right, but
+            // an unbounded sum is not a memory -- it is a grudge. One live
+            // session reached 499.89 at a single spot because a twenty-minute
+            // fight added to it on every tick, and the resulting -60 x heat
+            // penalty drove the character's own profession to a NEGATIVE
+            // score. Four doublings is as afraid as it ever needs to be.
+            d.heat = std::min(kMaxDangerHeat, current + heat);
+            d.atMs = nowMs;
+            d.radius = std::max(d.radius, radius);
+            if (threat && threat[0]) d.threat = threat;
+            return;
+        }
+    }
+    DangerMemory d;
+    d.x = x; d.y = y;
+    d.radius = radius;
+    d.threat = threat ? threat : "";
+    d.heat = heat;
+    d.atMs = nowMs;
+    danger_.push_back(std::move(d));
+    CapOldestFirst(danger_, kMaxDanger, &DangerMemory::atMs);
+}
+
+// EVIDENCE THE OTHER WAY, for places. A ground that pays -- a kill, a looted
+// corpse -- is a ground this character has just proven it can work, and heat
+// that only ever rises locks a novice out of the one yard it is ready for:
+// Aurelius left the Britain graveyard at heat 3.20 with one kill and ZERO
+// deaths (artifacts/validation_wave_2026-09-06.md D11). Unlike a creature
+// TYPE, a place is not exonerated below "unknown": there is no such thing as
+// safer than never-scared-me, so the floor is 0.0 and a good outcome
+// somewhere never remembered writes nothing at all.
+void Memory::CoolDanger(i32 x, i32 y, double relief, i64 nowMs) {
+    if (relief <= 0.0) return;
+    for (DangerMemory& d : danger_) {
+        if (TileDist(d.x, d.y, x, y) > d.radius) continue;
+        // Decay first, exactly like NoteDanger -- relief applies to what the
+        // character actually still fears, not to an hour-old raw number.
+        const double halves =
+            static_cast<double>(nowMs - d.atMs) / static_cast<double>(kDangerHalfLifeMs);
+        const double current = nowMs > d.atMs ? d.heat * std::pow(0.5, halves) : d.heat;
+        d.heat = std::max(0.0, current - relief);
+        d.atMs = nowMs;
+    }
+}
+
+double Memory::DangerHeatAt(i32 x, i32 y, i64 nowMs) const {
+    double total = 0.0;
+    for (const DangerMemory& d : danger_) {
+        if (TileDist(d.x, d.y, x, y) > d.radius) continue;
+        if (nowMs < d.atMs) { total += d.heat; continue; }
+        const double halves =
+            static_cast<double>(nowMs - d.atMs) / static_cast<double>(kDangerHalfLifeMs);
+        total += d.heat * std::pow(0.5, halves);
+    }
+    return total;
+}
+
+void Memory::ExpireDanger(i64 nowMs, double floorHeat) {
+    danger_.erase(
+        std::remove_if(danger_.begin(), danger_.end(),
+                       [&](const DangerMemory& d) {
+                           if (nowMs < d.atMs) return false;
+                           const double halves =
+                               static_cast<double>(nowMs - d.atMs) /
+                               static_cast<double>(kDangerHalfLifeMs);
+                           return d.heat * std::pow(0.5, halves) < floorHeat;
+                       }),
+        danger_.end());
+}
+
+void Memory::NoteCreatureOutcome(const char* name, double signedEvidence, i64 nowMs) {
+    if (!name || !name[0]) return;
+    if (signedEvidence == 0.0) return;
+    for (CreatureVerdict& c : creatures_) {
+        if (c.name != name) continue;
+        // Compound onto the DECAYED value, exactly like NoteDanger -- a
+        // verdict earned an hour ago must not be treated as if it were
+        // earned this second.
+        const double halves =
+            static_cast<double>(nowMs - c.atMs) / static_cast<double>(kDangerHalfLifeMs);
+        const double current = c.heat * std::pow(0.5, halves);
+        // CAPPED, both directions. Repeated evidence compounds, which is
+        // right, but an unbounded sum is not a memory -- it is a grudge (or,
+        // on the safe side, overconfidence). Same ceiling NoteDanger uses.
+        c.heat = std::clamp(current + signedEvidence, -kMaxDangerHeat, kMaxDangerHeat);
+        c.atMs = nowMs;
+        c.fights++;
+        return;
+    }
+    CreatureVerdict c;
+    c.name = name;
+    c.heat = std::clamp(signedEvidence, -kMaxDangerHeat, kMaxDangerHeat);
+    c.atMs = nowMs;
+    c.fights = 1;
+    creatures_.push_back(std::move(c));
+    CapOldestFirst(creatures_, kMaxCreatures, &CreatureVerdict::atMs);
+}
+
+double Memory::CreatureDanger(const char* name, i64 nowMs) const {
+    if (!name || !name[0]) return 0.0;
+    for (const CreatureVerdict& c : creatures_) {
+        if (c.name != name) continue;
+        if (nowMs < c.atMs) return c.heat;
+        const double halves =
+            static_cast<double>(nowMs - c.atMs) / static_cast<double>(kDangerHalfLifeMs);
+        return c.heat * std::pow(0.5, halves);
+    }
+    return 0.0;
+}
+
+void Memory::NoteEvent(const char* kind, const char* detail, const char* place,
+                       i32 x, i32 y, i64 nowMs) {
+    if (!kind || !kind[0]) return;
+    LifeEvent e;
+    e.kind = kind;
+    e.detail = detail ? detail : "";
+    e.place = place ? place : "";
+    e.x = x; e.y = y;
+    e.atMs = nowMs;
+    events_.push_back(std::move(e));
+    // A ring, not a log: the oldest events fall off the front so the file
+    // stays bounded no matter how long a character lives.
+    if (events_.size() > kMaxEvents) {
+        events_.erase(events_.begin(),
+                      events_.begin() +
+                          static_cast<long>(events_.size() - kMaxEvents));
+    }
+}
+
+const KnownPlace* Memory::BestPlace(const char* kind) const {
+    if (!kind) return nullptr;
+    const KnownPlace* best = nullptr;
+    for (const KnownPlace& p : places_) {
+        if (p.kind != kind) continue;
+        if (!best || p.lastVerifiedMs > best->lastVerifiedMs) best = &p;
+    }
+    return best;
+}
+
+const KnownPlace* Memory::NearestPlace(const char* kind, i32 x, i32 y) const {
+    if (!kind) return nullptr;
+    const KnownPlace* best = nullptr;
+    i64 bestD = 0;
+    for (const KnownPlace& p : places_) {
+        if (p.kind != kind) continue;
+        const i64 dx = p.x - x, dy = p.y - y;
+        const i64 d = dx * dx + dy * dy;      // squared; only the order matters
+        if (!best || d < bestD) { best = &p; bestD = d; }
+    }
+    return best;
+}
+
+bool Memory::ForgetPlace(const char* kind, i32 x, i32 y) {
+    if (!kind) return false;
+    for (usize i = 0; i < places_.size(); ++i) {
+        if (places_[i].kind != kind) continue;
+        if (places_[i].x != x || places_[i].y != y) continue;
+        places_.erase(places_.begin() + static_cast<std::ptrdiff_t>(i));
+        return true;
+    }
+    return false;
+}
+
+bool Memory::ForgetSupplier(const char* need, i32 x, i32 y) {
+    if (!need) return false;
+    for (usize i = 0; i < suppliers_.size(); ++i) {
+        if (suppliers_[i].need != need) continue;
+        if (suppliers_[i].x != x || suppliers_[i].y != y) continue;
+        suppliers_.erase(suppliers_.begin() + static_cast<std::ptrdiff_t>(i));
+        return true;
+    }
+    return false;
+}
+
+const KnownResourceSource* Memory::BestResource(const char* resource, i32 fromX,
+                                                i32 fromY, i64 nowMs) const {
+    if (!resource) return nullptr;
+    const KnownResourceSource* best = nullptr;
+    double bestScore = -1e18;
+    for (const KnownResourceSource& r : resources_) {
+        if (r.resource != resource) continue;
+        // Nearest-and-most-productive, penalised by remembered danger. A
+        // stand that keeps failing loses to a farther one that works.
+        const double dist = static_cast<double>(TileDist(r.x, r.y, fromX, fromY));
+        const double productivity =
+            static_cast<double>(r.successes) - 2.0 * static_cast<double>(r.failures);
+        const double score = productivity * 8.0 - dist * 0.05 -
+                             DangerHeatAt(r.x, r.y, nowMs) * 40.0;
+        if (score > bestScore) { bestScore = score; best = &r; }
+    }
+    return best;
+}
+
+const KnownSupplier* Memory::BestSupplier(const char* need) const {
+    if (!need) return nullptr;
+    const KnownSupplier* best = nullptr;
+    for (const KnownSupplier& s : suppliers_) {
+        if (s.need != need) continue;
+        // A supplier the policy refuses is still a fact about the world, but
+        // it is never returned as usable (supplier.h's rule).
+        if (!s.policyAllows) continue;
+        if (!best || s.lastVerifiedMs > best->lastVerifiedMs) best = &s;
+    }
+    return best;
+}
+
+bool Memory::HasEvent(const char* kind) const {
+    if (!kind) return false;
+    for (const LifeEvent& e : events_) {
+        if (e.kind == kind) return true;
+    }
+    return false;
+}
+
+void Memory::Clear() {
+    relationships.clear();
+    places_.clear();
+    resources_.clear();
+    suppliers_.clear();
+    danger_.clear();
+    events_.clear();
+    trainers_.clear();
+    creatures_.clear();
+    unwearable_.clear();
+}
+
+// ONE REFUSAL IS THE WHOLE ANSWER.
+//
+// Unlike a trainer's "I know nothing about that" -- which is about that one
+// NPC and needs three voices before it can speak for a trade -- an equip
+// refusal is the server applying its own rule to this item type and this
+// body. It cannot come out differently tomorrow, so it is recorded once,
+// kept, and never re-earned.
+void Memory::NoteUnwearable(u16 graphic, i64 /*nowMs*/) {
+    if (!graphic) return;
+    for (u16 g : unwearable_)
+        if (g == graphic) return;
+    unwearable_.push_back(graphic);
+}
+
+bool Memory::IsUnwearable(u16 graphic) const {
+    for (u16 g : unwearable_)
+        if (g == graphic) return true;
+    return false;
+}
+
+usize Memory::ApproximateBytes() const {
+    usize n = 0;
+    for (const auto& person : relationships) n += sizeof(person) + person.name.size();
+    for (const KnownPlace& p : places_)          n += sizeof(p) + p.kind.size() + p.name.size();
+    for (const KnownResourceSource& r : resources_) n += sizeof(r) + r.resource.size();
+    for (const KnownSupplier& s : suppliers_)    n += sizeof(s) + s.need.size() + s.name.size() + s.sourceType.size();
+    for (const DangerMemory& d : danger_)        n += sizeof(d) + d.threat.size();
+    for (const LifeEvent& e : events_)           n += sizeof(e) + e.kind.size() + e.detail.size() + e.place.size();
+    for (const TrainerVerdict& t : trainers_)    n += sizeof(t) + t.trade.size() + t.why.size();
+    for (const CreatureVerdict& c : creatures_)  n += sizeof(c) + c.name.size();
+    n += unwearable_.size() * sizeof(u16);
+    return n;
+}
+
+void Memory::NoteTrainerVerdict(const TrainerVerdict& v) {
+    // One row per (skill, trade, NPC). Keying on (skill, trade) alone made
+    // every mage in the world one mage: the second trainer's answer
+    // overwrote the first's, and one refusal spoke for all of them.
+    for (TrainerVerdict& t : trainers_) {
+        if (t.skillId == v.skillId && t.trade == v.trade &&
+            t.npcSerial == v.npcSerial) { t = v; return; }
+    }
+    trainers_.push_back(v);
+}
+
+bool Memory::TrainerRefusedByNpc(int skillId, u32 npcSerial) const {
+    if (!npcSerial) return false;
+    for (const TrainerVerdict& t : trainers_) {
+        if (t.skillId == skillId && t.npcSerial == npcSerial && !t.taught)
+            return true;
+    }
+    return false;
+}
+
+std::vector<u32> Memory::TrainersWhoRefused(int skillId, const char* trade) const {
+    std::vector<u32> out;
+    if (!trade) return out;
+    for (const TrainerVerdict& t : trainers_) {
+        if (t.skillId != skillId || t.trade != trade || t.taught) continue;
+        if (!t.npcSerial) continue;
+        bool seen = false;
+        for (u32 s : out) { if (s == t.npcSerial) { seen = true; break; } }
+        if (!seen) out.push_back(t.npcSerial);
+    }
+    return out;
+}
+
+bool Memory::TrainerSaysMaxed(int skillId) const {
+    // TWO OF THE FIVE REFUSALS ARE ABOUT THE STUDENT, NOT THE TEACHER.
+    //
+    // "I know nothing about that" is one NPC's own limit, and writing off a
+    // whole trade on one of those is the mistake TrainerRefused exists to
+    // avoid -- Sphere's ceiling is min(NPC skill x 30%, NPCTrainMax, cap), so
+    // the next NPC of the same trade may well teach more.
+    //
+    // "You already know as much as I can teach" and "You know more about this
+    // than I do" are different in kind: they say the character is at or above
+    // what is teachable. sphere.ini caps NPCTrainMax at 300, so no NPC
+    // anywhere teaches past 30.0 -- once one has said this, every other one
+    // will too, and the trips are pure waste. "If npc says you already know
+    // trainNpc should go 0 on life" (project owner, 2026-08-29).
+    //
+    // Matched on the reason text, which is persisted with the verdict, so this
+    // survives a logout without a schema change.
+    for (const TrainerVerdict& t : trainers_) {
+        if (t.skillId != skillId || t.taught) continue;
+        if (t.why == "the character already exceeds the trainer" ||
+            t.why == "the trainer has nothing left to give")
+            return true;
+    }
+    return false;
+}
+
+bool Memory::TrainerRefused(int skillId, const char* trade) const {
+    if (!trade) return false;
+    // COUNT DISTINCT NPCs, AND IGNORE THE ONES THAT NAME NOBODY.
+    //
+    // A record with no serial predates the per-NPC split. It cannot be
+    // attributed, and it is usually a DUPLICATE of a serialled row for the
+    // same NPC -- Ysolde's legacy row and her row for Alenne 0x1145 are the
+    // same refusal written twice, which counted her twice toward exhaustion
+    // and would have retired the trade after only two real trainers. Those
+    // rows were written under a rule this code has discarded; they are kept
+    // for the record but they do not vote.
+    std::vector<u32> distinct;
+    for (const TrainerVerdict& t : trainers_) {
+        if (t.skillId != skillId || t.trade != trade || t.taught) continue;
+        if (!t.npcSerial) continue;
+        bool seen = false;
+        for (u32 s : distinct) { if (s == t.npcSerial) { seen = true; break; } }
+        if (!seen) distinct.push_back(t.npcSerial);
+    }
+    return static_cast<int>(distinct.size()) >= kTradeExhaustedAfter;
+}
+
+}  // namespace uo::life

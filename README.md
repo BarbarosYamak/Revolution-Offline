@@ -39,7 +39,9 @@ player could have achieved the same way.
 
 ```
 docs/                 the milestone record — see below
-bot/uo-client/        the headless client: src, include, tests, scenarios
+bot/uo-client/        the headless client and its autonomous "life" runner
+                      (merged from revolution-sphere-m1 with full history)
+archive/              superseded prototypes, kept for reference
 runtime/sphere.ini    server configuration, with the reasoning for each change
 runtime/scripts/
   revolution/         this project's own Sphere scripts

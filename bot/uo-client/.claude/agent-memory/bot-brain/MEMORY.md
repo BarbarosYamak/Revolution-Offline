@@ -1,0 +1,61 @@
+# bot-brain memory
+
+- [RETURN_HOME goal](return-home-goal.md) — stranded = travel cost with moongates AND not on guarded town ground; it once dragged Alder out of a Skara Brae errand
+- [Distance is travel cost](distance-is-travel-cost.md) — straight-line tiles lie once moongates exist; test guardedness town-wide, never per tile
+- [TravelToService prefers sightings](travel-to-service-prefers-sightings.md) — the region hint loses to a recent NPC sighting; use TravelToPoint when the destination is the point
+- [One resolver for need and handler](one-resolver-for-need-and-handler.md) — arm-A pattern: runner_detail resolver -> Observation fields defaulting to silent
+- [Worktree ctest needs -C Debug](worktree-build-notes.md) — fresh worktrees get a multi-config VS generator; m9/m4_economy_invariant fail there for missing generated data
+- [Grader covers 17 families](grader-covers-17-families.md) — wool logs under `bandages:`, treasure_hunter has no loop; take FARM-2 strings from Runner.cpp LogLines
+- [wave10 is truncated](project-wave10-truncated.md) — no session_summary/session_goals anywhere, so its low LIFE-GATE scores are an artefact
+- [Two sale questions](two-sale-questions.md) — "will an NPC pay" is not "would anyone buy"; conflating them silently disabled tailor/tinker/lumberjack
+- [progress counts issues, not results](progress-counts-issues-not-results.md) — progress=243 is a busy-wait credited per tick; helpers that return true for "come back later"
+- [Craft focus rotates per sitting](craft-focus-rotates.md) — satiation one level below GoalKind: 4 sittings on one product and the bench moves on
+- [A material by class is not a material by rule](a-material-by-class-is-not-a-material-by-rule.md) — fish is WorldGathered; ask the faucet registry before restricting "materials" or you delete a fisher's income
+- [Thresholds are rates, not numbers](thresholds-are-rates-not-numbers.md) — "500-600 ingots" is 5.5 units per skill point; two characters must get two caps
+- [Demand needs a voice](demand-needs-a-voice.md) — the buyer stood silent at the market for 3 minutes; WTB shout + one shared WTB parser
+- [Gather only when the market declines](gather-when-the-market-declines.md) — players first, per-ITEM `no_player_seller` gate; "cannot buy now" (broke / no session left) also counts as declined
+- [Wool makes cloth, not thread](wool-makes-cloth-not-thread.md) — the chain's real numbers, and why a bot tailor can weave but cannot sew
+- [A citation can point at the wrong case](a-citation-can-point-at-the-wrong-case.md) — right file:line, wrong switch branch; scissors never sheared a sheep
+- [Names arrive after a scan](names-arrive-after-a-scan.md) — an empty name-filtered scan means "not asked yet"; three pastures of sheep read as deserted 60 ms after arrival
+- [A spell's cost is not the profession's consumes list](a-spells-cost-is-not-the-professions-consumes-list.md) — obs.pack could not see sulfurous ash at all; QtyOf==0 means "not counted" as often as "not held"
+- [A trip budget cannot see travel time](a-trip-budget-cannot-see-travel-time.md) — 3 trips is a whole session at ~60s of walking each; clock the shopping half, escalate the rest
+- [A winning goal can hand itself away](a-winning-goal-can-hand-itself-away.md) — TRAIN_COMBAT won 84.5 and got 0 kills; a handoff is advice, the receiver must also out-score the field
+- [ms stand-downs die with the process](ms-stand-downs-die-with-the-process.md) — atMs is per-process steady_clock; count sessions via NeedConfig::sessionIndex for durable rests
+- [A book row's graphic is not a scroll's](a-book-row-graphic-is-not-a-scroll-graphic.md) — BookHasGraphic said "lacks it" about a spell the book refused; 84 gold on one Cunning Scroll, four times
+- [A supplier is not a customer](a-supplier-is-not-a-customer.md) — a crafter must not open by buying what she makes; damp the comfort needs, don't pin the goal order
+- [A bulk buy sets the batch size](a-bulk-buy-sets-the-batch-size.md) — 84 nightshade + 4 bottles read as "stocked"; size the sitting off the best-stocked input, via CraftBatchFromStock
+- [A sitting size is not the stock size](a-sitting-size-is-not-the-stock-size.md) — CraftBatchFromStock sizes the shopping trip, never the bench; 73 nightshade became ten sittings of five
+- [The supplier table disagrees with the policy](the-supplier-table-disagrees-with-the-policy.md) — a route word is not permission; a missing row reroutes to the player market, a wrong row hard-fails the goal
+- [A menu title is not a menu option](a-menu-title-is-not-a-menu-option.md) — kCraftMenus held "Spell Circle 3" (submenu header) not "third circle" (the itemdef NAME); every scribe sitting failed
+- [CANCAST gates the craft menu](cancast-gates-the-craft-menu.md) — TESTIF=<cancast> hides a whole circle for MANA as often as for a missing spell; a scroll in the book is not enough
+- [An unopened container is not empty](an-unopened-container-is-not-empty.md) — the book read 0 rows at login, FILL_SPELLBOOK won 77.0 every session and did nothing; the score was right, the input was wrong
+- [A stat ceiling is a skill property](a-stat-ceiling-is-a-skill-property.md) — reachable STR is max STAT_STR over the PLANNED skills; gate the Wrestling detour on the ceiling or a lumberjack drops his axe to punch rabbits
+- [An errand's exit cannot live in the errand](an-errands-exit-cannot-live-in-the-errand.md) — success silences the need, so the goal is never picked again; move the closing lock/flag to a per-tick keeper with a durable marker
+- [A stand-down that forgets reopens](a-standdown-that-forgets-reopens.md) — clearing the drained-counter count is safe only when the goal hands off to a different route
+- [An emergency overrides the catalogue](an-emergency-overrides-the-catalogue.md) — a crafter dying at 6/50 buys bandages; the override needs the life's own flee line or the tamer rule breaks
+- [A terminal step is work, not a refusal](a-terminal-step-is-work-not-a-refusal.md) — gate the handler's refusals only; `Abandon` clears the death record, and staleness belongs in the reader
+- [A kill belongs to the trip, not the fight](a-kill-belongs-to-the-trip-not-the-fight.md) — pre-selection hooks must record, not NoteProgress; TRAIN-2 wants a literal progress=1
+- [A keyword mechanic is a per-tick state](a-keyword-mechanic-is-a-per-tick-state.md) — he reached the guard zone and died in it without shouting; the ask belongs in Tick, not in the flee arm
+- [A tool list is a keep list](a-tool-list-is-a-keep-list.md) — a second `p.tools =` deleted the mage's spellbook, so DoBank boxed a 23-spell book as dead weight
+- [Unknown beats proven poor](unknown-beats-proven-poor.md) — an unopened book scored 0.5 and lost to the empty one with two rows; when looking is free, rank it near the top
+- [A short shelf is not the trade](a-short-shelf-is-not-the-trade.md) — skip that keeper's serial, ForgetVendorOffer, ask the next; only then goal_failed
+- [The atlas has no lumber](the-atlas-has-no-lumber.md) — zero PLACE rows yield lumber, so no seed and no nearest-forest fallback can exist
+- [A new goal does not stop the old walk](a-new-goal-does-not-stop-the-old-walk.md) — GATHER_LOGS won and the un-aborted hunt walk still carried him to the graveyard and killed him
+- [An allowance resets, knowledge does not](an-allowance-resets-knowledge-does-not.md) — trip counters belong to the errand and count arrivals; shops-already-tried lists survive
+- [A self-use skill has no failure message](a-self-use-skill-has-no-failure-message.md) — judge a practice bout by the 0x3A delta; Meditation at full mana cannot even start
+- [A blocked need shadows a ready one](a-blocked-need-shadows-a-ready-one.md) — FindNeed takes the first of a kind and the list is urgency-sorted; blocked entries get 0.0
+- [A planned skill must be gainable](a-planned-skill-must-be-gainable.md) — the one target the server refuses becomes want_train for ever; Utility Magery at 50.0 spends no mana
+- [A category is not a difficulty](a-category-is-not-a-difficulty.md) — every lich ring is still category Graveyard; tier from the row id, and the strong gate is UNKNOWN/shut
+- [A flee percent is not a retreat](a-flee-percent-is-not-a-retreat.md) — 22% of 51 hp is 11 hp, under two blows; hits-to-live, count the whole board, combine with max()
+- [A bystander is not an attacker](a-bystander-is-not-an-attacker.md) — counting hostiles in reach refused every graveyard board at 100% hp; count who is swinging, price company in the retreat floor
+- [War mode is not contact](war-mode-is-not-contact.md) — a crafter who never swings back had inCombat=false all the way down; the watchdog answered "rest" at 30% and 10% with four hostiles on her
+- [A retreat is not a failed attempt](a-retreat-is-not-a-failed-attempt.md) — NoteAttempt every 2s exhausted SURVIVE ten seconds into every flee and handed the slot back to BANK
+- [A phase is not a goal](a-phase-is-not-a-goal.md) — no goal runs in Phase::WindDown, so DoSurvive never guarded the logout walk; safety lives in the destination
+- [A label match is not a place](a-label-match-is-not-a-place.md) — "home city inside the hint's label" sent a Britain tinker to Brit Mine1; owner rules about WHERE need atlas PLACE ids
+- [A prune line must match the arming line](a-prune-line-must-match-the-arming-line.md) — 13 nightshade under a mark of 20 was struck off at qty>0; one predicate, one need row, one log per pick
+- [A label is not a defname](a-label-is-not-a-defname.md) — ConsumableNeed::name is prose; obs.pack/produces/PriceBook are defnames, so a label-named want matches nothing
+- [A seed is not a forum quote](a-seed-is-not-a-forum-quote.md) — the forum table stays verbatim; a good nobody priced gets a lower-ranked seed from the shard itemdef VALUE
+- [A handoff needs its own clock](a-handoff-needs-its-own-clock.md) — HandOff is advice and no_player_seller names the wrong item; a player-first wait carries its own 48s bound
+- [A cut consumes the whole stack](a-cut-consumes-the-whole-stack.md) — scissors delete the entire targeted cloth stack; size the withdrawal, never the cut, and keep the bench's share in the box
+- [A pack-only reader cannot see a crafter's stock](a-pack-only-reader-cannot-see-a-crafters-stock.md) — a crafter's goods live in the bank; obs.bank is free and a pack-only need reads a full box as empty-handed
+- [Upkeep shadows a crafter's work goal](upkeep-shadows-a-crafters-work-goal.md) — REPLACE_EQUIPMENT 260x0.50=130 beats every work weight; satisfy the comforts in a test, damp with a recorded fact live

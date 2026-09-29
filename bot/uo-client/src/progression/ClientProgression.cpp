@@ -9,6 +9,8 @@
 
 #include "Client.h"
 
+#include "uo/builders.h"
+
 #include <algorithm>
 
 namespace uo {
@@ -31,6 +33,35 @@ bool Client::PlayerSkillInfo(u16 index, SkillReport* out) const {
 i32 Client::PlayerSkillBase(u16 index) const {
     SkillReport r{};
     return PlayerSkillInfo(index, &r) ? static_cast<i32>(r.baseTenths) : -1;
+}
+
+i32 Client::PlayerSkillLock(u16 index) const {
+    SkillReport r{};
+    return PlayerSkillInfo(index, &r) ? static_cast<i32>(r.lock) : -1;
+}
+
+// Both of these are requests, not assertions: the server decides whether the
+// lock changes, and the next 0x3A tells us what it decided. Nothing here
+// touches a skill or stat VALUE -- only the arrow beside it, which is the
+// same thing a player clicks.
+void Client::ActionSetSkillLock(u16 index, u8 state) {
+    u8 buf[16];
+    const build::SkillLockEntry e{index, state};
+    const usize n = build::SkillLock(buf, &e, 1);
+    LogInfo("[build] skill %u lock -> %s\n", index,
+            state == build::kLockLocked ? "locked"
+                                        : (state == build::kLockDown ? "down" : "up"));
+    Send(buf, n, "0x3A skill lock");
+}
+
+void Client::ActionSetStatLock(u8 statCode, u8 state) {
+    u8 buf[16];
+    const usize n = build::StatLock(buf, statCode, state);
+    static const char* kNames[3] = {"STR", "DEX", "INT"};
+    LogInfo("[build] %s lock -> %s\n", statCode < 3 ? kNames[statCode] : "?",
+            state == build::kLockLocked ? "locked"
+                                        : (state == build::kLockDown ? "down" : "up"));
+    Send(buf, n, "0xBF.0x1A stat lock");
 }
 
 void Client::PlayerSkillsAll(std::vector<SkillReport>& out) const {

@@ -1,0 +1,1065 @@
+[17:29:35.325] LOG   [wave10_RevGen3_26_Casto] event session_start: text log opened
+[17:29:35.327] LOG   [wave10_RevGen3_26_Casto] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.329] INFO  [wave10_RevGen3_26_Casto] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.331] LOG   [wave10_RevGen3_26_Casto] event net_connected: connect 127.0.0.1:2593
+[17:29:35.332] INFO  [wave10_RevGen3_26_Casto] [net] connected.
+[17:29:35.333] INFO  [wave10_RevGen3_26_Casto] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.334] LOG   [wave10_RevGen3_26_Casto] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.336] INFO  [wave10_RevGen3_26_Casto] [life] autonomous player active for 'Castor' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.341] INFO  [wave10_RevGen3_26_Casto] [0xA8] 1 server(s):
+[17:29:35.342] INFO  [wave10_RevGen3_26_Casto]   [0] MyShard                   1.0.0.127  full=10%  tz=0
+[17:29:35.343] INFO  [wave10_RevGen3_26_Casto] [0x8C] game server = 127.0.0.1:2593  seed=0xC67A8553
+[17:29:35.344] LOG   [wave10_RevGen3_26_Casto] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xC67A8553
+[17:29:35.344] INFO  [wave10_RevGen3_26_Casto] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.345] LOG   [wave10_RevGen3_26_Casto] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.351] INFO  [wave10_RevGen3_26_Casto] [0xB9] server features = 0x0005
+[17:29:35.351] INFO  [wave10_RevGen3_26_Casto] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.352] INFO  [wave10_RevGen3_26_Casto]   [0] Castor
+[17:29:35.353] INFO  [wave10_RevGen3_26_Casto]   [1] <empty>
+[17:29:35.355] INFO  [wave10_RevGen3_26_Casto]   [2] <empty>
+[17:29:35.356] INFO  [wave10_RevGen3_26_Casto]   [3] <empty>
+[17:29:35.356] INFO  [wave10_RevGen3_26_Casto]   [4] <empty>
+[17:29:35.357] INFO  [wave10_RevGen3_26_Casto] [ui] playing slot 0 ('Castor')
+[17:29:35.361] INFO  [wave10_RevGen3_26_Casto] [0x1B] serial=0x000182D0 body=0x0191 pos=(2024,2808,10)
+[17:29:35.361] LOG   [wave10_RevGen3_26_Casto] event login_confirm: serial=0x000182D0 body=0x0191 pos=(2024,2808,10)
+[17:29:35.363] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(2024,2808,10) facing=5
+[17:29:35.364] INFO  [wave10_RevGen3_26_Casto] [0x55] login complete — entering world
+[17:29:35.364] LOG   [wave10_RevGen3_26_Casto] event in_world: 0x55 received
+[17:29:35.365] INFO  [wave10_RevGen3_26_Casto] [backpack] opening 0x400182CE
+[17:29:35.366] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.367] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: There are 29 other players here.
+[17:29:35.367] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.369] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: You are under the protection of the guards
+[17:29:35.375] INFO  [wave10_RevGen3_26_Casto] [action] requesting the skill list
+[17:29:35.377] INFO  [wave10_RevGen3_26_Casto] [0x24] open container 0x400182CE gump=60
+[17:29:35.381] INFO  [wave10_RevGen3_26_Casto] [0x3C] container contents: 8 item(s)
+[17:29:35.381] LOG   [wave10_RevGen3_26_Casto] event backpack_contents: serial=0x400182CE items=8
+[17:29:35.381] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.403] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.404] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.435] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.926] INFO  [wave10_RevGen3_26_Casto] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.929] INFO  [wave10_RevGen3_26_Casto] [survival] on
+[17:29:37.929] LOG   [wave10_RevGen3_26_Casto] event survival_mode: on
+[17:29:37.933] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:29:38.070] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Cove healer -- 1216 tiles and 1 gate for a service Trinsic Healer healer offers
+[17:29:38.071] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Delucia healer -- 1652 tiles and 3 gates for a service Trinsic Healer healer offers
+[17:29:38.071] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Wind healer -- 1772 tiles and 2 gates for a service Trinsic Healer healer offers
+[17:29:38.071] INFO  [wave10_RevGen3_26_Casto] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (2024,2808)
+[17:29:38.071] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(2024,2808)
+[17:29:38.072] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable   <- chosen
+[17:29:38.072] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable
+[17:29:38.072] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:38.073] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:38.073] LOG   [wave10_RevGen3_26_Casto] event travel_mode: moongate
+[17:29:38.073] INFO  [wave10_RevGen3_26_Casto] [travel] plan Trinsic Healer healer: ok legs=4 ~128 tiles transit=0 nodes=82
+[17:29:38.132] INFO  [wave10_RevGen3_26_Casto] [action] goto (1992,2808) from (2024,2808,10)
+[17:29:38.133] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1992,2808) from=(2024,2808)
+[17:29:38.134] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2024,2808,10) to (1992,2808)
+[17:29:38.134] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1992,2808) in background
+[17:29:38.195] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1992,2808): 35 steps in 5274.6us
+[17:29:42.983] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:29:43.612] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (2005,2805,z0); OpenDoor before step
+[17:29:43.612] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:29:48.043] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:29:49.513] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1992,2808,0)
+[17:29:49.514] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1992,2808,0); target (1992,2808); ARRIVED (off by 0 tile(s))
+[17:29:49.514] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1992,2808) target=(1992,2808) arrived=1 off=0
+[17:29:49.514] INFO  [wave10_RevGen3_26_Casto] [action] goto (1960,2822) from (1992,2808,0)
+[17:29:49.514] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1960,2822) from=(1992,2808)
+[17:29:49.514] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1992,2808,0) to (1960,2822)
+[17:29:49.514] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1960,2822) in background
+[17:29:49.575] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1960,2822): 44 steps in 2404.1us
+[17:29:53.078] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:29:58.139] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:03.152] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:03.397] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1960,2822,0)
+[17:30:03.397] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1960,2822,0); target (1960,2822); ARRIVED (off by 0 tile(s))
+[17:30:03.398] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1960,2822) target=(1960,2822) arrived=1 off=0
+[17:30:03.398] INFO  [wave10_RevGen3_26_Casto] [action] goto (1928,2824) from (1960,2822,0)
+[17:30:03.398] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1928,2824) from=(1960,2822)
+[17:30:03.398] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1960,2822,0) to (1928,2824)
+[17:30:03.398] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1928,2824) in background
+[17:30:03.457] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1928,2824): 32 steps in 1888.2us
+[17:30:08.209] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:11.522] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1928,2824,0)
+[17:30:11.522] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1928,2824,0); target (1928,2824); ARRIVED (off by 0 tile(s))
+[17:30:11.522] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1928,2824) target=(1928,2824) arrived=1 off=0
+[17:30:11.522] INFO  [wave10_RevGen3_26_Casto] [action] goto (1911,2805) from (1928,2824,0)
+[17:30:11.522] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1911,2805) from=(1928,2824)
+[17:30:11.522] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1928,2824,0) to (1911,2805,z0)
+[17:30:11.523] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1911,2805) in background
+[17:30:11.584] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1911,2805): 20 steps in 602.8us
+[17:30:13.270] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:14.925] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1916,2812,z0); OpenDoor before step
+[17:30:14.940] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:30:15.851] INFO  [wave10_RevGen3_26_Casto] [chat ascii] Devin: I am listening to thee.
+[17:30:16.390] INFO  [wave10_RevGen3_26_Casto] [travel] Trinsic Healer healer ARRIVED at (1916,2810,0)
+[17:30:16.390] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Trinsic Healer healer' ok=1 at=(1916,2810) legs=4 plans=1 why=''
+[17:30:16.451] INFO  [wave10_RevGen3_26_Casto] [action] scanning nearby mobiles for names
+[17:30:16.452] INFO  [wave10_RevGen3_26_Casto] [action] requested 3 paperdoll(s) for trade titles
+[17:30:16.467] INFO  [wave10_RevGen3_26_Casto] [mobiles] nearby (5):
+[17:30:16.467] INFO  [wave10_RevGen3_26_Casto]   Ryanne 0x0000F775
+[17:30:16.467] INFO  [wave10_RevGen3_26_Casto]   Devin 0x0000F7B0
+[17:30:16.467] INFO  [wave10_RevGen3_26_Casto]   Quenby 0x0000F7FA
+[17:30:16.467] INFO  [wave10_RevGen3_26_Casto]   Ghislaine 0x0000F74B
+[17:30:16.467] INFO  [wave10_RevGen3_26_Casto]   Ambrose 0x0000F73D
+[17:30:16.468] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1916,2810,0) facing=6
+[17:30:16.468] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F7B0: "Devin, the healer"
+[17:30:16.468] INFO  [wave10_RevGen3_26_Casto] [world] Devin, the healer is a healer at (1911,2808)
+[17:30:16.468] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1916,2810,0) facing=7
+[17:30:16.468] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F775: "Ryanne, the healer guildmistress"
+[17:30:16.468] INFO  [wave10_RevGen3_26_Casto] [world] Ryanne, the healer guildmistress is a healer at (1915,2808)
+[17:30:16.468] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1916,2810,0) facing=1
+[17:30:16.468] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F7FA: "Quenby, the waitress"
+[17:30:18.323] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:19.546] INFO  [wave10_RevGen3_26_Casto] [travel] mobile 0x0000F7B0 -> (1912,2809) r=1 from (1916,2810)
+[17:30:19.546] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='mobile 0x0000F7B0' target=(1912,2809) radius=1 from=(1916,2810)
+[17:30:19.546] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:30:19.547] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:30:19.547] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:19.547] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:19.547] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:30:19.547] INFO  [wave10_RevGen3_26_Casto] [travel] plan mobile 0x0000F7B0: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:19.608] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1916,2810,0); target (1911,2805); stopped short (off by 10 tile(s))
+[17:30:19.608] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1916,2810) target=(1911,2805) arrived=0 off=10
+[17:30:19.608] INFO  [wave10_RevGen3_26_Casto] [action] goto (1912,2809) from (1916,2810,0)
+[17:30:19.609] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1912,2809) from=(1916,2810)
+[17:30:19.609] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1916,2810,0) to (1912,2809,z0)
+[17:30:19.609] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1912,2809) in background
+[17:30:20.806] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (1912,2809) avoiding 0 block(s); stopping (search 1151099.4us)
+[17:30:20.808] WARN  [wave10_RevGen3_26_Casto] [bot] start (1916,2810,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 149 item(s), 5 mobile(s))
+[17:30:20.868] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1916,2810,0); target (1912,2809); stopped short (off by 5 tile(s))
+[17:30:20.868] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1916,2810) target=(1912,2809) arrived=0 off=5
+[17:30:22.127] INFO  [wave10_RevGen3_26_Casto] [action] goto (1912,2809) from (1916,2810,0)
+[17:30:22.128] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1912,2809) from=(1916,2810)
+[17:30:22.128] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1916,2810,0) to (1912,2809,z0)
+[17:30:22.128] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1912,2809) in background
+[17:30:22.128] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1912,2809): 4 steps in 57.8us
+[17:30:22.883] INFO  [wave10_RevGen3_26_Casto] [bot] lookahead patched around block at step 1: anchor=2 new segment=4 path=4 in 106.4us
+[17:30:23.377] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:24.411] INFO  [wave10_RevGen3_26_Casto] [travel] mobile 0x0000F7B0 ARRIVED at (1912,2810,0)
+[17:30:24.411] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='mobile 0x0000F7B0' ok=1 at=(1912,2810) legs=1 plans=1 why=''
+[17:30:24.472] INFO  [wave10_RevGen3_26_Casto] [ACTION] vendor_buy start
+[17:30:24.472] INFO  [wave10_RevGen3_26_Casto] [VENDOR] open vendor=0x0000F7B0 say='Devin buy'
+[17:30:24.473] INFO  [wave10_RevGen3_26_Casto] [chat uni  ] Castor: Devin buy
+[17:30:24.473] INFO  [wave10_RevGen3_26_Casto] [chat ascii] Devin: I would gladly sell to thee of my many wares.
+[17:30:24.474] INFO  [wave10_RevGen3_26_Casto] [0x3C] container contents: 4 item(s)
+[17:30:24.474] INFO  [wave10_RevGen3_26_Casto] [0x74] pairing: straight (straight 4, mirrored 0 of 4 rows)
+[17:30:24.474] INFO  [wave10_RevGen3_26_Casto] [0x74] vendor shop data: cont=0x4000F7AA 4 item(s), layer=0x1A
+[17:30:24.474] INFO  [wave10_RevGen3_26_Casto] [0x74]   Heal                         gfx=0x0F0C qty=9    price=30
+[17:30:24.474] INFO  [wave10_RevGen3_26_Casto] [0x74]   Ginseng                      gfx=0x0F85 qty=18   price=3
+[17:30:24.474] INFO  [wave10_RevGen3_26_Casto] [0x74]   Garlic                       gfx=0x0F84 qty=17   price=3
+[17:30:24.474] INFO  [wave10_RevGen3_26_Casto] [0x74]   Refresh                      gfx=0x0F0B qty=19   price=16
+[17:30:24.474] INFO  [wave10_RevGen3_26_Casto] [0x3C] container contents: 0 item(s)
+[17:30:24.475] INFO  [wave10_RevGen3_26_Casto] [0x74] vendor shop data: cont=0x400132C3 0 item(s), layer=0x1B
+[17:30:24.475] INFO  [wave10_RevGen3_26_Casto] [VENDOR] offer from 0x0000F7B0: 4 item(s)
+[17:30:24.475] INFO  [wave10_RevGen3_26_Casto] [VENDOR]   0x4001223B Heal                   x9   30 gp
+[17:30:24.475] INFO  [wave10_RevGen3_26_Casto] [VENDOR]   0x4001223A Ginseng                x18  3 gp
+[17:30:24.475] INFO  [wave10_RevGen3_26_Casto] [VENDOR]   0x40012239 Garlic                 x17  3 gp
+[17:30:24.475] INFO  [wave10_RevGen3_26_Casto] [VENDOR]   0x40012238 Refresh                x19  16 gp
+[17:30:24.475] LOG   [wave10_RevGen3_26_Casto] event vendor_offer: vendor=0x0000F7B0 items=4
+[17:30:24.475] INFO  [wave10_RevGen3_26_Casto] [ACTION_RESULT] vendor_buy success (3ms) vendor offer received
+[17:30:24.476] LOG   [wave10_RevGen3_26_Casto] event action_result: vendor_buy success took=3ms vendor offer received
+[17:30:24.476] INFO  [wave10_RevGen3_26_Casto] [0x24] vendor buy gump for 0x0000F7B0
+[17:30:28.418] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:32.283] INFO  [wave10_RevGen3_26_Casto] [travel] Trinsic provisioner -> (1852,2831) r=5 from (1912,2810)
+[17:30:32.284] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='Trinsic provisioner' target=(1852,2831) radius=5 from=(1912,2810)
+[17:30:32.284] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable   <- chosen
+[17:30:32.284] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable
+[17:30:32.284] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:32.284] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:32.284] LOG   [wave10_RevGen3_26_Casto] event travel_mode: moongate
+[17:30:32.285] INFO  [wave10_RevGen3_26_Casto] [travel] plan Trinsic provisioner: ok legs=2 ~88 tiles transit=0 nodes=58
+[17:30:32.285] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1912,2810,0); target (1912,2809); stopped short (off by 1 tile(s))
+[17:30:32.285] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1912,2810) target=(1912,2809) arrived=0 off=1
+[17:30:32.285] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2824) from (1912,2810,0)
+[17:30:32.285] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2824) from=(1912,2810)
+[17:30:32.285] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1912,2810,0) to (1880,2824)
+[17:30:32.285] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2824) in background
+[17:30:32.336] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1880,2824): 40 steps in 5437.1us
+[17:30:33.462] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:34.713] WARN  [wave10_RevGen3_26_Casto] [0x21] move REJECTED seq=10; server says (1915,2813,0) facing=5
+[17:30:34.714] INFO  [wave10_RevGen3_26_Casto] [bot] step (1915,2813,0)->(1914,2814,0) rejected; OpenDoor + retry
+[17:30:34.714] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:30:34.714] WARN  [wave10_RevGen3_26_Casto] [bot] 0x20 resync; aborting path
+[17:30:34.714] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1915,2813,0) facing=6
+[17:30:34.715] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1915,2813,0); target (1880,2824); stopped short (off by 46 tile(s))
+[17:30:34.715] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1915,2813) target=(1880,2824) arrived=0 off=46
+[17:30:35.930] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2824) from (1915,2813,0)
+[17:30:35.930] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2824) from=(1915,2813)
+[17:30:35.930] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1915,2813,0) to (1880,2824)
+[17:30:35.930] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2824) in background
+[17:30:35.991] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1880,2824): 35 steps in 4053.9us
+[17:30:38.503] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:43.528] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:46.234] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1880,2824,5)
+[17:30:46.234] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1880,2824,5); target (1880,2824); ARRIVED (off by 0 tile(s))
+[17:30:46.234] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1880,2824) target=(1880,2824) arrived=1 off=0
+[17:30:46.234] INFO  [wave10_RevGen3_26_Casto] [action] goto (1852,2831) from (1880,2824,5)
+[17:30:46.235] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1852,2831) from=(1880,2824)
+[17:30:46.235] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1880,2824,5) to (1852,2831,z10)
+[17:30:46.235] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1852,2831) in background
+[17:30:46.295] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1852,2831): 36 steps in 10903.1us
+[17:30:48.587] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:53.633] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:55.502] WARN  [wave10_RevGen3_26_Casto] [0x21] move REJECTED seq=39; server says (1854,2838,10) facing=7
+[17:30:55.503] INFO  [wave10_RevGen3_26_Casto] [bot] step (1854,2838,10)->(1853,2837,10) rejected; OpenDoor + retry
+[17:30:55.517] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:30:55.517] WARN  [wave10_RevGen3_26_Casto] [bot] 0x20 resync; aborting path
+[17:30:55.518] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1854,2838,10) facing=0
+[17:30:55.518] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1854,2838,10); target (1852,2831); stopped short (off by 9 tile(s))
+[17:30:55.518] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1854,2838) target=(1852,2831) arrived=0 off=9
+[17:30:56.746] INFO  [wave10_RevGen3_26_Casto] [action] goto (1852,2831) from (1854,2838,10)
+[17:30:56.747] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1852,2831) from=(1854,2838)
+[17:30:56.747] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1854,2838,10) to (1852,2831,z10)
+[17:30:56.747] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1852,2831) in background
+[17:30:56.807] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1852,2831): 7 steps in 277.7us
+[17:30:57.284] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1853,2836,z10); OpenDoor before step
+[17:30:57.299] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:30:58.161] INFO  [wave10_RevGen3_26_Casto] [travel] Trinsic provisioner ARRIVED at (1853,2836,10)
+[17:30:58.161] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Trinsic provisioner' ok=1 at=(1853,2836) legs=2 plans=1 why=''
+[17:30:59.824] INFO  [wave10_RevGen3_26_Casto] [travel] Britannia Provisions provisioner -> (1850,2796) r=5 from (1853,2836)
+[17:30:59.824] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='Britannia Provisions provisioner' target=(1850,2796) radius=5 from=(1853,2836)
+[17:30:59.824] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:30:59.824] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:30:59.824] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:59.824] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:59.825] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:30:59.825] INFO  [wave10_RevGen3_26_Casto] [travel] plan Britannia Provisions provisioner: ok legs=1 ~40 tiles transit=0 nodes=0
+[17:30:59.825] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:30:59.825] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1853,2836,10); target (1852,2831); stopped short (off by 6 tile(s))
+[17:30:59.825] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1853,2836) target=(1852,2831) arrived=0 off=6
+[17:30:59.825] INFO  [wave10_RevGen3_26_Casto] [action] goto (1850,2796) from (1853,2836,10)
+[17:30:59.825] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1850,2796) from=(1853,2836)
+[17:30:59.826] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1853,2836,10) to (1850,2796,z-8)
+[17:30:59.826] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1850,2796) in background
+[17:30:59.881] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1850,2796): 59 steps in 19011.1us
+[17:31:04.885] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:09.886] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:14.893] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:15.648] INFO  [wave10_RevGen3_26_Casto] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=11 in 685.0us
+[17:31:16.604] INFO  [wave10_RevGen3_26_Casto] [travel] Britannia Provisions provisioner ARRIVED at (1854,2800,-8)
+[17:31:16.605] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Britannia Provisions provisioner' ok=1 at=(1854,2800) legs=1 plans=1 why=''
+[17:31:18.793] INFO  [wave10_RevGen3_26_Casto] [travel] Adventurer's Clothing tailor -> (1981,2838) r=5 from (1854,2800)
+[17:31:19.048] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='Adventurer's Clothing tailor' target=(1981,2838) radius=5 from=(1854,2800)
+[17:31:19.237] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable   <- chosen
+[17:31:19.452] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable
+[17:31:19.647] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:19.690] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:19.691] LOG   [wave10_RevGen3_26_Casto] event travel_mode: moongate
+[17:31:19.691] INFO  [wave10_RevGen3_26_Casto] [travel] plan Adventurer's Clothing tailor: ok legs=4 ~160 tiles transit=0 nodes=134
+[17:31:19.691] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1854,2800,-8); target (1850,2796); stopped short (off by 8 tile(s))
+[17:31:19.691] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1854,2800) target=(1850,2796) arrived=0 off=8
+[17:31:19.692] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2824) from (1854,2800,-8)
+[17:31:19.692] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2824) from=(1854,2800)
+[17:31:19.692] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1854,2800,-8) to (1880,2824)
+[17:31:19.692] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2824) in background
+[17:31:19.745] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1880,2824): 26 steps in 6785.9us
+[17:31:19.931] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:24.941] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:26.402] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1880,2824,5)
+[17:31:26.402] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1880,2824,5); target (1880,2824); ARRIVED (off by 0 tile(s))
+[17:31:26.403] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1880,2824) target=(1880,2824) arrived=1 off=0
+[17:31:26.403] INFO  [wave10_RevGen3_26_Casto] [action] goto (1912,2824) from (1880,2824,5)
+[17:31:26.403] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1912,2824) from=(1880,2824)
+[17:31:26.403] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1880,2824,5) to (1912,2824)
+[17:31:26.403] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1912,2824) in background
+[17:31:26.463] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1912,2824): 35 steps in 1167.7us
+[17:31:29.999] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:35.060] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:35.492] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1912,2824,3)
+[17:31:35.493] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1912,2824,3); target (1912,2824); ARRIVED (off by 0 tile(s))
+[17:31:35.493] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1912,2824) target=(1912,2824) arrived=1 off=0
+[17:31:35.493] INFO  [wave10_RevGen3_26_Casto] [action] goto (1944,2842) from (1912,2824,3)
+[17:31:35.493] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1944,2842) from=(1912,2824)
+[17:31:35.493] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1912,2824,3) to (1944,2842)
+[17:31:35.494] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1944,2842) in background
+[17:31:35.553] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1944,2842): 49 steps in 16140.0us
+[17:31:40.102] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:45.124] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:48.296] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1944,2842,15)
+[17:31:48.296] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1944,2842,15); target (1944,2842); ARRIVED (off by 0 tile(s))
+[17:31:48.296] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1944,2842) target=(1944,2842) arrived=1 off=0
+[17:31:48.297] INFO  [wave10_RevGen3_26_Casto] [action] goto (1981,2838) from (1944,2842,15)
+[17:31:48.297] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1981,2838) from=(1944,2842)
+[17:31:48.297] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1944,2842,15) to (1981,2838,z15)
+[17:31:48.297] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1981,2838) in background
+[17:31:48.357] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1981,2838): 57 steps in 15192.2us
+[17:31:50.159] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:31:55.179] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:00.228] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:00.244] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1987,2845,z15); OpenDoor before step
+[17:32:00.244] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:32:01.848] INFO  [wave10_RevGen3_26_Casto] [travel] Adventurer's Clothing tailor ARRIVED at (1986,2843,15)
+[17:32:01.848] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Adventurer's Clothing tailor' ok=1 at=(1986,2843) legs=4 plans=1 why=''
+[17:32:01.957] INFO  [wave10_RevGen3_26_Casto] [travel] The Rusty Anchor innkeeper -> (2033,2801) r=5 from (1986,2843)
+[17:32:01.957] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='The Rusty Anchor innkeeper' target=(2033,2801) radius=5 from=(1986,2843)
+[17:32:01.957] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:32:01.957] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:32:01.958] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:01.958] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:01.958] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:32:01.958] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Rusty Anchor innkeeper: no world route to the destination legs=0 ~0 tiles transit=0 nodes=1
+[17:32:01.958] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1986,2843,15); target (1981,2838); stopped short (off by 10 tile(s))
+[17:32:01.958] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1986,2843) target=(1981,2838) arrived=0 off=10
+[17:32:01.958] WARN  [wave10_RevGen3_26_Casto] [travel] route exhausted at (1986,2843,15); trying to reach (1976,2840,15) to get somewhere routable (escape 1/3)
+[17:32:01.958] LOG   [wave10_RevGen3_26_Casto] event travel_escape: from=(1986,2843,15) to=(1976,2840) attempt=1
+[17:32:01.959] INFO  [wave10_RevGen3_26_Casto] [action] goto (1976,2840) from (1986,2843,15)
+[17:32:01.959] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1976,2840) from=(1986,2843)
+[17:32:01.959] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1986,2843,15) to (1976,2840,z15)
+[17:32:01.959] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1976,2840) in background
+[17:32:01.987] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1976,2840): 11 steps in 325.4us
+[17:32:04.476] INFO  [wave10_RevGen3_26_Casto] [chat ascii] Lowell: Hmm?
+[17:32:05.240] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:05.566] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1976,2840,15)
+[17:32:05.566] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1976,2840,15); target (1976,2840); ARRIVED (off by 0 tile(s))
+[17:32:05.566] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1976,2840) target=(1976,2840) arrived=1 off=0
+[17:32:05.567] INFO  [wave10_RevGen3_26_Casto] [travel] recovery walk reached its anchor at (1976,2840,15) (off 0); attempt 1/3
+[17:32:05.567] LOG   [wave10_RevGen3_26_Casto] event travel_recovery_done: reached=1 at=(1976,2840,15) off=0 attempt=1
+[17:32:05.582] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable   <- chosen
+[17:32:05.582] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable
+[17:32:05.582] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:05.583] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:05.583] LOG   [wave10_RevGen3_26_Casto] event travel_mode: moongate
+[17:32:05.583] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Rusty Anchor innkeeper: ok legs=2 ~96 tiles transit=0 nodes=49
+[17:32:05.642] INFO  [wave10_RevGen3_26_Casto] [action] goto (2008,2840) from (1976,2840,15)
+[17:32:05.642] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2008,2840) from=(1976,2840)
+[17:32:05.642] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1976,2840,15) to (2008,2840)
+[17:32:05.642] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2008,2840) in background
+[17:32:05.703] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (2008,2840): 33 steps in 3501.6us
+[17:32:10.242] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:10.443] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1989,2846,z15); OpenDoor before step
+[17:32:10.458] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:32:15.274] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:16.544] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (2008,2840,15)
+[17:32:16.545] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2008,2840); ARRIVED (off by 0 tile(s))
+[17:32:16.545] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2008,2840) arrived=1 off=0
+[17:32:16.545] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:16.545] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:16.545] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:16.545] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:18.716] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 2134353.1us)
+[17:32:18.717] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 1 mobile(s))
+[17:32:18.779] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:18.779] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:20.023] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:20.023] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:20.023] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:20.023] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:20.332] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:21.929] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 1889481.0us)
+[17:32:21.930] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 1 mobile(s))
+[17:32:21.990] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:21.991] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:23.243] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:32:23.243] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:32:23.244] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:23.244] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:23.244] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:32:23.244] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Rusty Anchor innkeeper: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:32:24.754] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:24.755] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:24.755] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:24.755] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:25.369] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:26.772] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 1955864.1us)
+[17:32:26.772] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 1 mobile(s))
+[17:32:26.833] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:26.834] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:28.075] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:28.076] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:28.076] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:28.076] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:29.544] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 1453155.8us)
+[17:32:29.544] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 2 mobile(s))
+[17:32:29.605] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:29.606] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:30.373] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:30.807] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:30.808] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:30.808] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:30.808] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:32.149] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 1327613.5us)
+[17:32:32.149] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 2 mobile(s))
+[17:32:32.210] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:32.210] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:33.437] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:32:33.438] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:32:33.438] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:33.438] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:33.438] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:32:33.438] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Rusty Anchor innkeeper: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:32:35.399] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:36.448] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:36.449] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:36.449] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:36.449] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:37.780] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 1324062.8us)
+[17:32:37.780] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 2 mobile(s))
+[17:32:37.841] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:37.841] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:39.062] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:39.063] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:39.063] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:39.064] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:40.452] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:40.453] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 1345368.7us)
+[17:32:40.453] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 2 mobile(s))
+[17:32:40.515] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:40.515] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:41.754] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:41.755] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:41.755] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:41.755] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:43.166] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 1374239.8us)
+[17:32:43.166] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 2 mobile(s))
+[17:32:43.229] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:43.229] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:44.472] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:32:44.472] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:32:44.472] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:44.472] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:44.472] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:32:44.473] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Rusty Anchor innkeeper: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:32:45.500] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:48.981] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:48.982] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:48.982] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:48.982] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:50.520] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:51.322] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 2336819.7us)
+[17:32:51.323] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 3 mobile(s))
+[17:32:51.386] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:51.386] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:52.606] INFO  [wave10_RevGen3_26_Casto] [action] goto (2033,2801) from (2008,2840,15)
+[17:32:52.606] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(2033,2801) from=(2008,2840)
+[17:32:52.606] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (2033,2801,z10)
+[17:32:52.607] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (2033,2801) in background
+[17:32:54.977] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (2033,2801) avoiding 0 block(s); stopping (search 2322359.4us)
+[17:32:54.977] WARN  [wave10_RevGen3_26_Casto] [bot] start (2008,2840,15) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 3 mobile(s))
+[17:32:55.038] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (2008,2840,15); target (2033,2801); stopped short (off by 64 tile(s))
+[17:32:55.039] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(2008,2840) target=(2033,2801) arrived=0 off=64
+[17:32:55.039] WARN  [wave10_RevGen3_26_Casto] [travel] route exhausted at (2008,2840,15); trying to reach (1992,2824,0) to get somewhere routable (escape 2/3)
+[17:32:55.039] LOG   [wave10_RevGen3_26_Casto] event travel_escape: from=(2008,2840,15) to=(1992,2824) attempt=2
+[17:32:55.040] INFO  [wave10_RevGen3_26_Casto] [action] goto (1992,2824) from (2008,2840,15)
+[17:32:55.040] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1992,2824) from=(2008,2840)
+[17:32:55.040] INFO  [wave10_RevGen3_26_Casto] [bot] running from (2008,2840,15) to (1992,2824,z0)
+[17:32:55.040] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1992,2824) in background
+[17:32:55.099] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1992,2824): 16 steps in 2184.5us
+[17:32:55.560] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:32:58.940] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1992,2824,0)
+[17:32:58.940] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1992,2824,0); target (1992,2824); ARRIVED (off by 0 tile(s))
+[17:32:58.941] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1992,2824) target=(1992,2824) arrived=1 off=0
+[17:32:58.941] INFO  [wave10_RevGen3_26_Casto] [travel] recovery walk reached its anchor at (1992,2824,0) (off 0); attempt 2/3
+[17:32:58.941] LOG   [wave10_RevGen3_26_Casto] event travel_recovery_done: reached=1 at=(1992,2824,0) off=0 attempt=2
+[17:32:59.001] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:32:59.001] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:32:59.001] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:59.001] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:59.001] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:32:59.009] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Rusty Anchor innkeeper: no world route to the destination legs=0 ~0 tiles transit=0 nodes=23705
+[17:32:59.009] WARN  [wave10_RevGen3_26_Casto] [travel] route exhausted at (1992,2824,0); trying to reach (1992,2838,15) to get somewhere routable (escape 3/3)
+[17:32:59.009] LOG   [wave10_RevGen3_26_Casto] event travel_escape: from=(1992,2824,0) to=(1992,2838) attempt=3
+[17:32:59.009] INFO  [wave10_RevGen3_26_Casto] [action] goto (1992,2838) from (1992,2824,0)
+[17:32:59.010] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1992,2838) from=(1992,2824)
+[17:32:59.010] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1992,2824,0) to (1992,2838,z15)
+[17:32:59.010] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1992,2838) in background
+[17:33:00.573] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:01.327] WARN  [wave10_RevGen3_26_Casto] [bot] no path to (1992,2838) avoiding 0 block(s); stopping (search 2267065.0us)
+[17:33:01.327] WARN  [wave10_RevGen3_26_Casto] [bot] start (1992,2824,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 466 item(s), 7 mobile(s))
+[17:33:01.389] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1992,2824,0); target (1992,2838); stopped short (off by 14 tile(s))
+[17:33:01.389] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1992,2824) target=(1992,2838) arrived=0 off=14
+[17:33:01.390] INFO  [wave10_RevGen3_26_Casto] [travel] recovery walk fell short at (1992,2824,0) (off 14); attempt 3/3
+[17:33:01.390] LOG   [wave10_RevGen3_26_Casto] event travel_recovery_done: reached=0 at=(1992,2824,0) off=14 attempt=3
+[17:33:01.451] INFO  [wave10_RevGen3_26_Casto] [action] scanning nearby mobiles for names
+[17:33:01.452] INFO  [wave10_RevGen3_26_Casto] [action] requested 3 paperdoll(s) for trade titles
+[17:33:01.467] INFO  [wave10_RevGen3_26_Casto] [mobiles] nearby (7):
+[17:33:01.467] INFO  [wave10_RevGen3_26_Casto]   Burhan 0x0000F640
+[17:33:01.467] INFO  [wave10_RevGen3_26_Casto]   Cat 0x00015B28
+[17:33:01.467] INFO  [wave10_RevGen3_26_Casto]   Lowell 0x0000F6C8
+[17:33:01.467] INFO  [wave10_RevGen3_26_Casto]   raven 0x0000F719
+[17:33:01.467] INFO  [wave10_RevGen3_26_Casto]   Daphnie 0x0000F64C
+[17:33:01.467] INFO  [wave10_RevGen3_26_Casto]   Quinn 0x0000F708
+[17:33:01.468] INFO  [wave10_RevGen3_26_Casto]   Cat 0x000111A0
+[17:33:01.468] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1992,2824,0) facing=5
+[17:33:01.468] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F640: "Burhan, the tailor guildmaster"
+[17:33:01.468] INFO  [wave10_RevGen3_26_Casto] [world] Burhan, the tailor guildmaster is a tailor at (1983,2834)
+[17:33:01.468] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F6C8: "Lowell, the tailor"
+[17:33:01.468] INFO  [wave10_RevGen3_26_Casto] [world] Lowell, the tailor is a tailor at (1981,2839)
+[17:33:01.468] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F64C: "Daphnie, the weaver"
+[17:33:01.468] INFO  [wave10_RevGen3_26_Casto] [world] Daphnie, the weaver is a tailor at (1976,2835)
+[17:33:04.473] INFO  [wave10_RevGen3_26_Casto] [travel] The Keg and Anchor tavernkeeper -> (1935,2796) r=5 from (1992,2824)
+[17:33:04.473] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='The Keg and Anchor tavernkeeper' target=(1935,2796) radius=5 from=(1992,2824)
+[17:33:04.473] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable   <- chosen
+[17:33:04.473] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable
+[17:33:04.474] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:04.474] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:04.474] LOG   [wave10_RevGen3_26_Casto] event travel_mode: moongate
+[17:33:04.474] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Keg and Anchor tavernkeeper: ok legs=2 ~80 tiles transit=0 nodes=47
+[17:33:04.504] INFO  [wave10_RevGen3_26_Casto] [action] goto (1960,2822) from (1992,2824,0)
+[17:33:04.505] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1960,2822) from=(1992,2824)
+[17:33:04.505] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1992,2824,0) to (1960,2822)
+[17:33:04.505] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1960,2822) in background
+[17:33:04.565] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1960,2822): 32 steps in 3254.9us
+[17:33:05.602] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:10.629] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:14.372] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1960,2822,0)
+[17:33:14.372] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1960,2822,0); target (1960,2822); ARRIVED (off by 0 tile(s))
+[17:33:14.372] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1960,2822) target=(1960,2822) arrived=1 off=0
+[17:33:14.372] INFO  [wave10_RevGen3_26_Casto] [action] goto (1935,2796) from (1960,2822,0)
+[17:33:14.373] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1935,2796) from=(1960,2822)
+[17:33:14.373] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1960,2822,0) to (1935,2796,z0)
+[17:33:14.373] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1935,2796) in background
+[17:33:14.434] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1935,2796): 43 steps in 16614.2us
+[17:33:15.635] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:20.645] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:21.153] WARN  [wave10_RevGen3_26_Casto] [0x21] move REJECTED seq=28; server says (1952,2798,10) facing=7
+[17:33:21.154] INFO  [wave10_RevGen3_26_Casto] [bot] step (1952,2798,10)->(1951,2797,9) rejected; OpenDoor + retry
+[17:33:21.891] WARN  [wave10_RevGen3_26_Casto] [0x21] move REJECTED seq=0; server says (1952,2798,10) facing=7
+[17:33:21.891] INFO  [wave10_RevGen3_26_Casto] [bot] step (1952,2798,10)->(1951,2797,9) rejected; avoiding edge + rerouting
+[17:33:21.892] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1935,2796) in background
+[17:33:21.952] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1935,2796): 21 steps in 2176.5us
+[17:33:25.646] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:25.709] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1941,2794,z0); OpenDoor before step
+[17:33:25.725] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:33:26.849] INFO  [wave10_RevGen3_26_Casto] [travel] The Keg and Anchor tavernkeeper ARRIVED at (1940,2794,0)
+[17:33:26.849] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='The Keg and Anchor tavernkeeper' ok=1 at=(1940,2794) legs=2 plans=1 why=''
+[17:33:26.910] INFO  [wave10_RevGen3_26_Casto] [action] scanning nearby mobiles for names
+[17:33:26.910] INFO  [wave10_RevGen3_26_Casto] [action] requested 3 paperdoll(s) for trade titles
+[17:33:26.913] INFO  [wave10_RevGen3_26_Casto] [mobiles] nearby (4):
+[17:33:26.913] INFO  [wave10_RevGen3_26_Casto]   Burr 0x0000F7ED
+[17:33:26.913] INFO  [wave10_RevGen3_26_Casto]   Quenby 0x0000F7FA
+[17:33:26.913] INFO  [wave10_RevGen3_26_Casto]   Ambrose 0x0000F73D
+[17:33:26.913] INFO  [wave10_RevGen3_26_Casto]   Ghislaine 0x0000F74B
+[17:33:26.914] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F7ED: "Burr, the tavernkeeper"
+[17:33:26.914] INFO  [wave10_RevGen3_26_Casto] [world] Burr, the tavernkeeper is a innkeeper at (1935,2792)
+[17:33:26.914] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1940,2794,0) facing=7
+[17:33:26.914] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F73D: "Ambrose, the cook"
+[17:33:26.914] INFO  [wave10_RevGen3_26_Casto] [world] Ambrose, the cook is a cook at (1934,2791)
+[17:33:26.914] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1940,2794,0) facing=5
+[17:33:26.915] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F74B: "Ghislaine, the tavernkeeper"
+[17:33:26.915] INFO  [wave10_RevGen3_26_Casto] [world] Ghislaine, the tavernkeeper is a innkeeper at (1930,2799)
+[17:33:29.942] INFO  [wave10_RevGen3_26_Casto] [travel] Honorable Arms blacksmith -> (1935,2766) r=5 from (1940,2794)
+[17:33:29.942] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='Honorable Arms blacksmith' target=(1935,2766) radius=5 from=(1940,2794)
+[17:33:29.942] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:33:29.943] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:33:29.943] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:29.943] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:29.943] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:33:29.943] INFO  [wave10_RevGen3_26_Casto] [travel] plan Honorable Arms blacksmith: ok legs=1 ~28 tiles transit=0 nodes=0
+[17:33:30.004] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1940,2794,0); target (1935,2796); stopped short (off by 7 tile(s))
+[17:33:30.005] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1940,2794) target=(1935,2796) arrived=0 off=7
+[17:33:30.005] INFO  [wave10_RevGen3_26_Casto] [action] goto (1935,2766) from (1940,2794,0)
+[17:33:30.005] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1935,2766) from=(1940,2794)
+[17:33:30.005] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1940,2794,0) to (1935,2766,z10)
+[17:33:30.005] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1935,2766) in background
+[17:33:30.066] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1935,2766): 31 steps in 9671.0us
+[17:33:30.651] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:31.025] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1942,2792,z0); OpenDoor before step
+[17:33:31.040] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:33:35.657] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:36.430] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1935,2775,z10); OpenDoor before step
+[17:33:36.430] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:33:38.397] INFO  [wave10_RevGen3_26_Casto] [travel] Honorable Arms blacksmith ARRIVED at (1935,2770,10)
+[17:33:38.397] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Honorable Arms blacksmith' ok=1 at=(1935,2770) legs=1 plans=1 why=''
+[17:33:38.459] INFO  [wave10_RevGen3_26_Casto] [action] scanning nearby mobiles for names
+[17:33:38.459] INFO  [wave10_RevGen3_26_Casto] [action] requested 2 paperdoll(s) for trade titles
+[17:33:38.474] INFO  [wave10_RevGen3_26_Casto] [mobiles] nearby (3):
+[17:33:38.474] INFO  [wave10_RevGen3_26_Casto]   Athalia 0x0000F75A
+[17:33:38.474] INFO  [wave10_RevGen3_26_Casto]   Rat 0x0001119B
+[17:33:38.474] INFO  [wave10_RevGen3_26_Casto]   Brinley 0x0000F808
+[17:33:38.474] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1935,2770,10) facing=1
+[17:33:38.474] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F75A: "Athalia, the blacksmith"
+[17:33:38.475] INFO  [wave10_RevGen3_26_Casto] [world] Athalia, the blacksmith is a blacksmith at (1939,2767)
+[17:33:38.475] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1935,2770,10) facing=0
+[17:33:38.475] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F808: "Brinley, the blacksmith"
+[17:33:38.475] INFO  [wave10_RevGen3_26_Casto] [world] Brinley, the blacksmith is a blacksmith at (1936,2763)
+[17:33:40.706] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:43.484] INFO  [wave10_RevGen3_26_Casto] [travel] The Pearl of Trinsic jeweler -> (1897,2805) r=5 from (1935,2770)
+[17:33:43.484] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='The Pearl of Trinsic jeweler' target=(1897,2805) radius=5 from=(1935,2770)
+[17:33:43.484] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:33:43.484] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:33:43.485] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:43.485] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:43.485] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:33:43.485] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Pearl of Trinsic jeweler: ok legs=1 ~38 tiles transit=0 nodes=0
+[17:33:43.545] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1935,2770,10); target (1935,2766); stopped short (off by 4 tile(s))
+[17:33:43.545] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1935,2770) target=(1935,2766) arrived=0 off=4
+[17:33:43.545] INFO  [wave10_RevGen3_26_Casto] [action] goto (1897,2805) from (1935,2770,10)
+[17:33:43.545] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1897,2805) from=(1935,2770)
+[17:33:43.546] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1935,2770,10) to (1897,2805,z0)
+[17:33:43.546] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1897,2805) in background
+[17:33:43.669] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1897,2805): 85 steps in 76567.2us
+[17:33:45.457] WARN  [wave10_RevGen3_26_Casto] [0x21] move REJECTED seq=8; server says (1935,2776,10) facing=3
+[17:33:45.457] INFO  [wave10_RevGen3_26_Casto] [bot] step (1935,2776,10)->(1936,2777,10) rejected; OpenDoor + retry
+[17:33:45.471] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:33:45.472] WARN  [wave10_RevGen3_26_Casto] [bot] 0x20 resync; aborting path
+[17:33:45.472] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1935,2776,10) facing=2
+[17:33:45.472] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1935,2776,10); target (1897,2805); stopped short (off by 67 tile(s))
+[17:33:45.472] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1935,2776) target=(1897,2805) arrived=0 off=67
+[17:33:45.718] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:46.702] INFO  [wave10_RevGen3_26_Casto] [action] goto (1897,2805) from (1935,2776,10)
+[17:33:46.703] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1897,2805) from=(1935,2776)
+[17:33:46.703] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1935,2776,10) to (1897,2805,z0)
+[17:33:46.703] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1897,2805) in background
+[17:33:46.763] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1897,2805): 79 steps in 59295.1us
+[17:33:50.759] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: World save in 10 seconds
+[17:33:55.775] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:00.817] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: World save has been initiated.
+[17:34:05.844] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:09.762] WARN  [wave10_RevGen3_26_Casto] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.824] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1900,2814,0); target (1897,2805); stopped short (off by 12 tile(s))
+[17:34:09.824] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1900,2814) target=(1897,2805) arrived=0 off=12
+[17:34:09.907] WARN  [wave10_RevGen3_26_Casto] [0x22] unsolicited ack seq=77
+[17:34:10.872] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:11.057] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:34:11.058] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:34:11.058] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:11.058] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:11.058] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:34:11.059] INFO  [wave10_RevGen3_26_Casto] [travel] plan The Pearl of Trinsic jeweler: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:12.584] INFO  [wave10_RevGen3_26_Casto] [action] goto (1897,2805) from (1900,2814,0)
+[17:34:12.585] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1897,2805) from=(1900,2814)
+[17:34:12.585] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1900,2814,0) to (1897,2805,z0)
+[17:34:12.585] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1897,2805) in background
+[17:34:12.645] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1897,2805): 9 steps in 361.9us
+[17:34:13.756] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1899,2810,z0); OpenDoor before step
+[17:34:13.771] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:34:14.831] INFO  [wave10_RevGen3_26_Casto] [travel] The Pearl of Trinsic jeweler ARRIVED at (1899,2809,0)
+[17:34:14.831] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='The Pearl of Trinsic jeweler' ok=1 at=(1899,2809) legs=1 plans=2 why=''
+[17:34:14.894] INFO  [wave10_RevGen3_26_Casto] [action] scanning nearby mobiles for names
+[17:34:14.894] INFO  [wave10_RevGen3_26_Casto] [action] requested 2 paperdoll(s) for trade titles
+[17:34:14.910] INFO  [wave10_RevGen3_26_Casto] [mobiles] nearby (4):
+[17:34:14.917] INFO  [wave10_RevGen3_26_Casto]   Raven 0x0000F76A
+[17:34:14.917] INFO  [wave10_RevGen3_26_Casto]   Devin 0x0000F7B0
+[17:34:14.918] INFO  [wave10_RevGen3_26_Casto]   Ryanne 0x0000F775
+[17:34:14.918] INFO  [wave10_RevGen3_26_Casto]   Nyx 0x000197E4
+[17:34:14.918] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x0000F76A: "Raven, the jeweler"
+[17:34:14.918] INFO  [wave10_RevGen3_26_Casto] [world] Raven, the jeweler is a jeweler at (1900,2805)
+[17:34:14.918] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1899,2809,0) facing=6
+[17:34:14.918] INFO  [wave10_RevGen3_26_Casto] [0x88] paperdoll 0x000197E4: "Nyx, Apprentice Swordsman"
+[17:34:15.913] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:17.916] INFO  [wave10_RevGen3_26_Casto] [travel] Baked Delights baker -> (1880,2802) r=5 from (1899,2809)
+[17:34:17.916] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='Baked Delights baker' target=(1880,2802) radius=5 from=(1899,2809)
+[17:34:17.916] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:34:17.917] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:34:17.917] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:17.917] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:17.917] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:34:17.917] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:34:17.976] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1897,2805); stopped short (off by 6 tile(s))
+[17:34:17.977] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1897,2805) arrived=0 off=6
+[17:34:17.977] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:17.977] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:17.977] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:17.978] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:17.978] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:18.038] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:18.039] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:18.271] INFO  [wave10_RevGen3_26_Casto] [chat ascii] Raven: Thou wishest to speak with me?
+[17:34:19.277] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:19.277] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:19.278] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:19.278] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:19.278] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:19.339] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:19.340] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:20.570] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:20.570] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:20.570] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:20.570] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:20.571] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:20.633] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:20.633] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:20.941] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:21.851] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:34:21.851] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:34:21.851] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:21.852] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:21.852] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:34:21.852] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:34:23.380] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:23.380] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:23.380] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:23.381] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:23.381] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:23.442] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:23.443] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:24.692] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:24.692] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:24.692] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:24.692] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:24.693] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:24.754] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:24.755] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:25.961] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:25.961] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:25.961] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:25.962] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:25.962] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:25.962] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:26.023] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:26.023] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:27.268] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:34:27.268] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:34:27.268] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:27.269] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:27.269] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:34:27.269] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:34:30.287] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:30.287] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:30.287] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:30.287] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:30.288] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:30.348] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:30.348] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:31.013] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:31.583] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:31.583] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:31.583] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:31.584] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:31.584] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:31.644] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:31.645] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:32.872] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:32.872] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:32.872] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:32.873] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:32.873] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:32.933] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:32.933] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:34.160] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:34:34.160] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:34:34.160] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:34.160] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:34.161] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:34:34.161] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:34:36.041] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:38.698] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:38.699] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:38.699] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:38.699] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:38.699] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:38.760] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:38.761] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:40.005] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:40.006] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:40.006] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:40.006] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:40.007] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:40.067] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:40.067] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:41.081] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:41.281] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1899,2809,0)
+[17:34:41.282] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1899,2809)
+[17:34:41.282] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1880,2802,z0)
+[17:34:41.283] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:41.283] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:41.283] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2809,0); target (1880,2802); stopped short (off by 26 tile(s))
+[17:34:41.283] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2809) target=(1880,2802) arrived=0 off=26
+[17:34:41.283] WARN  [wave10_RevGen3_26_Casto] [travel] route exhausted at (1899,2809,0); trying to reach (1912,2808,0) to get somewhere routable (escape 1/3)
+[17:34:41.284] LOG   [wave10_RevGen3_26_Casto] event travel_escape: from=(1899,2809,0) to=(1912,2808) attempt=1
+[17:34:41.284] INFO  [wave10_RevGen3_26_Casto] [action] goto (1912,2808) from (1899,2809,0)
+[17:34:41.284] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1912,2808) from=(1899,2809)
+[17:34:41.284] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2809,0) to (1912,2808,z0)
+[17:34:41.284] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1912,2808) in background
+[17:34:41.343] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1912,2808): 25 steps in 5952.5us
+[17:34:42.287] WARN  [wave10_RevGen3_26_Casto] [0x21] move REJECTED seq=4; server says (1899,2811,0) facing=3
+[17:34:42.287] INFO  [wave10_RevGen3_26_Casto] [bot] step (1899,2811,0)->(1900,2812,0) rejected; OpenDoor + retry
+[17:34:42.302] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:34:42.302] WARN  [wave10_RevGen3_26_Casto] [bot] 0x20 resync; aborting path
+[17:34:42.302] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1899,2811,0) facing=2
+[17:34:42.303] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1899,2811,0); target (1912,2808); stopped short (off by 16 tile(s))
+[17:34:42.303] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1899,2811) target=(1912,2808) arrived=0 off=16
+[17:34:42.303] INFO  [wave10_RevGen3_26_Casto] [travel] recovery walk fell short at (1899,2811,0) (off 13); attempt 1/3
+[17:34:42.303] LOG   [wave10_RevGen3_26_Casto] event travel_recovery_done: reached=0 at=(1899,2811,0) off=13 attempt=1
+[17:34:42.303] WARN  [wave10_RevGen3_26_Casto] [travel] route exhausted at (1899,2811,0); trying to reach (1896,2824,6) to get somewhere routable (escape 2/3)
+[17:34:42.303] LOG   [wave10_RevGen3_26_Casto] event travel_escape: from=(1899,2811,0) to=(1896,2824) attempt=2
+[17:34:42.304] INFO  [wave10_RevGen3_26_Casto] [action] goto (1896,2824) from (1899,2811,0)
+[17:34:42.304] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1896,2824) from=(1899,2811)
+[17:34:42.304] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1899,2811,0) to (1896,2824,z6)
+[17:34:42.304] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1896,2824) in background
+[17:34:42.363] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1896,2824): 38 steps in 39912.9us
+[17:34:46.084] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:51.128] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:53.573] INFO  [wave10_RevGen3_26_Casto] [bot] arrived at (1896,2824,6)
+[17:34:53.574] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1896,2824); ARRIVED (off by 0 tile(s))
+[17:34:53.574] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1896,2824) arrived=1 off=0
+[17:34:53.574] INFO  [wave10_RevGen3_26_Casto] [travel] recovery walk reached its anchor at (1896,2824,6) (off 0); attempt 1/3
+[17:34:53.574] LOG   [wave10_RevGen3_26_Casto] event travel_recovery_done: reached=1 at=(1896,2824,6) off=0 attempt=1
+[17:34:53.634] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:34:53.634] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:34:53.635] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:53.635] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:53.636] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:34:53.636] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:34:53.696] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:34:53.697] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:34:53.697] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:34:53.697] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:53.698] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:53.758] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:34:53.758] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:34:54.996] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:34:54.997] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:34:54.997] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:34:54.998] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:54.998] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:55.056] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:34:55.057] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:34:56.138] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:34:56.261] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:34:56.261] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:34:56.261] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:34:56.261] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:56.262] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:56.323] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:34:56.324] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:34:57.524] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:34:57.524] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:34:57.524] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:57.524] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:57.524] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:34:57.525] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:34:59.076] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:34:59.077] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:34:59.077] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:34:59.077] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:34:59.077] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:34:59.140] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:34:59.140] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:00.355] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:00.356] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:00.356] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:00.356] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:00.356] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:00.416] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:00.417] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:01.153] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:01.646] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:01.646] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:01.646] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:01.646] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:01.646] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:01.708] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:01.709] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:02.945] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:35:02.945] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:35:02.945] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:02.946] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:02.946] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:35:02.946] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:35:05.947] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:05.949] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:05.949] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:05.949] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:05.949] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:06.009] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:06.019] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:06.194] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:07.239] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:07.240] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:07.241] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:07.241] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:07.242] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:07.302] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:07.303] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:08.548] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:08.548] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:08.549] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:08.549] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:08.549] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:08.549] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:08.549] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:09.751] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:35:09.752] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:35:09.752] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:09.752] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:09.752] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:35:09.752] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:35:11.240] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:14.291] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:14.292] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:14.292] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:14.292] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:14.292] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:14.353] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:14.353] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:15.555] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:15.557] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:15.557] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:15.557] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:15.557] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:15.616] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:15.616] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:16.247] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:16.820] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:16.821] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:16.821] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:16.822] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:16.823] WARN  [wave10_RevGen3_26_Casto] [bot] goal (1880,2802) is not walkable; skipping A* and stopping
+[17:35:16.881] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:16.881] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:16.881] WARN  [wave10_RevGen3_26_Casto] [travel] route exhausted at (1896,2824,6); trying to reach (1880,2808,10) to get somewhere routable (escape 3/3)
+[17:35:16.881] LOG   [wave10_RevGen3_26_Casto] event travel_escape: from=(1896,2824,6) to=(1880,2808) attempt=3
+[17:35:16.882] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2808) from (1896,2824,6)
+[17:35:16.882] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2808) from=(1896,2824)
+[17:35:16.882] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2808,z10)
+[17:35:16.882] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2808) in background
+[17:35:16.942] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1880,2808): 22 steps in 1916.9us
+[17:35:20.986] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1885,2813,z10); OpenDoor before step
+[17:35:21.001] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:35:21.249] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:23.731] INFO  [wave10_RevGen3_26_Casto] [travel] Baked Delights baker ARRIVED at (1883,2807,10)
+[17:35:23.731] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Baked Delights baker' ok=1 at=(1883,2807) legs=1 plans=4 why=''
+[17:35:23.831] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Cove healer -- 1296 tiles and 1 gate for a service Trinsic Healer healer offers
+[17:35:23.831] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Delucia healer -- 1692 tiles and 3 gates for a service Trinsic Healer healer offers
+[17:35:23.831] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Wind healer -- 1852 tiles and 2 gates for a service Trinsic Healer healer offers
+[17:35:23.831] INFO  [wave10_RevGen3_26_Casto] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1883,2807)
+[17:35:23.831] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1883,2807)
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.832] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] plan Trinsic Healer healer: ok legs=1 ~28 tiles transit=0 nodes=0
+[17:35:23.884] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1883,2807,10); target (1880,2808); stopped short (off by 4 tile(s))
+[17:35:23.892] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1883,2807) target=(1880,2808) arrived=0 off=4
+[17:35:23.892] INFO  [wave10_RevGen3_26_Casto] [action] goto (1911,2805) from (1883,2807,10)
+[17:35:23.892] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1911,2805) from=(1883,2807)
+[17:35:23.892] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1883,2807,10) to (1911,2805,z0)
+[17:35:23.892] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1911,2805) in background
+[17:35:23.946] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1911,2805): 45 steps in 10453.5us
+[17:35:26.120] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1886,2814,z10); OpenDoor before step
+[17:35:26.136] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:35:26.258] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:31.287] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:33.539] INFO  [wave10_RevGen3_26_Casto] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=14 in 437.6us
+[17:35:33.724] INFO  [wave10_RevGen3_26_Casto] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=15 in 257.5us
+[17:35:33.891] INFO  [wave10_RevGen3_26_Casto] [chat ascii] Devin: What is it thou wishest?
+[17:35:35.588] INFO  [wave10_RevGen3_26_Casto] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=8 in 180.4us
+[17:35:35.896] INFO  [wave10_RevGen3_26_Casto] [chat ascii] Devin: What is it thou wishest?
+[17:35:36.292] WARN  [wave10_RevGen3_26_Casto] [0x21] move REJECTED seq=51; server says (1916,2812,0) facing=7
+[17:35:36.292] INFO  [wave10_RevGen3_26_Casto] [bot] step (1916,2812,0)->(1915,2811,0) rejected; OpenDoor + retry
+[17:35:36.293] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:36.293] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:35:36.293] WARN  [wave10_RevGen3_26_Casto] [bot] 0x20 resync; aborting path
+[17:35:36.293] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1916,2812,0) facing=3
+[17:35:36.293] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1916,2812,0); target (1911,2805); stopped short (off by 12 tile(s))
+[17:35:36.293] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1916,2812) target=(1911,2805) arrived=0 off=12
+[17:35:37.494] INFO  [wave10_RevGen3_26_Casto] [action] goto (1911,2805) from (1916,2812,0)
+[17:35:37.494] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1911,2805) from=(1916,2812)
+[17:35:37.494] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1916,2812,0) to (1911,2805,z0)
+[17:35:37.494] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1911,2805) in background
+[17:35:37.510] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1911,2805): 9 steps in 316.2us
+[17:35:38.033] INFO  [wave10_RevGen3_26_Casto] [travel] Trinsic Healer healer ARRIVED at (1916,2810,0)
+[17:35:38.033] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Trinsic Healer healer' ok=1 at=(1916,2810) legs=1 plans=1 why=''
+[17:35:39.329] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Hector has departed from Trinsic Healer.
+to (1880,2802,z0)
+[17:35:08.549] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:08.549] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:08.549] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:09.751] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:35:09.752] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:35:09.752] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:09.752] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:09.752] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:35:09.752] INFO  [wave10_RevGen3_26_Casto] [travel] plan Baked Delights baker: ok legs=1 ~22 tiles transit=0 nodes=0
+[17:35:11.240] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:14.291] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:14.292] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:14.292] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:14.292] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:14.353] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:14.353] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:14.928] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_26.castor/state.json
+[17:35:15.555] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:15.557] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:15.557] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:15.557] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:15.616] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:15.616] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:16.247] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:16.820] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2802) from (1896,2824,6)
+[17:35:16.821] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2802) from=(1896,2824)
+[17:35:16.821] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2802,z0)
+[17:35:16.822] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2802) in background
+[17:35:16.881] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1896,2824,6); target (1880,2802); stopped short (off by 38 tile(s))
+[17:35:16.881] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1896,2824) target=(1880,2802) arrived=0 off=38
+[17:35:16.881] LOG   [wave10_RevGen3_26_Casto] event travel_escape: from=(1896,2824,6) to=(1880,2808) attempt=3
+[17:35:16.882] INFO  [wave10_RevGen3_26_Casto] [action] goto (1880,2808) from (1896,2824,6)
+[17:35:16.882] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1880,2808) from=(1896,2824)
+[17:35:16.882] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1896,2824,6) to (1880,2808,z10)
+[17:35:16.882] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1880,2808) in background
+[17:35:16.942] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1880,2808): 22 steps in 1916.9us
+[17:35:20.986] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1885,2813,z10); OpenDoor before step
+[17:35:21.001] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:35:21.249] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:23.731] INFO  [wave10_RevGen3_26_Casto] [travel] Baked Delights baker ARRIVED at (1883,2807,10)
+[17:35:23.731] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Baked Delights baker' ok=1 at=(1883,2807) legs=1 plans=4 why=''
+[17:35:23.831] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Cove healer -- 1296 tiles and 1 gate for a service Trinsic Healer healer offers
+[17:35:23.831] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Delucia healer -- 1692 tiles and 3 gates for a service Trinsic Healer healer offers
+[17:35:23.831] INFO  [wave10_RevGen3_26_Casto] [travel] place: skipping Wind healer -- 1852 tiles and 2 gates for a service Trinsic Healer healer offers
+[17:35:23.831] INFO  [wave10_RevGen3_26_Casto] [travel] Trinsic Healer healer -> (1911,2805) r=5 from (1883,2807)
+[17:35:23.831] LOG   [wave10_RevGen3_26_Casto] event travel_start: label='Trinsic Healer healer' target=(1911,2805) radius=5 from=(1883,2807)
+[17:35:23.832] INFO  [life] bandages: walking to a 'healer' (trip 1)
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] mode walk             usable   <- chosen
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] mode moongate         usable
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.832] LOG   [wave10_RevGen3_26_Casto] event travel_mode: walk
+[17:35:23.832] INFO  [wave10_RevGen3_26_Casto] [travel] plan Trinsic Healer healer: ok legs=1 ~28 tiles transit=0 nodes=0
+[17:35:23.884] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1883,2807,10); target (1880,2808); stopped short (off by 4 tile(s))
+[17:35:23.892] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1883,2807) target=(1880,2808) arrived=0 off=4
+[17:35:23.892] INFO  [wave10_RevGen3_26_Casto] [action] goto (1911,2805) from (1883,2807,10)
+[17:35:23.892] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1911,2805) from=(1883,2807)
+[17:35:23.892] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1883,2807,10) to (1911,2805,z0)
+[17:35:23.892] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1911,2805) in background
+[17:35:23.946] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1911,2805): 45 steps in 10453.5us
+[17:35:26.120] INFO  [wave10_RevGen3_26_Casto] [bot] door ahead at (1886,2814,z10); OpenDoor before step
+[17:35:26.136] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:35:26.258] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:31.287] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:33.539] INFO  [wave10_RevGen3_26_Casto] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=14 in 437.6us
+[17:35:33.724] INFO  [wave10_RevGen3_26_Casto] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=15 in 257.5us
+[17:35:33.891] INFO  [wave10_RevGen3_26_Casto] [chat ascii] Devin: What is it thou wishest?
+[17:35:35.588] INFO  [wave10_RevGen3_26_Casto] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=8 in 180.4us
+[17:35:35.896] INFO  [wave10_RevGen3_26_Casto] [chat ascii] Devin: What is it thou wishest?
+[17:35:36.292] INFO  [wave10_RevGen3_26_Casto] [bot] step (1916,2812,0)->(1915,2811,0) rejected; OpenDoor + retry
+[17:35:36.293] INFO  [wave10_RevGen3_26_Casto] [survival] hp 32/32 (100%) -> fight
+[17:35:36.293] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Opening door...
+[17:35:36.293] INFO  [wave10_RevGen3_26_Casto] [0x20] player @(1916,2812,0) facing=3
+[17:35:36.293] INFO  [wave10_RevGen3_26_Casto] [action] goto finished at (1916,2812,0); target (1911,2805); stopped short (off by 12 tile(s))
+[17:35:36.293] LOG   [wave10_RevGen3_26_Casto] event goto_done: at=(1916,2812) target=(1911,2805) arrived=0 off=12
+[17:35:37.494] INFO  [wave10_RevGen3_26_Casto] [action] goto (1911,2805) from (1916,2812,0)
+[17:35:37.494] LOG   [wave10_RevGen3_26_Casto] event goto_start: target=(1911,2805) from=(1916,2812)
+[17:35:37.494] INFO  [wave10_RevGen3_26_Casto] [bot] running from (1916,2812,0) to (1911,2805,z0)
+[17:35:37.494] INFO  [wave10_RevGen3_26_Casto] [bot] planning path to (1911,2805) in background
+[17:35:37.510] INFO  [wave10_RevGen3_26_Casto] [bot] replan to (1911,2805): 9 steps in 316.2us
+[17:35:38.033] INFO  [wave10_RevGen3_26_Casto] [travel] Trinsic Healer healer ARRIVED at (1916,2810,0)
+[17:35:38.033] LOG   [wave10_RevGen3_26_Casto] event travel_done: label='Trinsic Healer healer' ok=1 at=(1916,2810) legs=1 plans=1 why=''
+[17:35:38.094] INFO  [life] bandages: found a 'healer'
+[17:35:38.154] INFO  [life] bandages: within reach
+[17:35:38.217] INFO  [life] bandages: the shop is open
+[17:35:38.233] INFO  [life] bandages: this 'healer' does not stock clean bandages
+[17:35:38.233] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="this 'healer' does not stock clean bandages"
+[17:35:38.233] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[17:35:38.294] INFO  [life] goal=TRAIN_COMBAT reason="previous goal abandoned: no bandages bought"
+[17:35:38.294] INFO  [life] needs considered: NeedEquipment(heal potions 0.50) NeedTraining(skill 42 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedTraining(skill 5 0.45) NeedSkillTraining(Healing 0.45) NeedGear(gear 0.22)  | tools defined=0 held=[] want_train=Healing (target 100.0)
+[17:35:38.295] INFO  [life]   score=58.5
+[17:35:38.295] INFO  [life]   reason: NeedTraining urgency 0.45 x 130 = 58.5
+[17:35:38.295] INFO  [life]   reason: skill 42 50.0 -> 100.0
+[17:35:38.295] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[17:35:38.295] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 63s after achieving nothing
+[17:35:38.295] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 23s after achieving nothing
+[17:35:39.329] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_26_Casto] [chat ascii] System: Hector has departed from Trinsic Healer.

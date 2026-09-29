@@ -1,0 +1,390 @@
+[22:21:28.952] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='p0a'
+[22:21:28.953] LOG   [p0a] event session_start: text log opened
+[22:21:28.953] LOG   [p0a] event net_connect_begin: connect 127.0.0.1:2593
+[22:21:28.953] INFO  [p0a] [net] connecting to 127.0.0.1:2593 ...
+[22:21:28.954] LOG   [p0a] event net_connected: connect 127.0.0.1:2593
+[22:21:28.954] INFO  [p0a] [net] connected.
+[22:21:28.954] INFO  [p0a] [seed] sent 0x7F000001 (plaintext)
+[22:21:28.954] LOG   [p0a] event seed_out: 0x7F000001 hex=7f000001
+[22:21:28.955] INFO  [life] loaded persistent state for Ysolde (0 places, 1 suppliers, 8 events, 0 prior sessions)
+[22:21:28.955] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[22:21:28.955] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[22:21:28.955] INFO  [p0a] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 22 min)
+[22:21:28.955] INFO  [p0a] [0xA8] 1 server(s):
+[22:21:28.955] INFO  [p0a]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[22:21:28.960] INFO  [p0a] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[22:21:28.960] LOG   [p0a] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[22:21:28.960] INFO  [p0a] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[22:21:28.960] LOG   [p0a] event relay_same_socket: no seed re-sent; 0x91 follows
+[22:21:28.961] INFO  [p0a] [0xB9] server features = 0x0005
+[22:21:28.961] INFO  [p0a] [0xA9] 5 slot(s) (populated 1):
+[22:21:28.961] INFO  [p0a]   [0] Ysolde
+[22:21:28.961] INFO  [p0a]   [1] <empty>
+[22:21:28.961] INFO  [p0a]   [2] <empty>
+[22:21:28.961] INFO  [p0a]   [3] <empty>
+[22:21:28.961] INFO  [p0a]   [4] <empty>
+[22:21:28.961] INFO  [p0a] [ui] playing slot 0 ('Ysolde')
+[22:21:28.975] INFO  [p0a] [0x1B] serial=0x00014261 body=0x0190 pos=(1484,1551,30)
+[22:21:28.975] LOG   [p0a] event login_confirm: serial=0x00014261 body=0x0190 pos=(1484,1551,30)
+[22:21:28.975] INFO  [p0a] [0x20] player @(1484,1551,30) facing=4
+[22:21:28.975] INFO  [p0a] [0x55] login complete — entering world
+[22:21:28.975] LOG   [p0a] event in_world: 0x55 received
+[22:21:28.975] INFO  [p0a] [backpack] opening 0x4001425D
+[22:21:28.975] INFO  [p0a] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[22:21:28.975] INFO  [p0a] [chat ascii] System: There are 0 other players here.
+[22:21:28.976] INFO  [p0a] [chat ascii] System: Last logged: 2026/08/28 22:36:53
+[22:21:28.976] INFO  [p0a] [chat ascii] System: You are under the protection of the city guards
+[22:21:28.979] INFO  [p0a] [action] requesting the skill list
+[22:21:28.979] INFO  [life] in world; asked the server for the skill list
+[22:21:28.979] INFO  [p0a] [0x24] open container 0x4001425D gump=60
+[22:21:28.979] INFO  [p0a] [0x3C] container contents: 13 item(s)
+[22:21:28.979] LOG   [p0a] event backpack_contents: serial=0x4001425D items=13
+[22:21:31.568] INFO  [p0a] [bot] world data loaded (0 blacklisted spot(s)).
+[22:21:31.568] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[22:21:31.568] INFO  [life]   gold         persisted=92         server=92         -> server value accepted
+[22:21:31.568] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[22:21:31.568] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[22:21:31.568] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[22:21:31.568] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[22:21:31.568] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[22:21:31.568] INFO  [life]   skill_46     persisted=21.9       server=21.9       -> server value accepted
+[22:21:31.568] INFO  [life]   position     persisted=1484,1551  server=1484,1551  -> server value accepted
+[22:21:31.568] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[22:21:31.568] INFO  [life]   restored objective KEPT: BUY_SUPPLIES (progress 0)
+[22:21:31.568] INFO  [p0a] [survival] on
+[22:21:31.568] LOG   [p0a] event survival_mode: on
+[22:21:31.570] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[22:21:31.570] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:21:31.622] INFO  [life] supplies: looking for a 'mage' to sell 1 i_scroll_blank (trip 1)
+[22:21:31.622] INFO  [p0a] [travel] Britain mage -> (1485,1550) r=5 from (1484,1551)
+[22:21:31.622] LOG   [p0a] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1484,1551)
+[22:21:31.622] INFO  [p0a] [travel] Britain mage ARRIVED at (1484,1551,30)
+[22:21:31.622] LOG   [p0a] event travel_done: label='Britain mage' ok=1 at=(1484,1551) legs=0 plans=0 why=''
+[22:21:33.670] INFO  [life] supplies: arrived at 1484,1551 -- asking who is here
+[22:21:33.670] INFO  [p0a] [action] scanning nearby mobiles for names
+[22:21:33.671] INFO  [p0a] [action] requested 4 paperdoll(s) for trade titles
+[22:21:33.686] INFO  [p0a] [mobiles] nearby (4):
+[22:21:33.686] INFO  [p0a]   Caedmon 0x000012EE
+[22:21:33.686] INFO  [p0a]   Xanthe 0x00001211
+[22:21:33.686] INFO  [p0a]   Alenne 0x00001145
+[22:21:33.686] INFO  [p0a]   Shunnar 0x0000E14F
+[22:21:33.686] INFO  [p0a] [0x20] player @(1484,1551,30) facing=1
+[22:21:33.686] INFO  [p0a] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[22:21:33.686] INFO  [p0a] [world] Caedmon, the mage guildmaster is a mage at (1488,1548)
+[22:21:33.686] INFO  [p0a] [0x20] player @(1484,1551,30) facing=2
+[22:21:33.686] INFO  [p0a] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[22:21:33.686] INFO  [p0a] [world] Xanthe, the alchemist is a alchemist at (1489,1553)
+[22:21:33.686] INFO  [p0a] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[22:21:33.686] INFO  [p0a] [world] Alenne, the mage is a mage at (1489,1552)
+[22:21:33.686] INFO  [p0a] [0x20] player @(1484,1551,30) facing=1
+[22:21:33.686] INFO  [p0a] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[22:21:33.686] INFO  [p0a] [world] Shunnar, the scribe is a scribe at (1490,1547)
+[22:21:36.200] INFO  [p0a] [travel] vendor -> (1488,1551) r=1 from (1484,1551)
+[22:21:36.200] LOG   [p0a] event travel_start: label='vendor' target=(1488,1551) radius=1 from=(1484,1551)
+[22:21:36.200] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:21:36.200] INFO  [p0a] [travel] mode moongate         usable
+[22:21:36.200] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:21:36.200] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:21:36.200] LOG   [p0a] event travel_mode: walk
+[22:21:36.200] INFO  [p0a] [travel] plan vendor: ok legs=1 ~4 tiles transit=0 nodes=0
+[22:21:36.262] INFO  [p0a] [action] goto (1488,1551) from (1484,1551,30)
+[22:21:36.262] LOG   [p0a] event goto_start: target=(1488,1551) from=(1484,1551)
+[22:21:36.262] INFO  [p0a] [bot] running from (1484,1551,30) to (1488,1551)
+[22:21:36.262] INFO  [p0a] [bot] planning path to (1488,1551) in background
+[22:21:36.324] INFO  [p0a] [bot] replan to (1488,1551): 23 steps in 2271.9us
+[22:21:36.571] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:21:41.616] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:21:41.972] INFO  [p0a] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[22:21:41.972] INFO  [p0a] [chat ascii] System: Opening door...
+[22:21:43.521] INFO  [p0a] [travel] vendor ARRIVED at (1487,1551,70)
+[22:21:43.521] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1487,1551) legs=1 plans=1 why=''
+[22:21:43.584] INFO  [p0a] [travel] vendor -> (1485,1550) r=1 from (1487,1551)
+[22:21:43.584] LOG   [p0a] event travel_start: label='vendor' target=(1485,1550) radius=1 from=(1487,1551)
+[22:21:43.584] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:21:43.584] INFO  [p0a] [travel] mode moongate         usable
+[22:21:43.584] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:21:43.584] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:21:43.584] LOG   [p0a] event travel_mode: walk
+[22:21:43.584] INFO  [p0a] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:21:43.910] INFO  [p0a] [bot] arrived at (1488,1551,70)
+[22:21:43.910] INFO  [p0a] [action] goto finished at (1488,1551,70); target (1488,1551); ARRIVED (off by 0 tile(s))
+[22:21:43.910] LOG   [p0a] event goto_done: at=(1488,1551) target=(1488,1551) arrived=1 off=0
+[22:21:43.910] INFO  [p0a] [action] goto (1485,1550) from (1488,1551,70)
+[22:21:43.910] LOG   [p0a] event goto_start: target=(1485,1550) from=(1488,1551)
+[22:21:43.910] INFO  [p0a] [bot] running from (1488,1551,70) to (1485,1550)
+[22:21:43.910] INFO  [p0a] [bot] planning path to (1485,1550) in background
+[22:21:45.079] INFO  [p0a] [action] goto finished at (1488,1551,70); target (1485,1550); stopped short (off by 4 tile(s))
+[22:21:45.079] LOG   [p0a] event goto_done: at=(1488,1551) target=(1485,1550) arrived=0 off=4
+[22:21:46.311] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:21:46.311] INFO  [p0a] [travel] mode moongate         usable
+[22:21:46.311] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:21:46.311] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:21:46.311] LOG   [p0a] event travel_mode: walk
+[22:21:46.311] INFO  [p0a] [travel] plan vendor: ok legs=1 ~3 tiles transit=0 nodes=0
+[22:21:46.620] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:21:47.820] INFO  [p0a] [action] goto (1485,1550) from (1488,1551,70)
+[22:21:47.820] LOG   [p0a] event goto_start: target=(1485,1550) from=(1488,1551)
+[22:21:47.820] INFO  [p0a] [bot] running from (1488,1551,70) to (1485,1550)
+[22:21:47.821] INFO  [p0a] [bot] planning path to (1485,1550) in background
+[22:21:47.884] INFO  [p0a] [bot] replan to (1485,1550): 22 steps in 1494.3us
+[22:21:48.424] INFO  [p0a] [travel] vendor ARRIVED at (1486,1551,70)
+[22:21:48.424] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1486,1551) legs=1 plans=2 why=''
+[22:21:48.454] INFO  [p0a] [travel] vendor -> (1484,1551) r=1 from (1486,1551)
+[22:21:48.454] LOG   [p0a] event travel_start: label='vendor' target=(1484,1551) radius=1 from=(1486,1551)
+[22:21:48.454] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:21:48.454] INFO  [p0a] [travel] mode moongate         usable
+[22:21:48.454] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:21:48.454] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:21:48.454] LOG   [p0a] event travel_mode: walk
+[22:21:48.454] INFO  [p0a] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:21:51.561] INFO  [life] goal_changed=CRAFT from=BUY_SUPPLIES reason="CRAFT 65.0 superseded BUY_SUPPLIES 0.0"
+[22:21:51.561] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.31) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[22:21:51.561] INFO  [life]   score=65.0
+[22:21:51.561] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[22:21:51.561] INFO  [life]   reason: i_scroll_poison: every input is in the pack
+[22:21:51.561] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[22:21:51.561] INFO  [life] craft: making i_scroll_poison -- using a i_scroll_blank to open the menu
+[22:21:51.561] INFO  [p0a] [ACTION] use_object start
+[22:21:51.561] INFO  [p0a] [ACTION] use_object serial=0x4000D89A
+[22:21:51.578] INFO  [p0a] [0x7C] dialog id=0x00014261 menu=690: "Spell Circle 3" (1 options)
+[22:21:51.578] INFO  [p0a]         1) poison
+[22:21:51.578] LOG   [p0a] event dialog: Spell Circle 3
+[22:21:51.639] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:21:52.178] INFO  [p0a] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=9 in 250.2us
+[22:21:53.867] INFO  [p0a] [chat ascii] Xanthe: What is it thou wishest?
+[22:21:55.347] INFO  [p0a] [bot] arrived at (1485,1550,30)
+[22:21:55.347] INFO  [p0a] [action] goto finished at (1485,1550,30); target (1485,1550); ARRIVED (off by 0 tile(s))
+[22:21:55.347] LOG   [p0a] event goto_done: at=(1485,1550) target=(1485,1550) arrived=1 off=0
+[22:21:55.347] INFO  [p0a] [action] goto (1484,1551) from (1485,1550,30)
+[22:21:55.347] LOG   [p0a] event goto_start: target=(1484,1551) from=(1485,1550)
+[22:21:55.347] INFO  [p0a] [bot] running from (1485,1550,30) to (1484,1551)
+[22:21:55.347] INFO  [p0a] [bot] planning path to (1484,1551) in background
+[22:21:55.409] INFO  [p0a] [bot] replan to (1484,1551): 22 steps in 1827.7us
+[22:21:55.593] LOG   [p0a] event action_result: use_object timeout
+[22:21:55.654] INFO  [p0a] [0x7D] answering dialog id=0x00014261 menu=690 index=1
+[22:21:55.654] INFO  [life] craft: chose 'poison'
+[22:21:55.778] INFO  [p0a] [travel] vendor ARRIVED at (1485,1550,30)
+[22:21:55.778] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1485,1550) legs=1 plans=1 why=''
+[22:21:56.670] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:21:56.856] INFO  [p0a] [chat ascii] System: You put the Poison Scroll in your pack.
+[22:21:57.658] INFO  [life] goal_blocked=CRAFT reason="REFUSE_REQUIRED_FOR_PRODUCTION" i_scroll_poison short of 1 x i_reag_nightshade
+[22:21:57.720] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: inputs are short"
+[22:21:57.720] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.33) NeedGold(gold 0.30) NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[22:21:57.720] INFO  [life]   score=61.6
+[22:21:57.720] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[22:21:57.720] INFO  [life]   reason: i_scroll_poison needs 2 x i_scroll_blank
+[22:21:57.720] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[22:21:57.720] INFO  [p0a] [travel] vendor -> (1489,1551) r=1 from (1487,1545)
+[22:21:57.720] LOG   [p0a] event travel_start: label='vendor' target=(1489,1551) radius=1 from=(1487,1545)
+[22:21:57.720] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:21:57.720] INFO  [p0a] [travel] mode moongate         usable
+[22:21:57.720] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:21:57.720] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:21:57.720] LOG   [p0a] event travel_mode: walk
+[22:21:57.720] INFO  [p0a] [travel] plan vendor: ok legs=1 ~6 tiles transit=0 nodes=0
+[22:22:01.624] INFO  [p0a] [bot] door ahead at (1485,1551,z70); OpenDoor before step
+[22:22:01.625] INFO  [p0a] [chat ascii] System: Opening door...
+[22:22:01.686] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:02.788] INFO  [p0a] [bot] arrived at (1484,1551,70)
+[22:22:02.788] INFO  [p0a] [action] goto finished at (1484,1551,70); target (1484,1551); ARRIVED (off by 0 tile(s))
+[22:22:02.788] LOG   [p0a] event goto_done: at=(1484,1551) target=(1484,1551) arrived=1 off=0
+[22:22:02.788] INFO  [p0a] [action] goto (1489,1551) from (1484,1551,70)
+[22:22:02.788] LOG   [p0a] event goto_start: target=(1489,1551) from=(1484,1551)
+[22:22:02.788] INFO  [p0a] [bot] running from (1484,1551,70) to (1489,1551)
+[22:22:02.788] INFO  [p0a] [bot] planning path to (1489,1551) in background
+[22:22:02.849] INFO  [p0a] [bot] replan to (1489,1551): 25 steps in 2590.2us
+[22:22:03.769] INFO  [p0a] [bot] door ahead at (1486,1550,z70); OpenDoor before step
+[22:22:03.769] INFO  [p0a] [chat ascii] System: Opening door...
+[22:22:06.705] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:07.773] INFO  [p0a] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=14 in 286.5us
+[22:22:08.677] INFO  [p0a] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=9 in 121.0us
+[22:22:09.942] INFO  [p0a] [chat ascii] System: You shove Caedmon out of the way.
+[22:22:10.517] INFO  [p0a] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=6 in 88.9us
+[22:22:11.270] INFO  [p0a] [chat ascii] System: You are too fatigued to move.
+[22:22:11.270] INFO  [p0a] [bot] fatigue detected; rejects will wait for stamina regen
+[22:22:11.271] INFO  [p0a] [bot] reject at (1484,1549): fatigued (stamina) — waiting 2000ms, retrying (1) [no blacklist]
+[22:22:11.271] INFO  [p0a] [bot] planning path to (1489,1551) in background
+[22:22:11.333] INFO  [p0a] [bot] replan to (1489,1551): 6 steps in 164.7us
+[22:22:11.765] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:13.272] INFO  [p0a] [bot] lookahead patched around block at step 1: anchor=5 new segment=4 path=5 in 81.2us
+[22:22:13.687] INFO  [p0a] [chat ascii] System: You are too fatigued to move.
+[22:22:13.688] INFO  [p0a] [bot] fatigue detected; rejects will wait for stamina regen
+[22:22:13.688] INFO  [p0a] [bot] reject at (1485,1548): fatigued (stamina) — waiting 2000ms, retrying (2) [no blacklist]
+[22:22:13.688] INFO  [p0a] [bot] planning path to (1489,1551) in background
+[22:22:13.749] INFO  [p0a] [bot] replan to (1489,1551): 5 steps in 123.9us
+[22:22:15.747] INFO  [p0a] [chat ascii] System: You are too fatigued to move.
+[22:22:15.748] INFO  [p0a] [bot] fatigue detected; rejects will wait for stamina regen
+[22:22:15.748] INFO  [p0a] [bot] reject at (1485,1548): fatigued (stamina) — waiting 2000ms, retrying (3) [no blacklist]
+[22:22:15.748] INFO  [p0a] [bot] planning path to (1489,1551) in background
+[22:22:15.809] INFO  [p0a] [bot] replan to (1489,1551): 5 steps in 191.0us
+[22:22:16.809] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:17.807] INFO  [p0a] [chat ascii] System: You are too fatigued to move.
+[22:22:17.807] INFO  [p0a] [bot] fatigue detected; rejects will wait for stamina regen
+[22:22:17.807] INFO  [p0a] [bot] reject at (1485,1548): fatigued (stamina) — waiting 2000ms, retrying (4) [no blacklist]
+[22:22:17.807] INFO  [p0a] [bot] planning path to (1489,1551) in background
+[22:22:17.867] INFO  [p0a] [bot] replan to (1489,1551): 5 steps in 118.1us
+[22:22:19.200] INFO  [p0a] [chat ascii] Alenne: Thou wishest to speak with me?
+[22:22:21.846] INFO  [p0a] [travel] vendor ARRIVED at (1488,1550,30)
+[22:22:21.846] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1488,1550) legs=1 plans=1 why=''
+[22:22:21.846] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:21.877] INFO  [p0a] [ACTION] vendor_buy start
+[22:22:21.877] INFO  [p0a] [VENDOR] open vendor=0x000012EE say='Caedmon buy'
+[22:22:21.878] INFO  [p0a] [chat uni  ] : Caedmon buy
+[22:22:22.075] INFO  [p0a] [bot] arrived at (1489,1551,30)
+[22:22:24.435] INFO  [p0a] [travel] vendor -> (1489,1549) r=1 from (1489,1551)
+[22:22:24.435] LOG   [p0a] event travel_start: label='vendor' target=(1489,1549) radius=1 from=(1489,1551)
+[22:22:24.435] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:22:24.435] INFO  [p0a] [travel] mode moongate         usable
+[22:22:24.435] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:22:24.435] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:22:24.435] LOG   [p0a] event travel_mode: walk
+[22:22:24.435] INFO  [p0a] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:22:24.497] INFO  [p0a] [action] goto finished at (1489,1551,30); target (1489,1551); ARRIVED (off by 0 tile(s))
+[22:22:24.497] LOG   [p0a] event goto_done: at=(1489,1551) target=(1489,1551) arrived=1 off=0
+[22:22:24.497] INFO  [p0a] [action] goto (1489,1549) from (1489,1551,30)
+[22:22:24.497] LOG   [p0a] event goto_start: target=(1489,1549) from=(1489,1551)
+[22:22:24.497] INFO  [p0a] [bot] walking from (1489,1551,30) to (1489,1549)
+[22:22:24.497] INFO  [p0a] [bot] planning path to (1489,1549) in background
+[22:22:24.559] INFO  [p0a] [bot] replan to (1489,1549): 18 steps in 5713.8us
+[22:22:25.283] INFO  [p0a] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=17 in 187.9us
+[22:22:25.528] INFO  [p0a] [travel] vendor ARRIVED at (1488,1550,30)
+[22:22:25.528] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1488,1550) legs=1 plans=1 why=''
+[22:22:26.476] INFO  [p0a] [travel] vendor -> (1484,1550) r=1 from (1486,1550)
+[22:22:26.476] LOG   [p0a] event travel_start: label='vendor' target=(1484,1550) radius=1 from=(1486,1550)
+[22:22:26.476] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:22:26.476] INFO  [p0a] [travel] mode moongate         usable
+[22:22:26.476] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:22:26.476] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:22:26.476] LOG   [p0a] event travel_mode: walk
+[22:22:26.476] INFO  [p0a] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:22:26.906] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:27.134] INFO  [p0a] [chat ascii] Shunnar: Thou hast mine attention.
+[22:22:29.890] LOG   [p0a] event action_result: vendor_buy timeout
+[22:22:31.568] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[22:22:31.936] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:32.816] INFO  [p0a] [bot] arrived at (1489,1549,70)
+[22:22:32.816] INFO  [p0a] [action] goto finished at (1489,1549,70); target (1489,1549); ARRIVED (off by 0 tile(s))
+[22:22:32.816] LOG   [p0a] event goto_done: at=(1489,1549) target=(1489,1549) arrived=1 off=0
+[22:22:32.816] INFO  [p0a] [action] goto (1484,1550) from (1489,1549,70)
+[22:22:32.816] LOG   [p0a] event goto_start: target=(1484,1550) from=(1489,1549)
+[22:22:32.816] INFO  [p0a] [bot] running from (1489,1549,70) to (1484,1550)
+[22:22:32.816] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:33.939] INFO  [p0a] [action] goto finished at (1489,1549,70); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:33.939] LOG   [p0a] event goto_done: at=(1489,1549) target=(1484,1550) arrived=0 off=6
+[22:22:35.150] INFO  [p0a] [action] goto (1484,1550) from (1489,1549,70)
+[22:22:35.150] LOG   [p0a] event goto_start: target=(1484,1550) from=(1489,1549)
+[22:22:35.150] INFO  [p0a] [bot] running from (1489,1549,70) to (1484,1550)
+[22:22:35.150] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:36.200] INFO  [p0a] [action] goto finished at (1489,1549,70); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:36.200] LOG   [p0a] event goto_done: at=(1489,1549) target=(1484,1550) arrived=0 off=6
+[22:22:36.982] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:37.412] INFO  [p0a] [action] goto (1484,1550) from (1489,1549,70)
+[22:22:37.413] LOG   [p0a] event goto_start: target=(1484,1550) from=(1489,1549)
+[22:22:37.413] INFO  [p0a] [bot] running from (1489,1549,70) to (1484,1550)
+[22:22:37.413] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:38.560] INFO  [p0a] [action] goto finished at (1489,1549,70); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:38.560] LOG   [p0a] event goto_done: at=(1489,1549) target=(1484,1550) arrived=0 off=6
+[22:22:39.790] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:22:39.790] INFO  [p0a] [travel] mode moongate         usable
+[22:22:39.790] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:22:39.790] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:22:39.790] LOG   [p0a] event travel_mode: walk
+[22:22:39.790] INFO  [p0a] [travel] plan vendor: ok legs=1 ~5 tiles transit=0 nodes=0
+[22:22:41.331] INFO  [p0a] [action] goto (1484,1550) from (1489,1549,70)
+[22:22:41.331] LOG   [p0a] event goto_start: target=(1484,1550) from=(1489,1549)
+[22:22:41.331] INFO  [p0a] [bot] running from (1489,1549,70) to (1484,1550)
+[22:22:41.331] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:42.006] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:42.930] INFO  [p0a] [action] goto finished at (1489,1549,70); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:42.930] LOG   [p0a] event goto_done: at=(1489,1549) target=(1484,1550) arrived=0 off=6
+[22:22:44.160] INFO  [p0a] [action] goto (1484,1550) from (1489,1549,70)
+[22:22:44.160] LOG   [p0a] event goto_start: target=(1484,1550) from=(1489,1549)
+[22:22:44.160] INFO  [p0a] [bot] running from (1489,1549,70) to (1484,1550)
+[22:22:44.161] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:45.391] INFO  [p0a] [action] goto finished at (1489,1549,70); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:45.391] LOG   [p0a] event goto_done: at=(1489,1549) target=(1484,1550) arrived=0 off=6
+[22:22:46.633] INFO  [p0a] [action] goto (1484,1550) from (1489,1549,70)
+[22:22:46.633] LOG   [p0a] event goto_start: target=(1484,1550) from=(1489,1549)
+[22:22:46.633] INFO  [p0a] [bot] running from (1489,1549,70) to (1484,1550)
+[22:22:46.633] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:47.064] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:47.787] INFO  [p0a] [action] goto finished at (1489,1549,70); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:47.787] LOG   [p0a] event goto_done: at=(1489,1549) target=(1484,1550) arrived=0 off=6
+[22:22:49.023] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:22:49.023] INFO  [p0a] [travel] mode moongate         usable
+[22:22:49.023] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:22:49.023] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:22:49.023] LOG   [p0a] event travel_mode: walk
+[22:22:49.023] INFO  [p0a] [travel] plan vendor: ok legs=1 ~5 tiles transit=0 nodes=0
+[22:22:52.064] INFO  [p0a] [action] goto (1484,1550) from (1489,1549,70)
+[22:22:52.064] LOG   [p0a] event goto_start: target=(1484,1550) from=(1489,1549)
+[22:22:52.064] INFO  [p0a] [bot] running from (1489,1549,70) to (1484,1550)
+[22:22:52.064] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:52.125] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:52.125] INFO  [p0a] [bot] replan to (1484,1550): 16 steps in 1076.6us
+[22:22:55.675] INFO  [p0a] [bot] reject at (1485,1546): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[22:22:55.675] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:55.800] INFO  [p0a] [action] goto finished at (1485,1545,50); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:55.800] LOG   [p0a] event goto_done: at=(1485,1545) target=(1484,1550) arrived=0 off=6
+[22:22:57.014] INFO  [p0a] [action] goto (1484,1550) from (1485,1545,50)
+[22:22:57.014] LOG   [p0a] event goto_start: target=(1484,1550) from=(1485,1545)
+[22:22:57.014] INFO  [p0a] [bot] running from (1485,1545,50) to (1484,1550)
+[22:22:57.014] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:57.137] INFO  [p0a] [action] goto finished at (1485,1545,50); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:57.137] LOG   [p0a] event goto_done: at=(1485,1545) target=(1484,1550) arrived=0 off=6
+[22:22:57.137] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:22:58.369] INFO  [p0a] [action] goto (1484,1550) from (1485,1545,50)
+[22:22:58.369] LOG   [p0a] event goto_start: target=(1484,1550) from=(1485,1545)
+[22:22:58.369] INFO  [p0a] [bot] running from (1485,1545,50) to (1484,1550)
+[22:22:58.369] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:22:58.491] INFO  [p0a] [action] goto finished at (1485,1545,50); target (1484,1550); stopped short (off by 6 tile(s))
+[22:22:58.491] LOG   [p0a] event goto_done: at=(1485,1545) target=(1484,1550) arrived=0 off=6
+[22:22:59.732] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:22:59.732] INFO  [p0a] [travel] mode moongate         usable
+[22:22:59.732] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:22:59.732] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:22:59.732] LOG   [p0a] event travel_mode: walk
+[22:22:59.732] INFO  [p0a] [travel] plan vendor: ok legs=1 ~5 tiles transit=0 nodes=0
+[22:23:02.197] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:23:04.287] INFO  [p0a] [action] goto (1484,1550) from (1485,1545,50)
+[22:23:04.287] LOG   [p0a] event goto_start: target=(1484,1550) from=(1485,1545)
+[22:23:04.287] INFO  [p0a] [bot] running from (1485,1545,50) to (1484,1550)
+[22:23:04.287] INFO  [p0a] [bot] planning path to (1484,1550) in background
+[22:23:04.347] INFO  [p0a] [bot] replan to (1484,1550): 5 steps in 89.2us
+[22:23:05.695] INFO  [p0a] [travel] vendor ARRIVED at (1484,1549,35)
+[22:23:05.695] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1484,1549) legs=1 plans=4 why=''
+[22:23:05.758] INFO  [p0a] [travel] vendor -> (1486,1548) r=1 from (1484,1549)
+[22:23:05.758] LOG   [p0a] event travel_start: label='vendor' target=(1486,1548) radius=1 from=(1484,1549)
+[22:23:05.758] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:23:05.758] INFO  [p0a] [travel] mode moongate         usable
+[22:23:05.758] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:23:05.758] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:23:05.758] LOG   [p0a] event travel_mode: walk
+[22:23:05.758] INFO  [p0a] [travel] plan vendor: ok legs=1 ~2 tiles transit=0 nodes=0
+[22:23:05.943] INFO  [p0a] [bot] arrived at (1484,1550,30)
+[22:23:05.943] INFO  [p0a] [action] goto finished at (1484,1550,30); target (1484,1550); ARRIVED (off by 0 tile(s))
+[22:23:05.943] LOG   [p0a] event goto_done: at=(1484,1550) target=(1484,1550) arrived=1 off=0
+[22:23:05.943] INFO  [p0a] [action] goto (1486,1548) from (1484,1550,30)
+[22:23:05.943] LOG   [p0a] event goto_start: target=(1486,1548) from=(1484,1550)
+[22:23:05.943] INFO  [p0a] [bot] running from (1484,1550,30) to (1486,1548)
+[22:23:05.943] INFO  [p0a] [bot] planning path to (1486,1548) in background
+[22:23:06.004] INFO  [p0a] [bot] replan to (1486,1548): 18 steps in 1476.6us
+[22:23:06.814] INFO  [p0a] [travel] vendor ARRIVED at (1485,1549,35)
+[22:23:06.814] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1485,1549) legs=1 plans=1 why=''
+[22:23:07.211] INFO  [p0a] [survival] hp 10/10 (100%) -> fight
+[22:23:07.807] INFO  [p0a] [travel] vendor -> (1488,1549) r=1 from (1485,1545)
+[22:23:07.807] LOG   [p0a] event travel_start: label='vendor' target=(1488,1549) radius=1 from=(1485,1545)
+[22:23:07.807] INFO  [p0a] [travel] mode walk             usable   <- chosen
+[22:23:07.807] INFO  [p0a] [travel] mode moongate         usable
+[22:23:07.807] INFO  [p0a] [travel] mode loose_rune_recall no: no rune marked at that destination
+[22:23:07.807] INFO  [p0a] [travel] mode runebook_recall  no: no runebook page for that destination
+[22:23:07.807] LOG   [p0a] event travel_mode: walk
+[22:23:07.807] INFO  [p0a] [travel] plan vendor: ok legs=1 ~4 tiles transit=0 nodes=0
+[22:23:10.961] INFO  [p0a] [travel] vendor ARRIVED at (1489,1548,70)
+[22:23:10.961] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1489,1548) legs=1 plans=1 why=''
+[22:23:10.977] INFO  [p0a] [travel] vendor -> (1487,1549) r=1 from (1488,1548)
+[22:23:10.977] LOG   [p0a] event travel_start: label='vendor' target=(1487,1549) radius=1 from=(1488,1548)
+[22:23:10.977] INFO  [p0a] [travel] vendor ARRIVED at (1488,1548,70)
+[22:23:10.977] LOG   [p0a] event travel_done: label='vendor' ok=1 at=(1488,1548) legs=0 plans=0 why=''
+[22:23:11.593] INFO  [p0a] [bot] arrived at (1486,1548,70)
+[22:23:12.234] INFO  [p0a] [survival] hp 10/10 (100%) -> fight

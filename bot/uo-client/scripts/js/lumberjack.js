@@ -8,9 +8,9 @@
 // Priority:  resurrect > fight > bank > eat > chop.
 //
 // Generic skills come from the base class and mixins (lib/bot.js + lib/bank.js +
-// lib/survival.js + lib/combat.js): movement (walkTo), inventory, banking,
-// healing, eating, restocking, finding a vendor, and the fight/flee/resurrect
-// loop. Only the lumberjack-specific chopping lives here.
+// lib/survival.js): movement (walkTo), inventory, banking, healing, eating,
+// restocking, finding a vendor. Only the lumberjack-specific chopping and the
+// combat policy live here.
 
 class Lumberjack extends BehaviorScript {
     AXE = 'hatchet';
@@ -28,7 +28,6 @@ class Lumberjack extends BehaviorScript {
     SEARCH_RADIUS = 24;
 
     FOOD = ['bread', 'lamb'];
-    PERSONA = { riskTolerance: 0.4, activeHours: [] };   // lib/memory.js
 
     // Consumables to keep stocked. When the backpack runs OUT of one (count 0),
     // the `restock` step (end of the bank cycle) walks to coords, finds the vendor
@@ -39,23 +38,15 @@ class Lumberjack extends BehaviorScript {
         'bread': { name: ['lamb', 'bread'], target: 10, coords: { x: 1854, y: 2793 }, title: 'provisioner' },
     };
 
-    // --- economy (lib/economy.js) ---
-    // Logs are NOT kept: they are offered to the vendors below first, and only
-    // what nobody buys goes into the bank. Whether the provisioner buys logs is
-    // the server's answer (its sell list), not an assumption here.
-    KEEP = [];
-    SELL_VENDORS = [
-        { title: 'provisioner', coords: { x: 1852, y: 2831 } },  // atlas trinsic_provisioner
-    ];
-    GOLD_RESERVE = 100;
-    MAX_CARRY_GOLD = 800;
-
     CHOP_WAIT_MS = 15000;
     MAX_RETRY = 5;
 
-    // Combat tuning (FLEE_HP_FRAC, HEAL_HP_FRAC, ...) lives in lib/combat.js;
-    // override a value here as a class field only for a reason specific to
-    // this bot.
+    FLEE_HP_FRAC = 0.4;
+    HEAL_HP_FRAC = 0.8;         // bandage mid-fight once HP drops below this
+    BANDAGE_INTERVAL_MS = 6000; // min gap between mid-fight bandages (~heal timer)
+    COMBAT_TICK_MS = 1100;
+    LOSE_ASSESS_MS = 4000;
+    RESS_WAIT_MS = 8000;
 
     AVOID_RADIUS = 18;              // tiles around a fled mob to treat as off-limits
     AVOID_TTL_MS = 5 * 60 * 1000;  // how long an avoid-area stays active
@@ -77,20 +68,127 @@ class Lumberjack extends BehaviorScript {
             onDanger: (topSerial) => { if (topSerial) this.engage(topSerial, 'threat'); },
         });
 
-        this.installCombatSensing();
-        this.economyInit();
-        this.memoryInit();
+        Player.on('attacked', (serial) => this.engage(serial, 'ATTACKED by'));
+        Player.on('combat', (serial) => this.engage(serial, 'fighting'));
+
+        Player.on('dialog', (dialog) => {
+            if (!/resurrect|come back to life/i.test(dialog.question)) return;
+            const yes = dialog.options.find((option) => /^\s*yes/i.test(option.text)) || dialog.options[0];
+            if (!yes) return;
+            console.log(`[lj] resurrect dialog -> "${yes.text.trim()}"`);
+            Player.dialogRespond(yes.index);
+        });
+
+        Player.on('resurrect_menu', (event) => {
+            console.log(`[lj] resurrect menu (action=${event.action}) -> confirming`);
+            Player.resurrect();
+        });
     }
 
-    // ===== combat hook =====
+    // ===== sensing / combat =====
 
-    // A retreat: blacklist the mob's area for a while and rotate to a different
-    // stand, so after banking + resting `chop` starts somewhere new instead of
-    // walking back into it (flee -> bank -> return -> flee). The avoid-area also
-    // keeps tree-search away from the spot even within the same stand.
-    onFlee(mob) {
-        this.avoidArea(mob.x, mob.y);
-        this.nextForest();
+    engage(serial, why) {
+        if (!serial || serial === Player.serial) return;
+        if (this.fleeing) return;   // escaping/resting: don't pick a new fight
+        if (this.threat && this.threat.exists) return;
+        this.threat = Mobiles.get(serial);
+        Player.requestStatus(serial);
+        console.warn(`[lj] ${why} ${this.threat.name || '0x' + serial.toString(16)}` +
+            ` noto=${this.threat.notoriety} hp=${this.threat.hpPct >= 0 ? (this.threat.hpPct * 100 | 0) + '%' : '?'}` +
+            ` at ${this.threat.x},${this.threat.y}`);
+    }
+
+    assessFight(baseline) {
+        const myHp = this.hpFrac();
+        const foeHp = this.threat ? this.threat.hpPct : -1;
+        const now = Date.now();
+        // Latch the start-of-fight snapshot once foe HP is actually known.
+        if (baseline.startMs === 0 && foeHp >= 0) {
+            baseline.startMs = now;
+            baseline.startMyHp = myHp;
+            baseline.startFoeHp = foeHp;
+        }
+
+        // Hard floor: bail the moment my HP drops below the panic threshold.
+        if (myHp < this.FLEE_HP_FRAC) return { flee: true, why: `HP ${(myHp * 100) | 0}% < floor` };
+
+        // Trend check, only after the fight has run long enough to read a trend.
+        if (baseline.startMs && now - baseline.startMs >= this.LOSE_ASSESS_MS) {
+            const myHpLost = baseline.startMyHp - myHp;
+            const foeHpLost = baseline.startFoeHp - foeHp;
+            if (myHpLost >= 0.1) {
+                if (foeHpLost <= 0.02)
+                    return { flee: true, why: `cannot dent foe (foe ${(foeHp * 100) | 0}%)` };
+                // Crude time-to-die for each side: remaining HP / loss-so-far.
+                const myTimeToDie = myHp / myHpLost, foeTimeToDie = foeHp / foeHpLost;
+                if (myTimeToDie <= foeTimeToDie)
+                    return { flee: true, why: `losing race (me ${myTimeToDie.toFixed(1)} <= foe ${foeTimeToDie.toFixed(1)})` };
+            }
+        }
+        return { flee: false };
+    }
+
+    async fight() {
+        const { token } = this;
+        token.onCancel(() => { Player.follow(false); Player.setWarMode(false); });
+        let followSerial = 0;
+        const baseline = { startMs: 0, startMyHp: -1, startFoeHp: -1 };
+        while (this.threat?.exists && !Player.dead) {
+            const verdict = this.assessFight(baseline);
+            if (verdict.flee) {
+                const foeName = this.threat?.name || '0x' + (this.threat?.serial ?? 0).toString(16);
+                console.warn(`[lj] ${verdict.why} -> flee from ${foeName} (hp ${Player.hp}/${Player.hpMax})`);
+                this.fleeing = true;
+                // Blacklist this mob's area for a while and rotate to a different
+                // stand, so after banking + resting `chop` starts somewhere new
+                // instead of walking back into it (which would loop flee -> bank ->
+                // return -> flee). The avoid-area also keeps tree-search away from
+                // the spot even within the same stand.
+                const mob = this.threat?.exists ? this.threat : Player;
+                this.avoidArea(mob.x, mob.y);
+                this.nextForest();
+                return;
+            }
+            if (!Player.warMode) Player.setWarMode(true);
+            Player.attack(this.threat.serial);
+
+            if (followSerial !== this.threat.serial) { Player.follow(this.threat.serial, 1); followSerial = this.threat.serial; }
+
+            // Heal mid-fight: assessFight only flees at FLEE_HP_FRAC, and a burst
+            // between ticks can drop us past that before the next check. Throttled
+            // to the bandage timer; gate set before the await so a no-op (no
+            // bandage) still throttles instead of hammering every tick.
+            if (this.hpFrac() < this.HEAL_HP_FRAC && Date.now() - this.lastBandageMs > this.BANDAGE_INTERVAL_MS) {
+                this.lastBandageMs = Date.now();
+                await this.bandageSelf();
+            }
+            await token.sleep(this.COMBAT_TICK_MS);
+        }
+        Player.follow(false);
+        if (Player.warMode) Player.setWarMode(false);
+        this.threat = null;
+    }
+
+    async resurrect() {
+        console.warn('[lj] DEAD -> heading to healer to resurrect');
+        this.threat = null;
+        this.fleeing = false;
+        Player.follow(false);
+        const { token } = this;
+        while (Player.dead) {
+            await this.walkTo(this.HEALER);
+
+            const healer = await this.findVendor('healer', this.HEALER);
+            if (healer) await this.walkTo({ x: healer.x, y: healer.y }, { adjacent: true });
+            else console.warn('[lj] no healer found near HEALER coords');
+
+            Player.setWarMode(true);
+            Player.say('ress');
+            for (let waited = 0; waited < this.RESS_WAIT_MS && Player.dead; waited += 1000)
+                await token.sleep(1000);
+        }
+        console.log('[lj] resurrected; resuming work');
+        await token.sleep(1000);
     }
 
     // ===== banking / upkeep (thin wrappers over the mixins) =====
@@ -168,7 +266,6 @@ class Lumberjack extends BehaviorScript {
             }
             if (kind === 'depleted') {
                 World.markStump(x, y, z, graphic);
-                this.noteEmptySpot(x, y);   // skip it for EMPTY_SPOT_MS, not just this pass
                 console.log('[lj] depleted -> stump at', x, y);
             }
             break;
@@ -216,7 +313,6 @@ class Lumberjack extends BehaviorScript {
                 .filter((staticTile) => this.isTree(staticTile))
                 .filter((candidate) => !visited.has(candidate.x + ',' + candidate.y))
                 .filter((candidate) => !this.isAvoided(candidate.x, candidate.y))
-                .filter((candidate) => !this.isEmptySpot(candidate.x, candidate.y))
                 .reduce((best, candidate) =>
                     (!best || tileDistance(here, candidate) < tileDistance(here, best) ? candidate : best), null);
 
@@ -239,10 +335,8 @@ class Lumberjack extends BehaviorScript {
     behaviors() {
         return [
             { name: 'resurrect', when: () => Player.dead, step: this.step('resurrect') },
-            { name: 'offline', when: () => !this.isActiveNow() && !this.threat?.exists, step: this.step('endSession') },
             { name: 'fight', when: () => !this.fleeing && Boolean(this.threat?.exists), step: this.sequence('fight', 'rest') },
-            { name: 'bank', when: () => this.fleeing || ((this.full() || this.carryingTooMuchGold()) && this.bankTripDue()),
-                step: this.sequence('sellLoot', 'goToBank', 'depositLogs', 'bankSurplusGold', 'withdrawGold', 'restock', 'economyReport', 'rest') },
+            { name: 'bank', when: () => this.fleeing || this.full(), step: this.sequence('goToBank', 'depositLogs', 'withdrawGold', 'restock', 'rest') },
             { name: 'eat', when: () => Date.now() - this.lastAteMs > this.EAT_INTERVAL_MS &&
                     Player.equipment.backpack.items.some((item) => [].concat(this.FOOD).some((name) => item.name.includes(name))),
                 step: this.step('eatFood') },
@@ -271,6 +365,6 @@ class Lumberjack extends BehaviorScript {
     }
 }
 
-Object.assign(Lumberjack.prototype, BankSkill, SurvivalSkill, CombatSkill, EconomySkill, MemorySkill);
+Object.assign(Lumberjack.prototype, BankSkill, SurvivalSkill);
 
 new Lumberjack().start();

@@ -236,7 +236,7 @@ RECT	a_fatted_calf_1	4391	1139	4400	1146
 REGION	a_mighty_axe_1	building	5	4397	1117	0	Moonglow	The Mighty Axe
 RECT	a_mighty_axe_1	4383	1111	4400	1120
 RECT	a_mighty_axe_1	4383	1103	4392	1110
-REGION	a_moonglow_academyrts_1	building	5	4526	1065	0	Moonglow	Moonglow Academy of Arts
+REGION	a_moonglow_academyrts_1	dungeon	4	4526	1065	0	Moonglow	Moonglow Academy of Arts
 RECT	a_moonglow_academyrts_1	4519	1055	4536	1064
 RECT	a_moonglow_academyrts_1	4519	1065	4528	1072
 REGION	a_scholars_cut_tailory_1	building	5	4455	1069	0	Moonglow	Scholar's Cut Tailory
@@ -308,7 +308,7 @@ REGION	a_minoc_vesper_moongate_1	moongate	0	2702	692	5	Moongates	Minoc-Vesper Mo
 RECT	a_minoc_vesper_moongate_1	2697	688	2705	696
 REGION	a_great_waterfall_1	wilderness	0	1319	541	-15	Misc	Great Waterfall
 RECT	a_great_waterfall_1	1316	527	1323	542
-REGION	a_fishermans_hut_1	building	5	2380	3488	3	Trinsic	Fisherman's Hut
+REGION	a_fishermans_hut_1	dungeon	4	2380	3488	3	Trinsic	Fisherman's Hut
 RECT	a_fishermans_hut_1	2375	3482	2384	3491
 REGION	a_destard_entrance_1	wilderness	0	1176	2636	0	Destard	Destard Entrance
 RECT	a_destard_entrance_1	1173	2633	1180	2637
@@ -573,7 +573,7 @@ RECT	a_fruits_vegetables_1	4475	1089	4484	1092
 REGION	a_scholars_goods_1	building	5	4421	1063	0	Moonglow	The Scholar's Goods
 RECT	a_scholars_goods_1	4407	1055	4416	1072
 RECT	a_scholars_goods_1	4417	1060	4424	1068
-REGION	a_minoc_mine_1_1	cave	5	2558	499	0	Mines & Caves	Minoc Mine 1
+REGION	a_minoc_mine_1_1	cave	4	2558	499	0	Mines & Caves	Minoc Mine 1
 RECT	a_minoc_mine_1_1	2556	501	2561	503
 RECT	a_minoc_mine_1_1	2556	474	2581	500
 REGION	a_entrance_from_nrinsic_1	dungeon	0	1988	2064	-40	T2A Entrances & Exits	Entrance from N of Trinsic
@@ -611,7 +611,7 @@ RECT	a_ice_dungeon_5	5784	287	5895	386
 REGION	a_fire_dungeon_4	dungeon	4	5790	1416	40	T2A	Fire Dungeon
 RECT	a_fire_dungeon_4	5627	1282	5886	1490
 RECT	a_fire_dungeon_4	5726	1489	5886	1520
-REGION	a_papua_4	town	1	5729	3209	-1	Papua	Papua
+REGION	a_papua_4	wilderness	0	5729	3209	-1	Papua	Papua
 RECT	a_papua_4	5633	3088	5742	3328
 RECT	a_papua_4	5743	3088	5839	3331
 REGION	a_delucia_5	wilderness	0	5272	3995	37	Delucia	Delucia
@@ -631,7 +631,7 @@ REGION	a_entrance_from_temple_isle_1	dungeon	4	2494	3581	5	T2A Entrances & Exits
 RECT	a_entrance_from_temple_isle_1	2490	3572	2498	3580
 REGION	a_temple_isle_1	wilderness	0	2493	3604	0	Trinsic	Temple Isle
 RECT	a_temple_isle_1	2431	3528	2561	3671
-REGION	a_entrance_from_moonglow_1	dungeon	41	4545	852	30	T2A Entrances & Exits	Entrance from Moonglow
+REGION	a_entrance_from_moonglow_1	dungeon	40	4545	852	30	T2A Entrances & Exits	Entrance from Moonglow
 RECT	a_entrance_from_moonglow_1	4542	848	4549	851
 REGION	a_minoc_cave2_1	cave	4	2440	94	0	Mines & Caves	Minoc Cave2
 RECT	a_minoc_cave2_1	2418	81	2441	112
@@ -734,7 +734,7 @@ RECT	a_wind_tunnels_1	5253	189	5300	200
 RECT	a_wind_tunnels_1	5261	177	5299	188
 RECT	a_wind_tunnels_1	5284	151	5312	176
 RECT	a_wind_tunnels_1	5291	138	5315	155
-REGION	a_townWind	town	109	5223	201	5	Wind	Wind
+REGION	a_townWind	wilderness	108	5223	201	5	Wind	Wind
 RECT	a_townWind	5121	4	5372	254
 REGION	a_outside_wind_1	wilderness	0	1465	989	0	Wind	Outside Wind
 RECT	a_outside_wind_1	1347	881	1455	1009
@@ -832,7 +832,7 @@ RECT	a_townNujelm	3696	1346	3769	1423
 RECT	a_townNujelm	3718	1175	3797	1346
 RECT	a_townNujelm	3758	1116	3797	1174
 RECT	a_townNujelm	3797	1240	3821	1309
-REGION	a_moonglow_encyclopedia_magicka_1	building	5	4545	862	30	Moonglow	Moonglow Encyclopedia Magicka
+REGION	a_moonglow_encyclopedia_magicka_1	dungeon	4	4545	862	30	Moonglow	Moonglow Encyclopedia Magicka
 RECT	a_moonglow_encyclopedia_magicka_1	4541	847	4550	872
 RECT	a_moonglow_encyclopedia_magicka_1	4551	855	4558	864
 RECT	a_moonglow_encyclopedia_magicka_1	4533	855	4540	864
@@ -992,7 +992,7 @@ REGION	a_beach_house_1	wilderness	0	1606	3531	0	Misc	Beach House
 RECT	a_beach_house_1	1602	3526	1610	3536
 REGION	a_ruins_1	moongate	0	1609	3372	0	Moongates	Ruins
 RECT	a_ruins_1	1603	3366	1615	3378
-REGION	a_Britain_Fields	town	1	1495	1629	10	Britain	Britain Fields
+REGION	a_Britain_Fields	wilderness	0	1495	1629	10	Britain	Britain Fields
 RECT	a_Britain_Fields	1376	1743	1245	1832
 RECT	a_Britain_Fields	1379	1766	1427	1832
 RECT	a_Britain_Fields	1376	1743	1142	1702
@@ -2088,6 +2088,7 @@ PLACE	britain_inn	inn	a_townBritain	1620	1586	0	5	innkeeper,cook		Britain tavern
 PLACE	britain_carpenter	shop	a_townBritain	1430	1597	20	5	carpenter		Britain carpenter
 PLACE	britain_mage	shop	a_townBritain	1485	1550	30	5	mage,alchemist		Britain mage
 PLACE	britain_territory_stable	stable	a_britain_territory_1	1296	1759	10	5	stablemaster		Britain Territory animaltrainer
+PLACE	britain_territory_veterinarian	shop	a_britain_territory_1	1296	1759	10	5	veterinarian		Britain Territory veterinarian
 PLACE	britain_armorer	shop	a_townBritain	1481	1584	20	5	blacksmith		Britain armorer
 PLACE	britain_inn_2	inn	a_townBritain	1493	1616	20	5	innkeeper		Britain innkeeper
 PLACE	britain_tinkerguildmaster	shop	a_townBritain	1422	1654	10	5	tinker		Britain tinkerguildmaster
@@ -2257,6 +2258,7 @@ PLACE	skara_brae_provisioner	shop	a_townSkaraBrae	578	2227	0	5	provisioner,tailo
 PLACE	skara_brae_shipwright	shop	a_townSkaraBrae	592	2277	0	5	shipwright,mapmaker		Skara Brae shipwright
 PLACE	skara_brae_bank	bank	a_townSkaraBrae	587	2146	0	5	banker		Skara Brae banker
 PLACE	skara_brae_stable	stable	a_townSkaraBrae	570	2121	0	5	stablemaster		Skara Brae animaltrainer
+PLACE	skara_brae_veterinarian	shop	a_townSkaraBrae	570	2121	0	5	veterinarian		Skara Brae veterinarian
 PLACE	skara_brae_bowyer	shop	a_townSkaraBrae	590	2205	0	5	bowyer		Skara Brae bowyer
 PLACE	skara_brae_butcher	shop	a_townSkaraBrae	582	2186	0	5	butcher		Skara Brae butcher
 PLACE	skara_brae_carpenter	shop	a_townSkaraBrae	627	2163	0	5	carpenter		Skara Brae carpenter
@@ -2625,6 +2627,24 @@ PLACE	minoc_territory_hunting	resource_area	a_minoc_territory_1	2735	417	15	50		
 PLACE	vesper_territory_hunting_8	resource_area	a_vesper_territory_1	2914	547	0	50		hunting	Vesper Territory hunting
 PLACE	vesper_territory_hunting_9	resource_area	a_vesper_territory_1	2814	492	15	50		hunting	Vesper Territory hunting
 PLACE	minoc_territory_hunting_2	resource_area	a_minoc_territory_1	2688	524	11	50		hunting	Minoc Territory hunting
+PLACE	britain_graveyard_knights	graveyard	a_britain_graveyard_1	1385	1459	10	3			Britain Graveyard - Skeleton Knights
+PLACE	britain_graveyard_lich	graveyard	a_britain_graveyard_1	1385	1452	10	3			Britain Graveyard - Lich
+PLACE	britain_graveyard_lich_lord	graveyard	a_britain_graveyard_1	1385	1446	11	2			Britain Graveyard - Lich Lord
+PLACE	vesper_cemetary_knights	graveyard	a_vesper_cemetary_1	2745	884	1	4			Vesper Cemetary - Skeleton Knights
+PLACE	vesper_cemetary_lich	graveyard	a_vesper_cemetary_1	2740	858	1	3			Vesper Cemetary - Lich
+PLACE	vesper_cemetary_lich_2	graveyard	a_vesper_cemetary_1	2763	873	1	5			Vesper Cemetary - Lich
+PLACE	vesper_cemetary_lich_lord	graveyard	a_vesper_cemetary_1	2779	842	1	2			Vesper Cemetary - Lich Lord
+PLACE	cove_graveyard_lich	graveyard	a_cove_graveyard_1	2442	1087	29	2			Cove Graveyard - Lich
+PLACE	cove_graveyard_knights	graveyard	a_cove_graveyard_1	2436	1105	9	3			Cove Graveyard - Skeleton Knights
+PLACE	cove_graveyard_lich_lord	graveyard	a_cove_graveyard_1	2442	1109	9	2			Cove Graveyard - Lich Lord
+PLACE	moonglow_cemetary_lich_lord	graveyard	a_moonglow_cemetary_1	4551	1299	19	2			Moonglow Cemetary - Lich Lord
+PLACE	moonglow_cemetary_knights	graveyard	a_moonglow_cemetary_1	4544	1325	9	3			Moonglow Cemetary - Skeleton Knights
+PLACE	moonglow_cemetary_lich	graveyard	a_moonglow_cemetary_1	4533	1316	9	3			Moonglow Cemetary - Lich
+PLACE	moonglow_cemetary_lich_2	graveyard	a_moonglow_cemetary_1	4546	1320	9	3			Moonglow Cemetary - Lich
+PLACE	nujel_m_cemetary_lich_lord	graveyard	a_nujelm_cemetary_1	3526	1126	21	2			Nujel'm Cemetary - Lich Lord
+PLACE	nujel_m_cemetary_knights	graveyard	a_nujelm_cemetary_1	3521	1145	21	3			Nujel'm Cemetary - Skeleton Knights
+PLACE	nujel_m_cemetary_lich	graveyard	a_nujelm_cemetary_1	3508	1147	31	3			Nujel'm Cemetary - Lich
+PLACE	nujel_m_cemetary_lich_2	graveyard	a_nujelm_cemetary_1	3533	1134	21	3			Nujel'm Cemetary - Lich
 PLACE	cave_resource_area	resource_area	a_cave_1	2367	942	0	12		mining	cave
 PLACE	orc_cave_level_2_resource_area	resource_area	a_dungeon_4	5354	1307	0	12		mining	Orc Cave Level 2
 PLACE	orc_cave_level_3_resource_area	resource_area	a_dungeon_8	5304	2012	0	12		mining	Orc Cave Level 3
@@ -2637,6 +2657,7 @@ PLACE	exit_from_w_of_city_of_the_dead_graveyard	graveyard	a_exit_from_wityhe_dea
 PLACE	entrance_from_serpent_s_hold_dungeon_entrance	dungeon_entrance	a_entrance_from_serpents_hold_1	2923	3406	8	8			Entrance from Serpent's Hold
 PLACE	entrance_from_s_sw_of_trinsic_dungeon_entrance	dungeon_entrance	a_trinsic_territory_1	1628	3321	0	8			Entrance from S-SW of Trinsic
 PLACE	entrance_serpent_s_pillar_w_dungeon_entrance	dungeon_entrance	a_entrance_serpents_pillar_w_1	424	3286	-5	8			Entrance - Serpent's Pillar W
+PLACE	field_resource_area	resource_area	a_field_1	814	2164	0	12		food	Field
 PLACE	brit_mine2_resource_area	resource_area	a_brit_mine2_1	1629	1189	0	20		mining	Brit Mine2
 PLACE	entrance_from_vesper_cemetary_graveyard	graveyard	a_entrance_from_vesper_cemetary_1	2777	894	-23	12			Entrance from Vesper Cemetary
 PLACE	entrance_from_yew_dungeon_entrance	dungeon_entrance	a_entrance_from_yew_1	309	785	0	8			Entrance from Yew
@@ -2653,13 +2674,13 @@ PLACE	vesper_docks_dock	dock	a_vesper_docks_1	3009	828	-3	12		fishing	Vesper Doc
 PLACE	skara_brae_ferry_dock_dock	dock	a_skara_brae_ferry_dock_1	726	2236	-3	12		fishing	Skara Brae Ferry Dock
 PLACE	serpent_s_hold_docks_s_dock	dock	a_serpents_hold_tavern_1	3012	3461	15	12		fishing	Serpent's Hold Docks S
 PLACE	serpent_s_hold_docks_w_dock	dock	a_townSerphold	2944	3394	15	12		fishing	Serpent's Hold Docks W
+PLACE	farmland_w_resource_area	resource_area	a_farmland_w_1	3711	2616	20	12		food	Farmland W
 PLACE	nujel_m_docks_dock	dock	a_nujelm_docks_1	3803	1279	5	12		fishing	Nujel'm Docks
 PLACE	minoc_mine_1_resource_area	resource_area	a_minoc_mine_1_1	2558	499	0	20		mining	Minoc Mine 1
 PLACE	entrance_from_n_of_trinsic_dungeon_entrance	dungeon_entrance	a_entrance_from_nrinsic_1	1988	2064	-40	8			Entrance from N of Trinsic
 PLACE	entrance_to_below_terathan_keep_dungeon_entrance	dungeon_entrance	a_entrance_to_below_terathan_keep_1	5342	1601	0	8			Entrance to below Terathan Keep
 PLACE	entrance_into_britain_sewers_dungeon_entrance	dungeon_entrance	a_entrance_into_britain_sewers_1	1490	1641	24	8			Entrance Into Britain Sewers
 PLACE	city_of_the_dead_graveyard	graveyard	a_cityhe_dead_1	5220	3665	-3	12			City of the Dead
-PLACE	papua_town_center	town_center	a_papua_4	5729	3209	-1	8			Papua
 PLACE	fire_dungeon_entrance_dungeon_entrance	dungeon_entrance	a_fire_dungeon_entrance_1	5758	2908	0	8			Fire Dungeon Entrance
 PLACE	entrance_serpent_s_pillar_e_dungeon_entrance	dungeon_entrance	a_entrance_serpents_pillar_e_1	2984	2893	-5	8			Entrance - Serpent's Pillar E
 PLACE	entrance_from_temple_isle_dungeon_entrance	dungeon_entrance	a_temple_isle_1	2494	3581	5	8			Entrance from Temple Isle
@@ -2680,7 +2701,6 @@ PLACE	yew_cave1_resource_area	resource_area	a_yew_cave1_1	773	1684	45	12		mining
 PLACE	north_territory_mine2_resource_area	resource_area	a_north_territory_mine2_1	1638	974	0	20		mining	North Territory Mine2
 PLACE	north_territory_mine1_resource_area	resource_area	a_north_territory_mine1_1	1723	1065	0	20		mining	North Territory Mine1
 PLACE	brit_mine1_resource_area	resource_area	a_brit_mine1_1	1443	1228	0	20		mining	Brit Mine1
-PLACE	wind_town_center	town_center	a_wind_tunnels_1	5223	201	5	8			Wind
 PLACE	yew_town_center	town_center	a_townYew	546	992	0	8			Yew
 PLACE	vesper_cemetary_graveyard	graveyard	a_vesper_cemetary_1	2781	867	0	12			Vesper Cemetary
 PLACE	vesper_town_center	town_center	a_townVesper	2899	676	0	8			Vesper
@@ -2709,64 +2729,707 @@ PLACE	jhelom_docks_se_dock	dock	a_south_jhelom_1	1502	3989	-3	12		fishing	Jhelom
 PLACE	jhelom_docks_nw_dock	dock	a_jhelom_territory_1	1127	3681	-2	12		fishing	Jhelom Docks NW
 PLACE	magincia_docks_dock	dock	a_townMagincia	3675	2263	21	12		fishing	Magincia Docks
 PLACE	skara_brae_docks_s_dock	dock	a_townSkaraBrae	617	2276	-3	12		fishing	Skara Brae Docks S
-PLACE	mining_cooperative_resource_area	resource_area	a_townMagincia	3670	2144	20	20		mining	Mining Cooperative
-PLACE	britain_mining_cooperative_resource_area	resource_area	a_townBritain	1426	1581	30	20		mining	Britain Mining Cooperative
+PLACE	farmland1_w_resource_area	resource_area	a_britain_territory_1	1232	1888	0	12		food	Farmland1 W
+PLACE	farmland4_sw_resource_area	resource_area	a_britain_territory_1	1320	1815	0	12		food	Farmland4 SW
+PLACE	farmland2_sw_resource_area	resource_area	a_britain_territory_1	1200	1824	0	12		food	Farmland2 SW
+PLACE	farmland2_w_resource_area	resource_area	a_britain_territory_1	1192	1684	0	12		food	Farmland2 W
+PLACE	farmland5_w_resource_area	resource_area	a_britain_territory_1	1120	1624	0	12		food	Farmland5 W
 PLACE	cove_docks_dock	dock	a_townCove	2255	1191	-2	12		fishing	Cove Docks
-PLACE	minoc_miner_s_guild_resource_area	resource_area	a_townMinoc	2456	493	15	20		mining	Minoc Miner's Guild
-PLACE	the_old_miner_s_supplies_resource_area	resource_area	a_townMinoc	2460	429	15	20		mining	The Old Miner's Supplies
 PLACE	docks_dock	dock	a_townBritain	1479	1757	0	12		fishing	Docks
 PLACE	papua_docks_dock	dock	a_papua_4	5738	3268	14	12		fishing	Papua Docks
 PLACE	skara_brae_docks_e_dock	dock	a_townSkaraBrae	638	2227	-3	12		fishing	Skara Brae Docks E
+PLACE	farmland_sw_resource_area	resource_area	a_Ocllo_7	3738	2693	40	12		food	Farmland SW
+PLACE	farmland_nw_resource_area	resource_area	a_Ocllo_7	3739	2599	40	12		food	Farmland NW
+PLACE	melon_field_w_resource_area	resource_area	a_farmland_w_1	3717	2627	20	12		food	Melon Field W
 PLACE	ocllo_docks_dock	dock	a_Ocllo_7	3646	2650	-2	12		fishing	Ocllo Docks
 PLACE	jhelom_docks_s_dock	dock	a_townJhelom	1372	3900	-3	12		fishing	Jhelom Docks S
 PLACE	jhelom_docks_ne_dock	dock	a_townJhelom	1502	3695	-3	12		fishing	Jhelom Docks NE
+PLACE	farmland_resource_area	resource_area	a_townCove	2224	1152	0	12		food	Farmland
 PLACE	buccaneer_s_den_docks_dock	dock	a_townBucsden	2750	2166	-2	12		fishing	Buccaneer's Den Docks
+PLACE	farmland3_w_resource_area	resource_area	a_britain_territory_1	1152	1576	0	12		food	Farmland3 W
+PLACE	farmland4_w_resource_area	resource_area	a_britain_territory_1	1224	1604	0	12		food	Farmland4 W
+PLACE	farmland3_sw_resource_area	resource_area	a_britain_territory_1	1136	1792	0	12		food	Farmland3 SW
+PLACE	farmland1_sw_resource_area	resource_area	a_britain_territory_1	1224	1724	0	12		food	Farmland1 SW
 PLACE	jhelom_cemetary_graveyard	graveyard	a_jhelom_territory_1	1291	3719	0	12			Jhelom Cemetary
+PLACE	field_resource_area_2	resource_area	a_townYew	375	1191	0	12		food	Field
 PLACE	secret_cave_resource_area	resource_area	a_trinsic_territory_1	1653	2967	0	12		mining	Secret Cave
 PLACE	cave_resource_area_4	resource_area	a_cove_territory_1	2345	830	0	12		mining	Cave
-PLACE	trinsic_territory_woods	resource_area	a_trinsic_territory_1	1928	3208	0	48		lumber	Trinsic Territory woods
-PLACE	trinsic_territory_woods_2	resource_area	a_trinsic_territory_1	1816	3336	0	48		lumber	Trinsic Territory woods
-PLACE	trinsic_territory_woods_3	resource_area	a_trinsic_territory_1	1544	3080	0	48		lumber	Trinsic Territory woods
-PLACE	fire_island_woods	resource_area	a_islehe_fire_1	4648	3592	0	48		lumber	Fire Island woods
-PLACE	wilds_woods	resource_area		1416	3078	0	48		lumber	wilds woods
-PLACE	fire_island_woods_2	resource_area	a_islehe_fire_1	4504	3592	0	48		lumber	Fire Island woods
-PLACE	wastelands_woods	resource_area	a_wastelands_1	5528	3208	0	48		lumber	WasteLands woods
-PLACE	wastelands_woods_2	resource_area	a_wastelands_1	5382	3208	0	48		lumber	WasteLands woods
-PLACE	wilds_woods_2	resource_area		1544	2824	0	48		lumber	wilds woods
-PLACE	fire_island_woods_3	resource_area	a_islehe_fire_1	4616	3336	0	48		lumber	Fire Island woods
-PLACE	wastelands_woods_3	resource_area	a_wastelands_1	5384	3718	0	48		lumber	WasteLands woods
-PLACE	wilds_woods_3	resource_area		1032	2312	0	48		lumber	wilds woods
-PLACE	yew_territory_woods	resource_area	a_Yew_Ter	776	1414	0	48		lumber	Yew Territory woods
-PLACE	northern_territory_woods	resource_area	a_northern_territory_1	1864	520	0	48		lumber	Northern Territory woods
-PLACE	yew_territory_woods_2	resource_area	a_Yew_Ter	776	1030	0	48		lumber	Yew Territory woods
-PLACE	yew_territory_woods_3	resource_area	a_Yew_Ter	1048	776	0	48		lumber	Yew Territory woods
-PLACE	britain_territory_woods	resource_area	a_britain_territory_1	1416	1928	0	48		lumber	Britain Territory woods
-PLACE	britain_territory_woods_2	resource_area	a_britain_territory_1	1848	1288	0	48		lumber	Britain Territory woods
-PLACE	buccaneer_s_den_woods	resource_area	a_townBucsden	2712	2216	0	48		lumber	Buccaneer's Den woods
-PLACE	vesper_territory_woods	resource_area	a_vesper_territory_1	3080	520	0	48		lumber	Vesper Territory woods
-PLACE	windemere_woods_woods	resource_area	a_Windemere_Woods	3336	392	0	48		lumber	Windemere Woods woods
-PLACE	britain_territory_woods_3	resource_area	a_britain_territory_1	1416	1288	0	48		lumber	Britain Territory woods
-PLACE	buccaneer_s_den_territory_woods	resource_area	a_buccaneers_den_territory_1	2600	2054	0	48		lumber	Buccaneer's Den Territory woods
-PLACE	cove_territory_woods	resource_area	a_cove_territory_1	2568	1030	0	48		lumber	Cove Territory woods
-PLACE	yew_woods	resource_area	a_townYew	648	1160	0	48		lumber	Yew woods
-PLACE	buccaneer_s_den_territory_woods_2	resource_area	a_buccaneers_den_territory_1	2616	2184	0	48		lumber	Buccaneer's Den Territory woods
-PLACE	orcish_lands_woods	resource_area	a_orcish_lands_1	6040	3206	0	48		lumber	Orcish Lands woods
-PLACE	magincia_territory_woods	resource_area	a_magincia_territory_1	3656	2056	0	48		lumber	Magincia Territory woods
-PLACE	minoc_territory_woods	resource_area	a_minoc_territory_1	2728	392	0	48		lumber	Minoc Territory woods
-PLACE	yew_woods_2	resource_area	a_townYew	520	1160	0	48		lumber	Yew woods
-PLACE	yew_woods_3	resource_area	a_townYew	664	1030	0	48		lumber	Yew woods
-PLACE	windemere_woods_woods_2	resource_area	a_Windemere_Woods	3208	520	0	48		lumber	Windemere Woods woods
-PLACE	cove_territory_woods_2	resource_area	a_cove_territory_1	2568	776	0	48		lumber	Cove Territory woods
-PLACE	vesper_territory_woods_2	resource_area	a_vesper_territory_1	3112	392	0	48		lumber	Vesper Territory woods
-PLACE	cove_territory_woods_3	resource_area	a_cove_territory_1	2312	952	0	48		lumber	Cove Territory woods
-PLACE	minoc_territory_woods_2	resource_area	a_minoc_territory_1	2712	646	0	48		lumber	Minoc Territory woods
-PLACE	vesper_territory_woods_3	resource_area	a_vesper_territory_1	3160	648	0	48		lumber	Vesper Territory woods
-PLACE	buccaneer_s_den_territory_woods_3	resource_area	a_buccaneers_den_territory_1	2744	1944	0	48		lumber	Buccaneer's Den Territory woods
-PLACE	northern_territory_woods_2	resource_area	a_northern_territory_1	2088	536	0	48		lumber	Northern Territory woods
-PLACE	northern_territory_woods_3	resource_area	a_northern_territory_1	1800	406	0	48		lumber	Northern Territory woods
-PLACE	jhelom_territory_woods	resource_area	a_jhelom_territory_1	1096	3462	0	48		lumber	Jhelom Territory woods
-PLACE	windemere_woods_woods_3	resource_area	a_Windemere_Woods	3224	392	0	48		lumber	Windemere Woods woods
-PLACE	jhelom_territory_woods_2	resource_area	a_jhelom_territory_1	1160	3464	0	48		lumber	Jhelom Territory woods
+PLACE	wilds_woods	resource_area		2440	3912	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods	resource_area	a_trinsic_territory_1	1608	3080	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_2	resource_area	a_trinsic_territory_1	1992	3272	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_2	resource_area		1352	3016	0	16		lumber	wilds woods
+PLACE	buccaneer_s_den_woods	resource_area	a_townBucsden	2760	2248	0	16		lumber	Buccaneer's Den woods
+PLACE	fire_island_woods	resource_area	a_islehe_fire_1	4488	3464	0	16		lumber	Fire Island woods
+PLACE	trinsic_territory_woods_3	resource_area	a_trinsic_territory_1	1928	3336	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_4	resource_area	a_trinsic_territory_1	1864	3334	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_5	resource_area	a_trinsic_territory_1	2056	3144	0	16		lumber	Trinsic Territory woods
+PLACE	magincia_territory_woods	resource_area	a_magincia_territory_1	3592	2120	0	16		lumber	Magincia Territory woods
+PLACE	trinsic_territory_woods_6	resource_area	a_trinsic_territory_1	1992	3144	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_7	resource_area	a_trinsic_territory_1	1928	3208	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_3	resource_area		1480	3144	0	16		lumber	wilds woods
+PLACE	wilds_woods_4	resource_area		1416	3014	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_8	resource_area	a_trinsic_territory_1	1544	2952	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_9	resource_area	a_trinsic_territory_1	1608	3016	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_10	resource_area	a_trinsic_territory_1	1736	3016	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_11	resource_area	a_trinsic_territory_1	1672	3272	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_12	resource_area	a_trinsic_territory_1	1928	3272	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_13	resource_area	a_trinsic_territory_1	1992	3336	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_2	resource_area	a_islehe_fire_1	4424	3656	0	16		lumber	Fire Island woods
+PLACE	trinsic_territory_woods_14	resource_area	a_trinsic_territory_1	1544	3080	0	16		lumber	Trinsic Territory woods
+PLACE	wastelands_woods	resource_area	a_wastelands_1	5592	3016	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_2	resource_area	a_wastelands_1	5448	3336	0	16		lumber	WasteLands woods
+PLACE	trinsic_territory_woods_15	resource_area	a_trinsic_territory_1	1816	3336	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_3	resource_area	a_islehe_fire_1	4680	3592	0	16		lumber	Fire Island woods
+PLACE	trinsic_territory_woods_16	resource_area	a_trinsic_territory_1	1800	3400	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_5	resource_area		1416	3078	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_17	resource_area	a_trinsic_territory_1	1736	3272	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_4	resource_area	a_islehe_fire_1	4552	3656	0	16		lumber	Fire Island woods
+PLACE	trinsic_territory_woods_18	resource_area	a_trinsic_territory_1	2120	3336	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_5	resource_area	a_islehe_fire_1	4680	3656	0	16		lumber	Fire Island woods
+PLACE	wilds_woods_6	resource_area		1544	2888	0	16		lumber	wilds woods
+PLACE	fire_island_woods_6	resource_area	a_islehe_fire_1	4360	3718	0	16		lumber	Fire Island woods
+PLACE	fire_island_woods_7	resource_area	a_islehe_fire_1	4424	3720	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_3	resource_area	a_wastelands_1	5464	3720	0	16		lumber	WasteLands woods
+PLACE	trinsic_territory_woods_19	resource_area	a_trinsic_territory_1	1864	3144	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_7	resource_area		1368	2952	0	16		lumber	wilds woods
+PLACE	wastelands_woods_4	resource_area	a_wastelands_1	5528	3784	0	16		lumber	WasteLands woods
+PLACE	trinsic_territory_woods_20	resource_area	a_trinsic_territory_1	1736	3400	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_21	resource_area	a_trinsic_territory_1	1544	3142	0	16		lumber	Trinsic Territory woods
+PLACE	wastelands_woods_5	resource_area	a_wastelands_1	5576	3272	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods	resource_area	a_Yew_Ter	776	1222	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_8	resource_area		1352	3080	0	16		lumber	wilds woods
+PLACE	wilds_woods_9	resource_area		1736	2888	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_22	resource_area	a_trinsic_territory_1	1544	3016	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_8	resource_area	a_islehe_fire_1	4680	3464	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_6	resource_area	a_wastelands_1	5576	3208	0	16		lumber	WasteLands woods
+PLACE	jhelom_territory_woods	resource_area	a_jhelom_territory_1	1096	3462	0	16		lumber	Jhelom Territory woods
+PLACE	fire_island_woods_9	resource_area	a_islehe_fire_1	4616	3336	0	16		lumber	Fire Island woods
+PLACE	buccaneer_s_den_woods_2	resource_area	a_townBucsden	2664	2248	0	16		lumber	Buccaneer's Den woods
+PLACE	wastelands_woods_7	resource_area	a_wastelands_1	5382	3208	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_10	resource_area	a_islehe_fire_1	4568	3336	0	16		lumber	Fire Island woods
+PLACE	trinsic_territory_woods_23	resource_area	a_trinsic_territory_1	1864	3400	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_24	resource_area	a_trinsic_territory_1	2056	3336	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_25	resource_area	a_trinsic_territory_1	1672	3208	0	16		lumber	Trinsic Territory woods
+PLACE	yew_territory_woods_2	resource_area	a_Yew_Ter	840	1736	0	16		lumber	Yew Territory woods
+PLACE	trinsic_territory_woods_26	resource_area	a_trinsic_territory_1	1608	3208	0	16		lumber	Trinsic Territory woods
+PLACE	yew_territory_woods_3	resource_area	a_Yew_Ter	584	1416	0	16		lumber	Yew Territory woods
+PLACE	trinsic_territory_woods_27	resource_area	a_trinsic_territory_1	2024	3208	0	16		lumber	Trinsic Territory woods
+PLACE	yew_territory_woods_4	resource_area	a_Yew_Ter	840	1416	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_10	resource_area		1640	2696	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_28	resource_area	a_trinsic_territory_1	1864	3272	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_11	resource_area		1096	2376	0	16		lumber	wilds woods
+PLACE	wastelands_woods_8	resource_area	a_wastelands_1	5640	3976	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_9	resource_area	a_wastelands_1	5704	3784	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods	resource_area	a_britain_territory_1	1416	1352	0	16		lumber	Britain Territory woods
+PLACE	fire_island_woods_11	resource_area	a_islehe_fire_1	4632	3398	0	16		lumber	Fire Island woods
+PLACE	serpent_s_hold_territory_woods	resource_area	a_serpents_hold_territory_1	2776	3464	0	16		lumber	Serpent's Hold Territory woods
+PLACE	wastelands_woods_10	resource_area	a_wastelands_1	5448	3016	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_12	resource_area		1032	2312	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_29	resource_area	a_trinsic_territory_1	2056	3400	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_30	resource_area	a_trinsic_territory_1	1736	2952	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_13	resource_area		1544	2824	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_31	resource_area	a_trinsic_territory_1	1736	3336	0	16		lumber	Trinsic Territory woods
+PLACE	buccaneer_s_den_territory_woods	resource_area	a_buccaneers_den_territory_1	2632	2120	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	trinsic_territory_woods_32	resource_area	a_trinsic_territory_1	1608	3336	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_12	resource_area	a_islehe_fire_1	4488	3208	0	16		lumber	Fire Island woods
+PLACE	northern_territory_woods	resource_area	a_northern_territory_1	1864	584	0	16		lumber	Northern Territory woods
+PLACE	fire_island_woods_13	resource_area	a_islehe_fire_1	4504	3592	0	16		lumber	Fire Island woods
+PLACE	cove_territory_woods	resource_area	a_cove_territory_1	2696	776	0	16		lumber	Cove Territory woods
+PLACE	cove_territory_woods_2	resource_area	a_cove_territory_1	2568	776	0	16		lumber	Cove Territory woods
+PLACE	wilds_woods_14	resource_area		1352	3144	0	16		lumber	wilds woods
+PLACE	fire_island_woods_14	resource_area	a_islehe_fire_1	4488	3912	0	16		lumber	Fire Island woods
+PLACE	wilds_woods_15	resource_area		1224	2312	0	16		lumber	wilds woods
+PLACE	wilds_woods_16	resource_area		1480	3208	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_33	resource_area	a_trinsic_territory_1	1736	3080	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_15	resource_area	a_islehe_fire_1	4488	3656	0	16		lumber	Fire Island woods
+PLACE	fire_island_woods_16	resource_area	a_islehe_fire_1	4424	3144	0	16		lumber	Fire Island woods
+PLACE	fire_island_woods_17	resource_area	a_islehe_fire_1	4616	3656	0	16		lumber	Fire Island woods
+PLACE	yew_territory_woods_5	resource_area	a_Yew_Ter	920	1160	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_17	resource_area		1288	2440	0	16		lumber	wilds woods
+PLACE	wastelands_woods_11	resource_area	a_wastelands_1	5864	3334	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_12	resource_area	a_wastelands_1	5640	3336	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_13	resource_area	a_wastelands_1	5576	3336	0	16		lumber	WasteLands woods
+PLACE	trinsic_territory_woods_34	resource_area	a_trinsic_territory_1	2344	3464	0	16		lumber	Trinsic Territory woods
+PLACE	wastelands_woods_14	resource_area	a_wastelands_1	5400	3336	0	16		lumber	WasteLands woods
+PLACE	serpent_s_hold_territory_woods_2	resource_area	a_serpents_hold_territory_1	2824	3464	0	16		lumber	Serpent's Hold Territory woods
+PLACE	trinsic_territory_woods_35	resource_area	a_trinsic_territory_1	1672	3336	0	16		lumber	Trinsic Territory woods
+PLACE	britain_territory_woods_2	resource_area	a_britain_territory_1	968	1608	0	16		lumber	Britain Territory woods
+PLACE	wastelands_woods_15	resource_area	a_wastelands_1	5528	3272	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_18	resource_area	a_islehe_fire_1	4552	3464	0	16		lumber	Fire Island woods
+PLACE	wilds_woods_18	resource_area		2152	3912	0	16		lumber	wilds woods
+PLACE	wastelands_woods_16	resource_area	a_wastelands_1	5512	3654	0	16		lumber	WasteLands woods
+PLACE	trinsic_territory_woods_36	resource_area	a_trinsic_territory_1	1736	3464	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_19	resource_area	a_islehe_fire_1	4616	3848	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_17	resource_area	a_wastelands_1	5448	3270	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_18	resource_area	a_wastelands_1	5384	3272	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_6	resource_area	a_Yew_Ter	1048	776	0	16		lumber	Yew Territory woods
+PLACE	trinsic_territory_woods_37	resource_area	a_trinsic_territory_1	1672	3080	0	16		lumber	Trinsic Territory woods
+PLACE	wastelands_woods_19	resource_area	a_wastelands_1	5576	3464	0	16		lumber	WasteLands woods
+PLACE	trinsic_territory_woods_38	resource_area	a_trinsic_territory_1	1816	3272	0	16		lumber	Trinsic Territory woods
+PLACE	vesper_territory_woods	resource_area	a_vesper_territory_1	3080	520	0	16		lumber	Vesper Territory woods
+PLACE	jhelom_territory_woods_2	resource_area	a_jhelom_territory_1	1160	3528	0	16		lumber	Jhelom Territory woods
+PLACE	yew_territory_woods_7	resource_area	a_Yew_Ter	1096	1096	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_20	resource_area	a_wastelands_1	5446	3528	0	16		lumber	WasteLands woods
+PLACE	vesper_territory_woods_2	resource_area	a_vesper_territory_1	2776	648	0	16		lumber	Vesper Territory woods
+PLACE	wastelands_woods_21	resource_area	a_wastelands_1	5528	3080	0	16		lumber	WasteLands woods
+PLACE	northern_territory_woods_2	resource_area	a_northern_territory_1	2056	584	0	16		lumber	Northern Territory woods
+PLACE	wastelands_woods_22	resource_area	a_wastelands_1	6024	2824	0	16		lumber	WasteLands woods
+PLACE	cove_territory_woods_3	resource_area	a_cove_territory_1	2632	1030	0	16		lumber	Cove Territory woods
+PLACE	trinsic_territory_woods_39	resource_area	a_trinsic_territory_1	1816	3144	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_40	resource_area	a_trinsic_territory_1	1736	3144	0	16		lumber	Trinsic Territory woods
+PLACE	wastelands_woods_23	resource_area	a_wastelands_1	5560	3592	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_24	resource_area	a_wastelands_1	5384	3590	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_19	resource_area		1416	3144	0	16		lumber	wilds woods
+PLACE	wastelands_woods_25	resource_area	a_wastelands_1	5640	3528	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_8	resource_area	a_Yew_Ter	1032	968	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_26	resource_area	a_wastelands_1	5576	3144	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_20	resource_area	a_islehe_fire_1	4680	3398	0	16		lumber	Fire Island woods
+PLACE	yew_territory_woods_9	resource_area	a_Yew_Ter	840	1096	0	16		lumber	Yew Territory woods
+PLACE	buccaneer_s_den_territory_woods_2	resource_area	a_buccaneers_den_territory_1	2728	1992	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	wastelands_woods_27	resource_area	a_wastelands_1	5528	3014	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_10	resource_area	a_Yew_Ter	648	1414	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_3	resource_area	a_britain_territory_1	1864	1288	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_20	resource_area		1688	2888	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_41	resource_area	a_trinsic_territory_1	1880	3208	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_42	resource_area	a_trinsic_territory_1	1752	3208	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_21	resource_area		1112	2056	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_3	resource_area	a_northern_territory_1	1928	646	0	16		lumber	Northern Territory woods
+PLACE	cove_territory_woods_4	resource_area	a_cove_territory_1	2376	712	0	16		lumber	Cove Territory woods
+PLACE	yew_territory_woods_11	resource_area	a_Yew_Ter	1096	968	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_22	resource_area		1544	2182	0	16		lumber	wilds woods
+PLACE	cove_territory_woods_5	resource_area	a_cove_territory_1	2376	968	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_28	resource_area	a_wastelands_1	5592	4040	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_12	resource_area	a_Yew_Ter	968	1030	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_29	resource_area	a_wastelands_1	5528	3976	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_30	resource_area	a_wastelands_1	5400	3912	0	16		lumber	WasteLands woods
+PLACE	windemere_woods_woods	resource_area	a_Windemere_Woods	3400	392	0	16		lumber	Windemere Woods woods
+PLACE	wilds_woods_23	resource_area		1432	2248	0	16		lumber	wilds woods
+PLACE	wastelands_woods_31	resource_area	a_wastelands_1	5464	3784	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_21	resource_area	a_islehe_fire_1	4488	3096	0	16		lumber	Fire Island woods
+PLACE	yew_territory_woods_13	resource_area	a_Yew_Ter	904	1222	0	16		lumber	Yew Territory woods
+PLACE	temple_isle_woods	resource_area	a_temple_isle_1	2456	3592	0	16		lumber	Temple Isle woods
+PLACE	wastelands_woods_32	resource_area	a_wastelands_1	5514	3530	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_4	resource_area	a_britain_territory_1	1496	1288	0	16		lumber	Britain Territory woods
+PLACE	trinsic_territory_woods_43	resource_area	a_trinsic_territory_1	1800	3464	0	16		lumber	Trinsic Territory woods
+PLACE	trinsic_territory_woods_44	resource_area	a_trinsic_territory_1	1640	3144	0	16		lumber	Trinsic Territory woods
+PLACE	yew_territory_woods_14	resource_area	a_Yew_Ter	584	1352	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_15	resource_area	a_Yew_Ter	1048	904	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_33	resource_area	a_wastelands_1	5836	3400	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_34	resource_area	a_wastelands_1	5784	3400	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_35	resource_area	a_wastelands_1	5640	3400	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_36	resource_area	a_wastelands_1	5512	3334	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_16	resource_area	a_Yew_Ter	840	1480	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_24	resource_area		1096	2312	0	16		lumber	wilds woods
+PLACE	windemere_woods_woods_2	resource_area	a_Windemere_Woods	3336	392	0	16		lumber	Windemere Woods woods
+PLACE	britain_territory_woods_5	resource_area	a_britain_territory_1	1800	1352	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_25	resource_area		1416	2952	0	16		lumber	wilds woods
+PLACE	wastelands_woods_37	resource_area	a_wastelands_1	5640	3032	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_17	resource_area	a_Yew_Ter	232	1414	0	16		lumber	Yew Territory woods
+PLACE	northern_territory_woods_4	resource_area	a_northern_territory_1	1800	456	0	16		lumber	Northern Territory woods
+PLACE	fire_island_woods_22	resource_area	a_islehe_fire_1	4472	3272	0	16		lumber	Fire Island woods
+PLACE	britain_territory_woods_6	resource_area	a_britain_territory_1	1480	1928	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_26	resource_area		1480	2312	0	16		lumber	wilds woods
+PLACE	fire_island_woods_23	resource_area	a_islehe_fire_1	4264	3656	0	16		lumber	Fire Island woods
+PLACE	fire_island_woods_24	resource_area	a_islehe_fire_1	4216	3658	0	16		lumber	Fire Island woods
+PLACE	britain_territory_woods_7	resource_area	a_britain_territory_1	1480	1990	0	16		lumber	Britain Territory woods
+PLACE	britain_territory_woods_8	resource_area	a_britain_territory_1	1416	1990	0	16		lumber	Britain Territory woods
+PLACE	northern_territory_woods_5	resource_area	a_northern_territory_1	1160	776	0	16		lumber	Northern Territory woods
+PLACE	vesper_territory_woods_3	resource_area	a_vesper_territory_1	3080	584	0	16		lumber	Vesper Territory woods
+PLACE	wilds_woods_27	resource_area		2328	584	0	16		lumber	wilds woods
+PLACE	wilds_woods_28	resource_area		1704	2504	0	16		lumber	wilds woods
+PLACE	temple_isle_woods_2	resource_area	a_temple_isle_1	2520	3592	0	16		lumber	Temple Isle woods
+PLACE	yew_territory_woods_18	resource_area	a_Yew_Ter	840	1032	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_38	resource_area	a_wastelands_1	5768	3528	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_9	resource_area	a_britain_territory_1	1928	1240	0	16		lumber	Britain Territory woods
+PLACE	wastelands_woods_39	resource_area	a_wastelands_1	5272	3206	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_40	resource_area	a_wastelands_1	5528	3208	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_25	resource_area	a_islehe_fire_1	4616	3528	0	16		lumber	Fire Island woods
+PLACE	trinsic_territory_woods_45	resource_area	a_trinsic_territory_1	1688	3528	0	16		lumber	Trinsic Territory woods
+PLACE	orcish_lands_woods	resource_area	a_orcish_lands_1	6040	3206	0	16		lumber	Orcish Lands woods
+PLACE	wastelands_woods_41	resource_area	a_wastelands_1	5704	3480	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_19	resource_area	a_Yew_Ter	1032	520	0	16		lumber	Yew Territory woods
+PLACE	trinsic_territory_woods_46	resource_area	a_trinsic_territory_1	1496	3080	0	16		lumber	Trinsic Territory woods
+PLACE	fire_island_woods_26	resource_area	a_islehe_fire_1	4632	3272	0	16		lumber	Fire Island woods
+PLACE	britain_territory_woods_10	resource_area	a_britain_territory_1	1368	1288	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_20	resource_area	a_Yew_Ter	904	1736	0	16		lumber	Yew Territory woods
+PLACE	cove_territory_woods_6	resource_area	a_cove_territory_1	2376	1030	0	16		lumber	Cove Territory woods
+PLACE	yew_territory_woods_21	resource_area	a_Yew_Ter	632	1672	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_22	resource_area	a_Yew_Ter	408	1608	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_23	resource_area	a_Yew_Ter	872	1544	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_29	resource_area		1800	1480	0	16		lumber	wilds woods
+PLACE	britain_territory_woods_11	resource_area	a_britain_territory_1	1224	1480	0	16		lumber	Britain Territory woods
+PLACE	britain_territory_woods_12	resource_area	a_britain_territory_1	1928	1288	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_24	resource_area	a_Yew_Ter	776	1496	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_25	resource_area	a_Yew_Ter	152	1352	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_30	resource_area		1832	1416	0	16		lumber	wilds woods
+PLACE	wastelands_woods_42	resource_area	a_wastelands_1	5592	3784	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_31	resource_area		1544	2568	0	16		lumber	wilds woods
+PLACE	jhelom_territory_woods_3	resource_area	a_jhelom_territory_1	1160	3464	0	16		lumber	Jhelom Territory woods
+PLACE	trinsic_territory_woods_47	resource_area	a_trinsic_territory_1	1672	3016	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_32	resource_area		1480	3032	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_26	resource_area	a_Yew_Ter	712	1352	0	16		lumber	Yew Territory woods
+PLACE	jhelom_territory_woods_4	resource_area	a_jhelom_territory_1	1128	3400	0	16		lumber	Jhelom Territory woods
+PLACE	yew_territory_woods_27	resource_area	a_Yew_Ter	1032	840	0	16		lumber	Yew Territory woods
+PLACE	fire_island_woods_27	resource_area	a_islehe_fire_1	4632	3718	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_43	resource_area	a_wastelands_1	5704	3400	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_28	resource_area	a_islehe_fire_1	4568	3720	0	16		lumber	Fire Island woods
+PLACE	fire_island_woods_29	resource_area	a_islehe_fire_1	4424	3096	0	16		lumber	Fire Island woods
+PLACE	wilds_woods_33	resource_area		2504	3976	0	16		lumber	wilds woods
+PLACE	cove_territory_woods_7	resource_area	a_cove_territory_1	2568	712	0	16		lumber	Cove Territory woods
+PLACE	cove_territory_woods_8	resource_area	a_cove_territory_1	2312	968	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_44	resource_area	a_wastelands_1	5384	3656	0	16		lumber	WasteLands woods
+PLACE	buccaneer_s_den_territory_woods_3	resource_area	a_buccaneers_den_territory_1	2632	2056	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	britain_territory_woods_13	resource_area	a_britain_territory_1	1960	1352	0	16		lumber	Britain Territory woods
+PLACE	wastelands_woods_45	resource_area	a_wastelands_1	5768	2312	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_28	resource_area	a_Yew_Ter	1032	1160	0	16		lumber	Yew Territory woods
+PLACE	vesper_territory_woods_4	resource_area	a_vesper_territory_1	3160	648	0	16		lumber	Vesper Territory woods
+PLACE	wilds_woods_34	resource_area		1160	2440	0	16		lumber	wilds woods
+PLACE	wilds_woods_35	resource_area		1608	2888	0	16		lumber	wilds woods
+PLACE	cove_territory_woods_9	resource_area	a_cove_territory_1	2440	1160	0	16		lumber	Cove Territory woods
+PLACE	serpent_s_hold_territory_woods_3	resource_area	a_serpents_hold_territory_1	2968	3592	0	16		lumber	Serpent's Hold Territory woods
+PLACE	fire_island_woods_30	resource_area	a_islehe_fire_1	4552	3592	0	16		lumber	Fire Island woods
+PLACE	cove_territory_woods_10	resource_area	a_cove_territory_1	2632	776	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_46	resource_area	a_wastelands_1	5832	3608	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_29	resource_area	a_Yew_Ter	1096	838	0	16		lumber	Yew Territory woods
+PLACE	fire_island_woods_31	resource_area	a_islehe_fire_1	4312	3672	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_47	resource_area	a_wastelands_1	5576	3656	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_48	resource_area	a_wastelands_1	5960	3656	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_32	resource_area	a_islehe_fire_1	4488	3720	0	16		lumber	Fire Island woods
+PLACE	cove_territory_woods_11	resource_area	a_cove_territory_1	2648	904	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_49	resource_area	a_wastelands_1	5704	3736	0	16		lumber	WasteLands woods
+PLACE	northern_territory_woods_6	resource_area	a_northern_territory_1	1496	968	0	16		lumber	Northern Territory woods
+PLACE	northern_territory_woods_7	resource_area	a_northern_territory_1	1544	968	0	16		lumber	Northern Territory woods
+PLACE	wastelands_woods_50	resource_area	a_wastelands_1	5384	3784	0	16		lumber	WasteLands woods
+PLACE	cove_territory_woods_12	resource_area	a_cove_territory_1	2504	968	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_51	resource_area	a_wastelands_1	5576	3848	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_52	resource_area	a_wastelands_1	5672	3848	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_36	resource_area		2504	3912	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_8	resource_area	a_northern_territory_1	1560	1032	0	16		lumber	Northern Territory woods
+PLACE	yew_territory_woods_30	resource_area	a_Yew_Ter	968	1096	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_14	resource_area	a_britain_territory_1	1704	1222	0	16		lumber	Britain Territory woods
+PLACE	britain_territory_woods_15	resource_area	a_britain_territory_1	1416	1288	0	16		lumber	Britain Territory woods
+PLACE	britain_territory_woods_16	resource_area	a_britain_territory_1	1672	1288	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_31	resource_area	a_Yew_Ter	776	1352	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_17	resource_area	a_britain_territory_1	1352	1352	0	16		lumber	Britain Territory woods
+PLACE	britain_territory_woods_18	resource_area	a_britain_territory_1	1608	1352	0	16		lumber	Britain Territory woods
+PLACE	minoc_territory_woods	resource_area	a_minoc_territory_1	2728	392	0	16		lumber	Minoc Territory woods
+PLACE	britain_territory_woods_19	resource_area	a_britain_territory_1	1240	1416	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_32	resource_area	a_Yew_Ter	824	1672	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_33	resource_area	a_Yew_Ter	904	1672	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_20	resource_area	a_britain_territory_1	984	1672	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_34	resource_area	a_Yew_Ter	776	1736	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_21	resource_area	a_britain_territory_1	1032	1928	0	16		lumber	Britain Territory woods
+PLACE	britain_territory_woods_22	resource_area	a_britain_territory_1	1288	1990	0	16		lumber	Britain Territory woods
+PLACE	vesper_territory_woods_5	resource_area	a_vesper_territory_1	3112	456	0	16		lumber	Vesper Territory woods
+PLACE	wilds_woods_37	resource_area		1048	2056	0	16		lumber	wilds woods
+PLACE	wilds_woods_38	resource_area		1288	2056	0	16		lumber	wilds woods
+PLACE	wilds_woods_39	resource_area		1496	2056	0	16		lumber	wilds woods
+PLACE	windemere_woods_woods_3	resource_area	a_Windemere_Woods	3352	454	0	16		lumber	Windemere Woods woods
+PLACE	buccaneer_s_den_territory_woods_4	resource_area	a_buccaneers_den_territory_1	2696	2056	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	wilds_woods_40	resource_area		1032	2120	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_9	resource_area	a_northern_territory_1	1864	520	0	16		lumber	Northern Territory woods
+PLACE	wilds_woods_41	resource_area		1448	2120	0	16		lumber	wilds woods
+PLACE	wilds_woods_42	resource_area		1016	2182	0	16		lumber	wilds woods
+PLACE	vesper_territory_woods_6	resource_area	a_vesper_territory_1	3160	520	0	16		lumber	Vesper Territory woods
+PLACE	buccaneer_s_den_territory_woods_5	resource_area	a_buccaneers_den_territory_1	2632	2184	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	wilds_woods_43	resource_area		1480	2248	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_35	resource_area	a_Yew_Ter	1032	584	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_44	resource_area		1608	2248	0	16		lumber	wilds woods
+PLACE	buccaneer_s_den_territory_woods_6	resource_area	a_buccaneers_den_territory_1	2824	2248	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	wilds_woods_45	resource_area		1608	2312	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_10	resource_area	a_northern_territory_1	1816	584	0	16		lumber	Northern Territory woods
+PLACE	buccaneer_s_den_territory_woods_7	resource_area	a_buccaneers_den_territory_1	2696	2312	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	britain_territory_woods_23	resource_area	a_britain_territory_1	1288	1928	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_46	resource_area		1304	2376	0	16		lumber	wilds woods
+PLACE	wilds_woods_47	resource_area		1688	2374	0	16		lumber	wilds woods
+PLACE	wilds_woods_48	resource_area		1096	2440	0	16		lumber	wilds woods
+PLACE	wilds_woods_49	resource_area		1688	2566	0	16		lumber	wilds woods
+PLACE	wilds_woods_50	resource_area		1480	2632	0	16		lumber	wilds woods
+PLACE	wilds_woods_51	resource_area		1544	2632	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_36	resource_area	a_Yew_Ter	1032	646	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_52	resource_area		1224	2710	0	16		lumber	wilds woods
+PLACE	wilds_woods_53	resource_area		1544	2758	0	16		lumber	wilds woods
+PLACE	wilds_woods_54	resource_area		1704	2758	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_11	resource_area	a_northern_territory_1	2056	648	0	16		lumber	Northern Territory woods
+PLACE	wilds_woods_55	resource_area		1352	2824	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_48	resource_area	a_trinsic_territory_1	1608	2952	0	16		lumber	Trinsic Territory woods
+PLACE	wastelands_woods_53	resource_area	a_wastelands_1	6056	2952	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_54	resource_area	a_wastelands_1	5576	3080	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_55	resource_area	a_wastelands_1	5528	3144	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_33	resource_area	a_islehe_fire_1	4440	3208	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_56	resource_area	a_wastelands_1	5448	3208	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_57	resource_area	a_wastelands_1	5206	3288	0	16		lumber	WasteLands woods
+PLACE	orcish_lands_woods_2	resource_area	a_orcish_lands_1	6040	3272	0	16		lumber	Orcish Lands woods
+PLACE	cove_territory_woods_13	resource_area	a_cove_territory_1	2440	712	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_58	resource_area	a_wastelands_1	5720	3336	0	16		lumber	WasteLands woods
+PLACE	vesper_territory_woods_7	resource_area	a_vesper_territory_1	3144	712	0	16		lumber	Vesper Territory woods
+PLACE	trinsic_territory_woods_49	resource_area	a_trinsic_territory_1	2008	3400	0	16		lumber	Trinsic Territory woods
+PLACE	wastelands_woods_59	resource_area	a_wastelands_1	5400	3400	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_34	resource_area	a_islehe_fire_1	4488	3528	0	16		lumber	Fire Island woods
+PLACE	northern_territory_woods_12	resource_area	a_northern_territory_1	1544	776	0	16		lumber	Northern Territory woods
+PLACE	fire_island_woods_35	resource_area	a_islehe_fire_1	4680	3528	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_60	resource_area	a_wastelands_1	5832	3528	0	16		lumber	WasteLands woods
+PLACE	cove_territory_woods_14	resource_area	a_cove_territory_1	2376	776	0	16		lumber	Cove Territory woods
+PLACE	windemere_woods_woods_4	resource_area	a_Windemere_Woods	3256	584	0	16		lumber	Windemere Woods woods
+PLACE	yew_territory_woods_37	resource_area	a_Yew_Ter	728	1416	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_56	resource_area		1080	3144	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_13	resource_area	a_northern_territory_1	1160	200	0	16		lumber	Northern Territory woods
+PLACE	wilds_woods_57	resource_area		1032	2440	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_50	resource_area	a_trinsic_territory_1	2120	3400	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_58	resource_area		1736	2632	0	16		lumber	wilds woods
+PLACE	wastelands_woods_61	resource_area	a_wastelands_1	5576	3398	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_24	resource_area	a_britain_territory_1	1224	1366	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_59	resource_area		1592	2392	0	16		lumber	wilds woods
+PLACE	wilds_woods_60	resource_area		1112	2120	0	16		lumber	wilds woods
+PLACE	wilds_woods_61	resource_area		1544	2696	0	16		lumber	wilds woods
+PLACE	buccaneer_s_den_territory_woods_8	resource_area	a_buccaneers_den_territory_1	2760	2312	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	yew_territory_woods_38	resource_area	a_Yew_Ter	456	1366	0	16		lumber	Yew Territory woods
+PLACE	fire_island_woods_36	resource_area	a_islehe_fire_1	4424	3464	0	16		lumber	Fire Island woods
+PLACE	skara_brae_territory_woods	resource_area	a_skara_ter	856	2120	0	16		lumber	Skara Brae Territory woods
+PLACE	yew_territory_woods_39	resource_area	a_Yew_Ter	984	328	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_25	resource_area	a_britain_territory_1	1624	1288	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_62	resource_area		1608	2758	0	16		lumber	wilds woods
+PLACE	wilds_woods_63	resource_area		1160	2374	0	16		lumber	wilds woods
+PLACE	britain_territory_woods_26	resource_area	a_britain_territory_1	1544	1288	0	16		lumber	Britain Territory woods
+PLACE	wastelands_woods_62	resource_area	a_wastelands_1	5782	3464	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_40	resource_area	a_Yew_Ter	648	1288	0	16		lumber	Yew Territory woods
+PLACE	serpent_s_hold_territory_woods_4	resource_area	a_serpents_hold_territory_1	2776	3528	0	16		lumber	Serpent's Hold Territory woods
+PLACE	wilds_woods_64	resource_area		1608	2824	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_14	resource_area	a_northern_territory_1	1288	392	0	16		lumber	Northern Territory woods
+PLACE	fire_island_woods_37	resource_area	a_islehe_fire_1	4376	3144	0	16		lumber	Fire Island woods
+PLACE	wilds_woods_65	resource_area		1736	2824	0	16		lumber	wilds woods
+PLACE	wastelands_woods_63	resource_area	a_wastelands_1	5384	3528	0	16		lumber	WasteLands woods
+PLACE	minoc_territory_woods_2	resource_area	a_minoc_territory_1	2792	392	0	16		lumber	Minoc Territory woods
+PLACE	wilds_woods_66	resource_area		1352	2888	0	16		lumber	wilds woods
+PLACE	wastelands_woods_64	resource_area	a_wastelands_1	5592	3528	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_67	resource_area		1320	2504	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_41	resource_area	a_Yew_Ter	856	456	0	16		lumber	Yew Territory woods
+PLACE	trinsic_territory_woods_51	resource_area	a_trinsic_territory_1	2120	3592	0	16		lumber	Trinsic Territory woods
+PLACE	minoc_territory_woods_3	resource_area	a_minoc_territory_1	2696	456	0	16		lumber	Minoc Territory woods
+PLACE	wastelands_woods_65	resource_area	a_wastelands_1	5192	3592	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_66	resource_area	a_wastelands_1	6056	2888	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_67	resource_area	a_wastelands_1	6104	2904	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_68	resource_area		1288	2312	0	16		lumber	wilds woods
+PLACE	wilds_woods_69	resource_area		1224	2056	0	16		lumber	wilds woods
+PLACE	wilds_woods_70	resource_area		968	2326	0	16		lumber	wilds woods
+PLACE	windemere_woods_woods_5	resource_area	a_Windemere_Woods	3208	520	0	16		lumber	Windemere Woods woods
+PLACE	wastelands_woods_68	resource_area	a_wastelands_1	5640	3592	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_42	resource_area	a_Yew_Ter	1096	584	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_71	resource_area		1160	2056	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_15	resource_area	a_northern_territory_1	1624	598	0	16		lumber	Northern Territory woods
+PLACE	northern_territory_woods_16	resource_area	a_northern_territory_1	2120	584	0	16		lumber	Northern Territory woods
+PLACE	wilds_woods_72	resource_area		1496	2504	0	16		lumber	wilds woods
+PLACE	wastelands_woods_69	resource_area	a_wastelands_1	5912	3590	0	16		lumber	WasteLands woods
+PLACE	cove_territory_woods_15	resource_area	a_cove_territory_1	2392	1160	0	16		lumber	Cove Territory woods
+PLACE	wilds_woods_73	resource_area		1752	2504	0	16		lumber	wilds woods
+PLACE	wilds_woods_74	resource_area		968	2248	0	16		lumber	wilds woods
+PLACE	fire_island_woods_38	resource_area	a_islehe_fire_1	4168	3720	0	16		lumber	Fire Island woods
+PLACE	cove_territory_woods_16	resource_area	a_cove_territory_1	2648	1096	0	16		lumber	Cove Territory woods
+PLACE	wilds_woods_75	resource_area		1480	2584	0	16		lumber	wilds woods
+PLACE	cove_territory_woods_17	resource_area	a_cove_territory_1	2568	1096	0	16		lumber	Cove Territory woods
+PLACE	minoc_territory_woods_4	resource_area	a_minoc_territory_1	2632	646	0	16		lumber	Minoc Territory woods
+PLACE	wastelands_woods_70	resource_area	a_wastelands_1	5576	3720	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_39	resource_area	a_islehe_fire_1	4536	3864	0	16		lumber	Fire Island woods
+PLACE	cove_territory_woods_18	resource_area	a_cove_territory_1	2568	1030	0	16		lumber	Cove Territory woods
+PLACE	yew_territory_woods_43	resource_area	a_Yew_Ter	1096	712	0	16		lumber	Yew Territory woods
+PLACE	northern_territory_woods_17	resource_area	a_northern_territory_1	1160	712	0	16		lumber	Northern Territory woods
+PLACE	wilds_woods_76	resource_area		1304	2184	0	16		lumber	wilds woods
+PLACE	wastelands_woods_71	resource_area	a_wastelands_1	5704	3036	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_27	resource_area	a_britain_territory_1	984	1992	0	16		lumber	Britain Territory woods
+PLACE	cove_territory_woods_19	resource_area	a_cove_territory_1	2504	1048	0	16		lumber	Cove Territory woods
+PLACE	cove_territory_woods_20	resource_area	a_cove_territory_1	2456	1030	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_72	resource_area	a_wastelands_1	5576	3912	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_44	resource_area	a_Yew_Ter	1096	776	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_77	resource_area		2136	3976	0	16		lumber	wilds woods
+PLACE	britain_territory_woods_28	resource_area	a_britain_territory_1	1416	1928	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_45	resource_area	a_Yew_Ter	1096	1032	0	16		lumber	Yew Territory woods
+PLACE	orcish_lands_woods_3	resource_area	a_orcish_lands_1	6116	3208	0	16		lumber	Orcish Lands woods
+PLACE	trinsic_territory_woods_52	resource_area	a_trinsic_territory_1	1560	3272	0	16		lumber	Trinsic Territory woods
+PLACE	wastelands_woods_73	resource_area	a_wastelands_1	5384	3718	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_46	resource_area	a_Yew_Ter	872	1798	0	16		lumber	Yew Territory woods
+PLACE	trinsic_territory_woods_53	resource_area	a_trinsic_territory_1	2056	3272	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_78	resource_area		1512	2440	0	16		lumber	wilds woods
+PLACE	wastelands_woods_74	resource_area	a_wastelands_1	5128	3080	0	16		lumber	WasteLands woods
+PLACE	orcish_lands_woods_4	resource_area	a_orcish_lands_1	5944	3272	0	16		lumber	Orcish Lands woods
+PLACE	trinsic_territory_woods_54	resource_area	a_trinsic_territory_1	2184	3336	0	16		lumber	Trinsic Territory woods
+PLACE	cove_territory_woods_21	resource_area	a_cove_territory_1	2664	968	0	16		lumber	Cove Territory woods
+PLACE	britain_territory_woods_29	resource_area	a_britain_territory_1	1768	1414	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_47	resource_area	a_Yew_Ter	776	1030	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_30	resource_area	a_britain_territory_1	1416	1416	0	16		lumber	Britain Territory woods
+PLACE	vesper_territory_woods_8	resource_area	a_vesper_territory_1	3112	88	0	16		lumber	Vesper Territory woods
+PLACE	vesper_territory_woods_9	resource_area	a_vesper_territory_1	3112	136	0	16		lumber	Vesper Territory woods
+PLACE	buccaneer_s_den_territory_woods_9	resource_area	a_buccaneers_den_territory_1	2600	2248	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	wastelands_woods_75	resource_area	a_wastelands_1	6052	2374	0	16		lumber	WasteLands woods
+PLACE	vesper_territory_woods_10	resource_area	a_vesper_territory_1	2856	200	0	16		lumber	Vesper Territory woods
+PLACE	wastelands_woods_76	resource_area	a_wastelands_1	5720	3656	0	16		lumber	WasteLands woods
+PLACE	windemere_woods_woods_6	resource_area	a_Windemere_Woods	3256	200	0	16		lumber	Windemere Woods woods
+PLACE	northern_territory_woods_18	resource_area	a_northern_territory_1	1336	264	0	16		lumber	Northern Territory woods
+PLACE	yew_territory_woods_48	resource_area	a_Yew_Ter	776	1414	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_79	resource_area		968	2566	0	16		lumber	wilds woods
+PLACE	britain_territory_woods_31	resource_area	a_britain_territory_1	1032	1672	0	16		lumber	Britain Territory woods
+PLACE	windemere_woods_woods_7	resource_area	a_Windemere_Woods	3384	262	0	16		lumber	Windemere Woods woods
+PLACE	northern_territory_woods_19	resource_area	a_northern_territory_1	1944	1160	0	16		lumber	Northern Territory woods
+PLACE	britain_territory_woods_32	resource_area	a_britain_territory_1	1736	1288	0	16		lumber	Britain Territory woods
+PLACE	cove_territory_woods_22	resource_area	a_cove_territory_1	2328	1160	0	16		lumber	Cove Territory woods
+PLACE	windemere_woods_woods_8	resource_area	a_Windemere_Woods	3352	328	0	16		lumber	Windemere Woods woods
+PLACE	wilds_woods_80	resource_area		1352	2182	0	16		lumber	wilds woods
+PLACE	wastelands_woods_77	resource_area	a_wastelands_1	5350	3416	0	16		lumber	WasteLands woods
+PLACE	cove_territory_woods_23	resource_area	a_cove_territory_1	2504	1160	0	16		lumber	Cove Territory woods
+PLACE	northern_territory_woods_20	resource_area	a_northern_territory_1	1800	406	0	16		lumber	Northern Territory woods
+PLACE	cove_territory_woods_24	resource_area	a_cove_territory_1	2598	1176	0	16		lumber	Cove Territory woods
+PLACE	yew_territory_woods_49	resource_area	a_Yew_Ter	488	1624	0	16		lumber	Yew Territory woods
+PLACE	vesper_territory_woods_11	resource_area	a_vesper_territory_1	3112	392	0	16		lumber	Vesper Territory woods
+PLACE	vesper_territory_woods_12	resource_area	a_vesper_territory_1	3192	392	0	16		lumber	Vesper Territory woods
+PLACE	serpent_s_hold_territory_woods_5	resource_area	a_serpents_hold_territory_1	3016	3592	0	16		lumber	Serpent's Hold Territory woods
+PLACE	yew_territory_woods_50	resource_area	a_Yew_Ter	968	456	0	16		lumber	Yew Territory woods
+PLACE	minoc_territory_woods_5	resource_area	a_minoc_territory_1	2792	456	0	16		lumber	Minoc Territory woods
+PLACE	windemere_woods_woods_9	resource_area	a_Windemere_Woods	3224	454	0	16		lumber	Windemere Woods woods
+PLACE	windemere_woods_woods_10	resource_area	a_Windemere_Woods	3288	454	0	16		lumber	Windemere Woods woods
+PLACE	britain_territory_woods_33	resource_area	a_britain_territory_1	1752	1222	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_51	resource_area	a_Yew_Ter	1096	536	0	16		lumber	Yew Territory woods
+PLACE	buccaneer_s_den_territory_woods_10	resource_area	a_buccaneers_den_territory_1	2952	2136	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	britain_territory_woods_34	resource_area	a_britain_territory_1	1832	1222	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_81	resource_area		2120	2120	0	16		lumber	wilds woods
+PLACE	wilds_woods_82	resource_area		1224	2504	0	16		lumber	wilds woods
+PLACE	vesper_territory_woods_13	resource_area	a_vesper_territory_1	2776	598	0	16		lumber	Vesper Territory woods
+PLACE	wilds_woods_83	resource_area		1160	2504	0	16		lumber	wilds woods
+PLACE	wilds_woods_84	resource_area		1544	2120	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_52	resource_area	a_Yew_Ter	904	1960	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_35	resource_area	a_britain_territory_1	936	1798	0	16		lumber	Britain Territory woods
+PLACE	britain_territory_woods_36	resource_area	a_britain_territory_1	984	1736	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_85	resource_area		2312	648	0	16		lumber	wilds woods
+PLACE	wastelands_woods_78	resource_area	a_wastelands_1	5256	3272	0	16		lumber	WasteLands woods
+PLACE	minoc_territory_woods_6	resource_area	a_minoc_territory_1	2712	646	0	16		lumber	Minoc Territory woods
+PLACE	wilds_woods_86	resource_area		968	2440	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_53	resource_area	a_Yew_Ter	1032	712	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_79	resource_area	a_wastelands_1	5448	4040	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_54	resource_area	a_Yew_Ter	824	1288	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_80	resource_area	a_wastelands_1	5976	3990	0	16		lumber	WasteLands woods
+PLACE	cove_territory_woods_25	resource_area	a_cove_territory_1	2296	712	0	16		lumber	Cove Territory woods
+PLACE	vesper_territory_woods_14	resource_area	a_vesper_territory_1	2728	712	0	16		lumber	Vesper Territory woods
+PLACE	wilds_woods_87	resource_area		1288	2120	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_21	resource_area	a_northern_territory_1	1512	1048	0	16		lumber	Northern Territory woods
+PLACE	wastelands_woods_81	resource_area	a_wastelands_1	5640	3464	0	16		lumber	WasteLands woods
+PLACE	northern_territory_woods_22	resource_area	a_northern_territory_1	1880	1048	0	16		lumber	Northern Territory woods
+PLACE	cove_territory_woods_26	resource_area	a_cove_territory_1	2440	776	0	16		lumber	Cove Territory woods
+PLACE	wilds_woods_88	resource_area		1160	2120	0	16		lumber	wilds woods
+PLACE	britain_territory_woods_37	resource_area	a_britain_territory_1	1288	1352	0	16		lumber	Britain Territory woods
+PLACE	fire_island_woods_40	resource_area	a_islehe_fire_1	4552	3912	0	16		lumber	Fire Island woods
+PLACE	fire_island_woods_41	resource_area	a_islehe_fire_1	4488	3416	0	16		lumber	Fire Island woods
+PLACE	orc_valley_woods	resource_area	a_orc_valley_1	984	1288	0	16		lumber	Orc Valley woods
+PLACE	magincia_territory_woods_2	resource_area	a_magincia_territory_1	3656	2056	0	16		lumber	Magincia Territory woods
+PLACE	britain_territory_woods_38	resource_area	a_britain_territory_1	1640	1414	0	16		lumber	Britain Territory woods
+PLACE	cove_territory_woods_27	resource_area	a_cove_territory_1	2712	920	0	16		lumber	Cove Territory woods
+PLACE	cove_territory_woods_28	resource_area	a_cove_territory_1	2456	968	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_82	resource_area	a_wastelands_1	5896	3848	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_89	resource_area		1608	2568	0	16		lumber	wilds woods
+PLACE	buccaneer_s_den_territory_woods_11	resource_area	a_buccaneers_den_territory_1	2760	2056	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	wilds_woods_90	resource_area		920	2504	0	16		lumber	wilds woods
+PLACE	wastelands_woods_83	resource_area	a_wastelands_1	5192	3204	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_84	resource_area	a_wastelands_1	5128	3160	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_39	resource_area	a_britain_territory_1	1304	1288	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_91	resource_area		1736	2696	0	16		lumber	wilds woods
+PLACE	wastelands_woods_85	resource_area	a_wastelands_1	5320	3142	0	16		lumber	WasteLands woods
+PLACE	vesper_territory_woods_15	resource_area	a_vesper_territory_1	2920	70	0	16		lumber	Vesper Territory woods
+PLACE	wastelands_woods_86	resource_area	a_wastelands_1	5352	2328	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_87	resource_area	a_wastelands_1	5656	3720	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_42	resource_area	a_islehe_fire_1	4584	3400	0	16		lumber	Fire Island woods
+PLACE	wilds_woods_92	resource_area		1672	2824	0	16		lumber	wilds woods
+PLACE	wilds_woods_93	resource_area		1736	2312	0	16		lumber	wilds woods
+PLACE	wastelands_woods_88	resource_area	a_wastelands_1	5192	3736	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_40	resource_area	a_britain_territory_1	1304	1864	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_94	resource_area		968	2504	0	16		lumber	wilds woods
+PLACE	wilds_woods_95	resource_area		1368	2312	0	16		lumber	wilds woods
+PLACE	wilds_woods_96	resource_area		1240	2374	0	16		lumber	wilds woods
+PLACE	wilds_woods_97	resource_area		1176	2312	0	16		lumber	wilds woods
+PLACE	fire_island_woods_43	resource_area	a_islehe_fire_1	4696	3720	0	16		lumber	Fire Island woods
+PLACE	yew_territory_woods_55	resource_area	a_Yew_Ter	664	1480	0	16		lumber	Yew Territory woods
+PLACE	cove_territory_woods_29	resource_area	a_cove_territory_1	2408	1096	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_89	resource_area	a_wastelands_1	5352	3336	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_44	resource_area	a_islehe_fire_1	4552	3800	0	16		lumber	Fire Island woods
+PLACE	windemere_woods_woods_11	resource_area	a_Windemere_Woods	3256	264	0	16		lumber	Windemere Woods woods
+PLACE	northern_territory_woods_23	resource_area	a_northern_territory_1	1224	328	0	16		lumber	Northern Territory woods
+PLACE	northern_territory_woods_24	resource_area	a_northern_territory_1	1304	328	0	16		lumber	Northern Territory woods
+PLACE	fire_island_woods_45	resource_area	a_islehe_fire_1	4776	3784	0	16		lumber	Fire Island woods
+PLACE	northern_territory_woods_25	resource_area	a_northern_territory_1	1416	1112	0	16		lumber	Northern Territory woods
+PLACE	windemere_woods_woods_12	resource_area	a_Windemere_Woods	3240	328	0	16		lumber	Windemere Woods woods
+PLACE	windemere_woods_woods_13	resource_area	a_Windemere_Woods	3400	328	0	16		lumber	Windemere Woods woods
+PLACE	wilds_woods_98	resource_area		1032	2632	0	16		lumber	wilds woods
+PLACE	wastelands_woods_90	resource_area	a_wastelands_1	5640	3912	0	16		lumber	WasteLands woods
+PLACE	vesper_territory_woods_16	resource_area	a_vesper_territory_1	2840	520	0	16		lumber	Vesper Territory woods
+PLACE	vesper_territory_woods_17	resource_area	a_vesper_territory_1	2952	520	0	16		lumber	Vesper Territory woods
+PLACE	windemere_woods_woods_14	resource_area	a_Windemere_Woods	3304	520	0	16		lumber	Windemere Woods woods
+PLACE	wilds_woods_99	resource_area		2456	3976	0	16		lumber	wilds woods
+PLACE	wastelands_woods_91	resource_area	a_wastelands_1	5400	3992	0	16		lumber	WasteLands woods
+PLACE	vesper_territory_woods_18	resource_area	a_vesper_territory_1	3144	584	0	16		lumber	Vesper Territory woods
+PLACE	windemere_woods_woods_15	resource_area	a_Windemere_Woods	3368	616	0	16		lumber	Windemere Woods woods
+PLACE	wastelands_woods_92	resource_area	a_wastelands_1	5480	3976	0	16		lumber	WasteLands woods
+PLACE	northern_territory_woods_26	resource_area	a_northern_territory_1	1176	1030	0	16		lumber	Northern Territory woods
+PLACE	britain_territory_woods_41	resource_area	a_britain_territory_1	1336	1414	0	16		lumber	Britain Territory woods
+PLACE	northern_territory_woods_27	resource_area	a_northern_territory_1	1864	648	0	16		lumber	Northern Territory woods
+PLACE	wastelands_woods_93	resource_area	a_wastelands_1	5864	4008	0	16		lumber	WasteLands woods
+PLACE	vesper_territory_woods_19	resource_area	a_vesper_territory_1	3064	648	0	16		lumber	Vesper Territory woods
+PLACE	wastelands_woods_94	resource_area	a_wastelands_1	5544	4040	0	16		lumber	WasteLands woods
+PLACE	northern_territory_woods_28	resource_area	a_northern_territory_1	1896	712	0	16		lumber	Northern Territory woods
+PLACE	northern_territory_woods_29	resource_area	a_northern_territory_1	1224	776	0	16		lumber	Northern Territory woods
+PLACE	northern_territory_woods_30	resource_area	a_northern_territory_1	1880	776	0	16		lumber	Northern Territory woods
+PLACE	vesper_territory_woods_20	resource_area	a_vesper_territory_1	2760	776	0	16		lumber	Vesper Territory woods
+PLACE	cove_territory_woods_30	resource_area	a_cove_territory_1	2280	838	0	16		lumber	Cove Territory woods
+PLACE	cove_territory_woods_31	resource_area	a_cove_territory_1	2680	838	0	16		lumber	Cove Territory woods
+PLACE	moonglow_territory_woods	resource_area	a_moonglow_territory_1	4488	968	0	16		lumber	Moonglow Territory woods
+PLACE	wilds_woods_100	resource_area		1512	2374	0	16		lumber	wilds woods
+PLACE	wilds_woods_101	resource_area		1608	2648	0	16		lumber	wilds woods
+PLACE	wilds_woods_102	resource_area		1032	2696	0	16		lumber	wilds woods
+PLACE	wilds_woods_103	resource_area		1160	2696	0	16		lumber	wilds woods
+PLACE	wilds_woods_104	resource_area		1288	2696	0	16		lumber	wilds woods
+PLACE	wilds_woods_105	resource_area		1352	2758	0	16		lumber	wilds woods
+PLACE	wilds_woods_106	resource_area		1688	2312	0	16		lumber	wilds woods
+PLACE	wilds_woods_107	resource_area		1544	2312	0	16		lumber	wilds woods
+PLACE	wastelands_woods_95	resource_area	a_wastelands_1	5976	2886	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_108	resource_area		1688	2264	0	16		lumber	wilds woods
+PLACE	buccaneer_s_den_territory_woods_12	resource_area	a_buccaneers_den_territory_1	2952	2184	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	wilds_woods_109	resource_area		1624	2184	0	16		lumber	wilds woods
+PLACE	skara_brae_territory_woods_2	resource_area	a_skara_ter	872	2184	0	16		lumber	Skara Brae Territory woods
+PLACE	wastelands_woods_96	resource_area	a_wastelands_1	5402	3080	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_110	resource_area		1368	2120	0	16		lumber	wilds woods
+PLACE	wastelands_woods_97	resource_area	a_wastelands_1	5640	3080	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_111	resource_area		966	2120	0	16		lumber	wilds woods
+PLACE	skara_brae_territory_woods_3	resource_area	a_skara_ter	904	2120	0	16		lumber	Skara Brae Territory woods
+PLACE	wilds_woods_112	resource_area		1416	2072	0	16		lumber	wilds woods
+PLACE	wilds_woods_113	resource_area		1368	2072	0	16		lumber	wilds woods
+PLACE	wastelands_woods_98	resource_area	a_wastelands_1	5384	3160	0	16		lumber	WasteLands woods
+PLACE	terathan_keep_woods	resource_area	a_terathan_keep_1	5480	3142	0	16		lumber	Terathan Keep woods
+PLACE	wilds_woods_114	resource_area		1432	3208	0	16		lumber	wilds woods
+PLACE	skara_brae_territory_woods_4	resource_area	a_skara_ter	552	2072	0	16		lumber	Skara Brae Territory woods
+PLACE	wilds_woods_115	resource_area		1240	2440	0	16		lumber	wilds woods
+PLACE	britain_territory_woods_42	resource_area	a_britain_territory_1	1032	1992	0	16		lumber	Britain Territory woods
+PLACE	wastelands_woods_99	resource_area	a_wastelands_1	5128	3224	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_116	resource_area		1432	2456	0	16		lumber	wilds woods
+PLACE	wastelands_woods_100	resource_area	a_wastelands_1	5992	4042	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_43	resource_area	a_britain_territory_1	1864	1352	0	16		lumber	Britain Territory woods
+PLACE	wastelands_woods_101	resource_area	a_wastelands_1	5480	3400	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_44	resource_area	a_britain_territory_1	1176	1352	0	16		lumber	Britain Territory woods
+PLACE	orc_valley_woods_2	resource_area	a_orc_valley_1	1000	1352	0	16		lumber	Orc Valley woods
+PLACE	yew_territory_woods_56	resource_area	a_Yew_Ter	392	1352	0	16		lumber	Yew Territory woods
+PLACE	trinsic_territory_woods_55	resource_area	a_trinsic_territory_1	1864	3464	0	16		lumber	Trinsic Territory woods
+PLACE	yew_territory_woods_57	resource_area	a_Yew_Ter	200	1352	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_45	resource_area	a_britain_territory_1	1240	1304	0	16		lumber	Britain Territory woods
+PLACE	wastelands_woods_102	resource_area	a_wastelands_1	5418	3466	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_103	resource_area	a_wastelands_1	5480	3464	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_58	resource_area	a_Yew_Ter	872	1606	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_104	resource_area	a_wastelands_1	5880	3464	0	16		lumber	WasteLands woods
+PLACE	temple_isle_woods_3	resource_area	a_temple_isle_1	2488	3544	0	16		lumber	Temple Isle woods
+PLACE	serpent_s_hold_territory_woods_6	resource_area	a_serpents_hold_territory_1	3016	3544	0	16		lumber	Serpent's Hold Territory woods
+PLACE	orcish_lands_woods_5	resource_area	a_orcish_lands_1	6088	3272	0	16		lumber	Orcish Lands woods
+PLACE	yew_territory_woods_59	resource_area	a_Yew_Ter	344	1288	0	16		lumber	Yew Territory woods
+PLACE	hopper_s_bog_woods	resource_area	a_hoppers_bog_1	5898	3528	0	16		lumber	Hopper's Bog woods
+PLACE	wastelands_woods_105	resource_area	a_wastelands_1	5704	3590	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_106	resource_area	a_wastelands_1	5784	3592	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_60	resource_area	a_Yew_Ter	712	1096	0	16		lumber	Yew Territory woods
+PLACE	wilds_woods_117	resource_area		1608	2504	0	16		lumber	wilds woods
+PLACE	wastelands_woods_107	resource_area	a_wastelands_1	5832	2332	0	16		lumber	WasteLands woods
+PLACE	britain_territory_woods_46	resource_area	a_britain_territory_1	1672	1480	0	16		lumber	Britain Territory woods
+PLACE	wastelands_woods_108	resource_area	a_wastelands_1	5192	3656	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_61	resource_area	a_Yew_Ter	776	1160	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_47	resource_area	a_britain_territory_1	1320	1480	0	16		lumber	Britain Territory woods
+PLACE	wilds_woods_118	resource_area		1432	2584	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_62	resource_area	a_Yew_Ter	808	1798	0	16		lumber	Yew Territory woods
+PLACE	moonglow_territory_woods_2	resource_area	a_moonglow_territory_1	4296	1112	0	16		lumber	Moonglow Territory woods
+PLACE	northern_territory_woods_31	resource_area	a_northern_territory_1	1448	232	0	16		lumber	Northern Territory woods
+PLACE	minoc_territory_woods_7	resource_area	a_minoc_territory_1	2632	200	0	16		lumber	Minoc Territory woods
+PLACE	vesper_territory_woods_21	resource_area	a_vesper_territory_1	3080	200	0	16		lumber	Vesper Territory woods
+PLACE	minoc_territory_woods_8	resource_area	a_minoc_territory_1	2760	296	0	16		lumber	Minoc Territory woods
+PLACE	minoc_territory_woods_9	resource_area	a_minoc_territory_1	2760	344	0	16		lumber	Minoc Territory woods
+PLACE	vesper_territory_woods_22	resource_area	a_vesper_territory_1	2920	328	0	16		lumber	Vesper Territory woods
+PLACE	northern_territory_woods_32	resource_area	a_northern_territory_1	1992	392	0	16		lumber	Northern Territory woods
+PLACE	northern_territory_woods_33	resource_area	a_northern_territory_1	2072	392	0	16		lumber	Northern Territory woods
+PLACE	windemere_woods_woods_16	resource_area	a_Windemere_Woods	3416	456	0	16		lumber	Windemere Woods woods
+PLACE	northern_territory_woods_34	resource_area	a_northern_territory_1	1224	600	0	16		lumber	Northern Territory woods
+PLACE	vesper_territory_woods_23	resource_area	a_vesper_territory_1	3016	598	0	16		lumber	Vesper Territory woods
+PLACE	windemere_woods_woods_17	resource_area	a_Windemere_Woods	3448	584	0	16		lumber	Windemere Woods woods
+PLACE	northern_territory_woods_35	resource_area	a_northern_territory_1	1608	648	0	16		lumber	Northern Territory woods
+PLACE	northern_territory_woods_36	resource_area	a_northern_territory_1	1816	646	0	16		lumber	Northern Territory woods
+PLACE	britain_territory_woods_48	resource_area	a_britain_territory_1	1672	1352	0	16		lumber	Britain Territory woods
+PLACE	cove_territory_woods_32	resource_area	a_cove_territory_1	2504	1222	0	16		lumber	Cove Territory woods
+PLACE	yew_territory_woods_63	resource_area	a_Yew_Ter	328	1352	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_64	resource_area	a_Yew_Ter	824	1606	0	16		lumber	Yew Territory woods
+PLACE	buccaneer_s_den_territory_woods_13	resource_area	a_buccaneers_den_territory_1	2744	1944	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	trinsic_territory_woods_56	resource_area	a_trinsic_territory_1	2072	3592	0	16		lumber	Trinsic Territory woods
+PLACE	buccaneer_s_den_territory_woods_14	resource_area	a_buccaneers_den_territory_1	2776	2120	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	magincia_territory_woods_3	resource_area	a_magincia_territory_1	3784	2120	0	16		lumber	Magincia Territory woods
+PLACE	wilds_woods_119	resource_area		1368	2504	0	16		lumber	wilds woods
+PLACE	wilds_woods_120	resource_area		936	2200	0	16		lumber	wilds woods
+PLACE	wilds_woods_121	resource_area		1432	2504	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_65	resource_area	a_Yew_Ter	1032	1222	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_109	resource_area	a_wastelands_1	5256	3622	0	16		lumber	WasteLands woods
+PLACE	trinsic_territory_woods_57	resource_area	a_trinsic_territory_1	2040	3462	0	16		lumber	Trinsic Territory woods
+PLACE	yew_territory_woods_66	resource_area	a_Yew_Ter	840	1240	0	16		lumber	Yew Territory woods
+PLACE	britain_territory_woods_49	resource_area	a_britain_territory_1	1240	1544	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_67	resource_area	a_Yew_Ter	280	1352	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_68	resource_area	a_Yew_Ter	792	1544	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_69	resource_area	a_Yew_Ter	712	1544	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_110	resource_area	a_wastelands_1	6024	3592	0	16		lumber	WasteLands woods
+PLACE	jhelom_territory_woods_5	resource_area	a_jhelom_territory_1	1288	3656	0	16		lumber	Jhelom Territory woods
+PLACE	jhelom_territory_woods_6	resource_area	a_jhelom_territory_1	1432	3656	0	16		lumber	Jhelom Territory woods
+PLACE	moonglow_territory_woods_3	resource_area	a_moonglow_territory_1	4456	1304	0	16		lumber	Moonglow Territory woods
+PLACE	skara_brae_territory_woods_5	resource_area	a_skara_ter	920	2056	0	16		lumber	Skara Brae Territory woods
+PLACE	fire_island_woods_46	resource_area	a_islehe_fire_1	4376	3462	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_111	resource_area	a_wastelands_1	6088	3014	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_70	resource_area	a_Yew_Ter	584	1736	0	16		lumber	Yew Territory woods
+PLACE	yew_territory_woods_71	resource_area	a_Yew_Ter	856	1160	0	16		lumber	Yew Territory woods
+PLACE	skara_brae_territory_woods_6	resource_area	a_skara_ter	920	2374	0	16		lumber	Skara Brae Territory woods
+PLACE	yew_territory_woods_72	resource_area	a_Yew_Ter	456	1672	0	16		lumber	Yew Territory woods
+PLACE	magincia_territory_woods_4	resource_area	a_magincia_territory_1	3610	2180	0	16		lumber	Magincia Territory woods
+PLACE	wastelands_woods_112	resource_area	a_wastelands_1	5672	3656	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_113	resource_area	a_wastelands_1	5880	3656	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_47	resource_area	a_islehe_fire_1	4232	3720	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_114	resource_area	a_wastelands_1	6104	2312	0	16		lumber	WasteLands woods
+PLACE	cyclops_valley_woods	resource_area	a_cyclops_valley_1	5128	2968	0	16		lumber	Cyclops Valley woods
+PLACE	skara_brae_territory_woods_7	resource_area	a_skara_ter	728	2120	0	16		lumber	Skara Brae Territory woods
+PLACE	cove_territory_woods_33	resource_area	a_cove_territory_1	2472	1112	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_115	resource_area	a_wastelands_1	5464	2376	0	16		lumber	WasteLands woods
+PLACE	fire_island_woods_48	resource_area	a_islehe_fire_1	4808	3720	0	16		lumber	Fire Island woods
+PLACE	wastelands_woods_116	resource_area	a_wastelands_1	5320	3752	0	16		lumber	WasteLands woods
+PLACE	buccaneer_s_den_territory_woods_15	resource_area	a_buccaneers_den_territory_1	2632	2312	0	16		lumber	Buccaneer's Den Territory woods
+PLACE	wilds_woods_122	resource_area		1240	2120	0	16		lumber	wilds woods
+PLACE	wastelands_woods_117	resource_area	a_wastelands_1	5512	3720	0	16		lumber	WasteLands woods
+PLACE	orc_valley_woods_3	resource_area	a_orc_valley_1	936	1288	0	16		lumber	Orc Valley woods
+PLACE	wilds_woods_123	resource_area		1736	2374	0	16		lumber	wilds woods
+PLACE	wastelands_woods_118	resource_area	a_wastelands_1	5864	3718	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_124	resource_area		1416	2392	0	16		lumber	wilds woods
+PLACE	yew_territory_woods_73	resource_area	a_Yew_Ter	1048	1112	0	16		lumber	Yew Territory woods
+PLACE	wastelands_woods_119	resource_area	a_wastelands_1	5480	3078	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_120	resource_area	a_wastelands_1	5960	3798	0	16		lumber	WasteLands woods
+PLACE	yew_territory_woods_74	resource_area	a_Yew_Ter	200	1480	0	16		lumber	Yew Territory woods
+PLACE	vesper_territory_woods_24	resource_area	a_vesper_territory_1	2744	1030	0	16		lumber	Vesper Territory woods
+PLACE	wastelands_woods_121	resource_area	a_wastelands_1	5496	3846	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_125	resource_area		1000	2374	0	16		lumber	wilds woods
+PLACE	trinsic_territory_woods_58	resource_area	a_trinsic_territory_1	2056	3544	0	16		lumber	Trinsic Territory woods
+PLACE	moonglow_territory_woods_4	resource_area	a_moonglow_territory_1	4472	1416	0	16		lumber	Moonglow Territory woods
+PLACE	wilds_woods_126	resource_area		1416	2632	0	16		lumber	wilds woods
+PLACE	britain_territory_woods_50	resource_area	a_britain_territory_1	1240	1942	0	16		lumber	Britain Territory woods
+PLACE	yew_territory_woods_75	resource_area	a_Yew_Ter	1112	904	0	16		lumber	Yew Territory woods
+PLACE	northern_territory_woods_37	resource_area	a_northern_territory_1	1736	840	0	16		lumber	Northern Territory woods
+PLACE	northern_territory_woods_38	resource_area	a_northern_territory_1	1560	838	0	16		lumber	Northern Territory woods
+PLACE	cove_territory_woods_34	resource_area	a_cove_territory_1	2296	776	0	16		lumber	Cove Territory woods
+PLACE	wastelands_woods_122	resource_area	a_wastelands_1	5496	3912	0	16		lumber	WasteLands woods
+PLACE	wilds_woods_127	resource_area		1752	2440	0	16		lumber	wilds woods
+PLACE	serpent_s_hold_territory_woods_7	resource_area	a_serpents_hold_territory_1	2824	3528	0	16		lumber	Serpent's Hold Territory woods
+PLACE	wastelands_woods_123	resource_area	a_wastelands_1	5734	3912	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_124	resource_area	a_wastelands_1	5992	3926	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_125	resource_area	a_wastelands_1	5768	3336	0	16		lumber	WasteLands woods
+PLACE	moonglow_territory_woods_5	resource_area	a_moonglow_territory_1	4600	1352	0	16		lumber	Moonglow Territory woods
+PLACE	northern_territory_woods_39	resource_area	a_northern_territory_1	1496	776	0	16		lumber	Northern Territory woods
+PLACE	trinsic_territory_woods_59	resource_area	a_trinsic_territory_1	1864	3080	0	16		lumber	Trinsic Territory woods
+PLACE	wilds_woods_128	resource_area		1672	2440	0	16		lumber	wilds woods
+PLACE	northern_territory_woods_40	resource_area	a_northern_territory_1	2088	712	0	16		lumber	Northern Territory woods
+PLACE	wastelands_woods_126	resource_area	a_wastelands_1	5800	3976	0	16		lumber	WasteLands woods
+PLACE	wastelands_woods_127	resource_area	a_wastelands_1	5352	4056	0	16		lumber	WasteLands woods
+PLACE	northern_territory_woods_41	resource_area	a_northern_territory_1	1544	728	0	16		lumber	Northern Territory woods
+PLACE	yew_territory_woods_76	resource_area	a_Yew_Ter	392	1304	0	16		lumber	Yew Territory woods
+PLACE	orc_valley_woods_4	resource_area	a_orc_valley_1	1048	1414	0	16		lumber	Orc Valley woods
+PLACE	wastelands_woods_128	resource_area	a_wastelands_1	5704	4056	0	16		lumber	WasteLands woods
+PLACE	moonglow_territory_woods_6	resource_area	a_moonglow_territory_1	4520	1160	0	16		lumber	Moonglow Territory woods
 TRANSIT	tp_0	teleporter	5490	19	-25	5514	10	5	0	tp_shame_1_2_x
 TRANSIT	tp_1	teleporter	5514	10	5	5490	19	-25	0	tp_shame_2_1_x
 TRANSIT	tp_2	teleporter	5875	19	-5	5507	162	5	0	tp_shame_5_4_x

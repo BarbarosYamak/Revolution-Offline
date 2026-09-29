@@ -1,0 +1,1705 @@
+[14:16:14.651] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh07' char=Kaelen tag='f6_Kaelen'
+[14:16:14.652] LOG   [f6_Kaelen] event session_start: text log opened
+[14:16:14.652] LOG   [f6_Kaelen] event net_connect_begin: connect 127.0.0.1:2593
+[14:16:14.652] INFO  [f6_Kaelen] [net] connecting to 127.0.0.1:2593 ...
+[14:16:14.653] LOG   [f6_Kaelen] event net_connected: connect 127.0.0.1:2593
+[14:16:14.653] INFO  [f6_Kaelen] [net] connected.
+[14:16:14.653] INFO  [f6_Kaelen] [seed] sent 0x7F000001 (plaintext)
+[14:16:14.653] LOG   [f6_Kaelen] event seed_out: 0x7F000001 hex=7f000001
+[14:16:14.654] INFO  [life] loaded persistent state for Kaelen (4 places, 1 suppliers, 18 events, 5 prior sessions)
+[14:16:14.654] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[14:16:14.654] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[14:16:14.654] INFO  [f6_Kaelen] [life] autonomous player active for 'Kaelen' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[14:16:14.657] INFO  [f6_Kaelen] [0xA8] 1 server(s):
+[14:16:14.657] INFO  [f6_Kaelen]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[14:16:14.671] INFO  [f6_Kaelen] [0x8C] game server = 127.0.0.1:2593  seed=0xD25C679C
+[14:16:14.671] LOG   [f6_Kaelen] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xD25C679C
+[14:16:14.671] INFO  [f6_Kaelen] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:16:14.671] LOG   [f6_Kaelen] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:16:14.671] INFO  [f6_Kaelen] [0xB9] server features = 0x0005
+[14:16:14.671] INFO  [f6_Kaelen] [0xA9] 5 slot(s) (populated 1):
+[14:16:14.671] INFO  [f6_Kaelen]   [0] Kaelen
+[14:16:14.671] INFO  [f6_Kaelen]   [1] <empty>
+[14:16:14.671] INFO  [f6_Kaelen]   [2] <empty>
+[14:16:14.671] INFO  [f6_Kaelen]   [3] <empty>
+[14:16:14.671] INFO  [f6_Kaelen]   [4] <empty>
+[14:16:14.671] INFO  [f6_Kaelen] [ui] playing slot 0 ('Kaelen')
+[14:16:14.686] INFO  [f6_Kaelen] [chat ascii] System: Voris has arrived in Britain.
+[14:16:14.686] INFO  [f6_Kaelen] [0x1B] serial=0x00013DF0 body=0x0190 pos=(1428,1690,0)
+[14:16:14.686] LOG   [f6_Kaelen] event login_confirm: serial=0x00013DF0 body=0x0190 pos=(1428,1690,0)
+[14:16:14.686] INFO  [f6_Kaelen] [0x20] player @(1428,1690,0) facing=6
+[14:16:14.686] INFO  [f6_Kaelen] [0x55] login complete — entering world
+[14:16:14.686] LOG   [f6_Kaelen] event in_world: 0x55 received
+[14:16:14.686] INFO  [f6_Kaelen] [backpack] opening 0x40013DED
+[14:16:14.686] INFO  [f6_Kaelen] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:16:14.686] INFO  [f6_Kaelen] [chat ascii] System: There are 3 other players here.
+[14:16:14.686] INFO  [f6_Kaelen] [chat ascii] System: Last logged: 2026/08/29 13:44:16
+[14:16:14.686] INFO  [f6_Kaelen] [chat ascii] System: You are under the protection of the city guards
+[14:16:14.690] INFO  [f6_Kaelen] [action] requesting the skill list
+[14:16:14.690] INFO  [life] in world; asked the server for the skill list
+[14:16:14.701] INFO  [f6_Kaelen] [0x24] open container 0x40013DED gump=60
+[14:16:14.701] INFO  [f6_Kaelen] [0x3C] container contents: 6 item(s)
+[14:16:14.701] LOG   [f6_Kaelen] event backpack_contents: serial=0x40013DED items=6
+[14:16:14.808] INFO  [f6_Kaelen] [chat ascii] System: Ysolde has arrived in Britain.
+[14:16:14.886] INFO  [f6_Kaelen] [chat ascii] System: Bruin has arrived in Yew.
+[14:16:16.096] INFO  [f6_Kaelen] [chat ascii] Lyndon: What's thee wantin'?
+[14:16:16.096] INFO  [f6_Kaelen] [chat ascii] Lyndon: Hmm?
+[14:16:17.286] INFO  [f6_Kaelen] [bot] world data loaded (0 blacklisted spot(s)).
+[14:16:17.286] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[14:16:17.286] INFO  [life]   gold         persisted=0          server=0          -> server value accepted
+[14:16:17.286] INFO  [life]   str          persisted=32         server=32         -> server value accepted
+[14:16:17.286] INFO  [life]   dex          persisted=40         server=40         -> server value accepted
+[14:16:17.286] INFO  [life]   int          persisted=8          server=8          -> server value accepted
+[14:16:17.286] INFO  [life]   skill_42     persisted=3.3        server=50.0       -> server value accepted
+[14:16:17.286] INFO  [life]   skill_27     persisted=50.0       server=50.0       -> server value accepted
+[14:16:17.286] INFO  [life]   skill_1      persisted=30.0       server=30.0       -> server value accepted
+[14:16:17.286] INFO  [life]   skill_17     persisted=30.0       server=30.0       -> server value accepted
+[14:16:17.286] INFO  [life]   skill_30     persisted=13.9       server=13.9       -> server value accepted
+[14:16:17.286] INFO  [life]   skill_5      persisted=17.1       server=17.1       -> server value accepted
+[14:16:17.286] INFO  [life]   position     persisted=1428,1690  server=1428,1690  -> server value accepted
+[14:16:17.286] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:16:17.286] INFO  [life]   restored objective KEPT: SURVIVE (progress 0)
+[14:16:17.286] INFO  [f6_Kaelen] [survival] on
+[14:16:17.286] LOG   [f6_Kaelen] event survival_mode: on
+[14:16:17.288] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:16:17.288] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:16:17.341] INFO  [life] goal_completed=SURVIVE progress=0
+[14:16:17.343] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:16:17.403] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[14:16:17.403] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:16:17.403] INFO  [life]   score=62.5
+[14:16:17.403] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:16:17.403] INFO  [life]   reason: food=0
+[14:16:17.403] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:16:17.403] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:16:17.403] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:16:17.463] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:16:17.463] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:16:17.463] INFO  [life]   score=45.0
+[14:16:17.463] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:16:17.463] INFO  [life]   reason: gold=0 floor=100
+[14:16:17.463] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:16:17.463] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:16:17.463] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:16:22.306] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:16:22.430] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:16:22.490] INFO  [life] goal=TRAIN_COMBAT reason="previous goal abandoned: nothing to sell"
+[14:16:22.490] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:16:22.490] INFO  [life]   score=39.3
+[14:16:22.490] INFO  [life]   reason: NeedTraining urgency 0.36 x 110 = 39.3
+[14:16:22.490] INFO  [life]   reason: skill 5 17.1 -> 100.0
+[14:16:22.490] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:16:22.490] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:16:22.490] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:16:22.490] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:16:27.345] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:16:27.468] INFO  [life] hunt: no fight in reach -- going to the nearest graveyard (trip 1)
+[14:16:27.468] INFO  [f6_Kaelen] [travel] Britain Graveyard -> (1384,1492) r=8 from (1428,1690)
+[14:16:27.468] LOG   [f6_Kaelen] event travel_start: label='Britain Graveyard' target=(1384,1492) radius=8 from=(1428,1690)
+[14:16:27.468] INFO  [f6_Kaelen] [travel] mode moongate         usable   <- chosen
+[14:16:27.468] INFO  [f6_Kaelen] [travel] mode walk             usable
+[14:16:27.468] INFO  [f6_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:16:27.468] INFO  [f6_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:16:27.469] LOG   [f6_Kaelen] event travel_mode: moongate
+[14:16:27.469] INFO  [f6_Kaelen] [travel] plan Britain Graveyard: ok legs=6 ~232 tiles transit=0 nodes=74
+[14:16:27.530] INFO  [f6_Kaelen] [action] goto (1416,1656) from (1428,1690,0)
+[14:16:27.530] LOG   [f6_Kaelen] event goto_start: target=(1416,1656) from=(1428,1690)
+[14:16:27.530] INFO  [f6_Kaelen] [bot] running from (1428,1690,0) to (1416,1656)
+[14:16:27.530] INFO  [f6_Kaelen] [bot] planning path to (1416,1656) in background
+[14:16:27.592] INFO  [f6_Kaelen] [bot] replan to (1416,1656): 65 steps in 4628.6us
+[14:16:30.404] INFO  [f6_Kaelen] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[14:16:30.419] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:16:31.665] INFO  [f6_Kaelen] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[14:16:31.666] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:16:32.404] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:16:37.452] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:16:42.474] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:16:47.095] INFO  [f6_Kaelen] [bot] arrived at (1416,1656,10)
+[14:16:47.095] INFO  [f6_Kaelen] [action] goto finished at (1416,1656,10); target (1416,1656); ARRIVED (off by 0 tile(s))
+[14:16:47.095] LOG   [f6_Kaelen] event goto_done: at=(1416,1656) target=(1416,1656) arrived=1 off=0
+[14:16:47.095] INFO  [f6_Kaelen] [action] goto (1416,1624) from (1416,1656,10)
+[14:16:47.095] LOG   [f6_Kaelen] event goto_start: target=(1416,1624) from=(1416,1656)
+[14:16:47.095] INFO  [f6_Kaelen] [bot] running from (1416,1656,10) to (1416,1624)
+[14:16:47.095] INFO  [f6_Kaelen] [bot] planning path to (1416,1624) in background
+[14:16:47.157] INFO  [f6_Kaelen] [bot] replan to (1416,1624): 32 steps in 858.2us
+[14:16:47.480] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:16:52.502] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:16:55.324] INFO  [f6_Kaelen] [bot] arrived at (1416,1624,22)
+[14:16:55.324] INFO  [f6_Kaelen] [action] goto finished at (1416,1624,22); target (1416,1624); ARRIVED (off by 0 tile(s))
+[14:16:55.324] LOG   [f6_Kaelen] event goto_done: at=(1416,1624) target=(1416,1624) arrived=1 off=0
+[14:16:55.324] INFO  [f6_Kaelen] [action] goto (1416,1592) from (1416,1624,22)
+[14:16:55.324] LOG   [f6_Kaelen] event goto_start: target=(1416,1592) from=(1416,1624)
+[14:16:55.324] INFO  [f6_Kaelen] [bot] running from (1416,1624,22) to (1416,1592)
+[14:16:55.324] INFO  [f6_Kaelen] [bot] planning path to (1416,1592) in background
+[14:16:55.386] INFO  [f6_Kaelen] [bot] replan to (1416,1592): 36 steps in 3144.0us
+[14:16:57.522] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:02.549] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:03.179] INFO  [f6_Kaelen] [bot] step (1423,1599,20)->(1422,1598,25) rejected; OpenDoor + retry
+[14:17:03.927] INFO  [f6_Kaelen] [bot] step (1423,1599,20)->(1422,1598,25) rejected; avoiding edge + rerouting
+[14:17:03.927] INFO  [f6_Kaelen] [bot] planning path to (1416,1592) in background
+[14:17:05.301] INFO  [f6_Kaelen] [action] goto finished at (1423,1599,20); target (1416,1592); stopped short (off by 14 tile(s))
+[14:17:05.302] LOG   [f6_Kaelen] event goto_done: at=(1423,1599) target=(1416,1592) arrived=0 off=14
+[14:17:06.501] INFO  [f6_Kaelen] [action] goto (1416,1592) from (1423,1599,20)
+[14:17:06.501] LOG   [f6_Kaelen] event goto_start: target=(1416,1592) from=(1423,1599)
+[14:17:06.501] INFO  [f6_Kaelen] [bot] running from (1423,1599,20) to (1416,1592)
+[14:17:06.501] INFO  [f6_Kaelen] [bot] planning path to (1416,1592) in background
+[14:17:07.598] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:07.783] INFO  [f6_Kaelen] [action] goto finished at (1423,1599,20); target (1416,1592); stopped short (off by 14 tile(s))
+[14:17:07.783] LOG   [f6_Kaelen] event goto_done: at=(1423,1599) target=(1416,1592) arrived=0 off=14
+[14:17:09.033] INFO  [f6_Kaelen] [travel] mode moongate         usable   <- chosen
+[14:17:09.033] INFO  [f6_Kaelen] [travel] mode walk             usable
+[14:17:09.033] INFO  [f6_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:17:09.033] INFO  [f6_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:17:09.033] LOG   [f6_Kaelen] event travel_mode: moongate
+[14:17:09.033] INFO  [f6_Kaelen] [travel] plan Britain Graveyard: ok legs=3 ~128 tiles transit=0 nodes=26
+[14:17:10.592] INFO  [f6_Kaelen] [action] goto (1432,1560) from (1423,1599,20)
+[14:17:10.592] LOG   [f6_Kaelen] event goto_start: target=(1432,1560) from=(1423,1599)
+[14:17:10.592] INFO  [f6_Kaelen] [bot] running from (1423,1599,20) to (1432,1560)
+[14:17:10.592] INFO  [f6_Kaelen] [bot] planning path to (1432,1560) in background
+[14:17:10.652] INFO  [f6_Kaelen] [bot] replan to (1432,1560): 42 steps in 2195.8us
+[14:17:12.605] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:17.392] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:17:17.651] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:22.675] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:22.998] INFO  [f6_Kaelen] [bot] arrived at (1432,1560,30)
+[14:17:22.998] INFO  [f6_Kaelen] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[14:17:22.998] LOG   [f6_Kaelen] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[14:17:22.998] INFO  [f6_Kaelen] [action] goto (1416,1528) from (1432,1560,30)
+[14:17:22.998] LOG   [f6_Kaelen] event goto_start: target=(1416,1528) from=(1432,1560)
+[14:17:22.998] INFO  [f6_Kaelen] [bot] running from (1432,1560,30) to (1416,1528)
+[14:17:22.998] INFO  [f6_Kaelen] [bot] planning path to (1416,1528) in background
+[14:17:23.059] INFO  [f6_Kaelen] [bot] replan to (1416,1528): 36 steps in 7964.4us
+[14:17:27.722] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:29.505] INFO  [f6_Kaelen] [bot] step (1427,1540,30)->(1426,1539,30) rejected; OpenDoor + retry
+[14:17:30.257] INFO  [f6_Kaelen] [bot] step (1427,1540,30)->(1426,1539,30) rejected; avoiding edge + rerouting
+[14:17:30.257] INFO  [f6_Kaelen] [bot] planning path to (1416,1528) in background
+[14:17:30.318] INFO  [f6_Kaelen] [bot] replan to (1416,1528): 17 steps in 4059.5us
+[14:17:32.763] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:37.485] INFO  [f6_Kaelen] [bot] arrived at (1416,1528,28)
+[14:17:37.485] INFO  [f6_Kaelen] [action] goto finished at (1416,1528,28); target (1416,1528); ARRIVED (off by 0 tile(s))
+[14:17:37.485] LOG   [f6_Kaelen] event goto_done: at=(1416,1528) target=(1416,1528) arrived=1 off=0
+[14:17:37.485] INFO  [f6_Kaelen] [action] goto (1384,1492) from (1416,1528,28)
+[14:17:37.485] LOG   [f6_Kaelen] event goto_start: target=(1384,1492) from=(1416,1528)
+[14:17:37.485] INFO  [f6_Kaelen] [bot] running from (1416,1528,28) to (1384,1492,z10)
+[14:17:37.485] INFO  [f6_Kaelen] [bot] planning path to (1384,1492) in background
+[14:17:37.547] INFO  [f6_Kaelen] [bot] replan to (1384,1492): 45 steps in 2908.5us
+[14:17:37.791] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:40.921] INFO  [f6_Kaelen] [chat ascii] System: You have left the protection of the city guards
+[14:17:42.795] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:44.524] INFO  [life] hunt: 1 hostile(s) in sight and none worth starting on
+[14:17:44.524] INFO  [life] engaging a hostile (noto 6) at 1385,1503
+[14:17:44.524] INFO  [f6_Kaelen] [war] entering war mode
+[14:17:44.524] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:44.524] INFO  [f6_Kaelen] [ACTION] attack serial=0x0000C70B
+[14:17:44.538] INFO  [f6_Kaelen] [0xAA] attacking 0x0000C70B
+[14:17:44.538] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (14ms) server accepted the target
+[14:17:44.538] LOG   [f6_Kaelen] event action_result: attack success took=14ms server accepted the target
+[14:17:44.538] INFO  [life] goal_changed=SURVIVE from=TRAIN_COMBAT reason="SURVIVE 550.0 superseded TRAIN_COMBAT 39.3"
+[14:17:44.538] INFO  [life] needs considered: StayAlive(a fight already started 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:17:44.538] INFO  [life]   score=550.0
+[14:17:44.538] INFO  [life]   reason: StayAlive urgency 0.55 x 1000 = 550.0
+[14:17:44.538] INFO  [life]   reason: attackers=1 hostiles_seen=1 hp=100%
+[14:17:44.538] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:17:44.538] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 92s after achieving nothing
+[14:17:44.538] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 97s after achieving nothing
+[14:17:44.538] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:17:45.771] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:45.771] INFO  [f6_Kaelen] [ACTION] attack serial=0x0000C70B
+[14:17:45.772] INFO  [f6_Kaelen] [0xAA] attacking 0x0000C70B
+[14:17:45.772] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:17:45.772] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:17:47.003] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:47.004] INFO  [f6_Kaelen] [ACTION] attack serial=0x0000C70B
+[14:17:47.004] INFO  [f6_Kaelen] [0xAA] attacking 0x0000C70B
+[14:17:47.004] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (1ms) server accepted the target
+[14:17:47.004] LOG   [f6_Kaelen] event action_result: attack success took=1ms server accepted the target
+[14:17:47.804] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:48.249] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:48.249] INFO  [f6_Kaelen] [ACTION] attack serial=0x0000C70B
+[14:17:48.249] INFO  [f6_Kaelen] [0xAA] attacking 0x0000C70B
+[14:17:48.249] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:17:48.250] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:17:49.433] INFO  [f6_Kaelen] [travel] Britain Graveyard ARRIVED at (1386,1499,10)
+[14:17:49.433] LOG   [f6_Kaelen] event travel_done: label='Britain Graveyard' ok=1 at=(1386,1499) legs=3 plans=2 why=''
+[14:17:49.494] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:49.494] INFO  [f6_Kaelen] [ACTION] attack serial=0x0000C70B
+[14:17:49.494] INFO  [f6_Kaelen] [0xAA] attacking 0x0000C70B
+[14:17:49.494] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:17:49.494] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:17:50.706] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:50.706] INFO  [f6_Kaelen] [ACTION] attack serial=0x0000C70B
+[14:17:50.722] INFO  [f6_Kaelen] [0xAA] attacking 0x0000C70B
+[14:17:50.722] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (17ms) server accepted the target
+[14:17:50.722] LOG   [f6_Kaelen] event action_result: attack success took=17ms server accepted the target
+[14:17:51.277] INFO  [f6_Kaelen] [bot] arrived at (1384,1492,10)
+[14:17:51.925] INFO  [life] engaging a hostile (noto 6) at 1384,1483
+[14:17:51.925] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:51.925] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:17:51.925] INFO  [f6_Kaelen] [action] goto finished at (1384,1492,10); target (1384,1492); ARRIVED (off by 0 tile(s))
+[14:17:51.925] LOG   [f6_Kaelen] event goto_done: at=(1384,1492) target=(1384,1492) arrived=1 off=0
+[14:17:51.925] INFO  [f6_Kaelen] [action] goto_mobile 0x000135FE at (1384,1483)
+[14:17:51.925] INFO  [f6_Kaelen] [action] goto (1384,1483) from (1384,1492,10)
+[14:17:51.925] LOG   [f6_Kaelen] event goto_start: target=(1384,1483) from=(1384,1492)
+[14:17:51.925] INFO  [f6_Kaelen] [bot] running from (1384,1492,10) to (1384,1483)
+[14:17:51.925] INFO  [f6_Kaelen] [bot] planning path to (1384,1483) in background
+[14:17:51.941] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:17:51.941] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (16ms) server accepted the target
+[14:17:51.941] LOG   [f6_Kaelen] event action_result: attack success took=16ms server accepted the target
+[14:17:52.816] INFO  [f6_Kaelen] [chat ascii] Skeletal Mage: *Skeletal Mage is attacking you!*
+[14:17:52.816] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:53.169] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:53.169] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:17:53.170] INFO  [f6_Kaelen] [action] goto finished at (1384,1492,10); target (1384,1483); stopped short (off by 9 tile(s))
+[14:17:53.170] LOG   [f6_Kaelen] event goto_done: at=(1384,1492) target=(1384,1483) arrived=0 off=9
+[14:17:53.170] INFO  [f6_Kaelen] [action] goto_mobile 0x000135FE at (1384,1484)
+[14:17:53.170] INFO  [f6_Kaelen] [action] goto (1384,1484) from (1384,1492,10)
+[14:17:53.170] LOG   [f6_Kaelen] event goto_start: target=(1384,1484) from=(1384,1492)
+[14:17:53.170] INFO  [f6_Kaelen] [bot] running from (1384,1492,10) to (1384,1484)
+[14:17:53.170] INFO  [f6_Kaelen] [bot] planning path to (1384,1484) in background
+[14:17:53.170] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:17:53.170] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (1ms) server accepted the target
+[14:17:53.170] LOG   [f6_Kaelen] event action_result: attack success took=1ms server accepted the target
+[14:17:54.391] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:54.391] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:17:54.406] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:17:54.406] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (16ms) server accepted the target
+[14:17:54.406] LOG   [f6_Kaelen] event action_result: attack success took=16ms server accepted the target
+[14:17:55.603] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:55.603] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:17:55.603] INFO  [f6_Kaelen] [action] goto finished at (1384,1492,10); target (1384,1484); stopped short (off by 8 tile(s))
+[14:17:55.603] LOG   [f6_Kaelen] event goto_done: at=(1384,1492) target=(1384,1484) arrived=0 off=8
+[14:17:55.603] INFO  [f6_Kaelen] [action] goto_mobile 0x000135FE at (1384,1490)
+[14:17:55.603] INFO  [f6_Kaelen] [action] goto (1384,1490) from (1384,1492,10)
+[14:17:55.603] LOG   [f6_Kaelen] event goto_start: target=(1384,1490) from=(1384,1492)
+[14:17:55.603] INFO  [f6_Kaelen] [bot] running from (1384,1492,10) to (1384,1490)
+[14:17:55.603] INFO  [f6_Kaelen] [bot] planning path to (1384,1490) in background
+[14:17:55.603] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:17:55.603] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:17:55.603] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:17:55.788] INFO  [f6_Kaelen] [chat ascii] Zombie: *Zombie is attacking you!*
+[14:17:56.832] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:56.832] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:17:56.848] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:17:56.848] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (15ms) server accepted the target
+[14:17:56.848] LOG   [f6_Kaelen] event action_result: attack success took=15ms server accepted the target
+[14:17:57.833] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:17:58.079] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:58.079] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:17:58.079] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:17:58.080] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:17:58.080] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:17:58.154] INFO  [f6_Kaelen] [0x20] player @(1384,1492,10) facing=0
+[14:17:59.285] INFO  [f6_Kaelen] [ACTION] attack start
+[14:17:59.285] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:17:59.285] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:17:59.285] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:17:59.285] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:18:00.540] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:00.540] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:00.540] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:00.540] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:18:00.540] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:18:01.755] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:01.755] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:01.772] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:01.772] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (16ms) server accepted the target
+[14:18:01.772] LOG   [f6_Kaelen] event action_result: attack success took=16ms server accepted the target
+[14:18:02.891] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:18:02.983] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:02.983] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:02.998] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:02.998] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (16ms) server accepted the target
+[14:18:02.998] LOG   [f6_Kaelen] event action_result: attack success took=16ms server accepted the target
+[14:18:04.194] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:04.194] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:04.194] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:04.194] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:18:04.194] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:18:05.408] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:05.408] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:05.409] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:05.409] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:18:05.409] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:18:06.637] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:06.637] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:06.637] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:06.637] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:18:06.637] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:18:07.848] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:07.848] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:07.864] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:07.864] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (16ms) server accepted the target
+[14:18:07.864] LOG   [f6_Kaelen] event action_result: attack success took=16ms server accepted the target
+[14:18:07.925] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:18:09.080] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:09.080] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:09.095] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:09.095] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (15ms) server accepted the target
+[14:18:09.095] LOG   [f6_Kaelen] event action_result: attack success took=15ms server accepted the target
+[14:18:10.325] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:10.325] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:10.325] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:10.326] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:18:10.326] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:18:11.554] INFO  [f6_Kaelen] [ACTION] attack start
+[14:18:11.554] INFO  [f6_Kaelen] [ACTION] attack serial=0x000135FE
+[14:18:11.554] INFO  [f6_Kaelen] [0xAA] attacking 0x000135FE
+[14:18:11.554] INFO  [f6_Kaelen] [ACTION_RESULT] attack success (0ms) server accepted the target
+[14:18:11.554] LOG   [f6_Kaelen] event action_result: attack success took=0ms server accepted the target
+[14:18:12.769] INFO  [life] interrupt=DISENGAGE reason="20s of fighting and Skeletal Mage is still at unknown health; this is a stalemate"
+[14:18:12.769] INFO  [f6_Kaelen] [war] leaving war mode
+[14:18:12.769] INFO  [life] goal_completed=SURVIVE progress=0
+[14:18:12.772] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:18:12.772] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:18:12.772] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:18:12.772] INFO  [life]   score=10.0
+[14:18:12.772] INFO  [life]   reason: fallback: nothing else scored
+[14:18:12.772] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:18:12.772] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 64s after achieving nothing
+[14:18:12.772] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 69s after achieving nothing
+[14:18:12.772] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:18:12.951] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:18:17.953] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:18:22.990] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:18:26.740] INFO  [f6_Kaelen] [chat ascii] System: World save in 10 seconds
+[14:18:27.911] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:18:27.914] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:18:27.927] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:18:27.927] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:18:27.927] INFO  [life]   score=10.0
+[14:18:27.927] INFO  [life]   reason: fallback: nothing else scored
+[14:18:27.927] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:18:27.927] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 49s after achieving nothing
+[14:18:27.927] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 54s after achieving nothing
+[14:18:27.927] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:18:28.050] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:18:33.058] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:18:35.460] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> disengage
+[14:18:35.460] LOG   [f6_Kaelen] event survival_disengage: disengage
+[14:18:35.460] INFO  [f6_Kaelen] [war] leaving war mode
+[14:18:36.735] INFO  [f6_Kaelen] [chat ascii] System: World save has been initiated.
+[14:18:36.977] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> rest
+[14:18:43.030] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:18:43.032] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:18:43.032] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> rest
+[14:18:43.093] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:18:43.093] INFO  [life] needs considered: Heal(bandage BLOCKED 0.86) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:18:43.093] INFO  [life]   score=10.0
+[14:18:43.093] INFO  [life]   reason: fallback: nothing else scored
+[14:18:43.093] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=11/32 bandages=0)
+[14:18:43.093] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:18:43.093] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 34s after achieving nothing
+[14:18:43.093] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 39s after achieving nothing
+[14:18:43.093] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:18:43.093] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:18:46.063] INFO  [f6_Kaelen] [survival] hp 8/32 (25%) -> disengage
+[14:18:46.063] LOG   [f6_Kaelen] event survival_disengage: disengage
+[14:18:46.063] INFO  [f6_Kaelen] [war] leaving war mode
+[14:18:47.603] INFO  [f6_Kaelen] [survival] hp 3/32 (9%) -> flee
+[14:18:47.603] LOG   [f6_Kaelen] event survival_disengage: flee
+[14:18:47.603] INFO  [f6_Kaelen] [war] leaving war mode
+[14:18:49.158] INFO  [f6_Kaelen] [survival] hp 3/32 (9%) -> rest
+[14:18:52.867] INFO  [f6_Kaelen] [0x3C] container contents: 2 item(s)
+[14:18:52.867] INFO  [f6_Kaelen] [0x2C] resurrection menu action=0
+[14:18:52.867] LOG   [f6_Kaelen] event resurrect_menu: prompt
+[14:18:52.867] INFO  [f6_Kaelen] [STATE] dead (0x2C resurrect menu)
+[14:18:52.867] LOG   [f6_Kaelen] event state_dead: 0x2C received
+[14:18:52.867] LOG   [f6_Kaelen] event death_location: at=(1384,1492,10) region=a_britain_graveyard_1 via=0x2C resurrect menu
+[14:18:52.867] INFO  [f6_Kaelen] [0x6C] TARGET requested id=0x00000000 type=object subtype=3 gen=1
+[14:18:52.867] LOG   [f6_Kaelen] event target_requested: id=0x00000000 type=0 subtype=3 gen=1
+[14:18:52.867] INFO  [life] goal_changed=SURVIVE from=IDLE_BRIEFLY reason="SURVIVE 1000.0 superseded IDLE_BRIEFLY 10.0 (emergency preempt)"
+[14:18:52.867] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:18:52.867] INFO  [life]   score=1000.0
+[14:18:52.867] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[14:18:52.867] INFO  [life]   reason: life=dead
+[14:18:53.097] INFO  [f6_Kaelen] [ACTION] resurrect start
+[14:18:53.097] INFO  [f6_Kaelen] [ACTION] resurrect: waiting for the server to raise us
+[14:18:53.097] INFO  [life] dead: walking to a healer (trip 1)
+[14:18:53.097] INFO  [f6_Kaelen] [travel] Britain healer -> (1471,1611) r=5 from (1384,1492)
+[14:18:53.097] LOG   [f6_Kaelen] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1384,1492)
+[14:18:53.097] INFO  [f6_Kaelen] [travel] mode walk             usable   <- chosen
+[14:18:53.097] INFO  [f6_Kaelen] [travel] mode moongate         no: dead characters cannot use gates
+[14:18:53.097] INFO  [f6_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:18:53.097] INFO  [f6_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:18:53.097] LOG   [f6_Kaelen] event travel_mode: walk
+[14:18:53.098] INFO  [f6_Kaelen] [travel] plan Britain healer: ok legs=4 ~152 tiles transit=0 nodes=33
+[14:18:53.098] INFO  [f6_Kaelen] [war] dropping war mode: no combat target and the bot is doing something peaceful
+[14:18:53.098] LOG   [f6_Kaelen] event war_timeout: no combat target and the bot is doing something peaceful
+[14:18:53.098] INFO  [f6_Kaelen] [war] leaving war mode
+[14:18:53.098] INFO  [f6_Kaelen] [chat ascii] System: You are a ghost
+[14:18:53.098] INFO  [f6_Kaelen] [0x1B] serial=0x00013DF0 body=0x0192 pos=(1384,1492,10)
+[14:18:53.098] LOG   [f6_Kaelen] event login_confirm: serial=0x00013DF0 body=0x0192 pos=(1384,1492,10)
+[14:18:53.098] INFO  [f6_Kaelen] [0x20] player @(1384,1492,10) facing=0
+[14:18:53.098] LOG   [f6_Kaelen] event corpse_located: corpse=0x40017EAB at=(1384,1492,10)
+[14:18:53.098] INFO  [f6_Kaelen] [0x3C] container contents: 2 item(s)
+[14:18:53.098] INFO  [f6_Kaelen] [0x55] login complete — entering world
+[14:18:53.098] LOG   [f6_Kaelen] event in_world: 0x55 received
+[14:18:53.098] INFO  [f6_Kaelen] [backpack] opening 0x40013DED
+[14:18:53.098] INFO  [f6_Kaelen] [action] goto finished at (1384,1492,10); target (1384,1490); stopped short (off by 2 tile(s))
+[14:18:53.098] LOG   [f6_Kaelen] event goto_done: at=(1384,1492) target=(1384,1490) arrived=0 off=2
+[14:18:53.098] INFO  [f6_Kaelen] [action] goto (1416,1528) from (1384,1492,10)
+[14:18:53.098] LOG   [f6_Kaelen] event goto_start: target=(1416,1528) from=(1384,1492)
+[14:18:53.098] INFO  [f6_Kaelen] [bot] running from (1384,1492,10) to (1416,1528)
+[14:18:53.098] INFO  [f6_Kaelen] [bot] planning path to (1416,1528) in background
+[14:18:53.098] INFO  [f6_Kaelen] [war] dropping war mode: no combat target and the bot is doing something peaceful
+[14:18:53.098] LOG   [f6_Kaelen] event war_timeout: no combat target and the bot is doing something peaceful
+[14:18:53.098] INFO  [f6_Kaelen] [war] leaving war mode
+[14:18:53.112] INFO  [f6_Kaelen] [chat ascii] System: Your ghostly hand passes through the object.
+[14:18:53.112] INFO  [f6_Kaelen] [bot] replan to (1416,1528): 46 steps in 5083.7us
+[14:19:07.815] INFO  [f6_Kaelen] [bot] arrived at (1416,1528,28)
+[14:19:07.815] INFO  [f6_Kaelen] [action] goto finished at (1416,1528,28); target (1416,1528); ARRIVED (off by 0 tile(s))
+[14:19:07.815] LOG   [f6_Kaelen] event goto_done: at=(1416,1528) target=(1416,1528) arrived=1 off=0
+[14:19:07.815] INFO  [f6_Kaelen] [action] goto (1432,1560) from (1416,1528,28)
+[14:19:07.815] LOG   [f6_Kaelen] event goto_start: target=(1432,1560) from=(1416,1528)
+[14:19:07.815] INFO  [f6_Kaelen] [bot] running from (1416,1528,28) to (1432,1560)
+[14:19:07.815] INFO  [f6_Kaelen] [bot] planning path to (1432,1560) in background
+[14:19:07.876] INFO  [f6_Kaelen] [bot] replan to (1432,1560): 36 steps in 3690.6us
+[14:19:19.178] INFO  [f6_Kaelen] [bot] arrived at (1432,1560,30)
+[14:19:19.179] INFO  [f6_Kaelen] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[14:19:19.179] LOG   [f6_Kaelen] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[14:19:19.179] INFO  [f6_Kaelen] [action] goto (1448,1592) from (1432,1560,30)
+[14:19:19.179] LOG   [f6_Kaelen] event goto_start: target=(1448,1592) from=(1432,1560)
+[14:19:19.179] INFO  [f6_Kaelen] [bot] running from (1432,1560,30) to (1448,1592)
+[14:19:19.179] INFO  [f6_Kaelen] [bot] planning path to (1448,1592) in background
+[14:19:19.240] INFO  [f6_Kaelen] [bot] replan to (1448,1592): 46 steps in 8133.5us
+[14:19:28.279] INFO  [f6_Kaelen] [bot] door ahead at (1444,1583,z20); OpenDoor before step
+[14:19:28.279] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:19:28.279] INFO  [f6_Kaelen] [0x20] player @(1443,1584,20) facing=0
+[14:19:28.279] INFO  [f6_Kaelen] [chat ascii] System: Your ghostly hand passes through the object.
+[14:19:28.279] INFO  [f6_Kaelen] [action] goto finished at (1443,1584,20); target (1448,1592); stopped short (off by 13 tile(s))
+[14:19:28.279] LOG   [f6_Kaelen] event goto_done: at=(1443,1584) target=(1448,1592) arrived=0 off=13
+[14:19:29.515] INFO  [f6_Kaelen] [action] goto (1448,1592) from (1443,1584,20)
+[14:19:29.515] LOG   [f6_Kaelen] event goto_start: target=(1448,1592) from=(1443,1584)
+[14:19:29.515] INFO  [f6_Kaelen] [bot] running from (1443,1584,20) to (1448,1592)
+[14:19:29.515] INFO  [f6_Kaelen] [bot] planning path to (1448,1592) in background
+[14:19:29.576] INFO  [f6_Kaelen] [bot] replan to (1448,1592): 17 steps in 1716.3us
+[14:19:29.592] INFO  [f6_Kaelen] [bot] door ahead at (1444,1583,z20); OpenDoor before step
+[14:19:29.592] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:19:29.593] INFO  [f6_Kaelen] [0x20] player @(1443,1584,20) facing=0
+[14:19:29.593] INFO  [f6_Kaelen] [chat ascii] System: Your ghostly hand passes through the object.
+[14:19:29.593] INFO  [f6_Kaelen] [action] goto finished at (1443,1584,20); target (1448,1592); stopped short (off by 13 tile(s))
+[14:19:29.593] LOG   [f6_Kaelen] event goto_done: at=(1443,1584) target=(1448,1592) arrived=0 off=13
+[14:19:30.823] INFO  [f6_Kaelen] [action] goto (1448,1592) from (1443,1584,20)
+[14:19:30.823] LOG   [f6_Kaelen] event goto_start: target=(1448,1592) from=(1443,1584)
+[14:19:30.823] INFO  [f6_Kaelen] [bot] running from (1443,1584,20) to (1448,1592)
+[14:19:30.823] INFO  [f6_Kaelen] [bot] planning path to (1448,1592) in background
+[14:19:30.884] INFO  [f6_Kaelen] [bot] replan to (1448,1592): 17 steps in 1889.0us
+[14:19:30.884] INFO  [f6_Kaelen] [bot] door ahead at (1444,1583,z20); OpenDoor before step
+[14:19:30.899] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:19:30.899] INFO  [f6_Kaelen] [0x20] player @(1443,1584,20) facing=0
+[14:19:30.899] INFO  [f6_Kaelen] [chat ascii] System: Your ghostly hand passes through the object.
+[14:19:30.899] INFO  [f6_Kaelen] [action] goto finished at (1443,1584,20); target (1448,1592); stopped short (off by 13 tile(s))
+[14:19:30.899] LOG   [f6_Kaelen] event goto_done: at=(1443,1584) target=(1448,1592) arrived=0 off=13
+[14:19:32.141] INFO  [f6_Kaelen] [travel] mode walk             usable   <- chosen
+[14:19:32.141] INFO  [f6_Kaelen] [travel] mode moongate         no: dead characters cannot use gates
+[14:19:32.141] INFO  [f6_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:19:32.141] INFO  [f6_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:19:32.141] LOG   [f6_Kaelen] event travel_mode: walk
+[14:19:32.141] INFO  [f6_Kaelen] [travel] plan Britain healer: ok legs=1 ~28 tiles transit=0 nodes=0
+[14:19:33.685] INFO  [f6_Kaelen] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:19:33.685] INFO  [f6_Kaelen] [action] goto (1471,1611) from (1443,1584,20)
+[14:19:33.685] LOG   [f6_Kaelen] event goto_start: target=(1471,1611) from=(1443,1584)
+[14:19:33.685] INFO  [f6_Kaelen] [bot] running from (1443,1584,20) to (1471,1611,z20)
+[14:19:33.685] INFO  [f6_Kaelen] [bot] planning path to (1471,1611) in background
+[14:19:33.745] INFO  [f6_Kaelen] [bot] replan to (1471,1611): 64 steps in 23822.9us
+[14:19:43.050] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:19:49.413] INFO  [f6_Kaelen] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[14:19:49.413] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:19:49.413] INFO  [f6_Kaelen] [chat ascii] System: Your ghostly hand passes through the object.
+[14:19:51.215] INFO  [f6_Kaelen] [travel] Britain healer ARRIVED at (1475,1611,20)
+[14:19:51.215] LOG   [f6_Kaelen] event travel_done: label='Britain healer' ok=1 at=(1475,1611) legs=1 plans=2 why=''
+[14:19:52.156] INFO  [f6_Kaelen] [bot] arrived at (1471,1611,20)
+[14:20:36.783] INFO  [f6_Kaelen] [chat ascii] Dale: Thou wishest to speak with me?
+[14:20:43.062] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:21:43.070] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:22:32.016] INFO  [f6_Kaelen] [chat ascii] Dale: I shall attempt to resurrect thee.
+[14:22:32.017] INFO  [f6_Kaelen] [STATE] alive (body 0x0190)
+[14:22:32.017] LOG   [f6_Kaelen] event state_resurrected: server body change
+[14:22:32.017] INFO  [f6_Kaelen] [ACTION_RESULT] resurrect success (218919ms) character is alive again
+[14:22:32.017] LOG   [f6_Kaelen] event action_result: resurrect success took=218919ms character is alive again
+[14:22:32.017] INFO  [f6_Kaelen] [0x20] player @(1471,1611,20) facing=6
+[14:22:32.017] INFO  [life] goal_changed=GET_FOOD from=SURVIVE reason="GET_FOOD 62.5 superseded SURVIVE 0.0"
+[14:22:32.017] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:22:32.017] INFO  [life]   score=62.5
+[14:22:32.017] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:22:32.017] INFO  [life]   reason: food=0
+[14:22:32.017] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/32 bandages=0)
+[14:22:32.017] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:22:32.017] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:22:32.017] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:22:32.017] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:22:32.017] INFO  [f6_Kaelen] [survival] hp 0/32 (0%) -> rest
+[14:22:32.077] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:22:32.077] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:22:32.077] INFO  [life]   score=45.0
+[14:22:32.078] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:22:32.078] INFO  [life]   reason: gold=0 floor=100
+[14:22:32.078] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=0/32 bandages=0)
+[14:22:32.078] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:22:32.078] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:22:32.078] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:22:32.078] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:22:37.064] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:22:37.127] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:22:37.127] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:22:37.127] INFO  [life]   score=10.0
+[14:22:37.127] INFO  [life]   reason: fallback: nothing else scored
+[14:22:37.127] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=4/32 bandages=0)
+[14:22:37.127] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:22:37.127] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:22:37.127] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:22:37.127] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:22:37.127] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:22:38.099] INFO  [f6_Kaelen] [survival] hp 4/32 (12%) -> rest
+[14:22:43.118] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:22:44.168] INFO  [f6_Kaelen] [survival] hp 4/32 (12%) -> rest
+[14:22:50.231] INFO  [f6_Kaelen] [survival] hp 4/32 (12%) -> rest
+[14:22:52.143] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:22:52.145] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:22:52.145] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:22:52.146] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:22:52.146] INFO  [life]   score=10.0
+[14:22:52.146] INFO  [life]   reason: fallback: nothing else scored
+[14:22:52.146] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=4/32 bandages=0)
+[14:22:52.146] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:22:52.146] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[14:22:52.146] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[14:22:52.146] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:22:52.146] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:22:56.301] INFO  [f6_Kaelen] [survival] hp 4/32 (12%) -> rest
+[14:23:02.327] INFO  [f6_Kaelen] [survival] hp 4/32 (12%) -> rest
+[14:23:07.240] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:23:07.242] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:23:07.301] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:23:07.301] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:23:07.301] INFO  [life]   score=10.0
+[14:23:07.301] INFO  [life]   reason: fallback: nothing else scored
+[14:23:07.301] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=4/32 bandages=0)
+[14:23:07.301] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:23:07.301] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[14:23:07.301] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[14:23:07.301] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:23:07.301] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:23:08.407] INFO  [f6_Kaelen] [survival] hp 4/32 (12%) -> rest
+[14:23:14.415] INFO  [f6_Kaelen] [survival] hp 5/32 (15%) -> rest
+[14:23:20.480] INFO  [f6_Kaelen] [survival] hp 5/32 (15%) -> rest
+[14:23:22.322] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:23:22.324] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:23:22.381] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:23:22.381] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:23:22.382] INFO  [life]   score=10.0
+[14:23:22.382] INFO  [life]   reason: fallback: nothing else scored
+[14:23:22.382] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=5/32 bandages=0)
+[14:23:22.382] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:23:22.382] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[14:23:22.382] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[14:23:22.382] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:23:22.382] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:23:26.504] INFO  [f6_Kaelen] [survival] hp 5/32 (15%) -> rest
+[14:23:27.074] INFO  [f6_Kaelen] [chat ascii] System: World save in 10 seconds
+[14:23:32.599] INFO  [f6_Kaelen] [survival] hp 5/32 (15%) -> rest
+[14:23:37.083] INFO  [f6_Kaelen] [chat ascii] System: World save has been initiated.
+[14:23:37.399] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:23:37.401] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:23:37.461] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:23:37.461] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:23:37.462] INFO  [life]   score=10.0
+[14:23:37.462] INFO  [life]   reason: fallback: nothing else scored
+[14:23:37.462] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=5/32 bandages=0)
+[14:23:37.462] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:23:37.462] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 114s after achieving nothing
+[14:23:37.462] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 119s after achieving nothing
+[14:23:37.462] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:23:37.462] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:23:38.629] INFO  [f6_Kaelen] [survival] hp 5/32 (15%) -> rest
+[14:23:44.687] INFO  [f6_Kaelen] [survival] hp 5/32 (15%) -> rest
+[14:23:50.736] INFO  [f6_Kaelen] [survival] hp 5/32 (15%) -> rest
+[14:23:52.484] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:23:52.486] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:23:52.499] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:23:52.499] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:23:52.499] INFO  [life]   score=10.0
+[14:23:52.499] INFO  [life]   reason: fallback: nothing else scored
+[14:23:52.499] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/32 bandages=0)
+[14:23:52.499] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:23:52.499] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[14:23:52.499] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 104s after achieving nothing
+[14:23:52.499] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:23:52.499] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:23:56.801] INFO  [f6_Kaelen] [survival] hp 6/32 (18%) -> rest
+[14:24:02.846] INFO  [f6_Kaelen] [survival] hp 6/32 (18%) -> rest
+[14:24:07.528] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:24:07.531] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:24:07.589] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:24:07.589] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:24:07.589] INFO  [life]   score=10.0
+[14:24:07.590] INFO  [life]   reason: fallback: nothing else scored
+[14:24:07.590] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/32 bandages=0)
+[14:24:07.590] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:24:07.590] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 84s after achieving nothing
+[14:24:07.590] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 89s after achieving nothing
+[14:24:07.590] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:24:07.590] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:24:08.926] INFO  [f6_Kaelen] [survival] hp 6/32 (18%) -> rest
+[14:24:14.985] INFO  [f6_Kaelen] [survival] hp 6/32 (18%) -> rest
+[14:24:21.059] INFO  [f6_Kaelen] [survival] hp 6/32 (18%) -> rest
+[14:24:27.107] INFO  [f6_Kaelen] [survival] hp 6/32 (18%) -> rest
+[14:24:27.588] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:24:27.590] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:24:27.649] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:24:27.649] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:24:27.649] INFO  [life]   score=10.0
+[14:24:27.649] INFO  [life]   reason: fallback: nothing else scored
+[14:24:27.649] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=6/32 bandages=0)
+[14:24:27.649] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:24:27.649] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 64s after achieving nothing
+[14:24:27.649] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 69s after achieving nothing
+[14:24:27.649] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:24:27.649] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:24:33.181] INFO  [f6_Kaelen] [survival] hp 7/32 (21%) -> rest
+[14:24:39.276] INFO  [f6_Kaelen] [survival] hp 7/32 (21%) -> rest
+[14:24:42.728] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:24:42.731] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:24:42.790] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:24:42.790] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:24:42.790] INFO  [life]   score=10.0
+[14:24:42.790] INFO  [life]   reason: fallback: nothing else scored
+[14:24:42.790] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/32 bandages=0)
+[14:24:42.790] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:24:42.790] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 49s after achieving nothing
+[14:24:42.790] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 54s after achieving nothing
+[14:24:42.790] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:24:42.790] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:24:45.343] INFO  [f6_Kaelen] [survival] hp 7/32 (21%) -> rest
+[14:24:51.373] INFO  [f6_Kaelen] [survival] hp 7/32 (21%) -> rest
+[14:24:57.441] INFO  [f6_Kaelen] [survival] hp 7/32 (21%) -> rest
+[14:24:57.794] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:24:57.797] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:24:57.855] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:24:57.856] INFO  [life] needs considered: Heal(bandage BLOCKED 0.98) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:24:57.856] INFO  [life]   score=10.0
+[14:24:57.856] INFO  [life]   reason: fallback: nothing else scored
+[14:24:57.856] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=7/32 bandages=0)
+[14:24:57.856] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:24:57.856] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 34s after achieving nothing
+[14:24:57.856] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 39s after achieving nothing
+[14:24:57.856] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:24:57.856] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:25:03.476] INFO  [f6_Kaelen] [survival] hp 7/32 (21%) -> rest
+[14:25:09.517] INFO  [f6_Kaelen] [survival] hp 7/32 (21%) -> rest
+[14:25:15.579] INFO  [f6_Kaelen] [survival] hp 8/32 (25%) -> rest
+[14:25:17.902] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:25:17.904] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:25:17.964] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:25:17.964] INFO  [life] needs considered: Heal(bandage BLOCKED 0.95) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:25:17.964] INFO  [life]   score=10.0
+[14:25:17.964] INFO  [life]   reason: fallback: nothing else scored
+[14:25:17.964] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/32 bandages=0)
+[14:25:17.964] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:25:17.964] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 14s after achieving nothing
+[14:25:17.964] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 19s after achieving nothing
+[14:25:17.964] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:25:17.964] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:25:21.627] INFO  [f6_Kaelen] [survival] hp 8/32 (25%) -> rest
+[14:25:27.660] INFO  [f6_Kaelen] [survival] hp 8/32 (25%) -> rest
+[14:25:33.697] INFO  [f6_Kaelen] [survival] hp 8/32 (25%) -> rest
+[14:25:38.014] INFO  [life] goal_changed=GET_FOOD from=IDLE_BRIEFLY reason="GET_FOOD 62.5 superseded IDLE_BRIEFLY 10.0"
+[14:25:38.014] INFO  [life] needs considered: Heal(bandage BLOCKED 0.95) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:25:38.014] INFO  [life]   score=62.5
+[14:25:38.014] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:25:38.014] INFO  [life]   reason: food=0
+[14:25:38.014] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/32 bandages=0)
+[14:25:38.014] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:25:38.014] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:25:38.014] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:25:38.014] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:25:38.075] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:25:38.075] INFO  [life] needs considered: Heal(bandage BLOCKED 0.95) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:25:38.075] INFO  [life]   score=45.0
+[14:25:38.075] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:25:38.075] INFO  [life]   reason: gold=0 floor=100
+[14:25:38.075] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/32 bandages=0)
+[14:25:38.075] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:25:38.075] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:25:38.075] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:25:38.075] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:25:39.762] INFO  [f6_Kaelen] [survival] hp 8/32 (25%) -> rest
+[14:25:43.015] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:25:43.075] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:25:43.075] INFO  [life] needs considered: Heal(bandage BLOCKED 0.95) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:25:43.075] INFO  [life]   score=10.0
+[14:25:43.075] INFO  [life]   reason: fallback: nothing else scored
+[14:25:43.075] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=8/32 bandages=0)
+[14:25:43.075] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:25:43.075] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:25:43.075] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:25:43.075] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:25:43.075] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:25:45.777] INFO  [f6_Kaelen] [survival] hp 8/32 (25%) -> rest
+[14:25:51.794] INFO  [f6_Kaelen] [survival] hp 8/32 (25%) -> rest
+[14:25:57.894] INFO  [f6_Kaelen] [survival] hp 9/32 (28%) -> rest
+[14:25:58.141] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:25:58.143] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:25:58.203] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:25:58.203] INFO  [life] needs considered: Heal(bandage BLOCKED 0.92) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:25:58.203] INFO  [life]   score=10.0
+[14:25:58.203] INFO  [life]   reason: fallback: nothing else scored
+[14:25:58.203] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=9/32 bandages=0)
+[14:25:58.203] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:25:58.203] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[14:25:58.203] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[14:25:58.203] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:25:58.203] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:26:03.979] INFO  [f6_Kaelen] [survival] hp 9/32 (28%) -> rest
+[14:26:10.039] INFO  [f6_Kaelen] [survival] hp 9/32 (28%) -> rest
+[14:26:13.235] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:26:13.238] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:26:13.296] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:26:13.296] INFO  [life] needs considered: Heal(bandage BLOCKED 0.92) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:26:13.296] INFO  [life]   score=10.0
+[14:26:13.296] INFO  [life]   reason: fallback: nothing else scored
+[14:26:13.296] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=9/32 bandages=0)
+[14:26:13.296] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:26:13.296] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[14:26:13.296] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[14:26:13.296] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:26:13.296] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:26:16.069] INFO  [f6_Kaelen] [survival] hp 9/32 (28%) -> rest
+[14:26:16.207] INFO  [f6_Kaelen] [chat ascii] Dale: I'm listenin'.
+[14:26:22.128] INFO  [f6_Kaelen] [survival] hp 9/32 (28%) -> rest
+[14:26:28.186] INFO  [f6_Kaelen] [survival] hp 9/32 (28%) -> rest
+[14:26:33.356] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:26:33.358] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:26:33.418] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:26:33.418] INFO  [life] needs considered: Heal(bandage BLOCKED 0.89) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:26:33.418] INFO  [life]   score=10.0
+[14:26:33.418] INFO  [life]   reason: fallback: nothing else scored
+[14:26:33.418] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/32 bandages=0)
+[14:26:33.418] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:26:33.418] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 124s after achieving nothing
+[14:26:33.418] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 129s after achieving nothing
+[14:26:33.418] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:26:33.418] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:26:34.283] INFO  [f6_Kaelen] [survival] hp 10/32 (31%) -> rest
+[14:26:40.396] INFO  [f6_Kaelen] [survival] hp 10/32 (31%) -> rest
+[14:26:46.483] INFO  [f6_Kaelen] [survival] hp 10/32 (31%) -> rest
+[14:26:48.444] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:26:48.446] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:26:48.504] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:26:48.504] INFO  [life] needs considered: Heal(bandage BLOCKED 0.89) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:26:48.504] INFO  [life]   score=10.0
+[14:26:48.504] INFO  [life]   reason: fallback: nothing else scored
+[14:26:48.504] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/32 bandages=0)
+[14:26:48.504] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:26:48.504] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 109s after achieving nothing
+[14:26:48.504] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 114s after achieving nothing
+[14:26:48.504] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:26:48.504] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:26:52.515] INFO  [f6_Kaelen] [survival] hp 10/32 (31%) -> rest
+[14:26:58.594] INFO  [f6_Kaelen] [survival] hp 10/32 (31%) -> rest
+[14:27:04.634] INFO  [f6_Kaelen] [survival] hp 10/32 (31%) -> rest
+[14:27:08.494] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:27:08.496] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:27:08.556] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:27:08.556] INFO  [life] needs considered: Heal(bandage BLOCKED 0.89) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:27:08.556] INFO  [life]   score=10.0
+[14:27:08.556] INFO  [life]   reason: fallback: nothing else scored
+[14:27:08.556] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=10/32 bandages=0)
+[14:27:08.556] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:27:08.556] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 89s after achieving nothing
+[14:27:08.556] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 94s after achieving nothing
+[14:27:08.556] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:27:08.556] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:27:10.692] INFO  [f6_Kaelen] [survival] hp 10/32 (31%) -> rest
+[14:27:16.755] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> rest
+[14:27:22.823] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> rest
+[14:27:23.576] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:27:23.578] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:27:23.639] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:27:23.639] INFO  [life] needs considered: Heal(bandage BLOCKED 0.86) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:27:23.639] INFO  [life]   score=10.0
+[14:27:23.639] INFO  [life]   reason: fallback: nothing else scored
+[14:27:23.639] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=11/32 bandages=0)
+[14:27:23.639] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:27:23.639] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 74s after achieving nothing
+[14:27:23.639] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 79s after achieving nothing
+[14:27:23.639] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:27:23.639] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:27:28.885] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> rest
+[14:27:34.926] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> rest
+[14:27:38.708] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:27:38.710] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:27:38.770] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:27:38.770] INFO  [life] needs considered: Heal(bandage BLOCKED 0.86) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:27:38.770] INFO  [life]   score=10.0
+[14:27:38.770] INFO  [life]   reason: fallback: nothing else scored
+[14:27:38.770] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=11/32 bandages=0)
+[14:27:38.770] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:27:38.770] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 59s after achieving nothing
+[14:27:38.770] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 64s after achieving nothing
+[14:27:38.770] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:27:38.770] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:27:40.980] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> rest
+[14:27:47.026] INFO  [f6_Kaelen] [survival] hp 11/32 (34%) -> rest
+[14:27:53.037] INFO  [f6_Kaelen] [survival] hp 12/32 (37%) -> fight
+[14:27:53.790] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:27:53.793] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:27:53.852] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:27:53.852] INFO  [life] needs considered: Heal(bandage BLOCKED 0.83) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:27:53.852] INFO  [life]   score=10.0
+[14:27:53.852] INFO  [life]   reason: fallback: nothing else scored
+[14:27:53.852] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/32 bandages=0)
+[14:27:53.852] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:27:53.852] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 44s after achieving nothing
+[14:27:53.852] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 49s after achieving nothing
+[14:27:53.852] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:27:53.852] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:27:58.075] INFO  [f6_Kaelen] [survival] hp 12/32 (37%) -> fight
+[14:28:03.097] INFO  [f6_Kaelen] [survival] hp 12/32 (37%) -> fight
+[14:28:08.122] INFO  [f6_Kaelen] [survival] hp 12/32 (37%) -> fight
+[14:28:08.891] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:28:08.893] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:28:08.952] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:28:08.952] INFO  [life] needs considered: Heal(bandage BLOCKED 0.83) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:28:08.952] INFO  [life]   score=10.0
+[14:28:08.952] INFO  [life]   reason: fallback: nothing else scored
+[14:28:08.952] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/32 bandages=0)
+[14:28:08.952] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:28:08.952] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[14:28:08.952] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 34s after achieving nothing
+[14:28:08.952] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:28:08.952] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:28:13.163] INFO  [f6_Kaelen] [survival] hp 12/32 (37%) -> fight
+[14:28:18.173] INFO  [f6_Kaelen] [survival] hp 12/32 (37%) -> fight
+[14:28:23.186] INFO  [f6_Kaelen] [survival] hp 12/32 (37%) -> fight
+[14:28:24.013] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:28:24.015] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:28:24.073] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:28:24.073] INFO  [life] needs considered: Heal(bandage BLOCKED 0.83) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:28:24.073] INFO  [life]   score=10.0
+[14:28:24.073] INFO  [life]   reason: fallback: nothing else scored
+[14:28:24.073] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=12/32 bandages=0)
+[14:28:24.073] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:28:24.073] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 13s after achieving nothing
+[14:28:24.073] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 18s after achieving nothing
+[14:28:24.073] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:28:24.073] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:28:27.382] INFO  [f6_Kaelen] [chat ascii] System: World save in 10 seconds
+[14:28:28.246] INFO  [f6_Kaelen] [survival] hp 12/32 (37%) -> fight
+[14:28:33.306] INFO  [f6_Kaelen] [survival] hp 13/32 (40%) -> fight
+[14:28:37.391] INFO  [f6_Kaelen] [chat ascii] System: World save has been initiated.
+[14:28:38.319] INFO  [f6_Kaelen] [survival] hp 13/32 (40%) -> fight
+[14:28:43.349] INFO  [f6_Kaelen] [survival] hp 13/32 (40%) -> fight
+[14:28:44.087] INFO  [life] goal_changed=GET_FOOD from=IDLE_BRIEFLY reason="GET_FOOD 62.5 superseded IDLE_BRIEFLY 10.0"
+[14:28:44.087] INFO  [life] needs considered: Heal(bandage BLOCKED 0.79) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:28:44.087] INFO  [life]   score=62.5
+[14:28:44.087] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:28:44.087] INFO  [life]   reason: food=0
+[14:28:44.087] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=13/32 bandages=0)
+[14:28:44.087] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:28:44.087] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:28:44.087] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:28:44.087] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:28:44.150] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:28:44.150] INFO  [life] needs considered: Heal(bandage BLOCKED 0.79) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:28:44.150] INFO  [life]   score=45.0
+[14:28:44.150] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:28:44.150] INFO  [life]   reason: gold=0 floor=100
+[14:28:44.150] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=13/32 bandages=0)
+[14:28:44.150] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:28:44.150] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:28:44.150] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:28:44.150] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:28:48.398] INFO  [f6_Kaelen] [survival] hp 13/32 (40%) -> fight
+[14:28:49.091] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:28:49.152] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:28:49.152] INFO  [life] needs considered: Heal(bandage BLOCKED 0.79) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:28:49.152] INFO  [life]   score=10.0
+[14:28:49.152] INFO  [life]   reason: fallback: nothing else scored
+[14:28:49.152] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=13/32 bandages=0)
+[14:28:49.152] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:28:49.152] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:28:49.152] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:28:49.152] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:28:49.152] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:28:53.421] INFO  [f6_Kaelen] [survival] hp 13/32 (40%) -> fight
+[14:28:58.425] INFO  [f6_Kaelen] [survival] hp 13/32 (40%) -> fight
+[14:29:03.472] INFO  [f6_Kaelen] [survival] hp 13/32 (40%) -> fight
+[14:29:04.195] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:29:04.197] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:29:04.258] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:29:04.258] INFO  [life] needs considered: Heal(bandage BLOCKED 0.79) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:29:04.258] INFO  [life]   score=10.0
+[14:29:04.258] INFO  [life]   reason: fallback: nothing else scored
+[14:29:04.258] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=13/32 bandages=0)
+[14:29:04.258] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:29:04.258] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[14:29:04.258] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[14:29:04.258] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:29:04.258] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:29:08.487] INFO  [f6_Kaelen] [survival] hp 13/32 (40%) -> fight
+[14:29:13.495] INFO  [f6_Kaelen] [survival] hp 14/32 (43%) -> fight
+[14:29:18.557] INFO  [f6_Kaelen] [survival] hp 14/32 (43%) -> fight
+[14:29:19.269] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:29:19.271] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:29:19.330] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:29:19.330] INFO  [life] needs considered: Heal(bandage BLOCKED 0.76) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:29:19.330] INFO  [life]   score=10.0
+[14:29:19.330] INFO  [life]   reason: fallback: nothing else scored
+[14:29:19.330] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=14/32 bandages=0)
+[14:29:19.330] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:29:19.330] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[14:29:19.330] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[14:29:19.330] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:29:19.330] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:29:23.577] INFO  [f6_Kaelen] [survival] hp 14/32 (43%) -> fight
+[14:29:28.579] INFO  [f6_Kaelen] [survival] hp 14/32 (43%) -> fight
+[14:29:33.590] INFO  [f6_Kaelen] [survival] hp 14/32 (43%) -> fight
+[14:29:34.405] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:29:34.407] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:29:34.467] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:29:34.467] INFO  [life] needs considered: Heal(bandage BLOCKED 0.76) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:29:34.467] INFO  [life]   score=10.0
+[14:29:34.467] INFO  [life]   reason: fallback: nothing else scored
+[14:29:34.467] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=14/32 bandages=0)
+[14:29:34.467] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:29:34.467] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[14:29:34.467] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[14:29:34.467] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:29:34.467] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:29:38.645] INFO  [f6_Kaelen] [survival] hp 14/32 (43%) -> fight
+[14:29:43.652] INFO  [f6_Kaelen] [survival] hp 14/32 (43%) -> fight
+[14:29:48.678] INFO  [f6_Kaelen] [survival] hp 14/32 (43%) -> fight
+[14:29:53.689] INFO  [f6_Kaelen] [survival] hp 15/32 (46%) -> fight
+[14:29:54.507] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:29:54.509] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:29:54.568] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:29:54.568] INFO  [life] needs considered: Heal(bandage BLOCKED 0.73) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:29:54.568] INFO  [life]   score=10.0
+[14:29:54.568] INFO  [life]   reason: fallback: nothing else scored
+[14:29:54.568] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=15/32 bandages=0)
+[14:29:54.568] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:29:54.568] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 109s after achieving nothing
+[14:29:54.568] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 114s after achieving nothing
+[14:29:54.568] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:29:54.568] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:29:58.705] INFO  [f6_Kaelen] [survival] hp 15/32 (46%) -> fight
+[14:30:03.746] INFO  [f6_Kaelen] [survival] hp 15/32 (46%) -> fight
+[14:30:08.765] INFO  [f6_Kaelen] [survival] hp 15/32 (46%) -> fight
+[14:30:13.780] INFO  [f6_Kaelen] [survival] hp 15/32 (46%) -> fight
+[14:30:14.593] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:30:14.595] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:30:14.655] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:30:14.655] INFO  [life] needs considered: Heal(bandage BLOCKED 0.73) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:30:14.655] INFO  [life]   score=10.0
+[14:30:14.655] INFO  [life]   reason: fallback: nothing else scored
+[14:30:14.655] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=15/32 bandages=0)
+[14:30:14.655] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:30:14.655] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 89s after achieving nothing
+[14:30:14.655] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 94s after achieving nothing
+[14:30:14.655] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:30:14.655] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:30:18.797] INFO  [f6_Kaelen] [survival] hp 15/32 (46%) -> fight
+[14:30:23.815] INFO  [f6_Kaelen] [survival] hp 15/32 (46%) -> fight
+[14:30:28.874] INFO  [f6_Kaelen] [survival] hp 15/32 (46%) -> fight
+[14:30:29.673] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:30:29.675] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:30:29.733] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:30:29.733] INFO  [life] needs considered: Heal(bandage BLOCKED 0.73) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:30:29.733] INFO  [life]   score=10.0
+[14:30:29.733] INFO  [life]   reason: fallback: nothing else scored
+[14:30:29.733] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=15/32 bandages=0)
+[14:30:29.733] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:30:29.733] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 74s after achieving nothing
+[14:30:29.733] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 79s after achieving nothing
+[14:30:29.733] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:30:29.733] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:30:33.924] INFO  [f6_Kaelen] [survival] hp 16/32 (50%) -> fight
+[14:30:38.950] INFO  [f6_Kaelen] [survival] hp 16/32 (50%) -> fight
+[14:30:43.951] INFO  [f6_Kaelen] [survival] hp 16/32 (50%) -> fight
+[14:30:44.784] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:30:44.787] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:30:44.787] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:30:44.787] INFO  [life] needs considered: Heal(bandage BLOCKED 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:30:44.787] INFO  [life]   score=10.0
+[14:30:44.787] INFO  [life]   reason: fallback: nothing else scored
+[14:30:44.787] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=16/32 bandages=0)
+[14:30:44.787] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:30:44.787] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 59s after achieving nothing
+[14:30:44.787] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 64s after achieving nothing
+[14:30:44.787] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:30:44.787] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:30:48.973] INFO  [f6_Kaelen] [survival] hp 16/32 (50%) -> fight
+[14:30:54.012] INFO  [f6_Kaelen] [survival] hp 16/32 (50%) -> fight
+[14:30:59.031] INFO  [f6_Kaelen] [survival] hp 16/32 (50%) -> fight
+[14:30:59.835] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:30:59.837] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:30:59.896] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:30:59.896] INFO  [life] needs considered: Heal(bandage BLOCKED 0.70) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:30:59.896] INFO  [life]   score=10.0
+[14:30:59.896] INFO  [life]   reason: fallback: nothing else scored
+[14:30:59.896] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=16/32 bandages=0)
+[14:30:59.896] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:30:59.896] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 44s after achieving nothing
+[14:30:59.896] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 49s after achieving nothing
+[14:30:59.896] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:30:59.896] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:31:04.055] INFO  [f6_Kaelen] [survival] hp 16/32 (50%) -> fight
+[14:31:09.064] INFO  [f6_Kaelen] [survival] hp 16/32 (50%) -> fight
+[14:31:14.073] INFO  [f6_Kaelen] [survival] hp 17/32 (53%) -> fight
+[14:31:14.923] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:31:14.925] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:31:14.983] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:31:14.983] INFO  [life] needs considered: Heal(bandage BLOCKED 0.67) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:31:14.983] INFO  [life]   score=10.0
+[14:31:14.983] INFO  [life]   reason: fallback: nothing else scored
+[14:31:14.983] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=17/32 bandages=0)
+[14:31:14.983] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:31:14.983] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[14:31:14.983] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 34s after achieving nothing
+[14:31:14.983] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:31:14.983] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:31:19.095] INFO  [f6_Kaelen] [survival] hp 17/32 (53%) -> fight
+[14:31:20.941] INFO  [f6_Kaelen] [chat ascii] Dale: Thou hast mine attention.
+[14:31:24.145] INFO  [f6_Kaelen] [survival] hp 17/32 (53%) -> fight
+[14:31:29.161] INFO  [f6_Kaelen] [survival] hp 17/32 (53%) -> fight
+[14:31:34.186] INFO  [f6_Kaelen] [survival] hp 17/32 (53%) -> fight
+[14:31:35.010] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:31:35.012] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:31:35.072] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:31:35.072] INFO  [life] needs considered: Heal(bandage BLOCKED 0.67) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:31:35.072] INFO  [life]   score=10.0
+[14:31:35.072] INFO  [life]   reason: fallback: nothing else scored
+[14:31:35.072] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=17/32 bandages=0)
+[14:31:35.072] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:31:35.072] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 9s after achieving nothing
+[14:31:35.072] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 14s after achieving nothing
+[14:31:35.072] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:31:35.072] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:31:39.244] INFO  [f6_Kaelen] [survival] hp 17/32 (53%) -> fight
+[14:31:44.246] INFO  [f6_Kaelen] [survival] hp 17/32 (53%) -> fight
+[14:31:49.247] INFO  [f6_Kaelen] [survival] hp 17/32 (53%) -> fight
+[14:31:50.110] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:31:50.113] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:31:50.171] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[14:31:50.171] INFO  [life] needs considered: Heal(bandage BLOCKED 0.67) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:31:50.171] INFO  [life]   score=62.5
+[14:31:50.171] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:31:50.171] INFO  [life]   reason: food=0
+[14:31:50.171] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=17/32 bandages=0)
+[14:31:50.171] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:31:50.171] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:31:50.171] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:31:54.286] INFO  [f6_Kaelen] [survival] hp 18/32 (56%) -> fight
+[14:31:55.112] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:31:55.173] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:31:55.173] INFO  [life] needs considered: Heal(bandage BLOCKED 0.64) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:31:55.173] INFO  [life]   score=45.0
+[14:31:55.173] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:31:55.173] INFO  [life]   reason: gold=0 floor=100
+[14:31:55.173] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=18/32 bandages=0)
+[14:31:55.173] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:31:55.173] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:31:55.173] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:31:55.173] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:31:59.346] INFO  [f6_Kaelen] [survival] hp 18/32 (56%) -> fight
+[14:32:00.130] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:32:00.191] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:32:00.192] INFO  [life] needs considered: Heal(bandage BLOCKED 0.64) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:32:00.192] INFO  [life]   score=10.0
+[14:32:00.192] INFO  [life]   reason: fallback: nothing else scored
+[14:32:00.192] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=18/32 bandages=0)
+[14:32:00.192] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:32:00.192] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:32:00.192] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:32:00.192] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:32:00.192] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:32:04.356] INFO  [f6_Kaelen] [survival] hp 18/32 (56%) -> fight
+[14:32:09.374] INFO  [f6_Kaelen] [survival] hp 18/32 (56%) -> fight
+[14:32:14.409] INFO  [f6_Kaelen] [survival] hp 18/32 (56%) -> fight
+[14:32:15.208] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:32:15.208] INFO  [life] goal_spinning=EARN_GOLD reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[14:32:15.210] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:32:15.270] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:32:15.270] INFO  [life] needs considered: Heal(bandage BLOCKED 0.64) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:32:15.270] INFO  [life]   score=10.0
+[14:32:15.270] INFO  [life]   reason: fallback: nothing else scored
+[14:32:15.270] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=18/32 bandages=0)
+[14:32:15.270] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:32:15.270] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[14:32:15.270] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[14:32:15.270] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:32:15.270] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:32:19.424] INFO  [f6_Kaelen] [survival] hp 18/32 (56%) -> fight
+[14:32:24.481] INFO  [f6_Kaelen] [survival] hp 18/32 (56%) -> fight
+[14:32:29.527] INFO  [f6_Kaelen] [survival] hp 18/32 (56%) -> fight
+[14:32:30.343] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:32:30.345] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:32:30.405] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:32:30.405] INFO  [life] needs considered: Heal(bandage BLOCKED 0.64) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:32:30.405] INFO  [life]   score=10.0
+[14:32:30.405] INFO  [life]   reason: fallback: nothing else scored
+[14:32:30.405] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=18/32 bandages=0)
+[14:32:30.405] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:32:30.405] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[14:32:30.405] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[14:32:30.405] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:32:30.405] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:32:34.585] INFO  [f6_Kaelen] [survival] hp 19/32 (59%) -> fight
+[14:32:39.627] INFO  [f6_Kaelen] [survival] hp 19/32 (59%) -> fight
+[14:32:44.645] INFO  [f6_Kaelen] [survival] hp 19/32 (59%) -> fight
+[14:32:45.457] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:32:45.460] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:32:45.519] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:32:45.519] INFO  [life] needs considered: Heal(bandage BLOCKED 0.61) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:32:45.519] INFO  [life]   score=10.0
+[14:32:45.519] INFO  [life]   reason: fallback: nothing else scored
+[14:32:45.519] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=19/32 bandages=0)
+[14:32:45.519] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:32:45.519] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[14:32:45.519] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[14:32:45.519] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:32:45.519] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:32:49.652] INFO  [f6_Kaelen] [survival] hp 19/32 (59%) -> fight
+[14:32:54.705] INFO  [f6_Kaelen] [survival] hp 19/32 (59%) -> fight
+[14:32:59.727] INFO  [f6_Kaelen] [survival] hp 19/32 (59%) -> fight
+[14:33:00.551] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:33:00.553] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:33:00.613] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:33:00.613] INFO  [life] needs considered: Heal(bandage BLOCKED 0.61) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:33:00.613] INFO  [life]   score=10.0
+[14:33:00.613] INFO  [life]   reason: fallback: nothing else scored
+[14:33:00.613] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=19/32 bandages=0)
+[14:33:00.613] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:33:00.613] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 114s after achieving nothing
+[14:33:00.613] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 119s after achieving nothing
+[14:33:00.613] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:33:00.613] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:33:04.783] INFO  [f6_Kaelen] [survival] hp 19/32 (59%) -> fight
+[14:33:09.829] INFO  [f6_Kaelen] [survival] hp 19/32 (59%) -> fight
+[14:33:14.855] INFO  [f6_Kaelen] [survival] hp 20/32 (62%) -> fight
+[14:33:15.686] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:33:15.689] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:33:15.747] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:33:15.747] INFO  [life] needs considered: Heal(bandage BLOCKED 0.58) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:33:15.747] INFO  [life]   score=10.0
+[14:33:15.747] INFO  [life]   reason: fallback: nothing else scored
+[14:33:15.747] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=20/32 bandages=0)
+[14:33:15.747] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:33:15.747] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[14:33:15.747] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 104s after achieving nothing
+[14:33:15.747] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:33:15.747] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:33:19.895] INFO  [f6_Kaelen] [survival] hp 20/32 (62%) -> fight
+[14:33:24.903] INFO  [f6_Kaelen] [survival] hp 20/32 (62%) -> fight
+[14:33:27.697] INFO  [f6_Kaelen] [chat ascii] System: World save in 10 seconds
+[14:33:29.919] INFO  [f6_Kaelen] [survival] hp 20/32 (62%) -> fight
+[14:33:30.780] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:33:30.782] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:33:30.826] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:33:30.826] INFO  [life] needs considered: Heal(bandage BLOCKED 0.58) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:33:30.826] INFO  [life]   score=10.0
+[14:33:30.826] INFO  [life]   reason: fallback: nothing else scored
+[14:33:30.826] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=20/32 bandages=0)
+[14:33:30.826] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:33:30.826] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 84s after achieving nothing
+[14:33:30.826] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 89s after achieving nothing
+[14:33:30.826] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:33:30.826] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:33:34.972] INFO  [f6_Kaelen] [survival] hp 20/32 (62%) -> fight
+[14:33:37.728] INFO  [f6_Kaelen] [chat ascii] System: World save has been initiated.
+[14:33:40.035] INFO  [f6_Kaelen] [survival] hp 20/32 (62%) -> fight
+[14:33:45.082] INFO  [f6_Kaelen] [survival] hp 20/32 (62%) -> fight
+[14:33:45.839] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:33:45.841] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:33:45.901] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:33:45.901] INFO  [life] needs considered: Heal(bandage BLOCKED 0.58) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:33:45.901] INFO  [life]   score=10.0
+[14:33:45.901] INFO  [life]   reason: fallback: nothing else scored
+[14:33:45.901] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=20/32 bandages=0)
+[14:33:45.901] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:33:45.901] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 69s after achieving nothing
+[14:33:45.901] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 74s after achieving nothing
+[14:33:45.901] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:33:45.901] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:33:50.141] INFO  [f6_Kaelen] [survival] hp 20/32 (62%) -> fight
+[14:33:55.162] INFO  [f6_Kaelen] [survival] hp 21/32 (65%) -> fight
+[14:34:00.168] INFO  [f6_Kaelen] [survival] hp 21/32 (65%) -> fight
+[14:34:00.921] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:34:00.924] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:34:00.983] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:34:00.983] INFO  [life] needs considered: Heal(bandage BLOCKED 0.54) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:34:00.983] INFO  [life]   score=10.0
+[14:34:00.983] INFO  [life]   reason: fallback: nothing else scored
+[14:34:00.983] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=21/32 bandages=0)
+[14:34:00.983] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:34:00.983] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 54s after achieving nothing
+[14:34:00.983] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 59s after achieving nothing
+[14:34:00.983] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:34:00.983] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:34:05.218] INFO  [f6_Kaelen] [survival] hp 21/32 (65%) -> fight
+[14:34:10.248] INFO  [f6_Kaelen] [survival] hp 21/32 (65%) -> fight
+[14:34:15.251] INFO  [f6_Kaelen] [survival] hp 21/32 (65%) -> fight
+[14:34:16.036] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:34:16.038] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:34:16.097] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:34:16.097] INFO  [life] needs considered: Heal(bandage BLOCKED 0.54) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:34:16.097] INFO  [life]   score=10.0
+[14:34:16.097] INFO  [life]   reason: fallback: nothing else scored
+[14:34:16.097] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=21/32 bandages=0)
+[14:34:16.097] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:34:16.097] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 39s after achieving nothing
+[14:34:16.097] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 44s after achieving nothing
+[14:34:16.097] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:34:16.097] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:34:20.254] INFO  [f6_Kaelen] [survival] hp 21/32 (65%) -> fight
+[14:34:25.315] INFO  [f6_Kaelen] [survival] hp 21/32 (65%) -> fight
+[14:34:30.353] INFO  [f6_Kaelen] [survival] hp 21/32 (65%) -> fight
+[14:34:31.124] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:34:31.126] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:34:31.185] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:34:31.185] INFO  [life] needs considered: Heal(bandage BLOCKED 0.54) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:34:31.186] INFO  [life]   score=10.0
+[14:34:31.186] INFO  [life]   reason: fallback: nothing else scored
+[14:34:31.186] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=21/32 bandages=0)
+[14:34:31.186] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:34:31.186] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 23s after achieving nothing
+[14:34:31.186] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 28s after achieving nothing
+[14:34:31.186] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:34:31.186] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:34:35.398] INFO  [f6_Kaelen] [survival] hp 22/32 (68%) -> fight
+[14:34:40.427] INFO  [f6_Kaelen] [survival] hp 22/32 (68%) -> fight
+[14:34:45.466] INFO  [f6_Kaelen] [survival] hp 22/32 (68%) -> fight
+[14:34:46.265] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:34:46.268] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:34:46.327] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:34:46.327] INFO  [life] needs considered: Heal(bandage BLOCKED 0.51) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:34:46.327] INFO  [life]   score=10.0
+[14:34:46.327] INFO  [life]   reason: fallback: nothing else scored
+[14:34:46.327] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=22/32 bandages=0)
+[14:34:46.327] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:34:46.327] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 8s after achieving nothing
+[14:34:46.327] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 13s after achieving nothing
+[14:34:46.327] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:34:46.327] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:34:50.501] INFO  [f6_Kaelen] [survival] hp 22/32 (68%) -> fight
+[14:34:55.512] INFO  [f6_Kaelen] [survival] hp 22/32 (68%) -> fight
+[14:35:00.571] INFO  [f6_Kaelen] [survival] hp 22/32 (68%) -> fight
+[14:35:05.622] INFO  [f6_Kaelen] [survival] hp 22/32 (68%) -> fight
+[14:35:06.359] INFO  [life] goal_changed=GET_FOOD from=IDLE_BRIEFLY reason="GET_FOOD 62.5 superseded IDLE_BRIEFLY 10.0"
+[14:35:06.360] INFO  [life] needs considered: Heal(bandage BLOCKED 0.51) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:35:06.360] INFO  [life]   score=62.5
+[14:35:06.360] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:35:06.360] INFO  [life]   reason: food=0
+[14:35:06.360] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=22/32 bandages=0)
+[14:35:06.360] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:35:06.360] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:35:06.360] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:35:06.360] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:35:06.421] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:35:06.421] INFO  [life] needs considered: Heal(bandage BLOCKED 0.51) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:35:06.421] INFO  [life]   score=45.0
+[14:35:06.421] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:35:06.421] INFO  [life]   reason: gold=0 floor=100
+[14:35:06.421] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=22/32 bandages=0)
+[14:35:06.421] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:35:06.421] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:35:06.421] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:35:06.421] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:35:10.633] INFO  [f6_Kaelen] [survival] hp 22/32 (68%) -> fight
+[14:35:11.386] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:35:11.448] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:35:11.448] INFO  [life] needs considered: Heal(bandage BLOCKED 0.51) NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:35:11.448] INFO  [life]   score=10.0
+[14:35:11.448] INFO  [life]   reason: fallback: nothing else scored
+[14:35:11.448] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=22/32 bandages=0)
+[14:35:11.448] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:35:11.448] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:35:11.448] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:35:11.448] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:35:11.448] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:35:15.683] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:35:20.731] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:35:25.765] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:35:26.497] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:35:26.499] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:35:26.560] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:35:26.560] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) Heal(bandage BLOCKED 0.48) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:35:26.560] INFO  [life]   score=10.0
+[14:35:26.560] INFO  [life]   reason: fallback: nothing else scored
+[14:35:26.560] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=23/32 bandages=0)
+[14:35:26.560] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:35:26.560] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 159s after achieving nothing
+[14:35:26.560] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 164s after achieving nothing
+[14:35:26.560] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:35:26.560] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:35:30.819] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:35:35.865] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:35:40.903] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:35:41.613] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:35:41.615] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:35:41.673] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:35:41.673] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) Heal(bandage BLOCKED 0.48) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:35:41.673] INFO  [life]   score=10.0
+[14:35:41.674] INFO  [life]   reason: fallback: nothing else scored
+[14:35:41.674] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=23/32 bandages=0)
+[14:35:41.674] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:35:41.674] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 144s after achieving nothing
+[14:35:41.674] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 149s after achieving nothing
+[14:35:41.674] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:35:41.674] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:35:45.949] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:35:50.952] INFO  [f6_Kaelen] [survival] hp 23/32 (71%) -> fight
+[14:35:55.990] INFO  [f6_Kaelen] [survival] hp 24/32 (75%) -> fight
+[14:35:56.683] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:35:56.685] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:35:56.743] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:35:56.743] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) Heal(bandage BLOCKED 0.45) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:35:56.743] INFO  [life]   score=10.0
+[14:35:56.744] INFO  [life]   reason: fallback: nothing else scored
+[14:35:56.744] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=24/32 bandages=0)
+[14:35:56.744] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:35:56.744] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 129s after achieving nothing
+[14:35:56.744] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 134s after achieving nothing
+[14:35:56.744] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:35:56.744] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:36:01.025] INFO  [f6_Kaelen] [survival] hp 24/32 (75%) -> fight
+[14:36:06.032] INFO  [f6_Kaelen] [survival] hp 24/32 (75%) -> fight
+[14:36:11.093] INFO  [f6_Kaelen] [survival] hp 24/32 (75%) -> fight
+[14:36:11.295] INFO  [f6_Kaelen] [chat ascii] System: You are fairly content
+[14:36:11.295] INFO  [f6_Kaelen] [chat ascii] Kaelen: *You looks fairly content*
+[14:36:16.131] INFO  [f6_Kaelen] [survival] hp 24/32 (75%) -> fight
+[14:36:16.765] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:36:16.768] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:36:16.827] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:36:16.827] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) Heal(bandage BLOCKED 0.45) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:36:16.827] INFO  [life]   score=10.0
+[14:36:16.827] INFO  [life]   reason: fallback: nothing else scored
+[14:36:16.827] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=24/32 bandages=0)
+[14:36:16.827] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:36:16.827] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 109s after achieving nothing
+[14:36:16.827] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 114s after achieving nothing
+[14:36:16.827] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:36:16.827] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:36:21.181] INFO  [f6_Kaelen] [survival] hp 24/32 (75%) -> fight
+[14:36:26.189] INFO  [f6_Kaelen] [survival] hp 24/32 (75%) -> fight
+[14:36:28.066] INFO  [f6_Kaelen] [chat ascii] Dale: Thou wishest to speak with me?
+[14:36:31.247] INFO  [f6_Kaelen] [survival] hp 24/32 (75%) -> fight
+[14:36:36.255] INFO  [f6_Kaelen] [survival] hp 25/32 (78%) -> fight
+[14:36:36.824] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:36:36.826] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:36:36.883] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:36:36.884] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) Heal(bandage BLOCKED 0.42) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:36:36.884] INFO  [life]   score=10.0
+[14:36:36.884] INFO  [life]   reason: fallback: nothing else scored
+[14:36:36.884] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=25/32 bandages=0)
+[14:36:36.884] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:36:36.884] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 89s after achieving nothing
+[14:36:36.884] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 94s after achieving nothing
+[14:36:36.884] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:36:36.884] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:36:41.305] INFO  [f6_Kaelen] [survival] hp 25/32 (78%) -> fight
+[14:36:46.329] INFO  [f6_Kaelen] [survival] hp 25/32 (78%) -> fight
+[14:36:51.344] INFO  [f6_Kaelen] [survival] hp 25/32 (78%) -> fight
+[14:36:51.897] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:36:51.899] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:36:51.929] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:36:51.929] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) Heal(bandage BLOCKED 0.42) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:36:51.929] INFO  [life]   score=10.0
+[14:36:51.929] INFO  [life]   reason: fallback: nothing else scored
+[14:36:51.929] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=25/32 bandages=0)
+[14:36:51.929] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:36:51.929] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 74s after achieving nothing
+[14:36:51.929] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 79s after achieving nothing
+[14:36:51.929] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:36:51.929] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:36:56.382] INFO  [f6_Kaelen] [survival] hp 25/32 (78%) -> fight
+[14:37:01.401] INFO  [f6_Kaelen] [survival] hp 25/32 (78%) -> fight
+[14:37:06.461] INFO  [f6_Kaelen] [survival] hp 25/32 (78%) -> fight
+[14:37:06.969] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:37:06.972] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:37:07.031] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:37:07.031] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) Heal(bandage BLOCKED 0.42) NeedTraining(skill 5 BLOCKED 0.36) NeedTraining(Anatomy BLOCKED 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:37:07.032] INFO  [life]   score=10.0
+[14:37:07.032] INFO  [life]   reason: fallback: nothing else scored
+[14:37:07.032] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=25/32 bandages=0)
+[14:37:07.032] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:37:07.032] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 59s after achieving nothing
+[14:37:07.032] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 64s after achieving nothing
+[14:37:07.032] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 17.1 -> 100.0)
+[14:37:07.032] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:37:11.518] INFO  [f6_Kaelen] [survival] hp 25/32 (78%) -> fight
+[14:37:16.528] INFO  [f6_Kaelen] [survival] hp 26/32 (81%) -> fight
+[14:37:21.561] INFO  [f6_Kaelen] [survival] hp 26/32 (81%) -> fight
+[14:37:22.053] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:37:22.055] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:37:22.115] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:37:22.116] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:37:22.116] INFO  [life]   score=10.0
+[14:37:22.116] INFO  [life]   reason: fallback: nothing else scored
+[14:37:22.116] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:37:22.116] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 44s after achieving nothing
+[14:37:22.116] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 49s after achieving nothing
+[14:37:22.116] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:37:26.586] INFO  [f6_Kaelen] [survival] hp 26/32 (81%) -> fight
+[14:37:31.639] INFO  [f6_Kaelen] [survival] hp 26/32 (81%) -> fight
+[14:37:36.640] INFO  [f6_Kaelen] [survival] hp 26/32 (81%) -> fight
+[14:37:37.135] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:37:37.137] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:37:37.197] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:37:37.197] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:37:37.197] INFO  [life]   score=10.0
+[14:37:37.197] INFO  [life]   reason: fallback: nothing else scored
+[14:37:37.197] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:37:37.197] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[14:37:37.197] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 34s after achieving nothing
+[14:37:37.197] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:37:41.672] INFO  [f6_Kaelen] [survival] hp 26/32 (81%) -> fight
+[14:37:46.726] INFO  [f6_Kaelen] [survival] hp 26/32 (81%) -> fight
+[14:37:51.772] INFO  [f6_Kaelen] [survival] hp 26/32 (81%) -> fight
+[14:37:52.210] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:37:52.212] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:37:52.270] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:37:52.270] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:37:52.270] INFO  [life]   score=10.0
+[14:37:52.270] INFO  [life]   reason: fallback: nothing else scored
+[14:37:52.270] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:37:52.270] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 14s after achieving nothing
+[14:37:52.270] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 19s after achieving nothing
+[14:37:52.270] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:37:56.779] INFO  [f6_Kaelen] [survival] hp 27/32 (84%) -> fight
+[14:38:01.810] INFO  [f6_Kaelen] [survival] hp 27/32 (84%) -> fight
+[14:38:06.844] INFO  [f6_Kaelen] [survival] hp 27/32 (84%) -> fight
+[14:38:07.271] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:38:07.274] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:38:07.319] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[14:38:07.319] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:38:07.319] INFO  [life]   score=62.5
+[14:38:07.319] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:38:07.319] INFO  [life]   reason: food=0
+[14:38:07.319] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:38:07.319] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 4s after achieving nothing
+[14:38:07.319] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:38:11.886] INFO  [f6_Kaelen] [survival] hp 27/32 (84%) -> fight
+[14:38:12.317] INFO  [life] food: hungry with 0 gold -- nothing to eat and nothing to buy with; standing down to go and earn
+[14:38:12.348] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no food and no money"
+[14:38:12.348] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:38:12.348] INFO  [life]   score=45.0
+[14:38:12.348] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[14:38:12.348] INFO  [life]   reason: gold=0 floor=100
+[14:38:12.348] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:38:12.348] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 179s after achieving nothing
+[14:38:12.348] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:38:16.892] INFO  [f6_Kaelen] [survival] hp 27/32 (84%) -> fight
+[14:38:17.339] INFO  [life] earn_gold: nothing spare to sell (neither the pack nor the bank holds a surplus of what this life makes) -- standing down so something that CAN earn gets a turn
+[14:38:17.400] INFO  [life] goal=IDLE_BRIEFLY reason="previous goal abandoned: nothing to sell"
+[14:38:17.400] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:38:17.400] INFO  [life]   score=10.0
+[14:38:17.400] INFO  [life]   reason: fallback: nothing else scored
+[14:38:17.400] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:38:17.400] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 174s after achieving nothing
+[14:38:17.400] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 179s after achieving nothing
+[14:38:17.400] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:38:21.925] INFO  [f6_Kaelen] [survival] hp 27/32 (84%) -> fight
+[14:38:26.928] INFO  [f6_Kaelen] [survival] hp 27/32 (84%) -> fight
+[14:38:28.022] INFO  [f6_Kaelen] [chat ascii] System: World save in 10 seconds
+[14:38:31.954] INFO  [f6_Kaelen] [survival] hp 27/32 (84%) -> fight
+[14:38:37.009] INFO  [f6_Kaelen] [survival] hp 28/32 (87%) -> fight
+[14:38:37.441] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:38:37.443] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:38:37.501] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:38:37.501] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:38:37.501] INFO  [life]   score=10.0
+[14:38:37.501] INFO  [life]   reason: fallback: nothing else scored
+[14:38:37.501] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:38:37.501] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 154s after achieving nothing
+[14:38:37.501] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 159s after achieving nothing
+[14:38:37.501] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:38:38.039] INFO  [f6_Kaelen] [chat ascii] System: World save has been initiated.
+[14:38:42.049] INFO  [f6_Kaelen] [survival] hp 28/32 (87%) -> fight
+[14:38:47.051] INFO  [f6_Kaelen] [survival] hp 28/32 (87%) -> fight
+[14:38:52.066] INFO  [f6_Kaelen] [survival] hp 28/32 (87%) -> fight
+[14:38:52.569] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:38:52.571] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:38:52.630] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:38:52.630] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:38:52.630] INFO  [life]   score=10.0
+[14:38:52.630] INFO  [life]   reason: fallback: nothing else scored
+[14:38:52.630] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:38:52.630] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 139s after achieving nothing
+[14:38:52.630] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 144s after achieving nothing
+[14:38:52.630] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:38:57.116] INFO  [f6_Kaelen] [survival] hp 28/32 (87%) -> fight
+[14:39:02.168] INFO  [f6_Kaelen] [survival] hp 28/32 (87%) -> fight
+[14:39:07.186] INFO  [f6_Kaelen] [survival] hp 28/32 (87%) -> fight
+[14:39:07.694] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:39:07.697] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:39:07.755] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:39:07.755] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:39:07.755] INFO  [life]   score=10.0
+[14:39:07.755] INFO  [life]   reason: fallback: nothing else scored
+[14:39:07.755] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:39:07.755] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 124s after achieving nothing
+[14:39:07.755] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 129s after achieving nothing
+[14:39:07.755] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:39:12.211] INFO  [f6_Kaelen] [survival] hp 28/32 (87%) -> fight
+[14:39:17.212] INFO  [f6_Kaelen] [survival] hp 29/32 (90%) -> fight
+[14:39:22.256] INFO  [f6_Kaelen] [survival] hp 29/32 (90%) -> fight
+[14:39:22.826] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:39:22.828] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:39:22.888] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:39:22.888] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:39:22.888] INFO  [life]   score=10.0
+[14:39:22.888] INFO  [life]   reason: fallback: nothing else scored
+[14:39:22.888] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:39:22.888] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 109s after achieving nothing
+[14:39:22.888] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 114s after achieving nothing
+[14:39:22.888] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:39:27.288] INFO  [f6_Kaelen] [survival] hp 29/32 (90%) -> fight
+[14:39:32.321] INFO  [f6_Kaelen] [survival] hp 29/32 (90%) -> fight
+[14:39:37.324] INFO  [f6_Kaelen] [survival] hp 29/32 (90%) -> fight
+[14:39:42.364] INFO  [f6_Kaelen] [survival] hp 29/32 (90%) -> fight
+[14:39:42.896] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:39:42.898] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:39:42.958] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:39:42.958] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:39:42.958] INFO  [life]   score=10.0
+[14:39:42.958] INFO  [life]   reason: fallback: nothing else scored
+[14:39:42.958] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:39:42.958] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 89s after achieving nothing
+[14:39:42.958] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 94s after achieving nothing
+[14:39:42.958] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:39:47.420] INFO  [f6_Kaelen] [survival] hp 29/32 (90%) -> fight
+[14:39:52.475] INFO  [f6_Kaelen] [survival] hp 29/32 (90%) -> fight
+[14:39:57.489] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:40:02.496] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:40:02.929] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:40:02.931] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:40:02.992] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:40:02.992] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:40:02.992] INFO  [life]   score=10.0
+[14:40:02.992] INFO  [life]   reason: fallback: nothing else scored
+[14:40:02.992] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:40:02.992] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 69s after achieving nothing
+[14:40:02.992] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 74s after achieving nothing
+[14:40:02.992] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:40:07.556] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:40:12.561] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:40:17.620] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:40:22.622] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:40:22.992] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:40:22.995] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:40:23.054] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:40:23.054] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:40:23.055] INFO  [life]   score=10.0
+[14:40:23.055] INFO  [life]   reason: fallback: nothing else scored
+[14:40:23.055] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:40:23.055] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 49s after achieving nothing
+[14:40:23.055] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 54s after achieving nothing
+[14:40:23.055] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:40:27.632] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:40:32.691] INFO  [f6_Kaelen] [survival] hp 30/32 (93%) -> fight
+[14:40:37.706] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:40:42.734] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:40:43.043] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:40:43.045] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:40:43.075] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:40:43.075] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:40:43.075] INFO  [life]   score=10.0
+[14:40:43.075] INFO  [life]   reason: fallback: nothing else scored
+[14:40:43.075] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:40:43.075] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 29s after achieving nothing
+[14:40:43.075] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 34s after achieving nothing
+[14:40:43.075] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:40:47.767] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:40:52.811] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:40:57.844] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:40:58.151] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:40:58.153] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:40:58.211] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[14:40:58.211] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:40:58.212] INFO  [life]   score=10.0
+[14:40:58.212] INFO  [life]   reason: fallback: nothing else scored
+[14:40:58.212] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:40:58.212] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 14s after achieving nothing
+[14:40:58.212] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 19s after achieving nothing
+[14:40:58.212] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:41:02.859] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:41:07.860] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:41:12.890] INFO  [f6_Kaelen] [survival] hp 31/32 (96%) -> fight
+[14:41:13.290] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[14:41:13.292] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:41:13.352] INFO  [life] goal=GET_FOOD reason="no goal was running"
+[14:41:13.352] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedTraining(skill 5 0.36) NeedTraining(Anatomy 0.32) NeedGold(gold 0.30) NeedSkillTraining(skill 5 BLOCKED 0.30) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[14:41:13.352] INFO  [life]   score=62.5
+[14:41:13.352] INFO  [life]   reason: NeedFood urgency 0.25 x 250 = 62.5
+[14:41:13.352] INFO  [life]   reason: food=0
+[14:41:13.352] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[14:41:13.352] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 3s after achieving nothing
+[14:41:13.352] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: an NPC can teach this faster than grinding it from here (skill 5 17.1 -> 100.0, gold 0 (fee is quoted on arrival, roughly 300))
+[14:41:14.708] INFO  [life] session_end_requested reason="session time limit reached"
+[14:41:14.739] INFO  [f6_Kaelen] [chat ascii] System: Tarath has departed from Yew.
+[14:41:14.739] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[14:41:14.739] INFO  [f6_Kaelen] [travel] Britain banker -> (1425,1690) r=5 from (1471,1611)
+[14:41:14.739] LOG   [f6_Kaelen] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1471,1611)
+[14:41:14.739] INFO  [f6_Kaelen] [travel] mode moongate         usable   <- chosen
+[14:41:14.739] INFO  [f6_Kaelen] [travel] mode walk             usable
+[14:41:14.739] INFO  [f6_Kaelen] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:14.739] INFO  [f6_Kaelen] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:14.739] LOG   [f6_Kaelen] event travel_mode: moongate
+[14:41:14.739] INFO  [f6_Kaelen] [travel] plan Britain banker: ok legs=3 ~96 tiles transit=0 nodes=11
+[14:41:14.800] INFO  [f6_Kaelen] [action] goto finished at (1471,1611,20); target (1471,1611); ARRIVED (off by 0 tile(s))
+[14:41:14.800] LOG   [f6_Kaelen] event goto_done: at=(1471,1611) target=(1471,1611) arrived=1 off=0
+[14:41:14.800] INFO  [f6_Kaelen] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:41:14.800] INFO  [f6_Kaelen] [action] goto (1464,1640) from (1471,1611,20)
+[14:41:14.800] LOG   [f6_Kaelen] event goto_start: target=(1464,1640) from=(1471,1611)
+[14:41:14.800] INFO  [f6_Kaelen] [bot] running from (1471,1611,20) to (1464,1640)
+[14:41:14.800] INFO  [f6_Kaelen] [bot] planning path to (1464,1640) in background
+[14:41:14.862] INFO  [f6_Kaelen] [bot] replan to (1464,1640): 37 steps in 2290.9us
+[14:41:15.002] INFO  [f6_Kaelen] [chat ascii] System: Ysolde has departed from Britain.
+[14:41:15.156] INFO  [f6_Kaelen] [chat ascii] System: Bruin has departed from Yew.
+[14:41:15.279] INFO  [f6_Kaelen] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=36 in 168.0us
+[14:41:17.441] INFO  [f6_Kaelen] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[14:41:17.441] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:41:17.935] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:41:18.627] INFO  [f6_Kaelen] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[14:41:18.642] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:41:22.967] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:41:26.334] INFO  [f6_Kaelen] [bot] arrived at (1464,1640,20)
+[14:41:26.334] INFO  [f6_Kaelen] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[14:41:26.334] LOG   [f6_Kaelen] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[14:41:26.334] INFO  [f6_Kaelen] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:41:26.334] INFO  [f6_Kaelen] [action] goto (1448,1672) from (1464,1640,20)
+[14:41:26.334] LOG   [f6_Kaelen] event goto_start: target=(1448,1672) from=(1464,1640)
+[14:41:26.334] INFO  [f6_Kaelen] [bot] running from (1464,1640,20) to (1448,1672)
+[14:41:26.334] INFO  [f6_Kaelen] [bot] planning path to (1448,1672) in background
+[14:41:26.395] INFO  [f6_Kaelen] [bot] replan to (1448,1672): 37 steps in 2606.9us
+[14:41:28.030] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:41:33.037] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:41:37.500] INFO  [f6_Kaelen] [bot] arrived at (1448,1672,10)
+[14:41:37.500] INFO  [f6_Kaelen] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[14:41:37.500] LOG   [f6_Kaelen] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[14:41:37.500] INFO  [f6_Kaelen] [action] goto (1425,1690) from (1448,1672,10)
+[14:41:37.500] LOG   [f6_Kaelen] event goto_start: target=(1425,1690) from=(1448,1672)
+[14:41:37.500] INFO  [f6_Kaelen] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[14:41:37.500] INFO  [f6_Kaelen] [bot] planning path to (1425,1690) in background
+[14:41:37.560] INFO  [f6_Kaelen] [bot] replan to (1425,1690): 42 steps in 7983.3us
+[14:41:38.068] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:41:43.107] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:41:44.845] INFO  [f6_Kaelen] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[14:41:44.860] INFO  [f6_Kaelen] [chat ascii] System: Opening door...
+[14:41:48.058] INFO  [f6_Kaelen] [chat ascii] Lyndon: What's thee wantin'?
+[14:41:48.121] INFO  [f6_Kaelen] [survival] hp 32/32 (100%) -> fight
+[14:41:48.307] INFO  [f6_Kaelen] [travel] Britain banker ARRIVED at (1430,1691,0)
+[14:41:48.307] LOG   [f6_Kaelen] event travel_done: label='Britain banker' ok=1 at=(1430,1691) legs=3 plans=1 why=''
+[14:41:48.368] INFO  [life] wind-down: arrived somewhere safe at 1430,1691
+[14:41:48.369] INFO  [life] session_summary duration=1533s goals=67/87 gold=0->0 skills=191.0->191.0 logs=+0 deaths=0 places=4 suppliers=1
+[14:41:48.370] INFO  [life] session_goals families=5 picks=87 top=79% varied=0 | emergency=2(2%) upkeep=8(9%) work=7(8%) training=1(1%) wander=69(79%) | SURVIVE=2(2%) TRAIN_COMBAT=1(1%) EARN_GOLD=7(8%) GET_FOOD=8(9%) IDLE_BRIEFLY=69(79%)
+[14:41:48.372] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh07.kaelen/state.json
+[14:41:48.372] INFO  [life] logging out
+[14:41:48.372] INFO  [f6_Kaelen] [action] logout requested
+[14:41:48.372] LOG   [f6_Kaelen] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[14:41:48.385] INFO  [f6_Kaelen] [0xD1] logout acknowledged (accepted=1)
+[14:41:48.385] LOG   [f6_Kaelen] event logout_ack: accepted
+[14:41:48.385] INFO  [f6_Kaelen] [net] closing connection (logout acknowledged)
+[14:41:48.385] LOG   [f6_Kaelen] event logout_complete: acked

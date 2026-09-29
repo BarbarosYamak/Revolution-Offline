@@ -10,13 +10,12 @@
 #include "travel/PersonalKnowledge.h"
 #include "travel/WarMode.h"
 #include "uo/actions.h"
-#include "uo/lifecycle.h"
 #include "uo/log.h"
 #include "uo/progression.h"
-#include "uo/supplier.h"
 #include "uo/trade.h"
 #include "uo/types.h"
 #include "uo/world_model.h"
+#include "uo/supplier.h"
 #include "world/SharedWorld.h"
 
 #include <atomic>
@@ -61,6 +60,12 @@ struct CharEntry {
 
 namespace js { struct ClientBindings; }  // friend: live JS bindings (ClientBindings.cpp)
 namespace bot { class Scenario; }        // M1 scripted action runner (bot/Scenario.h)
+namespace life { class Runner; }        // M4 autonomous player (life/Runner.h)
+
+// A paperdoll job word ("fisherwoman", "minter", "seamstress") as a service.
+// Sphere's titles are gendered and English where the atlas is neither, so the
+// two vocabularies have to be reconciled in exactly one place.
+wm::Service ServiceForPaperdollJob(const char* job);
 
 class Client {
 public:
@@ -100,6 +105,16 @@ public:
         // spellbook exactly as a human player's would be.
         int         createSkill[3];
         int         createSkillVal[3];
+        // WHICH CITY TO BE CREATED IN. Index into the shard's own starting
+        // list (maps/map0/map0_starts.scp): 0 Yew, 1 Minoc, 2 Britain,
+        // 3 Moonglow, 4 Trinsic, 5 Magincia, 6 Jhelom, 7 Skara Brae, 8 Vesper.
+        //
+        // It defaulted to 0 and every character on the shard was therefore
+        // born in Yew, then walked across the map to wherever its profession
+        // actually lives. Being made where you intend to live saves that walk
+        // and spreads a fleet over the world instead of stacking it in one
+        // abbey.
+        int         startCity;
         // Starting stats for the 0x00 create packet. Source-X clamps each to 60
         // and the sum to 80 (CChar::InitPlayer). 0 means "leave the default".
         //
@@ -117,6 +132,15 @@ public:
         const char* sessionTag;       // short id used in logs ("bot01"); nullptr = none
         bool        enableStdin;      // read console commands (single-session only)
         const char* scenarioPath;     // optional scripted action list (nullptr = none)
+        // --- M4 autonomous player --------------------------------------
+        // A Scenario is a list somebody wrote; a life is a loop the character
+        // runs itself. They are mutually exclusive: handing the same body to
+        // both would have two things deciding where to walk.
+        bool        autonomous = false;
+        const char* botDataRoot = nullptr;    // nullptr -> "bot_data"
+        const char* professionId = nullptr;   // uo::prof::All() id; required with --autonomous
+        i32         lifeMinutes = 30;         // session length before a clean logout
+        i32         lifeGoalLimit = 0;        // 0 = no goal-count limit
         bool        logPackets;       // write PKT hex lines to the log file
         u32         keepaliveIntervalMs;  // 0 = use the built-in default
         bool        acceptDoors;      // A* routes through door tiles, opened at runtime
@@ -141,15 +165,6 @@ public:
         // uo_viewer turns it on -- an observer must SEE the out-of-era object
         // rather than silently miss it. See uo/safe_graphics.h.
         bool        renderPlaceholders;
-        // M4: directory holding persistent character records
-        // (<dir>/<Name>.life). nullptr = no persistence, which is what every
-        // pre-M4 scenario expects.
-        const char* lifeDir = nullptr;
-        // M4.5: which archetype a NEW life begins as (data/revolution_archetypes.tsv
-        // id, e.g. "archer"), and where that table is. An existing life keeps
-        // the archetype it was created with.
-        const char* archetype = nullptr;
-        const char* archetypesPath = nullptr;
     };
 
     explicit Client(const Config& cfg);
@@ -185,6 +200,18 @@ public:
     i32  PlayerY() const { return playerY_; }
     i8   PlayerZ() const { return playerZ_; }
     u32  BackpackSerial() const { return PlayerEquipSerialAt(0x15); }  // layer 21 = backpack
+    // The directory the shard data tables were loaded from, derived from the
+    // atlas path. The life layer needs it to find revolution_creatures.tsv.
+    std::string DataDir() const {
+        const std::string p = cfg_.atlasPath ? cfg_.atlasPath : "";
+        const usize cut = p.find_last_of("/\\");
+        return cut == std::string::npos ? std::string("data") : p.substr(0, cut);
+    }
+    // Which paperdoll slot this graphic wears in, from tiledata, or 0 if it is
+    // not wearable at all. Public because the life layer needs it to compare a
+    // looted piece against the one already in that slot -- without it, "is
+    // this better than what I have on" cannot be asked.
+    u8   ItemEquipLayer(u16 graphic) const;
     bool BackpackContentsKnown() const { return backpackContentsKnown_; }
 
     // Queue `count` single steps in `dir` (0=N, 1=NE, ... 7=NW). Steps are
@@ -207,11 +234,21 @@ public:
     // upper gallery above him is a different room, and a bot that "arrived"
     // on the wrong one is out of earshot of the vendor it walked across the
     // continent to talk to.
-    void ActionGoto(i32 x, i32 y, bool hasZ = false, i8 z = 0);
+    // `allowBlockedGoal` exempts the exact (x,y) tile from the terrain/
+    // dynamic-item walkability verdict (a known teleporter pad's own
+    // decorative overlay routinely misreads as an obstacle); only meaningful
+    // together with hasZ. A live mobile standing there still blocks it.
+    void ActionGoto(i32 x, i32 y, bool hasZ = false, i8 z = 0,
+                    bool allowBlockedGoal = false);
     // Walk to a mobile the server has told us about. NPCs wander, so a
     // scenario cannot assume a fixed tile for a vendor or a banker.
     bool ActionGotoMobile(u32 serial, int stopWithin = 1);
     bool MobilePosition(u32 serial, i32* x, i32* y, i8* z = nullptr) const;
+    // A nearby mobile is not necessarily visible: update packets cross rooms,
+    // whereas vendors and trainers require normal Sphere line of sight.  The
+    // banking errand's explicit at-known-bank speech fallback is the only
+    // intended exception to this rule.
+    bool MobileInLineOfSight(u32 serial) const;
     bool GotoBusy();                     // planning or walking a route
     bool GotoSucceeded() const { return gotoArrived_; }
 
@@ -233,9 +270,77 @@ public:
     act::Result  ActionResult() const { return action_.result; }
     act::Kind    ActionKind() const { return action_.kind; }
     const act::Action& CurrentAction() const { return action_; }
+    // A system-message refusal can arrive just before another part of the
+    // runner starts an action.  Keep the rejected spell target separately
+    // from action_ so combat can consume the authoritative LOS verdict even
+    // after that later action has replaced the completed cast.
+    u32 TakeSpellReachRefusalTarget() {
+        const u32 target = spellReachRefusalTarget_;
+        spellReachRefusalTarget_ = 0;
+        return target;
+    }
+    // GOAL EXIT (Runner::LeaveGoal). Whatever the departing goal started is
+    // the departing goal's: an action still Pending, a target cursor the
+    // server armed for it, and a lift it never dropped all belong to a goal
+    // that is over. Left alone they are answered by, or answer over, the goal
+    // that comes next -- Xerxes reissued the same open_container across four
+    // goal boundaries (artifacts/review_runtime_evidence_2026-09-05.md,
+    // family 2). The drag reset mirrors the one ActionTick already does on a
+    // timeout, for the same reason: the client must not believe it holds an
+    // item the server never confirmed.
+    void AbandonGoalOwnedAction(const char* why);
+    // Feeds one already-framed packet (cmd byte first) through the real
+    // dispatcher. Dispatch() itself stays private -- this exists so
+    // deterministic tests (tests/trade_verify.cpp) can script a 0x6F/0x25/
+    // 0xAE sequence at the exact object the live client runs, without a
+    // socket or a server.
+    void DispatchPacketForTest(const u8* data, usize size) { Dispatch(data, size); }
+    // Same idea as DispatchPacketForTest: ConnectAndSendSeed() stays private
+    // (it is a login-flow step, not something a scenario calls mid-session),
+    // but tests/trade_verify.cpp needs a live socket for Client::Send() to
+    // write outbound lift/drop packets into so a MoveItem/TradeOffer action
+    // stays Pending instead of failing InvalidState before its scripted 0x25
+    // ever arrives.
+    bool ConnectForTest(const char* host, u16 port) {
+        return ConnectAndSendSeed(host, port);
+    }
+
+    // --- offline harness seams (tests/life_harness.cpp) -------------------
+    // Same idea and the same rule as DispatchPacketForTest above: the live
+    // paths are untouched, and nothing here mutates server state -- these
+    // only replace the two things a deterministic test cannot have, a wall
+    // clock and a socket, and give a test the two things it must be able to
+    // say, "the server answered" and "we are in the world".
+    //
+    // Clock: NowMs() returns this value while it is >= 0. Every wall-clock
+    // read in Client goes through NowMs(), so one setter freezes the whole
+    // session's sense of time.
+    void SetClockForTest(i64 nowMs) { clockOverrideMs_ = nowMs; }
+    // Offline: Send() records the packet instead of writing it to sock_, so a
+    // socketless session neither logs send_failed on every action nor lets an
+    // action fail InvalidState before the test can answer it.
+    void SetOfflineForTest(bool on) { offlineForTest_ = on; }
+    struct SentPacket { u8 opcode; usize size; std::vector<u8> bytes; };
+    const std::vector<SentPacket>& SentForTest() const { return sentForTest_; }
+    void ClearSentForTest() { sentForTest_.clear(); }
+    // The world state a Runner needs before it will leave Phase::AwaitWorld.
+    void SetInWorldForTest() { state_ = State::InWorld; }
+    bool GotoTargetsForTest(i32 x, i32 y) const {
+        return gotoTargetX_ == x && gotoTargetY_ == y;
+    }
+    // "The server answered." Drives the real FinishAction, so the action_
+    // lifecycle, the [ACTION_RESULT] line and the action_result event are the
+    // live ones.
+    void CompleteActionForTest(act::Result r, const char* why) {
+        FinishAction(r, why);
+    }
 
     // Objects and containers
     void ActionUseObject(u32 serial);           // double-click anything
+    // Source-X applies one shared 15-second cooldown to all potions.  Reserve
+    // it when we click a potion so combat recovery cannot waste packets on
+    // clicks the shard will refuse.
+    bool ActionDrinkPotion(u32 serial);
     void ActionOpenContainer(u32 serial);       // double-click, expect contents
 
     // Inventory
@@ -248,6 +353,9 @@ public:
 
     // Targeting (answering a cursor the server armed)
     bool ActionTargetObject(u32 serial);
+    // Ask the server for a mobile's health (0x34). Without this a foe's
+    // hpCur stays at its -1 default and every fight reads as a stalemate.
+    void RequestMobileStatus(u32 serial) { SendStatusRequest(serial); }
     bool ActionTargetGround(i32 x, i32 y, i8 z);
     // Answer a cursor with a STATIC tile, naming its graphic. Required for
     // anything the server identifies through CanTouchStatic(&pt, id, ...) --
@@ -262,6 +370,7 @@ public:
 
     // Skills and magery
     void ActionUseSkill(int skillId, u32 targetSerial = 0);
+    void ActionApplyPoison(u32 weapon, u32 potion);
     void ActionCastSpell(int spellId, u32 targetSerial = 0);
     // Cast the spell carried by a scroll. Sphere treats a scroll as the caster
     // (src/game/clients/CClientUse.cpp:350-371), so this is the route a player
@@ -274,6 +383,11 @@ public:
 
     // Healing
     void ActionUseBandage(u32 bandageSerial, u32 targetSerial);
+    // Double-click an item and answer the cursor it arms with another object.
+    // The whole tailoring chain is this one gesture repeated: scissors on a
+    // woolly sheep, wool on a spinning wheel, thread on a loom, scissors on
+    // the cloth that comes out.
+    void ActionUseItemOn(u32 itemSerial, u32 targetSerial);
 
     // One row of a vendor offer, joined from the 0x3C stock contents and the
     // 0x74 price/name list. Plain data: the scenario picks what to buy.
@@ -293,16 +407,42 @@ public:
     // the buy flow -- carries the item serials itself.
     void ActionVendorSellOpen(u32 vendorSerial, const char* phrase = "sell");
     void ActionVendorSell(u32 vendorSerial, u32 itemSerial, u16 qty);
+    // Sell SEVERAL items in one 0x9F. Non-stackable goods -- daggers, armour --
+    // arrive in the vendor's buy list as one entry each with amount 1, so a
+    // one-item sell is one dagger, and a smith with fifteen of them made
+    // fifteen round trips. The packet has always carried a count; only the
+    // caller was passing one.
+    // (serial, qty) pairs rather than build::VendorSellEntry, so this header
+    // does not have to pull in the packet builders.
+    void ActionVendorSellMany(u32 vendorSerial,
+                              const std::vector<std::pair<u32, u16>>& items);
     const std::vector<VendorItem>& VendorSellOffer() const { return vendorSellOffer_; }
     const std::vector<VendorItem>& VendorOffer() const { return vendorOffer_; }
+    const supply::Registry& ObservedSuppliers() const { return observedSuppliers_; }
     // Player vitals, read straight from the server's own status packets.
     i32  PlayerHp() const;
     i32  PlayerHpMax() const;
     u32  VendorOfferFrom() const { return vendorOfferVendor_; }
+    // Sphere never closes a shop window on its own when the buyer walks away;
+    // the list outlives a trip to the bank and back and then answers every
+    // purchase with "You can't reach the Vendor" (Elara 2026-09-04, 72
+    // bottles refused 20 times from another street). The goal that notices
+    // the shopkeeper is out of sight forgets the window itself.
+    void ForgetVendorOffer() { vendorOfferVendor_ = 0; vendorOffer_.clear(); }
+    // The vendor whose SELL list (0x9E) is in VendorSellOffer(). Distinct from
+    // VendorOfferFrom(), which is the BUY list -- selling to the vendor whose
+    // buy list happened to arrive last would address the wrong NPC.
+    u32  VendorSellFrom() const { return vendorSellVendor_; }
 
     // Life state (server-driven only)
     act::LifeState Life() const { return life_; }
-    bool IsDead() const { return life_ == act::LifeState::Dead; }
+    // Sphere normally sends a resurrect menu/body change, but an interrupted
+    // session can reconnect after the death notification.  A confirmed zero
+    // hit-point status bar is also a server-driven dead state in that case.
+    bool IsDead() const {
+        return life_ == act::LifeState::Dead ||
+               (player_.hpMax > 0 && player_.hpCur <= 0);
+    }
     void ActionResurrectAccept();               // answer a 0x2C resurrect menu
 
     // Introspection used by scenarios and tests
@@ -315,6 +455,33 @@ public:
     // the guildmaster keeps no shop, so a bot shopping for reagents would
     // stand in front of him saying "buy" to no answer.
     u32  NearestMobileWithTrade(const char* trade) const;
+    // A GUILDMASTER IS A TEACHER, NOT A SHOP.
+    //
+    // The plain lookup above truncates "the tailor guildmaster" to "tailor",
+    // so every BUYING path could address a guildmaster who runs no shop and
+    // answers nothing -- "Caedmen guildmaster, why try to buy from him?
+    // guildmaster ONLY for training" (project owner, 2026-08-29). This one
+    // skips them, and is what the purchase goals ask.
+    // `skip`, when given, holds shopkeepers this errand has already tried and
+    // found useless -- a mage whose four random scrolls are all in the book
+    // already, say. Skipping them lets the next candidate be considered
+    // instead of the errand walking back to the same shelf.
+    u32  NearestShopkeeperWithTrade(const char* trade,
+                                    wm::Service svc = wm::Service::None,
+                                    const std::vector<u32>* skip = nullptr) const;
+    void ServiceSightingTail(u32 serial, const char* title, wm::Service svc);
+    // Same scan, skipping mobiles already tried and found useless. Sphere
+    // gives no way to ask "will you teach me" except to ask, and some NPCs of
+    // the right trade simply never answer -- so the only way past one is to go
+    // and find another, which is what a player does.
+    u32  NearestMobileWithTrade(const char* trade,
+                                const std::vector<u32>& skip) const;
+    // Nearest "<trade> guildmaster" / "<trade> guildmistress". Skill
+    // training is a guildmaster service and the plain trade lookup cannot
+    // tell one from an ordinary shopkeeper -- it truncates the job at the
+    // first space, so it returns whoever is nearer. See the definition.
+    u32  NearestGuildmasterForTrade(const char* trade,
+                                    const std::vector<u32>& skip) const;
     // "<name> <phrase>" when the mobile's paperdoll name is known, so exactly
     // one NPC in earshot answers (Source-X CClientEvent.cpp:1962).
     std::string AddressMobile(u32 serial, const char* phrase) const;
@@ -323,7 +490,17 @@ public:
     // scenario can name exactly which creature it means instead of taking
     // whatever happens to be closest.
     u32  NearestMobileWithBody(u16 body, int maxDist) const;
+    // Same lookup, skipping serials the caller is already done with. A shearer
+    // needs "the nearest sheep I have NOT already sheared": the single-nearest
+    // form parks the bot on one animal it can no longer use until the server's
+    // body update arrives, and the caller's only other option was to give up on
+    // the whole flock.
+    u32  NearestMobileWithBody(u16 body, int maxDist,
+                               const std::vector<u32>& exclude) const;
     u32  FindBackpackItemByGraphic(u16 graphic) const;
+    // A trainer pays according to the stack it is handed, not the total gold
+    // somewhere in the pack. Choose a stack that can cover this one payment.
+    u32  FindBackpackItemByGraphicAtLeast(u16 graphic, u16 amount) const;
 
     // The same lookup for ANY open container, which is what looting a corpse
     // needs. FindBackpackItemByGraphic hard-codes the player's own pack, so
@@ -340,8 +517,14 @@ public:
     // graphic of one by index -- enough for a scenario to assert "the corpse is
     // empty" or "the corpse now holds something" without guessing what.
     usize ContainerItemCount(u32 container) const;
+    // `hue` is optional (default nullptr) so every existing call site keeps
+    // compiling unchanged. It carries what the 0x3C/0x25 packets already put
+    // in ContainerItem::hue -- previously read off the wire and dropped one
+    // layer up, which is what let a coloured vein of ore or ingots merge into
+    // the plain-iron count in the pack/bank views (S1,
+    // docs/CRAFTER_RUN_2026_08_30.md #20).
     bool  ContainerItemAt(u32 container, usize index, u32* serial,
-                          u16* graphic, u16* amount) const;
+                          u16* graphic, u16* amount, u16* hue = nullptr) const;
     // Move an item from an open container into the backpack: 0x07 lift + 0x08
     // drop, the same pair a player's client sends.
     void TakeFromContainer(u32 serial, u16 quantity);
@@ -353,6 +536,22 @@ public:
     // ground beside a spinning wheel answers "You can't think of a way to use
     // that item."
     u32  FindWorldItemByGraphic(u16 graphic, i32 maxDist = 8) const;
+    // The same search, ignoring stations this caller has already struck off --
+    // a loom behind a counter with no walkable tile beside it is not a loom
+    // this character can use, and the next-nearest one is the answer.
+    u32  FindWorldItemByGraphic(u16 graphic, i32 maxDist,
+                                const std::vector<u32>& skip) const;
+    // The corpse (item serial) the 0xAF death packet tied to a mobile this
+    // client watched die, or 0 if none is known. A sheared sheep's corpse is
+    // where its second helping of wool is (Use_CarveCorpse adds the carve
+    // output to the corpse, CCharUse.cpp:187), so the carver has to know
+    // WHICH corpse in a pasture full of them is the one it just made.
+    u32  CorpseOfMobile(u32 mobile) const;
+    // Where a world item is standing. A station has to be WALKED UP TO before
+    // it is clicked: Sphere answers a use-target with CChar::CanTouch, which
+    // refuses past a Chebyshev distance of 2 (CCharStatus.cpp:1423), and an
+    // out-of-reach use gets no reply at all.
+    bool WorldItemPosition(u32 serial, i32* x, i32* y, i8* z = nullptr) const;
     // The same search across worn gear as well. A newbie kit hands out tools
     // the shard then EQUIPS -- a fishing pole is a weapon as far as Sphere is
     // concerned (i_fishing_pole has SKILL=Fencing) -- so "the pole in my pack"
@@ -387,6 +586,15 @@ public:
     // Trained value of a skill in tenths; -1 when the server has not told us.
     i32   PlayerSkillBase(u16 index) const;
     void  PlayerSkillsAll(std::vector<SkillReport>& out) const;
+    // Lock state the server last reported for a skill (0 up, 1 down, 2 locked),
+    // or -1 when it has not told us.
+    i32   PlayerSkillLock(u16 index) const;
+    // Ask the server to change a skill's lock arrow, exactly as clicking it on
+    // the skill gump does. This is how a build is held to 700: a skill at its
+    // target is LOCKED so further use stops consuming the budget.
+    void  ActionSetSkillLock(u16 index, u8 state);
+    // Same for a stat (0 = STR, 1 = DEX, 2 = INT), holding a build to 225.
+    void  ActionSetStatLock(u8 statCode, u8 state);
     // Sum of every trained skill, in tenths -- the number the shard's
     // SKILLSUM cap is measured against.
     u32   PlayerSkillSum() const;
@@ -400,10 +608,51 @@ public:
     i32  PlayerWeight() const { return player_.weight; }
     i32  PlayerMaxWeight() const { return player_.maxWeight; }
     u32  EquippedAtLayer(u8 layer) const { return PlayerEquipSerialAt(layer); }
+    // The GRAPHIC of our own worn item on `layer`, or 0. The server tells a
+    // client what its character is wearing (0x1A/0x2E), so this is ordinary
+    // client knowledge -- and it is the only way to answer "is the thing in my
+    // hand an axe or the katana the newbie kit gave me", which a serial alone
+    // cannot. M4 needs that distinction: swinging a katana at a tree earns
+    // "The tool is out of charges" forever.
+    u16  EquippedGraphicAt(u8 layer) const;
     bool PlayerIsMounted() const;
     void ActionDismount();
     bool ContainerKnown(u32 serial) const;
     u32  BankContainer() const { return bankContainer_; }
+    // Drop the cached box. The serial survives walking away from the banker,
+    // so a character can believe its bank is open from the far side of town
+    // and push items into a container the server will not accept -- forget it
+    // and the next deposit has to go and open a real one.
+    void ForgetBankContainer() {
+        bankContainer_ = 0;
+        bankOpenX_ = -1;
+        bankOpenY_ = -1;
+    }
+
+    // TRUE while we are still standing on the tile the bank box was opened
+    // from -- the only place Sphere will let us put anything in it or take
+    // anything out.
+    //
+    // Source-X stamps the box at open time with the opener's top point
+    // (CItemContainer::OnOpenEvent, src/game/items/CItemContainer.cpp:1119)
+    // and then compares it against GetTopPoint() on EVERY touch:
+    //   - drop into it:  CClient::Event_Item_Drop,
+    //     src/game/clients/CClientEvent.cpp:448-467 -> Event_Item_Drop_Fail
+    //   - lift out of it: CChar::CanTouch,
+    //     src/game/chars/CCharStatus.cpp:1063-1069
+    // The comparison is an exact CPointBase equality, not a radius: ONE step
+    // is enough to fail it, and the refusal is silent -- no 0x27, no
+    // sysmessage, just a 0x25 putting the item back where it came from. That
+    // silence is why a walking deposit looked like an ordinary bounce.
+    //
+    // Returns true when the tile is unknown, so nothing new is blocked on a
+    // box whose open position we never observed.
+    bool BankOpenTileHeld() const {
+        if (bankOpenX_ < 0 || bankOpenY_ < 0) return true;
+        return playerX_ == bankOpenX_ && playerY_ == bankOpenY_;
+    }
+    i32 BankOpenX() const { return bankOpenX_; }
+    i32 BankOpenY() const { return bankOpenY_; }
 
     // Ask the server for the names of nearby mobiles (0x98 per mobile). NPC
     // names carry their trade ("<name> the provisioner"), which is the only
@@ -429,6 +678,22 @@ public:
     bool ActionTradeAccept(bool accept);
     bool ActionTradeCancel();
     const trade::TradeState& Trade() const { return trade_; }
+    // Drop a FINISHED window's state. TradeState latches Completed/Cancelled
+    // until something clears it, and a goal handler that only reset its own
+    // bookkeeping saw the same closed phase again on every tick -- 200 identical
+    // "trade: cancelled" lines in two minutes. Acknowledging the close here is
+    // what makes that branch idempotent. Refuses to touch a LIVE window.
+    void TradeForget() { if (!trade_.Active()) trade_.Reset(); }
+    // A second trade window arrived while one was open and was closed on the
+    // wire. Handed to the caller ONCE so it can tell that player out loud.
+    bool TakeDeclinedTrade(u32* serial, std::string* name) {
+        if (!declinedTradePartner_) return false;
+        if (serial) *serial = declinedTradePartner_;
+        if (name) *name = declinedTradeName_;
+        declinedTradePartner_ = 0;
+        declinedTradeName_.clear();
+        return true;
+    }
 
     // -----------------------------------------------------------------
     // M2.5 semantic travel.
@@ -448,11 +713,145 @@ public:
     // -----------------------------------------------------------------
     bool TravelToPoint(i32 x, i32 y, i32 arriveRadius, const char* label);
     bool TravelToPlace(const char* nameOrId);
+    // Nearest place of a KIND rather than of a named service -- the graveyard,
+    // the dungeon mouth, the shrine. What a character needs when it is looking
+    // for a fight rather than for a shopkeeper.
+    bool TravelToPlaceCategory(wm::PlaceCategory c);
+    // The early-hunting-grounds resolver (world_atlas::Atlas::
+    // NearestHuntingGround): a graveyard, today. `chosenName` receives the
+    // place's label when travel starts, purely so the caller can log where
+    // it is actually going ("hunt: heading to <place> to train") without
+    // reaching into Client's private travel state.
+    bool TravelToHuntingGround(std::string* chosenName = nullptr);
+    // Walk somewhere this character has never been. `seen` are place ids it
+    // already knows, so exploring means going where the map is still blank.
+    //
+    // A bot with nothing else to do should be LEARNING the world, not standing
+    // in it: a full crafter finished a whole session having visited one place,
+    // which is why he knew no supplier for any of the tools he was short of.
+    // `chosenId` receives the place id actually picked, so the caller can
+    // record it as seen. Without that the same nearest unvisited shop is
+    // chosen again on the next tick, forever.
+    // `regionHint` (a city name/id) fences exploring to that region; when it
+    // holds nothing new the call fails and the caller stands down rather than
+    // wandering across the map.
+    bool TravelToUnexploredPlace(const std::vector<std::string>& seen,
+                                 std::string* chosenId,
+                                 const char* regionHint = nullptr);
     bool TravelToRegion(const char* nameOrId);
     // `regionHint` narrows the search to one region ("the bank in Yew");
     // nullptr means the nearest one anywhere.
     bool TravelToService(wm::Service s, const char* regionHint = nullptr);
+    // Travel to a provider of this service, ignoring mobiles already tried
+    // (`skipSerials`) and shops already tried (`skipPlaceIds`, filled in with
+    // the place actually chosen so the caller can advance next time).
+    //
+    // Candidates outside the region hint are ranked by real trip cost --
+    // planned tiles and transit hops, not raw map distance -- via
+    // world_atlas::PickServicePlace (world/ServiceSelection.h), and a candidate
+    // whose plan exceeds ~1200 tiles is skipped unless `farOk` is true or
+    // nothing closer exists (docs/CRAFTER_RUN_2026_08_30.md defect 4: a Minoc
+    // smith was sent 904 tiles and three moongates into the Lost Lands for a
+    // service Minoc's own smithy already offered).
+    bool TravelToServiceSkipping(wm::Service s, const char* regionHint,
+                                 const std::vector<u32>& skipSerials,
+                                 std::vector<std::string>* skipPlaceIds,
+                                 bool farOk = false,
+                                 bool armouryOnly = false);
     bool TravelToResource(wm::ResourceKind r);
+    // How far the nearest place yielding this resource is, or -1 if none is
+    // known. The life layer needs the DISTANCE, not just the ability to walk
+    // there: a miner standing in Minoc is at work, and one standing in Vesper
+    // is not, and nothing could previously tell the two apart.
+    i32  DistanceToResource(wm::ResourceKind r) const;
+
+    // A stable interior work stand in the largest cave RECT backing the
+    // mining resource nearest to `near{X,Y}`.  `lane` lets miners headed to
+    // the same cave fan out across its deep floor instead of all routing to
+    // its one centroid.  This is a first work-site, not a destination guessed
+    // from a cave mouth: Minoc's public resource marker is at its south
+    // entrance, while its productive floor is in the interior.
+    bool MiningInteriorTarget(i32 nearX, i32 nearY, u32 lane, i32* outX,
+                              i32* outY) const;
+
+    // Is (x,y) inside the SAME cave region MiningInteriorTarget(nearX,nearY)
+    // would resolve? "At the mine's interior" must not mean "within
+    // kMineReach of that one centroid point" -- Minoc Mine 1's own RECT is
+    // 26x27 tiles, so a rock worth striking is routinely farther from the
+    // centre than a small fixed reach allows. Runner::DoMine measured
+    // atHomeMineInterior against the centroid alone and it flipped false the
+    // moment a miner walked toward a real rock near the RECT's edge, which
+    // sent DoMine straight back to "go to the interior" every following tick
+    // -- Elvar ping-ponged between a rock at (2577,486) and the interior
+    // anchor (2568,487) for the last 13 minutes of a 30-minute session and
+    // never struck again (run_gates/wave15). Region containment has no such
+    // edge: any tile genuinely inside the mine's own RECTs counts.
+    bool WithinMiningRegion(i32 nearX, i32 nearY, i32 x, i32 y) const;
+
+    // Can a character stand on this tile? (Pathfinder walkability; used by the
+    // life layer to vet stand tiles.)
+    bool TileIsWalkable(i32 x, i32 y, i8 fromZ) const;
+
+    u32 forgeSerial_ = 0;
+
+    // Is (tx,ty) a tile Sphere will actually MINE? This mirrors the server's
+    // own test, not a walkability heuristic. "Unwalkable == rock" was tried
+    // and was wrong twice over: water is unwalkable (Corwyn stood on the Minoc
+    // bridge swinging at the river), and cave floors ARE walkable yet mine
+    // fine. The engine's gate is CWorldMap::CheckNaturalResource ->
+    // IsItemTypeNear(pt, IT_ROCK, 0) (Source-X CWorldMap.cpp:52), which passes
+    // only when THE STRUCK TILE ITSELF is rock-typed:
+    //   - land whose terrain id falls in a [TYPEDEF t_rock] TERRAIN range
+    //     (runtime/scripts/types/types_terrain.scp:26-47), or
+    //   - a static whose ITEMDEF resolves to TYPE=t_rock (cave floors, ledges,
+    //     stalagmites -- runtime/scripts/items/i_ground_tiles.scp:7-207 etc.),
+    //     checked via CItemBase::IsType in CWorldMap.cpp:781-785.
+    // Fills z with the surface to target and graphic with 0 for rock land or
+    // the rock static's id (statics are answered as statics, like fishing).
+    bool RockAt(i32 tx, i32 ty, i8* z, u16* graphic);
+
+    // A place to MINE FROM: somewhere to stand, and the rock to strike. Same
+    // shape as FishingSpot, for the same reason: the pathfinder can only walk
+    // to the walkable tile BESIDE the resource. The engine wants the target
+    // at least 1 and at most RANGE=2 tiles off (CCharSkill.cpp:1432-1441,
+    // skills/skill45_mining.scp RANGE=2), so standing adjacent is always
+    // legal. `exclude` carries tiles the server already refused.
+    struct MiningSpot {
+        i32 standX = 0, standY = 0;   // walk here (QueryCell-walkable)
+        i32 rockX = 0, rockY = 0;     // strike this
+        i8  rockZ = 0;
+        u16 rockGraphic = 0;          // 0 = rock land; else the rock static id
+    };
+    // `allGuarded` (optional): same OWNER RULE contract as NearestTree's --
+    // reports whether every rock candidate this scan saw (after `exclude`)
+    // was skipped for standing inside a guarded region, so the caller can
+    // tell that apart from "no rock here at all" and head for a proven vein
+    // instead of dead-listing open ground.
+    bool NearestMiningSpot(i32 x, i32 y, i8 z, int radius, MiningSpot* out,
+                           const std::vector<std::pair<i32, i32>>* exclude =
+                               nullptr,
+                           bool* allGuarded = nullptr);
+    // FIRST-VISIT ADVANCE: a newborn miner has no remembered vein, so every
+    // scan starts wherever travel left him -- the mine's own boundary
+    // nearest town, i.e. the mouth. Cave-wall statics there pass RockAt but
+    // sit outside the shard's scripted resource RECT, and the true vein can
+    // be past the ordinary scan radius (Minoc Mine 1's RECT reaches 27+
+    // tiles from the south mouth). Only fires inside a Cave-kind region --
+    // open-air mountainside rock has no mouth to be picked clean at, and the
+    // existing small jitter is the right roam for it. `out{X,Y}` receives a
+    // point up to a bounded number of tiles deeper into the region's own
+    // RECTs; the caller still vets and walks it through the ordinary goto
+    // machinery, exactly like any other stand tile.
+    bool DeeperMiningTarget(i32 curX, i32 curY, i32* outX, i32* outY) const;
+    // Same shape, opposite direction: (curX, curY) is inside a GUARDED
+    // region and there is nothing left to gather from a seeded/proven lead,
+    // so step OUT of it toward the nearest RECT edge instead (M-fix11,
+    // world/GuardZoneAdvance.h). False when the point is not inside a
+    // guarded region at all -- the caller's ordinary local scan is the right
+    // move there, not a walk. `out{X,Y}` receives a point up to a bounded
+    // number of tiles past the region's own boundary; the caller still vets
+    // and walks it through the ordinary goto machinery.
+    bool StepOutOfGuardZone(i32 curX, i32 curY, i32* outX, i32* outY) const;
     // Walk to a mobile the server has shown us. NPCs wander, so the goal is
     // re-aimed at the live position as we close in.
     bool TravelToEntity(u32 serial, i32 within = 2);
@@ -471,15 +870,41 @@ public:
     const char* TravelFailureText() const { return travelFailure_.c_str(); }
     void TravelAbort(const char* why);
     const char* TravelPhaseName() const;
+    // The tile estimate from the most recent route plan (TravelPlanRoute),
+    // the same number the "[travel] plan ... ~N tiles" log line reports. Set
+    // the instant a plan is made, before the first step of it is walked, so a
+    // caller can veto a trip it just started -- TravelAbort it right back out
+    // -- once it knows what the trip actually costs. 0 before any plan.
+    i32 TravelLastPlannedTiles() const { return travelPlannedTiles_; }
 
     // World knowledge, for scenarios/tests that want to assert on it.
     const wm::Region* CurrentRegion() const;
+    // The whole atlas, null until world knowledge has loaded. For callers
+    // that need more than one lookup out of it -- life::SeedNewbieKnowledge
+    // takes the atlas itself so it stays Client-free and unit-testable.
+    const world_atlas::Atlas* WorldAtlas() const;
     const wm::Place*  NearestServicePlace(wm::Service s) const;
     const wm::Place*  NearestResourcePlace(wm::ResourceKind r) const;
+    // Every named place yielding `r`, nearest to (x, y) first. This is ATLAS
+    // data -- the same shard-wide facts every client is handed, and the same
+    // thing a player reads off a map or hears in town ("Yew has woods"). It is
+    // NOT personal knowledge: which individual tree still holds wood is
+    // learned by chopping, and lives in the character's own memory.
+    void ResourcePlacesNear(wm::ResourceKind r, i32 x, i32 y,
+                            std::vector<const wm::Place*>& out) const;
     // True when the character is standing inside the named place's own
     // interaction radius -- the honest "did we arrive" question, since a
     // vendor's spawner range is what decides how close is close enough.
     bool WithinPlace(const char* nameOrId) const;
+    // The atlas record for a named place, or null when the world knowledge is
+    // not loaded or nothing matches. World DATA, not personal knowledge: the
+    // same shard-wide fact every client is handed. A caller that must commit
+    // a whole fleet to one rendezvous point needs to CHECK the point first --
+    // does it exist, does it offer the service, is it guarded -- which is a
+    // question WithinPlace's boolean cannot answer.
+    const wm::Place* KnownPlace(const char* nameOrId) const;
+    // Whether an atlas place sits inside a region a guard will answer in.
+    bool PlaceGuarded(const wm::Place& p) const;
     // True when the character's tile falls inside the named region's own
     // rectangles. Deliberately NOT a group match: Scripts-X files Monster
     // Valley under GROUP=Yew even though it is four hundred tiles away, so a
@@ -489,33 +914,239 @@ public:
     bool WorldKnowledgeReady();
     const char* WorldKnowledgeError();
 
+    // M4: the nearest choppable tree to (x, y), from the SHARD'S OWN statics.
+    // A tree is a static whose tiledata name contains "tree" and does not
+    // contain "leaves" -- the same test scripts/js/lumberjack.js uses, kept
+    // here so the C++ life layer does not need a second definition of one.
+    //
+    // This is world DATA, not world KNOWLEDGE: every character sees the same
+    // statics, exactly as every human client does. What a character has
+    // LEARNED about a stand lives in its own memory and is never shared.
+    struct TreeHit { i32 x = 0; i32 y = 0; i8 z = 0; u16 graphic = 0; };
+    // `exclude` lets the caller ask for the SECOND-nearest tree, and the
+    // third. Without it a caller that has worked one tree out can never move
+    // to the next: it asks for "the nearest" at ever-wider radii and is handed
+    // the same tree every time, concludes the whole area is exhausted, and
+    // loops. One live session swung at a single tree 231 times that way.
+    // THE NEAREST FORGE, from the world item list, by Chebyshev distance --
+    // the same measure type_ore.scp's `isneartype t_forge 2` uses. There are
+    // 107 forges in spherestatics.scp; the implementation says which ids count
+    // and why the map statics are the wrong place to look.
+    bool NearestForge(i32 x, i32 y, int radius, TreeHit* out,
+                      const std::vector<std::pair<i32, i32>>* exclude = nullptr);
+    // Serial of the forge NearestForge last returned. Smelting is driven from
+    // the FORGE, not the ore: t_forge's @DCLICK arms
+    // f_craft_blacksmith_smelt_targ, and that target is then given the ore.
+    u32 LastForgeSerial() const { return forgeSerial_; }
+    // `allGuarded` (optional) reports whether every candidate tree this scan
+    // saw (after `exclude`) was skipped because it stands inside a guarded
+    // region -- OWNER RULE: no gathering inside the guard line. The caller
+    // uses that to tell "this stand is genuinely worked out" apart from "this
+    // stand is a town square" and go looking for a proven stand instead of
+    // dead-listing a perfectly good forest.
+    bool NearestTree(i32 x, i32 y, int radius, TreeHit* out,
+                     const std::vector<std::pair<i32, i32>>* exclude = nullptr,
+                     bool* allGuarded = nullptr);
+    // M7: the nearest WATER tile a character could cast a line into.
+    //
+    // Fishing is the one gold faucet in the registry that a starting
+    // character can reach on day one -- the guide states it, the shard's
+    // VENDOR_B_FISHER carries the BUY rows, and the newbie kit hands over a
+    // pole. But nothing in the client could find water: the navgrid carries a
+    // kCellWater flag at 8x8 granularity, which is far too coarse to target,
+    // and a fishing attempt needs an exact tile.
+    //
+    // Water comes in TWO physical forms and this looks for both:
+    //
+    //  1. LAND tiles whose tiledata flags carry Wet (open sea, ponds).
+    //  2. Wet STATICS -- the 0x1796-0x17B2 "water" overlays a coastline is
+    //     drawn with. Around Britain's docks the sea a player SEES is these
+    //     statics (flags 0xC1: Wet|Impassable) laid over land that tiledata
+    //     calls impassable dry "sand" (map0 at 1458-1466,1745-1760: land ids
+    //     27/30/77/85 flags 0x40). The shard types that whole range as
+    //     fishable itself -- items/i_ground_tiles.scp:733 [ITEMDEF 01796]
+    //     TYPE=T_WATER plus the DUPELIST through 017b2 -- so land-Wet alone
+    //     is blind exactly where a day-one fisher goes to fish. That
+    //     blindness produced "no water 2-4 tiles from 1468,1750" in a live
+    //     run while castable water statics sat 2 tiles away.
+    //
+    // `graphic` says which form: 0 for wet land (target the ground), else
+    // the wet static's id (target the static, the way a classic client
+    // click on visible water does). `z` is the surface actually targeted --
+    // the static's own z, not the land under it.
+    struct WaterHit { i32 x = 0, y = 0; i8 z = 0; u16 graphic = 0; };
+    bool NearestWater(i32 x, i32 y, int radius, WaterHit* out);
+
+    // Both forms of water at one tile (the primitive the two searches above
+    // share). Fills z with the surface a cast should target and graphic with
+    // 0 for wet land or the wet static's id. Callers must have the world
+    // loaded (NearestWater/NearestFishingSpot check EnsureWorldLoaded first).
+    bool WaterAt(i32 tx, i32 ty, i8* z, u16* graphic);
+
+    // A place to FISH FROM: somewhere to stand, and the water to cast at.
+    //
+    // NearestWater alone is not enough and the difference cost a whole live
+    // session. A pathfinder cannot route to a water tile -- water is not
+    // walkable -- so a character told to walk to the sea walks at it, fails,
+    // and picks again, drifting further out each time. What it needs is the
+    // SHORE: a dry tile beside the wet one.
+    //
+    // The stand tile is vetted with the SAME World::QueryCell the pathfinder
+    // uses, statics included. "Dry by land tiledata" is not "standable":
+    // this function once returned (1463,1754) -- dry land under a water
+    // static, walkable:false -- and every walk strategy aimed at it died its
+    // own way ("goal not walkable", exact-tile journeys re-picking forever).
+    // A stand tile this returns is one A* will accept as a goal.
+    struct FishingSpot {
+        i32 standX = 0, standY = 0;   // walk here (QueryCell-walkable)
+        i32 waterX = 0, waterY = 0;   // cast at this
+        i8  waterZ = 0;
+        u16 waterGraphic = 0;         // 0 = wet land; else the wet static id
+    };
+    // `exclude` lists tiles the caller has already been refused at -- both
+    // failed stand tiles and water Sphere answered "There are no fish here."
+    // for -- so the search proposes somewhere NEW, the same contract
+    // NearestTree honours for worked-out trees. Without it the fisher's
+    // sweep down a pier re-nominates the refused water forever.
+    bool NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out,
+                            const std::vector<std::pair<i32, i32>>* exclude
+                                = nullptr);
+
+    // How many trees are within `radius`. Used to answer "am I actually
+    // standing where the work is", which travel success does not answer.
+    int  TreeCount(i32 x, i32 y, int radius);
+
+    // M4: what a HUMAN PLAYER would read off the screen about nearby mobiles.
+    // Notoriety hue and the health bar, nothing else -- no HitsMax, no karma,
+    // no fight mode. A bot that could see a monster's true maximum hit points
+    // would be reasoning about data no client is ever sent.
+    struct HostileHit {
+        u32 serial = 0;
+        i32 x = 0, y = 0;
+        i8  z = 0;
+        u8  noto = 0;          // 1 blue, 2 green, 3/4 gray, 5 orange, 6 red, 7 yellow
+        i32 hpCur = -1, hpMax = -1;
+        std::string name;
+        bool warMode = false;
+    };
+    // Mobiles within `maxDist` whose notoriety marks them as something a
+    // player may lawfully fight. Innocent (blue) and guild-green are excluded
+    // BY DESIGN: attacking a town's livestock flags the character criminal,
+    // the flag persists across sessions, and a guard executes it -- which is
+    // how this project lost a character in M3.9.
+    int ScanHostiles(int maxDist, std::vector<HostileHit>& out) const;
+
+    // EVERY nearby mobile, whatever its notoriety. ScanHostiles excludes blue
+    // and green BY DESIGN, which is right for picking a fight and useless for
+    // taming: a sheep is innocent, and innocent is exactly what a tamer wants.
+    int ScanMobiles(int maxDist, std::vector<HostileHit>& out) const;
+
+    // ARE THE NAMES STILL IN THE POST? ActionScanMobiles asks the shard for
+    // every nearby mobile's name (0x98 AllNames) and the replies arrive
+    // asynchronously, so a HostileHit read in the same tick still has
+    // name == "". A caller that filters on the name -- DoTameAnimal does,
+    // because the creature table is keyed by it -- must wait for this to go
+    // false before believing an empty result.
+    bool MobileNamesPending() const { return mobilesListPending_; }
+
+    // HOW MANY PLAYERS (or other bots) are close enough to hear a spoken
+    // offer. A player-market announcement only works if somebody is there.
+    //
+    // The distinction is a HEURISTIC and worth stating plainly: this shard's
+    // NPCs all wear a paperdoll title of the form "<name>, the <trade>" --
+    // vendors, guildmasters, healers, every one of them -- and player
+    // characters do not. So a human-bodied mobile with no " the " in its title
+    // is taken to be a person. It can be fooled by an untitled NPC, and a
+    // player whose title has not arrived yet is counted as a player, which is
+    // the harmless direction to be wrong in.
+    int PlayersNearby(int maxDist) const;
+    bool KnownPlayer(u32 serial) const;
+    void NearbyPlayers(i32 radius, std::vector<HostileHit>& out) const;
+    void ActionIdentifyNearbyPerson();
+    bool SparringKit(u32 serial) const;
+    bool MobilePoisoned(u32 serial) const;
+    bool PoisonPracticeReady(u32 peer) const;
+    bool SparringReady(u32 peer) const;
+    bool PrepareSparringRound(u32 peer);
+    bool BeginSparringRound(u32 peer);
+    void StopSparring(const char* reason);
+    void SparringSafetyTick();
+    u32 SparringPeer() const { return sparringPeer_; }
+    bool SparringExternalThreat(u32 peer) const;
+    void OnPartyPacket(const u8* data, usize size);
+    bool PartyContains(u32 serial) const;
+    u32 PartyLeader() const { return partyMembers_.empty() ? 0 : partyMembers_.front(); }
+    u32 PartyInviter() const { return partyInviter_; }
+    usize PartySize() const { return partyMembers_.size(); }
+    void ActionPartyInvite();
+    void ActionPartyAccept(u32 leader);
+    void ActionPartyLeave();
+    int CombatSupportNear(u32 target, std::vector<HostileHit>& out) const;
+    // A cheap identity for "who is close enough to hear me", so a speaker can
+    // tell whether the room has changed since its last unanswered offer.
+    // Order-independent, and 0 when nobody is there.
+    u32 AudienceFingerprint(int maxDist) const;
+
+    // M7: what OTHER CHARACTERS have said since `sinceMs`, with who said it
+    // and where they were standing.
+    //
+    // Player trade is negotiated out loud, so this is the whole discovery
+    // mechanism: a character learns somebody wants boards by hearing them say
+    // so, and one out of earshot simply does not know. Returning the speaker's
+    // serial and position is what lets the listener walk over and answer --
+    // without it a bot would have to look the speaker up in some global
+    // registry, which is exactly the omniscience M7 forbids.
+    struct Heard {
+        u32         speaker = 0;
+        std::string name;
+        std::string text;
+        i32         x = 0, y = 0;
+        i8          z = 0;
+        bool        hasPosition = false;
+        i64         timeMs = 0;
+    };
+    // Lines spoken by somebody else (our own speech is excluded) since
+    // `sinceMs`. Oldest first.
+    void JournalHeardSince(i64 sinceMs, std::vector<Heard>& out) const;
+
+    // M4: has the server said `needle` since `sinceMs`? Case-insensitive
+    // substring over the journal this client already keeps.
+    //
+    // This is the honest way to know how an action turned out. Sphere answers
+    // a chop with "You put the logs in your pack", "You hack at the tree for a
+    // while, but fail to produce any useable wood", "There is nothing here to
+    // chop", or "You decide not to chop wood for now" -- four outcomes a timer
+    // cannot tell apart. Reading them is exactly what a player does.
+    bool JournalSaidSince(const char* needle, i64 sinceMs) const;
+    // WHEN it was last said, or -1 if it was not. Needed wherever two server
+    // statements contradict each other and only the later one is still true:
+    // hunger is such a state -- "You are hungry" is said once at login and
+    // "You eat the food, and begin to feel more satiated" much later, and a
+    // plain "did it ever say hungry" read keeps a well-fed character eating
+    // (see Runner::Observe).
+    i64  JournalLastSaidMs(const char* needle, i64 sinceMs) const;
+    // Pull the FIRST integer out of the newest journal line containing
+    // `needle`, or -1. The NPC trainer quote is
+    // "For %d gold I will train you in all I know of %s"
+    // (Source-X defmessages.tbl NPC_TRAINER_PRICE), so the price a bot pays is
+    // READ FROM THE NPC rather than computed from a config we happen to know.
+    // That keeps the mechanic honest: if the shard changes NPCTrainCost, the
+    // bot follows without being told.
+    i32  JournalNumberSince(const char* needle, i64 sinceMs) const;
+    // Timestamp of the newest journal entry, for taking a "before" mark.
+    i64  JournalNowMs() const;
+    // Test-only: the most recently FILED journal entry's speaker, exactly as
+    // RememberJournalMessage stored it -- not re-resolved the way
+    // JournalHeardSince's Heard::name is. Exists so tests/trade_verify.cpp
+    // can check what ResolveSpeakerName actually put in the journal, rather
+    // than a later live lookup that would recover the same name regardless.
+    std::string LastJournalSpeakerForTest() const {
+        return journal_.empty() ? std::string() : journal_.back().speaker;
+    }
+
     // Per-character knowledge. Session-owned: never shared, never static.
     travel::PersonalKnowledge&       Knowledge()       { return knowledge_; }
     const travel::PersonalKnowledge& Knowledge() const { return knowledge_; }
-
-    // Suppliers this character has verified with its own eyes (a shop list it
-    // opened). Fed from every vendor offer; see uo/supplier.h.
-    supply::Registry&       Supplies()       { return supplies_; }
-    const supply::Registry& Supplies() const { return supplies_; }
-
-    // M4: the persistent life. Null until a record is loaded or begun, and
-    // always null without --life-dir.
-    const life::CharacterRecord* LifeRecord() const {
-        return lifeActive_ ? &lifeRecord_ : nullptr;
-    }
-    // Set what the character is currently doing, so the next session resumes
-    // it. Saved at the next autosave, not immediately.
-    void SetLifeObjective(life::ObjectiveKind kind, const char* target);
-    // M4.6, for the JS bindings: store the script's own memory in the life
-    // (capped at life::kMaxScriptMemory; false when over or when there is no
-    // life) and save now.
-    bool SetLifeScriptMemory(const std::string& json);
-    void LifeSaveNow() { LifeSave("script"); }
-
-    // Skill lock (0x3A client->server): 0 up, 1 down, 2 locked -- the arrows
-    // in the skill gump, the ordinary way a player shapes a capped build.
-    // `index` is the Sphere [SKILL n] number.
-    void SendSkillLock(u16 index, u8 lock);
 
     // -----------------------------------------------------------------
     // War / peace.
@@ -530,6 +1161,27 @@ public:
     void EnsurePeaceMode();
     bool WarModeOn() const { return playerWarMode_; }
     const travel::WarModeWatchdog& WarWatchdog() const { return war_; }
+    // WHO IS SWINGING AT US. 0x2F names the attacker on every swing aimed at
+    // this character. The war watchdog only knows the fight WE opened, so a
+    // bot that did not start one never knew it was in one: Aurelius
+    // (2026-09-05 10:36) stood at one tile from a skeleton reading "*Skeleton
+    // is attacking you!*" while his hunt loop kept scoring it as a fight not
+    // worth STARTING. These answer "is this thing hitting me" from the packet
+    // that says so, within a short window (a swing every few seconds).
+    bool IsAttackingMe(u32 serial, i64 windowMs = 8000) const;
+    i32  RecentAttackerCount(i64 windowMs = 8000) const;
+
+    // WHO KILLED US. Sphere writes "P'Eldian' was killed by N'skeletal
+    // knight'" to its OWN log; no packet carries that text to a client (0xAF
+    // goes to bystanders, the ghost-body switch emits nothing -- see
+    // OnResurrectionMenu). So the only witness a real client has is the same
+    // one a human has: the last thing that swung at it. This returns the
+    // client-visible NAME of the most recent attacker inside `windowMs`, or ""
+    // when nothing has swung lately or its name never arrived. The name is
+    // read from mobileNames_, which outlives the mobile cache entry, so a
+    // killer that has already wandered off the screen is still nameable.
+    std::string LastAttackerName(i64 windowMs = 30000) const;
+    void NoteAttackEmote(u32 sourceSerial, const char* text);
 
     // Answer a generic gump (0xB0) the server opened -- the public moongate's
     // destination list is one. `optionIndex` is a radio/checkbox id from
@@ -544,6 +1196,10 @@ public:
     u32  GumpContext() const { return gump_.context; }
     bool AnswerGump(u32 button, u32 optionId);
     bool CloseGump();
+    // Drop the open dialog AND our memory of it as something still pending on
+    // the server, so the moongate retry path cannot cancel a reply we already
+    // sent.
+    void ForgetAnsweredGump();
     // Answer a 0x7C MENU by 1-based option index (0 cancels). Sphere's craft
     // menus are menus, not gumps -- the Carpentry menu arrives as
     // `[0x7C] menu=690 "Carpentry"` and is answered with 0x7D -- so AnswerGump
@@ -572,6 +1228,11 @@ public:
     // cannot invent a recipe the server never offered.
     usize DialogIndexOf(const char* substring) const;
     bool  DialogHasOption(const char* substring) const { return DialogIndexOf(substring) != 0; }
+    // Anchored at the start of the option, for names that are suffixes of
+    // each other: "Poison" vs "Lesser Poison".
+    usize DialogIndexOfPrefix(const char* prefix) const;
+    bool  DialogHasPrefix(const char* prefix) const { return DialogIndexOfPrefix(prefix) != 0; }
+    bool  ChooseDialogByPrefix(const char* prefix);
     bool  ChooseDialogByName(const char* substring);
 
     // ---- M3.9 Phase 13: the menu as a general execution oracle -------------
@@ -602,6 +1263,7 @@ public:
     // menu answering "no" is different from an open menu answering "no", and a
     // caller that cannot tell them apart will retry forever.
     bool CraftMenuOpen() const { return activeDialog_.active; }
+    void ForgetCraftMenu() { activeDialog_.active = false; }
 
     void ActionSay(const char* text);    // 0x03 ascii speech
     void ActionOpenBackpack();           // 0x06 double-click the worn backpack
@@ -704,20 +1366,18 @@ private:
     // actually reports our death is 0x2C -- so the death location was never
     // recorded and travel_corpse could never resolve a destination.
     void RecordOwnDeath(const char* how);
-
-    // M4 persistence. Begin on 0x55; save on logout, on death and every
-    // kLifeAutosaveMs in world.
-    void LifeBegin();
-    void LifeSave(const char* why);
-    void LifeTick();
-    // Record every mapped item in a vendor's offer as a verified supplier.
-    void NoteVendorStock(u32 vendorSerial);
     void OnOpenDialog         (const u8* data, usize size);  // 0x7C menu/dialog
     void OnDeathAnimation     (const u8* data, usize size);  // 0xAF
     void OnMobName            (const u8* data, usize size);  // 0x98
+    std::vector<u32> partyMembers_;
+    u32 partyInviter_ = 0;
+    u32 sparringPeer_ = 0;
+    i64 sparringUntilMs_ = 0, selfHealthSeenMs_ = 0;
     void OnTargetCursor       (const u8* data, usize size);  // 0x6C
     void OnAsciiMessage       (const u8* data, usize size);
     void OnUnicodeMessage     (const u8* data, usize size);
+    void OnClilocMessage      (const u8* data, usize size);  // 0xC1
+    void OnClilocMessageAffix (const u8* data, usize size);  // 0xCC
     void OnUnknown            (const u8* data, usize size);
     void OnLogoutAck          (const u8* data, usize size);  // 0xD1
     void OnDragCancel         (const u8* data, usize size);  // 0x27
@@ -801,11 +1461,16 @@ private:
     // --- M2 action plumbing ------------------------------------------------
     void BeginAction(act::Kind kind, i64 timeoutMs);
     void FinishAction(act::Result r, const char* why);
+    // Records the container currently holding `serial` (and that stack's
+    // amount) in moveSourceContainer_/moveSourceAmount_, before a lift moves
+    // it. 0/0 if not found in the local container cache.
+    void NoteMoveSource(u32 serial);
     void ActionTick();                 // deadline sweep, one per client tick
     void OnTargetArmedForAction();     // a 0x6C arrived while an action waits
     // Confirmation hooks, called from the packet handlers.
     void ActionOnContainerOpened(u32 serial, u16 gumpId);
     void ActionOnContainerContents(u32 container, u16 count);
+    void ActionOnMenuOpened();         // a 0x7C arrived while an action waits
     void ActionOnItemInContainer(u32 item, u32 container);
     void ActionOnItemEquipped(u32 mobile, u32 item, u8 layer);
     void ActionOnItemWorld(u32 item, i32 x, i32 y, i8 z);
@@ -826,20 +1491,41 @@ private:
     void PrintNearbyMobiles();
     void FlushPendingMobilesList();
     const char* MobileName(u32 serial) const;
+    // If `raw` is non-empty, returns it unchanged. Otherwise tries to resolve
+    // `sourceSerial` through the world cache (our own login name for
+    // ourselves, or a name learned earlier for anyone else) and returns that;
+    // if nothing resolves, returns `raw` (still empty) so raw/unknown
+    // behaviour is preserved rather than guessed at.
+    std::string ResolveSpeakerName(u32 sourceSerial, const std::string& raw) const;
     u32 ResolveFollowSerialByName(const char* name) const;
     void RememberMobileName(u32 serial, const char* name);
+    // Fire-and-forget 0x98 AllNames query for a serial we have no name for.
+    // Never blocks and never fills anything synchronously; the reply arrives
+    // at OnMobName. Rate-limited per serial (kNameAskGapMs).
+    void RequestMobileName(u32 sourceSerial);
     bool ParseSerial(const char* text, u32* out) const;
     bool ParseDistance(const char* text, u32* out) const;
 
     // --- M3 bot -----------------------------------------------------------
     bool EnsureWorldLoaded();
+public:
+    // Human female body, including its ghost form.  A life may use this only
+    // for cosmetic equipment decisions; gameplay rules must not infer gender.
+    bool PlayerIsFemale() const { return playerBody_ == 0x191 || playerBody_ == 0x193; }
     // Show a chopped/depleted tree at (x,y,z) as a stump in the world view for
     // `ttlMs` (<=0 uses the default). In-memory only (uo::map::StumpOverlay);
     // it reverts on its own once the TTL lapses. `treeGraphic` is the live tree
-    // static id to replace. Exposed to JS as World.markStump.
+    // static id to replace. Exposed to JS as World.markStump, and used by the
+    // M4 life layer for the same reason: a depleted tree it has already worked
+    // must stop being offered as the nearest one.
+    //
+    // Public, and it changes NOTHING on the server -- it is a note this client
+    // keeps about what it saw, exactly like a player remembering which tree
+    // they just emptied.
     void MarkStump(i32 x, i32 y, i8 z, u16 treeGraphic, i64 ttlMs = 0);
+private:
     void BotStartGoto(i32 tx, i32 ty, bool hasZ = false, i32 tz = 0,
-                      bool terrainBias = true);
+                      bool terrainBias = true, bool allowBlockedGoal = false);
     void BotStartFollow(u32 serial, u32 followDistance);
     void BotStopFollow(const char* reason);
     void BotNoteFatigueMessage();
@@ -881,6 +1567,12 @@ private:
     u32  BotMoveGapMs() const;
     bool BotReplanToGoal();   // queue a full A* replan from current pose
     bool BotLookaheadPatchPath(); // short local reroute around visible blockers
+    // The goal handed to A* is frequently a resource's own tile (tree, water,
+    // rock) rather than somewhere standable. Finds the nearest walkable tile
+    // within a small radius of (goalX,goalY) so one such goal can be salvaged
+    // instead of aborting on "goal not walkable" -- see BotPollPathPlanner.
+    bool BotFindWalkableNearGoal(i32 goalX, i32 goalY, i8 nearZ, i32 maxRadius,
+                                 i32* outX, i32* outY, i8* outZ) const;
     bool BotIsRuntimeBlocked(i32 x, i32 y, i8 z) const;
     bool BotIsMobileBlocking(i32 x, i32 y, i8 z) const;
     bool BotIsDynamicItemBlocking(i32 x, i32 y, i8 z) const;
@@ -905,6 +1597,10 @@ private:
     State  state_;
 
     net::Socket       sock_;
+    // Offline harness seams; -1 / false / empty in every live session.
+    i64                     clockOverrideMs_ = -1;
+    bool                    offlineForTest_ = false;
+    std::vector<SentPacket> sentForTest_;
     net::PacketStream stream_;
     net::Huffman      huff_;
 
@@ -942,6 +1638,7 @@ private:
         u8 facing = 0;
         bool running = false;
         i32 hpCur = -1, hpMax = -1;
+        bool poisoned = false;
         i32 manaCur = -1, manaMax = -1;
         i32 stamCur = -1, stamMax = -1;
         i32 strength = -1, dexterity = -1, intelligence = -1;
@@ -1144,12 +1841,6 @@ private:
     // One buy request row (JS Vendor.buy): how many of `serial` to buy from `layer`.
     struct VendorBuyReq { u32 serial; u16 qty; u8 layer; };
     void SendVendorBuy(u32 vendor, const std::vector<VendorBuyReq>& items);  // 0x3B
-    // 0x9F: sell several rows of the vendor's current 0x9E offer at once. Rows
-    // the vendor did not offer to buy, or quantities above what it listed, are
-    // dropped here rather than sent -- the offer is the server's statement of
-    // what it will take. Returns the number of rows actually sent.
-    struct VendorSellReq { u32 serial; u16 qty; };
-    usize SendVendorSell(u32 vendor, const std::vector<VendorSellReq>& items);
 
     // Recent mobiles (players/NPCs) from 0x77/0x78. A reject at a tile that
     // holds a mobile is a moving obstacle (or a stamina-gated shove), never a
@@ -1160,8 +1851,10 @@ private:
         i32 prevX = 0; i32 prevY = 0;  // cell before the current step (slide interp)
         bool running = false; // high bit of the server direction byte
         bool warMode = false; // 0x77/0x78 status flag bit 0x40
+        bool poisoned = false; // legacy 2.0.7 status flag bit 0x04
         u8 noto = 0;          // 0x78 notoriety: 1 blue,2 green,3/4 gray,5 orange,6 red,7 yellow
         i32 hpCur = -1, hpMax = -1;  // 0xA1/0x2D health (often a 0..max ratio for foreign mobs)
+        i64 healthSeenMs = 0;
         i64 lastAnimMs = 0;   // 0x6E: when it last played an action animation (0 = never)
         u8 lastAnimAction = 0;// 0x6E action code of that animation (swing/cast/get-hit/...)
         i64 deadRemoveMs = 0;  // 0xAF keeps the mobile until death anim ends
@@ -1175,6 +1868,11 @@ private:
     };
     std::deque<MobileObj> mobileCache_;
     std::unordered_map<u32, std::string> mobileNames_;
+    // When we last sent a 0x98 name query for a serial whose name we did not
+    // have. See RequestMobileName -- the gap keeps a speech handler from
+    // querying once per line spoken by somebody who never resolves.
+    std::unordered_map<u32, i64> nameAskedMs_;
+    static constexpr i64 kNameAskGapMs = 30000;
     // Paperdoll title ("<name> the <job>", e.g. "Aldo the healer") learned from
     // an 0x88 OPEN_PAPERDOLL after we double-click a mobile. The job suffix is the
     // only client-visible way to tell a healer from a tavernkeeper, so the restock
@@ -1210,11 +1908,14 @@ private:
                              u16 graphic, u16 hue);
     // Serial of our worn item at a layer (0 if nothing equipped there).
     u32 PlayerEquipSerialAt(u8 layer) const;
+    // Layer a serial of ours is worn on, or -1. Equipping something already
+    // worn makes the server strip it into the pack, so ActionEquip asks first.
+    int PlayerEquipLayerOf(u32 serial) const;
     // Lowercased tiledata static name for an item graphic ("" if no tiledata).
     std::string ItemNameLower(u16 graphic) const;
     // Equip layer for an item graphic, read from tiledata (StaticTile.quality,
     // as the client does in Gump_HandleMouseOver @0x45486d). 0 = unknown.
-    u8 ItemEquipLayer(u16 graphic) const;
+
     void ForgetEquippedItem(u32 itemSerial);
     // True if an item graphic matches the query (exact graphic when hasType,
     // else a case-insensitive tiledata-name substring).
@@ -1252,6 +1953,10 @@ private:
     std::unordered_map<u32, i64> overheadNameProbeMs_;
     i64 lastStatusProbeMs_;     // 0x34 status request while HUD has no stats
     i64 lastActivityMs_;        // any TCP send/recv — for 0x73 keepalive
+    // Receive-only clock: stamped by Dispatch for every framed inbound packet.
+    // Distinct from lastActivityMs_ (which our own sends also bump), because
+    // the move-ack watchdog needs to know whether the *server* has gone quiet.
+    i64 lastInboundMs_ = 0;
 
     // Console chatter gate. The JSON packet log always records everything;
     // the window shows only meaningful events unless this is toggled on
@@ -1278,17 +1983,38 @@ private:
     bool  logoutAcked_ = false;          // server answered 0xD1
     bool  charCreateSent_ = false;       // 0x00 sent; don't loop on it
     std::unique_ptr<bot::Scenario> scenario_;
+    std::unique_ptr<life::Runner>  lifeRunner_;
 
     // --- M2 action state (all session-owned) -------------------------------
     act::Action    action_;
+    u32 spellReachRefusalTarget_ = 0; // consumed by life combat target picker
     act::DragState drag_;
     act::LifeState life_ = act::LifeState::Alive;
     u32 bankContainer_ = 0;         // container the server opened as our bank
+    // The exact tile we stood on when the server opened that box. Sphere
+    // stamps the bank box with it (CItemContainer.cpp:1119,
+    // m_itEqBankBox.m_pntOpen) and refuses every later touch from anywhere
+    // else. See BankOpenTileHeld().
+    i32 bankOpenX_ = -1;
+    i32 bankOpenY_ = -1;
     u32 vendorOfferVendor_ = 0;     // vendor whose offer is in vendorOffer_
     std::vector<VendorItem> vendorOffer_;
+    u32 vendorSellVendor_ = 0;      // vendor whose offer is in vendorSellOffer_
     std::vector<VendorItem> vendorSellOffer_;   // what the vendor will buy
     i32 manaAtActionStart_ = -1;    // for observing a spell's mana cost
     i32 goldAtActionStart_ = -1;    // for observing a purchase
+    // Where action_.subject sat, and how big that stack was, the instant
+    // before a MoveItem/Unequip/trade offer lifted it -- so a 0x25 that lands
+    // the SAME serial back in that same container with a smaller amount can
+    // be told apart from a real bounce/refusal. See NoteMoveSource() and its
+    // use in ActionOnItemInContainer.
+    u32 moveSourceContainer_ = 0;
+    u16 moveSourceAmount_ = 0;
+    // Sphere sends a 0x25 for the ORIGINAL serial, still in the source
+    // container, the moment a partial lift splits the stack -- before the drop
+    // is judged. It is byte-identical to a later bounce of the same pile, so
+    // only arrival order tells them apart. See ActionOnItemInContainer.
+    bool moveSplitEchoSeen_ = false;
 
     // --- M2.5 travel state (all session-owned) ----------------------------
     // The atlas / navgrid / planner pointers are into the process-wide
@@ -1306,26 +2032,19 @@ private:
     // their behalf, so it is off unless a scenario says `survival on`. M4's
     // autonomous characters will turn it on and leave it on.
     bool survivalEnabled_ = false;
+    bool survivalBandagesAllowed_ = true;
+    i64  potionCooldownUntilMs_ = 0;
     i64  survivalNextActionMs_ = 0;   // don't re-decide every single tick
     i64  survivalLastLogMs_ = 0;
+    // When a hostile was last inside the watchdog's scan radius. The tactic
+    // "rest" is only honest after this has been quiet for
+    // combat::kRestAllClearSeconds; 0 means none has ever been seen.
+    i64  survivalLastHostileMs_ = 0;
     int  survivalLastTactic_ = -1;
-    // When our own HP last went down, whoever did it. Feeds
-    // combat::Vitals::underAttack, so "out of war mode" is never mistaken for
-    // "out of danger". 0 = never.
-    i64  lastHurtMs_ = 0;
-    // A disengage is a WALK, not just a 0x72: until this time the retreat leg
-    // is ours, and the HP-drop threat interrupt must not cancel it.
-    i64  survivalRetreatUntilMs_ = 0;
-    // The HP-drop threat interrupt halts travel ONCE per episode so the brain
-    // can react; it must not also cancel the reaction (a flee walk) on every
-    // subsequent hit. See OnMobileHp.
-    i64  lastThreatInterruptMs_ = 0;
-    static constexpr i64 kThreatInterruptCooldownMs = 10000;
-    static constexpr i32 kRetreatTiles = 12;
     void SurvivalTick();
-    void SurvivalRetreat(u32 fromSerial);
 public:
     void SetSurvivalEnabled(bool on);
+    void SetSurvivalBandagesAllowed(bool on) { survivalBandagesAllowed_ = on; }
     bool SurvivalEnabled() const { return survivalEnabled_; }
 private:
     bool EnsureWorldKnowledge();
@@ -1335,6 +2054,11 @@ private:
     void TravelDriveLeg();
     void TravelUseTransit();
     void TravelFinish(bool ok, const char* why);
+    // Find a walkable customer-side tile near a mobile.  Keeping this as the
+    // entity journey's goal lets a route follow an NPC that wanders without
+    // ever trying to occupy the NPC's own tile.
+    bool TravelEntityStand(u32 serial, i32 within, bool rotateChoice,
+                           i32* outX, i32* outY, i8* outZ);
     // Keep an entity-chasing journey aimed at where the mobile actually is.
     void TravelRetargetEntity();
     // Note the place we just reached, so the character remembers being there.
@@ -1345,21 +2069,19 @@ private:
     const world_atlas::SharedWorld* world_knowledge_ = nullptr;
     travel::Journey             journey_;
     travel::PersonalKnowledge   knowledge_;
-    supply::Registry            supplies_;
-    // M4 persistent life. `lifeActive_` is false when there is no --life-dir,
-    // and ALSO when a record exists but could not be read: a corrupt life is
-    // never overwritten by a fresh one.
-    static constexpr i64        kLifeAutosaveMs = 60000;
-    life::CharacterRecord       lifeRecord_;
-    std::string                 lifePath_;
-    bool                        lifeActive_ = false;
-    i64                         lifeLastSaveMs_ = 0;
+    supply::Registry observedSuppliers_;
     travel::WarModeWatchdog     war_;
+    std::unordered_map<u32, i64> attackersOnMe_;   // serial -> last 0x2F ms
     std::string travelFailure_;
     std::string travelLabel_;
     bool  travelSucceeded_ = false;
+    i32   travelPlannedTiles_ = 0;    // last route plan's estimatedTiles
     u32   travelEntitySerial_ = 0;    // non-zero while chasing a mobile
     i32   travelEntityWithin_ = 2;
+    // Next walkable interaction tile to try for each mobile. A walkable tile
+    // can still be isolated behind a counter; rotating avoids retrying that
+    // same sealed customer approach forever.
+    std::unordered_map<u32, u32> travelEntityApproachChoice_;
     i64   travelLastSampleMs_ = 0;
     i32   travelLegTargetX_ = 0;      // what we asked ActionGoto for
     i32   travelLegTargetY_ = 0;
@@ -1386,6 +2108,16 @@ private:
     bool  travelUseMoongates_ = false;
     u32   travelGateSerial_ = 0;       // gate we double-clicked, awaiting its gump
     std::string travelGateDestination_;// what to pick when that gump arrives
+    // Bounded retry on one gate. Sphere opens the destination dialog from the
+    // gate's @step and will not open a second one while the first is
+    // unanswered, so a silent gate is never fixed by clicking harder: cancel
+    // the stale dialog, then give up and let travel replan on foot.
+    u32   travelGateTrySerial_ = 0;    // gate the try counter belongs to
+    int   travelGateTries_ = 0;
+    // Last generic gump the server sent, kept AFTER it is answered or closed so
+    // an orphaned dialog can still be cancelled by (serial, context).
+    u32   lastGumpSerial_ = 0;
+    u32   lastGumpContext_ = 0;
 
     // Generic gump (0xB0) currently open. The public moongate's destination
     // list arrives this way, and answering it is how a player uses the gate.
@@ -1446,6 +2178,8 @@ private:
     void TradeNoteItemAdded(u32 container, u32 item);
     void TradeNoteItemRemoved(u32 item);
     trade::TradeState trade_;      // session-owned; never shared
+    u32         declinedTradePartner_ = 0;   // second window we closed on them
+    std::string declinedTradeName_;
     void AnswerGateGump();   // pick the route's destination out of an open gump
     void SendGumpResponse(u32 serial, u32 context, u32 button,
                           const u32* checks, usize checkCount);   // 0xB1

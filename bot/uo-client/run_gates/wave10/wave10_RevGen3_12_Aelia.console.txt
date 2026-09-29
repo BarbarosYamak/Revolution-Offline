@@ -1,0 +1,1702 @@
+[17:29:35.079] LOG   [wave10_RevGen3_12_Aelia] event session_start: text log opened
+[17:29:35.080] LOG   [wave10_RevGen3_12_Aelia] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.081] INFO  [wave10_RevGen3_12_Aelia] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.084] LOG   [wave10_RevGen3_12_Aelia] event net_connected: connect 127.0.0.1:2593
+[17:29:35.085] INFO  [wave10_RevGen3_12_Aelia] [net] connected.
+[17:29:35.086] INFO  [wave10_RevGen3_12_Aelia] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.088] LOG   [wave10_RevGen3_12_Aelia] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.090] INFO  [wave10_RevGen3_12_Aelia] [life] autonomous player active for 'Aelia' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.093] INFO  [wave10_RevGen3_12_Aelia] [0xA8] 1 server(s):
+[17:29:35.093] INFO  [wave10_RevGen3_12_Aelia]   [0] MyShard                   1.0.0.127  full=5%  tz=0
+[17:29:35.107] INFO  [wave10_RevGen3_12_Aelia] [0x8C] game server = 127.0.0.1:2593  seed=0xEA3A1289
+[17:29:35.109] LOG   [wave10_RevGen3_12_Aelia] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xEA3A1289
+[17:29:35.109] INFO  [wave10_RevGen3_12_Aelia] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.110] LOG   [wave10_RevGen3_12_Aelia] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.111] INFO  [wave10_RevGen3_12_Aelia] [0xB9] server features = 0x0005
+[17:29:35.111] INFO  [wave10_RevGen3_12_Aelia] [0xA9] 5 slot(s) (populated 1):
+[17:29:35.111] INFO  [wave10_RevGen3_12_Aelia]   [0] Aelia
+[17:29:35.111] INFO  [wave10_RevGen3_12_Aelia]   [1] <empty>
+[17:29:35.111] INFO  [wave10_RevGen3_12_Aelia]   [2] <empty>
+[17:29:35.112] INFO  [wave10_RevGen3_12_Aelia]   [3] <empty>
+[17:29:35.114] INFO  [wave10_RevGen3_12_Aelia]   [4] <empty>
+[17:29:35.114] INFO  [wave10_RevGen3_12_Aelia] [ui] playing slot 0 ('Aelia')
+[17:29:35.115] INFO  [wave10_RevGen3_12_Aelia] [0x1B] serial=0x00013DA6 body=0x0191 pos=(1452,1670,10)
+[17:29:35.117] LOG   [wave10_RevGen3_12_Aelia] event login_confirm: serial=0x00013DA6 body=0x0191 pos=(1452,1670,10)
+[17:29:35.118] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1452,1670,10) facing=5
+[17:29:35.118] INFO  [wave10_RevGen3_12_Aelia] [0x55] login complete — entering world
+[17:29:35.118] LOG   [wave10_RevGen3_12_Aelia] event in_world: 0x55 received
+[17:29:35.118] INFO  [wave10_RevGen3_12_Aelia] [backpack] opening 0x40013D80
+[17:29:35.119] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.119] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: There are 13 other players here.
+[17:29:35.120] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.120] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: You are under the protection of the city guards
+[17:29:35.125] INFO  [wave10_RevGen3_12_Aelia] [action] requesting the skill list
+[17:29:35.125] INFO  [wave10_RevGen3_12_Aelia] [0x24] open container 0x40013D80 gump=60
+[17:29:35.126] INFO  [wave10_RevGen3_12_Aelia] [0x3C] container contents: 6 item(s)
+[17:29:35.126] LOG   [wave10_RevGen3_12_Aelia] event backpack_contents: serial=0x40013D80 items=6
+[17:29:35.131] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.165] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.203] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.236] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.403] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.718] INFO  [wave10_RevGen3_12_Aelia] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.721] INFO  [wave10_RevGen3_12_Aelia] [survival] on
+[17:29:37.721] LOG   [wave10_RevGen3_12_Aelia] event survival_mode: on
+[17:29:37.725] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:29:37.783] INFO  [wave10_RevGen3_12_Aelia] [ACTION] equip start
+[17:29:37.783] INFO  [wave10_RevGen3_12_Aelia] [ACTION] equip serial=0x40013B04 layer=0
+[17:29:37.783] INFO  [wave10_RevGen3_12_Aelia] [ITEM] drag serial=0x40013B04 amount=1
+[17:29:37.796] INFO  [wave10_RevGen3_12_Aelia] [ACTION_RESULT] equip success (13ms) worn on the requested layer
+[17:29:37.796] LOG   [wave10_RevGen3_12_Aelia] event action_result: equip success took=13ms worn on the requested layer
+[17:29:39.058] INFO  [wave10_RevGen3_12_Aelia] [travel] place: skipping Cove healer -- 1272 tiles and 1 gate for a service Britain healer offers
+[17:29:39.058] INFO  [wave10_RevGen3_12_Aelia] [travel] place: skipping Delucia healer -- 1860 tiles and 3 gates for a service Britain healer offers
+[17:29:39.059] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer -> (1471,1611) r=5 from (1452,1670)
+[17:29:39.059] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1452,1670)
+[17:29:39.059] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable   <- chosen
+[17:29:39.059] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable
+[17:29:39.059] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:39.059] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:39.060] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: moongate
+[17:29:39.060] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain healer: ok legs=2 ~72 tiles transit=0 nodes=39
+[17:29:39.119] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:29:39.119] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1464,1640) from (1452,1670,10)
+[17:29:39.119] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1464,1640) from=(1452,1670)
+[17:29:39.120] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1452,1670,10) to (1464,1640)
+[17:29:39.120] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1464,1640) in background
+[17:29:39.181] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1464,1640): 33 steps in 1631.7us
+[17:29:42.769] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:29:45.068] WARN  [wave10_RevGen3_12_Aelia] [0x21] move REJECTED seq=26; server says (1463,1652,10) facing=1
+[17:29:45.070] INFO  [wave10_RevGen3_12_Aelia] [bot] step (1463,1652,10)->(1464,1651,10) rejected; OpenDoor + retry
+[17:29:45.816] WARN  [wave10_RevGen3_12_Aelia] [0x21] move REJECTED seq=0; server says (1463,1652,10) facing=1
+[17:29:45.817] INFO  [wave10_RevGen3_12_Aelia] [bot] step (1463,1652,10)->(1464,1651,10) rejected; avoiding edge + rerouting
+[17:29:45.817] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1464,1640) in background
+[17:29:45.818] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1464,1640): 14 steps in 232.2us
+[17:29:47.799] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:29:50.103] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1464,1640,20)
+[17:29:50.105] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[17:29:50.105] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[17:29:50.106] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:29:50.106] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1471,1611) from (1464,1640,20)
+[17:29:50.106] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1471,1611) from=(1464,1640)
+[17:29:50.106] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1640,20) to (1471,1611,z20)
+[17:29:50.106] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1471,1611) in background
+[17:29:50.167] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1471,1611): 37 steps in 16711.2us
+[17:29:52.820] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:29:57.831] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:29:58.674] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:29:58.677] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:30:00.617] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer ARRIVED at (1474,1612,20)
+[17:30:00.618] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain healer' ok=1 at=(1474,1612) legs=2 plans=1 why=''
+[17:30:00.679] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:30:00.679] INFO  [wave10_RevGen3_12_Aelia] [action] requested 4 paperdoll(s) for trade titles
+[17:30:00.693] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (4):
+[17:30:00.693] INFO  [wave10_RevGen3_12_Aelia]   Illyria 0x0001916B
+[17:30:00.693] INFO  [wave10_RevGen3_12_Aelia]   Natasha 0x00001194
+[17:30:00.693] INFO  [wave10_RevGen3_12_Aelia]   Dale 0x000010C1
+[17:30:00.694] INFO  [wave10_RevGen3_12_Aelia]   Caimile 0x00001239
+[17:30:00.694] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1474,1612,20) facing=7
+[17:30:00.694] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[17:30:00.694] INFO  [wave10_RevGen3_12_Aelia] [world] Dale, the healer is a healer at (1468,1609)
+[17:30:00.694] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x0001916B: "Illyria, Apprentice Stoic"
+[17:30:00.694] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[17:30:00.694] INFO  [wave10_RevGen3_12_Aelia] [world] Natasha, the healer guildmistress is a healer at (1472,1608)
+[17:30:00.695] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1474,1612,20) facing=0
+[17:30:00.695] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001239: "Caimile, the merchant guildmistress"
+[17:30:02.875] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:03.781] INFO  [wave10_RevGen3_12_Aelia] [travel] mobile 0x000010C1 -> (1468,1609) r=1 from (1474,1612)
+[17:30:03.781] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='mobile 0x000010C1' target=(1468,1609) radius=1 from=(1474,1612)
+[17:30:03.782] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:30:03.782] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:30:03.782] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:03.782] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:03.782] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:30:03.782] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:30:03.842] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1471,1611); stopped short (off by 4 tile(s))
+[17:30:03.842] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1471,1611) arrived=0 off=4
+[17:30:03.842] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:03.842] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:03.842] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:03.842] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:03.843] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:05.320] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1425113.1us)
+[17:30:05.320] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 4 mobile(s))
+[17:30:05.380] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:05.380] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:06.631] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:06.631] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:06.631] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:06.631] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:06.632] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:07.932] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:07.993] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1342957.2us)
+[17:30:07.994] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 4 mobile(s))
+[17:30:08.055] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:08.055] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:09.282] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:09.282] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:09.282] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:09.282] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:09.282] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:10.540] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1230013.6us)
+[17:30:10.540] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 5 mobile(s))
+[17:30:10.602] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:10.602] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:11.803] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:30:11.803] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:30:11.804] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:11.804] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:11.804] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:30:11.804] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:30:12.993] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:13.333] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:13.334] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:13.334] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:13.334] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:13.334] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:14.725] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1342340.8us)
+[17:30:14.726] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 4 mobile(s))
+[17:30:14.788] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:14.788] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:16.021] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:16.021] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:16.021] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:16.021] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:16.021] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:17.475] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1405083.1us)
+[17:30:17.475] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 4 mobile(s))
+[17:30:17.538] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:17.538] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:18.017] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:18.788] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:18.788] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:18.788] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:18.788] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:18.789] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:20.099] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1265809.2us)
+[17:30:20.100] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 5 mobile(s))
+[17:30:20.130] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:20.130] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:21.347] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:30:21.348] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:30:21.348] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:21.348] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:21.348] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:30:21.348] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:30:23.038] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:24.349] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:24.349] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:24.350] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:24.350] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:24.350] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:25.626] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1274935.6us)
+[17:30:25.626] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 5 mobile(s))
+[17:30:25.687] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:25.687] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:26.928] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:26.929] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:26.929] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:26.929] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:26.929] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:28.099] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:28.344] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1408153.6us)
+[17:30:28.344] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 5 mobile(s))
+[17:30:28.404] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:28.405] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:29.639] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:29.640] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:29.640] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:29.640] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:29.640] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:30.868] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1215315.6us)
+[17:30:30.868] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 5 mobile(s))
+[17:30:30.931] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:30.932] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:32.135] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:30:32.136] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:30:32.136] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:32.136] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:32.136] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:30:32.136] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:30:33.153] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:36.675] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:36.675] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:36.675] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:36.675] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:36.675] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:37.842] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1158532.8us)
+[17:30:37.842] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 3 mobile(s))
+[17:30:37.904] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:37.904] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:38.210] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:39.161] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:39.161] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:39.162] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:39.162] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:39.162] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:40.533] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1353137.8us)
+[17:30:40.534] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 214 item(s), 3 mobile(s))
+[17:30:40.594] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468,1609); stopped short (off by 9 tile(s))
+[17:30:40.594] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1612) target=(1468,1609) arrived=0 off=9
+[17:30:41.823] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:30:41.824] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1474,1612,20)
+[17:30:41.824] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1474,1612)
+[17:30:41.824] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1468,1609,z20)
+[17:30:41.824] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:43.023] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1468,1609) avoiding 0 block(s); stopping (search 1164815.7us)
+[17:30:43.023] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1474,1612,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist[17:30:43.084] INFO  [wave10_RevGen3_12_Ae[17:30:43.084] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1474,1612,20); target (1468[17:30:43.085] LOG   [wave10_RevGen3_12_A[17:30:43.085] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1474,1[17:30:43.085] LOG   [wave10_RevGen3_12_Aelia] event travel_escape: from=(1474,1612,20) to=(1464,1608) attempt=1
+[17:30:43.085] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1464,1608) from (1474,1612,20)
+[17:30:43.085] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1464,1608) from=(1474,1612)
+[17:30:43.085] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1474,1612,20) to (1464,1608,z20)
+[17:30:43.085] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1464,1608) in background
+[17:30:43.146] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1464,1608): 27 steps in 699.2us
+[17:30:43.223] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:45.268] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[17:30:45.269] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:30:48.279] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:51.222] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1464,1608,20)
+[17:30:51.223] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[17:30:51.223] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[17:30:51.223] INFO  [wave10_RevGen3_12_Aelia] [travel] recovery walk reached its anchor at (1464,1608,20) (off 0); attempt 1/3
+[17:30:51.223] LOG   [wave10_RevGen3_12_Aelia] event travel_recovery_done: reached=1 at=(1464,1608,20) off=0 attempt=1
+[17:30:51.285] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:30:51.285] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:30:51.285] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:51.285] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:51.285] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:30:51.285] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:30:51.346] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1464,1608,20)
+[17:30:51.346] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1464,1608)
+[17:30:51.347] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[17:30:51.347] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:52.419] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] Dale: Well it was nice speaking to you Illyria but I must go about my business
+[17:30:52.851] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[17:30:52.852] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[17:30:53.341] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:54.069] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1464,1608,20)
+[17:30:54.069] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1464,1608)
+[17:30:54.069] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[17:30:54.069] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:55.441] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[17:30:55.441] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[17:30:56.655] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1464,1608,20)
+[17:30:56.655] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1464,1608)
+[17:30:56.655] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[17:30:56.655] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:30:57.980] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[17:30:57.980] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[17:30:58.348] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:30:59.207] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:30:59.208] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:30:59.208] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:59.208] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:59.208] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:30:59.208] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:00.724] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1464,1608,20)
+[17:31:00.724] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1464,1608)
+[17:31:00.725] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[17:31:00.725] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:31:02.470] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[17:31:02.470] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[17:31:03.394] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:03.719] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1464,1608,20)
+[17:31:03.719] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1464,1608)
+[17:31:03.719] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[17:31:03.719] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:31:05.502] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[17:31:05.502] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[17:31:06.746] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:31:06.747] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:31:06.747] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:06.747] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:06.747] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:31:06.747] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:31:08.409] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:09.748] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1464,1608,20)
+[17:31:09.749] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1464,1608)
+[17:31:09.749] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[17:31:09.749] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:31:11.916] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[17:31:11.916] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[17:31:13.166] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1468,1609) from (1464,1608,20)
+[17:31:13.167] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1468,1609) from=(1464,1608)
+[17:31:13.167] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1468,1609,z20)
+[17:31:13.167] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1468,1609) in background
+[17:31:13.415] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:13.819] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:31:13.819] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:31:13.819] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:13.819] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:13.819] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:31:13.819] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:31:13.880] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1468,1609); stopped short (off by 5 tile(s))
+[17:31:13.880] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1468,1609) arrived=0 off=5
+[17:31:13.880] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:31:13.880] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1471,1610) from (1464,1608,20)
+[17:31:13.880] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1471,1610) from=(1464,1608)
+[17:31:13.880] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1471,1610,z20)
+[17:31:13.880] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1471,1610) in background
+[17:31:17.036] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1608,20); target (1471,1610); stopped short (off by 9 tile(s))
+[17:31:17.036] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1608) target=(1471,1610) arrived=0 off=9
+[17:31:18.254] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:31:18.265] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1471,1610) from (1464,1608,20)
+[17:31:18.276] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1471,1610) from=(1464,1608)
+[17:31:18.329] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1608,20) to (1471,1610,z20)
+[17:31:18.382] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1471,1610) in background
+[17:31:18.435] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:18.487] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1471,1610): 30 steps in 11764.1us
+[17:31:19.178] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:31:19.273] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:31:19.358] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:19.431] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:19.483] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:31:19.555] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:31:19.684] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1466,1606,20); target (1471,1610); stopped short (off by 9 tile(s))
+[17:31:19.689] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1466,1606) target=(1471,1610) arrived=0 off=9
+[17:31:19.689] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:31:19.690] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1472,1613) from (1466,1606,20)
+[17:31:19.691] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1472,1613) from=(1466,1606)
+[17:31:19.691] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1466,1606,20) to (1472,1613,z20)
+[17:31:19.691] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1472,1613) in background
+[17:31:21.612] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1466,1606,20); target (1472,1613); stopped short (off by 13 tile(s))
+[17:31:21.612] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1466,1606) target=(1472,1613) arrived=0 off=13
+[17:31:22.819] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:31:22.819] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1472,1613) from (1466,1606,20)
+[17:31:22.819] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1472,1613) from=(1466,1606)
+[17:31:22.819] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1466,1606,20) to (1472,1613,z20)
+[17:31:22.820] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1472,1613) in background
+[17:31:23.478] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:25.080] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1466,1606,20); target (1472,1613); stopped short (off by 13 tile(s))
+[17:31:25.080] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1466,1606) target=(1472,1613) arrived=0 off=13
+[17:31:26.328] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:31:26.328] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:31:26.328] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:26.328] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:26.328] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:31:26.328] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:31:27.856] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:31:27.856] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1472,1613) from (1466,1606,20)
+[17:31:27.857] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1472,1613) from=(1466,1606)
+[17:31:27.857] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1466,1606,20) to (1472,1613,z20)
+[17:31:27.857] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1472,1613) in background
+[17:31:27.919] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1472,1613): 28 steps in 8041.5us
+[17:31:28.486] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:32.809] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[17:31:32.811] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:31:33.488] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:35.817] INFO  [wave10_RevGen3_12_Aelia] [travel] mobile 0x000010C1 ARRIVED at (1472,1612,20)
+[17:31:35.818] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='mobile 0x000010C1' ok=1 at=(1472,1612) legs=1 plans=2 why=''
+[17:31:35.877] INFO  [life] potions: within reach
+[17:31:35.939] INFO  [wave10_RevGen3_12_Aelia] [ACTION] vendor_buy start
+[17:31:35.939] INFO  [wave10_RevGen3_12_Aelia] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[17:31:35.939] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[17:31:35.953] INFO  [wave10_RevGen3_12_Aelia] [chat uni  ] Aelia: Dale buy
+[17:31:35.954] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] Dale: Good morrow!  How might I help thee?
+[17:31:35.954] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] Dale: I would gladly sell to thee of my many wares.
+[17:31:35.954] INFO  [wave10_RevGen3_12_Aelia] [0x3C] container contents: 5 item(s)
+[17:31:35.954] INFO  [wave10_RevGen3_12_Aelia] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[17:31:35.954] INFO  [wave10_RevGen3_12_Aelia] [0x74] vendor shop data: cont=0x400010BB 5 item(s), layer=0x1A
+[17:31:35.954] INFO  [wave10_RevGen3_12_Aelia] [0x74]   clean bandages               gfx=0x0E21 qty=11   price=1
+[17:31:35.954] INFO  [wave10_RevGen3_12_Aelia] [0x74]   Heal                         gfx=0x0F0C qty=11   price=30
+[17:31:35.954] INFO  [wave10_RevGen3_12_Aelia] [0x74]   Ginseng                      gfx=0x0F85 qty=22   price=3
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [0x74]   Garlic                       gfx=0x0F84 qty=31   price=3
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [0x74]   Refresh                      gfx=0x0F0B qty=6    price=16
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [0x3C] container contents: 0 item(s)
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [VENDOR] offer from 0x000010C1: 5 item(s)
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [VENDOR]   0x4000CB76 clean bandages         x11  1 gp
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [VENDOR]   0x4000CB75 Heal                   x11  30 gp
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [VENDOR]   0x4000CB74 Ginseng                x22  3 gp
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [VENDOR]   0x4000CB72 Garlic                 x31  3 gp
+[17:31:35.955] INFO  [wave10_RevGen3_12_Aelia] [VENDOR]   0x4000CB71 Refresh                x6   16 gp
+[17:31:35.956] LOG   [wave10_RevGen3_12_Aelia] event vendor_offer: vendor=0x000010C1 items=5
+[17:31:35.956] INFO  [wave10_RevGen3_12_Aelia] [ACTION_RESULT] vendor_buy success (17ms) vendor offer received
+[17:31:35.956] LOG   [wave10_RevGen3_12_Aelia] event action_result: vendor_buy success took=17ms vendor offer received
+[17:31:35.956] INFO  [wave10_RevGen3_12_Aelia] [0x24] vendor buy gump for 0x000010C1
+[17:31:35.957] INFO  [life] potions: the shop is open
+[17:31:36.016] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:31:36.017] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:31:36.017] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=1
+[17:31:36.020] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:31:36.079] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[17:31:36.079] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:31:36.079] INFO  [life]   score=130.0
+[17:31:36.080] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:31:36.080] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:31:36.080] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:31:36.080] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:31:36.080] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:31:36.080] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[17:31:36.080] INFO  [life] potions: found a 'healer'
+[17:31:36.141] INFO  [life] potions: within reach
+[17:31:36.156] INFO  [life] potions: the shop is open
+[17:31:36.218] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:31:36.218] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:31:36.218] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[17:31:36.221] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:31:36.279] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[17:31:36.279] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedTrade(sell to a player 0.17) NeedGold(sell surplus BLOCKED 0.17) NeedCraft(make goods to sell BL[17:31:38.525] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:42.263] INFO  [wave10_RevGen3_12_Aelia] [travel] seeded_bank -> (1425,1690) r=5 from (1472,1612)
+[17:31:42.263] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='seeded_bank' target=(1425,1690) radius=5 from=(1472,1612)
+[17:31:42.263] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable   <- chosen
+[17:31:42.264] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable
+[17:31:42.264] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:42.264] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:42.264] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: moongate
+[17:31:42.264] INFO  [wave10_RevGen3_12_Aelia] [travel] plan seeded_bank: ok legs=3 ~104 tiles transit=0 nodes=91
+[17:31:42.324] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1472,1612,20); target (1472,1613); stopped short (off by 1 tile(s))
+[17:31:42.324] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1472,1612) target=(1472,1613) arrived=0 off=1
+[17:31:42.324] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:42.324] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1480,1640) from (1472,1612,20)
+[17:31:42.324] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1480,1640) from=(1472,1612)
+[17:31:42.324] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1472,1612,20) to (1480,1640)
+[17:31:42.324] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1480,1640) in background
+[17:31:42.326] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1480,1640): 36 steps in 1016.9us
+[17:31:43.584] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:44.431] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[17:31:44.433] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:31:48.622] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:51.513] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1480,1640,20)
+[17:31:51.514] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1480,1640,20); target (1480,1640); ARRIVED (off by 0 tile(s))
+[17:31:51.515] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1480,1640) target=(1480,1640) arrived=1 off=0
+[17:31:51.515] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:51.515] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1448,1672) from (1480,1640,20)
+[17:31:51.515] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1448,1672) from=(1480,1640)
+[17:31:51.515] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1480,1640,20) to (1448,1672)
+[17:31:51.516] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1448,1672) in background
+[17:31:51.575] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1448,1672): 41 steps in 5876.6us
+[17:31:53.654] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:31:58.691] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:03.696] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:03.697] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1448,1672,10)
+[17:32:03.698] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[17:32:03.698] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[17:32:03.698] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1425,1690) from (1448,1672,10)
+[17:32:03.699] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1425,1690) from=(1448,1672)
+[17:32:03.699] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1448,1672,10) to (1425,1690)
+[17:32:03.699] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1425,1690) in background
+[17:32:03.756] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1425,1690): 41 steps in 4875.7us
+[17:32:08.454] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 196.9us
+[17:32:08.715] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:11.292] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[17:32:11.293] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:32:13.728] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:15.366] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: You shove Odessa out of the way.
+[17:32:15.755] INFO  [wave10_RevGen3_12_Aelia] [travel] seeded_bank ARRIVED at (1430,1691,0)
+[17:32:15.756] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='seeded_bank' ok=1 at=(1430,1691) legs=3 plans=1 why=''
+[17:32:15.818] INFO  [wave10_RevGen3_12_Aelia] [ACTION] open_bank start
+[17:32:15.818] INFO  [wave10_RevGen3_12_Aelia] [ACTION] open_bank banker=0x00000000 say='bank'
+[17:32:15.833] INFO  [wave10_RevGen3_12_Aelia] [chat uni  ] Aelia: bank
+[17:32:15.834] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] Lyndon: What's thou need?
+[17:32:15.834] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] Lyndon: Keeping the money of others is my job.
+[17:32:15.834] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: You have 0 stones in your Bank Box
+[17:32:15.835] INFO  [wave10_RevGen3_12_Aelia] [0x24] open container 0x40013D88 gump=74
+[17:32:15.835] INFO  [wave10_RevGen3_12_Aelia] [STATE] bank container=0x40013D88 gump=0x004A
+[17:32:15.835] LOG   [wave10_RevGen3_12_Aelia] event bank_opened: container recognised
+[17:32:15.835] INFO  [wave10_RevGen3_12_Aelia] [ACTION_RESULT] open_bank success (17ms) bank container opened
+[17:32:15.835] LOG   [wave10_RevGen3_12_Aelia] event action_result: open_bank success took=17ms bank container opened
+[17:32:15.835] INFO  [wave10_RevGen3_12_Aelia] [0x3C] container contents: 0 item(s)
+[17:32:18.748] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:23.768] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:28.792] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:33.839] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:35.200] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain banker -> (1425,1690) r=5 from (1430,1691)
+[17:32:35.200] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1430,1691)
+[17:32:35.200] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain banker ARRIVED at (1430,1691,0)
+[17:32:35.200] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain banker' ok=1 at=(1430,1691) legs=0 plans=0 why=''
+[17:32:37.735] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:32:37.736] INFO  [wave10_RevGen3_12_Aelia] [action] requested 8 paperdoll(s) for trade titles
+[17:32:37.750] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (15):
+[17:32:37.750] INFO  [wave10_RevGen3_12_Aelia]   Odessa 0x000194DE
+[17:32:37.750] INFO  [wave10_RevGen3_12_Aelia]   Serena 0x000193F7
+[17:32:37.751] INFO  [wave10_RevGen3_12_Aelia]   Leander 0x0001921F
+[17:32:37.751] INFO  [wave10_RevGen3_12_Aelia]   Selene 0x00010BC9
+[17:32:37.751] INFO  [wave10_RevGen3_12_Aelia]   Elara 0x00011030
+[17:32:37.751] INFO  [wave10_RevGen3_12_Aelia]   Aurelius 0x00019331
+[17:32:37.751] INFO  [wave10_RevGen3_12_Aelia]   Kharain 0x00016AE8
+[17:32:37.751] INFO  [wave10_RevGen3_12_Aelia]   Thane 0x0001976D
+[17:32:37.751] INFO  [wave10_RevGen3_12_Aelia]   Zarthal 0x000163A2
+[17:32:37.751] INFO  [wave10_RevGen3_12_Aelia]   Elvar 0x00016948
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia]   Rhaler 0x0001569C
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia]   Ghalor 0x00014D61
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia]   Hyman 0x00001033
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia]   Lyndon 0x0000124E
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia]   Falen 0x0001478E
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1430,1691,0) facing=0
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x0001976D: "Thane, Apprentice Mage"
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00016AE8: "Kharain, Apprentice Miner"
+[17:32:37.752] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00019331: "Aurelius, Apprentice Stoic"
+[17:32:37.753] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000163A2: "Zarthal, Apprentice Miner"
+[17:32:37.753] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1430,1691,0) facing=7
+[17:32:37.753] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00010BC9: "Selene, Apprentice Mage"
+[17:32:37.753] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001033: "Hyman, the banker"
+[17:32:37.753] INFO  [wave10_RevGen3_12_Aelia] [world] Hyman, the banker is a banker at (1425,1687)
+[17:32:37.753] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[17:32:37.753] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[17:32:38.890] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:40.790] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain jeweler -> (1451,1679) r=5 from (1430,1691)
+[17:32:40.790] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain jeweler' target=(1451,1679) radius=5 from=(1430,1691)
+[17:32:40.791] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:32:40.791] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:32:40.791] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:40.791] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:40.791] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:32:40.791] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain jeweler: ok legs=1 ~21 tiles transit=0 nodes=0
+[17:32:40.853] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1430,1691,0); target (1425,1690); stopped short (off by 6 tile(s))
+[17:32:40.853] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1430,1691) target=(1425,1690) arrived=0 off=6
+[17:32:40.853] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1451,1679) from (1430,1691,0)
+[17:32:40.853] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1451,1679) from=(1430,1691)
+[17:32:40.853] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1430,1691,0) to (1451,1679,z0)
+[17:32:40.853] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1451,1679) in background
+[17:32:40.869] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1451,1679): 54 steps in 12223.6us
+[17:32:43.324] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=46 in 288.0us
+[17:32:43.859] WARN  [wave10_RevGen3_12_Aelia] [0x21] move REJECTED seq=13; server says (1439,1693,0) facing=3
+[17:32:43.859] INFO  [wave10_RevGen3_12_Aelia] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[17:32:43.860] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:32:43.861] WARN  [wave10_RevGen3_12_Aelia] [bot] 0x20 resync; aborting path
+[17:32:43.861] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1439,1693,0) facing=2
+[17:32:43.862] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1439,1693,0); target (1451,1679); stopped short (off by 26 tile(s))
+[17:32:43.862] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1439,1693) target=(1451,1679) arrived=0 off=26
+[17:32:43.919] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:45.073] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1451,1679) from (1439,1693,0)
+[17:32:45.073] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1451,1679) from=(1439,1693)
+[17:32:45.073] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1439,1693,0) to (1451,1679,z0)
+[17:32:45.073] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1451,1679) in background
+[17:32:45.132] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1451,1679): 45 steps in 22171.2us
+[17:32:48.922] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:53.608] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1457,1681,z0); OpenDoor before step
+[17:32:53.609] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:32:53.948] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:32:54.366] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=21 path=28 in 3692.9us
+[17:32:55.040] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain jeweler ARRIVED at (1456,1681,0)
+[17:32:55.040] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain jeweler' ok=1 at=(1456,1681) legs=1 plans=1 why=''
+[17:32:55.100] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:32:55.100] INFO  [wave10_RevGen3_12_Aelia] [action] requested 6 paperdoll(s) for trade titles
+[17:32:55.114] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (10):
+[17:32:55.115] INFO  [wave10_RevGen3_12_Aelia]   Joelliane 0x00001136
+[17:32:55.115] INFO  [wave10_RevGen3_12_Aelia]   Thane 0x0001976D
+[17:32:55.115] INFO  [wave10_RevGen3_12_Aelia]   Aurelius 0x00019331
+[17:32:55.115] INFO  [wave10_RevGen3_12_Aelia]   Felicite 0x000012B8
+[17:32:55.115] INFO  [wave10_RevGen3_12_Aelia]   Kaysa 0x000012C5
+[17:32:55.116] INFO  [wave10_RevGen3_12_Aelia]   Llama 0x00000D86
+[17:32:55.116] INFO  [wave10_RevGen3_12_Aelia]   Kyler 0x00001017
+[17:32:55.116] INFO  [wave10_RevGen3_12_Aelia]   Jebidiah 0x000011F4
+[17:32:55.116] INFO  [wave10_RevGen3_12_Aelia]   Taite 0x0000105A
+[17:32:55.116] INFO  [wave10_RevGen3_12_Aelia]   Selene 0x00010BC9
+[17:32:55.116] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1456,1681,0) facing=5
+[17:32:55.116] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001136: "Joelliane, the jeweler"
+[17:32:55.117] INFO  [wave10_RevGen3_12_Aelia] [world] Joelliane, the jeweler is a jeweler at (1454,1683)
+[17:32:55.117] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1456,1681,0) facing=3
+[17:32:55.117] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000012B8: "Felicite, the weaver"
+[17:32:55.117] INFO  [wave10_RevGen3_12_Aelia] [world] Felicite, the weaver is a tailor at (1467,1687)
+[17:32:55.117] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000012C5: "Kaysa, the tailor"
+[17:32:55.117] INFO  [wave10_RevGen3_12_Aelia] [world] Kaysa, the tailor is a tailor at (1469,1690)
+[17:32:55.118] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1456,1681,0) facing=2
+[17:32:55.118] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001017: "Kyler, the tailor guildmaster"
+[17:32:55.118] INFO  [wave10_RevGen3_12_Aelia] [world] Kyler, the tailor guildmaster is a tailor at (1470,1687)
+[17:32:55.118] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1456,1681,0) facing=1
+[17:32:55.118] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000011F4: "Jebidiah, the cobbler"
+[17:32:55.118] INFO  [wave10_RevGen3_12_Aelia] [world] Jebidiah, the cobbler is a tailor at (1470,1670)
+[17:32:55.118] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x0000105A: "Taite, the provisioner"
+[17:32:55.119] INFO  [wave10_RevGen3_12_Aelia] [world] Taite, the provisioner is a provisioner at (1466,1666)
+[17:32:58.193] INFO  [wave10_RevGen3_12_Aelia] [travel] place: skipping Cove healer -- 1264 tiles and 1 gate for a service Britain healer offers
+[17:32:58.194] INFO  [wave10_RevGen3_12_Aelia] [travel] place: skipping Delucia healer -- 1836 tiles and 3 gates for a service Britain healer offers
+[17:32:58.194] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer -> (1471,1611) r=5 from (1456,1681)
+[17:32:58.194] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1456,1681)
+[17:32:58.194] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable   <- chosen
+[17:32:58.194] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable
+[17:32:58.195] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:58.195] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:58.195] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: moongate
+[17:32:58.195] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain healer: ok legs=3 ~96 tiles transit=0 nodes=79
+[17:32:58.202] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1456,1681,0); target (1451,1679); stopped short (off by 7 tile(s))
+[17:32:58.202] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1456,1681) target=(1451,1679) arrived=0 off=7
+[17:32:58.202] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:58.202] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1448,1656) from (1456,1681,0)
+[17:32:58.202] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1448,1656) from=(1456,1681)
+[17:32:58.202] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1456,1681,0) to (1448,1656)
+[17:32:58.203] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1448,1656) in background
+[17:32:58.262] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1448,1656): 32 steps in 2887.3us
+[17:32:58.971] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:03.996] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:07.974] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1448,1656,10)
+[17:33:07.976] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[17:33:07.976] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[17:33:07.976] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:07.976] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1464,1624) from (1448,1656,10)
+[17:33:07.977] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1464,1624) from=(1448,1656)
+[17:33:07.977] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1448,1656,10) to (1464,1624)
+[17:33:07.977] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1464,1624) in background
+[17:33:08.036] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1464,1624): 43 steps in 4830.4us
+[17:33:09.040] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:14.048] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:19.100] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:21.231] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1464,1624,20)
+[17:33:21.232] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[17:33:21.232] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[17:33:21.232] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:21.232] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1471,1611) from (1464,1624,20)
+[17:33:21.233] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1471,1611) from=(1464,1624)
+[17:33:21.233] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[17:33:21.233] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1471,1611) in background
+[17:33:21.294] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1471,1611): 31 steps in 11915.7us
+[17:33:24.107] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:27.371] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[17:33:27.385] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:33:28.585] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:33:28.586] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:33:29.155] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:30.314] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer ARRIVED at (1475,1612,20)
+[17:33:30.314] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=3 plans=1 why=''
+[17:33:31.278] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer -> (1471,1611) r=5 from (1475,1612)
+[17:33:31.278] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1475,1612)
+[17:33:31.278] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer ARRIVED at (1475,1612,20)
+[17:33:31.279] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=0 plans=0 why=''
+[17:33:33.800] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:33:33.801] INFO  [wave10_RevGen3_12_Aelia] [action] requested 1 paperdoll(s) for trade titles
+[17:33:33.814] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (7):
+[17:33:33.814] INFO  [wave10_RevGen3_12_Aelia]   Dale 0x000010C1
+[17:33:33.814] INFO  [wave10_RevGen3_12_Aelia]   Illyria 0x0001916B
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Natasha 0x00001194
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Faustus 0x000181F7
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Dog 0x00000DE8
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Audny 0x00001076
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Caimile 0x00001239
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1475,1612,20) facing=2
+[17:33:33.816] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000181F7: "Faustus, Apprentice Armsman"
+[17:33:34.172] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:36.845] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain innkeeper -> (1493,1616) r=5 from (1475,1612)
+[17:33:36.845] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain innkeeper' target=(1493,1616) radius=5 from=(1475,1612)
+[17:33:36.845] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:33:36.846] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:33:36.846] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:36.846] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:36.846] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:33:36.846] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain innkeeper: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:33:36.848] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1471,1611); stopped short (off by 5 tile(s))
+[17:33:36.848] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1471,1611) arrived=0 off=5
+[17:33:36.848] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:36.848] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1493,1616) from (1475,1612,20)
+[17:33:36.848] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1493,1616) from=(1475,1612)
+[17:33:36.848] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1493,1616,z20)
+[17:33:36.849] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1493,1616) in background
+[17:33:36.905] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1493,1616): 33 steps in 10829.8us
+[17:33:37.337] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:33:37.350] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:33:38.708] WARN  [wave10_RevGen3_12_Aelia] [0x21] move REJECTED seq=6; server says (1480,1612,20) facing=3
+[17:33:38.708] INFO  [wave10_RevGen3_12_Aelia] [bot] step (1480,1612,20)->(1481,1613,20) rejected; OpenDoor + retry
+[17:33:38.720] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:33:38.721] WARN  [wave10_RevGen3_12_Aelia] [bot] 0x20 resync; aborting path
+[17:33:38.721] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1480,1612,20) facing=4
+[17:33:38.722] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1480,1612,20); target (1493,1616); stopped short (off by 17 tile(s))
+[17:33:38.722] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1480,1612) target=(1493,1616) arrived=0 off=17
+[17:33:39.217] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:39.967] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:39.967] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1493,1616) from (1480,1612,20)
+[17:33:39.967] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1493,1616) from=(1480,1612)
+[17:33:39.967] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1480,1612,20) to (1493,1616,z20)
+[17:33:39.967] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1493,1616) in background
+[17:33:40.028] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1493,1616): 28 steps in 6138.2us
+[17:33:44.244] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:46.641] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1495,1620,z20); OpenDoor before step
+[17:33:46.642] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:33:46.826] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain innkeeper ARRIVED at (1495,1621,20)
+[17:33:46.826] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain innkeeper' ok=1 at=(1495,1621) legs=1 plans=1 why=''
+[17:33:46.886] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:33:46.886] INFO  [wave10_RevGen3_12_Aelia] [action] requested 1 paperdoll(s) for trade titles
+[17:33:46.900] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (1):
+[17:33:46.900] INFO  [wave10_RevGen3_12_Aelia]   Audny 0x00001076
+[17:33:46.901] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1495,1621,20) facing=7
+[17:33:46.901] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[17:33:46.901] INFO  [wave10_RevGen3_12_Aelia] [world] Audny, the innkeeper is a innkeeper at (1492,1619)
+[17:33:49.249] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:50.237] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain - Sweet Dreams Inn -> (1496,1628) r=4 from (1495,1621)
+[17:33:50.238] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain - Sweet Dreams Inn' target=(1496,1628) radius=4 from=(1495,1621)
+[17:33:50.238] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:33:50.238] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:33:50.238] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:50.239] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:50.239] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:33:50.239] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain - Sweet Dreams Inn: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:33:50.296] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1495,1621,20); target (1493,1616); stopped short (off by 7 tile(s))
+[17:33:50.296] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1495,1621) target=(1493,1616) arrived=0 off=7
+[17:33:50.297] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:50.297] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1496,1628) from (1495,1621,20)
+[17:33:50.297] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1496,1628) from=(1495,1621)
+[17:33:50.297] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1495,1621,20) to (1496,1628,z10)
+[17:33:50.297] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1496,1628) in background
+[17:33:50.357] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1496,1628): 7 steps in 295.5us
+[17:33:50.620] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=7 in 637.1us
+[17:33:51.065] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=5 in 141.5us
+[17:33:51.313] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 2: anchor=4 new segment=5 path=5 in 253.8us
+[17:33:51.572] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 2: anchor=4 new segment=3 path=3 in 68.1us
+[17:33:51.759] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain - Sweet Dreams Inn ARRIVED at (1496,1625,20)
+[17:33:51.759] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain - Sweet Dreams Inn' ok=1 at=(1496,1625) legs=1 plans=1 why=''
+[17:33:52.745] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:33:52.759] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (2):
+[17:33:52.759] INFO  [wave10_RevGen3_12_Aelia]   Audny 0x00001076
+[17:33:52.760] INFO  [wave10_RevGen3_12_Aelia]   Serena 0x000193F7
+[17:33:54.263] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: World save in 10 seconds
+[17:33:55.761] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain herbalist -> (1498,1659) r=5 from (1496,1625)
+[17:33:55.761] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain herbalist' target=(1498,1659) radius=5 from=(1496,1625)
+[17:33:55.761] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:33:55.762] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:33:55.762] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:55.762] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:55.762] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:33:55.762] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain herbalist: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:33:55.764] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1496,1625,20); target (1496,1628); stopped short (off by 3 tile(s))
+[17:33:55.764] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1496,1625) target=(1496,1628) arrived=0 off=3
+[17:33:55.764] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:55.764] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1498,1659) from (1496,1625,20)
+[17:33:55.764] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1498,1659) from=(1496,1625)
+[17:33:55.765] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1496,1625,20) to (1498,1659,z27)
+[17:33:55.765] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1498,1659) in background
+[17:33:55.821] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1498,1659): 60 steps in 44762.4us
+[17:33:59.315] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:04.317] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: World save has been initiated.
+[17:34:09.329] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:09.764] WARN  [wave10_RevGen3_12_Aelia] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.826] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1496,1652,17); target (1498,1659); stopped short (off by 9 tile(s))
+[17:34:09.826] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1496,1652) target=(1498,1659) arrived=0 off=9
+[17:34:09.906] WARN  [wave10_RevGen3_12_Aelia] [0x22] unsolicited ack seq=40
+[17:34:11.059] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:11.059] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1498,1659) from (1496,1652,17)
+[17:34:11.059] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1498,1659) from=(1496,1652)
+[17:34:11.060] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1496,1652,17) to (1498,1659,z27)
+[17:34:11.060] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1498,1659) in background
+[17:34:11.120] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1498,1659): 28 steps in 7954.8us
+[17:34:14.369] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:17.748] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] Morven: Thou wishest to speak with me?
+[17:34:18.055] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain herbalist ARRIVED at (1502,1658,27)
+[17:34:18.055] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain herbalist' ok=1 at=(1502,1658) legs=1 plans=1 why=''
+[17:34:18.117] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:34:18.117] INFO  [wave10_RevGen3_12_Aelia] [action] requested 3 paperdoll(s) for trade titles
+[17:34:18.132] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (3):
+[17:34:18.132] INFO  [wave10_RevGen3_12_Aelia]   Gresham 0x000012D4
+[17:34:18.132] INFO  [wave10_RevGen3_12_Aelia]   Morven 0x0000125C
+[17:34:18.132] INFO  [wave10_RevGen3_12_Aelia]   Edgar 0x0000117B
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1658,27) facing=5
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000012D4: "Gresham, the alchemist"
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [world] Gresham, the alchemist is a alchemist at (1499,1660)
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1658,27) facing=4
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x0000125C: "Morven, the herbalist"
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1658,27) facing=5
+[17:34:18.134] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x0000117B: "Edgar, the hairstylist"
+[17:34:19.372] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain tavernkeeper -> (1498,1691) r=5 from (1502,1658)
+[17:34:21.174] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain tavernkeeper' target=(1498,1691) radius=5 from=(1502,1658)
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:21.175] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:34:21.175] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain tavernkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:34:21.235] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1502,1658,27); target (1498,1659); stopped short (off by 5 tile(s))
+[17:34:21.235] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1502,1658) target=(1498,1659) arrived=0 off=5
+[17:34:21.236] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:21.236] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1498,1691) from (1502,1658,27)
+[17:34:21.236] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1498,1691) from=(1502,1658)
+[17:34:21.236] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1502,1658,27) to (1498,1691,z20)
+[17:34:21.236] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1498,1691) in background
+[17:34:21.295] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1498,1691): 40 steps in 5565.5us
+[17:34:22.812] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1508,1659,z27); OpenDoor before step
+[17:34:22.827] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:34:24.402] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:29.413] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:31.077] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain tavernkeeper ARRIVED at (1502,1686,20)
+[17:34:31.078] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain tavernkeeper' ok=1 at=(1502,1686) legs=1 plans=1 why=''
+[17:34:31.138] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:34:31.139] INFO  [wave10_RevGen3_12_Aelia] [action] requested 4 paperdoll(s) for trade titles
+[17:34:31.152] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (7):
+[17:34:31.153] INFO  [wave10_RevGen3_12_Aelia]   Sparrow 0x00000DE6
+[17:34:31.154] INFO  [wave10_RevGen3_12_Aelia]   Rat 0x00002662
+[17:34:31.162] INFO  [wave10_RevGen3_12_Aelia]   Cat 0x00001502
+[17:34:31.162] INFO  [wave10_RevGen3_12_Aelia]   Gresham 0x000010FB
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia]   Cassiel 0x000010ED
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia]   Barnett 0x000011B2
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia]   Jobihna 0x00001201
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1686,20) facing=6
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000010FB: "Gresham, the waiter"
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001201: "Jobihna, the tavernkeeper"
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia] [world] Jobihna, the tavernkeeper is a innkeeper at (1493,1690)
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1686,20) facing=5
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000010ED: "Cassiel, the cook"
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [world] Cassiel, the cook is a cook at (1494,1692)
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1686,20) facing=4
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000011B2: "Barnett, the tavernkeeper"
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [world] Barnett, the tavernkeeper is a innkeeper at (1500,1694)
+[17:34:34.192] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain scribe -> (1494,1715) r=5 from (1502,1686)
+[17:34:34.192] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain scribe' target=(1494,1715) radius=5 from=(1502,1686)
+[17:34:34.192] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:34:34.193] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:34:34.193] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:34.193] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:34.193] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:34:34.193] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain scribe: ok legs=1 ~29 tiles transit=0 nodes=0
+[17:34:34.253] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1502,1686,20); target (1498,1691); stopped short (off by 9 tile(s))
+[17:34:34.254] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1502,1686) target=(1498,1691) arrived=0 off=9
+[17:34:34.254] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1494,1715) from (1502,1686,20)
+[17:34:34.254] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1494,1715) from=(1502,1686)
+[17:34:34.254] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1502,1686,20) to (1494,1715,z6)
+[17:34:34.254] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1494,1715) in background
+[17:34:34.316] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1494,1715): 55 steps in 33852.3us
+[17:34:34.439] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:39.453] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:40.482] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain scribe ARRIVED at (1493,1710,6)
+[17:34:40.483] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain scribe' ok=1 at=(1493,1710) legs=1 plans=1 why=''
+[17:34:40.544] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:34:40.545] INFO  [wave10_RevGen3_12_Aelia] [action] requested 1 paperdoll(s) for trade titles
+[17:34:40.559] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (9):
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Raynell 0x00001168
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Hawk 0x00002315
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Swift 0x0000064D
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Skylark 0x0000260C
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Cat 0x00001464
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia]   Cat 0x00002AAE
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia]   Rat 0x00000D7B
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia]   Cat 0x00000231
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia]   Cassiel 0x000010ED
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1493,1710,7) facing=3
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001168: "Raynell, the scribe"
+[17:34:40.562] INFO  [wave10_RevGen3_12_Aelia] [world] Raynell, the scribe is a scribe at (1498,1713)
+[17:34:43.654] INFO  [wave10_RevGen3_12_Aelia] [travel] place: skipping Cove healer -- 1280 tiles and 1 gate for a service Britain healer offers
+[17:34:43.654] INFO  [wave10_RevGen3_12_Aelia] [travel] place: skipping Delucia healer -- 1828 tiles and 3 gates for a service Britain healer offers
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer -> (1471,1611) r=5 from (1493,1710)
+[17:34:43.655] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1493,1710)
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable   <- chosen
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:43.656] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: moongate
+[17:34:43.656] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain healer: ok legs=4 ~136 tiles transit=0 nodes=140
+[17:34:43.682] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1493,1710,7); target (1494,1715); stopped short (off by 6 tile(s))
+[17:34:43.682] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1493,1710) target=(1494,1715) arrived=0 off=6
+[17:34:43.682] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:43.682] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1496,1672) from (1493,1710,7)
+[17:34:43.682] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1496,1672) from=(1493,1710)
+[17:34:43.682] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1493,1710,7) to (1496,1672)
+[17:34:43.683] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1496,1672) in background
+[17:34:43.743] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1496,1672): 42 steps in 6600.5us
+[17:34:44.498] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:49.529] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:54.562] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:55.704] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1496,1672,10)
+[17:34:55.705] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1496,1672,10); target (1496,1672); ARRIVED (off by 0 tile(s))
+[17:34:55.706] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1496,1672) target=(1496,1672) arrived=1 off=0
+[17:34:55.706] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:55.706] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1512,1640) from (1496,1672,10)
+[17:34:55.706] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1512,1640) from=(1496,1672)
+[17:34:55.706] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1496,1672,10) to (1512,1640)
+[17:34:55.706] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1512,1640) in background
+[17:34:55.767] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1512,1640): 36 steps in 3317.2us
+[17:34:59.584] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:04.597] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:06.934] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1512,1640,20)
+[17:35:06.936] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1512,1640,20); target (1512,1640); ARRIVED (off by 0 tile(s))
+[17:35:06.937] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1512,1640) target=(1512,1640) arrived=1 off=0
+[17:35:06.937] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:06.937] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1480,1624) from (1512,1640,20)
+[17:35:06.938] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1480,1624) from=(1512,1640)
+[17:35:06.938] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1512,1640,20) to (1480,1624)
+[17:35:06.938] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1480,1624) in background
+[17:35:06.998] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1480,1624): 38 steps in 6898.7us
+[17:35:09.612] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:14.648] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:17.873] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1480,1624,20)
+[17:35:17.874] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1480,1624,20); target (1480,1624); ARRIVED (off by 0 tile(s))
+[17:35:17.874] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1480,1624) target=(1480,1624) arrived=1 off=0
+[17:35:17.874] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:17.874] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1471,1611) from (1480,1624,20)
+[17:35:17.874] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1471,1611) from=(1480,1624)
+[17:35:17.875] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1480,1624,20) to (1471,1611,z20)
+[17:35:17.875] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1471,1611) in background
+[17:35:17.934] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1471,1611): 21 steps in 1772.8us
+[17:35:19.673] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:21.156] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:35:21.172] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:35:23.096] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer ARRIVED at (1475,1612,20)
+[17:35:23.097] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=4 plans=1 why=''
+[17:35:23.221] INFO  [wave10_RevGen3_12_Aelia] [travel] mobile 0x000010C1 -> (1470,1614) r=1 from (1475,1612)
+[17:35:23.221] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='mobile 0x000010C1' target=(1470,1614) radius=1 from=(1475,1612)
+[17:35:23.221] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:35:23.221] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:35:23.222] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.222] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.222] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:35:23.222] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:35:23.283] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1471,1611); stopped short (off by 5 tile(s))
+[17:35:23.283] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1471,1611) arrived=0 off=5
+[17:35:23.283] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:23.284] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:23.284] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:23.284] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:23.284] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:24.701] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:24.886] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1470,1614) avoiding 0 block(s); stopping (search 1542626.4us)
+[17:35:24.886] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1475,1612,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 521 item(s), 6 mobile(s))
+[17:35:24.948] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1470,1614); stopped short (off by 7 tile(s))
+[17:35:24.948] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1470,1614) arrived=0 off=7
+[17:35:26.198] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:26.198] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:26.198] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:26.199] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:26.199] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:27.816] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1470,1614) avoiding 0 block(s); stopping (search 1602904.6us)
+[17:35:27.816] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1475,1612,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 521 item(s), 6 mobile(s))
+[17:35:27.876] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1470,1614); stopped short (off by 7 tile(s))
+[17:35:27.876] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1470,1614) arrived=0 off=7
+[17:35:29.135] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:29.136] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:29.136] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:29.136] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:29.136] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:29.752] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:30.921] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1470,1614) avoiding 0 block(s); stopping (search 1767606.4us)
+[17:35:30.924] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1475,1612,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 521 item(s), 7 mobile(s))
+[17:35:30.937] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1470,1614); stopped short (off by 7 tile(s))
+[17:35:30.938] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1470,1614) arrived=0 off=7
+[17:35:32.198] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:35:32.199] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:35:32.199] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:32.199] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:32.199] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:35:32.199] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:35:33.723] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:33.723] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:33.723] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:33.723] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:33.723] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:34.773] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:35.371] WARN  [wave10_RevGen3_12_Aelia] [bot] no path to (1470,1614) avoiding 0 block(s); stopping (search 1614136.8us)
+[17:35:35.371] WARN  [wave10_RevGen3_12_Aelia] [bot] start (1475,1612,20) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 521 item(s), 7 mobile(s))
+[17:35:35.434] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1470,1614); stopped short (off by 7 tile(s))
+[17:35:35.434] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1470,1614) arrived=0 off=7
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:36.693] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1470,1614): 5 steps in 67.3us
+[17:35:37.449] INFO  [wave10_RevGen3_12_Aelia] [chat uni  ] : Lionel buy
+[17:35:38.019] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1470,1614,20)
+[17:35:38.021] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1470,1614,20); target (1470,1614); ARRIVED (off by 0 tile(s))
+[17:35:38.021] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1470,1614) target=(1470,1614) arrived=1 off=0
+[17:35:38.021] INFO  [wave10_RevGen3_12_Aelia] [travel] mobile 0x000010C1 ARRIVED at (1470,1614,20)
+[17:35:38.021] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='mobile 0x000010C1' ok=1 at=(1470,1614) legs=1 plans=2 why=''
+[17:35:39.329] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Thane has departed from Lord British's Castle.
+45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:30.963] INFO  [life]   score=98.8
+[17:33:30.963] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:33:30.964] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:33:30.964] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[17:33:30.964] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 233s after achieving nothing
+[17:33:30.964] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 118s after achieving nothing
+[17:33:30.964] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 4s after achieving nothing
+[17:33:30.964] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:30.965] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 544s after achieving nothing
+[17:33:30.965] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:30.965] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 126s after achieving nothing
+[17:33:30.965] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:33:30.965] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[17:33:30.965] INFO  [life] potions: found a 'healer'
+[17:33:30.967] INFO  [life] potions: within reach
+[17:33:31.026] INFO  [life] potions: the shop is open
+[17:33:31.089] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:33:31.089] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:33:31.089] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[17:33:31.092] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:31.094] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[17:33:31.094] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:31.094] INFO  [life]   score=78.0
+[17:33:31.094] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:33:31.095] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:33:31.095] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[17:33:31.095] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 233s after achieving nothing
+[17:33:31.095] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 118s after achieving nothing
+[17:33:31.095] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 3s after achieving nothing
+[17:33:31.095] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:31.095] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 544s after achieving nothing
+[17:33:31.096] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:31.096] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 125s after achieving nothing
+[17:33:31.096] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:33:31.096] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[17:33:31.096] INFO  [life] potions: found a 'healer'
+[17:33:31.151] INFO  [life] potions: within reach
+[17:33:31.214] INFO  [life] potions: the shop is open
+[17:33:31.216] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:33:31.216] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:33:31.216] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[17:33:31.216] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[17:33:31.219] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:31.276] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:33:31.276] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:31.276] INFO  [life]   score=15.0
+[17:33:31.276] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:33:31.277] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[17:33:31.277] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 233s after achieving nothing
+[17:33:31.277] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 118s after achieving nothing
+[17:33:31.277] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 3s after achieving nothing
+[17:33:31.277] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:31.277] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 543s after achieving nothing
+[17:33:31.278] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:31.278] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 125s after achieving nothing
+[17:33:31.278] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:33:31.278] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer -> (1471,1611) r=5 from (1475,1612)
+[17:33:31.278] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1475,1612)
+[17:33:31.278] INFO  [life] explore: nothing else to do, so going to 'britain_healer' -- somewhere new (6 place(s) known so far)
+[17:33:31.278] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer ARRIVED at (1475,1612,20)
+[17:33:31.279] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=0 plans=0 why=''
+[17:33:33.800] INFO  [life] explore: arrived at 1475,1612 -- reading who is here
+[17:33:33.800] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:33:33.801] INFO  [wave10_RevGen3_12_Aelia] [action] requested 1 paperdoll(s) for trade titles
+[17:33:33.801] INFO  [life] goal_completed=EXPLORE progress=1
+[17:33:33.803] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:33.805] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:33:33.805] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:33.805] INFO  [life]   score=15.0
+[17:33:33.805] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:33:33.805] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 57s after achieving nothing
+[17:33:33.805] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 231s after achieving nothing
+[17:33:33.805] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 116s after achieving nothing
+[17:33:33.806] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 1s after achieving nothing
+[17:33:33.806] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:33.806] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 541s after achieving nothing
+[17:33:33.806] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:33.806] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 123s after achieving nothing
+[17:33:33.814] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (7):
+[17:33:33.814] INFO  [wave10_RevGen3_12_Aelia]   Dale 0x000010C1
+[17:33:33.814] INFO  [wave10_RevGen3_12_Aelia]   Illyria 0x0001916B
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Natasha 0x00001194
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Faustus 0x000181F7
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Dog 0x00000DE8
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Audny 0x00001076
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia]   Caimile 0x00001239
+[17:33:33.815] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1475,1612,20) facing=2
+[17:33:33.816] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000181F7: "Faustus, Apprentice Armsman"
+[17:33:34.172] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:36.844] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:33:36.845] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain innkeeper -> (1493,1616) r=5 from (1475,1612)
+[17:33:36.845] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain innkeeper' target=(1493,1616) radius=5 from=(1475,1612)
+[17:33:36.845] INFO  [life] explore: nothing else to do, so going to 'britain_inn_2' -- somewhere new (7 place(s) known so far)
+[17:33:36.845] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:33:36.846] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:33:36.846] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:36.846] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:36.846] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:33:36.846] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain innkeeper: ok legs=1 ~18 tiles transit=0 nodes=0
+[17:33:36.848] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1471,1611); stopped short (off by 5 tile(s))
+[17:33:36.848] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1471,1611) arrived=0 off=5
+[17:33:36.848] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:36.848] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1493,1616) from (1475,1612,20)
+[17:33:36.848] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1493,1616) from=(1475,1612)
+[17:33:36.848] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1493,1616,z20)
+[17:33:36.849] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1493,1616) in background
+[17:33:36.905] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1493,1616): 33 steps in 10829.8us
+[17:33:37.337] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:33:37.350] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:33:38.708] INFO  [wave10_RevGen3_12_Aelia] [bot] step (1480,1612,20)->(1481,1613,20) rejected; OpenDoor + retry
+[17:33:38.720] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:33:38.721] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1480,1612,20) facing=4
+[17:33:38.722] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1480,1612,20); target (1493,1616); stopped short (off by 17 tile(s))
+[17:33:38.722] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1480,1612) target=(1493,1616) arrived=0 off=17
+[17:33:39.217] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:39.967] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:39.967] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1493,1616) from (1480,1612,20)
+[17:33:39.967] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1493,1616) from=(1480,1612)
+[17:33:39.967] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1480,1612,20) to (1493,1616,z20)
+[17:33:39.967] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1493,1616) in background
+[17:33:40.028] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1493,1616): 28 steps in 6138.2us
+[17:33:44.244] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:46.641] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1495,1620,z20); OpenDoor before step
+[17:33:46.642] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:33:46.826] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain innkeeper ARRIVED at (1495,1621,20)
+[17:33:46.826] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain innkeeper' ok=1 at=(1495,1621) legs=1 plans=1 why=''
+[17:33:46.886] INFO  [life] explore: arrived at 1495,1621 -- reading who is here
+[17:33:46.886] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:33:46.886] INFO  [wave10_RevGen3_12_Aelia] [action] requested 1 paperdoll(s) for trade titles
+[17:33:46.886] INFO  [life] goal_completed=EXPLORE progress=1
+[17:33:46.888] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:46.900] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (1):
+[17:33:46.900] INFO  [wave10_RevGen3_12_Aelia]   Audny 0x00001076
+[17:33:46.901] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1495,1621,20) facing=7
+[17:33:46.901] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001076: "Audny, the innkeeper"
+[17:33:46.901] INFO  [wave10_RevGen3_12_Aelia] [world] Audny, the innkeeper is a innkeeper at (1492,1619)
+[17:33:46.902] INFO  [life] goal=EARN_GOLD reason="no goal was running"
+[17:33:46.902] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:46.902] INFO  [life]   score=45.0
+[17:33:46.902] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[17:33:46.902] INFO  [life]   reason: gold=0 floor=100
+[17:33:46.903] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 44s after achieving nothing
+[17:33:46.903] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 217s after achieving nothing
+[17:33:46.903] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 102s after achieving nothing
+[17:33:46.903] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:46.903] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 528s after achieving nothing
+[17:33:46.903] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:46.903] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 110s after achieving nothing
+[17:33:49.249] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:49.928] INFO  [life] earn_gold: will NOT sell 1 i_robe -- cloth, bolts and robes -- especially mage and special robes -- carry strong player-market context on Revolution. Generic tailor buyback is an economic shortcut around that market
+[17:33:49.928] INFO  [life] earn_gold: everything spare is barred from an NPC sale; banking instead
+[17:33:49.928] INFO  [life] goal_completed=EARN_GOLD progress=0
+[17:33:49.931] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:49.989] INFO  [life] goal=EARN_GOLD reason="no goal was running"
+[17:33:49.989] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:49.990] INFO  [life]   score=45.0
+[17:33:49.990] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[17:33:49.990] INFO  [life]   reason: gold=0 floor=100
+[17:33:49.990] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 41s after achieving nothing
+[17:33:49.990] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 214s after achieving nothing
+[17:33:49.990] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[17:33:49.990] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:49.991] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 525s after achieving nothing
+[17:33:49.991] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:49.991] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 106s after achieving nothing
+[17:33:49.991] INFO  [life] earn_gold: will NOT sell 1 i_robe -- cloth, bolts and robes -- especially mage and special robes -- carry strong player-market context on Revolution. Generic tailor buyback is an economic shortcut around that market
+[17:33:49.991] INFO  [life] earn_gold: everything spare is barred from an NPC sale; banking instead
+[17:33:49.991] INFO  [life] goal_completed=EARN_GOLD progress=0
+[17:33:49.994] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:50.051] INFO  [life] goal=EARN_GOLD reason="no goal was running"
+[17:33:50.051] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:50.052] INFO  [life]   score=39.6
+[17:33:50.052] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[17:33:50.052] INFO  [life]   reason: gold=0 floor=100
+[17:33:50.052] INFO  [life]   reason: same errand just now, easing off 12% (45.0 -> 39.6)
+[17:33:50.052] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 41s after achieving nothing
+[17:33:50.052] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 214s after achieving nothing
+[17:33:50.052] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[17:33:50.053] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:50.053] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 525s after achieving nothing
+[17:33:50.053] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:50.054] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 106s after achieving nothing
+[17:33:50.054] INFO  [life] earn_gold: will NOT sell 1 i_robe -- cloth, bolts and robes -- especially mage and special robes -- carry strong player-market context on Revolution. Generic tailor buyback is an economic shortcut around that market
+[17:33:50.054] INFO  [life] earn_gold: everything spare is barred from an NPC sale; banking instead
+[17:33:50.054] INFO  [life] goal_completed=EARN_GOLD progress=0
+[17:33:50.057] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:50.112] INFO  [life] goal=EARN_GOLD reason="no goal was running"
+[17:33:50.112] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:50.112] INFO  [life]   score=34.2
+[17:33:50.112] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[17:33:50.112] INFO  [life]   reason: gold=0 floor=100
+[17:33:50.112] INFO  [life]   reason: same errand just now, easing off 24% (45.0 -> 34.2)
+[17:33:50.113] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 41s after achieving nothing
+[17:33:50.113] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 214s after achieving nothing
+[17:33:50.113] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[17:33:50.113] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:50.113] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 525s after achieving nothing
+[17:33:50.113] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:50.113] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 106s after achieving nothing
+[17:33:50.114] INFO  [life] earn_gold: will NOT sell 1 i_robe -- cloth, bolts and robes -- especially mage and special robes -- carry strong player-market context on Revolution. Generic tailor buyback is an economic shortcut around that market
+[17:33:50.114] INFO  [life] earn_gold: everything spare is barred from an NPC sale; banking instead
+[17:33:50.114] INFO  [life] goal_completed=EARN_GOLD progress=0
+[17:33:50.116] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:50.174] INFO  [life] goal=EARN_GOLD reason="no goal was running"
+[17:33:50.174] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:50.174] INFO  [life]   score=27.0
+[17:33:50.174] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[17:33:50.174] INFO  [life]   reason: gold=0 floor=100
+[17:33:50.175] INFO  [life]   reason: work just now, easing off 40% (45.0 -> 27.0)
+[17:33:50.175] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 41s after achieving nothing
+[17:33:50.175] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 214s after achieving nothing
+[17:33:50.175] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[17:33:50.175] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:50.175] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 524s after achieving nothing
+[17:33:50.175] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:50.176] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 106s after achieving nothing
+[17:33:50.176] INFO  [life] earn_gold: will NOT sell 1 i_robe -- cloth, bolts and robes -- especially mage and special robes -- carry strong player-market context on Revolution. Generic tailor buyback is an economic shortcut around that market
+[17:33:50.176] INFO  [life] earn_gold: everything spare is barred from an NPC sale; banking instead
+[17:33:50.176] INFO  [life] goal_completed=EARN_GOLD progress=0
+[17:33:50.176] INFO  [life] goal_spinning=EARN_GOLD reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[17:33:50.178] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:50.235] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:33:50.236] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:50.236] INFO  [life]   score=15.0
+[17:33:50.236] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:33:50.236] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 40s after achieving nothing
+[17:33:50.236] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 214s after achieving nothing
+[17:33:50.236] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 99s after achieving nothing
+[17:33:50.237] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 59s after achieving nothing
+[17:33:50.237] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:50.237] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 524s after achieving nothing
+[17:33:50.237] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:50.237] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 106s after achieving nothing
+[17:33:50.237] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:33:50.237] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain - Sweet Dreams Inn -> (1496,1628) r=4 from (1495,1621)
+[17:33:50.238] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain - Sweet Dreams Inn' target=(1496,1628) radius=4 from=(1495,1621)
+[17:33:50.238] INFO  [life] explore: nothing else to do, so going to 'britain_start' -- somewhere new (8 place(s) known so far)
+[17:33:50.238] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:33:50.238] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:33:50.238] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:50.239] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:50.239] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:33:50.239] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain - Sweet Dreams Inn: ok legs=1 ~7 tiles transit=0 nodes=0
+[17:33:50.296] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1495,1621,20); target (1493,1616); stopped short (off by 7 tile(s))
+[17:33:50.296] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1495,1621) target=(1493,1616) arrived=0 off=7
+[17:33:50.297] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:50.297] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1496,1628) from (1495,1621,20)
+[17:33:50.297] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1496,1628) from=(1495,1621)
+[17:33:50.297] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1495,1621,20) to (1496,1628,z10)
+[17:33:50.297] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1496,1628) in background
+[17:33:50.357] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1496,1628): 7 steps in 295.5us
+[17:33:50.620] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=7 in 637.1us
+[17:33:51.065] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=5 in 141.5us
+[17:33:51.313] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 2: anchor=4 new segment=5 path=5 in 253.8us
+[17:33:51.572] INFO  [wave10_RevGen3_12_Aelia] [bot] lookahead patched around block at step 2: anchor=4 new segment=3 path=3 in 68.1us
+[17:33:51.759] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain - Sweet Dreams Inn ARRIVED at (1496,1625,20)
+[17:33:51.759] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain - Sweet Dreams Inn' ok=1 at=(1496,1625) legs=1 plans=1 why=''
+[17:33:52.745] INFO  [life] explore: arrived at 1496,1625 -- reading who is here
+[17:33:52.745] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:33:52.745] INFO  [life] goal_completed=EXPLORE progress=1
+[17:33:52.748] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:33:52.759] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (2):
+[17:33:52.759] INFO  [wave10_RevGen3_12_Aelia]   Audny 0x00001076
+[17:33:52.760] INFO  [wave10_RevGen3_12_Aelia]   Serena 0x000193F7
+[17:33:52.761] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:33:52.761] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:33:52.761] INFO  [life]   score=15.0
+[17:33:52.762] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:33:52.762] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 38s after achieving nothing
+[17:33:52.762] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 212s after achieving nothing
+[17:33:52.762] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 97s after achieving nothing
+[17:33:52.762] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 57s after achieving nothing
+[17:33:52.762] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:33:52.762] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 522s after achieving nothing
+[17:33:52.762] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:52.763] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 104s after achieving nothing
+[17:33:54.263] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:33:54.568] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: World save in 10 seconds
+[17:33:55.761] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:33:55.761] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain herbalist -> (1498,1659) r=5 from (1496,1625)
+[17:33:55.761] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain herbalist' target=(1498,1659) radius=5 from=(1496,1625)
+[17:33:55.761] INFO  [life] explore: nothing else to do, so going to 'britain_herbalist' -- somewhere new (9 place(s) known so far)
+[17:33:55.761] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:33:55.762] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:33:55.762] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:55.762] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:55.762] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:33:55.762] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain herbalist: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:33:55.764] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1496,1625,20); target (1496,1628); stopped short (off by 3 tile(s))
+[17:33:55.764] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1496,1625) target=(1496,1628) arrived=0 off=3
+[17:33:55.764] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:55.764] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1498,1659) from (1496,1625,20)
+[17:33:55.764] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1498,1659) from=(1496,1625)
+[17:33:55.765] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1496,1625,20) to (1498,1659,z27)
+[17:33:55.765] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1498,1659) in background
+[17:33:55.821] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1498,1659): 60 steps in 44762.4us
+[17:33:59.315] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:04.317] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: World save has been initiated.
+[17:34:09.329] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:09.826] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1496,1652,17); target (1498,1659); stopped short (off by 9 tile(s))
+[17:34:09.826] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1496,1652) target=(1498,1659) arrived=0 off=9
+[17:34:11.059] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:11.059] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1498,1659) from (1496,1652,17)
+[17:34:11.059] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1498,1659) from=(1496,1652)
+[17:34:11.060] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1496,1652,17) to (1498,1659,z27)
+[17:34:11.060] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1498,1659) in background
+[17:34:11.120] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1498,1659): 28 steps in 7954.8us
+[17:34:14.369] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:17.748] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] Morven: Thou wishest to speak with me?
+[17:34:18.055] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain herbalist ARRIVED at (1502,1658,27)
+[17:34:18.055] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain herbalist' ok=1 at=(1502,1658) legs=1 plans=1 why=''
+[17:34:18.117] INFO  [life] explore: arrived at 1502,1658 -- reading who is here
+[17:34:18.117] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:34:18.117] INFO  [wave10_RevGen3_12_Aelia] [action] requested 3 paperdoll(s) for trade titles
+[17:34:18.118] INFO  [life] goal_completed=EXPLORE progress=1
+[17:34:18.120] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:34:18.121] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:34:18.122] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:34:18.122] INFO  [life]   score=15.0
+[17:34:18.122] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:34:18.122] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 13s after achieving nothing
+[17:34:18.122] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 186s after achieving nothing
+[17:34:18.122] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 71s after achieving nothing
+[17:34:18.122] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 32s after achieving nothing
+[17:34:18.122] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:34:18.123] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 497s after achieving nothing
+[17:34:18.123] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:34:18.123] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 78s after achieving nothing
+[17:34:18.132] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (3):
+[17:34:18.132] INFO  [wave10_RevGen3_12_Aelia]   Gresham 0x000012D4
+[17:34:18.132] INFO  [wave10_RevGen3_12_Aelia]   Morven 0x0000125C
+[17:34:18.132] INFO  [wave10_RevGen3_12_Aelia]   Edgar 0x0000117B
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1658,27) facing=5
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000012D4: "Gresham, the alchemist"
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [world] Gresham, the alchemist is a alchemist at (1499,1660)
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1658,27) facing=4
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x0000125C: "Morven, the herbalist"
+[17:34:18.133] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1658,27) facing=5
+[17:34:18.134] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x0000117B: "Edgar, the hairstylist"
+[17:34:19.372] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:21.173] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain tavernkeeper -> (1498,1691) r=5 from (1502,1658)
+[17:34:21.174] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain tavernkeeper' target=(1498,1691) radius=5 from=(1502,1658)
+[17:34:21.174] INFO  [life] explore: nothing else to do, so going to 'britain_inn_5' -- somewhere new (10 place(s) known so far)
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:21.174] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:21.175] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:34:21.175] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain tavernkeeper: ok legs=1 ~33 tiles transit=0 nodes=0
+[17:34:21.235] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1502,1658,27); target (1498,1659); stopped short (off by 5 tile(s))
+[17:34:21.235] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1502,1658) target=(1498,1659) arrived=0 off=5
+[17:34:21.236] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:21.236] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1498,1691) from (1502,1658,27)
+[17:34:21.236] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1498,1691) from=(1502,1658)
+[17:34:21.236] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1502,1658,27) to (1498,1691,z20)
+[17:34:21.236] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1498,1691) in background
+[17:34:21.295] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1498,1691): 40 steps in 5565.5us
+[17:34:22.812] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1508,1659,z27); OpenDoor before step
+[17:34:22.827] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:34:24.402] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:29.413] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:31.077] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain tavernkeeper ARRIVED at (1502,1686,20)
+[17:34:31.078] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain tavernkeeper' ok=1 at=(1502,1686) legs=1 plans=1 why=''
+[17:34:31.138] INFO  [life] explore: arrived at 1502,1686 -- reading who is here
+[17:34:31.138] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:34:31.139] INFO  [wave10_RevGen3_12_Aelia] [action] requested 4 paperdoll(s) for trade titles
+[17:34:31.139] INFO  [life] goal_completed=EXPLORE progress=1
+[17:34:31.142] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:34:31.152] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (7):
+[17:34:31.153] INFO  [wave10_RevGen3_12_Aelia]   Sparrow 0x00000DE6
+[17:34:31.154] INFO  [wave10_RevGen3_12_Aelia]   Rat 0x00002662
+[17:34:31.162] INFO  [wave10_RevGen3_12_Aelia]   Cat 0x00001502
+[17:34:31.162] INFO  [wave10_RevGen3_12_Aelia]   Gresham 0x000010FB
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia]   Cassiel 0x000010ED
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia]   Barnett 0x000011B2
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia]   Jobihna 0x00001201
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1686,20) facing=6
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000010FB: "Gresham, the waiter"
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001201: "Jobihna, the tavernkeeper"
+[17:34:31.163] INFO  [wave10_RevGen3_12_Aelia] [world] Jobihna, the tavernkeeper is a innkeeper at (1493,1690)
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1686,20) facing=5
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000010ED: "Cassiel, the cook"
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [world] Cassiel, the cook is a cook at (1494,1692)
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1502,1686,20) facing=4
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x000011B2: "Barnett, the tavernkeeper"
+[17:34:31.164] INFO  [wave10_RevGen3_12_Aelia] [world] Barnett, the tavernkeeper is a innkeeper at (1500,1694)
+[17:34:31.166] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:34:31.166] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:34:31.166] INFO  [life]   score=15.0
+[17:34:31.166] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:34:31.166] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 0s after achieving nothing
+[17:34:31.166] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 173s after achieving nothing
+[17:34:31.167] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 58s after achieving nothing
+[17:34:31.167] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 19s after achieving nothing
+[17:34:31.167] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:34:31.167] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 483s after achieving nothing
+[17:34:31.167] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:34:31.168] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 65s after achieving nothing
+[17:34:34.192] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:34:34.192] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain scribe -> (1494,1715) r=5 from (1502,1686)
+[17:34:34.192] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain scribe' target=(1494,1715) radius=5 from=(1502,1686)
+[17:34:34.192] INFO  [life] explore: nothing else to do, so going to 'britain_scribe' -- somewhere new (11 place(s) known so far)
+[17:34:34.192] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:34:34.193] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:34:34.193] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:34.193] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:34.193] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:34:34.193] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain scribe: ok legs=1 ~29 tiles transit=0 nodes=0
+[17:34:34.253] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1502,1686,20); target (1498,1691); stopped short (off by 9 tile(s))
+[17:34:34.254] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1502,1686) target=(1498,1691) arrived=0 off=9
+[17:34:34.254] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1494,1715) from (1502,1686,20)
+[17:34:34.254] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1494,1715) from=(1502,1686)
+[17:34:34.254] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1502,1686,20) to (1494,1715,z6)
+[17:34:34.254] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1494,1715) in background
+[17:34:34.316] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1494,1715): 55 steps in 33852.3us
+[17:34:34.439] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:39.453] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:40.482] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain scribe ARRIVED at (1493,1710,6)
+[17:34:40.483] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain scribe' ok=1 at=(1493,1710) legs=1 plans=1 why=''
+[17:34:40.544] INFO  [life] explore: arrived at 1493,1710 -- reading who is here
+[17:34:40.544] INFO  [wave10_RevGen3_12_Aelia] [action] scanning nearby mobiles for names
+[17:34:40.545] INFO  [wave10_RevGen3_12_Aelia] [action] requested 1 paperdoll(s) for trade titles
+[17:34:40.545] INFO  [life] goal_completed=EXPLORE progress=1
+[17:34:40.547] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:34:40.559] INFO  [wave10_RevGen3_12_Aelia] [mobiles] nearby (9):
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Raynell 0x00001168
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Hawk 0x00002315
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Swift 0x0000064D
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Skylark 0x0000260C
+[17:34:40.560] INFO  [wave10_RevGen3_12_Aelia]   Cat 0x00001464
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia]   Cat 0x00002AAE
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia]   Rat 0x00000D7B
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia]   Cat 0x00000231
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia]   Cassiel 0x000010ED
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia] [0x20] player @(1493,1710,7) facing=3
+[17:34:40.561] INFO  [wave10_RevGen3_12_Aelia] [0x88] paperdoll 0x00001168: "Raynell, the scribe"
+[17:34:40.562] INFO  [wave10_RevGen3_12_Aelia] [world] Raynell, the scribe is a scribe at (1498,1713)
+[17:34:40.563] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[17:34:40.563] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:34:40.563] INFO  [life]   score=122.6
+[17:34:40.564] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:34:40.564] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:34:40.564] INFO  [life]   reason: most of the day already just now, easing off 6% (130.0 -> 122.6)
+[17:34:40.564] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 164s after achieving nothing
+[17:34:40.564] INFO  [life]   BLOCKED_NEED GET_FOOD: on cooldown for another 49s after achieving nothing
+[17:34:40.564] INFO  [life]   BLOCKED_NEED EARN_GOLD: on cooldown for another 9s after achieving nothing
+[17:34:40.564] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:34:40.564] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 474s after achieving nothing
+[17:34:40.565] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:34:40.565] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 56s after achieving nothing
+[17:34:43.604] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:34:43.604] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[17:34:43.654] INFO  [wave10_RevGen3_12_Aelia] [travel] place: skipping Cove healer -- 1280 tiles and 1 gate for a service Britain healer offers
+[17:34:43.654] INFO  [wave10_RevGen3_12_Aelia] [travel] place: skipping Delucia healer -- 1828 tiles and 3 gates for a service Britain healer offers
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer -> (1471,1611) r=5 from (1493,1710)
+[17:34:43.655] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1493,1710)
+[17:34:43.655] INFO  [life] potions: walking to a 'healer' (trip 1)
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable   <- chosen
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:43.655] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:43.656] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: moongate
+[17:34:43.656] INFO  [wave10_RevGen3_12_Aelia] [travel] plan Britain healer: ok legs=4 ~136 tiles transit=0 nodes=140
+[17:34:43.682] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1493,1710,7); target (1494,1715); stopped short (off by 6 tile(s))
+[17:34:43.682] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1493,1710) target=(1494,1715) arrived=0 off=6
+[17:34:43.682] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:43.682] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1496,1672) from (1493,1710,7)
+[17:34:43.682] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1496,1672) from=(1493,1710)
+[17:34:43.682] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1493,1710,7) to (1496,1672)
+[17:34:43.683] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1496,1672) in background
+[17:34:43.743] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1496,1672): 42 steps in 6600.5us
+[17:34:44.498] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:49.529] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:54.562] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:34:55.704] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1496,1672,10)
+[17:34:55.705] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1496,1672,10); target (1496,1672); ARRIVED (off by 0 tile(s))
+[17:34:55.706] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1496,1672) target=(1496,1672) arrived=1 off=0
+[17:34:55.706] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:55.706] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1512,1640) from (1496,1672,10)
+[17:34:55.706] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1512,1640) from=(1496,1672)
+[17:34:55.706] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1496,1672,10) to (1512,1640)
+[17:34:55.706] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1512,1640) in background
+[17:34:55.767] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1512,1640): 36 steps in 3317.2us
+[17:34:59.584] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:04.597] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:06.934] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1512,1640,20)
+[17:35:06.936] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1512,1640,20); target (1512,1640); ARRIVED (off by 0 tile(s))
+[17:35:06.937] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1512,1640) target=(1512,1640) arrived=1 off=0
+[17:35:06.937] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:06.937] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1480,1624) from (1512,1640,20)
+[17:35:06.938] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1480,1624) from=(1512,1640)
+[17:35:06.938] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1512,1640,20) to (1480,1624)
+[17:35:06.938] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1480,1624) in background
+[17:35:06.998] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1480,1624): 38 steps in 6898.7us
+[17:35:09.612] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:14.648] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:17.873] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1480,1624,20)
+[17:35:17.874] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1480,1624,20); target (1480,1624); ARRIVED (off by 0 tile(s))
+[17:35:17.874] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1480,1624) target=(1480,1624) arrived=1 off=0
+[17:35:17.874] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:17.874] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1471,1611) from (1480,1624,20)
+[17:35:17.874] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1471,1611) from=(1480,1624)
+[17:35:17.875] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1480,1624,20) to (1471,1611,z20)
+[17:35:17.875] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1471,1611) in background
+[17:35:17.934] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1471,1611): 21 steps in 1772.8us
+[17:35:19.673] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:21.156] INFO  [wave10_RevGen3_12_Aelia] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:35:21.172] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Opening door...
+[17:35:23.096] INFO  [wave10_RevGen3_12_Aelia] [travel] Britain healer ARRIVED at (1475,1612,20)
+[17:35:23.097] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='Britain healer' ok=1 at=(1475,1612) legs=4 plans=1 why=''
+[17:35:23.159] INFO  [life] potions: found a 'healer'
+[17:35:23.221] INFO  [wave10_RevGen3_12_Aelia] [travel] mobile 0x000010C1 -> (1470,1614) r=1 from (1475,1612)
+[17:35:23.221] LOG   [wave10_RevGen3_12_Aelia] event travel_start: label='mobile 0x000010C1' target=(1470,1614) radius=1 from=(1475,1612)
+[17:35:23.221] INFO  [life] potions: the 'healer' is 5 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[17:35:23.221] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:35:23.221] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:35:23.222] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:23.222] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:23.222] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:35:23.222] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:35:23.283] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1471,1611); stopped short (off by 5 tile(s))
+[17:35:23.283] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1471,1611) arrived=0 off=5
+[17:35:23.283] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:23.284] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:23.284] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:23.284] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:23.284] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:24.701] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:24.948] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1470,1614); stopped short (off by 7 tile(s))
+[17:35:24.948] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1470,1614) arrived=0 off=7
+[17:35:26.198] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:26.198] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:26.198] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:26.199] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:26.199] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:27.876] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1470,1614); stopped short (off by 7 tile(s))
+[17:35:27.876] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1470,1614) arrived=0 off=7
+[17:35:29.135] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:29.136] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:29.136] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:29.136] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:29.136] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:29.752] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:30.937] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1470,1614); stopped short (off by 7 tile(s))
+[17:35:30.938] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1470,1614) arrived=0 off=7
+[17:35:32.198] INFO  [wave10_RevGen3_12_Aelia] [travel] mode walk             usable   <- chosen
+[17:35:32.199] INFO  [wave10_RevGen3_12_Aelia] [travel] mode moongate         usable
+[17:35:32.199] INFO  [wave10_RevGen3_12_Aelia] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:32.199] INFO  [wave10_RevGen3_12_Aelia] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:32.199] LOG   [wave10_RevGen3_12_Aelia] event travel_mode: walk
+[17:35:32.199] INFO  [wave10_RevGen3_12_Aelia] [travel] plan mobile 0x000010C1: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:35:33.723] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:33.723] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:33.723] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:33.723] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:33.723] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:34.773] INFO  [wave10_RevGen3_12_Aelia] [survival] hp 24/24 (100%) -> fight
+[17:35:35.434] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1475,1612,20); target (1470,1614); stopped short (off by 7 tile(s))
+[17:35:35.434] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1475,1612) target=(1470,1614) arrived=0 off=7
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [action] goto (1470,1614) from (1475,1612,20)
+[17:35:36.693] LOG   [wave10_RevGen3_12_Aelia] event goto_start: target=(1470,1614) from=(1475,1612)
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [bot] running from (1475,1612,20) to (1470,1614,z20)
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [bot] planning path to (1470,1614) in background
+[17:35:36.693] INFO  [wave10_RevGen3_12_Aelia] [bot] replan to (1470,1614): 5 steps in 67.3us
+[17:35:37.449] INFO  [wave10_RevGen3_12_Aelia] [chat uni  ] : Lionel buy
+[17:35:38.019] INFO  [wave10_RevGen3_12_Aelia] [bot] arrived at (1470,1614,20)
+[17:35:38.021] INFO  [wave10_RevGen3_12_Aelia] [action] goto finished at (1470,1614,20); target (1470,1614); ARRIVED (off by 0 tile(s))
+[17:35:38.021] LOG   [wave10_RevGen3_12_Aelia] event goto_done: at=(1470,1614) target=(1470,1614) arrived=1 off=0
+[17:35:38.021] INFO  [wave10_RevGen3_12_Aelia] [travel] mobile 0x000010C1 ARRIVED at (1470,1614,20)
+[17:35:38.021] LOG   [wave10_RevGen3_12_Aelia] event travel_done: label='mobile 0x000010C1' ok=1 at=(1470,1614) legs=1 plans=2 why=''
+[17:35:38.080] INFO  [life] potions: within reach
+[17:35:38.155] INFO  [life] potions: the shop is open
+[17:35:38.218] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:35:38.218] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:35:38.218] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[17:35:38.220] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:35:38.279] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[17:35:38.279] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:35:38.280] INFO  [life]   score=120.3
+[17:35:38.280] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:35:38.280] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:35:38.280] INFO  [life]   reason: most of the day already just now, easing off 7% (130.0 -> 120.3)
+[17:35:38.280] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 106s after achieving nothing
+[17:35:38.280] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:38.280] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 416s after achieving nothing
+[17:35:38.280] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:38.281] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:35:38.281] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[17:35:38.281] INFO  [life] potions: found a 'healer'
+[17:35:38.325] INFO  [life] potions: within reach
+[17:35:38.389] INFO  [life] potions: the shop is open
+[17:35:38.451] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:35:38.451] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:35:38.451] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[17:35:38.453] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:35:38.513] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[17:35:38.513] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:35:38.513] INFO  [life]   score=114.4
+[17:35:38.513] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:35:38.513] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:35:38.513] INFO  [life]   reason: same errand just now, easing off 12% (130.0 -> 114.4)
+[17:35:38.513] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 106s after achieving nothing
+[17:35:38.513] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:38.513] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 416s after achieving nothing
+[17:35:38.514] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:38.514] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:35:38.514] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[17:35:38.514] INFO  [life] potions: found a 'healer'
+[17:35:38.574] INFO  [life] potions: within reach
+[17:35:38.635] INFO  [life] potions: the shop is open
+[17:35:38.636] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:35:38.636] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:35:38.636] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[17:35:38.638] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:35:38.696] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[17:35:38.697] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:35:38.697] INFO  [life]   score=98.8
+[17:35:38.697] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:35:38.697] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:35:38.697] INFO  [life]   reason: same errand just now, easing off 24% (130.0 -> 98.8)
+[17:35:38.698] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 106s after achieving nothing
+[17:35:38.698] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:38.698] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 416s after achieving nothing
+[17:35:38.698] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:38.698] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:35:38.698] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[17:35:38.698] INFO  [life] potions: found a 'healer'
+[17:35:38.758] INFO  [life] potions: within reach
+[17:35:38.818] INFO  [life] potions: the shop is open
+[17:35:38.881] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:35:38.881] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:35:38.881] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[17:35:38.884] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:35:38.942] INFO  [life] goal=REPLACE_EQUIPMENT reason="no goal was running"
+[17:35:38.943] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:35:38.943] INFO  [life]   score=78.0
+[17:35:38.943] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:35:38.943] INFO  [life]   reason: potions=0 low=2 gold=0
+[17:35:38.943] INFO  [life]   reason: upkeep just now, easing off 40% (130.0 -> 78.0)
+[17:35:38.943] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 105s after achieving nothing
+[17:35:38.943] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:38.943] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 416s after achieving nothing
+[17:35:38.943] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:38.944] INFO  [life] plan=buy reason="none held, and it may be bought"
+[17:35:38.944] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[17:35:38.944] INFO  [life] potions: found a 'healer'
+[17:35:39.005] INFO  [life] potions: within reach
+[17:35:39.066] INFO  [life] potions: the shop is open
+[17:35:39.128] INFO  [life] potions: 0 gold with a floor of 50 cannot buy one heal potion at 30
+[17:35:39.128] INFO  [life] potions: none bought (0 gold with a floor of 50 cannot buy one heal potion at 30)
+[17:35:39.128] INFO  [life] goal_completed=REPLACE_EQUIPMENT progress=0
+[17:35:39.128] INFO  [life] goal_spinning=REPLACE_EQUIPMENT reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[17:35:39.130] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_12.aelia/state.json
+[17:35:39.192] INFO  [life] goal=PRACTICE_SKILL reason="no goal was running"
+[17:35:39.193] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:35:39.193] INFO  [life]   score=54.0
+[17:35:39.193] INFO  [life]   reason: NeedPractice urgency 0.45 x 120 = 54.0
+[17:35:39.193] INFO  [life]   reason: Magery 0.0 -> 25.0 mana=32 no_gain_region=0
+[17:35:39.193] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[17:35:39.193] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 105s after achieving nothing
+[17:35:39.193] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:39.193] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 415s after achieving nothing
+[17:35:39.193] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:39.194] INFO  [life] practice: no spellbook carried -- Magery cannot be practised until FILL_SPELLBOOK has bought one
+[17:35:39.254] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: no spellbook"
+[17:35:39.254] INFO  [life] needs considered: NeedSkillTraining(Tinkering BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedPractice(Magery 0.45) NeedBank(put unsold stock away 0.40) NeedGold(gold 0.30) NeedFood(food 0.25) NeedGold(sell surplus BLOCKED 0.17) NeedTrade(sell to a player BLOCKED 0.00) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[17:35:39.254] INFO  [life]   score=45.0
+[17:35:39.254] INFO  [life]   reason: NeedGold urgency 0.30 x 150 = 45.0
+[17:35:39.254] INFO  [life]   reason: gold=0 floor=100
+[17:35:39.255] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 59s after achieving nothing
+[17:35:39.255] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 105s after achieving nothing
+[17:35:39.255] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: this life needs a skill the character does not have at all (Tinkering 0.0 -> 50.0, gold 0 (fee is quoted on arrival, roughly 300))
+[17:35:39.255] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 415s after achieving nothing
+[17:35:39.255] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:39.255] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 239s after achieving nothing
+[17:35:39.329] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_12_Aelia] [chat ascii] System: Thane has departed from Lord British's Castle.

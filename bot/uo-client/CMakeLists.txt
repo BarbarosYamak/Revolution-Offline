@@ -53,6 +53,7 @@ set(UO_CLIENT_SOURCES
     src/net/Socket.cpp
     src/net/PacketStream.cpp
     src/net/Huffman.cpp
+    src/net/Cliloc.cpp
     src/builders/Builders.cpp
     # Pathfinding.cpp / Blacklist.cpp are compiled into uo_world (the
     # navgrid's edge pass runs the same A*), and uo_client links it --
@@ -81,8 +82,89 @@ set(UO_CLIENT_SOURCES
     src/travel/Journey.cpp
     src/travel/PersonalKnowledge.cpp
     src/travel/WarMode.cpp
-    src/lifecycle/CharacterRecord.cpp
-    src/lifecycle/ClientLife.cpp
+    # M4 -- the persistent-life layer. Protocol-free by construction (see
+    # include/uo/life.h), so the same objects the live bot runs are the ones
+    # m4_life exercises under ctest.
+    src/life/Json.cpp
+    src/life/Identity.cpp
+    # Creation-time appearance roll (docs/APPEARANCE_DESIGN.md layer 1).
+    # Pure function over an identity string; see tests/appearance.cpp.
+    src/life/Appearance.cpp
+    src/life/Memory.cpp
+    # One-time, atlas-scoped knowledge a freshly-created character begins
+    # with. This stays Client-free, but Runner invokes it during bootstrap.
+    src/life/NewbieKnowledge.cpp
+    src/life/Needs.cpp
+    # The need/handler contract: the one predicate both AssessNeeds and
+    # the Runner goal handlers ask before a need may score
+    # (docs/NEED_HANDLER_CONTRACT.md).
+    src/life/NeedGate.cpp
+    src/life/Goals.cpp
+    src/life/State.cpp
+    src/life/Orders.cpp
+    src/life/Professions.cpp
+    # The goal loop, one translation unit per goal family (split from the old
+    # 14.5k-line src/life/Runner.cpp by tools/split_runner.py -- pure text
+    # move, no logic change). RunnerInternal.h holds the shared tables and
+    # helpers; RunnerShared.cpp holds the four seeded-table accessors, whose
+    # function-local statics MUST have exactly one definition across the whole
+    # program or Configure() fills a table the goal handlers never read.
+    src/life/runner/RunnerShared.cpp
+    src/life/runner/Core.cpp
+    src/life/runner/Survive.cpp
+    src/life/runner/Gear.cpp
+    src/life/runner/Bank.cpp
+    src/life/runner/Economy.cpp
+    src/life/runner/Orders.cpp
+    src/life/runner/Gather.cpp
+    src/life/runner/Cloth.cpp
+    src/life/runner/Craft.cpp
+    src/life/runner/Social.cpp
+    src/progression/ClientSocial.cpp
+    src/life/runner/Train.cpp
+    src/life/runner/Tame.cpp
+    # M13/R1 -- the interaction layer. UNLIKE the files above this one
+    # talks to Client, so it is NOT in the protocol-free set the ctest
+    # targets link; see include/uo/vendor_errand.h for what it owns and
+    # why it exists. Making it testable means putting a VendorIo seam
+    # under it, which is the next step, not this one.
+    src/life/VendorErrand.cpp
+    # The interaction layer proper (docs/BOT_ARCHITECTURE.md sections 14,
+    # 17, 18). Client-free, so unlike VendorErrand.cpp above it IS in the
+    # testable set -- tests/interaction_progress.cpp links it directly.
+    src/life/interaction/Progress.cpp
+    src/life/interaction/Handshake.cpp
+    src/life/interaction/NpcRotation.cpp
+    src/life/interaction/BankErrand.cpp
+    # Activities (section 15). BuyPlan.cpp is split from Buy.cpp so the
+    # arithmetic links into ctest without dragging Client along.
+    src/life/activities/BuyPlan.cpp
+    src/life/activities/Buy.cpp
+    src/life/activities/AcquirePlan.cpp
+    src/life/activities/Acquire.cpp
+    src/life/activities/CraftPlan.cpp
+    src/life/activities/TrainPlan.cpp
+    # S3 -- the one responsibility taken out of DoCraft and DoTrainAtNpc:
+    # deciding, from the world rather than from a timer, whether the last
+    # swing made anything and whether the fee bought a lesson. Client-free,
+    # so tests/interaction_progress.cpp links them directly.
+    src/life/activities/CraftConfirm.cpp
+    src/life/activities/TrainConfirm.cpp
+    src/life/activities/GatherPlan.cpp
+    src/life/activities/RecoveryPlan.cpp
+    src/life/activities/HealPlan.cpp
+    src/life/activities/RestPlan.cpp
+    src/life/activities/EatPlan.cpp
+    src/life/activities/DisposalPlan.cpp
+    # Strategies (section 21): the one place archetypes differ by algorithm.
+    src/life/strategies/CombatStrategy.cpp
+    # M6 -- combat legality and threat. Same construction rule as the life
+    # layer: pure functions over what a player can see, so ctest runs the very
+    # objects the live bot runs.
+    src/combat/Targeting.cpp
+    # M7 -- surplus, shortfall, observed prices and the gold ledger.
+    src/economy/Market.cpp
+    src/economy/Faucets.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp
     src/render/Minimap.cpp
@@ -90,13 +172,25 @@ set(UO_CLIENT_SOURCES
     src/render/MiniFBWindow.cpp
 )
 
-add_executable(uo_client ${UO_CLIENT_SOURCES})
-target_include_directories(uo_client PRIVATE include src ${quickjs_SOURCE_DIR})
-target_link_libraries(uo_client PRIVATE uo_mul uo_world qjs)
+# --- uo_client_core: every client translation unit except the entry point ---
+# uo_client, uo_viewer and tests/life_harness all need the SAME objects: the
+# real Client, the real Runner, the real life layer. Compiling them once as an
+# OBJECT library (rather than listing the sources into each executable) keeps
+# one definition of every function-local static in the program -- the split
+# hazard RunnerShared.cpp's comment above warns about -- and stops the build
+# from compiling the whole client three times.
+set(UO_CLIENT_CORE_SOURCES ${UO_CLIENT_SOURCES})
+list(REMOVE_ITEM UO_CLIENT_CORE_SOURCES src/main.cpp)
 
+add_library(uo_client_core OBJECT ${UO_CLIENT_CORE_SOURCES})
+target_include_directories(uo_client_core PUBLIC include src ${quickjs_SOURCE_DIR})
+target_link_libraries(uo_client_core PUBLIC uo_mul uo_world qjs)
 if(WIN32)
-    target_link_libraries(uo_client PRIVATE ws2_32 user32 gdi32)
+    target_link_libraries(uo_client_core PUBLIC ws2_32 user32 gdi32)
 endif()
+
+add_executable(uo_client src/main.cpp)
+target_link_libraries(uo_client PRIVATE uo_client_core)
 
 # --- uo_viewer: the observer client (replaces ClassicUO) -----------------
 # Same session engine as uo_client -- it logs in through the very same
@@ -106,17 +200,8 @@ endif()
 # so an out-of-era graphic (0x3EB4, the unicorn-that-is-a-ship-prow that killed
 # ClassicUO) draws a placeholder instead of taking the process down.
 # See docs/OBSERVER_CLIENT.md.
-set(UO_VIEWER_SOURCES ${UO_CLIENT_SOURCES})
-list(REMOVE_ITEM UO_VIEWER_SOURCES src/main.cpp)
-list(APPEND UO_VIEWER_SOURCES src/viewer/ViewerMain.cpp)
-
-add_executable(uo_viewer ${UO_VIEWER_SOURCES})
-target_include_directories(uo_viewer PRIVATE include src ${quickjs_SOURCE_DIR})
-target_link_libraries(uo_viewer PRIVATE uo_mul uo_world qjs)
-
-if(WIN32)
-    target_link_libraries(uo_viewer PRIVATE ws2_32 user32 gdi32)
-endif()
+add_executable(uo_viewer src/viewer/ViewerMain.cpp)
+target_link_libraries(uo_viewer PRIVATE uo_client_core)
 
 # --- MUL static library (M2) -------------------------------------------
 set(UO_MUL_SOURCES
@@ -144,7 +229,17 @@ set(UO_WORLD_SOURCES
     src/world/Atlas.cpp
     src/world/NavGrid.cpp
     src/world/RoutePlanner.cpp
+    src/world/ServiceSelection.cpp
     src/world/SharedWorld.cpp
+    # Pure geometry over an atlas Region's own RECTs -- no world/MUL state --
+    # used by DoMine's first-visit deeper-advance (M-fix9). See
+    # tests/mine_advance.cpp for the real-atlas Minoc Mine 1 case.
+    src/world/MiningAdvance.cpp
+    # Same shape, opposite direction: step OUT of a guarded region's RECTs
+    # rather than deeper into one, for DoGatherLogs' no-lead fallback
+    # (M-fix11, owner: "if he left the guard zone at Britain he would see
+    # farmable trees"). See tests/guard_zone_advance.cpp.
+    src/world/GuardZoneAdvance.cpp
 )
 # NavGrid's edge pass runs the bot's own tile A*, so the world library carries
 # the pathfinder: what the router believes is crossable is measured with the

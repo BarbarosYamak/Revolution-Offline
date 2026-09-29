@@ -1,0 +1,1136 @@
+[02:20:43.203] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh05' char=Voris tag='v_Voris'
+[02:20:43.204] LOG   [v_Voris] event session_start: text log opened
+[02:20:43.204] LOG   [v_Voris] event net_connect_begin: connect 127.0.0.1:2593
+[02:20:43.204] INFO  [v_Voris] [net] connecting to 127.0.0.1:2593 ...
+[02:20:43.205] LOG   [v_Voris] event net_connected: connect 127.0.0.1:2593
+[02:20:43.206] INFO  [v_Voris] [net] connected.
+[02:20:43.206] INFO  [v_Voris] [seed] sent 0x7F000001 (plaintext)
+[02:20:43.206] LOG   [v_Voris] event seed_out: 0x7F000001 hex=7f000001
+[02:20:43.207] INFO  [life] loaded persistent state for Voris (13 places, 1 suppliers, 10 events, 9 prior sessions)
+[02:20:43.207] INFO  [life] needs: reading 'alchemist' from the profession catalogue
+[02:20:43.207] INFO  [life] build plan 'alchemist': 200.0 resolved + 450.0 unresolved = 650.0/700.0, stats 50/25/100 = 175
+[02:20:43.207] INFO  [v_Voris] [life] autonomous player active for 'Voris' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 14 min)
+[02:20:43.241] INFO  [v_Voris] [0xA8] 1 server(s):
+[02:20:43.241] INFO  [v_Voris]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[02:20:43.257] INFO  [v_Voris] [0x8C] game server = 127.0.0.1:2593  seed=0x3C5206B0
+[02:20:43.257] LOG   [v_Voris] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3C5206B0
+[02:20:43.257] INFO  [v_Voris] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[02:20:43.258] LOG   [v_Voris] event relay_same_socket: no seed re-sent; 0x91 follows
+[02:20:43.258] INFO  [v_Voris] [0xB9] server features = 0x0005
+[02:20:43.258] INFO  [v_Voris] [0xA9] 5 slot(s) (populated 1):
+[02:20:43.258] INFO  [v_Voris]   [0] Voris
+[02:20:43.258] INFO  [v_Voris]   [1] <empty>
+[02:20:43.258] INFO  [v_Voris]   [2] <empty>
+[02:20:43.258] INFO  [v_Voris]   [3] <empty>
+[02:20:43.259] INFO  [v_Voris]   [4] <empty>
+[02:20:43.259] INFO  [v_Voris] [ui] playing slot 0 ('Voris')
+[02:20:43.273] INFO  [v_Voris] [0x1B] serial=0x00014094 body=0x0190 pos=(1485,1550,30)
+[02:20:43.273] LOG   [v_Voris] event login_confirm: serial=0x00014094 body=0x0190 pos=(1485,1550,30)
+[02:20:43.273] INFO  [v_Voris] [0x20] player @(1485,1550,30) facing=4
+[02:20:43.273] INFO  [v_Voris] [0x55] login complete — entering world
+[02:20:43.273] LOG   [v_Voris] event in_world: 0x55 received
+[02:20:43.273] INFO  [v_Voris] [backpack] opening 0x40014088
+[02:20:43.274] INFO  [v_Voris] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[02:20:43.274] INFO  [v_Voris] [chat ascii] System: There is 1 other player here.
+[02:20:43.274] INFO  [v_Voris] [chat ascii] System: Last logged: 2026/08/30 02:19:23
+[02:20:43.274] INFO  [v_Voris] [chat ascii] System: You are under the protection of the city guards
+[02:20:43.278] INFO  [v_Voris] [action] requesting the skill list
+[02:20:43.278] INFO  [life] in world; asked the server for the skill list
+[02:20:43.278] INFO  [v_Voris] [0x24] open container 0x40014088 gump=60
+[02:20:43.278] INFO  [v_Voris] [0x3C] container contents: 10 item(s)
+[02:20:43.278] LOG   [v_Voris] event backpack_contents: serial=0x40014088 items=10
+[02:20:45.884] INFO  [v_Voris] [bot] world data loaded (0 blacklisted spot(s)).
+[02:20:45.884] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[02:20:45.885] INFO  [life]   gold         persisted=108        server=108        -> server value accepted
+[02:20:45.885] INFO  [life]   str          persisted=32         server=32         -> server value accepted
+[02:20:45.885] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[02:20:45.885] INFO  [life]   int          persisted=32         server=32         -> server value accepted
+[02:20:45.885] INFO  [life]   skill_0      persisted=50.0       server=50.0       -> server value accepted
+[02:20:45.885] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[02:20:45.885] INFO  [life]   skill_46     persisted=30.0       server=30.0       -> server value accepted
+[02:20:45.885] INFO  [life]   position     persisted=1485,1550  server=1485,1550  -> server value accepted
+[02:20:45.886] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[02:20:45.886] INFO  [life]   restored objective KEPT: CRAFT (progress 2)
+[02:20:45.886] INFO  [v_Voris] [survival] on
+[02:20:45.886] LOG   [v_Voris] event survival_mode: on
+[02:20:45.888] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:20:45.888] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:20:45.953] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:20:45.953] INFO  [v_Voris] [ACTION] use_object start
+[02:20:45.953] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:20:45.968] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:20:45.969] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:20:45.969] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:20:45.969] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:20:49.964] LOG   [v_Voris] event action_result: use_object timeout
+[02:20:50.024] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:20:50.025] INFO  [life] craft: chose '^Poison'
+[02:20:50.897] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:20:52.591] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:20:53.307] INFO  [life] craft: made one i_potion_poison (1 this sitting)
+[02:20:53.307] INFO  [life] craft: 1 i_potion_poison made -- repeating the other 2 with '.makelast 2' instead of walking the menu again
+[02:20:53.308] INFO  [v_Voris] [action] say: .makelast 2
+[02:20:53.308] INFO  [v_Voris] [chat uni  ] : Repeating Poison 2 time(s). Enter war mode to cancel.
+[02:20:55.869] INFO  [v_Voris] [chat uni  ] : Remaining: 1
+[02:20:55.870] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:20:55.914] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:20:56.342] INFO  [life] craft: made one i_potion_poison (2 this sitting)
+[02:20:56.343] INFO  [life] craft: 2 i_potion_poison made and the material is not finished -- carrying on
+[02:20:56.343] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:20:56.343] INFO  [v_Voris] [ACTION] use_object start
+[02:20:56.343] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:20:56.359] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:20:56.359] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:20:56.359] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:20:56.359] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:20:59.430] INFO  [v_Voris] [chat uni  ] : Make Last complete.
+[02:20:59.430] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:20:59.430] INFO  [life] goal_blocked=CRAFT reason="REFUSE_REQUIRED_FOR_PRODUCTION" i_potion_poison short of 1 x i_bottle_empty
+[02:20:59.477] INFO  [life] goal=BUY_SUPPLIES reason="previous goal abandoned: inputs are short"
+[02:20:59.478] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.35) NeedSpells(spells 0.35) NeedPractice(Meditation 0.30) NeedGear(gear 0.22)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:20:59.478] INFO  [life]   score=61.6
+[02:20:59.478] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[02:20:59.478] INFO  [life]   reason: i_potion_poison needs 5 x i_bottle_empty
+[02:20:59.478] INFO  [life] supplies: looking for a 'alchemist' to sell 5 i_bottle_empty (trip 1)
+[02:20:59.478] INFO  [v_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[02:20:59.479] LOG   [v_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[02:20:59.479] INFO  [v_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[02:20:59.479] LOG   [v_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[02:21:00.377] LOG   [v_Voris] event action_result: use_object timeout
+[02:21:00.928] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:01.530] INFO  [life] supplies: arrived at 1485,1550 -- asking who is here
+[02:21:01.531] INFO  [v_Voris] [action] scanning nearby mobiles for names
+[02:21:01.531] INFO  [v_Voris] [action] requested 5 paperdoll(s) for trade titles
+[02:21:01.546] INFO  [v_Voris] [mobiles] nearby (5):
+[02:21:01.547] INFO  [v_Voris]   Xanthe 0x00001211
+[02:21:01.547] INFO  [v_Voris]   Shunnar 0x0000E14F
+[02:21:01.547] INFO  [v_Voris]   Alenne 0x00001145
+[02:21:01.547] INFO  [v_Voris]   Caedmon 0x000012EE
+[02:21:01.547] INFO  [v_Voris]   Observer 0x0000063C
+[02:21:01.547] INFO  [v_Voris] [chat ascii] System: Targeting cancelled.
+[02:21:01.547] INFO  [v_Voris] [0x20] player @(1485,1550,30) facing=2
+[02:21:01.547] INFO  [v_Voris] [0x88] paperdoll 0x000012EE: "Caedmon, the mage guildmaster"
+[02:21:01.548] INFO  [v_Voris] [world] Caedmon, the mage guildmaster is a mage at (1488,1549)
+[02:21:01.548] INFO  [v_Voris] [0x20] player @(1485,1550,30) facing=4
+[02:21:01.548] INFO  [v_Voris] [0x88] paperdoll 0x00001211: "Xanthe, the alchemist"
+[02:21:01.548] INFO  [v_Voris] [world] Xanthe, the alchemist is a alchemist at (1485,1551)
+[02:21:01.548] INFO  [v_Voris] [0x20] player @(1485,1550,30) facing=3
+[02:21:01.548] INFO  [v_Voris] [0x88] paperdoll 0x00001145: "Alenne, the mage"
+[02:21:01.548] INFO  [v_Voris] [world] Alenne, the mage is a mage at (1487,1551)
+[02:21:01.548] INFO  [v_Voris] [0x20] player @(1485,1550,30) facing=7
+[02:21:01.549] INFO  [v_Voris] [0x88] paperdoll 0x0000E14F: "Shunnar, the scribe"
+[02:21:01.549] INFO  [v_Voris] [world] Shunnar, the scribe is a scribe at (1484,1549)
+[02:21:01.549] INFO  [v_Voris] [0x20] player @(1485,1550,30) facing=2
+[02:21:01.549] INFO  [v_Voris] [0x88] paperdoll 0x0000063C: "The Eminent Owner Observer, Grandmaster Bladeweaver"
+[02:21:04.076] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:21:04.076] INFO  [v_Voris] [VENDOR] open vendor=0x00001211 say='Xanthe buy'
+[02:21:04.077] INFO  [v_Voris] [chat uni  ] : Xanthe buy
+[02:21:04.077] INFO  [v_Voris] [chat ascii] Xanthe: I got lots to sell!
+[02:21:04.077] INFO  [v_Voris] [0x3C] container contents: 17 item(s)
+[02:21:04.077] INFO  [v_Voris] [0x74] pairing: straight (straight 14, mirrored 1 of 17 rows)
+[02:21:04.077] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[02:21:04.077] INFO  [v_Voris] [0x74]   Refresh                      gfx=0x0F0B qty=17   price=16
+[02:21:04.077] INFO  [v_Voris] [0x74]   Agility                      gfx=0x0F08 qty=11   price=23
+[02:21:04.078] INFO  [v_Voris] [0x74]   Nightsight                   gfx=0x0F06 qty=14   price=16
+[02:21:04.078] INFO  [v_Voris] [0x74]   Heal                         gfx=0x0F0C qty=5    price=30
+[02:21:04.078] INFO  [v_Voris] [0x74]   Strength                     gfx=0x0F09 qty=8    price=31
+[02:21:04.078] INFO  [v_Voris] [0x74]   Poison                       gfx=0x0F0A qty=5    price=26
+[02:21:04.078] INFO  [v_Voris] [0x74]   Cure                         gfx=0x0F07 qty=14   price=35
+[02:21:04.078] INFO  [v_Voris] [0x74]   mortar and pestle            gfx=0x0E9B qty=14   price=16
+[02:21:04.078] INFO  [v_Voris] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[02:21:04.078] INFO  [v_Voris] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[02:21:04.078] INFO  [v_Voris] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[02:21:04.079] INFO  [v_Voris] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[02:21:04.079] INFO  [v_Voris] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[02:21:04.079] INFO  [v_Voris] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[02:21:04.079] INFO  [v_Voris] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[02:21:04.079] INFO  [v_Voris] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[02:21:04.079] INFO  [v_Voris] [0x74]   empty bottles                gfx=0x0F0E qty=240  price=12
+[02:21:04.079] INFO  [v_Voris] [0x3C] container contents: 0 item(s)
+[02:21:04.079] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[02:21:04.079] INFO  [v_Voris] [VENDOR] offer from 0x00001211: 17 item(s)
+[02:21:04.080] INFO  [v_Voris] [VENDOR]   0x400103BB Refresh                x17  16 gp
+[02:21:04.080] INFO  [v_Voris] [VENDOR]   0x400103B9 Agility                x11  23 gp
+[02:21:04.080] INFO  [v_Voris] [VENDOR]   0x400103B8 Nightsight             x14  16 gp
+[02:21:04.080] INFO  [v_Voris] [VENDOR]   0x400103B5 Heal                   x5   30 gp
+[02:21:04.080] INFO  [v_Voris] [VENDOR]   0x400103B4 Strength               x8   31 gp
+[02:21:04.080] INFO  [v_Voris] [VENDOR]   0x400103B2 Poison                 x5   26 gp
+[02:21:04.080] INFO  [v_Voris] [VENDOR]   0x400101C1 Cure                   x14  35 gp
+[02:21:04.080] INFO  [v_Voris] [VENDOR]   0x400101BF mortar and pestle      x14  16 gp
+[02:21:04.080] LOG   [v_Voris] event vendor_offer: vendor=0x00001211 items=17
+[02:21:04.080] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (5ms) vendor offer received
+[02:21:04.081] LOG   [v_Voris] event action_result: vendor_buy success took=5ms vendor offer received
+[02:21:04.081] INFO  [v_Voris] [0x24] vendor buy gump for 0x00001211
+[02:21:05.962] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:06.576] INFO  [life] supplies: i_bottle_empty costs 12 each and only 8 of 108 gold is spendable -- waiting on GOLD, and there are 10 thing(s) in the pack to sell; standing down so that can happen
+[02:21:06.637] INFO  [life] goal=EARN_GOLD reason="previous goal abandoned: cannot afford the inputs yet"
+[02:21:06.637] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.35) NeedSpells(spells 0.35) NeedPractice(Meditation 0.30) NeedGear(gear 0.22)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:21:06.638] INFO  [life]   score=52.5
+[02:21:06.638] INFO  [life]   reason: NeedGold urgency 0.35 x 150 = 52.5
+[02:21:06.638] INFO  [life]   reason: 10 x i_potion_poison spare, a load is 20, buyer: an NPC
+[02:21:06.638] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 44s after achieving nothing
+[02:21:07.621] INFO  [life] earn_gold: asking the 'alchemist' what it buys
+[02:21:07.622] INFO  [v_Voris] [ACTION] vendor_sell start
+[02:21:07.622] INFO  [v_Voris] [VENDOR] open sell vendor=0x00001211 say='Xanthe sell'
+[02:21:07.623] INFO  [v_Voris] [chat uni  ] : Xanthe sell
+[02:21:07.623] INFO  [v_Voris] [chat ascii] Xanthe: I could take some supplies off thy hands. Give 'em to me for a once-over. And look around abit. Just say thou wants to buy somethin' and I'll see if I got it.
+[02:21:07.623] INFO  [v_Voris] [VENDOR] sell list from 0x00001211: 2 item(s)
+[02:21:07.623] INFO  [v_Voris] [VENDOR]   0x4000A53A Nightshade             x133 2 gp
+[02:21:07.623] INFO  [v_Voris] [VENDOR]   0x4000B2F9 Poison                 x10  20 gp
+[02:21:07.623] LOG   [v_Voris] event vendor_sell_list: vendor=0x00001211 items=2
+[02:21:07.623] INFO  [v_Voris] [ACTION_RESULT] vendor_sell success (2ms) vendor sell list received
+[02:21:07.623] LOG   [v_Voris] event action_result: vendor_sell success took=2ms vendor sell list received
+[02:21:10.147] INFO  [life] earn_gold: 'alchemist' offers 20 gold each for i_potion_poison; selling 10 in 1 lot(s)
+[02:21:10.147] INFO  [v_Voris] [ACTION] vendor_sell start
+[02:21:10.147] INFO  [v_Voris] [VENDOR] sell item=0x4000B2F9 qty=10 to vendor=0x00001211 gold=108
+[02:21:10.161] INFO  [v_Voris] [chat ascii] Xanthe: Here you are, 200 gold coins. I thank thee for thy business.
+[02:21:10.162] INFO  [v_Voris] [0x3B] vendor transaction closed: vendor=0x00001211 flag=0
+[02:21:10.254] INFO  [v_Voris] [ACTION_RESULT] vendor_sell success (106ms) gold 108 -> 308
+[02:21:10.254] LOG   [v_Voris] event action_result: vendor_sell success took=106ms gold 108 -> 308
+[02:21:11.015] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:13.160] INFO  [life] earn_gold: sold 10 i_potion_poison for 200 gold (20 each) to a 'alchemist'
+[02:21:13.163] INFO  [life] checkpoint (sold to a vendor) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:21:13.163] INFO  [life] goal_completed=EARN_GOLD progress=1
+[02:21:13.165] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:21:13.222] INFO  [life] goal=FILL_SPELLBOOK reason="no goal was running"
+[02:21:13.223] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedSpells(spells 0.35) NeedPractice(Meditation 0.30) NeedGear(gear 0.22)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:21:13.223] INFO  [life]   score=38.5
+[02:21:13.223] INFO  [life]   reason: NeedSpells urgency 0.35 x 110 = 38.5
+[02:21:13.223] INFO  [life]   reason: spells 0/24 book=carried magery 50.0 gold 308 reserve 600 spare -292 wealth 0.00
+[02:21:13.223] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 38s after achieving nothing
+[02:21:13.223] INFO  [life] spellbook: opening the book to see what is already in it
+[02:21:13.224] INFO  [v_Voris] [ACTION] use_object start
+[02:21:13.224] INFO  [v_Voris] [ACTION] use_object serial=0x40013F71
+[02:21:13.224] INFO  [v_Voris] [0x3C] container contents: 14 item(s)
+[02:21:13.224] INFO  [v_Voris] [ACTION_RESULT] use_object success (1ms) contents received
+[02:21:13.224] LOG   [v_Voris] event action_result: use_object success took=1ms contents received
+[02:21:15.751] INFO  [life] FILL_SPELLBOOK: asking the scribe to show a spell this book lacks
+[02:21:15.751] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:21:15.751] INFO  [v_Voris] [VENDOR] open vendor=0x0000E14F say='Shunnar buy'
+[02:21:15.752] INFO  [v_Voris] [chat uni  ] : Shunnar buy
+[02:21:15.752] INFO  [v_Voris] [chat ascii] Xanthe: I got lots to sell!
+[02:21:15.752] INFO  [v_Voris] [0x3C] container contents: 17 item(s)
+[02:21:15.753] INFO  [v_Voris] [0x74] pairing: straight (straight 14, mirrored 1 of 17 rows)
+[02:21:15.753] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[02:21:15.753] INFO  [v_Voris] [0x74]   Refresh                      gfx=0x0F0B qty=17   price=16
+[02:21:15.753] INFO  [v_Voris] [0x74]   Agility                      gfx=0x0F08 qty=11   price=23
+[02:21:15.753] INFO  [v_Voris] [0x74]   Nightsight                   gfx=0x0F06 qty=14   price=16
+[02:21:15.753] INFO  [v_Voris] [0x74]   Heal                         gfx=0x0F0C qty=5    price=30
+[02:21:15.754] INFO  [v_Voris] [0x74]   Strength                     gfx=0x0F09 qty=8    price=31
+[02:21:15.754] INFO  [v_Voris] [0x74]   Poison                       gfx=0x0F0A qty=5    price=26
+[02:21:15.754] INFO  [v_Voris] [0x74]   Cure                         gfx=0x0F07 qty=14   price=35
+[02:21:15.754] INFO  [v_Voris] [0x74]   mortar and pestle            gfx=0x0E9B qty=14   price=16
+[02:21:15.754] INFO  [v_Voris] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[02:21:15.754] INFO  [v_Voris] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[02:21:15.754] INFO  [v_Voris] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[02:21:15.754] INFO  [v_Voris] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[02:21:15.755] INFO  [v_Voris] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[02:21:15.755] INFO  [v_Voris] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[02:21:15.755] INFO  [v_Voris] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[02:21:15.755] INFO  [v_Voris] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[02:21:15.755] INFO  [v_Voris] [0x74]   empty bottles                gfx=0x0F0E qty=240  price=12
+[02:21:15.755] INFO  [v_Voris] [0x3C] container contents: 0 item(s)
+[02:21:15.755] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[02:21:15.755] INFO  [v_Voris] [VENDOR] offer from 0x00001211: 17 item(s)
+[02:21:15.756] INFO  [v_Voris] [VENDOR]   0x400103BB Refresh                x17  16 gp
+[02:21:15.756] INFO  [v_Voris] [VENDOR]   0x400103B9 Agility                x11  23 gp
+[02:21:15.756] INFO  [v_Voris] [VENDOR]   0x400103B8 Nightsight             x14  16 gp
+[02:21:15.756] INFO  [v_Voris] [VENDOR]   0x400103B5 Heal                   x5   30 gp
+[02:21:15.756] INFO  [v_Voris] [VENDOR]   0x400103B4 Strength               x8   31 gp
+[02:21:15.756] INFO  [v_Voris] [VENDOR]   0x400103B2 Poison                 x5   26 gp
+[02:21:15.756] INFO  [v_Voris] [VENDOR]   0x400101C1 Cure                   x14  35 gp
+[02:21:15.756] INFO  [v_Voris] [VENDOR]   0x400101BF mortar and pestle      x14  16 gp
+[02:21:15.756] LOG   [v_Voris] event vendor_offer: vendor=0x00001211 items=17
+[02:21:15.757] INFO  [v_Voris] [VENDOR] offer from 0x00001211 is not the vendor we asked (0x0000E14F); still waiting
+[02:21:15.757] INFO  [v_Voris] [0x24] vendor buy gump for 0x00001211
+[02:21:16.058] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:21.083] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:23.781] LOG   [v_Voris] event action_result: vendor_buy timeout
+[02:21:24.759] INFO  [life] FILL_SPELLBOOK: asking the scribe to show a spell this book lacks
+[02:21:24.759] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:21:24.759] INFO  [v_Voris] [VENDOR] open vendor=0x0000E14F say='Shunnar buy'
+[02:21:24.760] INFO  [v_Voris] [chat uni  ] : Shunnar buy
+[02:21:24.760] INFO  [v_Voris] [chat ascii] Xanthe: I got lots to sell!
+[02:21:24.760] INFO  [v_Voris] [0x3C] container contents: 17 item(s)
+[02:21:24.760] INFO  [v_Voris] [0x74] pairing: straight (straight 14, mirrored 1 of 17 rows)
+[02:21:24.761] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[02:21:24.761] INFO  [v_Voris] [0x74]   Refresh                      gfx=0x0F0B qty=17   price=16
+[02:21:24.761] INFO  [v_Voris] [0x74]   Agility                      gfx=0x0F08 qty=11   price=23
+[02:21:24.761] INFO  [v_Voris] [0x74]   Nightsight                   gfx=0x0F06 qty=14   price=16
+[02:21:24.761] INFO  [v_Voris] [0x74]   Heal                         gfx=0x0F0C qty=5    price=30
+[02:21:24.761] INFO  [v_Voris] [0x74]   Strength                     gfx=0x0F09 qty=8    price=31
+[02:21:24.761] INFO  [v_Voris] [0x74]   Poison                       gfx=0x0F0A qty=5    price=26
+[02:21:24.761] INFO  [v_Voris] [0x74]   Cure                         gfx=0x0F07 qty=14   price=35
+[02:21:24.762] INFO  [v_Voris] [0x74]   mortar and pestle            gfx=0x0E9B qty=14   price=16
+[02:21:24.762] INFO  [v_Voris] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[02:21:24.762] INFO  [v_Voris] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[02:21:24.762] INFO  [v_Voris] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[02:21:24.762] INFO  [v_Voris] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[02:21:24.762] INFO  [v_Voris] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[02:21:24.762] INFO  [v_Voris] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[02:21:24.763] INFO  [v_Voris] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[02:21:24.763] INFO  [v_Voris] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[02:21:24.763] INFO  [v_Voris] [0x74]   empty bottles                gfx=0x0F0E qty=240  price=12
+[02:21:24.763] INFO  [v_Voris] [0x3C] container contents: 0 item(s)
+[02:21:24.763] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[02:21:24.763] INFO  [v_Voris] [VENDOR] offer from 0x00001211: 17 item(s)
+[02:21:24.763] INFO  [v_Voris] [VENDOR]   0x400103BB Refresh                x17  16 gp
+[02:21:24.763] INFO  [v_Voris] [VENDOR]   0x400103B9 Agility                x11  23 gp
+[02:21:24.763] INFO  [v_Voris] [VENDOR]   0x400103B8 Nightsight             x14  16 gp
+[02:21:24.764] INFO  [v_Voris] [VENDOR]   0x400103B5 Heal                   x5   30 gp
+[02:21:24.764] INFO  [v_Voris] [VENDOR]   0x400103B4 Strength               x8   31 gp
+[02:21:24.764] INFO  [v_Voris] [VENDOR]   0x400103B2 Poison                 x5   26 gp
+[02:21:24.764] INFO  [v_Voris] [VENDOR]   0x400101C1 Cure                   x14  35 gp
+[02:21:24.764] INFO  [v_Voris] [VENDOR]   0x400101BF mortar and pestle      x14  16 gp
+[02:21:24.764] LOG   [v_Voris] event vendor_offer: vendor=0x00001211 items=17
+[02:21:24.764] INFO  [v_Voris] [VENDOR] offer from 0x00001211 is not the vendor we asked (0x0000E14F); still waiting
+[02:21:24.764] INFO  [v_Voris] [0x24] vendor buy gump for 0x00001211
+[02:21:26.126] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:31.133] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:32.761] LOG   [v_Voris] event action_result: vendor_buy timeout
+[02:21:33.223] INFO  [life] goal_changed=PRACTICE_SKILL from=FILL_SPELLBOOK reason="PRACTICE_SKILL 36.0 superseded FILL_SPELLBOOK 22.5"
+[02:21:33.223] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:21:33.224] INFO  [life]   score=36.0
+[02:21:33.224] INFO  [life]   reason: NeedPractice urgency 0.30 x 120 = 36.0
+[02:21:33.224] INFO  [life]   reason: Meditation 30.0 -> 50.0 mana=32 no_gain_region=0
+[02:21:33.224] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 18s after achieving nothing
+[02:21:33.775] INFO  [life] practice: using Meditation to raise it (30.0)
+[02:21:33.775] INFO  [v_Voris] [ACTION] use_skill start
+[02:21:33.776] INFO  [v_Voris] [ACTION] use_skill id=46 target=0x00000000
+[02:21:33.776] INFO  [v_Voris] [chat ascii] System: You are at peace.
+[02:21:33.776] INFO  [v_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[02:21:33.776] LOG   [v_Voris] event action_result: use_skill success took=1ms You are at peace.
+[02:21:36.136] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:41.176] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:45.813] INFO  [life] practice: using Meditation to raise it (30.0)
+[02:21:45.814] INFO  [v_Voris] [ACTION] use_skill start
+[02:21:45.814] INFO  [v_Voris] [ACTION] use_skill id=46 target=0x00000000
+[02:21:45.814] INFO  [v_Voris] [chat ascii] System: You are at peace.
+[02:21:45.814] INFO  [v_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[02:21:45.814] LOG   [v_Voris] event action_result: use_skill success took=0ms You are at peace.
+[02:21:46.180] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:51.206] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:53.226] INFO  [life] goal_changed=BUY_SUPPLIES from=PRACTICE_SKILL reason="BUY_SUPPLIES 61.6 superseded PRACTICE_SKILL 36.0"
+[02:21:53.226] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:21:53.227] INFO  [life]   score=61.6
+[02:21:53.227] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[02:21:53.227] INFO  [life]   reason: i_potion_poison needs 5 x i_bottle_empty
+[02:21:56.250] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:21:57.822] INFO  [life] supplies: buying 5 i_bottle_empty at 12 each from 'empty bottles'
+[02:21:57.822] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:21:57.822] INFO  [v_Voris] [policy] allowed NPC purchase of i_bottle_empty (0x0F0E): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[02:21:57.823] INFO  [v_Voris] [VENDOR] buy item=0x4000F880 qty=5 from vendor=0x00001211 gold=308
+[02:21:57.823] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[02:21:57.823] LOG   [v_Voris] event action_result: vendor_buy success took=1ms purchased item delivered
+[02:21:57.823] INFO  [v_Voris] [chat ascii] Xanthe: Here you are, Voris That will be 60 gold coins.  I thank thee for thy business.
+[02:21:57.823] INFO  [v_Voris] [0x3B] vendor transaction closed: vendor=0x00001211 flag=0
+[02:22:01.269] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:06.279] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:06.830] INFO  [life] supplies: the server took 60 gold for i_bottle_empty (purse 308 -> 248)
+[02:22:06.831] INFO  [life] supplies: nothing short after all
+[02:22:06.831] INFO  [life] goal_completed=BUY_SUPPLIES progress=1
+[02:22:06.833] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:22:06.891] INFO  [life] goal=CRAFT reason="no goal was running"
+[02:22:06.892] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:22:06.892] INFO  [life]   score=65.0
+[02:22:06.892] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[02:22:06.892] INFO  [life]   reason: i_potion_poison: every input is in the pack
+[02:22:06.892] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:22:06.892] INFO  [life] craft: chose '^Poison'
+[02:22:06.893] INFO  [v_Voris] [chat ascii] System: Unexpected menu info.
+[02:22:11.289] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:15.158] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:22:15.159] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:22:15.159] INFO  [v_Voris] [ACTION] use_object start
+[02:22:15.159] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:22:15.160] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:22:15.160] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:22:15.160] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:22:15.160] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:22:16.323] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:19.216] LOG   [v_Voris] event action_result: use_object timeout
+[02:22:19.277] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:22:19.277] INFO  [life] craft: chose '^Poison'
+[02:22:21.343] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:21.786] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:22:26.376] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:27.660] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:22:27.661] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:22:27.661] INFO  [v_Voris] [ACTION] use_object start
+[02:22:27.661] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:22:27.662] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:22:27.662] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:22:27.662] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:22:27.662] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:22:31.379] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:31.689] LOG   [v_Voris] event action_result: use_object timeout
+[02:22:31.751] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:22:31.751] INFO  [life] craft: chose '^Poison'
+[02:22:34.029] INFO  [v_Voris] [chat ascii] Xanthe: Nice speaking to you Voris
+[02:22:34.258] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:22:36.441] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:40.074] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:22:40.075] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:22:40.075] INFO  [v_Voris] [ACTION] use_object start
+[02:22:40.075] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:22:40.090] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:22:40.090] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:22:40.091] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:22:40.091] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:22:41.468] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:44.136] LOG   [v_Voris] event action_result: use_object timeout
+[02:22:44.197] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:22:44.197] INFO  [life] craft: chose '^Poison'
+[02:22:46.499] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:46.759] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:22:51.541] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:52.478] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:22:52.478] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:22:52.479] INFO  [v_Voris] [ACTION] use_object start
+[02:22:52.479] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:22:52.495] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:22:52.495] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:22:52.495] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:22:52.495] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:22:56.496] LOG   [v_Voris] event action_result: use_object timeout
+[02:22:56.558] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:22:56.558] INFO  [life] craft: chose '^Poison'
+[02:22:56.558] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:22:59.095] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:23:01.591] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:04.812] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:23:04.812] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:23:04.813] INFO  [v_Voris] [ACTION] use_object start
+[02:23:04.813] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:23:04.814] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:23:04.814] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:23:04.814] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:23:04.814] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:23:06.609] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:06.857] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:23:08.847] LOG   [v_Voris] event action_result: use_object timeout
+[02:23:08.908] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:23:08.909] INFO  [life] craft: chose '^Poison'
+[02:23:11.442] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:23:11.443] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 61.6 superseded CRAFT 0.0"
+[02:23:11.443] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedPractice(Meditation 0.30) NeedGold(sell surplus 0.25) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:23:11.443] INFO  [life]   score=61.6
+[02:23:11.443] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[02:23:11.443] INFO  [life]   reason: i_potion_poison needs 5 x i_bottle_empty
+[02:23:11.628] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:12.118] INFO  [v_Voris] [travel] mobile 0x00001211 -> (1485,1547) r=1 from (1485,1550)
+[02:23:12.119] LOG   [v_Voris] event travel_start: label='mobile 0x00001211' target=(1485,1547) radius=1 from=(1485,1550)
+[02:23:12.119] INFO  [v_Voris] [travel] mode walk             usable   <- chosen
+[02:23:12.119] INFO  [v_Voris] [travel] mode moongate         usable
+[02:23:12.119] INFO  [v_Voris] [travel] mode loose_rune_recall no: no rune marked at that destination
+[02:23:12.119] INFO  [v_Voris] [travel] mode runebook_recall  no: no runebook page for that destination
+[02:23:12.120] LOG   [v_Voris] event travel_mode: walk
+[02:23:12.120] INFO  [v_Voris] [travel] plan mobile 0x00001211: ok legs=1 ~3 tiles transit=0 nodes=0
+[02:23:12.181] INFO  [v_Voris] [action] goto (1485,1547) from (1485,1550,30)
+[02:23:12.182] LOG   [v_Voris] event goto_start: target=(1485,1547) from=(1485,1550)
+[02:23:12.182] INFO  [v_Voris] [bot] running from (1485,1550,30) to (1485,1547,z42)
+[02:23:12.182] INFO  [v_Voris] [bot] planning path to (1485,1547) in background
+[02:23:13.288] INFO  [v_Voris] [action] goto finished at (1485,1550,30); target (1485,1547); stopped short (off by 3 tile(s))
+[02:23:13.289] LOG   [v_Voris] event goto_done: at=(1485,1550) target=(1485,1547) arrived=0 off=3
+[02:23:14.496] INFO  [v_Voris] [travel] mode walk             usable   <- chosen
+[02:23:14.497] INFO  [v_Voris] [travel] mode moongate         usable
+[02:23:14.497] INFO  [v_Voris] [travel] mode loose_rune_recall no: no rune marked at that destination
+[02:23:14.497] INFO  [v_Voris] [travel] mode runebook_recall  no: no runebook page for that destination
+[02:23:14.497] LOG   [v_Voris] event travel_mode: walk
+[02:23:14.497] INFO  [v_Voris] [travel] plan mobile 0x00001211: ok legs=1 ~3 tiles transit=0 nodes=0
+[02:23:16.029] INFO  [v_Voris] [action] goto (1485,1547) from (1485,1550,30)
+[02:23:16.030] LOG   [v_Voris] event goto_start: target=(1485,1547) from=(1485,1550)
+[02:23:16.030] INFO  [v_Voris] [bot] running from (1485,1550,30) to (1485,1547,z42)
+[02:23:16.030] INFO  [v_Voris] [bot] planning path to (1485,1547) in background
+[02:23:16.030] INFO  [v_Voris] [bot] replan to (1485,1547): 3 steps in 53.5us
+[02:23:16.674] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:16.903] INFO  [v_Voris] [travel] mobile 0x00001211 ARRIVED at (1485,1548,40)
+[02:23:16.904] LOG   [v_Voris] event travel_done: label='mobile 0x00001211' ok=1 at=(1485,1548) legs=1 plans=2 why=''
+[02:23:16.965] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:23:16.965] INFO  [v_Voris] [VENDOR] open vendor=0x00001211 say='Xanthe buy'
+[02:23:16.966] INFO  [v_Voris] [chat uni  ] : Xanthe buy
+[02:23:16.966] INFO  [v_Voris] [chat ascii] Xanthe: Thou surely wants all the things that I can sell thee.
+[02:23:16.967] INFO  [v_Voris] [0x3C] container contents: 17 item(s)
+[02:23:16.967] INFO  [v_Voris] [0x74] pairing: straight (straight 14, mirrored 1 of 17 rows)
+[02:23:16.967] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[02:23:16.967] INFO  [v_Voris] [0x74]   Refresh                      gfx=0x0F0B qty=17   price=16
+[02:23:16.967] INFO  [v_Voris] [0x74]   Agility                      gfx=0x0F08 qty=11   price=23
+[02:23:16.967] INFO  [v_Voris] [0x74]   Nightsight                   gfx=0x0F06 qty=14   price=16
+[02:23:16.967] INFO  [v_Voris] [0x74]   Heal                         gfx=0x0F0C qty=5    price=30
+[02:23:16.968] INFO  [v_Voris] [0x74]   Strength                     gfx=0x0F09 qty=8    price=31
+[02:23:16.968] INFO  [v_Voris] [0x74]   Poison                       gfx=0x0F0A qty=5    price=26
+[02:23:16.968] INFO  [v_Voris] [0x74]   Cure                         gfx=0x0F07 qty=14   price=35
+[02:23:16.968] INFO  [v_Voris] [0x74]   mortar and pestle            gfx=0x0E9B qty=14   price=16
+[02:23:16.968] INFO  [v_Voris] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[02:23:16.968] INFO  [v_Voris] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[02:23:16.968] INFO  [v_Voris] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[02:23:16.968] INFO  [v_Voris] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[02:23:16.969] INFO  [v_Voris] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[02:23:16.969] INFO  [v_Voris] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[02:23:16.969] INFO  [v_Voris] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[02:23:16.969] INFO  [v_Voris] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[02:23:16.969] INFO  [v_Voris] [0x74]   empty bottles                gfx=0x0F0E qty=235  price=12
+[02:23:16.969] INFO  [v_Voris] [0x3C] container contents: 0 item(s)
+[02:23:16.969] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[02:23:16.969] INFO  [v_Voris] [VENDOR] offer from 0x00001211: 17 item(s)
+[02:23:16.969] INFO  [v_Voris] [VENDOR]   0x400103BB Refresh                x17  16 gp
+[02:23:16.970] INFO  [v_Voris] [VENDOR]   0x400103B9 Agility                x11  23 gp
+[02:23:16.970] INFO  [v_Voris] [VENDOR]   0x400103B8 Nightsight             x14  16 gp
+[02:23:16.970] INFO  [v_Voris] [VENDOR]   0x400103B5 Heal                   x5   30 gp
+[02:23:16.970] INFO  [v_Voris] [VENDOR]   0x400103B4 Strength               x8   31 gp
+[02:23:16.970] INFO  [v_Voris] [VENDOR]   0x400103B2 Poison                 x5   26 gp
+[02:23:16.970] INFO  [v_Voris] [VENDOR]   0x400101C1 Cure                   x14  35 gp
+[02:23:16.970] INFO  [v_Voris] [VENDOR]   0x400101BF mortar and pestle      x14  16 gp
+[02:23:16.970] LOG   [v_Voris] event vendor_offer: vendor=0x00001211 items=17
+[02:23:16.971] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (5ms) vendor offer received
+[02:23:16.971] LOG   [v_Voris] event action_result: vendor_buy success took=5ms vendor offer received
+[02:23:16.971] INFO  [v_Voris] [0x24] vendor buy gump for 0x00001211
+[02:23:16.981] INFO  [v_Voris] [bot] arrived at (1485,1547,45)
+[02:23:19.516] INFO  [life] supplies: buying 5 i_bottle_empty at 12 each from 'empty bottles'
+[02:23:19.516] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:23:19.517] INFO  [v_Voris] [policy] allowed NPC purchase of i_bottle_empty (0x0F0E): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[02:23:19.517] INFO  [v_Voris] [VENDOR] buy item=0x4000F880 qty=5 from vendor=0x00001211 gold=248
+[02:23:19.531] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[02:23:19.532] LOG   [v_Voris] event action_result: vendor_buy success took=15ms purchased item delivered
+[02:23:19.532] INFO  [v_Voris] [chat ascii] Xanthe: Here you are, Voris That will be 60 gold coins.  I thank thee for thy business.
+[02:23:19.532] INFO  [v_Voris] [0x3B] vendor transaction closed: vendor=0x00001211 flag=0
+[02:23:20.774] INFO  [v_Voris] [chat ascii] System: World save in 10 seconds
+[02:23:21.690] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:26.749] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:28.528] INFO  [life] supplies: the server took 60 gold for i_bottle_empty (purse 248 -> 188)
+[02:23:28.528] INFO  [life] supplies: nothing short after all
+[02:23:28.528] INFO  [life] goal_completed=BUY_SUPPLIES progress=1
+[02:23:28.531] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:23:28.589] INFO  [life] goal=CRAFT reason="no goal was running"
+[02:23:28.590] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedPractice(Meditation 0.30) NeedGold(sell surplus 0.25) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:23:28.590] INFO  [life]   score=52.0
+[02:23:28.590] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[02:23:28.590] INFO  [life]   reason: i_potion_poison: every input is in the pack
+[02:23:28.590] INFO  [life]   reason: work just now, easing off 20% (65.0 -> 52.0)
+[02:23:28.590] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:23:28.591] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:23:28.591] INFO  [v_Voris] [ACTION] use_object start
+[02:23:28.591] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:23:28.592] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:23:28.592] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:23:28.592] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:23:28.592] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:23:30.799] INFO  [v_Voris] [chat ascii] System: World save has been initiated.
+[02:23:31.771] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:32.604] LOG   [v_Voris] event action_result: use_object timeout
+[02:23:32.635] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:23:32.635] INFO  [life] craft: chose '^Poison'
+[02:23:35.153] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:23:36.804] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:40.976] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:23:40.976] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:23:40.976] INFO  [v_Voris] [ACTION] use_object start
+[02:23:40.977] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:23:40.977] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:23:40.978] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:23:40.978] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:23:40.978] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:23:41.847] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:45.006] LOG   [v_Voris] event action_result: use_object timeout
+[02:23:45.067] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:23:45.067] INFO  [life] craft: chose '^Poison'
+[02:23:46.860] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:47.612] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:23:51.876] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:53.469] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:23:53.470] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:23:53.470] INFO  [v_Voris] [ACTION] use_object start
+[02:23:53.470] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:23:53.485] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:23:53.485] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:23:53.485] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:23:53.485] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:23:56.902] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:23:57.486] LOG   [v_Voris] event action_result: use_object timeout
+[02:23:57.546] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:23:57.547] INFO  [life] craft: chose '^Poison'
+[02:24:00.054] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:24:01.933] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:05.849] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:24:05.850] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:24:05.850] INFO  [v_Voris] [ACTION] use_object start
+[02:24:05.850] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:24:05.850] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:24:05.851] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:24:05.851] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:24:05.851] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:24:06.955] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:09.874] LOG   [v_Voris] event action_result: use_object timeout
+[02:24:09.935] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:24:09.936] INFO  [life] craft: chose '^Poison'
+[02:24:11.959] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:12.467] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:24:16.972] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:18.329] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:24:18.329] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:24:18.329] INFO  [v_Voris] [ACTION] use_object start
+[02:24:18.329] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:24:18.346] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:24:18.346] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:24:18.346] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:24:18.346] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:24:21.981] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:22.383] LOG   [v_Voris] event action_result: use_object timeout
+[02:24:22.442] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:24:22.443] INFO  [life] craft: chose '^Poison'
+[02:24:24.982] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:24:24.982] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 53.1 superseded CRAFT 0.0"
+[02:24:24.983] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.35) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:24:24.983] INFO  [life]   score=53.1
+[02:24:24.983] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[02:24:24.983] INFO  [life]   reason: i_potion_poison needs 5 x i_bottle_empty
+[02:24:24.983] INFO  [life]   reason: work just now, easing off 14% (61.6 -> 53.1)
+[02:24:25.657] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:24:25.657] INFO  [v_Voris] [VENDOR] open vendor=0x00001211 say='Xanthe buy'
+[02:24:25.658] INFO  [v_Voris] [chat uni  ] : Xanthe buy
+[02:24:25.658] INFO  [v_Voris] [chat ascii] Xanthe: What's thou need?
+[02:24:25.659] INFO  [v_Voris] [chat ascii] Xanthe: Thou surely wants all the things that I can sell thee.
+[02:24:25.659] INFO  [v_Voris] [0x3C] container contents: 17 item(s)
+[02:24:25.659] INFO  [v_Voris] [0x74] pairing: straight (straight 14, mirrored 1 of 17 rows)
+[02:24:25.659] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[02:24:25.659] INFO  [v_Voris] [0x74]   Refresh                      gfx=0x0F0B qty=5    price=16
+[02:24:25.659] INFO  [v_Voris] [0x74]   Agility                      gfx=0x0F08 qty=8    price=23
+[02:24:25.659] INFO  [v_Voris] [0x74]   Nightsight                   gfx=0x0F06 qty=17   price=16
+[02:24:25.659] INFO  [v_Voris] [0x74]   Heal                         gfx=0x0F0C qty=6    price=30
+[02:24:25.659] INFO  [v_Voris] [0x74]   Strength                     gfx=0x0F09 qty=7    price=31
+[02:24:25.660] INFO  [v_Voris] [0x74]   Poison                       gfx=0x0F0A qty=18   price=26
+[02:24:25.660] INFO  [v_Voris] [0x74]   Cure                         gfx=0x0F07 qty=16   price=35
+[02:24:25.660] INFO  [v_Voris] [0x74]   mortar and pestle            gfx=0x0E9B qty=17   price=16
+[02:24:25.660] INFO  [v_Voris] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[02:24:25.660] INFO  [v_Voris] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[02:24:25.660] INFO  [v_Voris] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[02:24:25.660] INFO  [v_Voris] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[02:24:25.660] INFO  [v_Voris] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[02:24:25.660] INFO  [v_Voris] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[02:24:25.661] INFO  [v_Voris] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[02:24:25.661] INFO  [v_Voris] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[02:24:25.661] INFO  [v_Voris] [0x74]   empty bottles                gfx=0x0F0E qty=250  price=12
+[02:24:25.661] INFO  [v_Voris] [0x3C] container contents: 0 item(s)
+[02:24:25.661] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[02:24:25.661] INFO  [v_Voris] [VENDOR] offer from 0x00001211: 17 item(s)
+[02:24:25.661] INFO  [v_Voris] [VENDOR]   0x4000A918 Refresh                x5   16 gp
+[02:24:25.661] INFO  [v_Voris] [VENDOR]   0x4000A6F6 Agility                x8   23 gp
+[02:24:25.661] INFO  [v_Voris] [VENDOR]   0x4000A6F5 Nightsight             x17  16 gp
+[02:24:25.662] INFO  [v_Voris] [VENDOR]   0x4000A6ED Heal                   x6   30 gp
+[02:24:25.662] INFO  [v_Voris] [VENDOR]   0x4000A5C8 Strength               x7   31 gp
+[02:24:25.662] INFO  [v_Voris] [VENDOR]   0x4000A587 Poison                 x18  26 gp
+[02:24:25.662] INFO  [v_Voris] [VENDOR]   0x4000A57C Cure                   x16  35 gp
+[02:24:25.662] INFO  [v_Voris] [VENDOR]   0x4000A55C mortar and pestle      x17  16 gp
+[02:24:25.662] LOG   [v_Voris] event vendor_offer: vendor=0x00001211 items=17
+[02:24:25.662] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (6ms) vendor offer received
+[02:24:25.662] LOG   [v_Voris] event action_result: vendor_buy success took=6ms vendor offer received
+[02:24:25.662] INFO  [v_Voris] [0x24] vendor buy gump for 0x00001211
+[02:24:27.034] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:28.198] INFO  [life] supplies: buying 5 i_bottle_empty at 12 each from 'empty bottles'
+[02:24:28.198] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:24:28.198] INFO  [v_Voris] [policy] allowed NPC purchase of i_bottle_empty (0x0F0E): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[02:24:28.199] INFO  [v_Voris] [VENDOR] buy item=0x4000A359 qty=5 from vendor=0x00001211 gold=188
+[02:24:28.213] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[02:24:28.213] LOG   [v_Voris] event action_result: vendor_buy success took=15ms purchased item delivered
+[02:24:28.214] INFO  [v_Voris] [chat ascii] Xanthe: Here you are, Voris That will be 60 gold coins.  I thank thee for thy business.
+[02:24:28.214] INFO  [v_Voris] [0x3B] vendor transaction closed: vendor=0x00001211 flag=0
+[02:24:28.566] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:24:32.045] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:37.085] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:37.208] INFO  [life] supplies: the server took 60 gold for i_bottle_empty (purse 188 -> 128)
+[02:24:37.208] INFO  [life] supplies: nothing short after all
+[02:24:37.208] INFO  [life] goal_completed=BUY_SUPPLIES progress=1
+[02:24:37.210] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:24:37.269] INFO  [life] goal=CRAFT reason="no goal was running"
+[02:24:37.270] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.35) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:24:37.270] INFO  [life]   score=39.0
+[02:24:37.270] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[02:24:37.270] INFO  [life]   reason: i_potion_poison: every input is in the pack
+[02:24:37.270] INFO  [life]   reason: work just now, easing off 40% (65.0 -> 39.0)
+[02:24:37.270] INFO  [life] craft: made one i_potion_poison (3 this sitting)
+[02:24:37.270] INFO  [life] craft: 3 i_potion_poison made and the material is not finished -- carrying on
+[02:24:37.271] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:24:37.271] INFO  [v_Voris] [ACTION] use_object start
+[02:24:37.271] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:24:37.272] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:24:37.272] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:24:37.272] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:24:37.272] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:24:41.309] LOG   [v_Voris] event action_result: use_object timeout
+[02:24:41.370] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:24:41.370] INFO  [life] craft: chose '^Poison'
+[02:24:42.118] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:43.903] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:24:44.594] INFO  [life] craft: made one i_potion_poison (4 this sitting)
+[02:24:44.595] INFO  [life] craft: 4 i_potion_poison made and the material is not finished -- carrying on
+[02:24:44.595] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:24:44.596] INFO  [v_Voris] [ACTION] use_object start
+[02:24:44.596] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:24:44.596] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:24:44.597] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:24:44.597] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:24:44.597] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:24:47.176] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:48.654] LOG   [v_Voris] event action_result: use_object timeout
+[02:24:48.714] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:24:48.714] INFO  [life] craft: chose '^Poison'
+[02:24:51.224] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:24:51.901] INFO  [life] craft: made one i_potion_poison (5 this sitting)
+[02:24:51.901] INFO  [life] craft: 5 i_potion_poison made and the material is not finished -- carrying on
+[02:24:51.902] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:24:51.902] INFO  [v_Voris] [ACTION] use_object start
+[02:24:51.902] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:24:51.903] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:24:51.903] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:24:51.903] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:24:51.903] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:24:52.206] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:55.943] LOG   [v_Voris] event action_result: use_object timeout
+[02:24:56.005] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:24:56.006] INFO  [life] craft: chose '^Poison'
+[02:24:57.248] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:24:58.556] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:24:59.211] INFO  [life] craft: made one i_potion_poison (6 this sitting)
+[02:24:59.211] INFO  [life] craft: 6 i_potion_poison made and the material is not finished -- carrying on
+[02:24:59.211] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:24:59.212] INFO  [v_Voris] [ACTION] use_object start
+[02:24:59.212] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:24:59.228] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:24:59.228] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:24:59.228] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:24:59.228] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:25:02.296] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:03.247] LOG   [v_Voris] event action_result: use_object timeout
+[02:25:03.308] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:25:03.308] INFO  [life] craft: chose '^Poison'
+[02:25:05.866] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:25:06.512] INFO  [life] craft: made one i_potion_poison (7 this sitting)
+[02:25:06.513] INFO  [life] craft: 7 i_potion_poison made and the material is not finished -- carrying on
+[02:25:06.513] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:25:06.513] INFO  [v_Voris] [ACTION] use_object start
+[02:25:06.513] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:25:06.514] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:25:06.514] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:25:06.514] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:25:06.514] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:25:07.306] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:10.514] LOG   [v_Voris] event action_result: use_object timeout
+[02:25:10.574] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:25:10.575] INFO  [life] craft: chose '^Poison'
+[02:25:12.336] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:13.100] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:25:13.101] INFO  [life] goal_changed=EARN_GOLD from=CRAFT reason="EARN_GOLD 45.9 superseded CRAFT 0.0"
+[02:25:13.101] INFO  [life] needs considered: NeedGold(sell surplus 0.45) NeedSupplies(buy craft inputs 0.44) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:25:13.101] INFO  [life]   score=45.9
+[02:25:13.101] INFO  [life]   reason: NeedGold urgency 0.45 x 150 = 67.5
+[02:25:13.101] INFO  [life]   reason: 15 x i_potion_poison spare, a load is 20, buyer: an NPC
+[02:25:13.102] INFO  [life]   reason: work just now, easing off 32% (67.5 -> 45.9)
+[02:25:13.824] INFO  [life] earn_gold: asking the 'alchemist' what it buys
+[02:25:13.825] INFO  [v_Voris] [ACTION] vendor_sell start
+[02:25:13.825] INFO  [v_Voris] [VENDOR] open sell vendor=0x00001211 say='Xanthe sell'
+[02:25:13.826] INFO  [v_Voris] [chat uni  ] : Xanthe sell
+[02:25:13.826] INFO  [v_Voris] [chat ascii] Xanthe: If thou'rt wantin' to but somethin', then say the word.  Buy... that's the word. Or give me what thou'rt wantin' to sell me.
+[02:25:13.826] INFO  [v_Voris] [VENDOR] sell list from 0x00001211: 2 item(s)
+[02:25:13.826] INFO  [v_Voris] [VENDOR]   0x4000A53A Nightshade             x103 2 gp
+[02:25:13.826] INFO  [v_Voris] [VENDOR]   0x4000DB14 Poison                 x15  20 gp
+[02:25:13.826] LOG   [v_Voris] event vendor_sell_list: vendor=0x00001211 items=2
+[02:25:13.826] INFO  [v_Voris] [ACTION_RESULT] vendor_sell success (1ms) vendor sell list received
+[02:25:13.827] LOG   [v_Voris] event action_result: vendor_sell success took=1ms vendor sell list received
+[02:25:16.375] INFO  [life] earn_gold: 'alchemist' offers 20 gold each for i_potion_poison; selling 15 in 1 lot(s)
+[02:25:16.376] INFO  [v_Voris] [ACTION] vendor_sell start
+[02:25:16.376] INFO  [v_Voris] [VENDOR] sell item=0x4000DB14 qty=15 to vendor=0x00001211 gold=128
+[02:25:16.391] INFO  [v_Voris] [chat ascii] Xanthe: Here you are, 300 gold coins. I thank thee for thy business.
+[02:25:16.391] INFO  [v_Voris] [0x3B] vendor transaction closed: vendor=0x00001211 flag=0
+[02:25:16.438] INFO  [v_Voris] [ACTION_RESULT] vendor_sell success (63ms) gold 128 -> 428
+[02:25:16.438] LOG   [v_Voris] event action_result: vendor_sell success took=63ms gold 128 -> 428
+[02:25:17.359] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:19.400] INFO  [life] earn_gold: sold 15 i_potion_poison for 300 gold (20 each) to a 'alchemist'
+[02:25:19.403] INFO  [life] checkpoint (sold to a vendor) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:25:19.403] INFO  [life] goal_completed=EARN_GOLD progress=1
+[02:25:19.405] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:25:19.462] INFO  [life] goal=PRACTICE_SKILL reason="no goal was running"
+[02:25:19.462] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:25:19.462] INFO  [life]   score=36.0
+[02:25:19.463] INFO  [life]   reason: NeedPractice urgency 0.30 x 120 = 36.0
+[02:25:19.463] INFO  [life]   reason: Meditation 30.0 -> 50.0 mana=32 no_gain_region=0
+[02:25:19.463] INFO  [life] practice: using Meditation to raise it (30.0)
+[02:25:19.463] INFO  [v_Voris] [ACTION] use_skill start
+[02:25:19.463] INFO  [v_Voris] [ACTION] use_skill id=46 target=0x00000000
+[02:25:19.463] INFO  [v_Voris] [chat ascii] System: You are at peace.
+[02:25:19.463] INFO  [v_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[02:25:19.464] LOG   [v_Voris] event action_result: use_skill success took=0ms You are at peace.
+[02:25:22.378] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:27.410] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:31.501] INFO  [life] practice: using Meditation to raise it (30.0)
+[02:25:31.502] INFO  [v_Voris] [ACTION] use_skill start
+[02:25:31.502] INFO  [v_Voris] [ACTION] use_skill id=46 target=0x00000000
+[02:25:31.502] INFO  [v_Voris] [chat ascii] System: You are at peace.
+[02:25:31.503] INFO  [v_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[02:25:31.503] LOG   [v_Voris] event action_result: use_skill success took=0ms You are at peace.
+[02:25:32.419] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:37.437] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:42.464] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:43.506] INFO  [life] practice: using Meditation to raise it (30.0)
+[02:25:43.507] INFO  [v_Voris] [ACTION] use_skill start
+[02:25:43.507] INFO  [v_Voris] [ACTION] use_skill id=46 target=0x00000000
+[02:25:43.507] INFO  [v_Voris] [chat ascii] System: You are at peace.
+[02:25:43.507] INFO  [v_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[02:25:43.507] LOG   [v_Voris] event action_result: use_skill success took=1ms You are at peace.
+[02:25:47.516] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:52.534] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:55.527] INFO  [life] practice: 6 turns of Meditation -- standing down so the planner can look at the rest of this life
+[02:25:55.527] INFO  [life] goal_completed=PRACTICE_SKILL progress=3
+[02:25:55.530] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:25:55.589] INFO  [life] goal=BUY_SUPPLIES reason="no goal was running"
+[02:25:55.589] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:25:55.590] INFO  [life]   score=61.6
+[02:25:55.590] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[02:25:55.590] INFO  [life]   reason: i_potion_poison needs 5 x i_bottle_empty
+[02:25:55.590] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 59s after achieving nothing
+[02:25:55.590] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:25:55.590] INFO  [v_Voris] [VENDOR] open vendor=0x00001211 say='Xanthe buy'
+[02:25:55.591] INFO  [v_Voris] [chat uni  ] : Xanthe buy
+[02:25:55.591] INFO  [v_Voris] [chat ascii] Xanthe: Thou surely wants all the things that I can sell thee.
+[02:25:55.591] INFO  [v_Voris] [0x3C] container contents: 17 item(s)
+[02:25:55.591] INFO  [v_Voris] [0x74] pairing: straight (straight 14, mirrored 1 of 17 rows)
+[02:25:55.592] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[02:25:55.592] INFO  [v_Voris] [0x74]   Refresh                      gfx=0x0F0B qty=5    price=16
+[02:25:55.592] INFO  [v_Voris] [0x74]   Agility                      gfx=0x0F08 qty=8    price=23
+[02:25:55.592] INFO  [v_Voris] [0x74]   Nightsight                   gfx=0x0F06 qty=17   price=16
+[02:25:55.592] INFO  [v_Voris] [0x74]   Heal                         gfx=0x0F0C qty=6    price=30
+[02:25:55.592] INFO  [v_Voris] [0x74]   Strength                     gfx=0x0F09 qty=7    price=31
+[02:25:55.592] INFO  [v_Voris] [0x74]   Poison                       gfx=0x0F0A qty=18   price=26
+[02:25:55.592] INFO  [v_Voris] [0x74]   Cure                         gfx=0x0F07 qty=16   price=35
+[02:25:55.592] INFO  [v_Voris] [0x74]   mortar and pestle            gfx=0x0E9B qty=17   price=16
+[02:25:55.592] INFO  [v_Voris] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[02:25:55.593] INFO  [v_Voris] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[02:25:55.593] INFO  [v_Voris] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[02:25:55.593] INFO  [v_Voris] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[02:25:55.593] INFO  [v_Voris] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[02:25:55.593] INFO  [v_Voris] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[02:25:55.593] INFO  [v_Voris] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[02:25:55.593] INFO  [v_Voris] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[02:25:55.594] INFO  [v_Voris] [0x74]   empty bottles                gfx=0x0F0E qty=245  price=12
+[02:25:55.594] INFO  [v_Voris] [0x3C] container contents: 0 item(s)
+[02:25:55.594] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[02:25:55.594] INFO  [v_Voris] [VENDOR] offer from 0x00001211: 17 item(s)
+[02:25:55.594] INFO  [v_Voris] [VENDOR]   0x4000A918 Refresh                x5   16 gp
+[02:25:55.594] INFO  [v_Voris] [VENDOR]   0x4000A6F6 Agility                x8   23 gp
+[02:25:55.594] INFO  [v_Voris] [VENDOR]   0x4000A6F5 Nightsight             x17  16 gp
+[02:25:55.594] INFO  [v_Voris] [VENDOR]   0x4000A6ED Heal                   x6   30 gp
+[02:25:55.594] INFO  [v_Voris] [VENDOR]   0x4000A5C8 Strength               x7   31 gp
+[02:25:55.595] INFO  [v_Voris] [VENDOR]   0x4000A587 Poison                 x18  26 gp
+[02:25:55.595] INFO  [v_Voris] [VENDOR]   0x4000A57C Cure                   x16  35 gp
+[02:25:55.595] INFO  [v_Voris] [VENDOR]   0x4000A55C mortar and pestle      x17  16 gp
+[02:25:55.595] LOG   [v_Voris] event vendor_offer: vendor=0x00001211 items=17
+[02:25:55.595] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (5ms) vendor offer received
+[02:25:55.595] LOG   [v_Voris] event action_result: vendor_buy success took=5ms vendor offer received
+[02:25:55.595] INFO  [v_Voris] [0x24] vendor buy gump for 0x00001211
+[02:25:57.550] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:25:58.104] INFO  [life] supplies: buying 5 i_bottle_empty at 12 each from 'empty bottles'
+[02:25:58.105] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:25:58.105] INFO  [v_Voris] [policy] allowed NPC purchase of i_bottle_empty (0x0F0E): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[02:25:58.106] INFO  [v_Voris] [VENDOR] buy item=0x4000A359 qty=5 from vendor=0x00001211 gold=428
+[02:25:58.106] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[02:25:58.106] LOG   [v_Voris] event action_result: vendor_buy success took=1ms purchased item delivered
+[02:25:58.106] INFO  [v_Voris] [chat ascii] Xanthe: Here you are, Voris That will be 60 gold coins.  I thank thee for thy business.
+[02:25:58.106] INFO  [v_Voris] [0x3B] vendor transaction closed: vendor=0x00001211 flag=0
+[02:26:02.603] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:07.140] INFO  [life] supplies: the server took 60 gold for i_bottle_empty (purse 428 -> 368)
+[02:26:07.141] INFO  [life] supplies: nothing short after all
+[02:26:07.141] INFO  [life] goal_completed=BUY_SUPPLIES progress=1
+[02:26:07.143] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:26:07.202] INFO  [life] goal=CRAFT reason="no goal was running"
+[02:26:07.202] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:26:07.202] INFO  [life]   score=65.0
+[02:26:07.202] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[02:26:07.203] INFO  [life]   reason: i_potion_poison: every input is in the pack
+[02:26:07.203] INFO  [life]   BLOCKED_NEED PRACTICE_SKILL: on cooldown for another 48s after achieving nothing
+[02:26:07.203] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:26:07.203] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:26:07.203] INFO  [v_Voris] [ACTION] use_object start
+[02:26:07.203] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:26:07.204] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:26:07.204] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:26:07.204] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:26:07.205] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:26:07.635] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:11.242] LOG   [v_Voris] event action_result: use_object timeout
+[02:26:11.305] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:26:11.305] INFO  [life] craft: chose '^Poison'
+[02:26:12.683] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:13.832] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:26:17.723] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:19.591] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:26:19.591] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:26:19.591] INFO  [v_Voris] [ACTION] use_object start
+[02:26:19.591] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:26:19.606] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:26:19.607] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:26:19.607] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:26:19.607] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:26:22.768] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:23.637] LOG   [v_Voris] event action_result: use_object timeout
+[02:26:23.651] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:26:23.652] INFO  [life] craft: chose '^Poison'
+[02:26:26.175] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:26:27.815] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:31.896] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:26:31.896] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:26:31.896] INFO  [v_Voris] [ACTION] use_object start
+[02:26:31.897] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:26:31.897] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:26:31.897] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:26:31.898] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:26:31.898] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:26:32.841] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:35.912] LOG   [v_Voris] event action_result: use_object timeout
+[02:26:35.973] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:26:35.973] INFO  [life] craft: chose '^Poison'
+[02:26:37.847] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:38.508] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:26:42.900] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:44.282] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:26:44.283] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:26:44.283] INFO  [v_Voris] [ACTION] use_object start
+[02:26:44.283] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:26:44.284] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:26:44.284] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:26:44.284] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:26:44.284] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:26:47.915] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:48.284] LOG   [v_Voris] event action_result: use_object timeout
+[02:26:48.343] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:26:48.344] INFO  [life] craft: chose '^Poison'
+[02:26:50.886] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:26:52.925] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:26:56.587] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:26:56.587] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:26:56.588] INFO  [v_Voris] [ACTION] use_object start
+[02:26:56.588] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:26:56.588] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:26:56.588] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:26:56.589] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:26:56.589] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:26:57.967] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:00.592] LOG   [v_Voris] event action_result: use_object timeout
+[02:27:00.654] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:27:00.654] INFO  [life] craft: chose '^Poison'
+[02:27:02.872] INFO  [v_Voris] [chat ascii] Xanthe: Nice speaking to you Voris
+[02:27:02.994] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:03.191] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:27:03.193] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 61.6 superseded CRAFT 0.0"
+[02:27:03.193] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedPractice(Meditation 0.30) NeedGold(sell surplus 0.25) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:27:03.193] INFO  [life]   score=61.6
+[02:27:03.193] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[02:27:03.193] INFO  [life]   reason: i_potion_poison needs 5 x i_bottle_empty
+[02:27:03.803] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:27:03.804] INFO  [v_Voris] [VENDOR] open vendor=0x00001211 say='Xanthe buy'
+[02:27:03.819] INFO  [v_Voris] [chat uni  ] : Xanthe buy
+[02:27:03.819] INFO  [v_Voris] [chat ascii] Xanthe: Thou surely wants all the things that I can sell thee.
+[02:27:03.819] INFO  [v_Voris] [0x3C] container contents: 17 item(s)
+[02:27:03.819] INFO  [v_Voris] [0x74] pairing: straight (straight 14, mirrored 1 of 17 rows)
+[02:27:03.819] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[02:27:03.820] INFO  [v_Voris] [0x74]   Refresh                      gfx=0x0F0B qty=5    price=16
+[02:27:03.820] INFO  [v_Voris] [0x74]   Agility                      gfx=0x0F08 qty=8    price=23
+[02:27:03.820] INFO  [v_Voris] [0x74]   Nightsight                   gfx=0x0F06 qty=17   price=16
+[02:27:03.820] INFO  [v_Voris] [0x74]   Heal                         gfx=0x0F0C qty=6    price=30
+[02:27:03.820] INFO  [v_Voris] [0x74]   Strength                     gfx=0x0F09 qty=7    price=31
+[02:27:03.820] INFO  [v_Voris] [0x74]   Poison                       gfx=0x0F0A qty=18   price=26
+[02:27:03.820] INFO  [v_Voris] [0x74]   Cure                         gfx=0x0F07 qty=16   price=35
+[02:27:03.820] INFO  [v_Voris] [0x74]   mortar and pestle            gfx=0x0E9B qty=17   price=16
+[02:27:03.821] INFO  [v_Voris] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[02:27:03.821] INFO  [v_Voris] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[02:27:03.821] INFO  [v_Voris] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[02:27:03.821] INFO  [v_Voris] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[02:27:03.821] INFO  [v_Voris] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[02:27:03.821] INFO  [v_Voris] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[02:27:03.821] INFO  [v_Voris] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[02:27:03.821] INFO  [v_Voris] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[02:27:03.822] INFO  [v_Voris] [0x74]   empty bottles                gfx=0x0F0E qty=240  price=12
+[02:27:03.822] INFO  [v_Voris] [0x3C] container contents: 0 item(s)
+[02:27:03.822] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[02:27:03.822] INFO  [v_Voris] [VENDOR] offer from 0x00001211: 17 item(s)
+[02:27:03.822] INFO  [v_Voris] [VENDOR]   0x4000A918 Refresh                x5   16 gp
+[02:27:03.822] INFO  [v_Voris] [VENDOR]   0x4000A6F6 Agility                x8   23 gp
+[02:27:03.822] INFO  [v_Voris] [VENDOR]   0x4000A6F5 Nightsight             x17  16 gp
+[02:27:03.822] INFO  [v_Voris] [VENDOR]   0x4000A6ED Heal                   x6   30 gp
+[02:27:03.822] INFO  [v_Voris] [VENDOR]   0x4000A5C8 Strength               x7   31 gp
+[02:27:03.822] INFO  [v_Voris] [VENDOR]   0x4000A587 Poison                 x18  26 gp
+[02:27:03.823] INFO  [v_Voris] [VENDOR]   0x4000A57C Cure                   x16  35 gp
+[02:27:03.823] INFO  [v_Voris] [VENDOR]   0x4000A55C mortar and pestle      x17  16 gp
+[02:27:03.823] LOG   [v_Voris] event vendor_offer: vendor=0x00001211 items=17
+[02:27:03.823] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (20ms) vendor offer received
+[02:27:03.823] LOG   [v_Voris] event action_result: vendor_buy success took=20ms vendor offer received
+[02:27:03.823] INFO  [v_Voris] [0x24] vendor buy gump for 0x00001211
+[02:27:06.348] INFO  [life] supplies: buying 5 i_bottle_empty at 12 each from 'empty bottles'
+[02:27:06.348] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:27:06.348] INFO  [v_Voris] [policy] allowed NPC purchase of i_bottle_empty (0x0F0E): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[02:27:06.348] INFO  [v_Voris] [VENDOR] buy item=0x4000A359 qty=5 from vendor=0x00001211 gold=368
+[02:27:06.349] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (0ms) purchased item delivered
+[02:27:06.349] LOG   [v_Voris] event action_result: vendor_buy success took=0ms purchased item delivered
+[02:27:06.349] INFO  [v_Voris] [chat ascii] Xanthe: Here you are, Voris That will be 60 gold coins.  I thank thee for thy business.
+[02:27:06.349] INFO  [v_Voris] [0x3B] vendor transaction closed: vendor=0x00001211 flag=0
+[02:27:07.149] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:27:08.003] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:13.033] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:15.375] INFO  [life] supplies: the server took 60 gold for i_bottle_empty (purse 368 -> 308)
+[02:27:15.375] INFO  [life] supplies: nothing short after all
+[02:27:15.376] INFO  [life] goal_completed=BUY_SUPPLIES progress=1
+[02:27:15.378] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:27:15.437] INFO  [life] goal=CRAFT reason="no goal was running"
+[02:27:15.438] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedPractice(Meditation 0.30) NeedGold(sell surplus 0.25) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:27:15.438] INFO  [life]   score=65.0
+[02:27:15.438] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[02:27:15.438] INFO  [life]   reason: i_potion_poison: every input is in the pack
+[02:27:15.438] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:27:15.439] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:27:15.439] INFO  [v_Voris] [ACTION] use_object start
+[02:27:15.439] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:27:15.453] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:27:15.454] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:27:15.454] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:27:15.454] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:27:18.062] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:19.449] LOG   [v_Voris] event action_result: use_object timeout
+[02:27:19.510] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:27:19.510] INFO  [life] craft: chose '^Poison'
+[02:27:22.084] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:27:23.101] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:27.795] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:27:27.796] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:27:27.796] INFO  [v_Voris] [ACTION] use_object start
+[02:27:27.796] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:27:27.797] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:27:27.797] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:27:27.797] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:27:27.797] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:27:28.161] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:31.810] LOG   [v_Voris] event action_result: use_object timeout
+[02:27:31.869] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:27:31.870] INFO  [life] craft: chose '^Poison'
+[02:27:33.207] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:34.391] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:27:38.254] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:40.109] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:27:40.109] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:27:40.109] INFO  [v_Voris] [ACTION] use_object start
+[02:27:40.109] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:27:40.110] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:27:40.110] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:27:40.110] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:27:40.110] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:27:43.264] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:44.127] LOG   [v_Voris] event action_result: use_object timeout
+[02:27:44.187] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:27:44.192] INFO  [life] craft: chose '^Poison'
+[02:27:46.713] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:27:48.295] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:52.516] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:27:52.516] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:27:52.516] INFO  [v_Voris] [ACTION] use_object start
+[02:27:52.517] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:27:52.517] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:27:52.517] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:27:52.518] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:27:52.518] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:27:53.314] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:56.537] LOG   [v_Voris] event action_result: use_object timeout
+[02:27:56.597] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:27:56.598] INFO  [life] craft: chose '^Poison'
+[02:27:58.338] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:27:59.125] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:28:03.379] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:28:04.895] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:28:04.896] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:28:04.896] INFO  [v_Voris] [ACTION] use_object start
+[02:28:04.896] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:28:04.897] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:28:04.897] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:28:04.897] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:28:04.897] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:28:08.431] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:28:08.921] LOG   [v_Voris] event action_result: use_object timeout
+[02:28:08.982] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:28:08.982] INFO  [life] craft: chose '^Poison'
+[02:28:11.532] INFO  [v_Voris] [chat ascii] System: You put the Poison in your pack.
+[02:28:11.533] INFO  [life] goal_changed=BUY_SUPPLIES from=CRAFT reason="BUY_SUPPLIES 56.5 superseded CRAFT 0.0"
+[02:28:11.533] INFO  [life] needs considered: NeedSupplies(buy craft inputs 0.44) NeedGold(sell surplus 0.35) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:28:11.534] INFO  [life]   score=56.5
+[02:28:11.534] INFO  [life]   reason: NeedSupplies urgency 0.44 x 140 = 61.6
+[02:28:11.534] INFO  [life]   reason: i_potion_poison needs 5 x i_bottle_empty
+[02:28:11.534] INFO  [life]   reason: same errand just now, easing off 8% (61.6 -> 56.5)
+[02:28:12.149] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:28:12.150] INFO  [v_Voris] [VENDOR] open vendor=0x00001211 say='Xanthe buy'
+[02:28:12.166] INFO  [v_Voris] [chat uni  ] : Xanthe buy
+[02:28:12.166] INFO  [v_Voris] [chat ascii] Xanthe: Thou surely wants all the things that I can sell thee.
+[02:28:12.166] INFO  [v_Voris] [0x3C] container contents: 17 item(s)
+[02:28:12.167] INFO  [v_Voris] [0x74] pairing: straight (straight 14, mirrored 1 of 17 rows)
+[02:28:12.167] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40001208 17 item(s), layer=0x1A
+[02:28:12.167] INFO  [v_Voris] [0x74]   Refresh                      gfx=0x0F0B qty=5    price=16
+[02:28:12.167] INFO  [v_Voris] [0x74]   Agility                      gfx=0x0F08 qty=8    price=23
+[02:28:12.167] INFO  [v_Voris] [0x74]   Nightsight                   gfx=0x0F06 qty=17   price=16
+[02:28:12.167] INFO  [v_Voris] [0x74]   Heal                         gfx=0x0F0C qty=6    price=30
+[02:28:12.167] INFO  [v_Voris] [0x74]   Strength                     gfx=0x0F09 qty=7    price=31
+[02:28:12.167] INFO  [v_Voris] [0x74]   Poison                       gfx=0x0F0A qty=18   price=26
+[02:28:12.167] INFO  [v_Voris] [0x74]   Cure                         gfx=0x0F07 qty=16   price=35
+[02:28:12.168] INFO  [v_Voris] [0x74]   mortar and pestle            gfx=0x0E9B qty=17   price=16
+[02:28:12.168] INFO  [v_Voris] [0x74]   Black Pearls                 gfx=0x0F7A qty=250  price=3
+[02:28:12.168] INFO  [v_Voris] [0x74]   Blood Moss                   gfx=0x0F7B qty=250  price=3
+[02:28:12.168] INFO  [v_Voris] [0x74]   Garlic                       gfx=0x0F84 qty=250  price=3
+[02:28:12.168] INFO  [v_Voris] [0x74]   Ginseng                      gfx=0x0F85 qty=250  price=3
+[02:28:12.168] INFO  [v_Voris] [0x74]   Mandrake Roots               gfx=0x0F86 qty=250  price=3
+[02:28:12.168] INFO  [v_Voris] [0x74]   Nightshade                   gfx=0x0F88 qty=250  price=3
+[02:28:12.168] INFO  [v_Voris] [0x74]   Sulfurous Ash                gfx=0x0F8C qty=250  price=3
+[02:28:12.169] INFO  [v_Voris] [0x74]   Spider's Silk                gfx=0x0F8D qty=250  price=3
+[02:28:12.169] INFO  [v_Voris] [0x74]   empty bottles                gfx=0x0F0E qty=235  price=12
+[02:28:12.169] INFO  [v_Voris] [0x3C] container contents: 0 item(s)
+[02:28:12.169] INFO  [v_Voris] [0x74] vendor shop data: cont=0x40000C7D 0 item(s), layer=0x1B
+[02:28:12.169] INFO  [v_Voris] [VENDOR] offer from 0x00001211: 17 item(s)
+[02:28:12.169] INFO  [v_Voris] [VENDOR]   0x4000A918 Refresh                x5   16 gp
+[02:28:12.169] INFO  [v_Voris] [VENDOR]   0x4000A6F6 Agility                x8   23 gp
+[02:28:12.169] INFO  [v_Voris] [VENDOR]   0x4000A6F5 Nightsight             x17  16 gp
+[02:28:12.169] INFO  [v_Voris] [VENDOR]   0x4000A6ED Heal                   x6   30 gp
+[02:28:12.170] INFO  [v_Voris] [VENDOR]   0x4000A5C8 Strength               x7   31 gp
+[02:28:12.170] INFO  [v_Voris] [VENDOR]   0x4000A587 Poison                 x18  26 gp
+[02:28:12.170] INFO  [v_Voris] [VENDOR]   0x4000A57C Cure                   x16  35 gp
+[02:28:12.170] INFO  [v_Voris] [VENDOR]   0x4000A55C mortar and pestle      x17  16 gp
+[02:28:12.170] LOG   [v_Voris] event vendor_offer: vendor=0x00001211 items=17
+[02:28:12.170] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (21ms) vendor offer received
+[02:28:12.170] LOG   [v_Voris] event action_result: vendor_buy success took=21ms vendor offer received
+[02:28:12.170] INFO  [v_Voris] [0x24] vendor buy gump for 0x00001211
+[02:28:13.473] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:28:14.670] INFO  [life] supplies: buying 5 i_bottle_empty at 12 each from 'empty bottles'
+[02:28:14.670] INFO  [v_Voris] [ACTION] vendor_buy start
+[02:28:14.671] INFO  [v_Voris] [policy] allowed NPC purchase of i_bottle_empty (0x0F0E): a dated Revolution update records an NPC selling this [REVOLUTION_NPC_VERIFIED]
+[02:28:14.671] INFO  [v_Voris] [VENDOR] buy item=0x4000A359 qty=5 from vendor=0x00001211 gold=308
+[02:28:14.671] INFO  [v_Voris] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[02:28:14.671] LOG   [v_Voris] event action_result: vendor_buy success took=1ms purchased item delivered
+[02:28:14.671] INFO  [v_Voris] [chat ascii] Xanthe: Here you are, Voris That will be 60 gold coins.  I thank thee for thy business.
+[02:28:14.672] INFO  [v_Voris] [0x3B] vendor transaction closed: vendor=0x00001211 flag=0
+[02:28:15.406] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:28:18.477] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:28:21.101] INFO  [v_Voris] [chat ascii] System: World save in 10 seconds
+[02:28:23.495] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight
+[02:28:23.724] INFO  [life] supplies: the server took 60 gold for i_bottle_empty (purse 308 -> 248)
+[02:28:23.724] INFO  [life] supplies: nothing short after all
+[02:28:23.725] INFO  [life] goal_completed=BUY_SUPPLIES progress=1
+[02:28:23.727] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[02:28:23.786] INFO  [life] goal=CRAFT reason="no goal was running"
+[02:28:23.787] INFO  [life] needs considered: NeedCraft(make goods to sell 0.50) NeedGold(sell surplus 0.35) NeedPractice(Meditation 0.30) NeedGear(gear 0.22) NeedSpells(spells 0.20)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[02:28:23.787] INFO  [life]   score=52.0
+[02:28:23.787] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[02:28:23.787] INFO  [life]   reason: i_potion_poison: every input is in the pack
+[02:28:23.787] INFO  [life]   reason: work just now, easing off 20% (65.0 -> 52.0)
+[02:28:23.788] INFO  [life] craft: no result from the last i_potion_poison in 8s -- trying again
+[02:28:23.788] INFO  [life] craft: making i_potion_poison -- using its own tool to open the menu
+[02:28:23.788] INFO  [v_Voris] [ACTION] use_object start
+[02:28:23.788] INFO  [v_Voris] [ACTION] use_object serial=0x40013F7C
+[02:28:23.789] INFO  [v_Voris] [0x7C] dialog id=0x00014094 menu=690: "What sort of potion do you want to make?" (2 options)
+[02:28:23.789] INFO  [v_Voris]         1) Lesser Poison (1 Nightshade, 1 empty bottle)
+[02:28:23.789] INFO  [v_Voris]         2) Poison (2 Nightshade, 1 empty bottle)
+[02:28:23.789] LOG   [v_Voris] event dialog: What sort of potion do you want to make?
+[02:28:27.815] LOG   [v_Voris] event action_result: use_object timeout
+[02:28:27.877] INFO  [v_Voris] [0x7D] answering dialog id=0x00014094 menu=690 index=2
+[02:28:27.877] INFO  [life] craft: chose '^Poison'
+[02:28:28.551] INFO  [v_Voris] [survival] hp 32/32 (100%) -> fight

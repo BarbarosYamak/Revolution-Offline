@@ -1,0 +1,1806 @@
+[17:29:34.819] LOG   [wave10_RevGen3_07_Delra] event session_start: text log opened
+[17:29:34.821] LOG   [wave10_RevGen3_07_Delra] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:34.822] INFO  [wave10_RevGen3_07_Delra] [net] connecting to 127.0.0.1:2593 ...
+[17:29:34.823] LOG   [wave10_RevGen3_07_Delra] event net_connected: connect 127.0.0.1:2593
+[17:29:34.824] INFO  [wave10_RevGen3_07_Delra] [net] connected.
+[17:29:34.825] INFO  [wave10_RevGen3_07_Delra] [seed] sent 0x7F000001 (plaintext)
+[17:29:34.826] LOG   [wave10_RevGen3_07_Delra] event seed_out: 0x7F000001 hex=7f000001
+[17:29:34.827] INFO  [wave10_RevGen3_07_Delra] [life] autonomous player active for 'Delras' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:34.845] INFO  [wave10_RevGen3_07_Delra] [0xA8] 1 server(s):
+[17:29:34.845] INFO  [wave10_RevGen3_07_Delra]   [0] MyShard                   1.0.0.127  full=3%  tz=0
+[17:29:34.860] INFO  [wave10_RevGen3_07_Delra] [0x8C] game server = 127.0.0.1:2593  seed=0x834BD747
+[17:29:34.860] LOG   [wave10_RevGen3_07_Delra] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x834BD747
+[17:29:34.861] INFO  [wave10_RevGen3_07_Delra] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:34.861] LOG   [wave10_RevGen3_07_Delra] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:34.861] INFO  [wave10_RevGen3_07_Delra] [0xB9] server features = 0x0005
+[17:29:34.861] INFO  [wave10_RevGen3_07_Delra] [0xA9] 5 slot(s) (populated 1):
+[17:29:34.861] INFO  [wave10_RevGen3_07_Delra]   [0] Delras
+[17:29:34.862] INFO  [wave10_RevGen3_07_Delra]   [1] <empty>
+[17:29:34.862] INFO  [wave10_RevGen3_07_Delra]   [2] <empty>
+[17:29:34.862] INFO  [wave10_RevGen3_07_Delra]   [3] <empty>
+[17:29:34.862] INFO  [wave10_RevGen3_07_Delra]   [4] <empty>
+[17:29:34.862] INFO  [wave10_RevGen3_07_Delra] [ui] playing slot 0 ('Delras')
+[17:29:34.876] INFO  [wave10_RevGen3_07_Delra] [0x1B] serial=0x00015A59 body=0x0191 pos=(631,2161,0)
+[17:29:34.876] LOG   [wave10_RevGen3_07_Delra] event login_confirm: serial=0x00015A59 body=0x0191 pos=(631,2161,0)
+[17:29:34.876] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(631,2161,0) facing=7
+[17:29:34.877] INFO  [wave10_RevGen3_07_Delra] [0x55] login complete — entering world
+[17:29:34.877] LOG   [wave10_RevGen3_07_Delra] event in_world: 0x55 received
+[17:29:34.877] INFO  [wave10_RevGen3_07_Delra] [backpack] opening 0x4001591B
+[17:29:34.877] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:34.877] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: There are 7 other players here.
+[17:29:34.877] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:34.878] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: You are under the protection of the town guards
+[17:29:34.881] INFO  [wave10_RevGen3_07_Delra] [action] requesting the skill list
+[17:29:34.882] INFO  [wave10_RevGen3_07_Delra] [0x24] open container 0x4001591B gump=60
+[17:29:34.882] INFO  [wave10_RevGen3_07_Delra] [0x3C] container contents: 7 item(s)
+[17:29:34.882] LOG   [wave10_RevGen3_07_Delra] event backpack_contents: serial=0x4001591B items=7
+[17:29:35.006] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Cyras has arrived in Skara Brae.
+[17:29:35.027] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Rhaler has arrived in Britain.
+[17:29:35.077] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Ghalor has arrived in Britain Fields.
+[17:29:35.092] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Falen has arrived in Britain.
+[17:29:35.115] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Aelia has arrived in Britain.
+[17:29:35.131] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Amara has arrived in Jhelom.
+[17:29:35.164] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Elara has arrived in Britain Fields.
+[17:29:35.201] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Selene has arrived in Britain.
+[17:29:35.202] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Lyra has arrived in Moonglow.
+[17:29:35.216] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Thalia has arrived in Jhelom Territory.
+[17:29:35.235] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Dorvar has arrived in Magincia.
+[17:29:35.247] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Ithion has arrived in Magincia.
+[17:29:35.253] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Odessa has arrived in Britain.
+[17:29:35.278] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Serena has arrived in Britain.
+[17:29:35.306] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Aurelius has arrived in Britain.
+[17:29:35.326] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Leander has arrived in Britain.
+[17:29:35.327] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Illyria has arrived in Britain.
+[17:29:35.340] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Hector has arrived in Trinsic.
+[17:29:35.360] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Castor has arrived in The Rusty Anchor.
+[17:29:35.370] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.385] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Titus has arrived in Britain Territory.
+[17:29:35.402] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.402] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.433] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.434] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.513] INFO  [wave10_RevGen3_07_Delra] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.516] INFO  [wave10_RevGen3_07_Delra] [survival] on
+[17:29:37.516] LOG   [wave10_RevGen3_07_Delra] event survival_mode: on
+[17:29:37.518] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:29:37.626] INFO  [wave10_RevGen3_07_Delra] [travel] place: skipping Delucia healer -- 1636 tiles and 4 gates for a service Skara Brae healer offers
+[17:29:37.626] INFO  [wave10_RevGen3_07_Delra] [travel] place: skipping Wind healer -- 1580 tiles and 2 gates for a service Skara Brae healer offers
+[17:29:37.626] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae healer -> (620,2218) r=5 from (631,2161)
+[17:29:37.626] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae healer' target=(620,2218) radius=5 from=(631,2161)
+[17:29:37.626] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable   <- chosen
+[17:29:37.627] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable
+[17:29:37.627] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:37.627] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:37.627] LOG   [wave10_RevGen3_07_Delra] event travel_mode: moongate
+[17:29:37.627] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=2 ~64 tiles transit=0 nodes=35
+[17:29:37.628] INFO  [wave10_RevGen3_07_Delra] [action] goto (632,2200) from (631,2161,0)
+[17:29:37.629] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(632,2200) from=(631,2161)
+[17:29:37.629] INFO  [wave10_RevGen3_07_Delra] [bot] running from (631,2161,0) to (632,2200)
+[17:29:37.629] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (632,2200) in background
+[17:29:37.689] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (632,2200): 47 steps in 6136.9us
+[17:29:39.456] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: You shove Cyras out of the way.
+[17:29:40.105] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 2: anchor=5 new segment=6 path=42 in 68.1us
+[17:29:40.762] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=41 in 71.5us
+[17:29:41.051] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=40 in 136.6us
+[17:29:41.268] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=39 in 78.0us
+[17:29:41.468] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=38 in 77.6us
+[17:29:41.658] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=37 in 72.5us
+[17:29:41.875] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=36 in 85.4us
+[17:29:42.078] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=35 in 65.9us
+[17:29:42.309] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=34 in 45.3us
+[17:29:42.509] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=33 in 49.6us
+[17:29:42.569] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:29:42.710] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=32 in 58.8us
+[17:29:42.970] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=31 in 69.1us
+[17:29:43.157] WARN  [wave10_RevGen3_07_Delra] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped
+[17:29:43.158] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (636,2179,0)
+[17:29:43.217] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (636,2179,0); target (632,2200); stopped short (off by 25 tile(s))
+[17:29:43.217] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(636,2179) target=(632,2200) arrived=0 off=25
+[17:29:44.441] INFO  [wave10_RevGen3_07_Delra] [action] goto (632,2200) from (636,2179,0)
+[17:29:44.441] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(632,2200) from=(636,2179)
+[17:29:44.441] INFO  [wave10_RevGen3_07_Delra] [bot] running from (636,2179,0) to (632,2200)
+[17:29:44.441] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (632,2200) in background
+[17:29:44.502] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (632,2200): 29 steps in 4843.2us
+[17:29:46.386] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=23 in 90.7us
+[17:29:46.601] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=23 in 60.9us
+[17:29:47.005] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=20 in 53.3us
+[17:29:47.584] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:29:47.662] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=18 in 92.8us
+[17:29:48.555] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=16 in 99.6us
+[17:29:48.961] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 3: anchor=5 new segment=5 path=14 in 51.4us
+[17:29:49.470] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=13 in 47.4us
+[17:29:49.672] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=14 in 139.3us
+[17:29:50.152] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=11 in 80.8us
+[17:29:50.353] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=10 in 79.3us
+[17:29:50.569] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=9 in 44.4us
+[17:29:50.784] INFO  [wave10_RevGen3_07_Delra] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=9 in 53.7us
+[17:29:50.984] WARN  [wave10_RevGen3_07_Delra] [bot] 13 lookahead repairs without movement; abandoning this trip instead of remaining trapped
+[17:29:50.985] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (639,2200,0)
+[17:29:51.046] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (632,2200); stopped short (off by 7 tile(s))
+[17:29:51.046] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(632,2200) arrived=0 off=7
+[17:29:52.251] INFO  [wave10_RevGen3_07_Delra] [action] goto (632,2200) from (639,2200,0)
+[17:29:52.252] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(632,2200) from=(639,2200)
+[17:29:52.252] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (632,2200)
+[17:29:52.252] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (632,2200) in background
+[17:29:52.634] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:29:52.987] WARN  [wave10_RevGen3_07_Delra] [bot] no path to (632,2200) avoiding 0 block(s); stopping (search 729169.8us)
+[17:29:52.987] WARN  [wave10_RevGen3_07_Delra] [bot] start (639,2200,0) exits: open=6 terrain=2 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 210 item(s), 7 mobile(s))
+[17:29:53.048] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (632,2200); stopped short (off by 7 tile(s))
+[17:29:53.049] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(632,2200) arrived=0 off=7
+[17:29:54.251] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:29:54.251] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:29:54.252] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:54.252] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:54.252] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:29:54.252] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:29:55.791] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:29:55.791] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:29:55.791] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:29:55.791] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:29:55.792] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:55.852] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:29:55.852] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:29:57.078] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:29:57.078] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:29:57.078] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:29:57.079] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:29:57.079] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:57.140] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:29:57.140] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:29:57.646] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:29:58.386] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:29:58.386] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:29:58.387] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:29:58.387] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:29:58.387] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:29:58.447] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:29:58.448] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:29:59.693] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:29:59.693] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:29:59.693] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:59.693] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:59.693] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:29:59.694] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:30:02.694] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:02.754] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:30:02.754] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:30:02.754] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:30:02.755] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:02.755] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:02.814] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:30:02.814] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:30:04.073] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:30:04.073] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:30:04.073] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:30:04.073] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:04.073] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:04.134] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:30:04.134] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:30:05.380] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:30:05.380] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:30:05.380] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:30:05.381] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:05.381] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:05.441] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:30:05.441] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:30:06.678] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:30:06.678] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:30:06.679] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:06.679] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:06.679] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:30:06.679] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:30:07.714] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:11.228] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:30:11.229] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:30:11.229] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:30:11.229] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:11.229] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:11.290] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:30:11.290] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:30:12.529] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:30:12.529] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:30:12.530] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:30:12.530] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:12.530] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:12.544] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:30:12.545] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:30:12.731] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:13.798] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (639,2200,0)
+[17:30:13.798] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(639,2200)
+[17:30:13.798] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (620,2218,z0)
+[17:30:13.798] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:13.798] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:13.858] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (639,2200,0); target (620,2218); stopped short (off by 37 tile(s))
+[17:30:13.858] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(639,2200) target=(620,2218) arrived=0 off=37
+[17:30:13.858] WARN  [wave10_RevGen3_07_Delra] [travel] route exhausted at (639,2200,0); trying to reach (648,2200,0) to get somewhere routable (escape 1/3)
+[17:30:13.859] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(639,2200,0) to=(648,2200) attempt=1
+[17:30:13.859] INFO  [wave10_RevGen3_07_Delra] [action] goto (648,2200) from (639,2200,0)
+[17:30:13.859] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(648,2200) from=(639,2200)
+[17:30:13.859] INFO  [wave10_RevGen3_07_Delra] [bot] running from (639,2200,0) to (648,2200,z0)
+[17:30:13.859] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (648,2200) in background
+[17:30:13.921] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (648,2200): 9 steps in 133.6us
+[17:30:16.100] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (648,2200,0)
+[17:30:16.101] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (648,2200); ARRIVED (off by 0 tile(s))
+[17:30:16.102] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(648,2200) arrived=1 off=0
+[17:30:16.102] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk reached its anchor at (648,2200,0) (off 0); attempt 1/3
+[17:30:16.102] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=1 at=(648,2200,0) off=0 attempt=1
+[17:30:16.160] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:30:16.160] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:30:16.161] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:16.161] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:16.161] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:30:16.161] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~28 tiles transit=0 nodes=0
+[17:30:16.223] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:16.223] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:16.223] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:16.223] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:16.223] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:16.283] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:16.283] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:17.492] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:17.492] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:17.492] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:17.492] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:17.492] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:17.507] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:17.507] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:17.756] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:18.711] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:18.711] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:18.711] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:18.712] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:18.712] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:18.773] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:18.773] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:19.993] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:30:19.993] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:30:19.993] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:19.993] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:19.993] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:30:19.993] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~28 tiles transit=0 nodes=0
+[17:30:21.500] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:21.500] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:21.501] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:21.501] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:21.501] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:21.561] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:21.561] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:22.792] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:22.793] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:22.793] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:22.793] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:22.793] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:22.793] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:22.854] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:22.854] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:24.055] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:24.056] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:24.056] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:24.056] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:24.056] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:24.117] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:24.118] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:25.321] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:30:25.321] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:30:25.322] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:25.322] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:25.322] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:30:25.322] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~28 tiles transit=0 nodes=0
+[17:30:27.837] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:28.328] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:28.328] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:28.328] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:28.329] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:28.329] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:28.389] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:28.389] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:29.594] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:29.594] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:29.594] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:29.594] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:29.594] WARN  [wave10_RevGen3_07_Delra] [bot] goal (620,2218) is not walkable; skipping A* and stopping
+[17:30:29.655] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:29.655] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:30.868] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:30.868] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:30.869] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:30.869] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:30.869] WARN  [wave10_R[17:30:30.932] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,220[17:30:30.932] INFO  [wave10_RevGen3_07_Delra] [action] goto[17:30:30.932] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) ta[17:30:30.932] LOG   [wave10_RevGe[17:30:32.167] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             u[17:30:32.167] INFO[17:30:32.167] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         [17:30:3[17:30:32.167] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recal[17:30:32.167] INFO  [wave10_RevGen3_07_De[17:30:32.167] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall[17:30:32.167] INFO  [wave10_RevGen3_07_Delra[17:30:32.167] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:30:32.167] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae he[17:30:32.167] INFO  [wave10_RevGen3_07_Delra[17:30:32.846] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%)[17:30:32.8[17:30:36.691] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) [17:30:36.691] INFO[17:30:36.691] LOG   [wave10_RevGen3_07_Delra] event goto_start: target[17:30:36.691] LOG   [wave10_[17:30:36.691] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648[17:30:36.691] INFO  [wave1[17:30:36.692] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to[17:30:36.692] INFO  [wave1[17:30:36.752] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:36.752] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:37.549] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[17:30:37.857] INFO  [wave10_RevGen3_07_D[17:30:37.857] INFO  [wave10_RevGen3_07_Del[17:30:37.982] INFO  [wave10_RevGen3_07_[17:30:37.982] INFO  [wave10_RevGen3_07_Delra] [act[17:30:37.982] LOG   [wave10_RevGen3_07[17:30:37.982] LOG   [wave10_RevGen3_07_Delra] event goto_sta[17:30:37.982] INFO  [wave10_RevGen3_0[17:30:37.982] INFO  [wave10_RevGen3_07_Delra] [bot] runnin[17:30:37.982] INFO  [wave10_RevGen3_[17:30:37.982] INFO  [wave10_RevGen3_07_Delra] [bot] planni[17:30:38.042] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:38.042] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:39.254] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (648,2200,0)
+[17:30:39.254] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(648,2200)
+[17:30:39.254] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (620,2218,z0)
+[17:30:39.254] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:39.315] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:39.315] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(620,2218) arrived=0 off=46
+[17:30:39.315] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(648,2200,0) to=(660,2198) attempt=2
+[17:30:39.315] INFO  [wave10_RevGen3_07_Delra] [action] goto (660,2198) from (648,2200,0)
+[17:30:39.315] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(660,2198) from=(648,2200)
+[17:30:39.315] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (660,2198,z0)
+[17:30:39.315] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (660,2198) in background
+[17:30:39.873] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (648,2200,0); target (660,2198); stopped short (off by 14 tile(s))
+[17:30:39.874] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(648,2200) target=(660,2198) arrived=0 off=14
+[17:30:39.874] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk fell short at (648,2200,0) (off 12); attempt 2/3
+[17:30:39.874] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=0 at=(648,2200,0) off=12 attempt=2
+[17:30:39.874] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(648,2200,0) to=(632,2184) attempt=3
+[17:30:39.875] INFO  [wave10_RevGen3_07_Delra] [action] goto (632,2184) from (648,2200,0)
+[17:30:39.875] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(632,2184) from=(648,2200)
+[17:30:39.875] INFO  [wave10_RevGen3_07_Delra] [bot] running from (648,2200,0) to (632,2184,z0)
+[17:30:39.875] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (632,2184) in background
+[17:30:39.935] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (632,2184): 19 steps in 871.6us
+[17:30:42.899] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:45.714] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (632,2184,0)
+[17:30:45.715] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (632,2184); ARRIVED (off by 0 tile(s))
+[17:30:45.715] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(632,2184) arrived=1 off=0
+[17:30:45.715] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk reached its anchor at (632,2184,0) (off 0); attempt 2/3
+[17:30:45.715] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=1 at=(632,2184,0) off=0 attempt=2
+[17:30:45.776] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:30:45.776] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:30:45.776] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:45.776] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:45.776] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:30:45.776] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:30:45.836] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:30:45.837] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:30:45.837] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:30:45.837] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:45.898] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:45.898] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:30:47.144] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:30:47.144] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:30:47.144] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:30:47.144] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:47.206] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:47.206] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:30:47.942] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:48.433] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:30:48.433] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:30:48.433] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:30:48.433] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:48.494] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:48.494] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:30:49.720] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:30:49.720] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:30:49.720] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:49.720] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:49.720] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:30:49.721] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:30:51.238] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:30:51.238] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:30:51.238] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:30:51.238] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:51.300] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:51.300] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:30:52.558] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:30:52.558] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:30:52.559] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:30:52.559] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:52.620] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:52.620] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:30:52.943] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:53.821] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:30:53.821] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:30:53.821] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:30:53.822] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:53.883] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:53.884] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:30:55.087] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:30:55.087] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:30:55.087] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:30:55.087] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:30:55.087] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:30:55.087] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:30:57.963] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:30:58.147] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:30:58.148] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:30:58.148] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:30:58.148] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:58.210] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:58.210] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:30:59.439] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:30:59.439] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:30:59.439] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:30:59.439] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:30:59.501] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:30:59.501] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:00.724] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:00.724] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:00.725] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:00.725] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:00.787] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:00.787] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:02.038] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:31:02.038] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:31:02.038] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:02.038] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:02.038] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:31:02.038] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:31:02.993] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:06.561] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:06.561] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:06.561] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:06.561] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:06.623] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:06.623] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:07.841] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:07.841] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:07.841] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:07.842] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:07.903] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:07.903] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:08.028] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:09.135] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:09.136] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:09.136] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:09.136] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:09.197] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:09.197] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:09.197] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae healer FAILED at (632,2184,0) -- tile route stopped short
+[17:31:09.197] LOG   [wave10_RevGen3_07_Delra] event travel_failed: label='Skara Brae healer' ok=0 at=(632,2184) legs=1 plans=4 why='tile route stopped short'
+[17:31:09.258] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:31:09.258] INFO  [wave10_RevGen3_07_Delra] [action] requested 3 paperdoll(s) for trade titles
+[17:31:09.259] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[17:31:09.272] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (4):
+[17:31:09.272] INFO  [wave10_RevGen3_07_Delra]   Canute 0x00002A5D
+[17:31:09.272] INFO  [wave10_RevGen3_07_Delra]   Cole 0x00002997
+[17:31:09.272] INFO  [wave10_RevGen3_07_Delra]   Moon 0x00002C41
+[17:31:09.272] INFO  [wave10_RevGen3_07_Delra]   Garridan 0x000027BB
+[17:31:09.272] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(632,2184,0) facing=4
+[17:31:09.272] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00002A5D: "Canute, the blacksmith"
+[17:31:09.272] INFO  [wave10_RevGen3_07_Delra] [world] Canute, the blacksmith is a blacksmith at (634,2195)
+[17:31:09.274] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00002997: "Cole, the blacksmith"
+[17:31:09.274] INFO  [wave10_RevGen3_07_Delra] [world] Cole, the blacksmith is a blacksmith at (633,2197)
+[17:31:09.274] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(632,2184,0) facing=2
+[17:31:09.274] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00002C41: "Moon, the tailor"
+[17:31:09.274] INFO  [wave10_RevGen3_07_Delra] [world] Moon, the tailor is a tailor at (646,2178)
+[17:31:12.286] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:31:12.286] INFO  [life] bandages: at the shop, asking who is here (scan 2 of 3)
+[17:31:12.287] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (4):
+[17:31:12.287] INFO  [wave10_RevGen3_07_Delra]   Canute 0x00002A5D
+[17:31:12.287] INFO  [wave10_RevGen3_07_Delra]   Cole 0x00002997
+[17:31:12.287] INFO  [wave10_RevGen3_07_Delra]   Moon 0x00002C41
+[17:31:12.287] INFO  [wave10_RevGen3_07_Delra]   Garridan 0x000027BB
+[17:31:13.088] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:15.324] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:31:15.325] INFO  [life] bandages: at the shop, asking who is here (scan 3 of 3)
+[17:31:15.338] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (5):
+[17:31:15.339] INFO  [wave10_RevGen3_07_Delra]   Canute 0x00002A5D
+[17:31:15.339] INFO  [wave10_RevGen3_07_Delra]   Cole 0x00002997
+[17:31:15.339] INFO  [wave10_RevGen3_07_Delra]   Moon 0x00002C41
+[17:31:15.339] INFO  [wave10_RevGen3_07_Delra]   Zorah 0x000027A6
+[17:31:15.339] INFO  [wave10_RevGen3_07_Delra]   Garridan 0x000027BB
+[17:31:18.115] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:18.426] INFO  [wave10_RevGen3_07_Delra] [travel] place: skipping Delucia healer -- 1644 tiles and 4 gates for a service Skara Brae healer offers
+[17:31:18.477] INFO  [wave10_RevGen3_07_Delra] [travel] place: skipping Wind healer -- 1588 tiles and 2 gates for a service Skara Brae healer offers
+[17:31:18.562] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae healer -> (620,2218) r=5 from (632,2184)
+[17:31:18.718] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae healer' target=(620,2218) radius=5 from=(632,2184)
+[17:31:18.862] INFO  [life] bandages: walking to a 'healer' (trip 2)
+[17:31:18.953] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:31:19.006] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:31:19.059] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:19.132] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:19.206] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:31:19.294] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:31:19.424] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:19.473] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:19.545] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:19.616] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:19.692] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:19.692] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:20.915] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:20.918] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:20.918] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:20.918] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:20.978] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:20.978] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:22.214] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:22.214] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:22.214] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:22.214] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:22.276] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:22.276] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:23.124] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:23.509] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:31:23.509] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:31:23.510] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:23.510] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:23.510] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:31:23.510] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:31:25.034] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:25.034] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:25.034] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:25.034] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:25.095] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:25.095] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:26.328] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:26.328] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:26.328] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:26.328] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:26.388] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:26.388] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:27.628] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:27.629] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:27.629] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:27.629] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:27.644] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:27.644] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:28.163] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:28.871] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:31:28.872] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:31:28.872] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:28.872] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:28.872] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:31:28.872] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:31:31.903] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:31.903] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:31.903] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:31.904] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:31.965] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:31.965] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:33.179] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:33.179] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:33.179] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:33.180] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:33.180] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:33.241] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:33.241] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:34.476] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:34.476] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:34.476] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:34.476] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:34.538] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:34.538] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:35.757] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:31:35.757] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:31:35.757] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:35.757] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:35.757] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:31:35.757] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:31:37.603] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[17:31:38.234] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:40.271] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:40.272] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:40.272] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:40.272] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:40.333] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:40.334] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:41.555] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:41.555] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:41.555] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:41.555] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:41.601] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:41.601] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:42.814] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (632,2184,0)
+[17:31:42.814] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(632,2184)
+[17:31:42.814] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (620,2218,z0)
+[17:31:42.814] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:31:42.875] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2184,0); target (620,2218); stopped short (off by 46 tile(s))
+[17:31:42.875] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2184) target=(620,2218) arrived=0 off=46
+[17:31:42.876] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(632,2184,0) to=(616,2168) attempt=1
+[17:31:42.876] INFO  [wave10_RevGen3_07_Delra] [action] goto (616,2168) from (632,2184,0)
+[17:31:42.876] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(616,2168) from=(632,2184)
+[17:31:42.876] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2184,0) to (616,2168,z0)
+[17:31:42.876] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (616,2168) in background
+[17:31:42.936] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (616,2168): 20 steps in 594.0us
+[17:31:43.259] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:48.297] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:49.778] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (616,2168,0)
+[17:31:49.779] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2168,0); target (616,2168); ARRIVED (off by 0 tile(s))
+[17:31:49.779] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2168) target=(616,2168) arrived=1 off=0
+[17:31:49.779] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk reached its anchor at (616,2168,0) (off 0); attempt 1/3
+[17:31:49.779] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=1 at=(616,2168,0) off=0 attempt=1
+[17:31:49.839] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:31:49.839] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:31:49.839] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:49.839] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:49.839] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:31:49.840] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=130
+[17:31:49.840] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(616,2168,0) to=(600,2152) attempt=2
+[17:31:49.840] INFO  [wave10_RevGen3_07_Delra] [action] goto (600,2152) from (616,2168,0)
+[17:31:49.840] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(600,2152) from=(616,2168)
+[17:31:49.840] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2168,0) to (600,2152,z0)
+[17:31:49.840] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (600,2152) in background
+[17:31:49.900] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (600,2152): 26 steps in 2295.0us
+[17:31:53.348] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:58.369] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:31:58.507] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (600,2152,0)
+[17:31:58.508] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (600,2152,0); target (600,2152); ARRIVED (off by 0 tile(s))
+[17:31:58.509] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(600,2152) target=(600,2152) arrived=1 off=0
+[17:31:58.509] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk reached its anchor at (600,2152,0) (off 0); attempt 2/3
+[17:31:58.509] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=1 at=(600,2152,0) off=0 attempt=2
+[17:31:58.539] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable   <- chosen
+[17:31:58.540] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable
+[17:31:58.540] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:58.540] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:58.540] LOG   [wave10_RevGen3_07_Delra] event travel_mode: moongate
+[17:31:58.960] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25475
+[17:31:58.960] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(600,2152,0) to=(584,2136) attempt=3
+[17:31:58.961] INFO  [wave10_RevGen3_07_Delra] [action] goto (584,2136) from (600,2152,0)
+[17:31:58.961] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(584,2136) from=(600,2152)
+[17:31:58.961] INFO  [wave10_RevGen3_07_Delra] [bot] running from (600,2152,0) to (584,2136,z0)
+[17:31:58.961] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (584,2136) in background
+[17:31:59.717] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (600,2152,0); target (584,2136); stopped short (off by 32 tile(s))
+[17:31:59.717] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(600,2152) target=(584,2136) arrived=0 off=32
+[17:31:59.717] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk fell short at (600,2152,0) (off 16); attempt 3/3
+[17:31:59.717] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=0 at=(600,2152,0) off=16 attempt=3
+[17:31:59.733] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:31:59.733] INFO  [wave10_RevGen3_07_Delra] [action] requested 7 paperdoll(s) for trade titles
+[17:31:59.734] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[17:31:59.747] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (11):
+[17:31:59.747] INFO  [wave10_RevGen3_07_Delra]   Rat 0x0001ACFD
+[17:31:59.747] INFO  [wave10_RevGen3_07_Delra]   Rat 0x0001637A
+[17:31:59.747] INFO  [wave10_RevGen3_07_Delra]   Bitalo 0x00004A69
+[17:31:59.747] INFO  [wave10_RevGen3_07_Delra]   jungle bird 0x00011AA9
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra]   Nita 0x00004A5B
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra]   Stanton 0x00004901
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra]   Cat 0x00017929
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra]   Cyras 0x00015725
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra]   Andrio 0x00004937
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra]   Faye 0x00004A02
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra]   Jendayi 0x00004954
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(600,2152,0) facing=2
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004901: "Stanton, the butcher"
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra] [world] Stanton, the butcher is a butcher at (613,2157)
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004A69: "Bitalo, the farmer"
+[17:31:59.748] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(600,2152,0) facing=7
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004A5B: "Nita, the banker"
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [world] Nita, the banker is a banker at (588,2144)
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(600,2152,0) facing=5
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004937: "Andrio, the armorer"
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [world] Andrio, the armorer is a blacksmith at (585,2168)
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(600,2152,0) facing=6
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004A02: "Faye, the minter"
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [world] Faye, the minter is a banker at (584,2150)
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(600,2152,0) facing=5
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004954: "Jendayi, the weaponsmith"
+[17:31:59.749] INFO  [wave10_RevGen3_07_Delra] [world] Jendayi, the weaponsmith is a blacksmith at (584,2167)
+[17:31:59.750] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(600,2152,0) facing=4
+[17:31:59.750] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00015725: "Cyras, Apprentice Lumberjack"
+[17:32:02.743] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:32:02.744] INFO  [life] bandages: at the shop, asking who is here (scan 2 of 3)
+[17:32:02.757] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (11):
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   Rat 0x0001ACFD
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   Cyras 0x00015725
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   Rat 0x0001637A
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   Bitalo 0x00004A69
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   jungle bird 0x00011AA9
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   Nita 0x00004A5B
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   Cat 0x00017929
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   Stanton 0x00004901
+[17:32:02.758] INFO  [wave10_RevGen3_07_Delra]   Andrio 0x00004937
+[17:32:02.759] INFO  [wave10_RevGen3_07_Delra]   Faye 0x00004A02
+[17:32:02.759] INFO  [wave10_RevGen3_07_Delra]   Jendayi 0x00004954
+[17:32:02.760] INFO  [life] goal_changed=REPLACE_EQUIPMENT from=REPLACE_EQUIPMENT reason="previous goal abandoned: attempts 5 >= 5"
+[17:32:02.760] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedTravel(a place where work is possible 0.20) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[17:32:02.760] INFO  [life]   score=130.0
+[17:32:02.760] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[17:32:02.760] INFO  [life]   reason: potions=0 low=2 gold=9790
+[17:32:02.760] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:32:02.760] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9790 (buyable at 200))
+[17:32:03.389] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:05.750] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:32:05.751] INFO  [life] bandages: at the shop, asking who is here (scan 3 of 3)
+[17:32:05.765] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (11):
+[17:32:05.765] INFO  [wave10_RevGen3_07_Delra]   Rat 0x0001ACFD
+[17:32:05.765] INFO  [wave10_RevGen3_07_Delra]   Rat 0x0001637A
+[17:32:05.765] INFO  [wave10_RevGen3_07_Delra]   Bitalo 0x00004A69
+[17:32:05.765] INFO  [wave10_RevGen3_07_Delra]   jungle bird 0x00011AA9
+[17:32:05.766] INFO  [wave10_RevGen3_07_Delra]   Cyras 0x00015725
+[17:32:05.766] INFO  [wave10_RevGen3_07_Delra]   Nita 0x00004A5B
+[17:32:05.766] INFO  [wave10_RevGen3_07_Delra]   Stanton 0x00004901
+[17:32:05.766] INFO  [wave10_RevGen3_07_Delra]   Cat 0x00017929
+[17:32:05.766] INFO  [wave10_RevGen3_07_Delra]   Andrio 0x00004937
+[17:32:05.766] INFO  [wave10_RevGen3_07_Delra]   Faye 0x00004A02
+[17:32:05.766] INFO  [wave10_RevGen3_07_Delra]   Jendayi 0x00004954
+[17:32:08.391] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:08.802] INFO  [wave10_RevGen3_07_Delra] [travel] place: skipping Delucia healer -- 1612 tiles and 4 gates for a service Skara Brae healer offers
+[17:32:08.802] INFO  [wave10_RevGen3_07_Delra] [travel] place: skipping Wind healer -- 1556 tiles and 2 gates for a service Skara Brae healer offers
+[17:32:08.802] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae healer -> (620,2218) r=5 from (600,2152)
+[17:32:08.803] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae healer' target=(620,2218) radius=5 from=(600,2152)
+[17:32:08.803] INFO  [life] bandages: walking to a 'healer' (trip 3)
+[17:32:08.803] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable   <- chosen
+[17:32:08.803] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable
+[17:32:08.803] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:08.803] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:08.803] LOG   [wave10_RevGen3_07_Delra] event travel_mode: moongate
+[17:32:08.803] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=2 ~96 tiles transit=0 nodes=86
+[17:32:08.806] INFO  [wave10_RevGen3_07_Delra] [action] goto (616,2184) from (600,2152,0)
+[17:32:08.806] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(616,2184) from=(600,2152)
+[17:32:08.806] INFO  [wave10_RevGen3_07_Delra] [bot] running from (600,2152,0) to (616,2184)
+[17:32:08.806] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (616,2184) in background
+[17:32:08.871] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (616,2184): 37 steps in 4020.1us
+[17:32:13.401] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:18.454] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:20.626] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (616,2184,0)
+[17:32:20.628] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (616,2184); ARRIVED (off by 0 tile(s))
+[17:32:20.628] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(616,2184) arrived=1 off=0
+[17:32:20.628] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:20.628] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:20.628] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:20.628] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:20.689] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:20.689] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:21.900] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:21.900] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:21.900] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:21.900] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:21.961] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:21.961] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:23.197] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:23.197] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:23.197] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:23.198] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:23.259] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:23.259] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:23.505] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:24.478] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:32:24.479] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:32:24.479] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:24.479] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:24.479] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:32:24.479] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:32:25.998] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:25.998] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:25.998] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:25.999] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:26.061] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:26.061] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:27.296] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:27.296] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:27.296] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:27.296] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:27.359] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:27.359] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:28.532] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:28.593] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:28.594] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:28.594] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:28.594] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:28.654] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:28.654] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:29.881] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:32:29.882] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:32:29.882] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:29.882] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:29.882] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:32:29.882] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:32:32.903] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:32.903] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:32.904] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:32.904] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:32.964] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:32.964] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:33.576] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:34.194] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:34.194] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:34.194] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:34.194] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:34.224] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:34.224] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:35.478] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:35.478] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:35.478] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:35.479] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:35.540] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:35.541] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:36.772] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:32:36.773] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:32:36.773] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:36.773] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:36.773] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:32:36.773] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: ok legs=1 ~34 tiles transit=0 nodes=0
+[17:32:37.614] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[17:32:38.626] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:41.312] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:41.313] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:41.313] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:41.313] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:41.327] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:41.327] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:42.539] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:42.539] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:42.539] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:42.539] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:42.600] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:42.600] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:43.660] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:43.844] INFO  [wave10_RevGen3_07_Delra] [action] goto (620,2218) from (616,2184,0)
+[17:32:43.844] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(620,2218) from=(616,2184)
+[17:32:43.844] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (620,2218,z0)
+[17:32:43.844] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (620,2218) in background
+[17:32:43.860] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (616,2184,0); target (620,2218); stopped short (off by 38 tile(s))
+[17:32:43.860] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(616,2184) target=(620,2218) arrived=0 off=38
+[17:32:43.861] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(616,2184,0) to=(600,2168) attempt=1
+[17:32:43.861] INFO  [wave10_RevGen3_07_Delra] [action] goto (600,2168) from (616,2184,0)
+[17:32:43.861] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(600,2168) from=(616,2184)
+[17:32:43.861] INFO  [wave10_RevGen3_07_Delra] [bot] running from (616,2184,0) to (600,2168,z0)
+[17:32:43.861] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (600,2168) in background
+[17:32:43.919] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (600,2168): 27 steps in 2857.2us
+[17:32:48.674] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:52.638] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (600,2168,0)
+[17:32:52.639] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (600,2168,0); target (600,2168); ARRIVED (off by 0 tile(s))
+[17:32:52.639] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(600,2168) target=(600,2168) arrived=1 off=0
+[17:32:52.639] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk reached its anchor at (600,2168,0) (off 0); attempt 1/3
+[17:32:52.640] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=1 at=(600,2168,0) off=0 attempt=1
+[17:32:52.701] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:32:52.701] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:32:52.701] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:52.701] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:52.701] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:32:52.702] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=130
+[17:32:52.702] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(600,2168,0) to=(584,2152) attempt=2
+[17:32:52.702] INFO  [wave10_RevGen3_07_Delra] [action] goto (584,2152) from (600,2168,0)
+[17:32:52.702] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(584,2152) from=(600,2168)
+[17:32:52.702] INFO  [wave10_RevGen3_07_Delra] [bot] running from (600,2168,0) to (584,2152,z0)
+[17:32:52.702] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (584,2152) in background
+[17:32:52.764] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (584,2152): 27 steps in 1690.1us
+[17:32:53.718] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:32:58.738] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:01.080] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (584,2152,0)
+[17:33:01.082] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (584,2152,0); target (584,2152); ARRIVED (off by 0 tile(s))
+[17:33:01.082] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(584,2152) target=(584,2152) arrived=1 off=0
+[17:33:01.082] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk reached its anchor at (584,2152,0) (off 0); attempt 2/3
+[17:33:01.082] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=1 at=(584,2152,0) off=0 attempt=2
+[17:33:01.143] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable   <- chosen
+[17:33:01.143] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable
+[17:33:01.143] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:01.143] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:01.143] LOG   [wave10_RevGen3_07_Delra] event travel_mode: moongate
+[17:33:01.569] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25475
+[17:33:01.570] LOG   [wave10_RevGen3_07_Delra] event travel_escape: from=(584,2152,0) to=(568,2136) attempt=3
+[17:33:01.570] INFO  [wave10_RevGen3_07_Delra] [action] goto (568,2136) from (584,2152,0)
+[17:33:01.570] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(568,2136) from=(584,2152)
+[17:33:01.570] INFO  [wave10_RevGen3_07_Delra] [bot] running from (584,2152,0) to (568,2136,z0)
+[17:33:01.570] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (568,2136) in background
+[17:33:01.636] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (568,2136): 21 steps in 3568.2us
+[17:33:03.751] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:08.375] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (568,2136,0)
+[17:33:08.376] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (568,2136,0); target (568,2136); ARRIVED (off by 0 tile(s))
+[17:33:08.376] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(568,2136) target=(568,2136) arrived=1 off=0
+[17:33:08.377] INFO  [wave10_RevGen3_07_Delra] [travel] recovery walk reached its anchor at (568,2136,0) (off 0); attempt 3/3
+[17:33:08.377] LOG   [wave10_RevGen3_07_Delra] event travel_recovery_done: reached=1 at=(568,2136,0) off=0 attempt=3
+[17:33:08.439] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable   <- chosen
+[17:33:08.439] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable
+[17:33:08.439] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:08.439] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:08.439] LOG   [wave10_RevGen3_07_Delra] event travel_mode: moongate
+[17:33:08.820] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae healer: no world route to the destination legs=0 ~0 tiles transit=0 nodes=25475
+[17:33:08.821] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae healer FAILED at (568,2136,0) -- no world route to the destination
+[17:33:08.821] LOG   [wave10_RevGen3_07_Delra] event travel_failed: label='Skara Brae healer' ok=0 at=(568,2136) legs=0 plans=1 why='no world route to the destination'
+[17:33:08.821] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:08.822] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:33:08.822] INFO  [wave10_RevGen3_07_Delra] [action] requested 3 paperdoll(s) for trade titles
+[17:33:08.822] INFO  [life] bandages: at the shop, asking who is here (scan 1 of 3)
+[17:33:08.823] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (5):
+[17:33:08.823] INFO  [wave10_RevGen3_07_Delra]   Fay 0x00004AE0
+[17:33:08.823] INFO  [wave10_RevGen3_07_Delra]   Damion 0x00004BDB
+[17:33:08.823] INFO  [wave10_RevGen3_07_Delra]   Black Bear 0x00004BDC
+[17:33:08.823] INFO  [wave10_RevGen3_07_Delra]   Nita 0x00004A5B
+[17:33:08.823] INFO  [wave10_RevGen3_07_Delra]   Rutherford 0x0000490E
+[17:33:08.823] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(568,2136,0) facing=4
+[17:33:08.824] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004AE0: "Fay, the ranger guildmistress"
+[17:33:08.824] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(568,2136,0) facing=0
+[17:33:08.824] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x0000490E: "Rutherford, the animal trainer"
+[17:33:08.824] INFO  [wave10_RevGen3_07_Delra] [world] Rutherford, the animal trainer is a stablemaster at (573,2120)
+[17:33:08.824] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(568,2136,0) facing=7
+[17:33:08.824] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004BDB: "Damion, the wandering healer"
+[17:33:11.877] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:33:11.877] INFO  [life] bandages: at the shop, asking who is here (scan 2 of 3)
+[17:33:11.877] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (5):
+[17:33:11.877] INFO  [wave10_RevGen3_07_Delra]   Damion 0x00004BDB
+[17:33:11.877] INFO  [wave10_RevGen3_07_Delra]   Fay 0x00004AE0
+[17:33:11.877] INFO  [wave10_RevGen3_07_Delra]   Black Bear 0x00004BDC
+[17:33:11.877] INFO  [wave10_RevGen3_07_Delra]   Rutherford 0x0000490E
+[17:33:11.878] INFO  [wave10_RevGen3_07_Delra]   Nita 0x00004A5B
+[17:33:13.864] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:14.928] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:33:14.929] INFO  [life] bandages: at the shop, asking who is here (scan 3 of 3)
+[17:33:14.943] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (5):
+[17:33:14.943] INFO  [wave10_RevGen3_07_Delra]   Fay 0x00004AE0
+[17:33:14.943] INFO  [wave10_RevGen3_07_Delra]   Damion 0x00004BDB
+[17:33:14.943] INFO  [wave10_RevGen3_07_Delra]   Black Bear 0x00004BDC
+[17:33:14.943] INFO  [wave10_RevGen3_07_Delra]   Rutherford 0x0000490E
+[17:33:14.943] INFO  [wave10_RevGen3_07_Delra]   Faye 0x00004A02
+[17:33:17.941] INFO  [life] bandages: no 'healer' answered after 3 trip(s)
+[17:33:17.941] INFO  [life] goal_failed=REPLACE_EQUIPMENT status=failed reason="no 'healer' answered after 3 trip(s)"
+[17:33:17.942] INFO  [life] handoff=REPLACE_EQUIPMENT->MAKE_BANDAGES reason="no bandages bought"
+[17:33:18.003] INFO  [life] goal=GATHER_LOGS reason="previous goal abandoned: no bandages bought"
+[17:33:18.004] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[17:33:18.004] INFO  [life]   score=72.0
+[17:33:18.004] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[17:33:18.004] INFO  [life]   reason: no stand and no lead
+[17:33:18.004] INFO  [life]   reason: axe already in hand +20
+[17:33:18.004] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 239s after achieving nothing
+[17:33:18.004] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:33:18.004] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9790 (buyable at 200))
+[17:33:18.899] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:19.967] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:33:20.477] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:33:20.477] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:20.477] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:20.477] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:20.477] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:20.554] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:33:21.108] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:33:21.108] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:21.108] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:21.108] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:21.108] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:21.218] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:33:21.723] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:33:21.723] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:21.723] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:21.723] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:21.723] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:21.847] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:33:22.355] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:33:22.355] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:22.355] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:22.355] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:22.355] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:22.478] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:33:22.540] INFO  [life] goal_changed=GATHER_LOGS from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[17:33:22.541] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Carpentry 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Carpentry (target 100.0)
+[17:33:22.541] INFO  [life]   score=72.0
+[17:33:22.541] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[17:33:22.541][17:33:23.005] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:23.005] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:23.006] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:23.006] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:23.634] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:23.634] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:23.634] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:23.634] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:23.937] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:24.304] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:24.304] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:24.305] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:24.305] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:24.936] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:24.936] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:24.936] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:24.936] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:25.618] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:25.618] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:25.618] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:25.618] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:26.296] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:26.297] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:26.297] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:26.297] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:26.957] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:26.957] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:26.957] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:26.957] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:27.633] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:27.633] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:27.634] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:27.634] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:28.278] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:28.279] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:28.279] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:28.279] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:28.908] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:28.908] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:28.909] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:28.909] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:28.971] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:29.554] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:29.554] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:29.554] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:29.554] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:30.190] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:30.190] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:30.190] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:30.190] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:30.870] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:30.870] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:30.871] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:30.871] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:31.494] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:31.494] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:31.494] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:31.494] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:32.122] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:32.122] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:32.122] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:32.123] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:32.752] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:32.752] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:32.752] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:32.753] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:33.416] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:33.417] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:33.417] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:33.417] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:34.033] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:34.095] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:34.095] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:34.096] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:34.096] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:34.743] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:34.743] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:34.743] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:34.743] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:35.380] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (571,2136) r=4 from (568,2136)
+[17:33:35.380] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(571,2136) radius=4 from=(568,2136)
+[17:33:35.380] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (568,2136,0)
+[17:33:35.381] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(568,2136) legs=0 plans=0 why=''
+[17:33:38.507] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae carpenter -> (627,2163) r=5 from (568,2136)
+[17:33:38.507] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae carpenter' target=(627,2163) radius=5 from=(568,2136)
+[17:33:38.507] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable   <- chosen
+[17:33:38.507] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable
+[17:33:38.507] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:38.508] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:38.508] LOG   [wave10_RevGen3_07_Delra] event travel_mode: moongate
+[17:33:38.508] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae carpenter: ok legs=2 ~80 tiles transit=0 nodes=48
+[17:33:38.509] INFO  [wave10_RevGen3_07_Delra] [action] goto (600,2152) from (568,2136,0)
+[17:33:38.509] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(600,2152) from=(568,2136)
+[17:33:38.509] INFO  [wave10_RevGen3_07_Delra] [bot] running from (568,2136,0) to (600,2152)
+[17:33:38.509] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (600,2152) in background
+[17:33:38.522] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (600,2152): 37 steps in 2574.7us
+[17:33:39.063] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:44.075] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:48.148] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (600,2152,0)
+[17:33:48.149] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (600,2152,0); target (600,2152); ARRIVED (off by 0 tile(s))
+[17:33:48.149] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(600,2152) target=(600,2152) arrived=1 off=0
+[17:33:48.149] INFO  [wave10_RevGen3_07_Delra] [action] goto (627,2163) from (600,2152,0)
+[17:33:48.150] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(627,2163) from=(600,2152)
+[17:33:48.150] INFO  [wave10_RevGen3_07_Delra] [bot] running from (600,2152,0) to (627,2163,z0)
+[17:33:48.150] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (627,2163) in background
+[17:33:48.210] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (627,2163): 60 steps in 27555.0us
+[17:33:49.079] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:54.140] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:33:54.567] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: World save in 10 seconds
+[17:33:59.146] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:01.249] INFO  [wave10_RevGen3_07_Delra] [bot] door ahead at (635,2167,z0); OpenDoor before step
+[17:34:01.250] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Opening door...
+[17:34:03.284] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae carpenter ARRIVED at (632,2166,0)
+[17:34:03.284] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='Skara Brae carpenter' ok=1 at=(632,2166) legs=2 plans=1 why=''
+[17:34:03.348] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:34:03.348] INFO  [wave10_RevGen3_07_Delra] [action] requested 4 paperdoll(s) for trade titles
+[17:34:03.364] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (12):
+[17:34:03.364] INFO  [wave10_RevGen3_07_Delra]   Aine 0x00004A4D
+[17:34:03.364] INFO  [wave10_RevGen3_07_Delra]   Enrique 0x00004972
+[17:34:03.364] INFO  [wave10_RevGen3_07_Delra]   Amadis 0x00004A93
+[17:34:03.365] INFO  [wave10_RevGen3_07_Delra]   Cat 0x000027BE
+[17:34:03.365] INFO  [wave10_RevGen3_07_Delra]   Zorah 0x000027A6
+[17:34:03.365] INFO  [wave10_RevGen3_07_Delra]   Cyras 0x00015725
+[17:34:03.365] INFO  [wave10_RevGen3_07_Delra]   Moon 0x00002C41
+[17:34:03.365] INFO  [wave10_RevGen3_07_Delra]   Garridan 0x000027BB
+[17:34:03.365] INFO  [wave10_RevGen3_07_Delra]   Markos 0x00004965
+[17:34:03.366] INFO  [wave10_RevGen3_07_Delra]   Dog 0x000027BD
+[17:34:03.366] INFO  [wave10_RevGen3_07_Delra]   Stanton 0x00004901
+[17:34:03.366] INFO  [wave10_RevGen3_07_Delra]   Rat 0x0001637A
+[17:34:03.366] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004972: "Enrique, the architect"
+[17:34:03.366] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(632,2166,0) facing=7
+[17:34:03.366] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004A4D: "Aine, the carpenter"
+[17:34:03.367] INFO  [wave10_RevGen3_07_Delra] [world] Aine, the carpenter is a carpenter at (626,2163)
+[17:34:03.367] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x00004A93: "Amadis, the architect"
+[17:34:03.367] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(632,2166,0) facing=3
+[17:34:03.367] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x000027A6: "Zorah, the tailor guildmistress"
+[17:34:03.367] INFO  [wave10_RevGen3_07_Delra] [world] Zorah, the tailor guildmistress is a tailor at (648,2182)
+[17:34:04.197] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: World save has been initiated.
+[17:34:05.910] INFO  [wave10_RevGen3_07_Delra] [travel] mobile 0x00004A4D -> (626,2164) r=1 from (632,2166)
+[17:34:05.910] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='mobile 0x00004A4D' target=(626,2164) radius=1 from=(632,2166)
+[17:34:05.910] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:34:05.910] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:34:05.910] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:05.911] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:05.911] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:34:05.911] INFO  [wave10_RevGen3_07_Delra] [travel] plan mobile 0x00004A4D: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:34:05.971] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2166,0); target (627,2163); stopped short (off by 8 tile(s))
+[17:34:05.971] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2166) target=(627,2163) arrived=0 off=8
+[17:34:05.972] INFO  [wave10_RevGen3_07_Delra] [action] goto (626,2164) from (632,2166,0)
+[17:34:05.972] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(626,2164) from=(632,2166)
+[17:34:05.972] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2166,0) to (626,2164,z0)
+[17:34:05.972] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (626,2164) in background
+[17:34:06.906] WARN  [wave10_RevGen3_07_Delra] [bot] no path to (626,2164) avoiding 0 block(s); stopping (search 875738.9us)
+[17:34:06.906] WARN  [wave10_RevGen3_07_Delra] [bot] start (632,2166,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 396 item(s), 12 mobile(s))
+[17:34:06.970] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2166,0); target (626,2164); stopped short (off by 8 tile(s))
+[17:34:06.970] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2166) target=(626,2164) arrived=0 off=8
+[17:34:08.212] INFO  [wave10_RevGen3_07_Delra] [action] goto (626,2164) from (632,2166,0)
+[17:34:08.212] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(626,2164) from=(632,2166)
+[17:34:08.212] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2166,0) to (626,2164,z0)
+[17:34:08.212] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (626,2164) in background
+[17:34:09.083] WARN  [wave10_RevGen3_07_Delra] [bot] no path to (626,2164) avoiding 0 block(s); stopping (search 843363.5us)
+[17:34:09.084] WARN  [wave10_RevGen3_07_Delra] [bot] start (632,2166,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 396 item(s), 12 mobile(s))
+[17:34:09.143] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2166,0); target (626,2164); stopped short (off by 8 tile(s))
+[17:34:09.144] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2166) target=(626,2164) arrived=0 off=8
+[17:34:09.206] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:10.366] INFO  [wave10_RevGen3_07_Delra] [action] goto (626,2164) from (632,2166,0)
+[17:34:10.366] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(626,2164) from=(632,2166)
+[17:34:10.367] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2166,0) to (626,2164,z0)
+[17:34:10.367] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (626,2164) in background
+[17:34:11.182] WARN  [wave10_RevGen3_07_Delra] [bot] no path to (626,2164) avoiding 0 block(s); stopping (search 803450.6us)
+[17:34:11.182] WARN  [wave10_RevGen3_07_Delra] [bot] start (632,2166,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 396 item(s), 12 mobile(s))
+[17:34:11.244] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2166,0); target (626,2164); stopped short (off by 8 tile(s))
+[17:34:11.244] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2166) target=(626,2164) arrived=0 off=8
+[17:34:12.445] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:34:12.445] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:34:12.445] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:12.445] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:12.445] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:34:12.445] INFO  [wave10_RevGen3_07_Delra] [travel] plan mobile 0x00004A4D: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:34:13.985] INFO  [wave10_RevGen3_07_Delra] [action] goto (626,2164) from (632,2166,0)
+[17:34:13.985] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(626,2164) from=(632,2166)
+[17:34:13.986] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2166,0) to (626,2164,z0)
+[17:34:13.986] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (626,2164) in background
+[17:34:14.047] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (626,2164): 6 steps in 165.2us
+[17:34:14.247] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:16.131] INFO  [wave10_RevGen3_07_Delra] [travel] mobile 0x00004A4D ARRIVED at (627,2165,0)
+[17:34:16.131] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='mobile 0x00004A4D' ok=1 at=(627,2165) legs=1 plans=2 why=''
+[17:34:16.193] INFO  [wave10_RevGen3_07_Delra] [ACTION] npc_train start
+[17:34:16.193] INFO  [wave10_RevGen3_07_Delra] [TRAIN] ask 0x00004A4D say='Aine train Carpentry'
+[17:34:16.193] LOG   [wave10_RevGen3_07_Delra] event npc_train_ask: Aine train Carpentry
+[17:34:16.207] INFO  [wave10_RevGen3_07_Delra] [chat uni  ] Delras: Aine train Carpentry
+[17:34:16.207] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Aine: Yes?
+[17:34:16.207] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Aine: You already know as much as I can teach of Carpentry
+[17:34:16.207] WARN  [wave10_RevGen3_07_Delra] [ACTION_RESULT] npc_train invalid_state (14ms) You already know as much as I can teach of Carpentry
+[17:34:16.207] LOG   [wave10_RevGen3_07_Delra] event action_result: npc_train invalid_state took=14ms You already know as much as I can teach of Carpentry
+[17:34:19.984] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae blacksmith -> (630,2194) r=5 from (627,2165)
+[17:34:19.985] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae blacksmith' target=(630,2194) radius=5 from=(627,2165)
+[17:34:19.985] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:34:19.985] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:34:19.985] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:19.985] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:19.986] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:34:19.986] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae blacksmith: ok legs=1 ~29 tiles transit=0 nodes=0
+[17:34:19.986] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:20.049] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (627,2165,0); target (626,2164); stopped short (off by 2 tile(s))
+[17:34:20.050] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(627,2165) target=(626,2164) arrived=0 off=2
+[17:34:20.050] INFO  [wave10_RevGen3_07_Delra] [action] goto (630,2194) from (627,2165,0)
+[17:34:20.050] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(630,2194) from=(627,2165)
+[17:34:20.050] INFO  [wave10_RevGen3_07_Delra] [bot] running from (627,2165,0) to (630,2194,z0)
+[17:34:20.050] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (630,2194) in background
+[17:34:20.111] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (630,2194): 38 steps in 3505.6us
+[17:34:24.991] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:28.346] INFO  [wave10_RevGen3_07_Delra] [bot] door ahead at (631,2187,z0); OpenDoor before step
+[17:34:28.360] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Opening door...
+[17:34:30.043] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae blacksmith ARRIVED at (630,2189,0)
+[17:34:30.044] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='Skara Brae blacksmith' ok=1 at=(630,2189) legs=1 plans=1 why=''
+[17:34:30.044] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:30.106] INFO  [wave10_RevGen3_07_Delra] [travel] mobile 0x00002A5D -> (630,2198) r=1 from (630,2189)
+[17:34:30.106] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='mobile 0x00002A5D' target=(630,2198) radius=1 from=(630,2189)
+[17:34:30.106] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:34:30.106] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:34:30.107] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:30.107] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:30.107] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:34:30.107] INFO  [wave10_RevGen3_07_Delra] [travel] plan mobile 0x00002A5D: ok legs=1 ~9 tiles transit=0 nodes=0
+[17:34:30.167] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (630,2189,0); target (630,2194); stopped short (off by 5 tile(s))
+[17:34:30.167] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(630,2189) target=(630,2194) arrived=0 off=5
+[17:34:30.168] INFO  [wave10_RevGen3_07_Delra] [action] goto (630,2198) from (630,2189,0)
+[17:34:30.168] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(630,2198) from=(630,2189)
+[17:34:30.168] INFO  [wave10_RevGen3_07_Delra] [bot] running from (630,2189,0) to (630,2198,z0)
+[17:34:30.168] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (630,2198) in background
+[17:34:30.908] WARN  [wave10_RevGen3_07_Delra] [bot] no path to (630,2198) avoiding 0 block(s); stopping (search 733879.2us)
+[17:34:30.908] WARN  [wave10_RevGen3_07_Delra] [bot] start (630,2189,0) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 396 item(s), 5 mobile(s))
+[17:34:30.969] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (630,2189,0); target (630,2198); stopped short (off by 9 tile(s))
+[17:34:30.970] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(630,2189) target=(630,2198) arrived=0 off=9
+[17:34:32.198] INFO  [wave10_RevGen3_07_Delra] [action] goto (630,2198) from (630,2189,0)
+[17:34:32.199] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(630,2198) from=(630,2189)
+[17:34:32.199] INFO  [wave10_RevGen3_07_Delra] [bot] running from (630,2189,0) to (630,2198,z0)
+[17:34:32.199] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (630,2198) in background
+[17:34:32.199] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (630,2198): 9 steps in 89.2us
+[17:34:34.332] INFO  [wave10_RevGen3_07_Delra] [bot] arrived at (630,2198,0)
+[17:34:34.334] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (630,2198,0); target (630,2198); ARRIVED (off by 0 tile(s))
+[17:34:34.334] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(630,2198) target=(630,2198) arrived=1 off=0
+[17:34:34.334] INFO  [wave10_RevGen3_07_Delra] [travel] mobile 0x00002A5D ARRIVED at (630,2198,0)
+[17:34:34.334] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='mobile 0x00002A5D' ok=1 at=(630,2198) legs=1 plans=1 why=''
+[17:34:34.394] INFO  [wave10_RevGen3_07_Delra] [ACTION] npc_train start
+[17:34:34.394] INFO  [wave10_RevGen3_07_Delra] [TRAIN] ask 0x00002A5D say='Canute train Tactics'
+[17:34:34.394] LOG   [wave10_RevGen3_07_Delra] event npc_train_ask: Canute train Tactics
+[17:34:34.394] INFO  [wave10_RevGen3_07_Delra] [chat uni  ] Delras: Canute train Tactics
+[17:34:34.394] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Canute: Hello! ?
+[17:34:34.395] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Canute: For 80 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:34:34.395] INFO  [wave10_RevGen3_07_Delra] [ACTION_RESULT] npc_train success (2ms) For 80 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:34:34.395] LOG   [wave10_RevGen3_07_Delra] event action_result: npc_train success took=2ms For 80 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:34:35.102] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:36.901] INFO  [wave10_RevGen3_07_Delra] [action] open backpack
+[17:34:36.901] INFO  [wave10_RevGen3_07_Delra] [backpack] opening 0x4001591B
+[17:34:36.901] INFO  [wave10_RevGen3_07_Delra] [0x24] open container 0x4001591B gump=60
+[17:34:36.902] INFO  [wave10_RevGen3_07_Delra] [0x3C] container contents: 7 item(s)
+[17:34:38.116] INFO  [wave10_RevGen3_07_Delra] [GIVE] 0x4000E017 x80 -> 0x00002A5D (gold 9790)
+[17:34:38.116] INFO  [wave10_RevGen3_07_Delra] [ITEM] drag serial=0x4000E017 amount=80
+[17:34:38.116] INFO  [wave10_RevGen3_07_Delra] [ITEM] drop container=0x00002A5D
+[17:34:38.116] LOG   [wave10_RevGen3_07_Delra] event npc_give: item=0x4000E017 amount=80 to=0x00002A5D
+[17:34:38.130] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Canute: Let me show you something of how this is done
+[17:34:38.130] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Canute: That is all I can teach.
+[17:34:40.114] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:41.066] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Cole: Hmm?
+[17:34:42.148] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (630,2203) r=4 from (630,2198)
+[17:34:42.148] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(630,2203) radius=4 from=(630,2198)
+[17:34:42.148] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:34:42.148] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:34:42.149] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:42.149] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:42.149] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:34:42.149] INFO  [wave10_RevGen3_07_Delra] [travel] plan past_guard_line: ok legs=1 ~5 tiles transit=0 nodes=0
+[17:34:42.211] INFO  [wave10_RevGen3_07_Delra] [action] goto (630,2203) from (630,2198,0)
+[17:34:42.211] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(630,2203) from=(630,2198)
+[17:34:42.211] INFO  [wave10_RevGen3_07_Delra] [bot] running from (630,2198,0) to (630,2203)
+[17:34:42.211] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (630,2203) in background
+[17:34:42.271] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (630,2203): 42 steps in 6261.1us
+[17:34:45.143] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:45.789] WARN  [wave10_RevGen3_07_Delra] [0x21] move REJECTED seq=16; server says (632,2187,0) facing=3
+[17:34:45.789] INFO  [wave10_RevGen3_07_Delra] [bot] step (632,2187,0)->(633,2188,0) rejected; OpenDoor + retry
+[17:34:45.791] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Opening door...
+[17:34:45.791] WARN  [wave10_RevGen3_07_Delra] [bot] 0x20 resync; aborting path
+[17:34:45.791] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(632,2187,0) facing=4
+[17:34:45.793] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (632,2187,0); target (630,2203); stopped short (off by 18 tile(s))
+[17:34:45.793] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(632,2187) target=(630,2203) arrived=0 off=18
+[17:34:47.043] INFO  [wave10_RevGen3_07_Delra] [action] goto (630,2203) from (632,2187,0)
+[17:34:47.043] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(630,2203) from=(632,2187)
+[17:34:47.043] INFO  [wave10_RevGen3_07_Delra] [bot] running from (632,2187,0) to (630,2203)
+[17:34:47.044] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (630,2203) in background
+[17:34:47.105] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (630,2203): 29 steps in 4450.5us
+[17:34:50.161] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:53.789] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (634,2203,0)
+[17:34:53.789] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(634,2203) legs=1 plans=1 why=''
+[17:34:54.469] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (647,2203) r=4 from (634,2203)
+[17:34:54.469] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(647,2203) radius=4 from=(634,2203)
+[17:34:54.469] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:34:54.469] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:34:54.469] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:54.470] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:54.470] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:34:54.470] INFO  [wave10_RevGen3_07_Delra] [travel] plan past_guard_line: ok legs=1 ~13 tiles transit=0 nodes=0
+[17:34:54.531] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (634,2203,0); target (630,2203); stopped short (off by 4 tile(s))
+[17:34:54.531] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(634,2203) target=(630,2203) arrived=0 off=4
+[17:34:54.531] INFO  [wave10_RevGen3_07_Delra] [action] goto (647,2203) from (634,2203,0)
+[17:34:54.531] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(647,2203) from=(634,2203)
+[17:34:54.531] INFO  [wave10_RevGen3_07_Delra] [bot] running from (634,2203,0) to (647,2203)
+[17:34:54.532] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (647,2203) in background
+[17:34:54.593] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (647,2203): 13 steps in 162.5us
+[17:34:55.198] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:34:57.093] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:34:57.093] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=1 plans=1 why=''
+[17:34:57.770] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:34:57.770] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:34:57.770] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:34:57.770] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:34:58.448] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:34:58.448] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:34:58.448] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:34:58.448] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:34:59.125] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:34:59.125] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:34:59.125] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:34:59.125] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:34:59.801] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:34:59.801] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:34:59.801] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:34:59.801] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:00.247] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:00.433] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:00.433] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:00.433] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:00.433] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:01.109] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:01.109] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:01.109] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:01.109] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:01.788] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:01.788] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:01.788] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:01.788] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:02.468] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:02.468] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:02.468] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:02.468] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:03.147] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:03.147] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:03.147] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:03.147] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:03.826] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:03.826] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:03.826] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:03.827] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:04.505] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:04.505] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:04.505] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:04.506] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:05.134] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:05.134] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:05.134] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:05.134] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:05.258] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:05.811] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:05.811] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:05.811] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:05.812] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:06.489] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:06.489] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:06.489] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:06.489] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:07.135] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:07.135] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:07.136] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:07.136] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:07.813] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:07.813] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:07.813] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:07.813] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:08.489] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:08.489] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:08.490] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:08.490] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:09.104] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:09.105] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:09.105] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:09.105] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:09.736] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:09.736] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:09.736] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:09.737] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:10.290] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:10.413] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:10.413] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:10.413] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:10.413] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:11.088] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:11.088] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:11.088] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:11.088] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:11.748] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:11.748] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:11.748] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:11.749] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:12.412] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:12.412] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:12.412] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:12.412] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:13.058] INFO  [wave10_RevGen3_07_Delra] [action] requesting the skill list
+[17:35:15.310] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:16.652] INFO  [wave10_RevGen3_07_Delra] [travel] tailor (seen) -> (648,2182) r=2 from (645,2203)
+[17:35:16.652] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='tailor (seen)' target=(648,2182) radius=2 from=(645,2203)
+[17:35:16.652] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:35:16.652] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:35:16.653] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:16.653] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:16.653] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:35:16.653] INFO  [wave10_RevGen3_07_Delra] [travel] plan tailor (seen): ok legs=1 ~21 tiles transit=0 nodes=0
+[17:35:16.711] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (645,2203,0); target (647,2203); stopped short (off by 2 tile(s))
+[17:35:16.711] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(645,2203) target=(647,2203) arrived=0 off=2
+[17:35:16.711] INFO  [wave10_RevGen3_07_Delra] [action] goto (648,2182) from (645,2203,0)
+[17:35:16.712] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(648,2182) from=(645,2203)
+[17:35:16.712] INFO  [wave10_RevGen3_07_Delra] [bot] running from (645,2203,0) to (648,2182,z0)
+[17:35:16.712] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (648,2182) in background
+[17:35:16.775] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (648,2182): 22 steps in 1258.4us
+[17:35:20.192] INFO  [wave10_RevGen3_07_Delra] [bot] door ahead at (650,2191,z0); OpenDoor before step
+[17:35:20.196] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Opening door...
+[17:35:20.315] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:22.942] INFO  [wave10_RevGen3_07_Delra] [travel] tailor (seen) ARRIVED at (649,2183,0)
+[17:35:22.942] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='tailor (seen)' ok=1 at=(649,2183) legs=1 plans=1 why=''
+[17:35:23.004] INFO  [wave10_RevGen3_07_Delra] [ACTION] vendor_buy start
+[17:35:23.004] INFO  [wave10_RevGen3_07_Delra] [VENDOR] open vendor=0x00002C41 say='Moon buy'
+[17:35:23.018] INFO  [wave10_RevGen3_07_Delra] [chat uni  ] Delras: Moon buy
+[17:35:23.018] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Moon: What's thou need?
+[17:35:23.018] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Moon: I got lots to sell!
+[17:35:23.018] INFO  [wave10_RevGen3_07_Delra] [0x3C] container contents: 37 item(s)
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74] pairing: straight (straight 10, mirrored 0 of 37 rows)
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74] vendor shop data: cont=0x40002C27 37 item(s), layer=0x1A
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   sewing kit                   gfx=0x0F9D qty=23   price=35
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   scissors                     gfx=0x0F9E qty=13   price=7
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   dyeing tub                   gfx=0x0FAB qty=10   price=75
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   dyes                         gfx=0x0FA9 qty=8    price=40
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   shirt                        gfx=0x1517 qty=2    price=37
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   fancy shirt                  gfx=0x1EFD qty=10   price=38
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   short pants                  gfx=0x152E qty=17   price=24
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   long pants                   gfx=0x1539 qty=5    price=37
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   fancy dress                  gfx=0x1EFF qty=6    price=60
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   plain dress                  gfx=0x1F01 qty=24   price=43
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   long skirt                   gfx=0x1516 qty=19   price=48
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   kilt                         gfx=0x1537 qty=9    price=37
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   half apron                   gfx=0x153B qty=21   price=28
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   robe                         gfx=0x1F03 qty=15   price=121
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   cloak                        gfx=0x1515 qty=22   price=74
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   doublet                      gfx=0x1F7B qty=18   price=37
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   tunic                        gfx=0x1FA1 qty=24   price=47
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   jester suit                  gfx=0x1F9F qty=7    price=161
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   jester hat                   gfx=0x171C qty=16   price=74
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   floppy hat                   gfx=0x1713 qty=5    price=43
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   wide-brim hat                gfx=0x1714 qty=19   price=49
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   cap                          gfx=0x1715 qty=9    price=28
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   tall straw hat               gfx=0x1716 qty=13   price=48
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   straw hat                    gfx=0x1717 qty=9    price=40
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   wizard's hat                 gfx=0x1718 qty=3    price=39
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   leather cap                  gfx=0x1DB9 qty=23   price=15
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   feathered hat                gfx=0x171A qty=7    price=58
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   tricorne hat                 gfx=0x171B qty=21   price=51
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   bandana                      gfx=0x153F qty=18   price=9
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   skullcap                     gfx=0x1543 qty=20   price=9
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   folded cloth                 gfx=0x175D qty=21   price=3
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   folded cloth                 gfx=0x175D qty=14   price=3
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   folded cloth                 gfx=0x175D qty=20   price=3
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   folded cloth                 gfx=0x175D qty=10   price=3
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   bolts of cloth               gfx=0x0F95 qty=17   price=173
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   bolts of cloth               gfx=0x0F95 qty=15   price=173
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   bolts of cloth               gfx=0x0F95 qty=14   price=173
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x3C] container contents: 0 item(s)
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74] vendor shop data: cont=0x40012A6E 0 item(s), layer=0x1B
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR] offer from 0x00002C41: 37 item(s)
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191F8 sewing kit             x23  35 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191F7 scissors               x13  7 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191F0 dyeing tub             x10  75 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EF dyes                   x8   40 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EE shirt                  x2   37 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EC fancy shirt            x10  38 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EB short pants            x17  24 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EA long pants             x5   37 gp
+[17:35:23.025] LOG   [wave10_RevGen3_07_Delra] event vendor_offer: vendor=0x00002C41 items=37
+[17:35:23.025] INFO  [wave10_RevGen3_07_Delra] [ACTION_RESULT] vendor_buy success (21ms) vendor offer received
+[17:35:23.025] LOG   [wave10_RevGen3_07_Delra] event action_result: vendor_buy success took=21ms vendor offer received
+[17:35:23.025] INFO  [wave10_RevGen3_07_Delra] [0x24] vendor buy gump for 0x00002C41
+[17:35:25.350] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:30.399] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:32.108] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae tailor -> (650,2178) r=5 from (649,2183)
+[17:35:32.108] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae tailor' target=(650,2178) radius=5 from=(649,2183)
+[17:35:32.108] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae tailor ARRIVED at (649,2183,0)
+[17:35:32.108] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='Skara Brae tailor' ok=1 at=(649,2183) legs=0 plans=0 why=''
+[17:35:34.622] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:35:34.622] INFO  [wave10_RevGen3_07_Delra] [action] requested 1 paperdoll(s) for trade titles
+[17:35:34.635] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (8):
+[17:35:34.635] INFO  [wave10_RevGen3_07_Delra]   Zorah 0x000027A6
+[17:35:34.635] INFO  [wave10_RevGen3_07_Delra]   Moon 0x00002C41
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Garridan 0x000027BB
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   jungle bird 0x00014F96
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Canute 0x00002A5D
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Cat 0x00017C91
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Markos 0x00004965
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Cole 0x00002997
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(649,2183,0) facing=0
+[17:35:34.637] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x000027BB: "Garridan, the weaver"
+[17:35:34.637] INFO  [wave10_RevGen3_07_Delra] [world] Garridan, the weaver is a tailor at (649,2176)
+[17:35:35.434] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:37.665] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae blacksmith -> (630,2194) r=5 from (649,2183)
+[17:35:37.666] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae blacksmith' target=(630,2194) radius=5 from=(649,2183)
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:37.666] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae blacksmith: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:35:37.681] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (649,2183,0); target (648,2182); stopped short (off by 2 tile(s))
+[17:35:37.681] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(649,2183) target=(648,2182) arrived=0 off=2
+[17:35:37.681] INFO  [wave10_RevGen3_07_Delra] [action] goto (630,2194) from (649,2183,0)
+[17:35:37.681] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(630,2194) from=(649,2183)
+[17:35:37.682] INFO  [wave10_RevGen3_07_Delra] [bot] running from (649,2183,0) to (630,2194,z0)
+[17:35:37.682] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (630,2194) in background
+[17:35:37.742] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (630,2194): 36 steps in 4915.8us
+[17:35:39.330] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Falen has departed from Britain.
+ead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:03.826] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:03.826] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:03.826] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:03.827] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:03.952] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:04.505] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:04.505] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:04.505] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:04.505] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:04.506] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:04.585] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:05.133] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:05.134] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:05.134] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:05.134] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:05.134] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:05.258] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:05.258] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:05.811] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:05.811] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:05.811] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:05.811] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:05.812] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:05.935] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:05.995] INFO  [life] goal_changed=GATHER_LOGS from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[17:35:05.996] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Tactics (target 100.0)
+[17:35:05.996] INFO  [life]   score=72.0
+[17:35:05.996] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[17:35:05.997] INFO  [life]   reason: no stand and no lead
+[17:35:05.997] INFO  [life]   reason: axe already in hand +20
+[17:35:05.997] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 131s after achieving nothing
+[17:35:05.997] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 150s after achieving nothing
+[17:35:05.997] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:05.998] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9710 (buyable at 200))
+[17:35:06.488] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:06.489] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:06.489] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:06.489] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:06.489] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:06.582] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:07.135] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:07.135] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:07.135] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:07.136] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:07.136] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:07.259] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:07.813] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:07.813] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:07.813] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:07.813] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:07.813] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:07.938] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:08.489] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:08.489] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:08.489] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:08.490] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:08.490] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:08.551] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:09.104] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:09.104] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:09.105] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:09.105] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:09.105] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:09.228] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:09.289] INFO  [life] goal_changed=GATHER_LOGS from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[17:35:09.289] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Tactics (target 100.0)
+[17:35:09.289] INFO  [life]   score=72.0
+[17:35:09.289] INFO  [life]   reason: NeedLogs urgency 0.40 x 130 = 52.0
+[17:35:09.289] INFO  [life]   reason: no stand and no lead
+[17:35:09.289] INFO  [life]   reason: axe already in hand +20
+[17:35:09.289] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 128s after achieving nothing
+[17:35:09.289] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 146s after achieving nothing
+[17:35:09.290] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:09.290] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9710 (buyable at 200))
+[17:35:09.736] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:09.736] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:09.736] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:09.736] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:09.737] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:09.859] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:10.290] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:10.413] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:10.413] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:10.413] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:10.413] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:10.413] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:10.535] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:11.088] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:11.088] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:11.088] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:11.088] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:11.088] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:11.211] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:11.748] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:11.748] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:11.748] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:11.748] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:11.749] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:11.873] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:12.412] INFO  [life] gather: no stand and no lead left, and this is guarded ground -- walking out to where trees can actually be worked
+[17:35:12.412] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line -> (642,2203) r=4 from (645,2203)
+[17:35:12.412] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='past_guard_line' target=(642,2203) radius=4 from=(645,2203)
+[17:35:12.412] INFO  [wave10_RevGen3_07_Delra] [travel] past_guard_line ARRIVED at (645,2203,0)
+[17:35:12.412] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='past_guard_line' ok=1 at=(645,2203) legs=0 plans=0 why=''
+[17:35:12.505] INFO  [life] gather: nothing to take outside the guard line here -- going to the proven stand
+[17:35:12.567] INFO  [life] goal_changed=TRAIN_AT_NPC from=GATHER_LOGS reason="previous goal abandoned: attempts 5 >= 5"
+[17:35:12.567] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedSkillTraining(Tactics 0.55) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Tactics (target 100.0)
+[17:35:12.567] INFO  [life]   score=60.5
+[17:35:12.567] INFO  [life]   reason: NeedSkillTraining urgency 0.55 x 110 = 60.5
+[17:35:12.568] INFO  [life]   reason: Tactics 0.0 -> 100.0, gold 9710 (fee is quoted on arrival, roughly 300)
+[17:35:12.568] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 125s after achieving nothing
+[17:35:12.568] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 60s after achieving nothing
+[17:35:12.568] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 143s after achieving nothing
+[17:35:12.568] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:12.568] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9710 (buyable at 200))
+[17:35:12.568] INFO  [life] goal_spinning=GATHER_LOGS reason="completed 5 times in a row with progress 0 -- cooled off for a minute; this is a bug in that goal, not pacing"
+[17:35:13.058] INFO  [wave10_RevGen3_07_Delra] [action] requesting the skill list
+[17:35:14.570] INFO  [life] train: Tactics 0.0->8.0 bought from a trainer
+[17:35:14.573] INFO  [life] checkpoint (skill bought from a trainer) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[17:35:14.573] INFO  [life] goal_completed=TRAIN_AT_NPC progress=1
+[17:35:14.575] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[17:35:14.632] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[17:35:14.632] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Tactics 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Tactics (target 100.0)
+[17:35:14.632] INFO  [life]   score=49.5
+[17:35:14.633] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 110 = 49.5
+[17:35:14.633] INFO  [life]   reason: Tactics 8.0 -> 100.0, gold 9710 (fee is quoted on arrival, roughly 300)
+[17:35:14.633] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 123s after achieving nothing
+[17:35:14.633] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 57s after achieving nothing
+[17:35:14.633] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 141s after achieving nothing
+[17:35:14.633] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:14.633] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9710 (buyable at 200))
+[17:35:14.634] INFO  [life] plan=practise reason="already at what an NPC of this kind can teach"
+[17:35:14.634] INFO  [life] handoff=TRAIN_AT_NPC->PRACTICE_SKILL reason="already at what an NPC of this kind can teach"
+[17:35:14.694] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: already at what an NPC of this kind can teach"
+[17:35:14.694] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedTraining(Swordsmanship 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Tactics 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Tactics (target 100.0)
+[17:35:14.694] INFO  [life]   score=22.0
+[17:35:14.694] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[17:35:14.694] INFO  [life]   reason: str 40 gold 9710 reserve 10000
+[17:35:14.695] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 123s after achieving nothing
+[17:35:14.695] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 57s after achieving nothing
+[17:35:14.695] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 141s after achieving nothing
+[17:35:14.695] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[17:35:14.695] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:14.695] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9710 (buyable at 200))
+[17:35:15.310] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:16.650] INFO  [life] gear: armorer upgrade 0x140C (armor 25, needs str 40) replaces 0x0000 (armor 0); buying from a tailor
+[17:35:16.652] INFO  [life] UPGRADE_GEAR: looking for a 'tailor' to sell a piece of armour (trip 1)
+[17:35:16.652] INFO  [wave10_RevGen3_07_Delra] [travel] tailor (seen) -> (648,2182) r=2 from (645,2203)
+[17:35:16.652] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='tailor (seen)' target=(648,2182) radius=2 from=(645,2203)
+[17:35:16.652] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:35:16.652] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:35:16.653] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:16.653] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:16.653] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:35:16.653] INFO  [wave10_RevGen3_07_Delra] [travel] plan tailor (seen): ok legs=1 ~21 tiles transit=0 nodes=0
+[17:35:16.711] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (645,2203,0); target (647,2203); stopped short (off by 2 tile(s))
+[17:35:16.711] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(645,2203) target=(647,2203) arrived=0 off=2
+[17:35:16.711] INFO  [wave10_RevGen3_07_Delra] [action] goto (648,2182) from (645,2203,0)
+[17:35:16.712] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(648,2182) from=(645,2203)
+[17:35:16.712] INFO  [wave10_RevGen3_07_Delra] [bot] running from (645,2203,0) to (648,2182,z0)
+[17:35:16.712] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (648,2182) in background
+[17:35:16.775] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (648,2182): 22 steps in 1258.4us
+[17:35:20.192] INFO  [wave10_RevGen3_07_Delra] [bot] door ahead at (650,2191,z0); OpenDoor before step
+[17:35:20.196] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Opening door...
+[17:35:20.315] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:22.942] INFO  [wave10_RevGen3_07_Delra] [travel] tailor (seen) ARRIVED at (649,2183,0)
+[17:35:22.942] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='tailor (seen)' ok=1 at=(649,2183) legs=1 plans=1 why=''
+[17:35:23.002] INFO  [life] gear: armorer upgrade 0x140C (armor 25, needs str 40) replaces 0x0000 (armor 0); buying from a tailor
+[17:35:23.004] INFO  [life] UPGRADE_GEAR: asking the tailor to show a piece of armour
+[17:35:23.004] INFO  [wave10_RevGen3_07_Delra] [ACTION] vendor_buy start
+[17:35:23.004] INFO  [wave10_RevGen3_07_Delra] [VENDOR] open vendor=0x00002C41 say='Moon buy'
+[17:35:23.018] INFO  [wave10_RevGen3_07_Delra] [chat uni  ] Delras: Moon buy
+[17:35:23.018] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Moon: What's thou need?
+[17:35:23.018] INFO  [wave10_RevGen3_07_Delra] [chat ascii] Moon: I got lots to sell!
+[17:35:23.018] INFO  [wave10_RevGen3_07_Delra] [0x3C] container contents: 37 item(s)
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74] pairing: straight (straight 10, mirrored 0 of 37 rows)
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74] vendor shop data: cont=0x40002C27 37 item(s), layer=0x1A
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   sewing kit                   gfx=0x0F9D qty=23   price=35
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   scissors                     gfx=0x0F9E qty=13   price=7
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   dyeing tub                   gfx=0x0FAB qty=10   price=75
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   dyes                         gfx=0x0FA9 qty=8    price=40
+[17:35:23.019] INFO  [wave10_RevGen3_07_Delra] [0x74]   shirt                        gfx=0x1517 qty=2    price=37
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   fancy shirt                  gfx=0x1EFD qty=10   price=38
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   short pants                  gfx=0x152E qty=17   price=24
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   long pants                   gfx=0x1539 qty=5    price=37
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   fancy dress                  gfx=0x1EFF qty=6    price=60
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   plain dress                  gfx=0x1F01 qty=24   price=43
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   long skirt                   gfx=0x1516 qty=19   price=48
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   kilt                         gfx=0x1537 qty=9    price=37
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   half apron                   gfx=0x153B qty=21   price=28
+[17:35:23.020] INFO  [wave10_RevGen3_07_Delra] [0x74]   robe                         gfx=0x1F03 qty=15   price=121
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   cloak                        gfx=0x1515 qty=22   price=74
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   doublet                      gfx=0x1F7B qty=18   price=37
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   tunic                        gfx=0x1FA1 qty=24   price=47
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   jester suit                  gfx=0x1F9F qty=7    price=161
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   jester hat                   gfx=0x171C qty=16   price=74
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   floppy hat                   gfx=0x1713 qty=5    price=43
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   wide-brim hat                gfx=0x1714 qty=19   price=49
+[17:35:23.021] INFO  [wave10_RevGen3_07_Delra] [0x74]   cap                          gfx=0x1715 qty=9    price=28
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   tall straw hat               gfx=0x1716 qty=13   price=48
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   straw hat                    gfx=0x1717 qty=9    price=40
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   wizard's hat                 gfx=0x1718 qty=3    price=39
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   leather cap                  gfx=0x1DB9 qty=23   price=15
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   feathered hat                gfx=0x171A qty=7    price=58
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   tricorne hat                 gfx=0x171B qty=21   price=51
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   bandana                      gfx=0x153F qty=18   price=9
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   skullcap                     gfx=0x1543 qty=20   price=9
+[17:35:23.022] INFO  [wave10_RevGen3_07_Delra] [0x74]   folded cloth                 gfx=0x175D qty=21   price=3
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   folded cloth                 gfx=0x175D qty=14   price=3
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   folded cloth                 gfx=0x175D qty=20   price=3
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   folded cloth                 gfx=0x175D qty=10   price=3
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   bolts of cloth               gfx=0x0F95 qty=17   price=173
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   bolts of cloth               gfx=0x0F95 qty=15   price=173
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74]   bolts of cloth               gfx=0x0F95 qty=14   price=173
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x3C] container contents: 0 item(s)
+[17:35:23.023] INFO  [wave10_RevGen3_07_Delra] [0x74] vendor shop data: cont=0x40012A6E 0 item(s), layer=0x1B
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR] offer from 0x00002C41: 37 item(s)
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191F8 sewing kit             x23  35 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191F7 scissors               x13  7 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191F0 dyeing tub             x10  75 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EF dyes                   x8   40 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EE shirt                  x2   37 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EC fancy shirt            x10  38 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EB short pants            x17  24 gp
+[17:35:23.024] INFO  [wave10_RevGen3_07_Delra] [VENDOR]   0x400191EA long pants             x5   37 gp
+[17:35:23.025] LOG   [wave10_RevGen3_07_Delra] event vendor_offer: vendor=0x00002C41 items=37
+[17:35:23.025] INFO  [wave10_RevGen3_07_Delra] [ACTION_RESULT] vendor_buy success (21ms) vendor offer received
+[17:35:23.025] LOG   [wave10_RevGen3_07_Delra] event action_result: vendor_buy success took=21ms vendor offer received
+[17:35:23.025] INFO  [wave10_RevGen3_07_Delra] [0x24] vendor buy gump for 0x00002C41
+[17:35:25.350] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:30.399] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:32.043] INFO  [life] gear: armorer upgrade 0x140C (armor 25, needs str 40) replaces 0x0000 (armor 0); buying from a tailor
+[17:35:32.047] INFO  [life] goal_failed=UPGRADE_GEAR reason="this 'tailor' does not stock a piece of armour (0 already known)"
+[17:35:32.104] INFO  [life] goal=EXPLORE reason="previous goal abandoned: seller has none"
+[17:35:32.107] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedSkillTraining(Tactics 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Tactics (target 100.0)
+[17:35:32.107] INFO  [life]   score=15.0
+[17:35:32.107] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:35:32.107] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 105s after achieving nothing
+[17:35:32.107] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 40s after achieving nothing
+[17:35:32.107] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 123s after achieving nothing
+[17:35:32.107] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 162s after achieving nothing
+[17:35:32.108] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:32.108] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9710 (buyable at 200))
+[17:35:32.108] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 239s after achieving nothing
+[17:35:32.108] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:35:32.108] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae tailor -> (650,2178) r=5 from (649,2183)
+[17:35:32.108] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae tailor' target=(650,2178) radius=5 from=(649,2183)
+[17:35:32.108] INFO  [life] explore: nothing else to do, so going to 'skara_brae_tailor' -- somewhere new (6 place(s) known so far)
+[17:35:32.108] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae tailor ARRIVED at (649,2183,0)
+[17:35:32.108] LOG   [wave10_RevGen3_07_Delra] event travel_done: label='Skara Brae tailor' ok=1 at=(649,2183) legs=0 plans=0 why=''
+[17:35:34.621] INFO  [life] explore: arrived at 649,2183 -- reading who is here
+[17:35:34.622] INFO  [wave10_RevGen3_07_Delra] [action] scanning nearby mobiles for names
+[17:35:34.622] INFO  [wave10_RevGen3_07_Delra] [action] requested 1 paperdoll(s) for trade titles
+[17:35:34.622] INFO  [life] goal_completed=EXPLORE progress=1
+[17:35:34.624] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_07.delras/state.json
+[17:35:34.635] INFO  [wave10_RevGen3_07_Delra] [mobiles] nearby (8):
+[17:35:34.635] INFO  [wave10_RevGen3_07_Delra]   Zorah 0x000027A6
+[17:35:34.635] INFO  [wave10_RevGen3_07_Delra]   Moon 0x00002C41
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Garridan 0x000027BB
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   jungle bird 0x00014F96
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Canute 0x00002A5D
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Cat 0x00017C91
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Markos 0x00004965
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra]   Cole 0x00002997
+[17:35:34.636] INFO  [wave10_RevGen3_07_Delra] [0x20] player @(649,2183,0) facing=0
+[17:35:34.637] INFO  [wave10_RevGen3_07_Delra] [0x88] paperdoll 0x000027BB: "Garridan, the weaver"
+[17:35:34.637] INFO  [wave10_RevGen3_07_Delra] [world] Garridan, the weaver is a tailor at (649,2176)
+[17:35:34.639] INFO  [life] goal=EXPLORE reason="no goal was running"
+[17:35:34.639] INFO  [life] needs considered: NeedMakeBandages(bandages BLOCKED 0.70) NeedTraining(Swordsmanship 0.65) NeedTraining(Tactics 0.65) NeedTraining(Anatomy 0.65) NeedEquipment(heal potions 0.50) NeedEquipment(bandages 0.50) NeedSkillTraining(Tactics 0.45) NeedLogs(logs 0.40) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[hatchet,] want_train=Tactics (target 100.0)
+[17:35:34.639] INFO  [life]   score=15.0
+[17:35:34.639] INFO  [life]   reason: fallback: nothing else is actionable, so go and learn the world
+[17:35:34.639] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 103s after achieving nothing
+[17:35:34.639] INFO  [life]   BLOCKED_NEED GATHER_LOGS: on cooldown for another 37s after achieving nothing
+[17:35:34.640] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 121s after achieving nothing
+[17:35:34.640] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 159s after achieving nothing
+[17:35:34.640] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[17:35:34.640] INFO  [life]   BLOCKED_NEED MAKE_BANDAGES: short of bandages, but there is money to buy them -- a shop is faster than a sheep (bandages 0/8 gold 9710 (buyable at 200))
+[17:35:34.640] INFO  [life]   BLOCKED_NEED UPGRADE_GEAR: on cooldown for another 237s after achieving nothing
+[17:35:35.434] INFO  [wave10_RevGen3_07_Delra] [survival] hp 40/40 (100%) -> fight
+[17:35:37.665] INFO  [life] plan=explore reason="blocked for want of knowing where things are"
+[17:35:37.665] INFO  [wave10_RevGen3_07_Delra] [travel] Skara Brae blacksmith -> (630,2194) r=5 from (649,2183)
+[17:35:37.666] LOG   [wave10_RevGen3_07_Delra] event travel_start: label='Skara Brae blacksmith' target=(630,2194) radius=5 from=(649,2183)
+[17:35:37.666] INFO  [life] explore: nothing else to do, so going to 'skara_brae_blacksmith' -- somewhere new (7 place(s) known so far)
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] mode walk             usable   <- chosen
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] mode moongate         usable
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:37.666] LOG   [wave10_RevGen3_07_Delra] event travel_mode: walk
+[17:35:37.666] INFO  [wave10_RevGen3_07_Delra] [travel] plan Skara Brae blacksmith: ok legs=1 ~19 tiles transit=0 nodes=0
+[17:35:37.681] INFO  [wave10_RevGen3_07_Delra] [action] goto finished at (649,2183,0); target (648,2182); stopped short (off by 2 tile(s))
+[17:35:37.681] LOG   [wave10_RevGen3_07_Delra] event goto_done: at=(649,2183) target=(648,2182) arrived=0 off=2
+[17:35:37.681] INFO  [wave10_RevGen3_07_Delra] [action] goto (630,2194) from (649,2183,0)
+[17:35:37.681] LOG   [wave10_RevGen3_07_Delra] event goto_start: target=(630,2194) from=(649,2183)
+[17:35:37.682] INFO  [wave10_RevGen3_07_Delra] [bot] running from (649,2183,0) to (630,2194,z0)
+[17:35:37.682] INFO  [wave10_RevGen3_07_Delra] [bot] planning path to (630,2194) in background
+[17:35:37.742] INFO  [wave10_RevGen3_07_Delra] [bot] replan to (630,2194): 36 steps in 4915.8us
+[17:35:39.330] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.344] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.344] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.361] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.361] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.376] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.406] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Thane has departed from Lord British's Castle.
+[17:35:39.421] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Ithion has departed from Magincia.
+[17:35:39.422] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Rhea has departed from Yew.
+[17:35:39.437] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Aelia has departed from Britain.
+[17:35:39.437] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Titus has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Kharain has departed from Britain.
+[17:35:39.453] INFO  [wave10_RevGen3_07_Delra] [chat ascii] System: Falen has departed from Britain.

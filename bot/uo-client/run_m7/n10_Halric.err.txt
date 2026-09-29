@@ -1,0 +1,57 @@
+start: Halric is a macer and lives in Vesper -> starting city index 8
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[17:30:13.192] WARN  [n10_Halric] [bot] no path to (2575,1021) avoiding 0 block(s); stopping (search 1296097.3us)
+[17:30:13.192] WARN  [n10_Halric] [bot] start (2575,1019,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 1 item(s), 5 mobile(s))
+[17:31:53.384] WARN  [n10_Halric] [0x21] move REJECTED seq=58; server says (2801,953,2) facing=1
+[17:31:54.134] WARN  [n10_Halric] [0x21] move REJECTED seq=0; server says (2801,953,2) facing=1
+[17:31:55.673] WARN  [n10_Halric] [bot] no path to (2802,952) avoiding 1 block(s); stopping (search 1497723.5us)
+[17:31:55.673] WARN  [n10_Halric] [bot] start (2801,953,2) exits: open=4 terrain=2 mobile=0 dynamic=1 door=0 blacklist=1 (overlay saw 111 item(s), 1 mobile(s))
+[17:32:56.382] WARN  [n10_Halric] [bot] 0x20 resync; aborting path
+[17:33:00.006] WARN  [n10_Halric] [bot] no path to (2925,860) avoiding 0 block(s); stopping (search 1037259.0us)
+[17:33:00.006] WARN  [n10_Halric] [bot] start (2924,855,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 252 item(s), 3 mobile(s))
+[17:34:04.143] WARN  [n10_Halric] [bot] 0x20 resync; aborting path
+[17:34:07.955] WARN  [n10_Halric] [bot] no path to (2864,853) avoiding 0 block(s); stopping (search 1231804.7us)
+[17:34:07.955] WARN  [n10_Halric] [bot] start (2859,856,0) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 267 item(s), 4 mobile(s))
+[17:34:13.235] WARN  [n10_Halric] [bot] no path to (2866,854) avoiding 0 block(s); stopping (search 1064438.8us)
+[17:34:13.235] WARN  [n10_Halric] [bot] start (2864,853,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 269 item(s), 3 mobile(s))
+[17:34:17.123] WARN  [n10_Halric] [bot] no path to (2866,854) avoiding 0 block(s); stopping (search 1044947.3us)
+[17:34:17.123] WARN  [n10_Halric] [bot] start (2864,853,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 269 item(s), 3 mobile(s))
+[17:34:21.508] WARN  [n10_Halric] [bot] no path to (2869,854) avoiding 0 block(s); stopping (search 1174385.2us)
+[17:34:21.508] WARN  [n10_Halric] [bot] start (2864,853,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 269 item(s), 3 mobile(s))
+[17:34:23.923] WARN  [n10_Halric] [bot] no path to (2869,854) avoiding 0 block(s); stopping (search 1057971.2us)
+[17:34:23.923] WARN  [n10_Halric] [bot] start (2864,853,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 269 item(s), 3 mobile(s))
+[17:34:26.283] WARN  [n10_Halric] [bot] no path to (2869,854) avoiding 0 block(s); stopping (search 1063574.5us)
+[17:34:26.283] WARN  [n10_Halric] [bot] start (2864,853,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 269 item(s), 3 mobile(s))
+[17:34:30.334] WARN  [n10_Halric] [bot] no path to (2869,854) avoiding 0 block(s); stopping (search 1203609.5us)
+[17:34:30.334] WARN  [n10_Halric] [bot] start (2864,853,0) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 269 item(s), 3 mobile(s))
+[17:34:40.825] WARN  [n10_Halric] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:34:48.623] WARN  [n10_Halric] [bot] no path to (2868,850) avoiding 0 block(s); stopping (search 1058895.5us)
+[17:34:48.623] WARN  [n10_Halric] [bot] start (2869,854,0) exits: open=4 terrain=3 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 269 item(s), 5 mobile(s))
+[17:34:51.494] WARN  [n10_Halric] [bot] no path to (2868,850) avoiding 0 block(s); stopping (search 1575265.4us)
+[17:34:51.494] WARN  [n10_Halric] [bot] start (2869,854,0) exits: open=4 terrain=3 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 269 item(s), 5 mobile(s))
+[17:35:02.316] WARN  [n10_Halric] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:35:17.105] WARN  [n10_Halric] [ACTION_RESULT] npc_train timeout (no server confirmation)
+[17:35:23.840] WARN  [n10_Halric] [travel] route exhausted at (2868,850,0); trying to reach (2858,840,1) to get somewhere routable (escape 1/3)
+[17:35:36.016] WARN  [n10_Halric] [travel] route exhausted at (2858,840,1); trying to reach (2872,838,1) to get somewhere routable (escape 2/3)
+[17:35:40.625] WARN  [n10_Halric] [travel] route exhausted at (2872,838,1); trying to reach (2882,848,0) to get somewhere routable (escape 3/3)
+[17:42:26.705] WARN  [n10_Halric] [0x21] move REJECTED seq=24; server says (2943,623,0) facing=3
+[17:42:27.444] WARN  [n10_Halric] [0x21] move REJECTED seq=0; server says (2943,623,0) facing=3
+[17:42:41.764] WARN  [n10_Halric] [bot] 0x20 resync; aborting path
+[17:47:34.848] WARN  [n10_Halric] [0x21] move REJECTED seq=36; server says (2747,764,0) facing=3
+[17:49:03.676] WARN  [n10_Halric] [0x21] move REJECTED seq=159; server says (2828,890,0) facing=7
+[17:49:04.413] WARN  [n10_Halric] [0x21] move REJECTED seq=0; server says (2828,890,0) facing=7
+[17:49:47.089] WARN  [n10_Halric] [0x21] move REJECTED seq=36; server says (2841,804,0) facing=7
+[17:49:47.105] WARN  [n10_Halric] [bot] 0x20 resync; aborting path
+[17:49:53.725] WARN  [n10_Halric] [0x21] move REJECTED seq=8; server says (2840,803,0) facing=3
+[17:49:53.725] WARN  [n10_Halric] [bot] 0x20 resync; aborting path
+[17:53:55.635] WARN  [n10_Halric] [bot] 0x20 resync; aborting path
+[17:54:03.650] WARN  [n10_Halric] [travel] route exhausted at (2533,572,0); trying to reach (2536,584,0) to get somewhere routable (escape 1/3)
+[17:54:07.931] WARN  [n10_Halric] [travel] route exhausted at (2536,584,0); trying to reach (2520,568,0) to get somewhere routable (escape 2/3)
+[17:54:18.815] WARN  [n10_Halric] [travel] route exhausted at (2520,568,0); trying to reach (2504,552,0) to get somewhere routable (escape 3/3)
+[17:54:35.996] WARN  [n10_Halric] [0x21] move REJECTED seq=10; server says (2504,560,0) facing=3
+[17:54:35.997] WARN  [n10_Halric] [bot] 0x20 resync; aborting path
+[17:55:00.023] WARN  [n10_Halric] [0x21] move REJECTED seq=54; server says (2552,611,0) facing=5
+[17:55:00.776] WARN  [n10_Halric] [0x21] move REJECTED seq=0; server says (2552,611,0) facing=5
+[17:55:38.986] WARN  [n10_Halric] [0x21] move REJECTED seq=36; server says (2634,701,0) facing=3
+[17:55:39.723] WARN  [n10_Halric] [0x21] move REJECTED seq=0; server says (2634,701,0) facing=3

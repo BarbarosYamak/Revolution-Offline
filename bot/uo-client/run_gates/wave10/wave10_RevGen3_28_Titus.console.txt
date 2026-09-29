@@ -1,0 +1,964 @@
+[17:29:35.345] LOG   [wave10_RevGen3_28_Titus] event session_start: text log opened
+[17:29:35.347] LOG   [wave10_RevGen3_28_Titus] event net_connect_begin: connect 127.0.0.1:2593
+[17:29:35.348] INFO  [wave10_RevGen3_28_Titus] [net] connecting to 127.0.0.1:2593 ...
+[17:29:35.350] LOG   [wave10_RevGen3_28_Titus] event net_connected: connect 127.0.0.1:2593
+[17:29:35.352] INFO  [wave10_RevGen3_28_Titus] [net] connected.
+[17:29:35.355] INFO  [wave10_RevGen3_28_Titus] [seed] sent 0x7F000001 (plaintext)
+[17:29:35.356] LOG   [wave10_RevGen3_28_Titus] event seed_out: 0x7F000001 hex=7f000001
+[17:29:35.360] INFO  [wave10_RevGen3_28_Titus] [life] autonomous player active for 'Titus' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 30 min)
+[17:29:35.361] INFO  [wave10_RevGen3_28_Titus] [0xA8] 1 server(s):
+[17:29:35.363] INFO  [wave10_RevGen3_28_Titus]   [0] MyShard                   1.0.0.127  full=11%  tz=0
+[17:29:35.368] INFO  [wave10_RevGen3_28_Titus] [0x8C] game server = 127.0.0.1:2593  seed=0x21C2A854
+[17:29:35.369] LOG   [wave10_RevGen3_28_Titus] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x21C2A854
+[17:29:35.371] INFO  [wave10_RevGen3_28_Titus] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[17:29:35.371] LOG   [wave10_RevGen3_28_Titus] event relay_same_socket: no seed re-sent; 0x91 follows
+[17:29:35.373] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Faustus has arrived in Britain.
+[17:29:35.376] INFO  [wave10_RevGen3_28_Titus] [0xB9] server features = 0x0005
+[17:29:35.376] INFO  [wave10_RevGen3_28_Titus] [0xA9] 5 slot(s) (populated 2):
+[17:29:35.377] INFO  [wave10_RevGen3_28_Titus]   [0] Titus
+[17:29:35.381] INFO  [wave10_RevGen3_28_Titus]   [1] Darius
+[17:29:35.381] INFO  [wave10_RevGen3_28_Titus]   [2] <empty>
+[17:29:35.382] INFO  [wave10_RevGen3_28_Titus]   [3] <empty>
+[17:29:35.382] INFO  [wave10_RevGen3_28_Titus]   [4] <empty>
+[17:29:35.383] INFO  [wave10_RevGen3_28_Titus] [ui] playing slot 0 ('Titus')
+[17:29:35.385] INFO  [wave10_RevGen3_28_Titus] [0x1B] serial=0x000180D0 body=0x0191 pos=(1377,1937,0)
+[17:29:35.387] LOG   [wave10_RevGen3_28_Titus] event login_confirm: serial=0x000180D0 body=0x0191 pos=(1377,1937,0)
+[17:29:35.387] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1377,1937,0) facing=2
+[17:29:35.387] INFO  [wave10_RevGen3_28_Titus] [0x55] login complete — entering world
+[17:29:35.388] LOG   [wave10_RevGen3_28_Titus] event in_world: 0x55 received
+[17:29:35.388] INFO  [wave10_RevGen3_28_Titus] [backpack] opening 0x4001807D
+[17:29:35.388] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[17:29:35.388] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: There are 32 other players here.
+[17:29:35.388] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Last logged: 2026/08/31 18:12:43
+[17:29:35.392] INFO  [wave10_RevGen3_28_Titus] [action] requesting the skill list
+[17:29:35.392] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: You have retreated from the battle with Timber Wolf
+[17:29:35.403] INFO  [wave10_RevGen3_28_Titus] [0x24] open container 0x4001807D gump=60
+[17:29:35.403] INFO  [wave10_RevGen3_28_Titus] [0x3C] container contents: 10 item(s)
+[17:29:35.404] LOG   [wave10_RevGen3_28_Titus] event backpack_contents: serial=0x4001807D items=10
+[17:29:35.404] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Rhea has arrived in Yew.
+[17:29:35.404] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Xerxes has arrived in Ocllo Island.
+[17:29:35.434] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Thane has arrived in Britain.
+[17:29:35.435] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Varek has arrived in Britain Territory.
+[17:29:35.449] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Nyx has arrived in Trinsic.
+[17:29:37.945] INFO  [wave10_RevGen3_28_Titus] [bot] world data loaded (0 blacklisted spot(s)).
+[17:29:37.949] INFO  [wave10_RevGen3_28_Titus] [survival] on
+[17:29:37.949] LOG   [wave10_RevGen3_28_Titus] event survival_mode: on
+[17:29:37.953] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:29:38.106] INFO  [wave10_RevGen3_28_Titus] [travel] place: skipping Delucia healer -- 1580 tiles and 4 gates for a service Britain healer offers
+[17:29:38.106] INFO  [wave10_RevGen3_28_Titus] [travel] place: skipping Wind healer -- 1412 tiles and 1 gate for a service Britain healer offers
+[17:29:38.106] INFO  [wave10_RevGen3_28_Titus] [travel] Britain healer -> (1471,1611) r=5 from (1377,1937)
+[17:29:38.106] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(1377,1937)
+[17:29:38.107] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable   <- chosen
+[17:29:38.107] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable
+[17:29:38.107] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:29:38.107] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:29:38.107] LOG   [wave10_RevGen3_28_Titus] event travel_mode: moongate
+[17:29:38.109] INFO  [wave10_RevGen3_28_Titus] [travel] plan Britain healer: ok legs=11 ~392 tiles transit=0 nodes=3081
+[17:29:38.164] INFO  [wave10_RevGen3_28_Titus] [action] goto (1384,1912) from (1377,1937,0)
+[17:29:38.164] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1384,1912) from=(1377,1937)
+[17:29:38.165] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1377,1937,0) to (1384,1912)
+[17:29:38.165] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1384,1912) in background
+[17:29:38.226] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1384,1912): 26 steps in 673.8us
+[17:29:38.303] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Ettin: *Ettin is attacking you!*
+[17:29:42.998] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:29:46.754] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1384,1912,0)
+[17:29:46.755] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1384,1912,0); target (1384,1912); ARRIVED (off by 0 tile(s))
+[17:29:46.755] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1384,1912) target=(1384,1912) arrived=1 off=0
+[17:29:46.755] INFO  [wave10_RevGen3_28_Titus] [action] goto (1384,1880) from (1384,1912,0)
+[17:29:46.755] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1384,1880) from=(1384,1912)
+[17:29:46.755] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1384,1912,0) to (1384,1880)
+[17:29:46.755] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1384,1880) in background
+[17:29:46.816] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1384,1880): 32 steps in 280.5us
+[17:29:48.013] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:29:53.063] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:29:56.171] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1384,1880,0)
+[17:29:56.171] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1384,1880,0); target (1384,1880); ARRIVED (off by 0 tile(s))
+[17:29:56.171] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1384,1880) target=(1384,1880) arrived=1 off=0
+[17:29:56.171] INFO  [wave10_RevGen3_28_Titus] [action] goto (1384,1846) from (1384,1880,0)
+[17:29:56.172] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1384,1846) from=(1384,1880)
+[17:29:56.172] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1384,1880,0) to (1384,1846)
+[17:29:56.172] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1384,1846) in background
+[17:29:56.232] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1384,1846): 35 steps in 17741.6us
+[17:29:58.077] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:00.342] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=17; server says (1384,1867,0) facing=7
+[17:30:00.343] INFO  [wave10_RevGen3_28_Titus] [bot] step (1384,1867,0)->(1383,1866,0) rejected; OpenDoor + retry
+[17:30:01.063] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=0; server says (1384,1867,0) facing=7
+[17:30:01.065] INFO  [wave10_RevGen3_28_Titus] [bot] step (1384,1867,0)->(1383,1866,0) rejected; avoiding edge + rerouting
+[17:30:01.065] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1384,1846) in background
+[17:30:01.125] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1384,1846): 24 steps in 4110.6us
+[17:30:03.137] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:08.147] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:10.371] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1384,1846,0)
+[17:30:10.371] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1384,1846,0); target (1384,1846); ARRIVED (off by 0 tile(s))
+[17:30:10.371] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1384,1846) target=(1384,1846) arrived=1 off=0
+[17:30:10.371] INFO  [wave10_RevGen3_28_Titus] [action] goto (1368,1816) from (1384,1846,0)
+[17:30:10.371] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1368,1816) from=(1384,1846)
+[17:30:10.372] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1384,1846,0) to (1368,1816)
+[17:30:10.372] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1368,1816) in background
+[17:30:10.431] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1368,1816): 34 steps in 4134.7us
+[17:30:13.176] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:18.232] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:21.469] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1368,1816,0)
+[17:30:21.469] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1368,1816,0); target (1368,1816); ARRIVED (off by 0 tile(s))
+[17:30:21.469] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1368,1816) target=(1368,1816) arrived=1 off=0
+[17:30:21.470] INFO  [wave10_RevGen3_28_Titus] [action] goto (1368,1784) from (1368,1816,0)
+[17:30:21.470] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1368,1784) from=(1368,1816)
+[17:30:21.470] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1368,1816,0) to (1368,1784)
+[17:30:21.470] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1368,1784) in background
+[17:30:21.529] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1368,1784): 32 steps in 1279.9us
+[17:30:23.252] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:28.311] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:31.581] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1368,1784,15)
+[17:30:31.581] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1368,1784,15); target (1368,1784); ARRIVED (off by 0 tile(s))
+[17:30:31.581] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1368,1784) target=(1368,1784) arrived=1 off=0
+[17:30:31.581] INFO  [wave10_RevGen3_28_Titus] [action] goto (1368,1752) from (1368,1784,15)
+[17:30:31.582] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1368,1752) from=(1368,1784)
+[17:30:31.582] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1368,1784,15) to (1368,1752)
+[17:30:31.582] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1368,1752) in background
+[17:30:31.641] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1368,1752): 32 steps in 323.6us
+[17:30:33.354] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:38.394] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:39.964] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1368,1752,5)
+[17:30:39.964] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1368,1752,5); target (1368,1752); ARRIVED (off by 0 tile(s))
+[17:30:39.964] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1368,1752) target=(1368,1752) arrived=1 off=0
+[17:30:39.964] INFO  [wave10_RevGen3_28_Titus] [action] goto (1384,1720) from (1368,1752,5)
+[17:30:39.964] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1384,1720) from=(1368,1752)
+[17:30:39.964] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1368,1752,5) to (1384,1720)
+[17:30:39.965] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1384,1720) in background
+[17:30:40.026] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1384,1720): 58 steps in 23679.2us
+[17:30:43.408] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:45.208] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: You are now under the protection of the city guards
+[17:30:46.882] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 5: anchor=9 new segment=10 path=32 in 216.3us
+[17:30:48.417] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:53.433] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:56.177] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: You have left the protection of the city guards
+[17:30:58.209] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1384,1720,10)
+[17:30:58.210] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1384,1720,10); target (1384,1720); ARRIVED (off by 0 tile(s))
+[17:30:58.210] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1384,1720) target=(1384,1720) arrived=1 off=0
+[17:30:58.210] INFO  [wave10_RevGen3_28_Titus] [action] goto (1416,1688) from (1384,1720,10)
+[17:30:58.210] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1416,1688) from=(1384,1720)
+[17:30:58.210] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1384,1720,10) to (1416,1688)
+[17:30:58.210] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1416,1688) in background
+[17:30:58.270] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1416,1688): 51 steps in 7031.3us
+[17:30:58.455] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:30:59.897] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: You are now under the protection of the city guards
+[17:31:03.501] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:08.545] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:13.568] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:14.695] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1416,1688,0)
+[17:31:14.696] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[17:31:14.696] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[17:31:14.696] INFO  [wave10_RevGen3_28_Titus] [action] goto (1448,1656) from (1416,1688,0)
+[17:31:14.696] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1448,1656) from=(1416,1688)
+[17:31:14.696] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1416,1688,0) to (1448,1656)
+[17:31:14.696] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1448,1656) in background
+[17:31:14.757] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1448,1656): 46 steps in 4625.3us
+[17:31:18.623] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:23.324] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=35; server says (1432,1666,10) facing=1
+[17:31:23.325] INFO  [wave10_RevGen3_28_Titus] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[17:31:23.633] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:24.080] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=0; server says (1432,1666,10) facing=1
+[17:31:24.081] INFO  [wave10_RevGen3_28_Titus] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[17:31:24.081] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1448,1656) in background
+[17:31:24.142] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1448,1656): 20 steps in 1208.9us
+[17:31:28.669] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:31.006] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1448,1656,10)
+[17:31:31.007] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[17:31:31.007] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[17:31:31.007] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:31.007] INFO  [wave10_RevGen3_28_Titus] [action] goto (1464,1624) from (1448,1656,10)
+[17:31:31.007] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1464,1624) from=(1448,1656)
+[17:31:31.007] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1448,1656,10) to (1464,1624)
+[17:31:31.008] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1464,1624) in background
+[17:31:31.068] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1464,1624): 43 steps in 6438.5us
+[17:31:33.717] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:38.772] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:43.828] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:44.215] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1464,1624,20)
+[17:31:44.215] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[17:31:44.215] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[17:31:44.215] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:31:44.215] INFO  [wave10_RevGen3_28_Titus] [action] goto (1471,1611) from (1464,1624,20)
+[17:31:44.215] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1471,1611) from=(1464,1624)
+[17:31:44.216] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[17:31:44.216] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1471,1611) in background
+[17:31:44.291] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1471,1611): 32 steps in 14328.6us
+[17:31:48.869] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:52.438] INFO  [wave10_RevGen3_28_Titus] [travel] Britain healer ARRIVED at (1476,1611,20)
+[17:31:52.439] LOG   [wave10_RevGen3_28_Titus] event travel_done: label='Britain healer' ok=1 at=(1476,1611) legs=11 plans=1 why=''
+[17:31:52.500] INFO  [wave10_RevGen3_28_Titus] [action] scanning nearby mobiles for names
+[17:31:52.501] INFO  [wave10_RevGen3_28_Titus] [action] requested 3 paperdoll(s) for trade titles
+[17:31:52.501] INFO  [wave10_RevGen3_28_Titus] [mobiles] nearby (5):
+[17:31:52.501] INFO  [wave10_RevGen3_28_Titus]   Illyria 0x0001916B
+[17:31:52.501] INFO  [wave10_RevGen3_28_Titus]   Dale 0x000010C1
+[17:31:52.501] INFO  [wave10_RevGen3_28_Titus]   Natasha 0x00001194
+[17:31:52.502] INFO  [wave10_RevGen3_28_Titus]   Dog 0x00000DE8
+[17:31:52.502] INFO  [wave10_RevGen3_28_Titus]   Caimile 0x00001239
+[17:31:52.502] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[17:31:52.502] INFO  [wave10_RevGen3_28_Titus] [world] Dale, the healer is a healer at (1470,1610)
+[17:31:52.502] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1476,1611,20) facing=7
+[17:31:52.502] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[17:31:52.503] INFO  [wave10_RevGen3_28_Titus] [world] Natasha, the healer guildmistress is a healer at (1470,1608)
+[17:31:52.515] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1476,1611,20) facing=6
+[17:31:52.516] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x0001916B: "Illyria, Apprentice Stoic"
+[17:31:53.901] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:31:55.563] INFO  [wave10_RevGen3_28_Titus] [travel] mobile 0x000010C1 -> (1470,1611) r=1 from (1476,1611)
+[17:31:55.563] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='mobile 0x000010C1' target=(1470,1611) radius=1 from=(1476,1611)
+[17:31:55.563] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:31:55.564] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:31:55.564] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:31:55.564] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:31:55.564] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:31:55.564] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x000010C1: ok legs=1 ~6 tiles transit=0 nodes=0
+[17:31:55.624] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1476,1611,20); target (1471,1611); stopped short (off by 5 tile(s))
+[17:31:55.625] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1476,1611) target=(1471,1611) arrived=0 off=5
+[17:31:55.625] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:31:55.625] INFO  [wave10_RevGen3_28_Titus] [action] goto (1470,1611) from (1476,1611,20)
+[17:31:55.625] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1470,1611) from=(1476,1611)
+[17:31:55.625] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1476,1611,20) to (1470,1611,z20)
+[17:31:55.626] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1470,1611) in background
+[17:31:57.522] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1470,1611) avoiding 0 block(s); stopping (search 1890540.2us)
+[17:31:57.523] WARN  [wave10_RevGen3_28_Titus] [bot] start (1476,1611,20) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 450 item(s), 5 mobile(s))
+[17:31:57.583] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1476,1611,20); target (1470,1611); stopped short (off by 6 tile(s))
+[17:31:57.583] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1476,1611) target=(1470,1611) arrived=0 off=6
+[17:31:58.826] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 1 teleporter pad(s) on this leg
+[17:31:58.826] INFO  [wave10_RevGen3_28_Titus] [action] goto (1470,1611) from (1476,1611,20)
+[17:31:58.826] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1470,1611) from=(1476,1611)
+[17:31:58.826] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1476,1611,20) to (1470,1611,z20)
+[17:31:58.827] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1470,1611) in background
+[17:31:58.888] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1470,1611): 6 steps in 150.3us
+[17:31:58.904] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:00.229] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1470,1611,20)
+[17:32:00.230] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1470,1611,20); target (1470,1611); ARRIVED (off by 0 tile(s))
+[17:32:00.230] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1470,1611) target=(1470,1611) arrived=1 off=0
+[17:32:00.230] INFO  [wave10_RevGen3_28_Titus] [travel] mobile 0x000010C1 ARRIVED at (1470,1611,20)
+[17:32:00.230] LOG   [wave10_RevGen3_28_Titus] event travel_done: label='mobile 0x000010C1' ok=1 at=(1470,1611) legs=1 plans=1 why=''
+[17:32:00.349] INFO  [wave10_RevGen3_28_Titus] [ACTION] vendor_buy start
+[17:32:00.350] INFO  [wave10_RevGen3_28_Titus] [VENDOR] open vendor=0x000010C1 say='Dale buy'
+[17:32:00.366] INFO  [wave10_RevGen3_28_Titus] [chat uni  ] Titus: Dale buy
+[17:32:00.367] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Dale: Thou surely wants all the things that I can sell thee.
+[17:32:00.367] INFO  [wave10_RevGen3_28_Titus] [0x3C] container contents: 5 item(s)
+[17:32:00.367] INFO  [wave10_RevGen3_28_Titus] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[17:32:00.367] INFO  [wave10_RevGen3_28_Titus] [0x74] vendor shop data: cont=0x400010BB 5 item(s), layer=0x1A
+[17:32:00.367] INFO  [wave10_RevGen3_28_Titus] [0x74]   clean bandages               gfx=0x0E21 qty=11   price=1
+[17:32:00.368] INFO  [wave10_RevGen3_28_Titus] [0x74]   Heal                         gfx=0x0F0C qty=11   price=30
+[17:32:00.368] INFO  [wave10_RevGen3_28_Titus] [0x74]   Ginseng                      gfx=0x0F85 qty=22   price=3
+[17:32:00.368] INFO  [wave10_RevGen3_28_Titus] [0x74]   Garlic                       gfx=0x0F84 qty=31   price=3
+[17:32:00.368] INFO  [wave10_RevGen3_28_Titus] [0x74]   Refresh                      gfx=0x0F0B qty=6    price=16
+[17:32:00.368] INFO  [wave10_RevGen3_28_Titus] [0x3C] container contents: 0 item(s)
+[17:32:00.368] INFO  [wave10_RevGen3_28_Titus] [0x74] vendor shop data: cont=0x40000EF5 0 item(s), layer=0x1B
+[17:32:00.369] INFO  [wave10_RevGen3_28_Titus] [VENDOR] offer from 0x000010C1: 5 item(s)
+[17:32:00.369] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x4000CB76 clean bandages         x11  1 gp
+[17:32:00.369] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x4000CB75 Heal                   x11  30 gp
+[17:32:00.369] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x4000CB74 Ginseng                x22  3 gp
+[17:32:00.369] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x4000CB72 Garlic                 x31  3 gp
+[17:32:00.369] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x4000CB71 Refresh                x6   16 gp
+[17:32:00.370] LOG   [wave10_RevGen3_28_Titus] event vendor_offer: vendor=0x000010C1 items=5
+[17:32:00.370] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] vendor_buy success (21ms) vendor offer received
+[17:32:00.370] LOG   [wave10_RevGen3_28_Titus] event action_result: vendor_buy success took=21ms vendor offer received
+[17:32:00.370] INFO  [wave10_RevGen3_28_Titus] [0x24] vendor buy gump for 0x000010C1
+[17:32:00.426] INFO  [wave10_RevGen3_28_Titus] [ACTION] vendor_buy start
+[17:32:00.427] INFO  [wave10_RevGen3_28_Titus] [policy] allowed NPC purchase of i_bandage (0x0E21): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_HEALING]
+[17:32:00.427] INFO  [wave10_RevGen3_28_Titus] [VENDOR] buy item=0x4000CB76 qty=11 from vendor=0x000010C1 gold=9984
+[17:32:00.428] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: You can't reach the Vendor
+[17:32:00.428] WARN  [wave10_RevGen3_28_Titus] [ACTION_RESULT] vendor_buy rejected (2ms) You can't reach the Vendor
+[17:32:00.428] LOG   [wave10_RevGen3_28_Titus] event action_result: vendor_buy rejected took=2ms You can't reach the Vendor
+[17:32:03.924] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:08.977] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:13.997] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:14.460] INFO  [wave10_RevGen3_28_Titus] [travel] Britain banker -> (1425,1690) r=5 from (1470,1611)
+[17:32:14.461] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1470,1611)
+[17:32:14.461] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable   <- chosen
+[17:32:14.461] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable
+[17:32:14.461] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:32:14.461] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:32:14.461] LOG   [wave10_RevGen3_28_Titus] event travel_mode: moongate
+[17:32:14.462] INFO  [wave10_RevGen3_28_Titus] [travel] plan Britain banker: ok legs=3 ~96 tiles transit=0 nodes=74
+[17:32:14.521] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:14.522] INFO  [wave10_RevGen3_28_Titus] [action] goto (1464,1640) from (1470,1611,20)
+[17:32:14.522] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1464,1640) from=(1470,1611)
+[17:32:14.522] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1470,1611,20) to (1464,1640)
+[17:32:14.522] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1464,1640) in background
+[17:32:14.583] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1464,1640): 38 steps in 1228.0us
+[17:32:16.700] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[17:32:16.701] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:32:17.915] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1480,1613,z20); OpenDoor before step
+[17:32:17.930] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:32:19.010] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:24.014] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:26.835] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1464,1640,20)
+[17:32:26.835] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[17:32:26.835] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[17:32:26.835] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:32:26.836] INFO  [wave10_RevGen3_28_Titus] [action] goto (1448,1672) from (1464,1640,20)
+[17:32:26.836] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1448,1672) from=(1464,1640)
+[17:32:26.836] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1464,1640,20) to (1448,1672)
+[17:32:26.836] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1448,1672) in background
+[17:32:26.894] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1448,1672): 37 steps in 4673.9us
+[17:32:29.051] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:34.070] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:37.378] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1448,1672,10)
+[17:32:37.378] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[17:32:37.379] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[17:32:37.379] INFO  [wave10_RevGen3_28_Titus] [action] goto (1425,1690) from (1448,1672,10)
+[17:32:37.379] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1425,1690) from=(1448,1672)
+[17:32:37.379] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[17:32:37.379] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1425,1690) in background
+[17:32:37.440] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1425,1690): 41 steps in 6584.0us
+[17:32:39.077] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:42.140] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=24 in 249.5us
+[17:32:43.323] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=19 in 140.9us
+[17:32:43.599] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 3: anchor=5 new segment=7 path=21 in 276.5us
+[17:32:44.743] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:44.751] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=21 in 256.9us
+[17:32:45.072] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 1: anchor=5 new segment=2 path=18 in 39.1us
+[17:32:45.641] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1437,1693,z0); OpenDoor before step
+[17:32:45.642] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:32:46.994] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1438,1692,z0); OpenDoor before step
+[17:32:46.995] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:32:47.917] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: You shove Aurelius out of the way.
+[17:32:48.738] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 5: anchor=7 new segment=9 path=12 in 498.2us
+[17:32:49.769] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:49.862] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 3: anchor=5 new segment=8 path=11 in 485.4us
+[17:32:50.061] INFO  [wave10_RevGen3_28_Titus] [travel] Britain banker ARRIVED at (1430,1689,0)
+[17:32:50.061] LOG   [wave10_RevGen3_28_Titus] event travel_done: label='Britain banker' ok=1 at=(1430,1689) legs=3 plans=1 why=''
+[17:32:50.123] INFO  [wave10_RevGen3_28_Titus] [action] scanning nearby mobiles for names
+[17:32:50.124] INFO  [wave10_RevGen3_28_Titus] [action] requested 8 paperdoll(s) for trade titles
+[17:32:50.139] INFO  [wave10_RevGen3_28_Titus] [mobiles] nearby (15):
+[17:32:50.139] INFO  [wave10_RevGen3_28_Titus]   Kharain 0x00016AE8
+[17:32:50.139] INFO  [wave10_RevGen3_28_Titus]   Selene 0x00010BC9
+[17:32:50.139] INFO  [wave10_RevGen3_28_Titus]   Zarthal 0x000163A2
+[17:32:50.140] INFO  [wave10_RevGen3_28_Titus]   Odessa 0x000194DE
+[17:32:50.140] INFO  [wave10_RevGen3_28_Titus]   Serena 0x000193F7
+[17:32:50.140] INFO  [wave10_RevGen3_28_Titus]   Elara 0x00011030
+[17:32:50.140] INFO  [wave10_RevGen3_28_Titus]   Leander 0x0001921F
+[17:32:50.140] INFO  [wave10_RevGen3_28_Titus]   Lyndon 0x0000124E
+[17:32:50.140] INFO  [wave10_RevGen3_28_Titus]   Elvar 0x00016948
+[17:32:50.141] INFO  [wave10_RevGen3_28_Titus]   Hyman 0x00001033
+[17:32:50.141] INFO  [wave10_RevGen3_28_Titus]   Rhaler 0x0001569C
+[17:32:50.141] INFO  [wave10_RevGen3_28_Titus]   Ghalor 0x00014D61
+[17:32:50.141] INFO  [wave10_RevGen3_28_Titus]   Halain 0x0001616D
+[17:32:50.141] INFO  [wave10_RevGen3_28_Titus]   Falen 0x0001478E
+[17:32:50.141] INFO  [wave10_RevGen3_28_Titus]   Aurelius 0x00019331
+[17:32:50.142] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1430,1689,0) facing=0
+[17:32:50.142] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x00016AE8: "Kharain, Apprentice Miner"
+[17:32:50.142] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1430,1689,0) facing=3
+[17:32:50.142] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x00019331: "Aurelius, Apprentice Stoic"
+[17:32:50.142] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1430,1689,0) facing=7
+[17:32:50.142] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x000163A2: "Zarthal, Apprentice Miner"
+[17:32:50.143] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1430,1689,0) facing=5
+[17:32:50.143] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x00010BC9: "Selene, Apprentice Mage"
+[17:32:50.143] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1430,1689,0) facing=4
+[17:32:50.143] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x000194DE: "Odessa, Apprentice Miner"
+[17:32:50.143] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x000193F7: "Serena, Apprentice Miner"
+[17:32:50.143] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1430,1689,0) facing=5
+[17:32:50.143] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x00011030: "Elara, Apprentice Mage"
+[17:32:50.144] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1430,1689,0) facing=4
+[17:32:50.144] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x0001921F: "Leander, Apprentice Stoic"
+[17:32:52.192] INFO  [wave10_RevGen3_28_Titus] [ACTION] open_bank start
+[17:32:52.192] INFO  [wave10_RevGen3_28_Titus] [ACTION] open_bank banker=0x00000000 say='bank'
+[17:32:52.207] INFO  [wave10_RevGen3_28_Titus] [chat uni  ] Titus: bank
+[17:32:52.208] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Lyndon: Good morrow!  How can I help thee?
+[17:32:52.208] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Lyndon: Yes, banking is my unfortunate lot in life.
+[17:32:52.208] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: You have 0 stones in your Bank Box
+[17:32:52.208] INFO  [wave10_RevGen3_28_Titus] [0x24] open container 0x40018099 gump=74
+[17:32:52.208] INFO  [wave10_RevGen3_28_Titus] [STATE] bank container=0x40018099 gump=0x004A
+[17:32:52.209] LOG   [wave10_RevGen3_28_Titus] event bank_opened: container recognised
+[17:32:52.209] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] open_bank success (17ms) bank container opened
+[17:32:52.209] LOG   [wave10_RevGen3_28_Titus] event action_result: open_bank success took=17ms bank container opened
+[17:32:52.209] INFO  [wave10_RevGen3_28_Titus] [0x3C] container contents: 1 item(s)
+[17:32:54.821] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:32:59.865] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:01.250] INFO  [wave10_RevGen3_28_Titus] [ACTION] move_item start
+[17:33:01.250] INFO  [wave10_RevGen3_28_Titus] [ACTION] move_item serial=0x40018037 amount=15 dest=0x40018099
+[17:33:01.250] INFO  [wave10_RevGen3_28_Titus] [ITEM] drag serial=0x40018037 amount=15
+[17:33:01.251] INFO  [wave10_RevGen3_28_Titus] [ITEM] drop container=0x40018099
+[17:33:01.265] WARN  [wave10_RevGen3_28_Titus] [ACTION_RESULT] move_item server_failure (15ms) item 0x40018037 landed in 0x4001807D, not the destination 0x40018099
+[17:33:01.266] LOG   [wave10_RevGen3_28_Titus] event action_result: move_item server_failure took=15ms item 0x40018037 landed in 0x4001807D, not the destination 0x40018099
+[17:33:04.904] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:08.822] INFO  [wave10_RevGen3_28_Titus] [travel] place: skipping Wind baker -- 1260 tiles and 1 gate for a service Britain baker offers
+[17:33:08.822] INFO  [wave10_RevGen3_28_Titus] [travel] Britain baker -> (1450,1617) r=5 from (1430,1689)
+[17:33:08.822] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='Britain baker' target=(1450,1617) radius=5 from=(1430,1689)
+[17:33:08.822] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable   <- chosen
+[17:33:08.823] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable
+[17:33:08.823] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:08.823] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:08.823] LOG   [wave10_RevGen3_28_Titus] event travel_mode: moongate
+[17:33:08.823] INFO  [wave10_RevGen3_28_Titus] [travel] plan Britain baker: ok legs=2 ~88 tiles transit=0 nodes=54
+[17:33:08.824] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1430,1689,0); target (1425,1690); stopped short (off by 6 tile(s))
+[17:33:08.824] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1430,1689) target=(1425,1690) arrived=0 off=6
+[17:33:08.824] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:08.824] INFO  [wave10_RevGen3_28_Titus] [action] goto (1448,1656) from (1430,1689,0)
+[17:33:08.824] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1448,1656) from=(1430,1689)
+[17:33:08.825] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1430,1689,0) to (1448,1656)
+[17:33:08.825] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1448,1656) in background
+[17:33:08.884] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1448,1656): 59 steps in 12508.4us
+[17:33:09.917] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:11.906] WARN  [wave10_RevGen3_28_Titus] [0x21] move REJECTED seq=14; server says (1439,1693,0) facing=3
+[17:33:11.906] INFO  [wave10_RevGen3_28_Titus] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[17:33:11.921] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:33:11.922] WARN  [wave10_RevGen3_28_Titus] [bot] 0x20 resync; aborting path
+[17:33:11.922] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1439,1693,0) facing=2
+[17:33:11.922] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1439,1693,0); target (1448,1656); stopped short (off by 46 tile(s))
+[17:33:11.922] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1439,1693) target=(1448,1656) arrived=0 off=46
+[17:33:12.850] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Lyndon: What's thee wantin'?
+[17:33:12.850] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Lyndon: Aye?
+[17:33:12.850] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Lyndon: I'm listenin'.
+[17:33:13.171] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:13.172] INFO  [wave10_RevGen3_28_Titus] [action] goto (1448,1656) from (1439,1693,0)
+[17:33:13.172] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1448,1656) from=(1439,1693)
+[17:33:13.172] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1439,1693,0) to (1448,1656)
+[17:33:13.172] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1448,1656) in background
+[17:33:13.233] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1448,1656): 49 steps in 17628.2us
+[17:33:14.958] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:20.010] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:24.922] INFO  [wave10_RevGen3_28_Titus] [war] entering war mode
+[17:33:24.922] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack start
+[17:33:24.922] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack serial=0x00000D86
+[17:33:24.934] INFO  [wave10_RevGen3_28_Titus] [0xAA] attacking 0x00000D86
+[17:33:24.934] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] attack success (12ms) server accepted the target
+[17:33:24.934] LOG   [wave10_RevGen3_28_Titus] event action_result: attack success took=12ms server accepted the target
+[17:33:25.041] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:26.171] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack start
+[17:33:26.172] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack serial=0x00000D86
+[17:33:26.172] INFO  [wave10_RevGen3_28_Titus] [0xAA] attacking 0x00000D86
+[17:33:26.172] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:33:26.173] LOG   [wave10_RevGen3_28_Titus] event action_result: attack success took=1ms server accepted the target
+[17:33:26.311] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1448,1656,10)
+[17:33:26.311] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[17:33:26.312] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[17:33:26.312] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:33:26.312] INFO  [wave10_RevGen3_28_Titus] [action] goto (1450,1617) from (1448,1656,10)
+[17:33:26.312] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1450,1617) from=(1448,1656)
+[17:33:26.312] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1448,1656,10) to (1450,1617,z20)
+[17:33:26.312] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1450,1617) in background
+[17:33:26.371] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1450,1617): 65 steps in 38529.3us
+[17:33:27.400] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack start
+[17:33:27.400] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack serial=0x00000D86
+[17:33:27.416] INFO  [wave10_RevGen3_28_Titus] [0xAA] attacking 0x00000D86
+[17:33:27.416] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:33:27.417] LOG   [wave10_RevGen3_28_Titus] event action_result: attack success took=16ms server accepted the target
+[17:33:28.647] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack start
+[17:33:28.648] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack serial=0x00000D86
+[17:33:28.648] INFO  [wave10_RevGen3_28_Titus] [0xAA] attacking 0x00000D86
+[17:33:28.649] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] attack success (1ms) server accepted the target
+[17:33:28.649] LOG   [wave10_RevGen3_28_Titus] event action_result: attack success took=1ms server accepted the target
+[17:33:29.864] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack start
+[17:33:29.864] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack serial=0x00000D86
+[17:33:29.880] INFO  [wave10_RevGen3_28_Titus] [0xAA] attacking 0x00000D86
+[17:33:29.880] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:33:29.881] LOG   [wave10_RevGen3_28_Titus] event action_result: attack success took=16ms server accepted the target
+[17:33:30.066] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:31.103] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack start
+[17:33:31.103] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack serial=0x00000D86
+[17:33:31.119] INFO  [wave10_RevGen3_28_Titus] [0xAA] attacking 0x00000D86
+[17:33:31.119] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] attack success (17ms) server accepted the target
+[17:33:31.119] LOG   [wave10_RevGen3_28_Titus] event action_result: attack success took=17ms server accepted the target
+[17:33:32.319] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack start
+[17:33:32.320] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack serial=0x00000D86
+[17:33:32.335] INFO  [wave10_RevGen3_28_Titus] [0xAA] attacking 0x00000D86
+[17:33:32.335] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:33:32.335] LOG   [wave10_RevGen3_28_Titus] event action_result: attack success took=16ms server accepted the target
+[17:33:33.538] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack start
+[17:33:33.538] INFO  [wave10_RevGen3_28_Titus] [ACTION] attack serial=0x00000D86
+[17:33:33.554] INFO  [wave10_RevGen3_28_Titus] [0xAA] attacking 0x00000D86
+[17:33:33.554] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] attack success (16ms) server accepted the target
+[17:33:33.555] LOG   [wave10_RevGen3_28_Titus] event action_result: attack success took=16ms server accepted the target
+[17:33:34.742] INFO  [wave10_RevGen3_28_Titus] [war] leaving war mode
+[17:33:35.068] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:40.073] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:42.957] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1459,1612,z20); OpenDoor before step
+[17:33:42.972] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:33:45.133] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:45.348] INFO  [wave10_RevGen3_28_Titus] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=6 in 222.3us
+[17:33:45.533] INFO  [wave10_RevGen3_28_Titus] [travel] Britain baker ARRIVED at (1454,1614,20)
+[17:33:45.533] LOG   [wave10_RevGen3_28_Titus] event travel_done: label='Britain baker' ok=1 at=(1454,1614) legs=2 plans=1 why=''
+[17:33:45.596] INFO  [wave10_RevGen3_28_Titus] [action] scanning nearby mobiles for names
+[17:33:45.596] INFO  [wave10_RevGen3_28_Titus] [action] requested 1 paperdoll(s) for trade titles
+[17:33:45.611] INFO  [wave10_RevGen3_28_Titus] [mobiles] nearby (3):
+[17:33:45.612] INFO  [wave10_RevGen3_28_Titus]   Lionel 0x000010B3
+[17:33:45.612] INFO  [wave10_RevGen3_28_Titus]   Natasha 0x00001194
+[17:33:45.612] INFO  [wave10_RevGen3_28_Titus]   Dog 0x00000DE8
+[17:33:45.612] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1454,1614,20) facing=5
+[17:33:45.612] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x000010B3: "Lionel, the baker"
+[17:33:45.612] INFO  [wave10_RevGen3_28_Titus] [world] Lionel, the baker is a baker at (1451,1617)
+[17:33:48.706] INFO  [wave10_RevGen3_28_Titus] [travel] mobile 0x000010B3 -> (1452,1618) r=1 from (1454,1614)
+[17:33:48.706] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='mobile 0x000010B3' target=(1452,1618) radius=1 from=(1454,1614)
+[17:33:48.707] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:33:48.707] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:33:48.707] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:33:48.707] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:33:48.707] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:33:48.707] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x000010B3: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:33:48.767] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1454,1614,20); target (1450,1617); stopped short (off by 7 tile(s))
+[17:33:48.767] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1454,1614) target=(1450,1617) arrived=0 off=7
+[17:33:48.767] INFO  [wave10_RevGen3_28_Titus] [action] goto (1452,1618) from (1454,1614,20)
+[17:33:48.768] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1452,1618) from=(1454,1614)
+[17:33:48.768] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1454,1614,20) to (1452,1618,z20)
+[17:33:48.768] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1452,1618) in background
+[17:33:50.172] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:33:51.065] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1452,1618) avoiding 0 block(s); stopping (search 2279905.6us)
+[17:33:51.065] WARN  [wave10_RevGen3_28_Titus] [bot] start (1454,1614,20) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 533 item(s), 3 mobile(s))
+[17:33:51.126] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1454,1614,20); target (1452,1618); stopped short (off by 6 tile(s))
+[17:33:51.126] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1454,1614) target=(1452,1618) arrived=0 off=6
+[17:33:52.357] INFO  [wave10_RevGen3_28_Titus] [action] goto (1452,1618) from (1454,1614,20)
+[17:33:52.358] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1452,1618) from=(1454,1614)
+[17:33:52.358] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1454,1614,20) to (1452,1618,z20)
+[17:33:52.358] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1452,1618) in background
+[17:33:52.420] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1452,1618): 4 steps in 220.3us
+[17:33:53.511] INFO  [wave10_RevGen3_28_Titus] [travel] mobile 0x000010B3 ARRIVED at (1452,1617,20)
+[17:33:53.511] LOG   [wave10_RevGen3_28_Titus] event travel_done: label='mobile 0x000010B3' ok=1 at=(1452,1617) legs=1 plans=1 why=''
+[17:33:53.633] INFO  [wave10_RevGen3_28_Titus] [ACTION] vendor_buy start
+[17:33:53.633] INFO  [wave10_RevGen3_28_Titus] [VENDOR] open vendor=0x000010B3 say='Lionel buy'
+[17:33:53.649] INFO  [wave10_RevGen3_28_Titus] [chat uni  ] Titus: Lionel buy
+[17:33:53.649] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Lionel: Good morrow!  How can I help thee?
+[17:33:53.649] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Lionel: Thou surely wants all the things that I can sell thee.
+[17:33:53.649] INFO  [wave10_RevGen3_28_Titus] [0x3C] container contents: 11 item(s)
+[17:33:53.649] INFO  [wave10_RevGen3_28_Titus] [0x74] pairing: straight (straight 1, mirrored 0 of 11 rows)
+[17:33:53.649] INFO  [wave10_RevGen3_28_Titus] [0x74] vendor shop data: cont=0x400010A9 11 item(s), layer=0x1A
+[17:33:53.649] INFO  [wave10_RevGen3_28_Titus] [0x74]   bread loaves                 gfx=0x103B qty=79   price=8
+[17:33:53.650] INFO  [wave10_RevGen3_28_Titus] [0x74]   baked pie                    gfx=0x1041 qty=5    price=17
+[17:33:53.650] INFO  [wave10_RevGen3_28_Titus] [0x74]   cake                         gfx=0x09E9 qty=44   price=38
+[17:33:53.650] INFO  [wave10_RevGen3_28_Titus] [0x74]   muffins                      gfx=0x09EA qty=18   price=8
+[17:33:53.650] INFO  [wave10_RevGen3_28_Titus] [0x74]   sack of flour                gfx=0x1039 qty=53   price=6
+[17:33:53.650] INFO  [wave10_RevGen3_28_Titus] [0x74]   french bread                 gfx=0x098C qty=64   price=9
+[17:33:53.650] INFO  [wave10_RevGen3_28_Titus] [0x74]   pan of cookies               gfx=0x160B qty=46   price=7
+[17:33:53.650] INFO  [wave10_RevGen3_28_Titus] [0x74]   pizzas                       gfx=0x1040 qty=72   price=15
+[17:33:53.651] INFO  [wave10_RevGen3_28_Titus] [0x74]   jars of honey                gfx=0x09EC qty=49   price=10
+[17:33:53.651] INFO  [wave10_RevGen3_28_Titus] [0x74]   dough                        gfx=0x103D qty=41   price=12
+[17:33:53.651] INFO  [wave10_RevGen3_28_Titus] [0x74]   rolling pin                  gfx=0x1043 qty=3    price=9
+[17:33:53.651] INFO  [wave10_RevGen3_28_Titus] [0x3C] container contents: 0 item(s)
+[17:33:53.651] INFO  [wave10_RevGen3_28_Titus] [0x74] vendor shop data: cont=0x40000E04 0 item(s), layer=0x1B
+[17:33:53.651] INFO  [wave10_RevGen3_28_Titus] [VENDOR] offer from 0x000010B3: 11 item(s)
+[17:33:53.651] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x40002878 bread loaves           x79  8 gp
+[17:33:53.651] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x40002877 baked pie              x5   17 gp
+[17:33:53.652] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x40002876 cake                   x44  38 gp
+[17:33:53.652] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x40002875 muffins                x18  8 gp
+[17:33:53.652] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x4000286F sack of flour          x53  6 gp
+[17:33:53.652] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x40002865 french bread           x64  9 gp
+[17:33:53.652] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x4000285E pan of cookies         x46  7 gp
+[17:33:53.652] INFO  [wave10_RevGen3_28_Titus] [VENDOR]   0x4000285A pizzas                 x72  15 gp
+[17:33:53.652] LOG   [wave10_RevGen3_28_Titus] event vendor_offer: vendor=0x000010B3 items=11
+[17:33:53.653] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] vendor_buy success (20ms) vendor offer received
+[17:33:53.653] LOG   [wave10_RevGen3_28_Titus] event action_result: vendor_buy success took=20ms vendor offer received
+[17:33:53.653] INFO  [wave10_RevGen3_28_Titus] [0x24] vendor buy gump for 0x000010B3
+[17:33:53.709] INFO  [wave10_RevGen3_28_Titus] [ACTION] vendor_buy start
+[17:33:53.710] INFO  [wave10_RevGen3_28_Titus] [policy] allowed NPC purchase of i_bread_loaf (0x103B): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [BASIC_FOOD]
+[17:33:53.710] INFO  [wave10_RevGen3_28_Titus] [VENDOR] buy item=0x40002878 qty=2 from vendor=0x000010B3 gold=9984
+[17:33:53.710] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] vendor_buy success (1ms) purchased item delivered
+[17:33:53.710] LOG   [wave10_RevGen3_28_Titus] event action_result: vendor_buy success took=1ms purchased item delivered
+[17:33:53.710] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Lionel: Here you are, Titus That will be 16 gold coins.  I thank thee for thy business.
+[17:33:53.711] INFO  [wave10_RevGen3_28_Titus] [0x3B] vendor transaction closed: vendor=0x000010B3 flag=0
+[17:33:54.568] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: World save in 10 seconds
+[17:33:54.952] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: You have retreated from the battle with Llama
+[17:33:55.200] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:00.201] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:04.598] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: World save has been initiated.
+[17:34:07.913] INFO  [wave10_RevGen3_28_Titus] [travel] Britain blacksmith -> (1418,1547) r=5 from (1452,1617)
+[17:34:07.914] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='Britain blacksmith' target=(1418,1547) radius=5 from=(1452,1617)
+[17:34:07.914] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable   <- chosen
+[17:34:07.914] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable
+[17:34:07.914] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:07.914] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:07.914] LOG   [wave10_RevGen3_28_Titus] event travel_mode: moongate
+[17:34:07.915] INFO  [wave10_RevGen3_28_Titus] [travel] plan Britain blacksmith: ok legs=3 ~112 tiles transit=0 nodes=93
+[17:34:07.915] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:07.975] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1452,1617,20); target (1452,1618); stopped short (off by 1 tile(s))
+[17:34:07.975] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1452,1617) target=(1452,1618) arrived=0 off=1
+[17:34:07.976] INFO  [wave10_RevGen3_28_Titus] [travel] avoiding 2 teleporter pad(s) on this leg
+[17:34:07.976] INFO  [wave10_RevGen3_28_Titus] [action] goto (1448,1592) from (1452,1617,20)
+[17:34:07.976] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1448,1592) from=(1452,1617)
+[17:34:07.976] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1452,1617,20) to (1448,1592)
+[17:34:07.976] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1448,1592) in background
+[17:34:08.039] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1448,1592): 30 steps in 3071.1us
+[17:34:12.475] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1460,1610,z20); OpenDoor before step
+[17:34:12.475] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:34:12.938] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:17.962] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:19.015] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1448,1592,20)
+[17:34:19.015] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1448,1592,20); target (1448,1592); ARRIVED (off by 0 tile(s))
+[17:34:19.015] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1448,1592) target=(1448,1592) arrived=1 off=0
+[17:34:19.015] INFO  [wave10_RevGen3_28_Titus] [action] goto (1432,1560) from (1448,1592,20)
+[17:34:19.016] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1432,1560) from=(1448,1592)
+[17:34:19.016] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1448,1592,20) to (1432,1560)
+[17:34:19.016] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1432,1560) in background
+[17:34:19.076] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1432,1560): 46 steps in 5985.5us
+[17:34:22.997] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:23.861] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1443,1583,z20); OpenDoor before step
+[17:34:23.876] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:34:25.344] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1442,1584,z20); OpenDoor before step
+[17:34:25.360] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:34:28.019] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:33.024] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:34.809] INFO  [wave10_RevGen3_28_Titus] [bot] arrived at (1432,1560,30)
+[17:34:34.809] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1432,1560,30); target (1432,1560); ARRIVED (off by 0 tile(s))
+[17:34:34.810] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1432,1560) target=(1432,1560) arrived=1 off=0
+[17:34:34.810] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1547) from (1432,1560,30)
+[17:34:34.810] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1547) from=(1432,1560)
+[17:34:34.810] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1432,1560,30) to (1418,1547,z30)
+[17:34:34.810] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1547) in background
+[17:34:34.870] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1418,1547): 21 steps in 5894.8us
+[17:34:35.904] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: I'm listenin'.
+[17:34:38.037] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:39.604] INFO  [wave10_RevGen3_28_Titus] [travel] Britain blacksmith ARRIVED at (1417,1552,30)
+[17:34:39.604] LOG   [wave10_RevGen3_28_Titus] event travel_done: label='Britain blacksmith' ok=1 at=(1417,1552) legs=3 plans=1 why=''
+[17:34:39.665] INFO  [wave10_RevGen3_28_Titus] [action] scanning nearby mobiles for names
+[17:34:39.666] INFO  [wave10_RevGen3_28_Titus] [action] requested 3 paperdoll(s) for trade titles
+[17:34:39.680] INFO  [wave10_RevGen3_28_Titus] [mobiles] nearby (3):
+[17:34:39.681] INFO  [wave10_RevGen3_28_Titus]   Thora 0x00001189
+[17:34:39.681] INFO  [wave10_RevGen3_28_Titus]   Varek 0x00019751
+[17:34:39.681] INFO  [wave10_RevGen3_28_Titus]   Rhett 0x00001026
+[17:34:39.681] INFO  [wave10_RevGen3_28_Titus] [0x20] player @(1417,1552,30) facing=0
+[17:34:39.681] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x00001189: "Thora, the blacksmith"
+[17:34:39.682] INFO  [wave10_RevGen3_28_Titus] [world] Thora, the blacksmith is a blacksmith at (1418,1548)
+[17:34:39.682] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x00019751: "Varek, Apprentice Swordsman"
+[17:34:39.682] INFO  [wave10_RevGen3_28_Titus] [0x88] paperdoll 0x00001026: "Rhett, the blacksmith"
+[17:34:39.682] INFO  [wave10_RevGen3_28_Titus] [world] Rhett, the blacksmith is a blacksmith at (1417,1544)
+[17:34:42.194] INFO  [wave10_RevGen3_28_Titus] [travel] mobile 0x00001189 -> (1418,1548) r=1 from (1417,1552)
+[17:34:42.194] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='mobile 0x00001189' target=(1418,1548) radius=1 from=(1417,1552)
+[17:34:42.194] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:34:42.194] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:34:42.195] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:42.195] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:42.195] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:34:42.195] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x00001189: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:42.255] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1547); stopped short (off by 6 tile(s))
+[17:34:42.255] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1547) arrived=0 off=6
+[17:34:42.255] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:34:42.256] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:34:42.256] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:34:42.256] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:34:43.046] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:44.818] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 2513312.1us)
+[17:34:44.818] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 3 mobile(s))
+[17:34:44.880] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:34:44.880] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:34:46.115] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:34:46.115] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:34:46.116] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:34:46.116] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:34:48.092] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:48.524] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 2378156.7us)
+[17:34:48.525] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 3 mobile(s))
+[17:34:48.586] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:34:48.586] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:34:49.821] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:34:49.821] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:34:49.821] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:49.822] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:49.822] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:34:49.822] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x00001189: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:51.356] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:34:51.357] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:34:51.357] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:34:51.357] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:34:53.145] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:53.758] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 2395233.4us)
+[17:34:53.758] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 3 mobile(s))
+[17:34:53.760] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:34:53.760] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:34:54.995] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:34:55.011] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:34:55.011] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:34:55.011] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:34:57.417] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 2356983.9us)
+[17:34:57.417] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 4 mobile(s))
+[17:34:57.478] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:34:57.478] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:34:58.200] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:58.692] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:34:58.692] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:34:58.692] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:58.692] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:58.693] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:34:58.693] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x00001189: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:01.708] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:35:01.709] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:35:01.709] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:35:01.709] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:35:03.208] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:03.393] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 1641071.4us)
+[17:35:03.394] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 4 mobile(s))
+[17:35:03.454] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:35:03.455] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:35:04.701] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:35:04.703] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:35:04.703] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:35:04.703] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:35:08.210] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:08.761] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1418,1548) avoiding 0 block(s); stopping (search 4022110.6us)
+[17:35:08.762] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1552,30) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 786 item(s), 4 mobile(s))
+[17:35:08.822] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:35:08.822] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:35:09.041] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Thora: Nice speaking to you Varek
+[17:35:10.073] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:35:10.074] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:35:10.074] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:10.074] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:10.074] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:35:10.074] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x00001189: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:13.212] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:14.631] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:35:14.631] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:35:14.631] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:35:14.632] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:35:14.632] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1418,1548): 4 steps in 110.8us
+[17:35:15.570] INFO  [wave10_RevGen3_28_Titus] [travel] mobile 0x00001189 ARRIVED at (1417,1549,30)
+[17:35:15.570] LOG   [wave10_RevGen3_28_Titus] event travel_done: label='mobile 0x00001189' ok=1 at=(1417,1549) legs=1 plans=4 why=''
+[17:35:15.586] INFO  [wave10_RevGen3_28_Titus] [ACTION] npc_train start
+[17:35:15.586] INFO  [wave10_RevGen3_28_Titus] [TRAIN] ask 0x00001026 say='Rhett train Tactics'
+[17:35:15.587] LOG   [wave10_RevGen3_28_Titus] event npc_train_ask: Rhett train Tactics
+[17:35:15.587] INFO  [wave10_RevGen3_28_Titus] [chat uni  ] Titus: Rhett train Tactics
+[17:35:15.588] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: Hello!
+[17:35:15.588] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:15.588] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] npc_train success (2ms) For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:15.588] LOG   [wave10_RevGen3_28_Titus] event action_result: npc_train success took=2ms For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:18.087] INFO  [wave10_RevGen3_28_Titus] [action] open backpack
+[17:35:18.087] INFO  [wave10_RevGen3_28_Titus] [backpack] opening 0x4001807D
+[17:35:18.088] INFO  [wave10_RevGen3_28_Titus] [0x24] open container 0x4001807D gump=60
+[17:35:18.088] INFO  [wave10_RevGen3_28_Titus] [0x3C] container contents: 11 item(s)
+[17:35:18.269] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:19.319] INFO  [wave10_RevGen3_28_Titus] [GIVE] 0x4000D0D7 x77 -> 0x00001026 (gold 9968)
+[17:35:19.320] INFO  [wave10_RevGen3_28_Titus] [ITEM] drag serial=0x4000D0D7 amount=77
+[17:35:19.320] INFO  [wave10_RevGen3_28_Titus] [ITEM] drop container=0x00001026
+[17:35:19.320] LOG   [wave10_RevGen3_28_Titus] event npc_give: item=0x4000D0D7 amount=77 to=0x00001026
+[17:35:19.335] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: Let me show you something of how this is done
+[17:35:19.335] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: That is all I can teach.
+[17:35:23.282] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:23.344] INFO  [wave10_RevGen3_28_Titus] [action] requesting the skill list
+[17:35:28.829] INFO  [wave10_RevGen3_28_Titus] [travel] Lord British's Castle tailor -> (1388,1588) r=5 from (1417,1549)
+[17:35:28.830] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='Lord British's Castle tailor' target=(1388,1588) radius=5 from=(1417,1549)
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:28.830] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] plan Lord British's Castle tailor: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1549,30); target (1418,1548); stopped short (off by 2 tile(s))
+[17:35:28.831] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1549) target=(1418,1548) arrived=0 off=2
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [action] goto (1388,1588) from (1417,1549,30)
+[17:35:28.831] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1388,1588) from=(1417,1549)
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1549,30) to (1388,1588,z30)
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1388,1588) in background
+[17:35:28.888] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1388,1588) avoiding 0 block(s); stopping (search 284.2us)
+[17:35:28.895] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1549,30) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 786 item(s), 5 mobile(s))
+[17:35:28.949] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1549,30); target (1388,1588); stopped short (off by 68 tile(s))
+[17:35:28.949] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1549) target=(1388,1588) arrived=0 off=68
+[17:35:30.210] INFO  [wave10_RevGen3_28_Titus] [action] goto (1388,1588) from (1417,1549,30)
+[17:35:30.210] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1388,1588) from=(1417,1549)
+[17:35:30.210] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1549,30) to (1388,1588,z30)
+[17:35:30.211] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1388,1588) in background
+[17:35:30.272] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1388,1588) avoiding 0 block(s); stopping (search 604.7us)
+[17:35:30.273] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1549,30) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 786 item(s), 5 mobile(s))
+[17:35:30.335] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1549,30); target (1388,1588); stopped short (off by 68 tile(s))
+[17:35:30.337] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1549) target=(1388,1588) arrived=0 off=68
+[17:35:31.562] INFO  [wave10_RevGen3_28_Titus] [action] goto (1388,1588) from (1417,1549,30)
+[17:35:31.563] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1388,1588) from=(1417,1549)
+[17:35:31.563] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1549,30) to (1388,1588,z30)
+[17:35:31.563] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1388,1588) in background
+[17:35:31.623] WARN  [wave10_RevGen3_28_Titus] [bot] no path to (1388,1588) avoiding 0 block(s); stopping (search 235.3us)
+[17:35:31.628] WARN  [wave10_RevGen3_28_Titus] [bot] start (1417,1549,30) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 786 item(s), 5 mobile(s))
+[17:35:31.628] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1549,30); target (1388,1588); stopped short (off by 68 tile(s))
+[17:35:31.628] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1549) target=(1388,1588) arrived=0 off=68
+[17:35:32.861] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:35:32.861] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:35:32.862] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:32.862] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:32.862] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:35:32.862] INFO  [wave10_RevGen3_28_Titus] [travel] plan Lord British's Castle tailor: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:35:33.321] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Thora: I'm listenin'.
+[17:35:33.844] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:34.402] INFO  [wave10_RevGen3_28_Titus] [action] goto (1388,1588) from (1417,1549,30)
+[17:35:34.402] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1388,1588) from=(1417,1549)
+[17:35:34.402] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1549,30) to (1388,1588,z30)
+[17:35:34.403] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1388,1588) in background
+[17:35:34.650] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1388,1588): 142 steps in 197302.0us
+[17:35:36.614] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1421,1555,z30); OpenDoor before step
+[17:35:36.630] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:35:37.848] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1422,1556,z30); OpenDoor before step
+[17:35:37.849] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:35:38.895] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Thane has departed from Lord British's Castle.
+,30)
+[17:34:46.115] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:34:46.116] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:34:46.116] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:34:48.092] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:48.586] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:34:48.586] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:34:49.821] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:34:49.821] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:34:49.821] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:49.822] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:49.822] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:34:49.822] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x00001189: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:34:51.356] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:34:51.357] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:34:51.357] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:34:51.357] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:34:53.145] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:53.760] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:34:53.760] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:34:54.995] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:34:55.011] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:34:55.011] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:34:55.011] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:34:57.478] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:34:57.478] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:34:58.200] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:34:58.692] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:34:58.692] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:34:58.692] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:34:58.692] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:34:58.693] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:34:58.693] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x00001189: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:01.708] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:35:01.709] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:35:01.709] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:35:01.709] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:35:03.208] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:03.454] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:35:03.455] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:35:04.701] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:35:04.703] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:35:04.703] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:35:04.703] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:35:08.210] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:08.822] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1552,30); target (1418,1548); stopped short (off by 5 tile(s))
+[17:35:08.822] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1552) target=(1418,1548) arrived=0 off=5
+[17:35:09.041] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Thora: Nice speaking to you Varek
+[17:35:10.073] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:35:10.074] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:35:10.074] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:10.074] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:10.074] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:35:10.074] INFO  [wave10_RevGen3_28_Titus] [travel] plan mobile 0x00001189: ok legs=1 ~4 tiles transit=0 nodes=0
+[17:35:13.212] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:14.631] INFO  [wave10_RevGen3_28_Titus] [action] goto (1418,1548) from (1417,1552,30)
+[17:35:14.631] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1418,1548) from=(1417,1552)
+[17:35:14.631] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1552,30) to (1418,1548,z30)
+[17:35:14.632] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1418,1548) in background
+[17:35:14.632] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1418,1548): 4 steps in 110.8us
+[17:35:15.570] INFO  [wave10_RevGen3_28_Titus] [travel] mobile 0x00001189 ARRIVED at (1417,1549,30)
+[17:35:15.570] LOG   [wave10_RevGen3_28_Titus] event travel_done: label='mobile 0x00001189' ok=1 at=(1417,1549) legs=1 plans=4 why=''
+[17:35:15.586] INFO  [life] training: asking the trainer about Tactics
+[17:35:15.586] INFO  [wave10_RevGen3_28_Titus] [ACTION] npc_train start
+[17:35:15.586] INFO  [wave10_RevGen3_28_Titus] [TRAIN] ask 0x00001026 say='Rhett train Tactics'
+[17:35:15.587] LOG   [wave10_RevGen3_28_Titus] event npc_train_ask: Rhett train Tactics
+[17:35:15.587] INFO  [wave10_RevGen3_28_Titus] [chat uni  ] Titus: Rhett train Tactics
+[17:35:15.588] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: Hello!
+[17:35:15.588] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:15.588] INFO  [wave10_RevGen3_28_Titus] [ACTION_RESULT] npc_train success (2ms) For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:15.588] LOG   [wave10_RevGen3_28_Titus] event action_result: npc_train success took=2ms For 77 gold I will train you in all I know of Tactics. For less gold I will teach you less
+[17:35:18.087] INFO  [wave10_RevGen3_28_Titus] [action] open backpack
+[17:35:18.087] INFO  [wave10_RevGen3_28_Titus] [backpack] opening 0x4001807D
+[17:35:18.088] INFO  [wave10_RevGen3_28_Titus] [0x24] open container 0x4001807D gump=60
+[17:35:18.088] INFO  [wave10_RevGen3_28_Titus] [0x3C] container contents: 11 item(s)
+[17:35:18.269] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:19.319] INFO  [life] training: paying the quoted 77 gold for Tactics (purse 9968)
+[17:35:19.319] INFO  [wave10_RevGen3_28_Titus] [GIVE] 0x4000D0D7 x77 -> 0x00001026 (gold 9968)
+[17:35:19.320] INFO  [wave10_RevGen3_28_Titus] [ITEM] drag serial=0x4000D0D7 amount=77
+[17:35:19.320] INFO  [wave10_RevGen3_28_Titus] [ITEM] drop container=0x00001026
+[17:35:19.320] LOG   [wave10_RevGen3_28_Titus] event npc_give: item=0x4000D0D7 amount=77 to=0x00001026
+[17:35:19.335] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: Let me show you something of how this is done
+[17:35:19.335] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Rhett: That is all I can teach.
+[17:35:23.282] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:23.344] INFO  [wave10_RevGen3_28_Titus] [action] requesting the skill list
+[17:35:24.884] INFO  [life] train: Tactics 0.1->7.8 bought from a trainer
+[17:35:24.887] INFO  [life] checkpoint (skill bought from a trainer) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[17:35:24.887] INFO  [life] goal_completed=TRAIN_AT_NPC progress=1
+[17:35:24.889] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_28.titus/state.json
+[17:35:24.947] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[17:35:24.947] INFO  [life] needs considered: NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedTraining(skill 31 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Tactics 0.45) NeedSupplies(buy craft inputs 0.44) NeedBank(put unsold stock away 0.40) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:35:24.947] INFO  [life]   score=49.5
+[17:35:24.947] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 110 = 49.5
+[17:35:24.948] INFO  [life]   reason: Tactics 7.8 -> 100.0, gold 9891 (fee is quoted on arrival, roughly 300)
+[17:35:24.948] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 47s after achieving nothing
+[17:35:24.948] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 157s after achieving nothing
+[17:35:24.948] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[17:35:24.948] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 157s after achieving nothing
+[17:35:24.948] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 447s after achieving nothing
+[17:35:24.948] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 37s after achieving nothing
+[17:35:24.949] INFO  [life] plan=practise reason="already at what an NPC of this kind can teach"
+[17:35:24.949] INFO  [life] handoff=TRAIN_AT_NPC->PRACTICE_SKILL reason="already at what an NPC of this kind can teach"
+[17:35:25.009] INFO  [life] goal=UPGRADE_GEAR reason="previous goal abandoned: already at what an NPC of this kind can teach"
+[17:35:25.010] INFO  [life] needs considered: NeedGold(sell surplus BLOCKED 0.55) NeedEquipment(heal potions 0.50) NeedTraining(skill 31 0.45) NeedTraining(Tactics 0.45) NeedTraining(Anatomy 0.45) NeedSkillTraining(Tactics 0.45) NeedSupplies(buy craft inputs 0.44) NeedBank(put unsold stock away 0.40) NeedGear(gear 0.22) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=0 held=[] want_train=Tactics (target 100.0)
+[17:35:25.010] INFO  [life]   score=22.0
+[17:35:25.010] INFO  [life]   reason: NeedGear urgency 0.22 x 100 = 22.0
+[17:35:25.010] INFO  [life]   reason: str 24 gold 9891 reserve 300
+[17:35:25.011] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: on cooldown for another 47s after achieving nothing
+[17:35:25.011] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 157s after achieving nothing
+[17:35:25.011] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (25 x i_arrow spare, and no buyer known -- on this shard it is a player-market good)
+[17:35:25.011] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: on cooldown for another 157s after achieving nothing
+[17:35:25.011] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[17:35:25.011] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 447s after achieving nothing
+[17:35:25.011] INFO  [life]   BLOCKED_NEED BUY_SUPPLIES: on cooldown for another 37s after achieving nothing
+[17:35:26.949] INFO  [life] gear: armorer upgrade 0x13C5 (armor 13, needs str 20) replaces 0x0000 (armor 0); buying from a tailor
+[17:35:26.950] INFO  [life] UPGRADE_GEAR: looking for a 'tailor' to sell a piece of armour (trip 1)
+[17:35:28.829] INFO  [wave10_RevGen3_28_Titus] [travel] Lord British's Castle tailor -> (1388,1588) r=5 from (1417,1549)
+[17:35:28.830] LOG   [wave10_RevGen3_28_Titus] event travel_start: label='Lord British's Castle tailor' target=(1388,1588) radius=5 from=(1417,1549)
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:28.830] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:35:28.830] INFO  [wave10_RevGen3_28_Titus] [travel] plan Lord British's Castle tailor: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1549,30); target (1418,1548); stopped short (off by 2 tile(s))
+[17:35:28.831] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1549) target=(1418,1548) arrived=0 off=2
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [action] goto (1388,1588) from (1417,1549,30)
+[17:35:28.831] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1388,1588) from=(1417,1549)
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1549,30) to (1388,1588,z30)
+[17:35:28.831] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1388,1588) in background
+[17:35:28.949] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1549,30); target (1388,1588); stopped short (off by 68 tile(s))
+[17:35:28.949] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1549) target=(1388,1588) arrived=0 off=68
+[17:35:30.210] INFO  [wave10_RevGen3_28_Titus] [action] goto (1388,1588) from (1417,1549,30)
+[17:35:30.210] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1388,1588) from=(1417,1549)
+[17:35:30.210] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1549,30) to (1388,1588,z30)
+[17:35:30.211] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1388,1588) in background
+[17:35:30.335] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1549,30); target (1388,1588); stopped short (off by 68 tile(s))
+[17:35:30.337] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1549) target=(1388,1588) arrived=0 off=68
+[17:35:31.562] INFO  [wave10_RevGen3_28_Titus] [action] goto (1388,1588) from (1417,1549,30)
+[17:35:31.563] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1388,1588) from=(1417,1549)
+[17:35:31.563] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1549,30) to (1388,1588,z30)
+[17:35:31.563] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1388,1588) in background
+[17:35:31.628] INFO  [wave10_RevGen3_28_Titus] [action] goto finished at (1417,1549,30); target (1388,1588); stopped short (off by 68 tile(s))
+[17:35:31.628] LOG   [wave10_RevGen3_28_Titus] event goto_done: at=(1417,1549) target=(1388,1588) arrived=0 off=68
+[17:35:32.861] INFO  [wave10_RevGen3_28_Titus] [travel] mode walk             usable   <- chosen
+[17:35:32.861] INFO  [wave10_RevGen3_28_Titus] [travel] mode moongate         usable
+[17:35:32.862] INFO  [wave10_RevGen3_28_Titus] [travel] mode loose_rune_recall no: no rune marked at that destination
+[17:35:32.862] INFO  [wave10_RevGen3_28_Titus] [travel] mode runebook_recall  no: no runebook page for that destination
+[17:35:32.862] LOG   [wave10_RevGen3_28_Titus] event travel_mode: walk
+[17:35:32.862] INFO  [wave10_RevGen3_28_Titus] [travel] plan Lord British's Castle tailor: ok legs=1 ~39 tiles transit=0 nodes=0
+[17:35:33.321] INFO  [wave10_RevGen3_28_Titus] [chat ascii] Thora: I'm listenin'.
+[17:35:33.844] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:34.402] INFO  [wave10_RevGen3_28_Titus] [action] goto (1388,1588) from (1417,1549,30)
+[17:35:34.402] LOG   [wave10_RevGen3_28_Titus] event goto_start: target=(1388,1588) from=(1417,1549)
+[17:35:34.402] INFO  [wave10_RevGen3_28_Titus] [bot] running from (1417,1549,30) to (1388,1588,z30)
+[17:35:34.403] INFO  [wave10_RevGen3_28_Titus] [bot] planning path to (1388,1588) in background
+[17:35:34.650] INFO  [wave10_RevGen3_28_Titus] [bot] replan to (1388,1588): 142 steps in 197302.0us
+[17:35:36.614] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1421,1555,z30); OpenDoor before step
+[17:35:36.630] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:35:37.848] INFO  [wave10_RevGen3_28_Titus] [bot] door ahead at (1422,1556,z30); OpenDoor before step
+[17:35:37.849] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Opening door...
+[17:35:38.895] INFO  [wave10_RevGen3_28_Titus] [survival] hp 24/24 (100%) -> fight
+[17:35:39.329] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Serena has departed from Britain.
+[17:35:39.345] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Aurelius has departed from Britain Territory.
+[17:35:39.346] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Hector has departed from Trinsic Healer.
+[17:35:39.362] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Rhaler has departed from Britain.
+[17:35:39.363] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Lyra has departed from Moonglow.
+[17:35:39.376] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Zarthal has departed from Britain.
+[17:35:39.377] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Castor has departed from Trinsic Healer.
+[17:35:39.391] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Odessa has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Illyria has departed from Britain.
+[17:35:39.407] INFO  [wave10_RevGen3_28_Titus] [chat ascii] System: Thane has departed from Lord British's Castle.

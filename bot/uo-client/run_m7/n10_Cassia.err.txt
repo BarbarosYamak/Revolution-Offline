@@ -1,0 +1,238 @@
+start: Cassia is a tamer and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[17:31:10.338] WARN  [n10_Cassia] [0x21] move REJECTED seq=14; server says (1439,1693,0) facing=3
+[17:31:10.339] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:31:44.003] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:31:53.446] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:32:01.543] WARN  [n10_Cassia] [0x21] move REJECTED seq=21; server says (1488,1677,8) facing=1
+[17:32:02.250] WARN  [n10_Cassia] [0x21] move REJECTED seq=0; server says (1488,1677,8) facing=1
+[17:32:13.145] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:32:40.171] WARN  [n10_Cassia] [0x21] move REJECTED seq=9; server says (1495,1621,20) facing=5
+[17:32:40.172] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:32:41.663] WARN  [n10_Cassia] [0x21] move REJECTED seq=1; server says (1495,1621,20) facing=5
+[17:32:41.679] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:32:54.307] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:33:08.766] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:33:23.387] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:33:26.538] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:27.824] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:29.204] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:32.013] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:33.329] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:34.573] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:38.900] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:40.270] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:41.561] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:47.390] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:48.698] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:49.977] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:50.038] WARN  [n10_Cassia] [travel] route exhausted at (1434,1612,20); trying to reach (1432,1624,20) to get somewhere routable (escape 1/3)
+[17:33:57.415] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:33:58.698] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:00.048] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:02.921] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:04.219] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:05.573] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:09.930] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:11.221] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:12.558] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:18.428] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:19.715] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:21.003] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:21.064] WARN  [n10_Cassia] [travel] route exhausted at (1432,1624,20); trying to reach (1416,1608,30) to get somewhere routable (escape 2/3)
+[17:34:22.633] WARN  [n10_Cassia] [bot] no path to (1416,1608) avoiding 0 block(s); stopping (search 1549338.8us)
+[17:34:22.634] WARN  [n10_Cassia] [bot] start (1432,1624,20) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 565 item(s), 3 mobile(s))
+[17:34:22.651] WARN  [n10_Cassia] [travel] route exhausted at (1432,1624,20); trying to reach (1448,1608,20) to get somewhere routable (escape 3/3)
+[17:34:39.479] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:40.856] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:42.138] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:45.023] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:46.301] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:47.668] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:52.091] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:53.464] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:34:54.732] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:00.621] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:01.976] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:03.325] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:03.510] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:04.734] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:06.022] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:08.899] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:10.254] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:11.557] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:15.908] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:17.183] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:18.475] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:24.324] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:25.609] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:26.964] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:27.026] WARN  [n10_Cassia] [travel] route exhausted at (1448,1608,20); trying to reach (1432,1592,20) to get somewhere routable (escape 1/3)
+[17:35:28.440] WARN  [n10_Cassia] [bot] no path to (1432,1592) avoiding 0 block(s); stopping (search 1360604.1us)
+[17:35:28.440] WARN  [n10_Cassia] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 565 item(s), 3 mobile(s))
+[17:35:28.501] WARN  [n10_Cassia] [travel] route exhausted at (1448,1608,20); trying to reach (1448,1592,20) to get somewhere routable (escape 2/3)
+[17:35:41.947] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:43.326] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:44.660] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:47.513] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:48.879] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:50.213] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:54.605] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:55.975] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:35:57.263] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:03.200] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:04.476] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:05.811] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:05.872] WARN  [n10_Cassia] [travel] route exhausted at (1448,1592,20); trying to reach (1432,1576,30) to get somewhere routable (escape 3/3)
+[17:36:17.623] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:18.938] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:20.282] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:23.161] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:24.515] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:25.869] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:30.163] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:31.447] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:32.727] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:38.571] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:39.924] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:36:41.199] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:37:40.062] WARN  [n10_Cassia] [0x21] move REJECTED seq=11; server says (1475,1670,0) facing=5
+[17:37:40.062] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:37:56.436] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:38:07.011] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:38:45.725] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:39:07.671] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:39:38.688] WARN  [n10_Cassia] [0x21] move REJECTED seq=118; server says (1413,1593,30) facing=7
+[17:39:39.441] WARN  [n10_Cassia] [0x21] move REJECTED seq=0; server says (1413,1593,30) facing=7
+[17:39:42.950] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:39:44.246] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:39:45.476] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:39:48.283] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:39:49.633] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:39:50.931] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:39:55.245] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:39:56.610] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:39:57.916] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:03.801] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:05.096] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:06.405] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:06.465] WARN  [n10_Cassia] [travel] route exhausted at (1409,1590,45); trying to reach (1398,1592,30) to get somewhere routable (escape 1/3)
+[17:40:49.031] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:50.382] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:51.731] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:54.596] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:55.978] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:40:57.269] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:41:01.625] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:41:02.920] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:41:04.198] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:41:10.028] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:41:11.396] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:41:12.768] WARN  [n10_Cassia] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[17:41:12.828] WARN  [n10_Cassia] [travel] route exhausted at (1398,1592,30); trying to reach (1384,1592,30) to get somewhere routable (escape 2/3)
+[17:41:40.798] WARN  [n10_Cassia] [travel] route exhausted at (1384,1592,30); trying to reach (1368,1576,30) to get somewhere routable (escape 3/3)
+[17:41:44.844] WARN  [n10_Cassia] [0x21] move REJECTED seq=17; server says (1391,1595,30) facing=5
+[17:41:44.844] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:41:46.991] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 2012636.3us)
+[17:41:46.991] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:41:50.101] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1796563.4us)
+[17:41:50.101] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:41:53.330] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1930253.7us)
+[17:41:53.330] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:41:58.130] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1951132.8us)
+[17:41:58.130] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 4 mobile(s))
+[17:42:01.413] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1952270.4us)
+[17:42:01.413] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 4 mobile(s))
+[17:42:07.571] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1793687.2us)
+[17:42:07.571] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:42:10.759] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1861914.0us)
+[17:42:10.759] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:42:14.688] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 2614170.3us)
+[17:42:14.688] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:42:18.479] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 2442818.4us)
+[17:42:18.479] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:42:21.628] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1773060.0us)
+[17:42:21.628] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:42:23.521] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1791401.0us)
+[17:42:23.521] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 3 mobile(s))
+[17:42:26.674] WARN  [n10_Cassia] [bot] no path to (1385,1584) avoiding 0 block(s); stopping (search 1869511.0us)
+[17:42:26.674] WARN  [n10_Cassia] [bot] start (1391,1595,30) exits: open=6 terrain=1 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1110 item(s), 4 mobile(s))
+[17:42:33.107] WARN  [n10_Cassia] [0x21] move REJECTED seq=17; server says (1384,1585,30) facing=0
+[17:42:33.827] WARN  [n10_Cassia] [0x21] move REJECTED seq=0; server says (1384,1585,30) facing=0
+[17:42:45.940] WARN  [n10_Cassia] [0x21] move REJECTED seq=21; server says (1391,1595,30) facing=5
+[17:42:45.955] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:42:47.505] WARN  [n10_Cassia] [0x21] move REJECTED seq=1; server says (1391,1595,30) facing=5
+[17:42:47.505] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:43:17.310] WARN  [n10_Cassia] [0x21] move REJECTED seq=23; server says (1372,1584,30) facing=3
+[17:43:17.326] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:43:28.404] WARN  [n10_Cassia] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 2040279.1us)
+[17:43:28.404] WARN  [n10_Cassia] [bot] start (1384,1608,30) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1123 item(s), 0 mobile(s))
+[17:43:31.799] WARN  [n10_Cassia] [bot] no path to (1416,1592) avoiding 0 block(s); stopping (search 2081413.6us)
+[17:43:31.799] WARN  [n10_Cassia] [bot] start (1384,1608,30) exits: open=5 terrain=2 mobile=0 dynamic=0 door=1 blacklist=0 (overlay saw 1123 item(s), 0 mobile(s))
+[17:45:02.825] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:45:10.998] WARN  [n10_Cassia] [0x21] move REJECTED seq=21; server says (1476,1520,20) facing=3
+[17:45:11.013] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:45:20.251] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:45:45.436] WARN  [n10_Cassia] [0x21] move REJECTED seq=16; server says (1517,1552,25) facing=3
+[17:45:45.436] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:46:34.421] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:46:37.597] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:46:47.417] WARN  [n10_Cassia] [0x21] move REJECTED seq=26; server says (1632,1588,0) facing=3
+[17:46:47.417] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:47:02.108] WARN  [n10_Cassia] [0x21] move REJECTED seq=56; server says (1666,1608,11) facing=5
+[17:47:02.829] WARN  [n10_Cassia] [0x21] move REJECTED seq=0; server says (1666,1608,11) facing=5
+[17:47:11.499] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:47:34.864] WARN  [n10_Cassia] [0x21] move REJECTED seq=46; server says (1641,1671,15) facing=5
+[17:47:37.210] WARN  [n10_Cassia] [bot] no path to (1640,1672) avoiding 0 block(s); stopping (search 2298729.3us)
+[17:47:37.210] WARN  [n10_Cassia] [bot] start (1641,1671,15) exits: open=7 terrain=0 mobile=0 dynamic=1 door=0 blacklist=0 (overlay saw 1846 item(s), 1 mobile(s))
+[17:48:36.183] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:49:53.601] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:49:56.736] WARN  [n10_Cassia] [bot] goal (1560,1656) is not walkable; skipping A* and stopping
+[17:49:58.068] WARN  [n10_Cassia] [bot] goal (1560,1656) is not walkable; skipping A* and stopping
+[17:49:59.443] WARN  [n10_Cassia] [bot] goal (1560,1656) is not walkable; skipping A* and stopping
+[17:50:04.100] WARN  [n10_Cassia] [0x21] move REJECTED seq=8; server says (1591,1664,10) facing=5
+[17:50:04.116] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:50:18.706] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:50:24.398] WARN  [n10_Cassia] [0x21] move REJECTED seq=11; server says (1555,1664,23) facing=5
+[17:50:24.413] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:50:40.560] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 31.5us)
+[17:50:40.560] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:50:41.878] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 20.3us)
+[17:50:41.878] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:50:43.232] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 29.2us)
+[17:50:43.232] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 8 mobile(s))
+[17:50:46.122] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 32.2us)
+[17:50:46.122] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:50:47.498] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 39.7us)
+[17:50:47.498] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:50:48.847] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 31.1us)
+[17:50:48.847] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:50:53.236] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 26.9us)
+[17:50:53.236] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:50:54.547] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 30.6us)
+[17:50:54.547] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:50:55.886] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 30.9us)
+[17:50:55.886] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:51:01.734] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 37.1us)
+[17:51:01.735] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:51:03.118] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 34.3us)
+[17:51:03.118] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:51:04.396] WARN  [n10_Cassia] [bot] no path to (1498,1691) avoiding 0 block(s); stopping (search 28.6us)
+[17:51:04.396] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:51:04.458] WARN  [n10_Cassia] [travel] route exhausted at (1512,1684,7); trying to reach (1512,1672,20) to get somewhere routable (escape 1/3)
+[17:51:04.520] WARN  [n10_Cassia] [bot] no path to (1512,1672) avoiding 0 block(s); stopping (search 22.1us)
+[17:51:04.520] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:51:04.580] WARN  [n10_Cassia] [travel] route exhausted at (1512,1684,7); trying to reach (1496,1672,10) to get somewhere routable (escape 2/3)
+[17:51:04.642] WARN  [n10_Cassia] [bot] no path to (1496,1672) avoiding 0 block(s); stopping (search 53.8us)
+[17:51:04.642] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:51:04.704] WARN  [n10_Cassia] [travel] route exhausted at (1512,1684,7); trying to reach (1496,1688,20) to get somewhere routable (escape 3/3)
+[17:51:04.764] WARN  [n10_Cassia] [bot] no path to (1496,1688) avoiding 0 block(s); stopping (search 36.7us)
+[17:51:04.764] WARN  [n10_Cassia] [bot] start (1512,1684,7) exits: open=7 terrain=1 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 2032 item(s), 9 mobile(s))
+[17:51:16.860] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:51:34.186] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:51:55.711] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:52:15.638] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:53:53.105] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:54:13.623] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path
+[17:55:56.149] WARN  [n10_Cassia] [bot] 0x20 resync; aborting path

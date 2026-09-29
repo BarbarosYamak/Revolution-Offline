@@ -20,6 +20,32 @@
 
 namespace uo::world_atlas {
 
+// --- hunting-ground tiers --------------------------------------------------
+//
+// A graveyard is not one difficulty. Since the 2026-09-06 tier split (owner
+// ruling: strong undead stay in the yard but in a separate part of it) the
+// atlas carries, per yard, ONE whole-yard band row -- id suffixed with the
+// category, `britain_graveyard_graveyard`, radius 12 -- plus a small ring row
+// per strong spawner: `britain_graveyard_knights` (skeleton knights x2),
+// `britain_graveyard_lich`, `britain_graveyard_lich_lord`, radius 2-5. All of
+// them are category Graveyard, so "the nearest graveyard" would happily walk a
+// novice into the lich ring, which is how the split created a new hazard.
+//
+// Threat evidence for the creatures behind the split, and why no character
+// currently clears the strong tier: artifacts/hunt_tier_gate_2026-09-06.md.
+enum class HuntTier : u8 { Weak = 0, Strong = 1 };
+
+// Tier is read off the ROW, never off coordinates -- the atlas is the source
+// and it is regenerated. The generator names the whole-yard band
+// `<yard>_<category>` and every strong ring `<yard>_<creature>`, so the band
+// is exactly the graveyard place whose id ends in "_graveyard".
+//
+// FAIL DANGEROUS: anything else of category Graveyard reads Strong. An
+// unrecognised ring is assumed lethal because the cost of the other mistake is
+// a corpse and full loot loss, and because a future strong spawner will be
+// named after its creature, not after the category.
+HuntTier HuntTierOf(const wm::Place& p);
+
 class Atlas {
 public:
     Atlas() = default;
@@ -60,14 +86,63 @@ public:
     // Same widening search as FindRegion: id, then exact name, then substring.
     const wm::Place* FindPlace(const char* needle) const;
 
+    // True when this place sits inside a region a guard will answer in.
+    // Unknown region -> false: an unguarded assumption is the safe one, and
+    // the opposite assumption is what walks a 15hp mage into a field.
+    bool PlaceIsGuarded(const wm::Place& p) const;
+
     // Nearest place offering a service / yielding a resource, measured by
     // Chebyshev tiles from (x, y). `maxDist` <= 0 means "anywhere".
+    // GUARDED PLACES WIN over nearer unguarded ones; an unguarded provider is
+    // returned only when no guarded one exists at all.
     const wm::Place* NearestPlaceWithService(wm::Service s, i32 x, i32 y,
                                              i32 maxDist = 0) const;
+    // Same, skipping places already tried and found useless. Britain has
+    // three mage shops in this atlas and a character that struck out at the
+    // nearest has to be able to walk to the next one -- which is what a
+    // player does, and what "no known provider" wrongly reported before.
+    const wm::Place* NearestPlaceWithServiceSkipping(
+        wm::Service s, i32 x, i32 y,
+        const std::vector<std::string>& skipIds, i32 maxDist = 0) const;
+    // Same guarded-first preference as NearestPlaceWithServiceSkipping, but
+    // returns every candidate, nearest first, instead of only the winner.
+    // world::PickServicePlace (world/ServiceSelection.h) needs more than one
+    // candidate to rank by real trip cost -- gates and tiles, not raw map
+    // distance -- rather than committing to whichever is geometrically
+    // closest and finding out later it needs three moongates.
+    void PlacesWithServiceSkipping(wm::Service s, i32 x, i32 y,
+                                   const std::vector<std::string>& skipIds,
+                                   std::vector<const wm::Place*>& out) const;
     const wm::Place* NearestPlaceWithResource(wm::ResourceKind r, i32 x, i32 y,
                                               i32 maxDist = 0) const;
     const wm::Place* NearestPlaceOfCategory(wm::PlaceCategory c, i32 x, i32 y,
                                             i32 maxDist = 0) const;
+    // Nearest EARLY-TIER hunting ground, for a fighter with no fight in
+    // reach: "hunting ground can be graveyards for early hunting, brit
+    // sewers maybe" (project owner). Today that is exactly
+    // NearestPlaceOfCategory(Graveyard, ...) -- a graveyard's dead are
+    // lawful to swing at everywhere on this shard -- named separately so the
+    // hunt path has one place to widen later (Britain's sewers are a
+    // `dungeon`-category REGION, a_brit_sewers_1, not a PLACE this resolver
+    // can rank the same way; UNKNOWN whether it should auto-resolve there
+    // too, or whether sewers stay a deliberate destination). Null when no
+    // graveyard is known within `maxDist` (<= 0 means "anywhere").
+    //
+    // WEAK TIER ONLY, since the 2026-09-06 split: the plain call means "the
+    // ground a fighter with no proven strength should walk to", so a caller
+    // that has not thought about tiers cannot be handed a lich ring. Ask
+    // NearestHuntingGroundOfTier for anything else.
+    const wm::Place* NearestHuntingGround(i32 x, i32 y, i32 maxDist = 0) const;
+    // Nearest hunting ground OF A GIVEN TIER (see HuntTierOf above). The
+    // Strong overload exists so a character that has cleared a threat gate can
+    // choose the hard part of a yard deliberately; deciding WHO clears that
+    // gate is life-layer policy, not the atlas's business.
+    const wm::Place* NearestHuntingGroundOfTier(HuntTier tier, i32 x, i32 y,
+                                                i32 maxDist = 0) const;
+    std::vector<wm::Point> HuntingPatrol(const wm::Place& place) const;
+    // Stable weak-yard assignments; adjacent character pairs share a yard.
+    // Rotation moves an exhausted/crowded group to another suitable yard.
+    const wm::Place* GroupHuntingGround(u32 character, usize rotation) const;
     // Nearest place inside a named region, so "the bank in Yew" is expressible
     // without hard-coding which bank that is.
     const wm::Place* NearestPlaceWithServiceInRegion(wm::Service s,
@@ -95,6 +170,21 @@ public:
     bool AllowsRecallInto(i32 x, i32 y) const;
     bool AllowsRecallOutOf(i32 x, i32 y) const;
     bool AllowsGateAt(i32 x, i32 y) const;
+
+    // NO SKILL GAIN HAPPENS HERE.
+    //
+    // REGION_FLAG_SAFE is not "safe from monsters" -- Source-X
+    // Skill_Experience refuses to advance ANY skill inside one
+    // (CCharSkill.cpp:363; docs/REVOLUTION_GAMEPLAY_TRUTH.md 3.2 point 1).
+    // Twenty-five regions on map 0 carry it: every shrine, every jail,
+    // Lord British's and Blackthorne's castles, the Lycaeum, Empath
+    // Abbey, Green Acres, the Moonglow zoo.
+    //
+    // A character practising inside one is wasting the whole session, and
+    // nothing the client shows says so. Shrines matter most: they are
+    // exactly the quiet, safe-looking spot a bot would otherwise pick to
+    // stand and meditate in.
+    bool AllowsSkillGainAt(i32 x, i32 y) const;
 
     usize CountPlacesWithService(wm::Service s) const;
 

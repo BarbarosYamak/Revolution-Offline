@@ -4,6 +4,7 @@
 #include "uo/builders.h"
 #include "uo/endian.h"
 #include "uo/map.h"
+#include "uo/nav_rules.h"
 #include "uo/tiledata.h"
 #include "uo/sphere_rules.h"
 #include "uo/world.h"
@@ -35,10 +36,19 @@ constexpr usize kMaxInFlight = 4;
 // is how the original client avoids fastwalk/speedhack checks.
 constexpr u32 kWalkThrottleMs = 400;
 constexpr u32 kRunThrottleMs = 200;
-constexpr u32 kAckWatchdogMs = 5000;
+// How long an ack for a move orphaned by a reset stays credible. Generous
+// enough to cover a Source-X world-save stall (5.3s measured, wave10) plus the
+// round trip, short enough that it cannot mask a later genuine desync.
+constexpr i64 kAbandonedAckWindowMs = 30000;
 // Per-trip A* replan budget -- bounds obstacle-avoidance loops on an
 // unreachable goal.
 constexpr u32 kMaxReplans = 128;
+// How far from a goal that turned out to be unwalkable (a tree, water, a
+// rock) BotFindWalkableNearGoal will search for a standable substitute.
+// Matches the common arrival radius callers already use for point/entity
+// travel (2-6 tiles); wide enough to salvage a real resource tile, narrow
+// enough that a genuinely enclosed goal still fails quickly.
+constexpr i32 kGoalSnapMaxRadius = 6;
 // Extra A* cost for stepping onto open grass (vs the 10/14 straight/diag
 // base) -- biases travel toward roads/dirt where mobs are sparser.
 constexpr u32 kGrassPenalty = 14;
@@ -61,6 +71,10 @@ constexpr i64   kFollowProbeMs     = 1200;
 constexpr usize kPathLookaheadScanSteps = 5;
 constexpr usize kPathLookaheadAnchorExtra = 5;
 constexpr u32   kLookaheadMaxNodesExpanded = 4096;
+constexpr u32   kMaxLookaheadPatches = 12;
+// How far a character must get from where a repair streak began before the
+// streak counts as "walking fine" rather than "trapped and oscillating".
+constexpr i32   kLookaheadProgressTiles = 3;
 constexpr i64   kDoorRetryWaitMs = 700;
 constexpr i32   kGoalZPreferenceRadius = 24;
 constexpr i32   kRejectedEdgeZTolerance = 2;
@@ -185,6 +199,13 @@ void Client::OnMoveReject(const u8* data, usize size) {
     // value Sphere validates (PacketMovementReq::onReceive,
     // src/network/receive.cpp:270-273).
     BotResetMovement();
+    // Moves dropped by a *reject* come back as rejects (the server holds
+    // MovePrevented until we resend seq 0), not as acks — they land in the
+    // "stale reject" arm above. So none of them is owed an ack, and leaving
+    // the orphan credit standing would make a later genuine mismatch look
+    // like a late ack. Only a silent abandonment (watchdog, threat, replan)
+    // leaves acks in flight.
+    nav_.movement.abandonedAcks = 0;
 
     if (!nav_.bot.active) {
         // No A* path owns the movement: this was a scripted or manual step.
@@ -314,14 +335,36 @@ void Client::OnMoveReject(const u8* data, usize size) {
 void Client::OnMoveAck(const u8* data, usize size) {
     if (size < 3) return;
     const u8 seq = data[1];
-    if (nav_.movement.pending.empty()) {
+
+    // Late acks are only credible for a short while after the reset that
+    // orphaned them; past that, an unmatched ack is a genuine anomaly again.
+    if (nav_.movement.abandonedAcks > 0 &&
+        NowMs() > nav_.movement.abandonedUntilMs) {
+        nav_.movement.abandonedAcks = 0;
+    }
+
+    const bool hasPending = !nav_.movement.pending.empty();
+    const u8 frontSeq = hasPending ? nav_.movement.pending.front().seq : 0;
+    const sphere::MoveAckKind kind =
+        sphere::ClassifyMoveAck(hasPending, frontSeq, seq,
+                                nav_.movement.abandonedAcks);
+
+    if (kind == sphere::MoveAckKind::Abandoned) {
+        // A move that was on the wire when a reset cleared the queue. Popping
+        // here would free a flight slot the server never granted.
+        --nav_.movement.abandonedAcks;
+        LogInfo("[0x22] late ack seq=%u for an abandoned move; ignoring\n", seq);
+        return;
+    }
+    if (kind == sphere::MoveAckKind::Unsolicited) {
         LogWarn( "[0x22] unsolicited ack seq=%u\n", seq);
         return;
     }
+
     const navigation::PendingMove pm = nav_.movement.pending.front();
     nav_.movement.pending.pop_front();
     nav_.movement.rejectStreak = 0;   // the server accepted a move
-    if (pm.seq != seq) {
+    if (kind == sphere::MoveAckKind::Mismatched) {
         // Acks should arrive in send order; a mismatch means we lost sync.
         LogWarn( "[0x22] ack seq=%u, expected %u — resyncing\n",
                      seq, pm.seq);
@@ -563,6 +606,35 @@ void Client::BotRememberDoorRetry(i32 fromX, i32 fromY, i8 fromZ,
 }
 
 
+// A literal goal is often a resource's own tile: a tree trunk, an open-water
+// cast target, a rock face -- all Impassable or otherwise unwalkable by
+// design. Rather than have every caller separately vet its target (some do:
+// TravelToEntity's stand-candidate search, MiningInteriorTarget), Navigation
+// itself looks for the nearest standable tile near a goal it was asked to
+// reach. Nearest ring first, same shape as NearestMiningSpot/NearestTree's
+// stand search, so the snap lands beside the goal rather than drifting toward
+// whichever direction the ring happened to scan first.
+bool Client::BotFindWalkableNearGoal(i32 goalX, i32 goalY, i8 nearZ,
+                                     i32 maxRadius, i32* outX, i32* outY,
+                                     i8* outZ) const {
+    if (!world_) return false;
+    return nav::FindWalkableNearGoal(
+        goalX, goalY, nearZ, maxRadius,
+        [this](i32 x, i32 y, i8 fromZ, i8* standZ) {
+            const world::WalkQuery q = MakeWalkQuery(x, y, fromZ);
+            const world::WalkResult wr = world_->QueryCell(q);
+            if (!wr.walkable) return false;
+            // A candidate must be free of live overlay clutter too, or the
+            // salvage snap just trades one occupied tile (the original goal)
+            // for another (a decorator item the offline MULs never modeled).
+            if (BotIsRuntimeBlocked(x, y, wr.standZ)) return false;
+            if (standZ) *standZ = wr.standZ;
+            return true;
+        },
+        outX, outY, outZ);
+}
+
+
 bool Client::BotRuntimeBlockedForPath(i32 x, i32 y, i8 z, void* user) {
     const auto* c = static_cast<const Client*>(user);
     return c && (c->BotIsMobileBlocking(x, y, z) ||
@@ -657,6 +729,20 @@ bool Client::BotLookaheadPatchPath() {
         for (usize i = anchor + 1; i < nav_.bot.path.size(); ++i)
             next.push_back(nav_.bot.path[i]);
         nav_.bot.path.swap(next);
+        // Anchor the streak where it STARTED, not where the latest patch
+        // happened: a character oscillating between two tiles patches from
+        // a new tile every time, and anchoring per patch never sees it.
+        if (nav_.bot.lookaheadPatches == 0) {
+            nav_.bot.lookaheadPatchX = playerX_;
+            nav_.bot.lookaheadPatchY = playerY_;
+        }
+        if (++nav_.bot.lookaheadPatches > kMaxLookaheadPatches) {
+            LogWarn("[bot] %u lookahead repairs without movement; abandoning "
+                    "this trip instead of remaining trapped\n",
+                    nav_.bot.lookaheadPatches);
+            BotAbortPath("repeated runtime obstruction");
+            return false;
+        }
         LogInfo("[bot] lookahead patched around block at step %zu: "
                     "anchor=%zu new segment=%zu path=%zu in %.1fus\n",
                     firstBlocked + 1, anchor + 1, patch.size(), nav_.bot.path.size(),
@@ -701,6 +787,7 @@ bool Client::BotReplanToGoal() {
     request.goalY = nav_.bot.goalY;
     request.goalZ = nav_.bot.goalZ;
     request.hasGoalZ = nav_.bot.hasGoalZ;
+    request.allowBlockedGoal = nav_.bot.allowBlockedGoal;
     request.maxNodesExpanded = static_cast<u32>(budget);
     // For follow we want the shortest valid path to keep up with a moving
     // target; road/grass bias only makes us lag behind. terrainBias=false
@@ -755,6 +842,32 @@ void Client::BotPollPathPlanner() {
     }
 
     if (!result.goalWalkable) {
+        // The literal goal is very often a resource's own tile (tree, water,
+        // rock) that a caller asked to reach "close enough" -- but ActionGoto
+        // never carries an arrival radius down to A*, so without this the
+        // very same unwalkable literal target gets re-issued by the caller
+        // every retry, each one failing instantly (wave 2, 2026-09-01:
+        // Dorvar x60, Halain x34, Titus x12 against one dead coordinate).
+        // Try once to salvage it by pathing to the nearest standable tile
+        // next to the goal instead.
+        i32 snapX = 0, snapY = 0;
+        i8 snapZ = 0;
+        if (!nav_.bot.goalSnapTried &&
+            BotFindWalkableNearGoal(result.goalX, result.goalY, playerZ_,
+                                    kGoalSnapMaxRadius, &snapX, &snapY,
+                                    &snapZ)) {
+            nav_.bot.goalSnapTried = true;
+            LogWarn("[bot] goal (%d,%d) is not walkable; snapping to nearest "
+                    "standable tile (%d,%d,%d) instead\n",
+                    result.goalX, result.goalY, snapX, snapY,
+                    static_cast<int>(snapZ));
+            nav_.bot.goalX = snapX;
+            nav_.bot.goalY = snapY;
+            nav_.bot.goalZ = snapZ;
+            nav_.bot.hasGoalZ = true;
+            BotReplanToGoal();
+            return;
+        }
         LogWarn("[bot] goal (%d,%d) is not walkable; skipping A* and stopping\n",
                     result.goalX, result.goalY);
         BotAbortPath("goal not walkable");
@@ -893,6 +1006,14 @@ void Client::OnStepRejected(u8 dir) {
 }
 
 void Client::BotResetMovement() {
+    // Moves already on the wire will still be acked. Remember how many, so the
+    // acks that land after this reset are recognised as orphans instead of
+    // being consumed as the ack for whatever we send next (see OnMoveAck).
+    if (!nav_.movement.pending.empty()) {
+        nav_.movement.abandonedAcks +=
+            static_cast<u32>(nav_.movement.pending.size());
+        nav_.movement.abandonedUntilMs = NowMs() + kAbandonedAckWindowMs;
+    }
     nav_.movement.pending.clear();
     nav_.movement.moveSeq = 0;
 }
@@ -1009,13 +1130,16 @@ void Client::BotFollowTick() {
     nav_.bot.active = true;
     nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
+    nav_.bot.lookaheadPatches = 0;
+    nav_.bot.goalSnapTried = false;
     nav_.follow.lastReplanMs = now;
     BotReplanToGoal();
     BotPumpMoves();
 }
 
 
-void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
+void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias,
+                          bool allowBlockedGoal) {
     if (!EnsureWorldLoaded()) return;
     nav_.follow.active = false;
     if (!nav_.movement.pending.empty() || !nav_.bot.path.empty() || nav_.bot.planning) {
@@ -1030,10 +1154,13 @@ void Client::BotStartGoto(i32 tx, i32 ty, bool hasZ, i32 tz, bool terrainBias) {
     nav_.bot.goalY = ty;
     nav_.bot.goalZ = tz;
     nav_.bot.hasGoalZ = hasZ;
+    nav_.bot.allowBlockedGoal = allowBlockedGoal;
     nav_.bot.terrainBias = terrainBias;
     nav_.bot.active = true;
     nav_.bot.planning = false;
     nav_.bot.replanCount = 0;
+    nav_.bot.lookaheadPatches = 0;
+    nav_.bot.goalSnapTried = false;
     nav_.bot.resumeAtMs = 0;
     nav_.bot.stuckWaits = 0;
     nav_.bot.blacklist.ClearTransient();
@@ -1116,6 +1243,26 @@ void Client::BotPumpMoves() {
             SubmitStep(dir, BotStepGait(lastStep, doorStep, shoveStep), "astar");
         if (res == StepSubmit::Sent) {
             nav_.bot.path.pop_front();
+            // A step actually went out: this trip is making real progress, so
+            // the local-repair counter should only ever describe a run of
+            // repairs with NO movement between them (a genuine trap), not the
+            // cumulative repair count over an entire long, crowded route. A
+            // Britain-area trip through other bots easily racks up a dozen
+            // lookahead patches while still walking fine (wave 2, 2026-09-01:
+            // Vorar, Falen both kept advancing between patches yet hit the old
+            // per-trip counter's threshold and self-aborted with distance
+            // still left to cover).
+            // ...but only NET movement counts. Castor, Trinsic inn upstairs,
+            // 2026-09-05 03:03: one accepted run step, one patch, one step
+            // back -- 1,392 patches at the run cadence and never more than a
+            // tile from where the streak began, each Sent step resetting the
+            // counter because the tile differed from the last patch's. The
+            // streak resets only once the character is genuinely clear of
+            // where it started patching.
+            if (ChebyshevDistance(playerX_, playerY_, nav_.bot.lookaheadPatchX,
+                                  nav_.bot.lookaheadPatchY) >=
+                kLookaheadProgressTiles)
+                nav_.bot.lookaheadPatches = 0;
         } else if (res == StepSubmit::Turned) {
             lastStepMs_ = 0;     // same direction is offered again as a step
         } else if (res == StepSubmit::Failed) {
@@ -1147,15 +1294,21 @@ void Client::BotTick() {
     if (!nav_.bot.active) return;
     if (nav_.bot.planning) return;
     if (!nav_.movement.pending.empty()) {
-        // Watchdog: the oldest in-flight move should ack quickly. If it
-        // never does, the move was silently dropped — abort the path.
+        // Watchdog: the oldest in-flight move should ack quickly. If it never
+        // does *while the server is otherwise servicing us*, the move was
+        // silently dropped — abort the path. If the socket has gone quiet
+        // altogether the server is stalled (world save), so the step is merely
+        // queued behind it and aborting would throw away a healthy path.
         const i64 now_ms = NowMs();
-        if (now_ms - nav_.movement.pending.front().sentMs >
-                static_cast<i64>(kAckWatchdogMs)) {
+        const i64 unacked = now_ms - nav_.movement.pending.front().sentMs;
+        const i64 inboundGap =
+            (lastInboundMs_ == 0) ? 0 : (now_ms - lastInboundMs_);
+        if (sphere::MoveAckWatchdogExpired(unacked, inboundGap)) {
             LogWarn(
-                "[bot] watchdog: oldest move unacked %llds; aborting path\n",
-                static_cast<long long>(
-                    (now_ms - nav_.movement.pending.front().sentMs) / 1000));
+                "[bot] watchdog: oldest move unacked %llds (server quiet for "
+                "%lldms); aborting path\n",
+                static_cast<long long>(unacked / 1000),
+                static_cast<long long>(inboundGap));
             BotResetMovement();
             BotAbortPath("move ack watchdog");
             return;

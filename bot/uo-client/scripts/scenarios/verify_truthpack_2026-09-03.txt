@@ -1,0 +1,126 @@
+# READ-ONLY VERIFICATION of the 2026-09-03 truth-pack script batch.
+# Admin account (Observer, PLEVEL 7) via local/dev/run_admin.ps1.
+#
+# NOTE ON PROBE TECHNIQUE (learned from run vtp1): a player-typed "." command
+# does NOT expand <...> in its arguments, so `.sysmessage <expr>` echoes the
+# raw text.  Only the SHOW verb evaluates, because it runs the argument
+# through r_WriteVal.  Every probe below is therefore `.show <key>` or
+# `.<ref>.show <key>`.
+#
+# Items are created with SERV.NEWITEM with no container, so nothing is added
+# to any character's pack.  Observer's own CARTOGRAPHY is moved to prove the
+# treasure-map threshold and restored to 0 at the end; no bot character's
+# skills, stats, gold or inventory are touched.
+wait_world
+sleep 3000
+
+# --- 1a. magic weapon ladder: +15 (vanq) -------------------------------
+say .newitem i_katana_vanq
+sleep 1200
+say .act.show name
+sleep 700
+say .act.show dam
+sleep 700
+say .act.show morey
+sleep 700
+say .act.show modar
+sleep 700
+say .act.show attr
+sleep 1200
+
+# --- 1b. +3 (ruin), +6 (might), +9 (force), +12 (power) ----------------
+say .newitem i_katana_ruin
+sleep 1200
+say .act.show name
+sleep 700
+say .act.show dam
+sleep 700
+say .act.show morey
+sleep 700
+say .act.show modar
+sleep 1200
+say .newitem i_katana_might
+sleep 1200
+say .act.show name
+sleep 700
+say .act.show morey
+sleep 700
+say .act.show modar
+sleep 1200
+say .newitem i_katana_force
+sleep 1200
+say .act.show name
+sleep 700
+say .act.show modar
+sleep 1200
+say .newitem i_katana_power
+sleep 1200
+say .act.show name
+sleep 700
+say .act.show modar
+sleep 1200
+
+# --- 1c. the level function the MODAR depends on -----------------------
+say .show def.attr_magic_level_1
+sleep 700
+say .show def.attr_magic_level_5
+sleep 1200
+
+# --- 2. treasure map level 5 ------------------------------------------
+say .show def.TreasureMap_L1_Cartography
+sleep 700
+say .show def.TreasureMap_L2_Cartography
+sleep 700
+say .show def.TreasureMap_L5_Cartography
+sleep 700
+# the decode check builds the DEF name from <TDATA3>; TDATA3 prints as "05"
+say .show def.TreasureMap_L05_Cartography
+sleep 1200
+say .show cartography
+sleep 700
+say .cartography 0.0
+sleep 700
+say .show cartography
+sleep 700
+say .newitem i_ttm_l5
+sleep 2500
+say .act.show name
+sleep 700
+say .act.show tdata3
+sleep 700
+say .act.show type
+sleep 700
+say .act.show morex
+sleep 700
+# decode at CARTOGRAPHY 0.0 must REFUSE (threshold 100.0)
+say .act.TreasureMap_Decode
+sleep 1500
+say .act.show type
+sleep 1200
+
+# --- 3. Recall reagent + spell definition ------------------------------
+say .newitem i_reag_black_pearl
+sleep 1200
+say .act.show name
+sleep 700
+say .show spell.s_recall.name
+sleep 700
+say .show spell.s_recall.resources
+sleep 700
+say .show spell.32.resources
+sleep 1200
+
+# --- 4. loot defnames referenced by npcs/c_monster_classic.scp ---------
+say .show itemdef.i_ttm_l5.name
+sleep 700
+say .show itemdef.i_treasure_map5.name
+sleep 700
+say .show itemdef.i_treasure_map1.name
+sleep 1200
+
+# --- cleanup ----------------------------------------------------------
+say .show cartography
+sleep 700
+say verify truthpack done
+sleep 1000
+logout

@@ -6,7 +6,6 @@
 
 #include "quickjs.h"
 
-#include <cctype>
 #include <cstddef>
 #include <cstdio>
 #include <string>
@@ -223,7 +222,7 @@ namespace uo::js {
         enum PlayerField {
             PF_SERIAL, PF_NAME, PF_X, PF_Y, PF_Z, PF_FACING, PF_RUNNING, PF_WARMODE,
             PF_ALIVE, PF_DEAD, PF_HP, PF_HPMAX, PF_MANA, PF_MANAMAX, PF_STAM, PF_STAMMAX,
-            PF_WEIGHT, PF_MAXWEIGHT, PF_EQUIPMENT, PF_DIALOG, PF_SKILLSUM
+            PF_WEIGHT, PF_MAXWEIGHT, PF_EQUIPMENT, PF_DIALOG
         };
 
         // Build { serial, items:[{serial,graphic,amount,hue,name}] } for a worn
@@ -303,31 +302,6 @@ namespace uo::js {
             return o;
         }
 
-        // { vendor, items:[{serial,graphic,amount,price,name}] } from the 0x9E
-        // sell list -- what this vendor is willing to buy from us, and for how
-        // much. Payload of the `vendor_sell` event.
-        static JSValue VendorSellOfferToJS(JSContext *ctx, unsigned vendor) {
-            JSValue o = JS_NewObject(ctx);
-            JS_SetPropertyStr(ctx, o, "vendor", JS_NewInt64(ctx, vendor));
-            JSValue items = JS_NewArray(ctx);
-            if (client) {
-                uint32_t i = 0;
-                for (const Client::VendorItem &vi : client->vendorSellOffer_) {
-                    JSValue e = JS_NewObject(ctx);
-                    JS_SetPropertyStr(ctx, e, "serial", JS_NewInt64(ctx, vi.serial));
-                    JS_SetPropertyStr(ctx, e, "graphic", JS_NewInt32(ctx, vi.graphic));
-                    JS_SetPropertyStr(ctx, e, "amount", JS_NewInt32(ctx, vi.amount));
-                    JS_SetPropertyStr(ctx, e, "price", JS_NewInt64(ctx, vi.price));
-                    std::string nm = vi.name;
-                    for (char &ch : nm) ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
-                    JS_SetPropertyStr(ctx, e, "name", JS_NewString(ctx, nm.c_str()));
-                    JS_SetPropertyUint32(ctx, items, i++, e);
-                }
-            }
-            JS_SetPropertyStr(ctx, o, "items", items);
-            return o;
-        }
-
         static JSValue PlayerGet(JSContext *ctx, JSValueConst /*this_val*/, int magic) {
             const Client *c = client;
             if (!c) return JS_UNDEFINED;
@@ -351,7 +325,6 @@ namespace uo::js {
                 case PF_STAM: return JS_NewInt32(ctx, c->player_.stamCur);
                 case PF_STAMMAX: return JS_NewInt32(ctx, c->player_.stamMax);
                 case PF_WEIGHT: return JS_NewInt32(ctx, c->player_.weight);
-                case PF_SKILLSUM: return JS_NewInt64(ctx, static_cast<int64_t>(c->PlayerSkillSum()));
                 case PF_MAXWEIGHT: return JS_NewInt32(ctx, c->player_.maxWeight);
                 case PF_EQUIPMENT: {
                     JSValue eq = JS_NewObject(ctx);
@@ -464,59 +437,6 @@ namespace uo::js {
         // Player.stop(): abort any in-flight goto path and stop following. This is
         // the JS-side cancel primitive — it makes a parked Player.goto() reject, so
         // a behaviour step can be preempted cleanly. Mirrors the `stop` console cmd.
-        // Player.skill(index) -> trained value in tenths (500 = 50.0), or -1
-        // when the server has not reported it. `index` is the Sphere
-        // [SKILL n] number (Swordsmanship 40). Read-only: a skill changes only
-        // when the shard says so.
-        static JSValue Skill(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            int32_t index = 0;
-            if (!client || argc < 1 || JS_ToInt32(ctx, &index, argv[0]) || index < 0 || index > 0xFFFF)
-                return JS_ThrowTypeError(ctx, "Player.skill(index)");
-            return JS_NewInt32(ctx, client->PlayerSkillBase(static_cast<u16>(index)));
-        }
-
-        // Player.cast(spellId[, targetSerial]): cast a spell from the book, the
-        // way a player does from the spellbook gump. The client answers the
-        // spell's target cursor with `targetSerial` (0 = none; pass
-        // Player.serial for self). Reagents, mana and fizzle are the server's.
-        static JSValue Cast(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            int32_t spell = 0; int64_t target = 0;
-            if (!client || argc < 1 || JS_ToInt32(ctx, &spell, argv[0]) || spell < 1 || spell > 64)
-                return JS_ThrowTypeError(ctx, "Player.cast(spellId 1..64[, targetSerial])");
-            if (argc >= 2 && !JS_IsUndefined(argv[1])) JS_ToInt64(ctx, &target, argv[1]);
-            client->ActionCastSpell(spell, static_cast<u32>(target));
-            return JS_UNDEFINED;
-        }
-
-        // Player.useSkill(skillId[, targetSerial]): use a skill from the skill
-        // list (Meditation, Animal Taming, Hiding, ...). A skill that asks for
-        // a target is answered with `targetSerial`.
-        static JSValue UseSkill(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            int32_t skill = 0; int64_t target = 0;
-            if (!client || argc < 1 || JS_ToInt32(ctx, &skill, argv[0]) || skill < 0 || skill > 57)
-                return JS_ThrowTypeError(ctx, "Player.useSkill(skillId[, targetSerial])");
-            if (argc >= 2 && !JS_IsUndefined(argv[1])) JS_ToInt64(ctx, &target, argv[1]);
-            client->ActionUseSkill(skill, static_cast<u32>(target));
-            return JS_UNDEFINED;
-        }
-
-        // Player.requestSkills(): ask the server for the full skill list
-        // (0x34 subtype 5), the same request the client's skill gump makes.
-        static JSValue RequestSkills(JSContext *ctx, JSValueConst, int, JSValueConst *) {
-            if (!client) return JS_ThrowTypeError(ctx, "Player.requestSkills()");
-            client->SendSkillsRequest();
-            return JS_UNDEFINED;
-        }
-
-        // Player.logout(): the ordinary logout (0xD1, then socket close). The
-        // persistent life is saved at the spot and the logout is judged safe
-        // or not (M4.1). A script should walk somewhere safe FIRST.
-        static JSValue Logout(JSContext *ctx, JSValueConst, int, JSValueConst *) {
-            if (!client) return JS_ThrowTypeError(ctx, "Player.logout()");
-            client->ActionLogout();
-            return JS_UNDEFINED;
-        }
-
         static JSValue Stop(JSContext *ctx, JSValueConst, int, JSValueConst *) {
             if (!client) return JS_ThrowTypeError(ctx, "Player.stop()");
             client->BotStopFollow("stop (js)");
@@ -734,233 +654,6 @@ namespace uo::js {
             }
             client->SendVendorBuy(static_cast<u32>(vendor), reqs);
             return JS_NewInt32(ctx, static_cast<int32_t>(reqs.size()));
-        }
-
-        // Vendor.sell(vendorSerial, [{serial, qty}]) -> number of rows sent.
-        // `serial` must come from a `vendor_sell` offer row; the client drops
-        // rows the vendor did not offer to buy and clamps quantities to what it
-        // listed, so a script cannot sell something the server never asked for.
-        static JSValue VendorSell(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            if (!client || argc < 2)
-                return JS_ThrowTypeError(ctx, "Vendor.sell(vendorSerial, items)");
-            int64_t vendor = 0;
-            if (JS_ToInt64(ctx, &vendor, argv[0]))
-                return JS_EXCEPTION;
-            uint32_t len = 0;
-            JSValue lenv = JS_GetPropertyStr(ctx, argv[1], "length");
-            JS_ToUint32(ctx, &len, lenv);
-            JS_FreeValue(ctx, lenv);
-            std::vector<Client::VendorSellReq> reqs;
-            for (uint32_t i = 0; i < len; ++i) {
-                JSValue e = JS_GetPropertyUint32(ctx, argv[1], i);
-                int64_t serial = 0;
-                int32_t qty = 0;
-                JSValue sv = JS_GetPropertyStr(ctx, e, "serial");
-                JS_ToInt64(ctx, &serial, sv); JS_FreeValue(ctx, sv);
-                JSValue qv = JS_GetPropertyStr(ctx, e, "qty");
-                JS_ToInt32(ctx, &qty, qv); JS_FreeValue(ctx, qv);
-                JS_FreeValue(ctx, e);
-                if (serial && qty > 0)
-                    reqs.push_back(Client::VendorSellReq{static_cast<u32>(serial),
-                                                         static_cast<u16>(qty > 65535 ? 65535 : qty)});
-            }
-            const usize sent = client->SendVendorSell(static_cast<u32>(vendor), reqs);
-            return JS_NewInt32(ctx, static_cast<int32_t>(sent));
-        }
-
-        // World.items(x, y[, radius]) -> ground items in the square around
-        // (x, y): [{serial, graphic, x, y, z, name, corpse, corpseOf}].
-        // `corpse` is true for 0x2006; `corpseOf` is the serial of the mobile
-        // that died, when the preceding 0xAF told us (0 otherwise). Radius
-        // defaults to 8 and is capped at 24 -- this is what the character can
-        // see, not a world query.
-        static JSValue WorldItems(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            if (!client)
-                return JS_ThrowTypeError(ctx, "World.items: no client");
-            int32_t x, y, radius = 8;
-            if (argc < 2 || JS_ToInt32(ctx, &x, argv[0]) || JS_ToInt32(ctx, &y, argv[1]))
-                return JS_ThrowTypeError(ctx, "World.items(x, y[, radius])");
-            if (argc >= 3 && !JS_IsUndefined(argv[2]))
-                JS_ToInt32(ctx, &radius, argv[2]);
-            if (radius < 0) radius = 0;
-            if (radius > 24) radius = 24;
-            JSValue arr = JS_NewArray(ctx);
-            uint32_t i = 0;
-            for (const auto &kv : client->items_) {
-                const Client::ItemObj &it = kv.second;
-                const int32_t dx = it.x > x ? it.x - x : x - it.x;
-                const int32_t dy = it.y > y ? it.y - y : y - it.y;
-                if (dx > radius || dy > radius) continue;
-                JSValue o = JS_NewObject(ctx);
-                JS_SetPropertyStr(ctx, o, "serial", JS_NewInt64(ctx, kv.first));
-                JS_SetPropertyStr(ctx, o, "graphic", JS_NewInt32(ctx, it.itemId));
-                JS_SetPropertyStr(ctx, o, "x", JS_NewInt32(ctx, it.x));
-                JS_SetPropertyStr(ctx, o, "y", JS_NewInt32(ctx, it.y));
-                JS_SetPropertyStr(ctx, o, "z", JS_NewInt32(ctx, it.z));
-                const std::string nm = client->ItemNameLower(it.itemId);
-                JS_SetPropertyStr(ctx, o, "name", JS_NewString(ctx, nm.c_str()));
-                const bool corpse = it.itemId == 0x2006;
-                JS_SetPropertyStr(ctx, o, "corpse", JS_NewBool(ctx, corpse));
-                uint32_t of = 0;
-                if (corpse) {
-                    auto c = client->corpses_.find(kv.first);
-                    if (c != client->corpses_.end()) of = c->second.deadMobile;
-                }
-                JS_SetPropertyStr(ctx, o, "corpseOf", JS_NewInt64(ctx, of));
-                JS_SetPropertyUint32(ctx, arr, i++, o);
-            }
-            return arr;
-        }
-
-        // ---- skill locks (0x3A) ---------------------------------------------
-        // Player.setSkillLock(index, 'up'|'down'|'locked') -- the skill-gump
-        // arrows. Player.skillLock(index) -> 'up'|'down'|'locked'|null.
-        static JSValue SetSkillLock(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            int32_t index = 0;
-            if (!client || argc < 2 || JS_ToInt32(ctx, &index, argv[0]) || index < 0 || index > 57)
-                return JS_ThrowTypeError(ctx, "Player.setSkillLock(index, 'up'|'down'|'locked')");
-            const char *st = JS_ToCString(ctx, argv[1]);
-            if (!st) return JS_EXCEPTION;
-            const std::string state(st);
-            JS_FreeCString(ctx, st);
-            const int lock = state == "up" ? 0 : state == "down" ? 1 : state == "locked" ? 2 : -1;
-            if (lock < 0) return JS_ThrowTypeError(ctx, "lock must be 'up', 'down' or 'locked'");
-            client->SendSkillLock(static_cast<u16>(index), static_cast<u8>(lock));
-            return JS_UNDEFINED;
-        }
-        static JSValue SkillLock(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            int32_t index = 0;
-            if (!client || argc < 1 || JS_ToInt32(ctx, &index, argv[0]) || index < 0 || index > 0xFFFF)
-                return JS_ThrowTypeError(ctx, "Player.skillLock(index)");
-            Client::SkillReport r{};
-            if (!client->PlayerSkillInfo(static_cast<u16>(index), &r)) return JS_NULL;
-            return JS_NewString(ctx, r.lock == 0 ? "up" : r.lock == 1 ? "down" : "locked");
-        }
-
-        // ---- the persistent life (M4.1 record, M4.6 access) -------------------
-        // Life.record -> the saved character: {name, archetype, sessions,
-        //   targetBuild:[{skill, tenths}], targetStr/Dex/Int, objective:{kind,
-        //   target, attempts}, deaths, lastLogout:{x,y,safe}} or null when this
-        //   session has no life (no --life-dir, or the file was unreadable).
-        // Life.memory -> the script's own JSON saved last time ('' if none).
-        // Life.setMemory(json) -> bool; Life.setObjective(kind, target);
-        // Life.save() writes the file now.
-        static JSValue LifeRecordGet(JSContext *ctx, JSValueConst) {
-            const life::CharacterRecord *r = client ? client->LifeRecord() : nullptr;
-            if (!r) return JS_NULL;
-            JSValue o = JS_NewObject(ctx);
-            JS_SetPropertyStr(ctx, o, "name", JS_NewString(ctx, r->name.c_str()));
-            JS_SetPropertyStr(ctx, o, "archetype", JS_NewString(ctx, r->archetype.c_str()));
-            JS_SetPropertyStr(ctx, o, "sessions", JS_NewInt32(ctx, r->sessions));
-            JSValue tb = JS_NewArray(ctx);
-            uint32_t i = 0;
-            for (const rules::BuildSkill &b : r->targetBuild) {
-                JSValue e = JS_NewObject(ctx);
-                JS_SetPropertyStr(ctx, e, "skill", JS_NewInt32(ctx, b.skillId));
-                JS_SetPropertyStr(ctx, e, "tenths", JS_NewInt32(ctx, b.tenths));
-                JS_SetPropertyUint32(ctx, tb, i++, e);
-            }
-            JS_SetPropertyStr(ctx, o, "targetBuild", tb);
-            JS_SetPropertyStr(ctx, o, "targetStr", JS_NewInt32(ctx, r->targetStr));
-            JS_SetPropertyStr(ctx, o, "targetDex", JS_NewInt32(ctx, r->targetDex));
-            JS_SetPropertyStr(ctx, o, "targetInt", JS_NewInt32(ctx, r->targetInt));
-            JSValue ob = JS_NewObject(ctx);
-            JS_SetPropertyStr(ctx, ob, "kind", JS_NewString(ctx, life::ObjectiveKindName(r->objective.kind)));
-            JS_SetPropertyStr(ctx, ob, "target", JS_NewString(ctx, r->objective.target.c_str()));
-            JS_SetPropertyStr(ctx, ob, "attempts", JS_NewInt32(ctx, r->objective.attempts));
-            JS_SetPropertyStr(ctx, o, "objective", ob);
-            JS_SetPropertyStr(ctx, o, "deaths", JS_NewInt32(ctx, static_cast<int32_t>(r->deaths.size())));
-            JSValue lo = JS_NewObject(ctx);
-            JS_SetPropertyStr(ctx, lo, "valid", JS_NewBool(ctx, r->lastLogout.valid));
-            JS_SetPropertyStr(ctx, lo, "x", JS_NewInt32(ctx, r->lastLogout.x));
-            JS_SetPropertyStr(ctx, lo, "y", JS_NewInt32(ctx, r->lastLogout.y));
-            JS_SetPropertyStr(ctx, lo, "safe", JS_NewBool(ctx, r->lastLogout.safe));
-            JS_SetPropertyStr(ctx, o, "lastLogout", lo);
-            return o;
-        }
-        static JSValue LifeMemoryGet(JSContext *ctx, JSValueConst) {
-            const life::CharacterRecord *r = client ? client->LifeRecord() : nullptr;
-            return JS_NewString(ctx, r ? r->scriptMemory.c_str() : "");
-        }
-        static JSValue LifeSetMemory(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            if (!client || argc < 1) return JS_ThrowTypeError(ctx, "Life.setMemory(json)");
-            size_t len = 0;
-            const char *s = JS_ToCStringLen(ctx, &len, argv[0]);
-            if (!s) return JS_EXCEPTION;
-            const bool ok = client->SetLifeScriptMemory(std::string(s, len));
-            JS_FreeCString(ctx, s);
-            return JS_NewBool(ctx, ok);
-        }
-        static JSValue LifeSetObjective(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            if (!client || argc < 1) return JS_ThrowTypeError(ctx, "Life.setObjective(kind[, target])");
-            const char *k = JS_ToCString(ctx, argv[0]);
-            if (!k) return JS_EXCEPTION;
-            const char *t = argc >= 2 ? JS_ToCString(ctx, argv[1]) : nullptr;
-            client->SetLifeObjective(life::ObjectiveKindFromName(k), t ? t : "");
-            JS_FreeCString(ctx, k);
-            if (t) JS_FreeCString(ctx, t);
-            return JS_UNDEFINED;
-        }
-        static JSValue LifeSave(JSContext *ctx, JSValueConst, int, JSValueConst *) {
-            if (!client) return JS_ThrowTypeError(ctx, "Life.save()");
-            client->LifeSaveNow();
-            return JS_UNDEFINED;
-        }
-
-        // ---- secure trade (0x6F) --------------------------------------------
-        // The M3 trade state machine (uo/trade.h), exposed as-is. A trade is
-        // how one player pays another and hands over goods; nothing here moves
-        // an item or a coin except through that window, and the server
-        // completes the exchange only when BOTH sides have accepted.
-
-        // Trade.start(partnerSerial, itemSerial): drag an item from our pack
-        // onto the partner -- how a player opens a trade window.
-        static JSValue TradeStart(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            int64_t partner = 0, item = 0;
-            if (!client || argc < 2 || JS_ToInt64(ctx, &partner, argv[0]) || JS_ToInt64(ctx, &item, argv[1]))
-                return JS_ThrowTypeError(ctx, "Trade.start(partnerSerial, itemSerial)");
-            client->ActionTradeStart(static_cast<u32>(partner), static_cast<u32>(item));
-            return JS_UNDEFINED;
-        }
-        // Trade.offer(itemSerial[, amount]): add a pack item to our side.
-        static JSValue TradeOffer(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            int64_t item = 0;
-            int32_t amount = 1;
-            if (!client || argc < 1 || JS_ToInt64(ctx, &item, argv[0]))
-                return JS_ThrowTypeError(ctx, "Trade.offer(itemSerial[, amount])");
-            if (argc >= 2 && !JS_IsUndefined(argv[1])) JS_ToInt32(ctx, &amount, argv[1]);
-            if (amount < 1) amount = 1;
-            if (amount > 65535) amount = 65535;
-            client->ActionTradeOffer(static_cast<u32>(item), static_cast<u16>(amount));
-            return JS_UNDEFINED;
-        }
-        // Trade.accept(bool): tick or untick our accept box.
-        static JSValue TradeAccept(JSContext *ctx, JSValueConst, int argc, JSValueConst *argv) {
-            if (!client) return JS_ThrowTypeError(ctx, "Trade.accept(on)");
-            const bool on = argc < 1 || JS_ToBool(ctx, argv[0]);
-            return JS_NewBool(ctx, client->ActionTradeAccept(on));
-        }
-        static JSValue TradeCancel(JSContext *ctx, JSValueConst, int, JSValueConst *) {
-            if (!client) return JS_ThrowTypeError(ctx, "Trade.cancel()");
-            return JS_NewBool(ctx, client->ActionTradeCancel());
-        }
-        // Trade.state -> {active, phase, partner, partnerName, myContainer,
-        // theirContainer, myCheck, theirCheck, closeReason}. Read their offer
-        // with Player.containerItems(theirContainer).
-        static JSValue TradeStateGet(JSContext *ctx, JSValueConst) {
-            JSValue o = JS_NewObject(ctx);
-            if (!client) return o;
-            const trade::TradeState &t = client->Trade();
-            JS_SetPropertyStr(ctx, o, "active", JS_NewBool(ctx, t.Active()));
-            JS_SetPropertyStr(ctx, o, "phase", JS_NewString(ctx, trade::PhaseName(t.CurrentPhase())));
-            JS_SetPropertyStr(ctx, o, "partner", JS_NewInt64(ctx, t.PartnerSerial()));
-            JS_SetPropertyStr(ctx, o, "partnerName", JS_NewString(ctx, t.PartnerName().c_str()));
-            JS_SetPropertyStr(ctx, o, "myContainer", JS_NewInt64(ctx, t.MyContainer()));
-            JS_SetPropertyStr(ctx, o, "theirContainer", JS_NewInt64(ctx, t.TheirContainer()));
-            JS_SetPropertyStr(ctx, o, "myCheck", JS_NewBool(ctx, t.MyCheck()));
-            JS_SetPropertyStr(ctx, o, "theirCheck", JS_NewBool(ctx, t.TheirCheck()));
-            JS_SetPropertyStr(ctx, o, "closeReason", JS_NewString(ctx, trade::CloseReasonName(t.Reason())));
-            return o;
         }
 
         // ---- events: on / off / once ----------------------------------------
@@ -1241,14 +934,6 @@ namespace uo::js {
             JS_CGETSET_MAGIC_DEF("stam", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_STAM),
             JS_CGETSET_MAGIC_DEF("stamMax", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_STAMMAX),
             JS_CGETSET_MAGIC_DEF("weight", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_WEIGHT),
-            JS_CGETSET_MAGIC_DEF("skillSum", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_SKILLSUM),
-            JS_CFUNC_DEF("skill", 1, ClientBindings::Skill),
-            JS_CFUNC_DEF("requestSkills", 0, ClientBindings::RequestSkills),
-            JS_CFUNC_DEF("logout", 0, ClientBindings::Logout),
-            JS_CFUNC_DEF("cast", 1, ClientBindings::Cast),
-            JS_CFUNC_DEF("useSkill", 1, ClientBindings::UseSkill),
-            JS_CFUNC_DEF("setSkillLock", 2, ClientBindings::SetSkillLock),
-            JS_CFUNC_DEF("skillLock", 1, ClientBindings::SkillLock),
             JS_CGETSET_MAGIC_DEF("maxWeight", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_MAXWEIGHT),
             JS_CGETSET_MAGIC_DEF("equipment", ClientBindings::PlayerGet, nullptr, ClientBindings::PF_EQUIPMENT),
 
@@ -1278,7 +963,6 @@ namespace uo::js {
 
         const JSCFunctionListEntry kWorldApi[] = {
             JS_CFUNC_DEF("statics", 2, ClientBindings::WorldStatics),
-            JS_CFUNC_DEF("items", 2, ClientBindings::WorldItems),
             JS_CFUNC_DEF("markStump", 4, ClientBindings::WorldMarkStump),
             // Same shared event registry as Player.on — events are global by
             // name; World.on('container_open'/...) reads naturally for world events.
@@ -1289,7 +973,6 @@ namespace uo::js {
 
         const JSCFunctionListEntry kVendorApi[] = {
             JS_CFUNC_DEF("buy", 2, ClientBindings::VendorBuy),
-            JS_CFUNC_DEF("sell", 2, ClientBindings::VendorSell),
             // Shared event registry: Vendor.once('vendor_buy') / .on('vendor_done').
             JS_CFUNC_DEF("on", 2, ClientBindings::On),
             JS_CFUNC_DEF("off", 1, ClientBindings::Off),
@@ -1323,28 +1006,6 @@ namespace uo::js {
         JS_SetPropertyStr(ctx, mobiles, "all",
                           JS_NewCFunction(ctx, ClientBindings::MobilesAll, "all", 0));
         JS_SetPropertyStr(ctx, global, "Mobiles", mobiles); // consumes mobiles
-
-        const JSCFunctionListEntry kTradeApi[] = {
-            JS_CFUNC_DEF("start", 2, ClientBindings::TradeStart),
-            JS_CFUNC_DEF("offer", 1, ClientBindings::TradeOffer),
-            JS_CFUNC_DEF("accept", 1, ClientBindings::TradeAccept),
-            JS_CFUNC_DEF("cancel", 0, ClientBindings::TradeCancel),
-            JS_CGETSET_DEF("state", ClientBindings::TradeStateGet, nullptr),
-        };
-        const JSCFunctionListEntry kLifeApi[] = {
-            JS_CGETSET_DEF("record", ClientBindings::LifeRecordGet, nullptr),
-            JS_CGETSET_DEF("memory", ClientBindings::LifeMemoryGet, nullptr),
-            JS_CFUNC_DEF("setMemory", 1, ClientBindings::LifeSetMemory),
-            JS_CFUNC_DEF("setObjective", 1, ClientBindings::LifeSetObjective),
-            JS_CFUNC_DEF("save", 0, ClientBindings::LifeSave),
-        };
-        const JSValue lifeObj = JS_NewObject(ctx);
-        JS_SetPropertyFunctionList(ctx, lifeObj, kLifeApi, std::size(kLifeApi));
-        JS_SetPropertyStr(ctx, global, "Life", lifeObj);
-
-        const JSValue tradeObj = JS_NewObject(ctx);
-        JS_SetPropertyFunctionList(ctx, tradeObj, kTradeApi, std::size(kTradeApi));
-        JS_SetPropertyStr(ctx, global, "Trade", tradeObj);
 
         const JSValue vendor = JS_NewObject(ctx);
         JS_SetPropertyFunctionList(ctx, vendor, kVendorApi, std::size(kVendorApi));
@@ -1457,13 +1118,6 @@ namespace uo::js {
         JS_SetPropertyStr(ctx, p, "vendor", JS_NewInt64(ctx, vendorSerial));
         JS_SetPropertyStr(ctx, p, "flag", JS_NewInt32(ctx, flag));
         ClientBindings::Emit("vendor_done", p);
-    }
-
-    void EmitVendorSellOffer(unsigned vendorSerial) {
-        if (!ClientBindings::context)
-            return;
-        ClientBindings::Emit("vendor_sell",
-                             ClientBindings::VendorSellOfferToJS(ClientBindings::context, vendorSerial));
     }
 
     void EmitPaperdoll(unsigned serial, const char *title) {

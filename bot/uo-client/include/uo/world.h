@@ -80,6 +80,12 @@ public:
     // Treat a static as an obstacle (not a surface).
     bool IsStaticBlocker(u16 itemId) const;
 
+    // Whether an opaque, wall-like static intersects a line of sight at the
+    // supplied eye height.  This is deliberately distinct from walkability:
+    // a roof can be harmless headroom-wise at ground level, while a wall at
+    // eye height must hide the mobile standing behind it.
+    bool StaticBlocksSightAt(i32 x, i32 y, i8 eyeZ) const;
+
     // Surface top z for a static (z + height if it provides a surface).
     // Returns false if static is not a surface.
     bool StaticSurfaceTop(u16 itemId, i8 baseZ, i8* topOut) const;

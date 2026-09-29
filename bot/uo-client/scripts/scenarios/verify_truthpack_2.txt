@@ -1,0 +1,41 @@
+# Re-verify after the magic_preaos paren fix and the treasure-map <dTDATA3> fix.
+# Admin only. Resyncs first (edited existing files -> resync suffices).
+wait_world
+sleep 3000
+say .serv.resync
+sleep 30000
+
+say .newitem i_katana_ruin
+sleep 1200
+say .act.show name
+sleep 700
+say .act.show modar
+sleep 1200
+say .newitem i_katana_might
+sleep 1200
+say .act.show modar
+sleep 1200
+say .newitem i_katana_force
+sleep 1200
+say .act.show modar
+sleep 1200
+say .newitem i_katana_power
+sleep 1200
+say .act.show modar
+sleep 1200
+say .newitem i_katana_vanq
+sleep 1200
+say .act.show modar
+sleep 1200
+
+say .newitem i_ttm_l5
+sleep 1500
+say .act.show tdata3
+sleep 700
+say .act.show dtdata3
+sleep 700
+say .act.show <def0.TreasureMap_L<act.dtdata3>_Cartography>
+sleep 1500
+say verify 2 done
+sleep 1000
+logout

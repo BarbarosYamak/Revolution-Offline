@@ -31,16 +31,10 @@
 
     const SurvivalSkill = {
         // Apply one bandage to ourselves; returns true if it started.
-        // A bandage in progress is not restarted (uo-offline's bandage-busy
-        // lock): a second double-click mid-heal wastes the first. The lock is a
-        // fixed BANDAGE_LOCK_MS because the "finished" journal text and the
-        // exact Revolution heal time are UNKNOWN; skill17 DELAY=3.0 plus margin.
         async bandageSelf() {
             const { token } = this;
-            if (Date.now() < (this.bandageBusyUntil || 0)) return false;
             const bandage = this.findInPack(this.BANDAGE);
             if (!bandage) return false;
-            this.bandageBusyUntil = Date.now() + (this.BANDAGE_LOCK_MS ?? 5000);
             try {
                 Player.use(bandage.serial);
                 await token.wait(Player.once('target', 2000));
@@ -53,14 +47,10 @@
             }
         },
 
-        // Bandage back up to REST_UNTIL_FRAC of max HP, bailing out the moment a
-        // threat appears. It used to bandage until EXACTLY full, so a single
-        // point of damage after every fight meant another bandage -- and
-        // another trip to buy more when they ran out.
+        // Bandage until full HP, bailing out the moment a threat appears.
         async rest() {
             const { token } = this;
-            const until = this.REST_UNTIL_FRAC ?? 0.9;
-            while (!Player.dead && Player.hpMax > 0 && Player.hp < Player.hpMax * until) {
+            while (!Player.dead && Player.hpMax > Player.hp) {
                 if (this.threat?.exists) return;
                 await this.bandageSelf();
                 await token.sleep(10_000);
@@ -151,35 +141,22 @@
             let need = Math.max(0, target - this.backpackCount(nameVariants));
             if (need <= 0) return true;
 
-            // Budget (lib/economy.js when mixed in): consumables are essentials
-            // and may use the reserve, but never more gold than we carry.
-            let budget = typeof this.spendable === 'function'
-                ? this.spendable(true) : Infinity;
             const buyList = [];
             for (const row of matching) {
                 if (need <= 0) break;
-                const affordable = row.price > 0 ? Math.floor(budget / row.price) : row.amount;
-                const qty = Math.min(need, row.amount, affordable);
-                if (qty <= 0 && affordable <= 0) {
-                    console.warn(`[restock] cannot afford ${row.name} @${row.price}gp (budget ${budget})`);
-                    break;
-                }
+                const qty = Math.min(need, row.amount);
                 if (qty <= 0) continue;
                 console.log(`[restock] buying ${qty}x ${row.name} @${row.price}gp`);
                 buyList.push({ serial: row.serial, qty });
                 need -= qty;
-                budget -= qty * row.price;
             }
             if (buyList.length === 0) {
                 console.warn(`[restock] ${vendor.title} out of ${displayName} (stock 0)`);
                 return true;
             }
-            const goldBefore = this.backpackCount(['gold']);
             Vendor.buy(offer.vendor, buyList);
             try { await token.wait(Vendor.once('vendor_done', 4000)); }
             catch (error) { if (token.cancelled) throw CANCELLED; }
-            const spent = goldBefore - this.backpackCount(['gold']);
-            if (spent > 0 && this.ledger) this.ledger.record('buy', spent, `${vendor.title}: ${displayName}`);
             return true;
         },
 
@@ -187,31 +164,15 @@
         // `target`. Consumables sharing a vendor title+coords are grouped into one
         // stop; the stops are then ordered into the shortest total route from the
         // current position before visiting them.
-        // A consumable is restocked when it falls to its `low` mark (default:
-        // a quarter of target), not only when it hits zero -- running out
-        // mid-hunt is how a bot ends up bandage-less at 20% HP. Idea from
-        // Klein187/uo-offline BotSupplies (low mark -> errand, with a cooldown so
-        // a bot that cannot afford anything does not loop at the counter).
-        consumableIsLow(consumable, nameVariants) {
-            const low = consumable.low ?? Math.floor((consumable.target || 0) / 4);
-            return this.backpackCount(nameVariants) <= low;
-        },
-
         async restockConsumables(consumables) {
             const { token } = this;
-            const cooldown = this.RESTOCK_COOLDOWN_MS ?? 10 * 60 * 1000;
-            if (this.lastRestockMs && Date.now() - this.lastRestockMs < cooldown &&
-                Object.keys(consumables).every((key) => this.backpackCount(
-                    [].concat(consumables[key].name || key).map((n) => n.toLowerCase())) > 0)) {
-                return;   // restocked recently and nothing is actually OUT
-            }
 
             const stops = new Map(); // `${title}|${x}|${y}` -> { title, coords, items }
             for (const key of Object.keys(consumables)) {
                 const consumable = consumables[key];
                 const names = [].concat(consumable.name || key);
                 const nameVariants = names.map((name) => name.toLowerCase());
-                if (!this.consumableIsLow(consumable, nameVariants)) continue;
+                if (this.backpackCount(nameVariants) > 0) continue;
                 const stopKey = `${consumable.title}|${consumable.coords.x}|${consumable.coords.y}`;
                 if (!stops.has(stopKey))
                     stops.set(stopKey, { title: consumable.title, coords: consumable.coords, items: [] });
@@ -221,7 +182,6 @@
             }
             if (stops.size === 0) return;
 
-            this.lastRestockMs = Date.now();
             const route = orderByShortestRoute({ x: Player.x, y: Player.y }, [...stops.values()]);
             for (const stop of route) {
                 token.check();

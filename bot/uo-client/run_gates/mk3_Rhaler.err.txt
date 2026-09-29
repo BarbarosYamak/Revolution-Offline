@@ -1,0 +1,41 @@
+start: Rhaler is a full_crafter and lives in Minoc -> starting city index 1
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:20:23.017] WARN  [mk3_Rhaler] [bot] 0x20 resync; aborting path
+[00:20:27.728] WARN  [mk3_Rhaler] [bot] no path to (2472,567) avoiding 0 block(s); stopping (search 2047404.7us)
+[00:20:27.728] WARN  [mk3_Rhaler] [bot] start (2476,569,5) exits: open=5 terrain=3 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 406 item(s), 5 mobile(s))
+[00:20:31.900] WARN  [mk3_Rhaler] [bot] no path to (2472,567) avoiding 0 block(s); stopping (search 2854744.9us)
+[00:20:31.900] WARN  [mk3_Rhaler] [bot] start (2476,569,5) exits: open=4 terrain=3 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 406 item(s), 5 mobile(s))
+[00:21:38.686] WARN  [mk3_Rhaler] [bot] 0x20 resync; aborting path
+[00:21:45.120] WARN  [mk3_Rhaler] [bot] no path to (2579,596) avoiding 0 block(s); stopping (search 3279182.9us)
+[00:21:45.120] WARN  [mk3_Rhaler] [bot] start (2572,604,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 499 item(s), 6 mobile(s))
+[00:21:49.164] WARN  [mk3_Rhaler] [bot] no path to (2579,596) avoiding 0 block(s); stopping (search 2770479.0us)
+[00:21:49.164] WARN  [mk3_Rhaler] [bot] start (2572,604,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 499 item(s), 6 mobile(s))
+[00:21:54.823] WARN  [mk3_Rhaler] [bot] no path to (2579,596) avoiding 0 block(s); stopping (search 2832687.5us)
+[00:21:54.823] WARN  [mk3_Rhaler] [bot] start (2572,604,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 499 item(s), 5 mobile(s))
+[00:21:58.366] WARN  [mk3_Rhaler] [bot] no path to (2579,596) avoiding 0 block(s); stopping (search 2165554.1us)
+[00:21:58.366] WARN  [mk3_Rhaler] [bot] start (2572,604,0) exits: open=7 terrain=0 mobile=1 dynamic=0 door=0 blacklist=0 (overlay saw 499 item(s), 5 mobile(s))
+[00:22:05.222] WARN  [mk3_Rhaler] [bot] no path to (2579,596) avoiding 0 block(s); stopping (search 2526360.5us)
+[00:22:05.222] WARN  [mk3_Rhaler] [bot] start (2572,604,0) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 499 item(s), 6 mobile(s))
+[00:22:25.274] WARN  [mk3_Rhaler] [0x21] move REJECTED seq=59; server says (2552,598,0) facing=7
+[00:22:26.029] WARN  [mk3_Rhaler] [0x21] move REJECTED seq=0; server says (2552,598,0) facing=7
+[00:22:26.091] WARN  [mk3_Rhaler] [bot] no path to (2552,598) avoiding 1 block(s); stopping (search 0.2us)
+[00:22:26.091] WARN  [mk3_Rhaler] [bot] start (2552,598,0) exits: open=6 terrain=1 mobile=0 dynamic=0 door=0 blacklist=1 (overlay saw 512 item(s), 5 mobile(s))
+[00:23:04.484] WARN  [mk3_Rhaler] [bot] watchdog: oldest move unacked 5s; aborting path
+[00:23:04.594] WARN  [mk3_Rhaler] [0x22] unsolicited ack seq=36
+[00:23:09.321] WARN  [mk3_Rhaler] [bot] no path to (2468,567) avoiding 0 block(s); stopping (search 2258696.5us)
+[00:23:09.321] WARN  [mk3_Rhaler] [bot] start (2486,570,5) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 548 item(s), 9 mobile(s))
+[00:23:12.978] WARN  [mk3_Rhaler] [bot] no path to (2468,567) avoiding 0 block(s); stopping (search 2291746.2us)
+[00:23:12.978] WARN  [mk3_Rhaler] [bot] start (2486,570,5) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 548 item(s), 9 mobile(s))
+[00:23:17.523] WARN  [mk3_Rhaler] [bot] no path to (2468,567) avoiding 0 block(s); stopping (search 1728721.8us)
+[00:23:17.523] WARN  [mk3_Rhaler] [bot] start (2486,570,5) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 548 item(s), 9 mobile(s))
+[00:23:20.844] WARN  [mk3_Rhaler] [bot] no path to (2468,567) avoiding 0 block(s); stopping (search 1972837.4us)
+[00:23:20.844] WARN  [mk3_Rhaler] [bot] start (2486,570,5) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 548 item(s), 9 mobile(s))
+[00:23:24.042] WARN  [mk3_Rhaler] [bot] no path to (2468,567) avoiding 0 block(s); stopping (search 1863740.7us)
+[00:23:24.042] WARN  [mk3_Rhaler] [bot] start (2486,570,5) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 548 item(s), 9 mobile(s))
+[00:23:30.050] WARN  [mk3_Rhaler] [bot] no path to (2471,567) avoiding 0 block(s); stopping (search 1365932.6us)
+[00:23:30.050] WARN  [mk3_Rhaler] [bot] start (2485,570,5) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 548 item(s), 7 mobile(s))
+[00:23:32.748] WARN  [mk3_Rhaler] [bot] no path to (2471,567) avoiding 0 block(s); stopping (search 1389595.8us)
+[00:23:32.748] WARN  [mk3_Rhaler] [bot] start (2485,570,5) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 548 item(s), 7 mobile(s))
+[00:23:37.033] WARN  [mk3_Rhaler] [bot] no path to (2472,564) avoiding 0 block(s); stopping (search 1612862.2us)
+[00:23:37.033] WARN  [mk3_Rhaler] [bot] start (2485,570,5) exits: open=8 terrain=0 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 548 item(s), 7 mobile(s))

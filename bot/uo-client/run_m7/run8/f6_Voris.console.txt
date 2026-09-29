@@ -1,0 +1,1464 @@
+[14:16:14.628] INFO  session 0: 127.0.0.1:2593 user='RevolutionFresh05' char=Voris tag='f6_Voris'
+[14:16:14.629] LOG   [f6_Voris] event session_start: text log opened
+[14:16:14.629] LOG   [f6_Voris] event net_connect_begin: connect 127.0.0.1:2593
+[14:16:14.629] INFO  [f6_Voris] [net] connecting to 127.0.0.1:2593 ...
+[14:16:14.630] LOG   [f6_Voris] event net_connected: connect 127.0.0.1:2593
+[14:16:14.630] INFO  [f6_Voris] [net] connected.
+[14:16:14.630] INFO  [f6_Voris] [seed] sent 0x7F000001 (plaintext)
+[14:16:14.630] LOG   [f6_Voris] event seed_out: 0x7F000001 hex=7f000001
+[14:16:14.631] INFO  [life] loaded persistent state for Voris (2 places, 0 suppliers, 3 events, 5 prior sessions)
+[14:16:14.631] INFO  [life] needs: reading 'alchemist' from the profession catalogue
+[14:16:14.631] INFO  [life] build plan 'alchemist': 200.0 resolved + 450.0 unresolved = 650.0/700.0, stats 50/25/100 = 175
+[14:16:14.631] INFO  [f6_Voris] [life] autonomous player active for 'Voris' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[14:16:14.654] INFO  [f6_Voris] [0xA8] 1 server(s):
+[14:16:14.654] INFO  [f6_Voris]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[14:16:14.656] INFO  [f6_Voris] [0x8C] game server = 127.0.0.1:2593  seed=0x3C5206B0
+[14:16:14.656] LOG   [f6_Voris] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3C5206B0
+[14:16:14.656] INFO  [f6_Voris] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[14:16:14.656] LOG   [f6_Voris] event relay_same_socket: no seed re-sent; 0x91 follows
+[14:16:14.671] INFO  [f6_Voris] [0xB9] server features = 0x0005
+[14:16:14.671] INFO  [f6_Voris] [0xA9] 5 slot(s) (populated 1):
+[14:16:14.671] INFO  [f6_Voris]   [0] Voris
+[14:16:14.671] INFO  [f6_Voris]   [1] <empty>
+[14:16:14.671] INFO  [f6_Voris]   [2] <empty>
+[14:16:14.671] INFO  [f6_Voris]   [3] <empty>
+[14:16:14.671] INFO  [f6_Voris]   [4] <empty>
+[14:16:14.671] INFO  [f6_Voris] [ui] playing slot 0 ('Voris')
+[14:16:14.686] INFO  [f6_Voris] [0x1B] serial=0x00014094 body=0x0190 pos=(1429,1691,0)
+[14:16:14.686] LOG   [f6_Voris] event login_confirm: serial=0x00014094 body=0x0190 pos=(1429,1691,0)
+[14:16:14.686] INFO  [f6_Voris] [0x20] player @(1429,1691,0) facing=6
+[14:16:14.686] INFO  [f6_Voris] [0x55] login complete — entering world
+[14:16:14.686] LOG   [f6_Voris] event in_world: 0x55 received
+[14:16:14.686] INFO  [f6_Voris] [backpack] opening 0x40014088
+[14:16:14.686] INFO  [f6_Voris] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[14:16:14.686] INFO  [f6_Voris] [chat ascii] System: There are 3 other players here.
+[14:16:14.686] INFO  [f6_Voris] [chat ascii] System: Last logged: 2026/08/29 13:44:16
+[14:16:14.686] INFO  [f6_Voris] [chat ascii] System: You are under the protection of the city guards
+[14:16:14.686] INFO  [f6_Voris] [chat ascii] System: Kaelen has arrived in Britain.
+[14:16:14.690] INFO  [f6_Voris] [action] requesting the skill list
+[14:16:14.690] INFO  [life] in world; asked the server for the skill list
+[14:16:14.690] INFO  [f6_Voris] [0x24] open container 0x40014088 gump=60
+[14:16:14.690] INFO  [f6_Voris] [0x3C] container contents: 12 item(s)
+[14:16:14.690] LOG   [f6_Voris] event backpack_contents: serial=0x40014088 items=12
+[14:16:14.808] INFO  [f6_Voris] [chat ascii] System: Ysolde has arrived in Britain.
+[14:16:14.886] INFO  [f6_Voris] [chat ascii] System: Bruin has arrived in Yew.
+[14:16:16.096] INFO  [f6_Voris] [chat ascii] Lyndon: What's thee wantin'?
+[14:16:16.096] INFO  [f6_Voris] [chat ascii] Lyndon: Hmm?
+[14:16:17.286] INFO  [f6_Voris] [bot] world data loaded (0 blacklisted spot(s)).
+[14:16:17.286] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[14:16:17.286] INFO  [life]   gold         persisted=684        server=684        -> server value accepted
+[14:16:17.286] INFO  [life]   str          persisted=32         server=32         -> server value accepted
+[14:16:17.286] INFO  [life]   dex          persisted=16         server=16         -> server value accepted
+[14:16:17.286] INFO  [life]   int          persisted=32         server=32         -> server value accepted
+[14:16:17.286] INFO  [life]   skill_0      persisted=50.0       server=50.0       -> server value accepted
+[14:16:17.286] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[14:16:17.286] INFO  [life]   skill_46     persisted=30.0       server=30.0       -> server value accepted
+[14:16:17.286] INFO  [life]   position     persisted=1429,1691  server=1429,1691  -> server value accepted
+[14:16:17.286] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[14:16:17.286] INFO  [life]   restored objective KEPT: PRACTICE_SKILL (progress 15)
+[14:16:17.286] INFO  [f6_Voris] [survival] on
+[14:16:17.286] LOG   [f6_Voris] event survival_mode: on
+[14:16:17.288] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:16:17.288] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:16:17.341] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:16:17.341] INFO  [f6_Voris] [ACTION] use_skill start
+[14:16:17.341] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:16:17.341] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:16:17.341] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:16:17.341] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:16:22.306] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:16:27.345] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:16:29.372] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:16:29.372] INFO  [f6_Voris] [ACTION] use_skill start
+[14:16:29.372] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:16:29.372] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:16:29.372] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:16:29.372] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:16:32.404] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:16:37.331] INFO  [life] goal_changed=FILL_SPELLBOOK from=PRACTICE_SKILL reason="FILL_SPELLBOOK 41.7 superseded PRACTICE_SKILL 36.0"
+[14:16:37.331] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:16:37.331] INFO  [life]   score=41.7
+[14:16:37.331] INFO  [life]   reason: NeedSpells urgency 0.38 x 110 = 41.7
+[14:16:37.331] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 600 spare 84 wealth 0.08
+[14:16:37.331] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:16:37.452] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:16:41.402] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 1)
+[14:16:41.402] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1429,1691)
+[14:16:41.402] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1429,1691)
+[14:16:41.402] INFO  [f6_Voris] [travel] mode moongate         usable   <- chosen
+[14:16:41.402] INFO  [f6_Voris] [travel] mode walk             usable
+[14:16:41.402] INFO  [f6_Voris] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:16:41.402] INFO  [f6_Voris] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:16:41.402] LOG   [f6_Voris] event travel_mode: moongate
+[14:16:41.402] INFO  [f6_Voris] [travel] plan Britain mage: ok legs=5 ~168 tiles transit=0 nodes=48
+[14:16:41.463] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:16:41.463] INFO  [f6_Voris] [action] goto (1448,1656) from (1429,1691,0)
+[14:16:41.463] LOG   [f6_Voris] event goto_start: target=(1448,1656) from=(1429,1691)
+[14:16:41.463] INFO  [f6_Voris] [bot] running from (1429,1691,0) to (1448,1656)
+[14:16:41.464] INFO  [f6_Voris] [bot] planning path to (1448,1656) in background
+[14:16:41.524] INFO  [f6_Voris] [bot] replan to (1448,1656): 60 steps in 5284.3us
+[14:16:42.474] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:16:44.028] INFO  [f6_Voris] [bot] step (1438,1691,0)->(1439,1692,0) rejected; OpenDoor + retry
+[14:16:44.028] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[14:16:44.029] INFO  [f6_Voris] [0x20] player @(1438,1691,0) facing=4
+[14:16:44.029] INFO  [f6_Voris] [action] goto finished at (1438,1691,0); target (1448,1656); stopped short (off by 45 tile(s))
+[14:16:44.029] LOG   [f6_Voris] event goto_done: at=(1438,1691) target=(1448,1656) arrived=0 off=45
+[14:16:45.253] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:16:45.253] INFO  [f6_Voris] [action] goto (1448,1656) from (1438,1691,0)
+[14:16:45.253] LOG   [f6_Voris] event goto_start: target=(1448,1656) from=(1438,1691)
+[14:16:45.253] INFO  [f6_Voris] [bot] running from (1438,1691,0) to (1448,1656)
+[14:16:45.253] INFO  [f6_Voris] [bot] planning path to (1448,1656) in background
+[14:16:45.314] INFO  [f6_Voris] [bot] replan to (1448,1656): 51 steps in 6933.2us
+[14:16:46.529] INFO  [f6_Voris] [bot] step (1439,1693,0)->(1440,1694,0) rejected; OpenDoor + retry
+[14:16:46.529] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[14:16:46.529] INFO  [f6_Voris] [0x20] player @(1439,1693,0) facing=2
+[14:16:46.529] INFO  [f6_Voris] [action] goto finished at (1439,1693,0); target (1448,1656); stopped short (off by 46 tile(s))
+[14:16:46.529] LOG   [f6_Voris] event goto_done: at=(1439,1693) target=(1448,1656) arrived=0 off=46
+[14:16:47.495] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:16:47.740] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:16:47.740] INFO  [f6_Voris] [action] goto (1448,1656) from (1439,1693,0)
+[14:16:47.740] LOG   [f6_Voris] event goto_start: target=(1448,1656) from=(1439,1693)
+[14:16:47.740] INFO  [f6_Voris] [bot] running from (1439,1693,0) to (1448,1656)
+[14:16:47.740] INFO  [f6_Voris] [bot] planning path to (1448,1656) in background
+[14:16:47.803] INFO  [f6_Voris] [bot] replan to (1448,1656): 49 steps in 7246.5us
+[14:16:52.532] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:16:57.553] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:01.278] INFO  [f6_Voris] [bot] arrived at (1448,1656,10)
+[14:17:01.278] INFO  [f6_Voris] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[14:17:01.278] LOG   [f6_Voris] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[14:17:01.278] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:17:01.278] INFO  [f6_Voris] [action] goto (1464,1624) from (1448,1656,10)
+[14:17:01.278] LOG   [f6_Voris] event goto_start: target=(1464,1624) from=(1448,1656)
+[14:17:01.278] INFO  [f6_Voris] [bot] running from (1448,1656,10) to (1464,1624)
+[14:17:01.278] INFO  [f6_Voris] [bot] planning path to (1464,1624) in background
+[14:17:01.337] INFO  [f6_Voris] [bot] replan to (1464,1624): 43 steps in 3904.6us
+[14:17:02.611] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:07.629] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:12.651] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:14.636] INFO  [f6_Voris] [bot] arrived at (1464,1624,20)
+[14:17:14.636] INFO  [f6_Voris] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[14:17:14.636] LOG   [f6_Voris] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[14:17:14.636] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:17:14.636] INFO  [f6_Voris] [action] goto (1464,1592) from (1464,1624,20)
+[14:17:14.636] LOG   [f6_Voris] event goto_start: target=(1464,1592) from=(1464,1624)
+[14:17:14.636] INFO  [f6_Voris] [bot] running from (1464,1624,20) to (1464,1592)
+[14:17:14.636] INFO  [f6_Voris] [bot] planning path to (1464,1592) in background
+[14:17:14.697] INFO  [f6_Voris] [bot] replan to (1464,1592): 32 steps in 668.6us
+[14:17:17.299] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:17:17.666] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:22.659] INFO  [f6_Voris] [bot] arrived at (1464,1592,20)
+[14:17:22.659] INFO  [f6_Voris] [action] goto finished at (1464,1592,20); target (1464,1592); ARRIVED (off by 0 tile(s))
+[14:17:22.659] LOG   [f6_Voris] event goto_done: at=(1464,1592) target=(1464,1592) arrived=1 off=0
+[14:17:22.659] INFO  [f6_Voris] [action] goto (1480,1558) from (1464,1592,20)
+[14:17:22.659] LOG   [f6_Voris] event goto_start: target=(1480,1558) from=(1464,1592)
+[14:17:22.659] INFO  [f6_Voris] [bot] running from (1464,1592,20) to (1480,1558)
+[14:17:22.660] INFO  [f6_Voris] [bot] planning path to (1480,1558) in background
+[14:17:22.721] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:22.721] INFO  [f6_Voris] [bot] replan to (1480,1558): 41 steps in 4884.6us
+[14:17:27.752] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:28.691] INFO  [f6_Voris] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=19 in 211.1us
+[14:17:32.779] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:35.739] INFO  [f6_Voris] [bot] arrived at (1480,1558,30)
+[14:17:35.739] INFO  [f6_Voris] [action] goto finished at (1480,1558,30); target (1480,1558); ARRIVED (off by 0 tile(s))
+[14:17:35.739] LOG   [f6_Voris] event goto_done: at=(1480,1558) target=(1480,1558) arrived=1 off=0
+[14:17:35.739] INFO  [f6_Voris] [action] goto (1485,1550) from (1480,1558,30)
+[14:17:35.739] LOG   [f6_Voris] event goto_start: target=(1485,1550) from=(1480,1558)
+[14:17:35.739] INFO  [f6_Voris] [bot] running from (1480,1558,30) to (1485,1550,z30)
+[14:17:35.739] INFO  [f6_Voris] [bot] planning path to (1485,1550) in background
+[14:17:35.769] INFO  [f6_Voris] [bot] replan to (1485,1550): 49 steps in 13154.0us
+[14:17:37.807] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:42.811] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:47.865] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:48.280] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1490,1555,30)
+[14:17:48.280] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1490,1555) legs=5 plans=1 why=''
+[14:17:48.280] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 2)
+[14:17:48.280] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1489,1554)
+[14:17:48.280] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1489,1554)
+[14:17:48.280] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1489,1554,30)
+[14:17:48.280] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1489,1554) legs=0 plans=0 why=''
+[14:17:49.494] INFO  [f6_Voris] [chat ascii] Xanthe: What's thee wantin'?
+[14:17:50.322] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 3)
+[14:17:50.322] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1487,1550)
+[14:17:50.322] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1487,1550)
+[14:17:50.322] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1487,1550,30)
+[14:17:50.322] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1487,1550) legs=0 plans=0 why=''
+[14:17:50.753] INFO  [f6_Voris] [bot] arrived at (1485,1550,30)
+[14:17:52.370] INFO  [life] goal_failed=FILL_SPELLBOOK reason="no 'mage' reachable after 3 trips"
+[14:17:52.370] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no scroll seller reachable"
+[14:17:52.370] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:17:52.370] INFO  [life]   score=36.0
+[14:17:52.370] INFO  [life]   reason: NeedPractice urgency 0.30 x 120 = 36.0
+[14:17:52.371] INFO  [life]   reason: Meditation 30.0 -> 50.0 mana=32 no_gain_region=0
+[14:17:52.371] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:17:52.371] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 240s after achieving nothing
+[14:17:52.371] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:17:52.371] INFO  [f6_Voris] [ACTION] use_skill start
+[14:17:52.371] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:17:52.385] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:17:52.385] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:17:52.385] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:17:52.924] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:17:54.633] INFO  [f6_Voris] [chat ascii] Alenne: What's thee wantin'?
+[14:17:55.850] INFO  [f6_Voris] [chat uni  ] : Alenne buy
+[14:17:55.851] INFO  [f6_Voris] [chat ascii] Alenne: I got lots to sell!
+[14:17:57.926] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:02.952] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:04.423] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:18:04.423] INFO  [f6_Voris] [ACTION] use_skill start
+[14:18:04.423] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:18:04.423] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:18:04.423] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:18:04.423] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:18:07.987] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:13.028] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:13.568] INFO  [f6_Voris] [chat ascii] Shunnar: Hmm?
+[14:18:16.451] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:18:16.451] INFO  [f6_Voris] [ACTION] use_skill start
+[14:18:16.451] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:18:16.451] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:18:16.451] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:18:16.451] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:18:17.299] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:18:18.061] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:23.068] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:26.740] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[14:18:28.128] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:28.496] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:18:28.496] INFO  [f6_Voris] [ACTION] use_skill start
+[14:18:28.496] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:18:28.511] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:18:28.511] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:18:28.511] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:18:33.183] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:36.735] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[14:18:38.205] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:40.524] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:18:40.525] INFO  [f6_Voris] [ACTION] use_skill start
+[14:18:40.525] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:18:40.525] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:18:40.525] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:18:40.525] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:18:43.265] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:48.267] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:52.560] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:18:52.560] INFO  [f6_Voris] [ACTION] use_skill start
+[14:18:52.560] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:18:52.560] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:18:52.560] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:18:52.560] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:18:53.296] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:18:58.329] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:03.376] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:04.573] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:19:04.573] INFO  [f6_Voris] [ACTION] use_skill start
+[14:19:04.573] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:19:04.573] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:19:04.573] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:19:04.573] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:19:08.413] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:08.718] INFO  [f6_Voris] [chat ascii] Alenne: Well it was nice speaking to you Ysolde but I must go about my business
+[14:19:13.444] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:16.609] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:19:16.610] INFO  [f6_Voris] [ACTION] use_skill start
+[14:19:16.610] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:19:16.610] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:19:16.610] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:19:16.610] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:19:17.351] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:19:18.467] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:23.475] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:28.495] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:28.620] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:19:28.620] INFO  [f6_Voris] [ACTION] use_skill start
+[14:19:28.620] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:19:28.620] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:19:28.620] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:19:28.620] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:19:33.513] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:38.545] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:40.679] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:19:40.679] INFO  [f6_Voris] [ACTION] use_skill start
+[14:19:40.679] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:19:40.679] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:19:40.679] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:19:40.679] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:19:43.552] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:48.579] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:52.726] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:19:52.726] INFO  [f6_Voris] [ACTION] use_skill start
+[14:19:52.726] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:19:52.726] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:19:52.726] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:19:52.726] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:19:53.614] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:19:58.623] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:03.660] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:04.758] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:20:04.758] INFO  [f6_Voris] [ACTION] use_skill start
+[14:20:04.758] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:20:04.758] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:20:04.758] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:20:04.758] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:20:08.704] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:13.739] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:16.782] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:20:16.782] INFO  [f6_Voris] [ACTION] use_skill start
+[14:20:16.782] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:20:16.798] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:20:16.798] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:20:16.798] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:20:17.353] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:20:18.765] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:23.784] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:28.794] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:20:28.794] INFO  [f6_Voris] [ACTION] use_skill start
+[14:20:28.794] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:20:28.794] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:28.809] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:20:28.809] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:20:28.809] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:20:33.847] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:38.894] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:40.801] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:20:40.801] INFO  [f6_Voris] [ACTION] use_skill start
+[14:20:40.801] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:20:40.801] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:20:40.801] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:20:40.801] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:20:43.904] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:48.909] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:52.827] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:20:52.827] INFO  [f6_Voris] [ACTION] use_skill start
+[14:20:52.827] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:20:52.827] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:20:52.827] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:20:52.827] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:20:53.922] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:20:58.955] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:03.968] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:04.864] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:21:04.864] INFO  [f6_Voris] [ACTION] use_skill start
+[14:21:04.864] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:21:04.864] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:21:04.864] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:21:04.864] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:21:08.978] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:14.002] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:16.908] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:21:16.908] INFO  [f6_Voris] [ACTION] use_skill start
+[14:21:16.908] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:21:16.909] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:21:16.909] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:21:16.909] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:21:17.405] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:21:19.063] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:24.079] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:28.967] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:21:28.967] INFO  [f6_Voris] [ACTION] use_skill start
+[14:21:28.967] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:21:28.983] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:21:28.983] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:21:28.983] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:21:29.104] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:34.156] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:39.178] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:40.970] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:21:40.970] INFO  [f6_Voris] [ACTION] use_skill start
+[14:21:40.970] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:21:40.970] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:21:40.970] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:21:40.970] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:21:44.231] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:49.278] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:52.405] INFO  [life] goal_changed=FILL_SPELLBOOK from=PRACTICE_SKILL reason="FILL_SPELLBOOK 41.7 superseded PRACTICE_SKILL 36.0"
+[14:21:52.405] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:21:52.405] INFO  [life]   score=41.7
+[14:21:52.405] INFO  [life]   reason: NeedSpells urgency 0.38 x 110 = 41.7
+[14:21:52.405] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 600 spare 84 wealth 0.08
+[14:21:52.405] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:21:53.004] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 1)
+[14:21:53.004] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:21:53.004] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:21:53.004] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:21:53.004] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:21:54.287] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:21:55.010] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 2)
+[14:21:55.010] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:21:55.010] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:21:55.010] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:21:55.010] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:21:57.032] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 3)
+[14:21:57.032] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:21:57.032] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:21:57.032] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:21:57.032] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:21:59.049] INFO  [life] goal_failed=FILL_SPELLBOOK reason="no 'mage' reachable after 3 trips"
+[14:21:59.111] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no scroll seller reachable"
+[14:21:59.111] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:21:59.111] INFO  [life]   score=36.0
+[14:21:59.111] INFO  [life]   reason: NeedPractice urgency 0.30 x 120 = 36.0
+[14:21:59.111] INFO  [life]   reason: Meditation 30.0 -> 50.0 mana=32 no_gain_region=0
+[14:21:59.111] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:21:59.111] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[14:21:59.111] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:21:59.111] INFO  [f6_Voris] [ACTION] use_skill start
+[14:21:59.111] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:21:59.112] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:21:59.112] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:21:59.112] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:21:59.293] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:04.339] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:09.360] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:11.155] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:22:11.155] INFO  [f6_Voris] [ACTION] use_skill start
+[14:22:11.155] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:22:11.171] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:22:11.171] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:22:11.171] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:22:14.388] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:17.447] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:22:19.428] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:23.183] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:22:23.183] INFO  [f6_Voris] [ACTION] use_skill start
+[14:22:23.183] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:22:23.199] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:22:23.199] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:22:23.199] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:22:24.467] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:29.481] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:34.528] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:35.189] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:22:35.189] INFO  [f6_Voris] [ACTION] use_skill start
+[14:22:35.189] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:22:35.189] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:22:35.189] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:22:35.189] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:22:39.562] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:44.596] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:47.206] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:22:47.206] INFO  [f6_Voris] [ACTION] use_skill start
+[14:22:47.206] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:22:47.207] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:22:47.207] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:22:47.207] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:22:49.598] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:54.640] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:22:59.223] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:22:59.223] INFO  [f6_Voris] [ACTION] use_skill start
+[14:22:59.223] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:22:59.224] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:22:59.224] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:22:59.224] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:22:59.641] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:03.685] INFO  [f6_Voris] [chat ascii] Alenne: Aye?
+[14:23:04.665] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:09.669] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:11.236] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:23:11.236] INFO  [f6_Voris] [ACTION] use_skill start
+[14:23:11.236] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:23:11.251] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:23:11.251] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:23:11.251] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:23:14.721] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:17.471] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:23:19.769] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:20.985] INFO  [f6_Voris] [chat ascii] Xanthe: What's thee wantin'?
+[14:23:23.245] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:23:23.245] INFO  [f6_Voris] [ACTION] use_skill start
+[14:23:23.245] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:23:23.245] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:23:23.245] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:23:23.245] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:23:24.802] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:27.074] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[14:23:29.826] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:29.842] INFO  [f6_Voris] [chat ascii] Shunnar: I'm listenin'.
+[14:23:34.854] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:35.283] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:23:35.283] INFO  [f6_Voris] [ACTION] use_skill start
+[14:23:35.283] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:23:35.299] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:23:35.299] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:23:35.299] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:23:37.083] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[14:23:39.902] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:44.945] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:47.291] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:23:47.291] INFO  [f6_Voris] [ACTION] use_skill start
+[14:23:47.291] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:23:47.306] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:23:47.306] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:23:47.306] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:23:49.984] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:51.903] INFO  [f6_Voris] [chat ascii] Alenne: Could thou back off a bit?
+[14:23:55.025] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:23:59.341] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:23:59.341] INFO  [f6_Voris] [ACTION] use_skill start
+[14:23:59.341] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:23:59.341] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:23:59.341] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:23:59.341] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:24:00.077] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:05.134] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:10.151] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:11.395] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:24:11.395] INFO  [f6_Voris] [ACTION] use_skill start
+[14:24:11.395] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:24:11.395] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:24:11.395] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:24:11.395] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:24:15.169] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:17.492] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:24:20.196] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:23.400] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:24:23.400] INFO  [f6_Voris] [ACTION] use_skill start
+[14:24:23.400] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:24:23.415] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:24:23.415] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:24:23.415] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:24:25.202] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:30.249] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:35.290] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:35.427] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:24:35.427] INFO  [f6_Voris] [ACTION] use_skill start
+[14:24:35.427] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:24:35.427] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:24:35.427] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:24:35.427] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:24:40.332] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:45.358] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:47.486] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:24:47.486] INFO  [f6_Voris] [ACTION] use_skill start
+[14:24:47.486] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:24:47.486] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:24:47.486] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:24:47.486] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:24:50.403] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:55.416] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:24:59.542] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:24:59.542] INFO  [f6_Voris] [ACTION] use_skill start
+[14:24:59.542] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:24:59.543] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:24:59.543] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:24:59.543] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:25:00.417] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:05.460] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:10.471] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:11.594] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:25:11.594] INFO  [f6_Voris] [ACTION] use_skill start
+[14:25:11.594] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:25:11.594] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:25:11.594] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:25:11.594] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:25:15.532] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:17.535] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:25:20.551] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:23.614] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:25:23.614] INFO  [f6_Voris] [ACTION] use_skill start
+[14:25:23.614] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:25:23.630] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:25:23.630] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:25:23.630] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:25:25.568] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:30.603] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:35.634] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:25:35.634] INFO  [f6_Voris] [ACTION] use_skill start
+[14:25:35.634] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:25:35.634] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:35.635] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:25:35.635] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:25:35.635] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:25:40.688] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:45.715] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:47.641] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:25:47.641] INFO  [f6_Voris] [ACTION] use_skill start
+[14:25:47.641] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:25:47.642] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:25:47.642] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:25:47.642] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:25:50.750] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:55.784] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:25:59.080] INFO  [life] goal_changed=FILL_SPELLBOOK from=PRACTICE_SKILL reason="FILL_SPELLBOOK 41.7 superseded PRACTICE_SKILL 36.0"
+[14:25:59.080] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:25:59.080] INFO  [life]   score=41.7
+[14:25:59.080] INFO  [life]   reason: NeedSpells urgency 0.38 x 110 = 41.7
+[14:25:59.080] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 600 spare 84 wealth 0.08
+[14:25:59.080] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:25:59.692] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 1)
+[14:25:59.692] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:25:59.692] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:25:59.692] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:25:59.692] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:26:00.813] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:01.733] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 2)
+[14:26:01.733] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:26:01.733] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:26:01.733] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:26:01.733] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:26:03.763] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 3)
+[14:26:03.764] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:26:03.764] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:26:03.764] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:26:03.764] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:26:05.776] INFO  [life] goal_failed=FILL_SPELLBOOK reason="no 'mage' reachable after 3 trips"
+[14:26:05.838] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no scroll seller reachable"
+[14:26:05.838] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:26:05.838] INFO  [life]   score=36.0
+[14:26:05.838] INFO  [life]   reason: NeedPractice urgency 0.30 x 120 = 36.0
+[14:26:05.838] INFO  [life]   reason: Meditation 30.0 -> 50.0 mana=32 no_gain_region=0
+[14:26:05.838] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:26:05.838] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[14:26:05.838] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:26:05.838] INFO  [f6_Voris] [ACTION] use_skill start
+[14:26:05.838] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:26:05.838] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:05.854] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:26:05.854] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:26:05.854] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:26:10.843] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:15.853] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:17.544] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:26:17.850] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:26:17.850] INFO  [f6_Voris] [ACTION] use_skill start
+[14:26:17.850] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:26:17.866] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:26:17.866] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:26:17.866] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:26:20.876] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:25.885] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:29.911] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:26:29.911] INFO  [f6_Voris] [ACTION] use_skill start
+[14:26:29.911] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:26:29.927] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:26:29.927] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:26:29.927] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:26:30.939] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:35.947] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:40.981] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:41.946] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:26:41.946] INFO  [f6_Voris] [ACTION] use_skill start
+[14:26:41.946] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:26:41.946] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:26:41.946] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:26:41.946] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:26:46.021] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:51.024] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:26:54.006] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:26:54.006] INFO  [f6_Voris] [ACTION] use_skill start
+[14:26:54.006] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:26:54.006] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:26:54.006] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:26:54.006] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:26:56.062] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:01.095] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:06.050] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:27:06.050] INFO  [f6_Voris] [ACTION] use_skill start
+[14:27:06.050] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:27:06.050] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:27:06.050] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:27:06.050] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:27:06.111] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:11.136] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:16.183] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:17.545] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:27:18.097] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:27:18.097] INFO  [f6_Voris] [ACTION] use_skill start
+[14:27:18.097] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:27:18.098] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:27:18.098] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:27:18.098] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:27:21.240] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:26.268] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:30.100] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:27:30.100] INFO  [f6_Voris] [ACTION] use_skill start
+[14:27:30.100] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:27:30.100] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:27:30.100] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:27:30.100] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:27:31.310] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:36.323] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:41.350] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:42.101] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:27:42.101] INFO  [f6_Voris] [ACTION] use_skill start
+[14:27:42.101] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:27:42.101] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:27:42.101] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:27:42.101] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:27:46.396] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:51.429] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:27:54.115] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:27:54.115] INFO  [f6_Voris] [ACTION] use_skill start
+[14:27:54.115] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:27:54.115] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:27:54.115] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:27:54.115] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:27:56.456] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:01.496] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:06.173] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:28:06.173] INFO  [f6_Voris] [ACTION] use_skill start
+[14:28:06.173] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:28:06.173] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:28:06.173] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:28:06.173] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:28:06.541] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:10.230] INFO  [f6_Voris] [chat ascii] Alenne: Aye?
+[14:28:11.550] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:16.609] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:17.575] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:28:18.189] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:28:18.189] INFO  [f6_Voris] [ACTION] use_skill start
+[14:28:18.189] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:28:18.205] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:28:18.205] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:28:18.205] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:28:21.663] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:26.675] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:27.382] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[14:28:30.200] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:28:30.200] INFO  [f6_Voris] [ACTION] use_skill start
+[14:28:30.200] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:28:30.216] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:28:30.216] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:28:30.216] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:28:31.708] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:36.715] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:37.391] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[14:28:41.764] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:42.225] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:28:42.225] INFO  [f6_Voris] [ACTION] use_skill start
+[14:28:42.225] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:28:42.225] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:28:42.225] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:28:42.225] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:28:43.456] INFO  [f6_Voris] [chat ascii] Shunnar: Hmm?
+[14:28:46.791] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:49.045] INFO  [f6_Voris] [chat ascii] Xanthe: What's thee wantin'?
+[14:28:51.842] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:28:54.234] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:28:54.234] INFO  [f6_Voris] [ACTION] use_skill start
+[14:28:54.234] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:28:54.249] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:28:54.249] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:28:54.249] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:28:56.851] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:01.900] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:06.273] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:29:06.273] INFO  [f6_Voris] [ACTION] use_skill start
+[14:29:06.273] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:29:06.273] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:29:06.273] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:29:06.273] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:29:06.918] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:11.929] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:16.944] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:17.607] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:29:18.296] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:29:18.296] INFO  [f6_Voris] [ACTION] use_skill start
+[14:29:18.296] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:29:18.296] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:29:18.296] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:29:18.297] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:29:21.963] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:26.967] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:30.350] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:29:30.350] INFO  [f6_Voris] [ACTION] use_skill start
+[14:29:30.350] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:29:30.350] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:29:30.350] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:29:30.350] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:29:32.021] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:37.024] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:42.053] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:42.358] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:29:42.359] INFO  [f6_Voris] [ACTION] use_skill start
+[14:29:42.359] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:29:42.359] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:29:42.359] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:29:42.359] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:29:47.079] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:52.095] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:29:54.385] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:29:54.385] INFO  [f6_Voris] [ACTION] use_skill start
+[14:29:54.385] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:29:54.385] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:29:54.385] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:29:54.385] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:29:57.106] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:02.148] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:05.827] INFO  [life] goal_changed=FILL_SPELLBOOK from=PRACTICE_SKILL reason="FILL_SPELLBOOK 41.7 superseded PRACTICE_SKILL 36.0"
+[14:30:05.827] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:30:05.827] INFO  [life]   score=41.7
+[14:30:05.827] INFO  [life]   reason: NeedSpells urgency 0.38 x 110 = 41.7
+[14:30:05.827] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 600 spare 84 wealth 0.08
+[14:30:05.827] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:30:06.386] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 1)
+[14:30:06.386] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:30:06.386] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:30:06.386] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:30:06.386] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:30:07.159] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:08.442] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 2)
+[14:30:08.442] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:30:08.442] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:30:08.442] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:30:08.442] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:30:10.495] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 3)
+[14:30:10.495] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:30:10.495] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:30:10.495] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:30:10.495] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:30:12.197] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:12.534] INFO  [life] goal_failed=FILL_SPELLBOOK reason="no 'mage' reachable after 3 trips"
+[14:30:12.596] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no scroll seller reachable"
+[14:30:12.596] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:30:12.596] INFO  [life]   score=36.0
+[14:30:12.596] INFO  [life]   reason: NeedPractice urgency 0.30 x 120 = 36.0
+[14:30:12.596] INFO  [life]   reason: Meditation 30.0 -> 50.0 mana=32 no_gain_region=0
+[14:30:12.596] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:30:12.596] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[14:30:12.596] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:30:12.596] INFO  [f6_Voris] [ACTION] use_skill start
+[14:30:12.596] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:30:12.596] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:30:12.596] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:30:12.596] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:30:17.247] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:17.618] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:30:22.250] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:24.600] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:30:24.600] INFO  [f6_Voris] [ACTION] use_skill start
+[14:30:24.600] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:30:24.616] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:30:24.616] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:30:24.616] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:30:27.265] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:32.295] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:36.606] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:30:36.606] INFO  [f6_Voris] [ACTION] use_skill start
+[14:30:36.606] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:30:36.606] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:30:36.606] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:30:36.606] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:30:37.347] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:42.394] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:47.449] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:48.605] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:30:48.605] INFO  [f6_Voris] [ACTION] use_skill start
+[14:30:48.605] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:30:48.605] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:30:48.605] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:30:48.605] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:30:52.476] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:30:57.519] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:00.621] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:31:00.621] INFO  [f6_Voris] [ACTION] use_skill start
+[14:31:00.621] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:31:00.621] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:31:00.621] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:31:00.621] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:31:02.576] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:07.584] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:12.630] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:31:12.630] INFO  [f6_Voris] [ACTION] use_skill start
+[14:31:12.630] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:31:12.630] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:12.646] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:31:12.646] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:31:12.646] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:31:17.648] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:31:17.648] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:22.650] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:24.669] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:31:24.669] INFO  [f6_Voris] [ACTION] use_skill start
+[14:31:24.669] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:31:24.685] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:31:24.685] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:31:24.685] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:31:27.667] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:32.681] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:36.717] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:31:36.717] INFO  [f6_Voris] [ACTION] use_skill start
+[14:31:36.717] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:31:36.717] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:31:36.717] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:31:36.717] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:31:37.685] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:42.713] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:47.737] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:48.741] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:31:48.741] INFO  [f6_Voris] [ACTION] use_skill start
+[14:31:48.741] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:31:48.756] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:31:48.756] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:31:48.756] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:31:52.785] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:31:57.832] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:00.758] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:32:00.758] INFO  [f6_Voris] [ACTION] use_skill start
+[14:32:00.758] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:32:00.759] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:32:00.759] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:32:00.759] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:32:02.880] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:07.881] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:12.767] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:32:12.767] INFO  [f6_Voris] [ACTION] use_skill start
+[14:32:12.767] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:32:12.767] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:32:12.767] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:32:12.767] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:32:12.890] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:17.673] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:32:17.915] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:22.957] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:24.774] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:32:24.774] INFO  [f6_Voris] [ACTION] use_skill start
+[14:32:24.774] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:32:24.774] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:32:24.774] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:32:24.774] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:32:28.017] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:33.034] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:36.831] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:32:36.831] INFO  [f6_Voris] [ACTION] use_skill start
+[14:32:36.831] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:32:36.831] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:32:36.831] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:32:36.831] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:32:38.043] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:43.048] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:48.056] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:48.871] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:32:48.871] INFO  [f6_Voris] [ACTION] use_skill start
+[14:32:48.871] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:32:48.887] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:32:48.887] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:32:48.887] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:32:53.108] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:32:58.149] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:00.922] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:33:00.922] INFO  [f6_Voris] [ACTION] use_skill start
+[14:33:00.922] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:33:00.923] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:33:00.923] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:33:00.923] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:33:03.182] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:08.224] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:12.938] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:33:12.938] INFO  [f6_Voris] [ACTION] use_skill start
+[14:33:12.938] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:33:12.938] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:33:12.938] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:33:12.938] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:33:13.241] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:17.722] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:33:18.300] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:23.335] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:24.949] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:33:24.949] INFO  [f6_Voris] [ACTION] use_skill start
+[14:33:24.949] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:33:24.949] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:33:24.949] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:33:24.949] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:33:27.697] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[14:33:28.370] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:33.414] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:34.540] INFO  [f6_Voris] [chat ascii] Alenne: Thou wishest to speak with me?
+[14:33:37.001] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:33:37.001] INFO  [f6_Voris] [ACTION] use_skill start
+[14:33:37.001] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:33:37.017] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:33:37.017] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:33:37.017] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:33:37.728] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[14:33:38.467] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:38.899] INFO  [f6_Voris] [chat ascii] Shunnar: *You see Shunnar looks starving*
+[14:33:43.526] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:48.546] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:49.051] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:33:49.051] INFO  [f6_Voris] [ACTION] use_skill start
+[14:33:49.051] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:33:49.052] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:33:49.052] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:33:49.052] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:33:53.576] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:33:58.368] INFO  [f6_Voris] [chat ascii] Shunnar: Hmm?
+[14:33:58.612] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:01.076] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:34:01.076] INFO  [f6_Voris] [ACTION] use_skill start
+[14:34:01.076] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:34:01.076] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:34:01.076] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:34:01.076] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:34:03.615] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:08.662] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:12.569] INFO  [life] goal_changed=FILL_SPELLBOOK from=PRACTICE_SKILL reason="FILL_SPELLBOOK 41.7 superseded PRACTICE_SKILL 36.0"
+[14:34:12.570] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:34:12.570] INFO  [life]   score=41.7
+[14:34:12.570] INFO  [life]   reason: NeedSpells urgency 0.38 x 110 = 41.7
+[14:34:12.570] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 600 spare 84 wealth 0.08
+[14:34:12.570] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:34:13.125] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 1)
+[14:34:13.125] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:34:13.125] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:34:13.125] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:34:13.125] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:34:13.680] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:15.176] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 2)
+[14:34:15.176] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:34:15.176] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:34:15.176] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:34:15.176] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:34:17.176] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 3)
+[14:34:17.177] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:34:17.177] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:34:17.177] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:34:17.177] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:34:17.731] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:34:18.716] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:19.209] INFO  [life] goal_failed=FILL_SPELLBOOK reason="no 'mage' reachable after 3 trips"
+[14:34:19.271] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no scroll seller reachable"
+[14:34:19.271] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:34:19.271] INFO  [life]   score=36.0
+[14:34:19.271] INFO  [life]   reason: NeedPractice urgency 0.30 x 120 = 36.0
+[14:34:19.271] INFO  [life]   reason: Meditation 30.0 -> 50.0 mana=32 no_gain_region=0
+[14:34:19.271] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:34:19.271] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[14:34:19.271] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:34:19.271] INFO  [f6_Voris] [ACTION] use_skill start
+[14:34:19.271] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:34:19.271] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:34:19.271] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:34:19.271] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:34:23.717] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:28.174] INFO  [f6_Voris] [chat ascii] Xanthe: Hmm?
+[14:34:28.729] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:31.323] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:34:31.323] INFO  [f6_Voris] [ACTION] use_skill start
+[14:34:31.323] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:34:31.339] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:34:31.339] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:34:31.339] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:34:32.230] INFO  [f6_Voris] [chat ascii] Alenne: Please back away a bit.
+[14:34:33.766] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:38.798] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:43.378] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:34:43.378] INFO  [f6_Voris] [ACTION] use_skill start
+[14:34:43.378] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:34:43.378] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:34:43.378] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:34:43.378] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:34:43.808] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:48.863] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:53.874] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:34:55.421] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:34:55.421] INFO  [f6_Voris] [ACTION] use_skill start
+[14:34:55.421] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:34:55.421] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:34:55.421] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:34:55.421] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:34:58.921] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:03.930] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:07.452] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:35:07.452] INFO  [f6_Voris] [ACTION] use_skill start
+[14:35:07.452] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:35:07.468] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:35:07.468] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:35:07.468] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:35:08.958] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:13.962] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:15.837] INFO  [f6_Voris] [chat ascii] Ysolde: *You see Ysolde looks fairly content*
+[14:35:15.837] INFO  [f6_Voris] [chat ascii] System: You are fairly content
+[14:35:15.837] INFO  [f6_Voris] [chat ascii] Voris: *You looks fairly content*
+[14:35:17.774] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:35:19.000] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:19.490] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:35:19.490] INFO  [f6_Voris] [ACTION] use_skill start
+[14:35:19.490] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:35:19.490] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:35:19.490] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:35:19.490] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:35:24.047] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:29.076] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:31.497] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:35:31.497] INFO  [f6_Voris] [ACTION] use_skill start
+[14:35:31.497] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:35:31.512] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:35:31.513] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:35:31.513] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:35:33.050] INFO  [f6_Voris] [chat ascii] Alenne: Please back away a bit.
+[14:35:34.106] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:39.151] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:43.537] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:35:43.537] INFO  [f6_Voris] [ACTION] use_skill start
+[14:35:43.537] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:35:43.537] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:35:43.537] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:35:43.537] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:35:44.152] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:49.172] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:54.229] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:35:55.591] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:35:55.591] INFO  [f6_Voris] [ACTION] use_skill start
+[14:35:55.591] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:35:55.608] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:35:55.608] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:35:55.608] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:35:59.255] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:04.301] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:07.646] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:36:07.646] INFO  [f6_Voris] [ACTION] use_skill start
+[14:36:07.646] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:36:07.646] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:36:07.647] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:36:07.647] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:36:09.339] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:14.398] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:17.797] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:36:19.399] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:19.707] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:36:19.707] INFO  [f6_Voris] [ACTION] use_skill start
+[14:36:19.707] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:36:19.707] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:36:19.707] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:36:19.707] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:36:24.418] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:29.465] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:31.711] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:36:31.711] INFO  [f6_Voris] [ACTION] use_skill start
+[14:36:31.711] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:36:31.711] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:36:31.712] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:36:31.712] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:36:34.510] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:39.549] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:43.769] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:36:43.769] INFO  [f6_Voris] [ACTION] use_skill start
+[14:36:43.769] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:36:43.770] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:36:43.770] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:36:43.770] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:36:44.569] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:49.620] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:54.673] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:36:55.828] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:36:55.828] INFO  [f6_Voris] [ACTION] use_skill start
+[14:36:55.828] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:36:55.828] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:36:55.829] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:36:55.829] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:36:59.724] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:04.755] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:07.835] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:37:07.835] INFO  [f6_Voris] [ACTION] use_skill start
+[14:37:07.835] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:37:07.835] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:37:07.835] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:37:07.835] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:37:09.757] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:14.786] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:17.853] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:37:19.804] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:19.865] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:37:19.865] INFO  [f6_Voris] [ACTION] use_skill start
+[14:37:19.865] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:37:19.880] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:37:19.880] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:37:19.880] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:37:24.813] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:29.858] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:31.902] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:37:31.902] INFO  [f6_Voris] [ACTION] use_skill start
+[14:37:31.902] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:37:31.918] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:37:31.918] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:37:31.918] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:37:34.885] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:39.918] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:43.931] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:37:43.931] INFO  [f6_Voris] [ACTION] use_skill start
+[14:37:43.931] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:37:43.947] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:37:43.947] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:37:43.947] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:37:44.961] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:50.022] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:55.081] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:37:55.968] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:37:55.968] INFO  [f6_Voris] [ACTION] use_skill start
+[14:37:55.968] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:37:55.983] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:37:55.983] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:37:55.983] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:38:00.083] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:05.139] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:08.009] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:38:08.009] INFO  [f6_Voris] [ACTION] use_skill start
+[14:38:08.009] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:38:08.010] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:38:08.010] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:38:08.010] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:38:10.156] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:15.186] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:17.911] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:38:19.232] INFO  [life] goal_changed=FILL_SPELLBOOK from=PRACTICE_SKILL reason="FILL_SPELLBOOK 41.7 superseded PRACTICE_SKILL 36.0"
+[14:38:19.232] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:38:19.232] INFO  [life]   score=41.7
+[14:38:19.232] INFO  [life]   reason: NeedSpells urgency 0.38 x 110 = 41.7
+[14:38:19.232] INFO  [life]   reason: spells 0/24 book=none magery 50.0 gold 684 reserve 600 spare 84 wealth 0.08
+[14:38:19.232] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:38:20.027] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 1)
+[14:38:20.027] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:38:20.027] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:38:20.027] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:38:20.027] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:38:20.210] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:22.033] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 2)
+[14:38:22.033] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:38:22.033] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:38:22.033] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:38:22.033] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:38:24.072] INFO  [life] spellbook: looking for a 'mage' to sell a spellbook (trip 3)
+[14:38:24.072] INFO  [f6_Voris] [travel] Britain mage -> (1485,1550) r=5 from (1485,1550)
+[14:38:24.072] LOG   [f6_Voris] event travel_start: label='Britain mage' target=(1485,1550) radius=5 from=(1485,1550)
+[14:38:24.072] INFO  [f6_Voris] [travel] Britain mage ARRIVED at (1485,1550,30)
+[14:38:24.072] LOG   [f6_Voris] event travel_done: label='Britain mage' ok=1 at=(1485,1550) legs=0 plans=0 why=''
+[14:38:25.228] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:26.109] INFO  [life] goal_failed=FILL_SPELLBOOK reason="no 'mage' reachable after 3 trips"
+[14:38:26.171] INFO  [life] goal=PRACTICE_SKILL reason="previous goal abandoned: no scroll seller reachable"
+[14:38:26.171] INFO  [life] needs considered: NeedSpells(spells 0.38) NeedPractice(Meditation 0.30) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=1 held=[mortar,] want_train=nothing (target 0.0)
+[14:38:26.171] INFO  [life]   score=36.0
+[14:38:26.172] INFO  [life]   reason: NeedPractice urgency 0.30 x 120 = 36.0
+[14:38:26.172] INFO  [life]   reason: Meditation 30.0 -> 50.0 mana=32 no_gain_region=0
+[14:38:26.172] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[14:38:26.172] INFO  [life]   BLOCKED_NEED FILL_SPELLBOOK: on cooldown for another 239s after achieving nothing
+[14:38:26.172] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:38:26.172] INFO  [f6_Voris] [ACTION] use_skill start
+[14:38:26.172] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:38:26.172] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:38:26.172] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:38:26.172] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:38:28.023] INFO  [f6_Voris] [chat ascii] System: World save in 10 seconds
+[14:38:30.233] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:35.292] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:35.997] INFO  [f6_Voris] [chat ascii] Alenne: I'm listenin'.
+[14:38:38.039] INFO  [f6_Voris] [chat ascii] System: World save has been initiated.
+[14:38:38.229] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:38:38.229] INFO  [f6_Voris] [ACTION] use_skill start
+[14:38:38.229] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:38:38.307] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:38:38.307] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (78ms) You are at peace.
+[14:38:38.307] LOG   [f6_Voris] event action_result: use_skill success took=78ms You are at peace.
+[14:38:40.336] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:45.392] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:50.283] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:38:50.283] INFO  [f6_Voris] [ACTION] use_skill start
+[14:38:50.283] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:38:50.298] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:38:50.298] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:38:50.298] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:38:50.453] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:38:55.498] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:00.504] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:02.322] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:39:02.322] INFO  [f6_Voris] [ACTION] use_skill start
+[14:39:02.323] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:39:02.323] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:39:02.323] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:39:02.323] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:39:05.507] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:10.511] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:14.350] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:39:14.350] INFO  [f6_Voris] [ACTION] use_skill start
+[14:39:14.350] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:39:14.350] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:39:14.350] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:39:14.350] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:39:15.569] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:17.953] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:39:20.593] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:24.536] INFO  [f6_Voris] [chat ascii] Shunnar: Hmm?
+[14:39:25.648] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:26.384] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:39:26.384] INFO  [f6_Voris] [ACTION] use_skill start
+[14:39:26.384] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:39:26.384] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:39:26.385] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:39:26.385] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:39:30.670] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:35.673] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:38.415] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:39:38.415] INFO  [f6_Voris] [ACTION] use_skill start
+[14:39:38.415] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:39:38.416] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:39:38.416] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:39:38.416] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:39:40.489] INFO  [f6_Voris] [chat ascii] Xanthe: I'm listenin'.
+[14:39:40.734] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:45.787] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:50.418] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:39:50.418] INFO  [f6_Voris] [ACTION] use_skill start
+[14:39:50.418] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:39:50.433] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:39:50.433] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:39:50.434] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:39:50.801] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:39:55.832] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:00.877] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:02.466] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:40:02.466] INFO  [f6_Voris] [ACTION] use_skill start
+[14:40:02.466] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:40:02.466] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:40:02.466] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:40:02.466] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:40:05.880] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:10.913] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:14.495] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:40:14.495] INFO  [f6_Voris] [ACTION] use_skill start
+[14:40:14.495] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:40:14.510] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:40:14.510] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (15ms) You are at peace.
+[14:40:14.510] LOG   [f6_Voris] event action_result: use_skill success took=15ms You are at peace.
+[14:40:15.972] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:17.961] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:40:21.008] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:26.067] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:26.498] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:40:26.498] INFO  [f6_Voris] [ACTION] use_skill start
+[14:40:26.499] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:40:26.499] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:40:26.499] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:40:26.499] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:40:31.089] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:36.148] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:38.548] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:40:38.548] INFO  [f6_Voris] [ACTION] use_skill start
+[14:40:38.548] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:40:38.548] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:40:38.549] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:40:38.549] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:40:41.164] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:46.209] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:50.578] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:40:50.578] INFO  [f6_Voris] [ACTION] use_skill start
+[14:40:50.578] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:40:50.578] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:40:50.578] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (0ms) You are at peace.
+[14:40:50.578] LOG   [f6_Voris] event action_result: use_skill success took=0ms You are at peace.
+[14:40:51.239] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:40:56.290] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:01.307] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:02.583] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:41:02.583] INFO  [f6_Voris] [ACTION] use_skill start
+[14:41:02.583] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:41:02.583] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:41:02.583] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (1ms) You are at peace.
+[14:41:02.583] LOG   [f6_Voris] event action_result: use_skill success took=1ms You are at peace.
+[14:41:06.366] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:11.398] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:14.585] INFO  [life] practice: using Meditation to raise it (30.0)
+[14:41:14.585] INFO  [f6_Voris] [ACTION] use_skill start
+[14:41:14.585] INFO  [f6_Voris] [ACTION] use_skill id=46 target=0x00000000
+[14:41:14.601] INFO  [f6_Voris] [chat ascii] System: You are at peace.
+[14:41:14.601] INFO  [f6_Voris] [ACTION_RESULT] use_skill success (16ms) You are at peace.
+[14:41:14.601] LOG   [f6_Voris] event action_result: use_skill success took=16ms You are at peace.
+[14:41:14.724] INFO  [life] session_end_requested reason="session time limit reached"
+[14:41:14.739] INFO  [f6_Voris] [chat ascii] System: Tarath has departed from Yew.
+[14:41:14.739] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[14:41:14.739] INFO  [f6_Voris] [travel] Britain banker -> (1425,1690) r=5 from (1485,1550)
+[14:41:14.739] LOG   [f6_Voris] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1485,1550)
+[14:41:14.739] INFO  [f6_Voris] [travel] mode moongate         usable   <- chosen
+[14:41:14.739] INFO  [f6_Voris] [travel] mode walk             usable
+[14:41:14.739] INFO  [f6_Voris] [travel] mode loose_rune_recall no: no rune marked at that destination
+[14:41:14.739] INFO  [f6_Voris] [travel] mode runebook_recall  no: no runebook page for that destination
+[14:41:14.739] LOG   [f6_Voris] event travel_mode: moongate
+[14:41:14.739] INFO  [f6_Voris] [travel] plan Britain banker: ok legs=5 ~168 tiles transit=0 nodes=28
+[14:41:14.785] INFO  [f6_Voris] [action] goto finished at (1485,1550,30); target (1485,1550); ARRIVED (off by 0 tile(s))
+[14:41:14.785] LOG   [f6_Voris] event goto_done: at=(1485,1550) target=(1485,1550) arrived=1 off=0
+[14:41:14.785] INFO  [f6_Voris] [action] goto (1480,1574) from (1485,1550,30)
+[14:41:14.785] LOG   [f6_Voris] event goto_start: target=(1480,1574) from=(1485,1550)
+[14:41:14.785] INFO  [f6_Voris] [bot] running from (1485,1550,30) to (1480,1574)
+[14:41:14.785] INFO  [f6_Voris] [bot] planning path to (1480,1574) in background
+[14:41:14.847] INFO  [f6_Voris] [bot] replan to (1480,1574): 34 steps in 2486.3us
+[14:41:15.002] INFO  [f6_Voris] [chat ascii] System: Ysolde has departed from Britain.
+[14:41:15.156] INFO  [f6_Voris] [chat ascii] System: Bruin has departed from Yew.
+[14:41:16.404] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:21.431] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:24.358] INFO  [f6_Voris] [bot] arrived at (1480,1574,30)
+[14:41:24.358] INFO  [f6_Voris] [action] goto finished at (1480,1574,30); target (1480,1574); ARRIVED (off by 0 tile(s))
+[14:41:24.358] LOG   [f6_Voris] event goto_done: at=(1480,1574) target=(1480,1574) arrived=1 off=0
+[14:41:24.358] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:41:24.358] INFO  [f6_Voris] [action] goto (1464,1608) from (1480,1574,30)
+[14:41:24.358] LOG   [f6_Voris] event goto_start: target=(1464,1608) from=(1480,1574)
+[14:41:24.358] INFO  [f6_Voris] [bot] running from (1480,1574,30) to (1464,1608)
+[14:41:24.358] INFO  [f6_Voris] [bot] planning path to (1464,1608) in background
+[14:41:24.419] INFO  [f6_Voris] [bot] replan to (1464,1608): 48 steps in 1634.3us
+[14:41:26.456] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:31.488] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:36.063] INFO  [f6_Voris] [bot] arrived at (1464,1608,20)
+[14:41:36.063] INFO  [f6_Voris] [action] goto finished at (1464,1608,20); target (1464,1608); ARRIVED (off by 0 tile(s))
+[14:41:36.063] LOG   [f6_Voris] event goto_done: at=(1464,1608) target=(1464,1608) arrived=1 off=0
+[14:41:36.064] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:41:36.064] INFO  [f6_Voris] [action] goto (1464,1640) from (1464,1608,20)
+[14:41:36.064] LOG   [f6_Voris] event goto_start: target=(1464,1640) from=(1464,1608)
+[14:41:36.064] INFO  [f6_Voris] [bot] running from (1464,1608,20) to (1464,1640)
+[14:41:36.064] INFO  [f6_Voris] [bot] planning path to (1464,1640) in background
+[14:41:36.123] INFO  [f6_Voris] [bot] replan to (1464,1640): 32 steps in 1404.5us
+[14:41:36.494] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:41.507] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:45.014] INFO  [f6_Voris] [bot] arrived at (1464,1640,20)
+[14:41:45.015] INFO  [f6_Voris] [action] goto finished at (1464,1640,20); target (1464,1640); ARRIVED (off by 0 tile(s))
+[14:41:45.015] LOG   [f6_Voris] event goto_done: at=(1464,1640) target=(1464,1640) arrived=1 off=0
+[14:41:45.015] INFO  [f6_Voris] [travel] avoiding 2 teleporter pad(s) on this leg
+[14:41:45.015] INFO  [f6_Voris] [action] goto (1448,1672) from (1464,1640,20)
+[14:41:45.015] LOG   [f6_Voris] event goto_start: target=(1448,1672) from=(1464,1640)
+[14:41:45.015] INFO  [f6_Voris] [bot] running from (1464,1640,20) to (1448,1672)
+[14:41:45.015] INFO  [f6_Voris] [bot] planning path to (1448,1672) in background
+[14:41:45.076] INFO  [f6_Voris] [bot] replan to (1448,1672): 37 steps in 2578.7us
+[14:41:46.520] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:48.461] INFO  [f6_Voris] [chat ascii] System: Kaelen has departed from Britain.
+[14:41:51.532] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:41:56.089] INFO  [f6_Voris] [bot] arrived at (1448,1672,10)
+[14:41:56.089] INFO  [f6_Voris] [action] goto finished at (1448,1672,10); target (1448,1672); ARRIVED (off by 0 tile(s))
+[14:41:56.089] LOG   [f6_Voris] event goto_done: at=(1448,1672) target=(1448,1672) arrived=1 off=0
+[14:41:56.089] INFO  [f6_Voris] [action] goto (1425,1690) from (1448,1672,10)
+[14:41:56.089] LOG   [f6_Voris] event goto_start: target=(1425,1690) from=(1448,1672)
+[14:41:56.089] INFO  [f6_Voris] [bot] running from (1448,1672,10) to (1425,1690,z0)
+[14:41:56.089] INFO  [f6_Voris] [bot] planning path to (1425,1690) in background
+[14:41:56.151] INFO  [f6_Voris] [bot] replan to (1425,1690): 42 steps in 6405.4us
+[14:41:56.582] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:42:01.641] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:42:03.619] INFO  [f6_Voris] [bot] step (1440,1694,0)->(1439,1693,0) rejected; OpenDoor + retry
+[14:42:03.619] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[14:42:03.619] INFO  [f6_Voris] [0x20] player @(1440,1694,0) facing=0
+[14:42:03.619] INFO  [f6_Voris] [action] goto finished at (1440,1694,0); target (1425,1690); stopped short (off by 19 tile(s))
+[14:42:03.619] LOG   [f6_Voris] event goto_done: at=(1440,1694) target=(1425,1690) arrived=0 off=19
+[14:42:04.831] INFO  [f6_Voris] [action] goto (1425,1690) from (1440,1694,0)
+[14:42:04.832] LOG   [f6_Voris] event goto_start: target=(1425,1690) from=(1440,1694)
+[14:42:04.832] INFO  [f6_Voris] [bot] running from (1440,1694,0) to (1425,1690,z0)
+[14:42:04.832] INFO  [f6_Voris] [bot] planning path to (1425,1690) in background
+[14:42:04.893] INFO  [f6_Voris] [bot] replan to (1425,1690): 16 steps in 515.5us
+[14:42:05.357] INFO  [f6_Voris] [bot] step (1439,1693,0)->(1438,1692,0) rejected; OpenDoor + retry
+[14:42:05.371] INFO  [f6_Voris] [chat ascii] System: Opening door...
+[14:42:05.371] INFO  [f6_Voris] [0x20] player @(1439,1693,0) facing=0
+[14:42:05.371] INFO  [f6_Voris] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[14:42:05.371] LOG   [f6_Voris] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[14:42:06.604] INFO  [f6_Voris] [action] goto (1425,1690) from (1439,1693,0)
+[14:42:06.604] LOG   [f6_Voris] event goto_start: target=(1425,1690) from=(1439,1693)
+[14:42:06.604] INFO  [f6_Voris] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[14:42:06.604] INFO  [f6_Voris] [bot] planning path to (1425,1690) in background
+[14:42:06.667] INFO  [f6_Voris] [survival] hp 32/32 (100%) -> fight
+[14:42:06.667] INFO  [f6_Voris] [bot] replan to (1425,1690): 15 steps in 369.9us
+[14:42:10.432] INFO  [f6_Voris] [travel] Britain banker ARRIVED at (1429,1690,0)
+[14:42:10.432] LOG   [f6_Voris] event travel_done: label='Britain banker' ok=1 at=(1429,1690) legs=5 plans=1 why=''
+[14:42:10.494] INFO  [life] wind-down: arrived somewhere safe at 1429,1690
+[14:42:10.557] INFO  [life] session_summary duration=1555s goals=0/12 gold=684->684 skills=130.0->130.0 logs=+0 deaths=0 places=2 suppliers=0
+[14:42:10.557] INFO  [life] session_goals families=2 picks=12 top=50% varied=0 | upkeep=6(50%) training=6(50%) | PRACTICE_SKILL=6(50%) FILL_SPELLBOOK=6(50%)
+[14:42:10.559] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionfresh05.voris/state.json
+[14:42:10.559] INFO  [life] logging out
+[14:42:10.559] INFO  [f6_Voris] [action] logout requested
+[14:42:10.559] LOG   [f6_Voris] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[14:42:10.559] INFO  [f6_Voris] [0xD1] logout acknowledged (accepted=1)
+[14:42:10.559] LOG   [f6_Voris] event logout_ack: accepted
+[14:42:10.559] INFO  [f6_Voris] [net] closing connection (logout acknowledged)
+[14:42:10.559] LOG   [f6_Voris] event logout_complete: acked

@@ -159,6 +159,7 @@ enum class ResourceKind : u8 {
     Fishing,
     Reagents,
     Hunting,
+    Food,           // crops in a harvestable farm field
     Count,
 };
 

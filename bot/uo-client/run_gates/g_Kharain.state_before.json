@@ -1,0 +1,472 @@
+{
+  "bank": [
+    {
+      "item": "i_ingot_iron",
+      "qty": 54
+    }
+  ],
+  "bank_seen_ms": 2063594586,
+  "build_plan": {
+    "create_dex": 20,
+    "create_int": 10,
+    "create_skills": [
+      {
+        "skill": 45,
+        "tenths": 500
+      },
+      {
+        "skill": 7,
+        "tenths": 500
+      }
+    ],
+    "create_str": 50,
+    "family": "miner_smith",
+    "skills": [
+      {
+        "skill": 7,
+        "tenths": 1000
+      },
+      {
+        "skill": 45,
+        "tenths": 1000
+      },
+      {
+        "skill": 37,
+        "tenths": 500
+      }
+    ],
+    "target_dex": 100,
+    "target_int": 25,
+    "target_str": 100,
+    "unresolved_tenths": 4500
+  },
+  "checkpoint_ms": 2063879736,
+  "death_count": 0,
+  "goal": {
+    "active": true,
+    "attempts": 0,
+    "failure_reason": "",
+    "kind": "MINE",
+    "progress": 5,
+    "started_at_ms": 2063816484
+  },
+  "home_city": "Minoc",
+  "hunt_return_pending": false,
+  "identity": {
+    "account_name": "RevGen3_02",
+    "character_name": "Kharain",
+    "created_at_ms": 0,
+    "first_seen_at_ms": 1942830021,
+    "identity_id": "revgen3_02.kharain",
+    "last_seen_at_ms": 2063582142,
+    "sessions": 7,
+    "total_play_time_ms": 5315565
+  },
+  "known_spells": [],
+  "known_spells_seen_ms": 0,
+  "last_death_ms": 0,
+  "last_server_report": {
+    "dead": false,
+    "dex": 20,
+    "gold": 9465,
+    "int": 10,
+    "skills": [
+      {
+        "skill": 7,
+        "tenths": 502
+      },
+      {
+        "skill": 45,
+        "tenths": 507
+      },
+      {
+        "skill": 37,
+        "tenths": 0
+      }
+    ],
+    "str": 50,
+    "x": 2572,
+    "y": 483
+  },
+  "ledger": [
+    {
+      "amount": 126,
+      "detail": "i_dagger",
+      "flow": 0,
+      "when_ms": 2042404442
+    },
+    {
+      "amount": 555,
+      "detail": "riding horse",
+      "flow": 6,
+      "when_ms": 2042482450
+    }
+  ],
+  "memory": {
+    "creatures": [],
+    "danger": [],
+    "events": [
+      {
+        "at_ms": 1942830021,
+        "detail": "Minoc",
+        "kind": "newbie_knowledge_seeded",
+        "place": "",
+        "x": 2476,
+        "y": 413
+      },
+      {
+        "at_ms": 1942830220,
+        "detail": "session=1",
+        "kind": "mount_unavailable",
+        "place": "",
+        "x": 2476,
+        "y": 413
+      },
+      {
+        "at_ms": 1942891303,
+        "detail": "opened a bank box",
+        "kind": "bank_learned",
+        "place": "bank",
+        "x": 2504,
+        "y": 555
+      },
+      {
+        "at_ms": 2030638028,
+        "detail": "i_ingot_iron",
+        "kind": "no_player_buyer",
+        "place": "",
+        "x": 1426,
+        "y": 1694
+      },
+      {
+        "at_ms": 2030642651,
+        "detail": "logs",
+        "kind": "first_bank_deposit",
+        "place": "bank",
+        "x": 1426,
+        "y": 1694
+      },
+      {
+        "at_ms": 2030890330,
+        "detail": "i_dagger",
+        "kind": "first_craft",
+        "place": "",
+        "x": 1353,
+        "y": 1778
+      },
+      {
+        "at_ms": 2031784500,
+        "detail": "tinker",
+        "kind": "trainer_unreachable",
+        "place": "",
+        "x": 1353,
+        "y": 1777
+      },
+      {
+        "at_ms": 2042404442,
+        "detail": "i_dagger",
+        "kind": "sold_to_vendor",
+        "place": "blacksmith",
+        "x": 2473,
+        "y": 568
+      },
+      {
+        "at_ms": 2042405694,
+        "detail": "i_ingot_iron",
+        "kind": "sale_refused_policy",
+        "place": "Revolution named iron ingots as a player-market good. An NPC price sets a floor under it and nobody pays a player more than the floor",
+        "x": 2473,
+        "y": 568
+      },
+      {
+        "at_ms": 2042569226,
+        "detail": "riding horse",
+        "kind": "mounted",
+        "place": "",
+        "x": 2565,
+        "y": 485
+      }
+    ],
+    "places": [
+      {
+        "kind": "common_knowledge_bank",
+        "last_verified_ms": 1942830021,
+        "learned_ms": 1942830021,
+        "name": "Minoc banker",
+        "visits": 1,
+        "x": 2503,
+        "y": 552,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_healer",
+        "last_verified_ms": 1942830021,
+        "learned_ms": 1942830021,
+        "name": "Minoc healer",
+        "visits": 1,
+        "x": 2577,
+        "y": 599,
+        "z": 0
+      },
+      {
+        "kind": "common_knowledge_provisioner",
+        "last_verified_ms": 1942830021,
+        "learned_ms": 1942830021,
+        "name": "Minoc provisioner",
+        "visits": 1,
+        "x": 2526,
+        "y": 546,
+        "z": 0
+      },
+      {
+        "kind": "healer",
+        "last_verified_ms": 1942947473,
+        "learned_ms": 1942927144,
+        "name": "Erskine, the healer",
+        "visits": 400,
+        "x": 2578,
+        "y": 596,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2040748651,
+        "learned_ms": 1942991130,
+        "name": "logout point",
+        "visits": 2,
+        "x": 2473,
+        "y": 569,
+        "z": 5
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2063879675,
+        "learned_ms": 2033482490,
+        "name": "logout point",
+        "visits": 3,
+        "x": 2571,
+        "y": 484,
+        "z": 0
+      },
+      {
+        "kind": "safe",
+        "last_verified_ms": 2043201900,
+        "learned_ms": 2042709849,
+        "name": "logout point",
+        "visits": 2,
+        "x": 2504,
+        "y": 554,
+        "z": 0
+      }
+    ],
+    "resources": [
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Minoc Miner's Guild",
+        "last_seen_ms": 1942830021,
+        "last_success_ms": 0,
+        "resource": "ore",
+        "successes": 0,
+        "x": 2456,
+        "y": 493,
+        "z": 15
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "Minoc Mine 1",
+        "last_seen_ms": 2043077252,
+        "last_success_ms": 2043077252,
+        "resource": "ore",
+        "successes": 12,
+        "x": 2558,
+        "y": 499,
+        "z": 0
+      },
+      {
+        "failures": 0,
+        "hinted": true,
+        "label": "The Old Miner's Supplies",
+        "last_seen_ms": 1942830021,
+        "last_success_ms": 0,
+        "resource": "ore",
+        "successes": 0,
+        "x": 2460,
+        "y": 429,
+        "z": 15
+      },
+      {
+        "failures": 0,
+        "hinted": false,
+        "label": "",
+        "last_seen_ms": 2063869485,
+        "last_success_ms": 2063869485,
+        "resource": "ore",
+        "successes": 30,
+        "x": 2572,
+        "y": 481,
+        "z": 0
+      }
+    ],
+    "suppliers": [
+      {
+        "last_verified_ms": 2042404442,
+        "name": "blacksmith",
+        "need": "buyer:i_dagger",
+        "observed_price": 18,
+        "observed_quantity": 0,
+        "policy_allows": true,
+        "serial": 0,
+        "source_type": "npc_vendor",
+        "x": 2473,
+        "y": 568,
+        "z": 5
+      }
+    ],
+    "trainers": []
+  },
+  "prices": [
+    {
+      "item": "i_dagger",
+      "price": 18,
+      "source": 1,
+      "when_ms": 2042404442,
+      "who": "blacksmith",
+      "x": 2473,
+      "y": 568
+    },
+    {
+      "item": "riding horse",
+      "price": 555,
+      "source": 0,
+      "when_ms": 2042482450,
+      "who": "tan horse",
+      "x": 2531,
+      "y": 373
+    }
+  ],
+  "recent_deaths": 0,
+  "schema_version": 2,
+  "sessions": [
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 1942991190,
+      "goals_attempted": 5,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9910,
+      "gold_start": 10000,
+      "logs_gathered": 0,
+      "places_learned": 5,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 1942830021,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2033482551,
+      "goals_attempted": 64,
+      "goals_completed": 4,
+      "goals_failed": 0,
+      "gold_end": 9894,
+      "gold_start": 9910,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 4,
+      "skill_tenths_end": 1000,
+      "skill_tenths_start": 1000,
+      "started_ms": 2029884992,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2039774508,
+      "goals_attempted": 6,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9894,
+      "gold_start": 9894,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1003,
+      "skill_tenths_start": 1003,
+      "started_ms": 2039476995,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2040748713,
+      "goals_attempted": 4,
+      "goals_completed": 0,
+      "goals_failed": 0,
+      "gold_end": 9894,
+      "gold_start": 9894,
+      "logs_gathered": 0,
+      "places_learned": 6,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1005,
+      "skill_tenths_start": 1005,
+      "started_ms": 2040425376,
+      "suppliers_learned": 0
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2042709909,
+      "goals_attempted": 16,
+      "goals_completed": 6,
+      "goals_failed": 0,
+      "gold_end": 9465,
+      "gold_start": 9894,
+      "logs_gathered": 0,
+      "places_learned": 7,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1006,
+      "skill_tenths_start": 1006,
+      "started_ms": 2042387213,
+      "suppliers_learned": 1
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2043201963,
+      "goals_attempted": 2,
+      "goals_completed": 1,
+      "goals_failed": 0,
+      "gold_end": 9465,
+      "gold_start": 9465,
+      "logs_gathered": 0,
+      "places_learned": 7,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1006,
+      "skill_tenths_start": 1006,
+      "started_ms": 2042904379,
+      "suppliers_learned": 1
+    },
+    {
+      "clean_logout": true,
+      "deaths": 0,
+      "ended_ms": 2063879736,
+      "goals_attempted": 4,
+      "goals_completed": 2,
+      "goals_failed": 0,
+      "gold_end": 9465,
+      "gold_start": 9465,
+      "logs_gathered": 0,
+      "places_learned": 7,
+      "self_supersessions": 0,
+      "skill_tenths_end": 1009,
+      "skill_tenths_start": 1009,
+      "started_ms": 2063582142,
+      "suppliers_learned": 1
+    }
+  ]
+}

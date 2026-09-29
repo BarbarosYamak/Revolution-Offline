@@ -1,0 +1,9 @@
+start: Selene is a alchemist and lives in Magincia -> starting city index 5
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:32:40.868] WARN  [wave10_RevGen3_15_Selen] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000F468 landed in 0x40010BA3, not the destination 0x40010AF9
+[17:32:45.921] WARN  [wave10_RevGen3_15_Selen] [ACTION_RESULT] move_item server_failure (16ms) item 0x4000ED2F landed in 0x40010BA3, not the destination 0x40010AF9
+map: verdata 'C:\Projects\RevolutionOffline\local\revolution-client/verdata.mul' applied (685 patch block(s))
+[17:32:54.621] WARN  [wave10_RevGen3_15_Selen] [0x21] move REJECTED seq=15; server says (1439,1693,0) facing=3
+[17:32:54.638] WARN  [wave10_RevGen3_15_Selen] [bot] 0x20 resync; aborting path
+[17:34:09.762] WARN  [wave10_RevGen3_15_Selen] [bot] watchdog: oldest move unacked 5s; aborting path
+[17:34:09.906] WARN  [wave10_RevGen3_15_Selen] [0x22] unsolicited ack seq=51

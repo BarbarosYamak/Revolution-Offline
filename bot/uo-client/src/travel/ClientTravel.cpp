@@ -14,9 +14,14 @@
 #include "uo/travel_mode.h"
 #include "uo/combat_policy.h"
 #include "uo/rules.h"
+#include "uo/world.h"
+#include "world/GuardZoneAdvance.h"
+#include "world/MiningAdvance.h"
+#include "world/ServiceSelection.h"
 
 #include "uo/endian.h"
 
+#include <cctype>
 #include <cstdio>
 #include <cstring>
 
@@ -59,6 +64,12 @@ constexpr i32 kSameFloorZ = 12;
 // the honest answer is that this character cannot get out on its own.
 constexpr int kMaxTravelEscapes = 3;
 
+// Attempts to make one moongate produce its destination dialog. The dialog is
+// opened by the gate's @step trigger and Sphere holds exactly one open at a
+// time, so a gate that has not answered twice is not going to answer a third
+// time either: cancel, give up, and let the route replan on foot.
+constexpr int kMaxGateTries = 3;
+
 } // namespace
 
 // ---------------------------------------------------------------------------
@@ -85,6 +96,15 @@ const wm::Region* Client::CurrentRegion() const {
     return world_knowledge_->atlas.RegionAt(playerX_, playerY_);
 }
 
+// The atlas itself, for callers that need more than one narrow lookup out of
+// it (life::SeedNewbieKnowledge takes the whole thing so it stays Client-free
+// and unit-testable against the real data file). World DATA, not personal
+// knowledge -- the same shard-wide atlas every session shares (SharedWorld.h).
+const world_atlas::Atlas* Client::WorldAtlas() const {
+    if (!world_knowledge_ || !world_knowledge_->ok) return nullptr;
+    return &world_knowledge_->atlas;
+}
+
 const wm::Place* Client::NearestServicePlace(wm::Service s) const {
     if (!world_knowledge_ || !world_knowledge_->ok) return nullptr;
     return world_knowledge_->atlas.NearestPlaceWithService(s, playerX_,
@@ -97,12 +117,36 @@ const wm::Place* Client::NearestResourcePlace(wm::ResourceKind r) const {
                                                             playerY_);
 }
 
+void Client::ResourcePlacesNear(wm::ResourceKind r, i32 x, i32 y,
+                                std::vector<const wm::Place*>& out) const {
+    out.clear();
+    if (!world_knowledge_ || !world_knowledge_->ok) return;
+    for (const wm::Place& p : world_knowledge_->atlas.Places()) {
+        if (p.Yields(r)) out.push_back(&p);
+    }
+    std::sort(out.begin(), out.end(),
+              [x, y](const wm::Place* a, const wm::Place* b) {
+                  return Chebyshev(x, y, a->position.x, a->position.y) <
+                         Chebyshev(x, y, b->position.x, b->position.y);
+              });
+}
+
 bool Client::WithinPlace(const char* nameOrId) const {
     if (!world_knowledge_ || !world_knowledge_->ok) return false;
     const wm::Place* p = world_knowledge_->atlas.FindPlace(nameOrId);
     if (!p) return false;
     return Chebyshev(playerX_, playerY_, p->position.x, p->position.y) <=
            p->radius;
+}
+
+const wm::Place* Client::KnownPlace(const char* nameOrId) const {
+    if (!world_knowledge_ || !world_knowledge_->ok) return nullptr;
+    return world_knowledge_->atlas.FindPlace(nameOrId);
+}
+
+bool Client::PlaceGuarded(const wm::Place& p) const {
+    if (!world_knowledge_ || !world_knowledge_->ok) return false;
+    return world_knowledge_->atlas.PlaceIsGuarded(p);
 }
 
 bool Client::WithinRegion(const char* nameOrId) const {
@@ -133,6 +177,14 @@ bool Client::TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
     travelFailure_.clear();
     travelLabel_ = label ? label : "";
     travelWalkOutstanding_ = false;
+    // A public gate can open its dialog merely by stepping on it.  A new
+    // journey must never inherit the previous journey's choice: otherwise a
+    // food trip that last selected Magincia can make the next mining trip
+    // select Magincia at the Minoc gate.
+    travelGateSerial_ = 0;
+    travelGateDestination_.clear();
+    travelGateTrySerial_ = 0;
+    travelGateTries_ = 0;
     travelStartedDead_ = IsDead();
     // The destination's own floor, where the world data knows one. Britannia's
     // shops are two and three storeys and the shard's spawner rows carry the z
@@ -204,6 +256,319 @@ bool Client::TravelToRegion(const char* nameOrId) {
 }
 
 bool Client::TravelToService(wm::Service s, const char* regionHint) {
+    static const std::vector<u32> kNoSerials;
+    return TravelToServiceSkipping(s, regionHint, kNoSerials, nullptr);
+}
+
+// What the SERVER considers mineable, mirrored exactly rather than guessed.
+//
+// Sphere's gate is CWorldMap::CheckNaturalResource(pt, IT_ROCK) ->
+// IsItemTypeNear(pt, IT_ROCK, 0, false) (Source-X CWorldMap.cpp:52): distance
+// zero, so the STRUCK TILE ITSELF must be rock-typed. FindItemTypeNearby
+// (CWorldMap.cpp:663-795) answers yes for exactly two things we can see from
+// the muls:
+//   1. land whose terrain id GetTerrainItemType maps to t_rock -- and that map
+//      is the shard's own [TYPEDEF t_rock] TERRAIN ranges,
+//      runtime/scripts/types/types_terrain.scp:26-47 (loaded into
+//      g_World.m_TileTypes by CItemTypeDef::r_LoadVal);
+//   2. a static whose ITEMDEF resolves to TYPE=t_rock
+//      (CWorldMap.cpp:781-785, CItemBase::IsType).
+// Everything else -- water, roads, bridges, trees -- is refused with "Try
+// mining elsewhere." (DEFMSG_MINING_1, CCharSkill.cpp:1452). "Unwalkable" was
+// the previous heuristic and it failed both ways: water is unwalkable but not
+// rock (the Minoc bridge incident), and cave floors are walkable AND rock
+// (terrain 0x245-0x259 is in the t_rock list; cave-floor statics 0x53B-0x54F
+// are TYPE=t_rock via DUPEITEM i_floor_cave, i_ground_tiles.scp:7-119).
+
+namespace {
+
+// [TYPEDEF t_rock] TERRAIN ranges, types_terrain.scp:27-46. The file's last
+// entry (0453b-0454f) is item-id space (statics), covered by the static table
+// below instead.
+struct IdRange { u16 lo, hi; };
+constexpr IdRange kRockTerrain[] = {
+    {0x0DC, 0x0E7}, {0x0EC, 0x0F7}, {0x0FC, 0x107}, {0x10C, 0x117},
+    {0x11E, 0x129}, {0x141, 0x144}, {0x1D3, 0x1DA}, {0x1DC, 0x1E7},
+    {0x1EC, 0x1EF}, {0x21F, 0x243}, {0x245, 0x259}, {0x262, 0x265},
+    {0x6CD, 0x6DD}, {0x6EB, 0x6FE}, {0x709, 0x720}, {0x727, 0x73E},
+    {0x745, 0x75C}, {0x7BD, 0x7D4}, {0x7EC, 0x7F1}, {0x834, 0x839},
+};
+
+// Every ITEMDEF the shard scripts resolve to TYPE=t_rock, DUPEITEMs followed
+// (cave floors/edges i_ground_tiles.scp:7-203, stalagmites :205+, boulders
+// :4389+, plus i_offset.scp and i_unsorted.scp entries). Enumerated by
+// parsing runtime/scripts, not recalled from generic UO memory.
+constexpr IdRange kRockStatics[] = {
+    {0x040B, 0x041E}, {0x053B, 0x054F}, {0x0551, 0x0553}, {0x056A, 0x056A},
+    {0x08E0, 0x08EA}, {0x2F62, 0x2FB5}, {0x3341, 0x3351}, {0x3421, 0x3424},
+    {0x3426, 0x3439}, {0x3486, 0x348F}, {0x34AC, 0x34B4}, {0x3539, 0x353C},
+    {0x3DB6, 0x3DB7}, {0x3F28, 0x3F28},
+};
+
+bool InRanges(u16 id, const IdRange* r, usize n) {
+    for (usize i = 0; i < n; ++i)
+        if (id >= r[i].lo && id <= r[i].hi) return true;
+    return false;
+}
+
+}  // namespace
+
+bool Client::RockAt(i32 tx, i32 ty, i8* z, u16* graphic) {
+    if (tx < 0 || ty < 0) return false;
+    if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_)
+        return false;
+    map::LandCell cell{};
+    if (worldMap_->ReadCell(static_cast<u32>(tx), static_cast<u32>(ty),
+                            &cell) &&
+        InRanges(cell.tileId, kRockTerrain,
+                 sizeof(kRockTerrain) / sizeof(kRockTerrain[0]))) {
+        if (z) *z = cell.z;
+        if (graphic) *graphic = 0;
+        return true;
+    }
+    // Rock STATICS: cave floors and the like. Same reasoning as WaterAt's wet
+    // statics -- the server checks the static's scripted type, so an id
+    // whitelist derived from those same scripts is the faithful mirror.
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(tx, ty, 0, hits);
+    for (const world::StaticHit& h : hits) {
+        if (!InRanges(h.itemId, kRockStatics,
+                      sizeof(kRockStatics) / sizeof(kRockStatics[0])))
+            continue;
+        if (z) *z = h.z;
+        if (graphic) *graphic = h.itemId;
+        return true;
+    }
+    return false;
+}
+
+bool Client::NearestMiningSpot(i32 x, i32 y, i8 z, int radius,
+                               MiningSpot* out,
+                               const std::vector<std::pair<i32, i32>>*
+                                   exclude,
+                               bool* allGuarded) {
+    if (allGuarded) *allGuarded = false;
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_)
+        return false;
+    if (radius < 1) radius = 1;
+    // Atlas is a separate load from the map/statics above; harmless to ask
+    // again if a prior caller already brought it up.
+    EnsureWorldKnowledge();
+
+    auto excluded = [&](i32 tx, i32 ty) -> bool {
+        if (!exclude) return false;
+        for (const auto& d : *exclude)
+            if (d.first == tx && d.second == ty) return true;
+        return false;
+    };
+
+    // OWNER RULE: no gathering inside guarded zones -- the same rule
+    // NearestTree enforces for chopping. A rock whose own tile sits inside a
+    // guarded region is not a candidate at all.
+    auto guarded = [&](i32 tx, i32 ty) -> bool {
+        if (!(world_knowledge_ && world_knowledge_->ok)) return false;
+        const wm::Region* r = world_knowledge_->atlas.RegionAt(tx, ty);
+        return r && r->flags.guarded;
+    };
+    bool sawCandidate = false;   // rock found by RockAt, before the guard test
+    bool allWereGuarded = true;
+
+    // ROCK AT EYE LEVEL FIRST. Being rock is not enough: the strike must
+    // also pass CanSeeLOS(m_Act_p) (CCharSkill.cpp:1442-1444), and LOS is
+    // 3D. Live at the Minoc mine mouth the nearest rock by ring order was
+    // the cliff tile whose land z is 34 over the z=0 path -- "You have no
+    // line of sight to that location", every time -- while the mineable cave
+    // floor sat one tile away at the character's own z. So the first sweep
+    // only accepts rock whose surface is within kMineLosZ of the caller's z
+    // (the scale of RESOURCE_Z_CHECK=8 in the engine's own resource search,
+    // CWorldMap.cpp:355, doubled for slopes); the second sweep takes any
+    // rock at all, since a far stand tile may sit at the rock's own level
+    // and see it fine -- the caller's dead-list absorbs a wrong guess.
+    constexpr int kMineLosZ = 16;
+    for (int pass = 0; pass < 2; ++pass) {
+    // Nearest ring first, and rings start at r=1: the engine refuses a target
+    // under 1 tile off (DEFMSG_MINING_CLOSE, CCharSkill.cpp:1432), so the
+    // tile under our own feet is never a target -- even standing on a cave
+    // floor a character strikes the floor BESIDE itself.
+    for (int r = 1; r <= radius; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
+                const i32 rx = x + dx, ry = y + dy;
+                if (excluded(rx, ry)) continue;
+                i8 rz = 0;
+                u16 gfx = 0;
+                if (!RockAt(rx, ry, &rz, &gfx)) continue;
+                // Pass 1 is the exhaustive, no-LOS-restriction sweep, so it is
+                // the one that gets to say "every candidate here was guarded"
+                // -- pass 0's LOS rejects are not guard rejects and would
+                // otherwise be miscounted against the forest.
+                if (pass == 1) sawCandidate = true;
+                if (guarded(rx, ry)) continue;
+                if (pass == 1) allWereGuarded = false;
+                if (pass == 0 && std::abs((int)rz - (int)z) > kMineLosZ)
+                    continue;
+                // Within striking range of the ORIGIN (RANGE=2,
+                // skill45_mining.scp): the origin itself is the stand -- but
+                // only if it can be stood on. When the caller scans from its
+                // own feet that is trivially true; a roaming caller may pass
+                // a jittered origin that landed inside a wall, and handing
+                // that back as a stand tile would aim A* at an unwalkable
+                // goal (the exact failure FishingSpot's vetting exists for).
+                if (r <= 2 && TileIsWalkable(x, y, z)) {
+                    out->standX = x;
+                    out->standY = y;
+                    out->rockX = rx;
+                    out->rockY = ry;
+                    out->rockZ = rz;
+                    out->rockGraphic = gfx;
+                    return true;
+                }
+                // Further out: the spot is only useful with somewhere legal
+                // to swing FROM. Adjacent (all 8 ways -- a diagonal stand is
+                // distance 1 under the shard's Chebyshev DistanceFormula=0,
+                // sphere.ini:1055) and QueryCell-walkable, the same vetting
+                // FishingSpot learned the hard way: a stand A* rejects kills
+                // every walk aimed at it.
+                bool haveStand = false;
+                int bestD = 0;
+                i32 bsx = 0, bsy = 0;
+                for (int ny = -1; ny <= 1; ++ny) {
+                    for (int nx = -1; nx <= 1; ++nx) {
+                        if (!nx && !ny) continue;
+                        const i32 sx = rx + nx, sy = ry + ny;
+                        if (sx < 0 || sy < 0) continue;
+                        if (!TileIsWalkable(sx, sy, rz)) continue;
+                        const int d = std::max(std::abs(sx - x),
+                                               std::abs(sy - y));
+                        if (haveStand && d >= bestD) continue;
+                        haveStand = true;
+                        bestD = d;
+                        bsx = sx;
+                        bsy = sy;
+                    }
+                }
+                if (!haveStand) continue;   // a face with no footing
+                out->standX = bsx;
+                out->standY = bsy;
+                out->rockX = rx;
+                out->rockY = ry;
+                out->rockZ = rz;
+                out->rockGraphic = gfx;
+                return true;
+            }
+        }
+    }
+    }
+    if (allGuarded) *allGuarded = sawCandidate && allWereGuarded;
+    return false;
+}
+
+// How far a single deeper-advance walks into a cave before DoMine rescans.
+// Bounded so an advance is a step, not a leap at ground nothing has looked
+// at yet -- kMineScanRadius (24, Runner.cpp) then comfortably covers the
+// newly-reached ground on the next scan. Three of these covers Minoc Mine
+// 1's full depth (its RECT reaches 27 tiles from the south mouth) with room
+// to spare.
+constexpr i32 kMineAdvanceStep = 20;
+
+bool Client::DeeperMiningTarget(i32 curX, i32 curY, i32* outX,
+                                i32* outY) const {
+    if (!(world_knowledge_ && world_knowledge_->ok)) return false;
+    // Resolve the mining PLACE the same way TravelToResource does, then walk
+    // its regionId to the REGION -- more reliable than RegionAt(curX,curY),
+    // since TravelToResource's own arrival radius can leave the character on
+    // the wrong side of a RECT boundary from the exact point it was aiming
+    // at.
+    const wm::Place* p = world_knowledge_->atlas.NearestPlaceWithResource(
+        wm::ResourceKind::Mining, curX, curY);
+    if (!p || p->regionId.empty()) return false;
+    const wm::Region* r = world_knowledge_->atlas.RegionById(
+        p->regionId.c_str());
+    // ONLY CAVES HAVE A MOUTH TO BE PICKED CLEAN AT. Open-air mountainside
+    // rock (Wilderness/Unknown regions) has no entrance geometry for this to
+    // reason about; the ordinary small jitter DoMine already does is the
+    // right roam there.
+    if (!r || r->kind != wm::RegionKind::Cave) return false;
+    return world_atlas::DeeperMiningPoint(*r, curX, curY, kMineAdvanceStep,
+                                          outX, outY);
+}
+
+// How far a single "step out of the guard line" walks before DoGatherLogs
+// rescans. Sized for a town AREADEF rather than a cave mouth -- Britain's own
+// RECT (data/revolution_atlas.txt, a_townBritain) runs roughly 260 tiles
+// across, so a handful of these clears it.
+constexpr i32 kGuardZoneStepLimit = 40;
+
+bool Client::StepOutOfGuardZone(i32 curX, i32 curY, i32* outX,
+                                i32* outY) const {
+    if (!(world_knowledge_ && world_knowledge_->ok)) return false;
+    const wm::Region* r = world_knowledge_->atlas.RegionAt(curX, curY);
+    if (!r || !r->flags.guarded) return false;
+    return world_atlas::StepOutOfGuardedRegion(*r, curX, curY,
+                                               kGuardZoneStepLimit, outX,
+                                               outY);
+}
+
+bool Client::TileIsWalkable(i32 x, i32 y, i8 fromZ) const {
+    if (!world_ || x < 0 || y < 0) return false;
+    world::WalkQuery q{};
+    q.x = static_cast<u32>(x);
+    q.y = static_cast<u32>(y);
+    q.fromZ = fromZ;
+    q.maxStepUp = 127;
+    q.maxStepDown = 127;
+    return world_->QueryCell(q).walkable;
+}
+
+i32 Client::DistanceToResource(wm::ResourceKind r) const {
+    if (!world_knowledge_) return -1;
+    const wm::Place* p =
+        world_knowledge_->atlas.NearestPlaceWithResource(r, playerX_, playerY_);
+    if (!p) return -1;
+    const i32 dx = p->position.x - playerX_;
+    const i32 dy = p->position.y - playerY_;
+    const i32 ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+    const i32 toCentre = ax > ay ? ax : ay;
+    // TO THE EDGE, NOT THE CENTRE. A resource area is a REGION, not a point:
+    // Minoc's mining places carry radius 20, so a character at its boundary is
+    // 20 tiles from the recorded position and very much at work. Measuring to
+    // the middle made Corwyn "48 tiles from ore" while standing in the mining
+    // district.
+    const i32 edge = toCentre - p->radius;
+    return edge < 0 ? 0 : edge;
+}
+
+bool Client::MiningInteriorTarget(i32 nearX, i32 nearY, u32 lane, i32* outX,
+                                  i32* outY) const {
+    if (!outX || !outY || !(world_knowledge_ && world_knowledge_->ok))
+        return false;
+    const wm::Place* p = world_knowledge_->atlas.NearestPlaceWithResource(
+        wm::ResourceKind::Mining, nearX, nearY);
+    if (!p || p->regionId.empty()) return false;
+    const wm::Region* r = world_knowledge_->atlas.RegionById(
+        p->regionId.c_str());
+    if (!r || r->kind != wm::RegionKind::Cave || r->rects.empty()) return false;
+
+    return world_atlas::MiningInteriorPoint(*r, lane, outX, outY);
+}
+
+bool Client::WithinMiningRegion(i32 nearX, i32 nearY, i32 x, i32 y) const {
+    if (!(world_knowledge_ && world_knowledge_->ok)) return false;
+    const wm::Place* p = world_knowledge_->atlas.NearestPlaceWithResource(
+        wm::ResourceKind::Mining, nearX, nearY);
+    if (!p || p->regionId.empty()) return false;
+    const wm::Region* r = world_knowledge_->atlas.RegionById(
+        p->regionId.c_str());
+    if (!r || r->kind != wm::RegionKind::Cave) return false;
+    return r->Contains(x, y);
+}
+
+bool Client::TravelToServiceSkipping(wm::Service s, const char* regionHint,
+                                     const std::vector<u32>& skipSerials,
+                                     std::vector<std::string>* skipPlaceIds,
+                                     bool farOk, bool armouryOnly) {
     if (!EnsureWorldKnowledge()) {
         travelFailure_ = WorldKnowledgeError();
         return false;
@@ -212,8 +577,29 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
     // Live state beats stored state: if this character has actually seen a
     // provider of this service recently, go to where it saw one rather than to
     // where the shard's spawner table says the shop is.
-    if (const travel::ServiceSighting* seen =
+    //
+    // Not for an armoury errand: a sighting is filed by service, and the
+    // service is "blacksmith", so the remembered NPC is usually the smith who
+    // sells no leather (the very shop the errand is trying to get away from).
+    if (const travel::ServiceSighting* seen = armouryOnly ? nullptr :
             knowledge_.RecentService(s, NowMs(), kServiceSightingMaxAgeMs)) {
+        bool skipped = false;
+        for (u32 sk : skipSerials) {
+            if (sk == seen->serial) { skipped = true; break; }
+        }
+        if (skipped) {
+            // The one this character has actually seen is the one it has
+            // already given up on. Fall through to the atlas rather than walk
+            // back to it -- otherwise a sighting pins the character to a
+            // single NPC for the whole session.
+            goto try_atlas;
+        }
+        // If the NPC is still in view, select a real stand tile around it.
+        // Aiming the route at the occupied NPC tile makes A* report no path
+        // for vendors behind counters even when the customer side is open.
+        i32 liveX = 0, liveY = 0;
+        if (MobilePosition(seen->serial, &liveX, &liveY))
+            return TravelToEntity(seen->serial, 2);
         travelEntitySerial_ = seen->serial;
         travelEntityWithin_ = 2;
         char label[96];
@@ -222,12 +608,104 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
                            seen->z);
     }
 
-    const wm::Place* p =
-        regionHint && *regionHint
-            ? world_knowledge_->atlas.NearestPlaceWithServiceInRegion(
-                  s, regionHint, playerX_, playerY_)
-            : world_knowledge_->atlas.NearestPlaceWithService(s, playerX_,
-                                                              playerY_);
+try_atlas:
+    // HOME FIRST, then anywhere. A region hint that finds nothing must not
+    // strand the character: a mage living in Moonglow still needs a banker
+    // when it is standing in Britain.
+    const wm::Place* p = nullptr;
+    const std::vector<std::string> noPlaces;
+    const std::vector<std::string>& skipPlaces =
+        skipPlaceIds ? *skipPlaceIds : noPlaces;
+    if (regionHint && *regionHint && skipPlaces.empty()) {
+        p = world_knowledge_->atlas.NearestPlaceWithServiceInRegion(
+                s, regionHint, playerX_, playerY_);
+        // AN ARMOURY IS NOT A SMITHY (see below) -- a region-scoped pick is
+        // not exempt from that rule either. Fall through to the ranked
+        // search rather than settle for it.
+        if (p && s == wm::Service::Blacksmith &&
+            (p->id.find("armorer") != std::string::npos) != armouryOnly) {
+            p = nullptr;
+        }
+    }
+    // AN ARMOURY IS NOT A SMITHY. The atlas files both under `blacksmith`,
+    // and in Minoc the armorer at 2533,572 is 30 tiles nearer than the real
+    // smithy -- so a smelting errand went there every single time, to a lone
+    // forge with no walkable tile beside it. "do not go that armorer"
+    // (project owner, 2026-08-29, after asking twice for The Forgery).
+    //
+    // Built once here rather than skipped by the caller, so it applies to
+    // every city, not just the one that was noticed -- and only when a real
+    // smithy exists somewhere; an armoury is still better than nothing.
+    std::vector<std::string> effectiveSkip = skipPlaces;
+    if (armouryOnly) {
+        // THE MIRROR CASE. Leather armour is stocked only by c_armorer
+        // (VENDOR_S_ARMORER_LEATHER); a smithy carries ring/chain/plate. The
+        // rule below would steer a leather errand to every smithy in turn and
+        // never to an armoury, which is how Castor toured three blacksmiths
+        // for a 0x13C5 none of them sold (2026-09-03).
+        for (const wm::Place& pl : world_knowledge_->atlas.Places()) {
+            if (pl.Offers(s) && pl.id.find("armorer") == std::string::npos)
+                effectiveSkip.push_back(pl.id);
+        }
+    } else if (s == wm::Service::Blacksmith) {
+        bool anyNonArmoury = false;
+        for (const wm::Place& pl : world_knowledge_->atlas.Places()) {
+            if (!pl.Offers(s)) continue;
+            bool already = false;
+            for (const std::string& id : skipPlaces)
+                if (id == pl.id) { already = true; break; }
+            if (already) continue;
+            if (pl.id.find("armorer") == std::string::npos) {
+                anyNonArmoury = true;
+                break;
+            }
+        }
+        if (anyNonArmoury) {
+            for (const wm::Place& pl : world_knowledge_->atlas.Places()) {
+                if (pl.Offers(s) && pl.id.find("armorer") != std::string::npos)
+                    effectiveSkip.push_back(pl.id);
+            }
+        }
+    }
+    if (!p) {
+        // RANKED BY REAL TRIP COST, not raw map distance. The candidate the
+        // atlas calls "nearest" can be a shop with no walkable ground beside
+        // it or one three moongates away; PickServicePlace tries several
+        // distance-sorted candidates through the actual route planner and
+        // prefers fewer transit hops, capping the trip at ~1200 tiles unless
+        // `farOk` says the errand demands going further
+        // (docs/CRAFTER_RUN_2026_08_30.md defect 4: a Minoc smith was sent to
+        // "Sea Market blacksmith" -- no walkable ground -- then to "Papua
+        // weaponsmith", 904 tiles and three gates into the Lost Lands, while
+        // Minoc's own smithy went unvisited).
+        if (world_knowledge_->planner) {
+            std::vector<world_atlas::ServiceRejection> rejections;
+            const world_atlas::ServicePick pick = world_atlas::PickServicePlace(
+                world_knowledge_->atlas, *world_knowledge_->planner, s,
+                playerX_, playerY_, effectiveSkip, farOk, &rejections);
+            for (const world_atlas::ServiceRejection& rej : rejections) {
+                LogInfo("[travel] place: skipping %s -- %s\n",
+                        rej.place->name.c_str(), rej.reason.c_str());
+            }
+            p = pick.place;
+            if (p && pick.exceededCap) {
+                LogInfo("[travel] place: %s is %d tiles / %zu gate(s) -- past "
+                        "the usual trip budget, but nothing closer offers "
+                        "%s\n",
+                        p->name.c_str(), pick.estimatedTiles,
+                        pick.transitHops, wm::ServiceName(s));
+            }
+        } else {
+            // No route planner (navgrid missing) -- fall back to plain
+            // distance, same as before this policy existed.
+            p = world_knowledge_->atlas.NearestPlaceWithServiceSkipping(
+                s, playerX_, playerY_, effectiveSkip);
+        }
+        if (p && skipPlaceIds) {
+            // Armouries stepped over this call stay skipped next time too.
+            *skipPlaceIds = effectiveSkip;
+        }
+    }
     if (!p) {
         travelFailure_ = "no known provider of that service";
         LogWarn("[travel] no place offers %s%s%s\n", wm::ServiceName(s),
@@ -236,8 +714,113 @@ bool Client::TravelToService(wm::Service s, const char* regionHint) {
         return false;
     }
     travelEntitySerial_ = 0;
+    // Record which shop this was, so a caller that strikes out here asks
+    // for a different one next time instead of walking the same road again.
+    if (skipPlaceIds) skipPlaceIds->push_back(p->id);
     return TravelBegin(p->name.c_str(), p->position.x, p->position.y,
                        p->radius, /*hasZ=*/true, p->position.z);
+}
+
+bool Client::TravelToUnexploredPlace(const std::vector<std::string>& seen,
+                                     std::string* chosenId,
+                                     const char* regionHint) {
+    if (!EnsureWorldKnowledge()) {
+        travelFailure_ = WorldKnowledgeError();
+        return false;
+    }
+    // Nearest place not already known. Nearest rather than random so a
+    // character explores outward from where it is instead of criss-crossing
+    // the map, and so the walk stays short enough to finish inside a goal.
+    //
+    // AND ONLY AROUND HOME. "Nearest from where I stand" with no fence is a
+    // random walk across the map: once Britain's shops were all known, Odessa
+    // was sent to Cove (1,360 tiles), and from Cove the nearest unknown was
+    // Minoc -- "Odessa always going somewhere" (project owner, 2026-09-02).
+    // A player learns their own town; when the home region holds nothing new
+    // this fails and the caller stands down, which is the right answer.
+    const wm::Region* home =
+        regionHint && *regionHint ? world_knowledge_->atlas.FindRegion(regionHint)
+                                  : nullptr;
+    auto sameRegionId = [](const std::string& a, const std::string& b) {
+        if (a.size() != b.size()) return false;
+        for (size_t i = 0; i < a.size(); ++i) {
+            if (std::tolower(static_cast<unsigned char>(a[i])) !=
+                std::tolower(static_cast<unsigned char>(b[i])))
+                return false;
+        }
+        return true;
+    };
+    const wm::Place* best = nullptr;
+    i64 bestD = 0;
+    for (const wm::Place& p : world_knowledge_->atlas.Places()) {
+        bool known = false;
+        for (const std::string& s : seen) {
+            if (s == p.id) { known = true; break; }
+        }
+        if (known) continue;
+        // Somewhere worth knowing: a shop, a bank, a healer, an inn. Wilderness
+        // and dungeon mouths are not what a character is short of.
+        if (p.services.empty()) continue;
+        if (home && !sameRegionId(p.regionId, home->id) &&
+            !home->Contains(p.position.x, p.position.y))
+            continue;
+        const i64 dx = p.position.x - playerX_;
+        const i64 dy = p.position.y - playerY_;
+        const i64 d = dx * dx + dy * dy;
+        if (!best || d < bestD) { best = &p; bestD = d; }
+    }
+    if (!best) {
+        travelFailure_ = home ? "every place with a service around home is already known"
+                              : "every place with a service is already known";
+        return false;
+    }
+    if (chosenId) *chosenId = best->id;
+    travelEntitySerial_ = 0;
+    const i32 radius = best->radius > 6 ? 6 : best->radius;
+    return TravelBegin(best->name.c_str(), best->position.x, best->position.y,
+                       radius, /*hasZ=*/true, best->position.z);
+}
+
+bool Client::TravelToPlaceCategory(wm::PlaceCategory c) {
+    if (!EnsureWorldKnowledge()) {
+        travelFailure_ = WorldKnowledgeError();
+        return false;
+    }
+    const wm::Place* p =
+        world_knowledge_->atlas.NearestPlaceOfCategory(c, playerX_, playerY_);
+    if (!p) {
+        travelFailure_ = "no known place of that kind";
+        LogWarn("[travel] no place of category %s is known\n",
+                wm::PlaceCategoryName(c));
+        return false;
+    }
+    travelEntitySerial_ = 0;
+    // Arrive INSIDE it, not at its rim: a graveyard is a place to stand in the
+    // middle of, and the things worth meeting are spread across it.
+    const i32 radius = p->radius > 8 ? 8 : p->radius;
+    return TravelBegin(p->name.c_str(), p->position.x, p->position.y, radius,
+                       /*hasZ=*/true, p->position.z);
+}
+
+bool Client::TravelToHuntingGround(std::string* chosenName) {
+    if (!EnsureWorldKnowledge()) {
+        travelFailure_ = WorldKnowledgeError();
+        return false;
+    }
+    const wm::Place* p = world_knowledge_->atlas.NearestHuntingGround(
+        playerX_, playerY_);
+    if (!p) {
+        travelFailure_ = "no known hunting ground";
+        LogWarn("[travel] no hunting ground is known\n");
+        return false;
+    }
+    if (chosenName) *chosenName = p->name;
+    travelEntitySerial_ = 0;
+    // Same "arrive inside it, not at its rim" reasoning as
+    // TravelToPlaceCategory -- a graveyard's dead are spread across it.
+    const i32 radius = p->radius > 8 ? 8 : p->radius;
+    return TravelBegin(p->name.c_str(), p->position.x, p->position.y, radius,
+                       /*hasZ=*/true, p->position.z);
 }
 
 bool Client::TravelToResource(wm::ResourceKind r) {
@@ -259,17 +842,67 @@ bool Client::TravelToResource(wm::ResourceKind r) {
     return TravelBegin(p->name.c_str(), p->position.x, p->position.y, radius);
 }
 
-bool Client::TravelToEntity(u32 serial, i32 within) {
+bool Client::TravelEntityStand(u32 serial, i32 within, bool rotateChoice,
+                               i32* outX, i32* outY, i8* outZ) {
+    if (!outX || !outY || !outZ) return false;
     i32 mx = 0, my = 0;
-    if (!MobilePosition(serial, &mx, &my)) {
+    i8 mz = 0;
+    if (!MobilePosition(serial, &mx, &my, &mz)) {
         travelFailure_ = "that mobile is not in view";
         return false;
     }
+    const i32 reach = within > 0 ? within : 1;
+
+    // Route to a tile the character can occupy, not to the mobile's occupied
+    // tile. Prefer the candidate closest to us so counters and shop walls do
+    // not pull the path toward the sealed side of an otherwise usable NPC.
+    struct StandCandidate { i32 x, y, cost; };
+    std::vector<StandCandidate> candidates;
+    for (i32 dy = -reach; dy <= reach; ++dy) {
+        for (i32 dx = -reach; dx <= reach; ++dx) {
+            if (dx == 0 && dy == 0) continue;
+            if (std::max(std::abs(dx), std::abs(dy)) > reach) continue;
+            const i32 sx = mx + dx, sy = my + dy;
+            if (!TileIsWalkable(sx, sy, mz)) continue;
+            candidates.push_back({sx, sy,
+                                  Chebyshev(playerX_, playerY_, sx, sy)});
+        }
+    }
+    if (candidates.empty()) {
+        travelFailure_ = "no walkable interaction tile around that mobile";
+        return false;
+    }
+    std::sort(candidates.begin(), candidates.end(),
+              [](const StandCandidate& a, const StandCandidate& b) {
+                  if (a.cost != b.cost) return a.cost < b.cost;
+                  if (a.y != b.y) return a.y < b.y;
+                  return a.x < b.x;
+              });
+    u32& nextChoice = travelEntityApproachChoice_[serial];
+    const StandCandidate& stand = candidates[nextChoice % candidates.size()];
+    if (rotateChoice) ++nextChoice;
+    *outX = stand.x;
+    *outY = stand.y;
+    *outZ = mz;
+    return true;
+}
+
+bool Client::TravelToEntity(u32 serial, i32 within) {
+    const i32 reach = within > 0 ? within : 1;
+    i32 sx = 0, sy = 0;
+    i8 sz = 0;
+    if (!TravelEntityStand(serial, reach, /*rotateChoice=*/true,
+                           &sx, &sy, &sz))
+        return false;
+
+    // Retain the serial as well as the stand tile. TravelRetargetEntity
+    // rebuilds the stand tile if this NPC wanders while we are on the way.
     travelEntitySerial_ = serial;
-    travelEntityWithin_ = within > 0 ? within : 1;
+    travelEntityWithin_ = reach;
     char label[64];
     std::snprintf(label, sizeof(label), "mobile 0x%08X", serial);
-    return TravelBegin(label, mx, my, travelEntityWithin_);
+    LogInfo("[travel] entity stand at (%d,%d)\n", sx, sy);
+    return TravelBegin(label, sx, sy, 0, /*hasZ=*/true, sz);
 }
 
 bool Client::TravelToLastCorpse() {
@@ -295,6 +928,9 @@ bool Client::ReturnHome() {
 }
 
 void Client::TravelAbort(const char* why) {
+    // A direct chase may be active without a journey. Emergency retreat must
+    // cancel it too, or the old target keeps pulling us back into contact.
+    if (nav_.bot.active || nav_.bot.planning) BotAbortPath(why ? why : "travel aborted");
     if (!journey_.Active()) return;
     journey_.Abort(why);
     if (nav_.bot.active || nav_.bot.planning) BotAbortPath(why ? why : "travel aborted");
@@ -332,6 +968,20 @@ void Client::TravelFinish(bool ok, const char* why) {
 
     travelSucceeded_ = ok;
     if (!ok) travelFailure_ = why ? why : "";
+
+    // A journey is allowed to finish inside its arrival radius, rather than
+    // only on the atlas anchor itself.  Do not leave the tile A* walking the
+    // last few tiles after reporting that arrival: Sphere binds an open bank
+    // box to the exact character position that said "bank", so continuing
+    // from that valid nearby tile made every subsequent deposit look like a
+    // remote/cheating drop and bounce back into the backpack.  This is not a
+    // banking special case -- any completed journey must relinquish its
+    // remaining movement before its caller performs an interaction.
+    if (nav_.bot.active || nav_.bot.planning)
+        BotAbortPath(ok ? "travel arrived within destination radius"
+                        : "travel failed");
+    travelWalkOutstanding_ = false;
+
     LogInfo("[travel] %s %s at (%d,%d,%d)%s%s\n", travelLabel_.c_str(),
             ok ? "ARRIVED" : "FAILED", playerX_, playerY_,
             static_cast<int>(playerZ_), why && *why ? " -- " : "",
@@ -343,11 +993,6 @@ void Client::TravelFinish(bool ok, const char* why) {
                   journey_.LegCount(), journey_.RoutePlans(), why ? why : "");
     LogEvent(ok ? "travel_done" : "travel_failed", ev);
     if (ok) TravelNotePlaceReached(playerX_, playerY_);
-    // Route memory is part of the persistent life (M4): a destination that
-    // keeps failing should stop being walked at every session.
-    if (lifeActive_)
-        life::NoteRoute(&lifeRecord_, travelLabel_.c_str(), ok, why,
-                        life::NowClock(NowMs()).wallMs);
 }
 
 void Client::TravelNotePlaceReached(i32 x, i32 y) {
@@ -363,19 +1008,31 @@ void Client::TravelNotePlaceReached(i32 x, i32 y) {
 
 void Client::TravelRetargetEntity() {
     if (!travelEntitySerial_ || !journey_.Active()) return;
-    i32 mx = 0, my = 0;
-    i8 mz = 0;
-    if (!MobilePosition(travelEntitySerial_, &mx, &my, &mz)) {
+    i32 sx = 0, sy = 0;
+    i8 sz = 0;
+    // A stationary NPC can still have several customer-side tiles.  Once a
+    // route to one of them has failed and recovery has put us back into route
+    // planning, rotate the stand choice instead of retrying the same sealed
+    // counter corner.  This is particularly important for ghosts: a healer
+    // may be visible from another room, while one blocked doorway otherwise
+    // holds the resurrection journey for its whole retry budget.
+    const bool rotateAfterFailedApproach =
+        journey_.CurrentPhase() == travel::Phase::NeedRoute &&
+        journey_.RoutePlans() > 0;
+    if (!TravelEntityStand(travelEntitySerial_, travelEntityWithin_,
+                           rotateAfterFailedApproach, &sx, &sy, &sz)) {
         // Out of view. The last known position still stands as a destination:
         // the server will show us the mobile again when we get near it.
         return;
     }
-    if (Chebyshev(mx, my, journey_.GoalX(), journey_.GoalY()) <= 2) return;
-    // The mobile wandered. Re-aim rather than walk to where it used to be --
-    // and pin its floor, so an NPC on a shop's upper storey is chased to the
-    // storey, not to the ground under it.
-    journey_.Begin(travelLabel_.c_str(), mx, my, travelEntityWithin_, NowMs(),
-                   /*hasGoalZ=*/true, mz);
+    if (sx == journey_.GoalX() && sy == journey_.GoalY() &&
+        (!travelHasGoalZ_ || sz == travelGoalZ_))
+        return;
+    // The mobile wandered. Re-aim at a customer-side stand tile rather than
+    // at its occupied tile, and pin its floor so an NPC upstairs is not
+    // chased to the ground under it.
+    journey_.Begin(travelLabel_.c_str(), sx, sy, 0, NowMs(),
+                   /*hasGoalZ=*/true, sz);
     travelWalkOutstanding_ = false;
     if (nav_.bot.active || nav_.bot.planning)
         BotAbortPath("travel target moved");
@@ -491,6 +1148,11 @@ void Client::TravelPlanRoute() {
             travelLabel_.c_str(), r.ok ? "ok" : r.failure, r.legs.size(),
             r.estimatedTiles, r.transitHops, r.nodesExpanded);
 
+    // Recorded even when the plan failed (0 tiles is a fine answer then) so a
+    // caller reading TravelLastPlannedTiles() right after a TravelToXxx() call
+    // never sees a stale number from a previous, unrelated trip.
+    travelPlannedTiles_ = r.ok ? r.estimatedTiles : 0;
+
     journey_.SetRoute(r, NowMs());
     journey_.NoteCommandIssued(travel::Command::PlanRoute, NowMs());
     if (journey_.CurrentPhase() == travel::Phase::Failed) {
@@ -553,6 +1215,7 @@ void Client::TravelDriveLeg() {
     i32 tx = 0, ty = 0;
     i8 tz = 0;
     journey_.CommandTarget(&tx, &ty, &tz);
+    const route::RouteLeg* cur = journey_.CurrentLeg();
 
     if (GotoBusy()) return;   // a previous trip is still settling
 
@@ -571,6 +1234,21 @@ void Client::TravelDriveLeg() {
 
     travelLegTargetX_ = tx;
     travelLegTargetY_ = ty;
+
+    // Sphere opens a public-gate gump as the character steps onto the gate,
+    // which can be before Journey advances from this approach walk to the
+    // transit leg.  Arm the intended choice *before* walking the last leg so
+    // OnGenericGump can answer that immediate dialog.  Waiting until
+    // TravelUseTransit was too late for Draver: the dialog had already timed
+    // out and a double-click thereafter received no reply.
+    const route::RouteLeg* next = journey_.NextLeg();
+    if (next && next->kind == route::LegKind::Moongate &&
+        !next->label.empty()) {
+        travelGateSerial_ = 0;
+        travelGateDestination_ = next->label;
+        LogInfo("[travel] pre-armed moongate destination '%s' while approaching\n",
+                travelGateDestination_.c_str());
+    }
     travelWalkOutstanding_ = true;
     TravelRefreshAvoidPads(tx, ty);
     journey_.NoteCommandIssued(travel::Command::WalkTo, NowMs());
@@ -596,6 +1274,39 @@ void Client::TravelDriveLeg() {
         ActionGoto(tx, ty, /*hasZ=*/true, travelGoalZ_);
         return;
     }
+    // A transit leg's own target carries a real z from the atlas (the pad or
+    // gate's actual elevation, RoutePlanner.cpp:427) -- unlike an ordinary
+    // walk waypoint, whose z is a coarse navgrid-anchor value or (for the
+    // very last hop, RoutePlanner.cpp:458) an unconditional 0 that must NOT
+    // be trusted as a hard goal. Passing it through here fixes an approach
+    // A* could otherwise starve on (wave 2, 2026-09-01: Ithion "no path" to
+    // the New Magincia gate 10x -- the pad sits 12 z above the surrounding
+    // shore, and a z-blind goto let A* burn its whole node budget probing
+    // the wrong floor before ever finding the ramp).
+    if (cur && cur->kind == route::LegKind::Teleporter) {
+        ActionGoto(tx, ty, /*hasZ=*/true, tz, /*allowBlockedGoal=*/true);
+        return;
+    }
+    if (cur && cur->kind == route::LegKind::Moongate) {
+        ActionGoto(tx, ty, /*hasZ=*/true, tz);
+        return;
+    }
+    // The walk leg immediately before a teleporter hop (RoutePlanner emits it
+    // as a separate Walk leg targeting the pad, RoutePlanner.cpp ~534) must
+    // land exactly on the pad tile. Sphere's own decoration for the spot (a
+    // pentagram, or the shield_chaos graphic standing in for the t_telepad
+    // item) routinely reads as an obstacle to our terrain/dynamic-item
+    // walkability model even though the exact tile is precisely where the
+    // mechanic fires -- without this the tile A* quietly settles for the
+    // nearest walkable neighbour and the leg never actually reaches the pad
+    // (2026-09-07, Alder/tp_278: goto (5736,3196) always stopped at
+    // (5735,3195), off by 1 diagonal tile, forever).
+    if (next && next->kind == route::LegKind::Teleporter &&
+        next->target.x == tx && next->target.y == ty) {
+        ActionGoto(tx, ty, /*hasZ=*/true, next->target.z,
+                  /*allowBlockedGoal=*/true);
+        return;
+    }
     ActionGoto(tx, ty);
 }
 
@@ -605,8 +1316,21 @@ void Client::TravelUseTransit() {
 
     if (leg->kind == route::LegKind::Teleporter) {
         // A Sphere teleporter pad fires when you step on it. The walk leg
-        // before this one already put us on the tile, so there is nothing to
-        // send: the journey just waits for the position jump.
+        // before this one is supposed to have put us exactly on the tile
+        // (TravelDriveLeg/TravelTick's exact-arrival requirement); verify it
+        // rather than trusting that -- a plan that changed under us, or a
+        // leg that reached this phase some other way, must not sit here
+        // logging "standing on it" forever while never actually being on it.
+        if (playerX_ != leg->target.x || playerY_ != leg->target.y) {
+            LogWarn("[travel] not standing on teleporter %s pad (%d,%d); at "
+                    "(%d,%d) instead -- failing the leg\n",
+                    leg->transitId.c_str(), leg->target.x, leg->target.y,
+                    playerX_, playerY_);
+            journey_.OnLegFailed("missed the teleporter pad", NowMs());
+            return;
+        }
+        // There is nothing to send: the journey just waits for the position
+        // jump.
         journey_.NoteCommandIssued(travel::Command::UseTransit, NowMs());
         LogInfo("[travel] standing on teleporter %s -> (%d,%d)\n",
                 leg->transitId.c_str(), leg->arrive.x, leg->arrive.y);
@@ -635,9 +1359,15 @@ void Client::TravelUseTransit() {
     journey_.NoteCommandIssued(travel::Command::UseTransit, NowMs());
     travelGateSerial_ = gateSerial;
     travelGateDestination_ = leg->label;
+    if (gateSerial != travelGateTrySerial_) {
+        travelGateTrySerial_ = gateSerial;
+        travelGateTries_ = 0;
+    }
+    ++travelGateTries_;
     LogInfo("[travel] using moongate 0x%08X for '%s' (gump active=%d "
-            "serial=0x%08X)\n", gateSerial, travelGateDestination_.c_str(),
-            gump_.active ? 1 : 0, gump_.serial);
+            "serial=0x%08X, try %d/%d)\n", gateSerial,
+            travelGateDestination_.c_str(), gump_.active ? 1 : 0, gump_.serial,
+            travelGateTries_, kMaxGateTries);
 
     // The gate's own @step trigger opens the destination gump as soon as we
     // walk onto it, and Sphere will not open a second one for the same context
@@ -647,6 +1377,56 @@ void Client::TravelUseTransit() {
         LogInfo("[travel] the gate's gump is already open; answering it\n");
         AnswerGateGump();
         return;
+    }
+
+    // No dialog in hand. Either the gate never opened one, or one was opened
+    // and lost -- and while the server still holds an unanswered dialog for us
+    // no amount of clicking will produce another. Cancel the last one we were
+    // sent for this gate (button 0, Sphere's "no match" convention) so the
+    // server's pending state is cleared before the next attempt.
+    if (lastGumpSerial_ == gateSerial && lastGumpContext_) {
+        LogWarn("[travel] moongate 0x%08X sent no dialog; cancelling the stale "
+                "one (context=0x%08X) before retrying\n", gateSerial,
+                lastGumpContext_);
+        SendGumpResponse(lastGumpSerial_, lastGumpContext_, 0, nullptr, 0);
+        lastGumpSerial_  = 0;
+        lastGumpContext_ = 0;
+        if (gump_.active && gump_.serial == gateSerial) gump_ = ActiveGump{};
+    }
+
+    if (travelGateTries_ >= kMaxGateTries) {
+        // Three silent attempts is not a gate that is about to answer. Say so
+        // once and hand the leg back so the route replans -- on foot if that is
+        // what is left -- rather than repeating this every ten seconds forever
+        // (158 times for Xerxes on 2026-09-02).
+        LogWarn("[travel] moongate 0x%08X for '%s' giving up after %d tries: "
+                "no destination dialog arrived\n", gateSerial,
+                travelGateDestination_.c_str(), travelGateTries_);
+        char ev[160];
+        std::snprintf(ev, sizeof(ev), "gate=0x%08X destination='%s' tries=%d",
+                      gateSerial, travelGateDestination_.c_str(),
+                      travelGateTries_);
+        LogEvent("moongate_giving_up", ev);
+        travelGateSerial_ = 0;
+        travelGateDestination_.clear();
+        journey_.OnLegFailed("gate never offered its destination dialog",
+                             NowMs());
+        return;
+    }
+
+    // Step off the gate tile and back on: @step is what opens the dialog, and
+    // standing still on the tile will never fire it again.
+    if (travelGateTries_ > 1) {
+        i32 ox = playerX_, oy = playerY_;
+        for (const auto& kv : items_) {
+            if (kv.first != gateSerial) continue;
+            ox = kv.second.x + 2;
+            oy = kv.second.y;
+            break;
+        }
+        LogInfo("[travel] stepping off moongate 0x%08X to (%d,%d) to re-trigger "
+                "its @step\n", gateSerial, ox, oy);
+        ActionGoto(ox, oy);
     }
     SendDoubleClick(gateSerial);
 }
@@ -664,6 +1444,29 @@ bool Client::TravelTryEscape() {
     std::vector<wm::Point> candidates;
     world_knowledge_->planner->EscapeCandidates(playerX_, playerY_, 12,
                                                 candidates);
+
+    // Coarse grid anchors can sit on the mountain above a cave. First walk
+    // to the atlas entrance at its floor height, then beyond its nearest edge.
+    // Minoc: the interior->entrance and entrance->outside routes are proven
+    // against MULs; the nearby z=15 mountain anchor has no path from z=0.
+    const wm::Region* cave = CurrentRegion();
+    if (cave && cave->kind == wm::RegionKind::Cave && !cave->rects.empty()) {
+        const wm::Rect* bounds = &cave->rects.front();
+        for (const auto& rect : cave->rects)
+            if (rect.Area() > bounds->Area()) bounds = &rect;
+        wm::Point outside = cave->center;
+        const i32 distances[] = {outside.x - bounds->x1, bounds->x2 - outside.x,
+                                 outside.y - bounds->y1, bounds->y2 - outside.y};
+        int edge = 0;
+        for (int i = 1; i < 4; ++i) if (distances[i] < distances[edge]) edge = i;
+        if (edge == 0) outside.x = bounds->x1 - 6;
+        if (edge == 1) outside.x = bounds->x2 + 6;
+        if (edge == 2) outside.y = bounds->y1 - 6;
+        if (edge == 3) outside.y = bounds->y2 + 6;
+        candidates.insert(candidates.begin(), outside);
+        if (Chebyshev(playerX_, playerY_, cave->center.x, cave->center.y) > 2)
+            candidates.insert(candidates.begin(), cave->center);
+    }
 
     for (const wm::Point& c : candidates) {
         bool tried = false;
@@ -785,7 +1588,19 @@ void Client::TravelTick() {
                 wrongFloor = dz > kSameFloorZ;
             }
         }
-        if (!wrongFloor && (GotoSucceeded() || off <= kLegArriveSlack)) {
+        // The walk leg approaching a teleporter pad must land EXACTLY on it --
+        // Sphere triggers the pad on the exact tile, not "close enough", and
+        // the ordinary kLegArriveSlack (3 tiles) is what let a bot advance
+        // into AtTransit while standing a diagonal tile short (2026-09-07,
+        // Alder/tp_278). A miss here fails the leg through the normal bounded
+        // recovery ladder instead of silently pretending to have arrived.
+        const route::RouteLeg* approaching = journey_.NextLeg();
+        const bool needsExactPad = approaching &&
+            approaching->kind == route::LegKind::Teleporter &&
+            approaching->target.x == travelLegTargetX_ &&
+            approaching->target.y == travelLegTargetY_;
+        const i32 arriveSlack = needsExactPad ? 0 : kLegArriveSlack;
+        if (!wrongFloor && (GotoSucceeded() || off <= arriveSlack)) {
             journey_.OnLegArrived(playerX_, playerY_, playerZ_, now);
         } else {
             if (wrongFloor)
@@ -884,8 +1699,25 @@ void Client::NoteServiceFromTitle(u32 serial, const char* title) {
     if (sp != std::string::npos) job.resize(sp);
     if (job.empty()) return;
 
-    // The atlas speaks Sphere's job defnames; a paperdoll speaks English. They
-    // agree for most trades, and the few that differ are spelled out here.
+    const wm::Service svcFromJob = ServiceForPaperdollJob(job.c_str());
+    if (svcFromJob == wm::Service::None) return;
+    wm::Service svc = svcFromJob;
+    ServiceSightingTail(serial, title, svc);
+}
+
+// The atlas speaks Sphere's job defnames; a paperdoll speaks English. They
+// agree for most trades, and the few that differ are spelled out here.
+//
+// This lives on its own because more than the sighting recorder needs it: a
+// character looking for someone of a trade has to know that "fisherwoman" is
+// a fisherman. It did not, and a fisher stood three tiles from Shika the
+// fisherwoman with fifteen fish to sell and reported no buyer reachable,
+// three trips running, twice over.
+wm::Service ServiceForPaperdollJob(const char* jobRaw) {
+    if (!jobRaw || !*jobRaw) return wm::Service::None;
+    std::string job(jobRaw);
+    for (char& c : job)
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
     struct Alias { const char* title; wm::Service svc; };
     static const Alias kAliases[] = {
         {"banker",       wm::Service::Banker},
@@ -917,6 +1749,12 @@ void Client::NoteServiceFromTitle(u32 serial, const char* title) {
         {"shipwright",   wm::Service::Shipwright},
         {"mapmaker",     wm::Service::Mapmaker},
         {"fisherman",    wm::Service::Fisherman},
+        // The vendor tables ask for a "fisher"; nobody on this shard wears
+        // that word. Sphere's titles are "fisherman" and "fisherwoman", and
+        // without this row the short name resolves to no service at all, so
+        // the service match never even ran and the literal match could never
+        // succeed. Shika stood three tiles away through six trips.
+        {"fisher",       wm::Service::Fisherman},
         // Sphere's paperdoll titles are gendered (CNPC_PaperdollTitle_VT), so
         // the same trade reaches us under two names.
         {"fisherwoman",  wm::Service::Fisherman},
@@ -930,12 +1768,13 @@ void Client::NoteServiceFromTitle(u32 serial, const char* title) {
         {"veterinarian", wm::Service::Veterinarian},
     };
 
-    wm::Service svc = wm::Service::None;
     for (const Alias& a : kAliases)
-        if (job == a.title) { svc = a.svc; break; }
-    if (svc == wm::Service::None) svc = wm::ServiceFromName(job.c_str());
-    if (svc == wm::Service::None) return;
+        if (job == a.title) return a.svc;
+    return wm::ServiceFromName(job.c_str());
+}
 
+void Client::ServiceSightingTail(u32 serial, const char* title,
+                                 wm::Service svc) {
     i32 mx = 0, my = 0;
     if (!MobilePosition(serial, &mx, &my)) return;
     const MobileObj* m = FindMobileBySerial(serial);
@@ -983,6 +1822,8 @@ void Client::SetSurvivalEnabled(bool on) {
 // potion, leave war mode, walk away, bandage yourself. Nothing reaches past the
 // protocol.
 void Client::SurvivalTick() {
+    SparringSafetyTick();
+    if (sparringPeer_) return; // bounded five-second lease; packet watchdog owns the early stop
     if (!survivalEnabled_ || !IsInWorld() || IsDead()) return;
     const i64 now = NowMs();
     if (now < survivalNextActionMs_) return;
@@ -991,7 +1832,6 @@ void Client::SurvivalTick() {
     v.hpNow    = PlayerHp();
     v.hpMax    = PlayerHpMax();
     v.inCombat = WarModeOn();
-    v.underAttack = lastHurtMs_ != 0 && now - lastHurtMs_ <= combat::kUnderAttackMs;
 
     // "Adjacent" means something we are actually fighting is within a tile.
     // A bandage takes ~3 seconds (SKILL 17 DELAY=3.0); that is the whole reason
@@ -1003,11 +1843,6 @@ void Client::SurvivalTick() {
             const i32 dx = tx > playerX_ ? tx - playerX_ : playerX_ - tx;
             const i32 dy = ty > playerY_ ? ty - playerY_ : playerY_ - ty;
             v.enemyAdjacent = (dx <= 1 && dy <= 1);
-        }
-        // The foe's own health bar, when the server has sent it (0xA1/0x11).
-        if (const MobileObj* m = FindMobileBySerial(target)) {
-            if (m->hpCur >= 0 && m->hpMax > 0)
-                v.foeHpPercent = (m->hpCur * 100) / m->hpMax;
         }
     }
 
@@ -1024,13 +1859,28 @@ void Client::SurvivalTick() {
     constexpr u16 kYellowPotionGraphic = 0x0F0C;
     const u32 bandage = FindBackpackItemByGraphic(kBandageGraphic);
     const u32 potion  = FindBackpackItemByGraphic(kYellowPotionGraphic);
-    v.bandages    = bandage ? 1 : 0;
+    v.bandages    = bandage && survivalBandagesAllowed_ ? 1 : 0;
     v.healPotions = potion ? 1 : 0;
+
+    // IS ANYTHING STILL OUT THERE? War mode and a chosen target are the wrong
+    // witnesses for a character that never fights back: Odessa (merchant_
+    // tinker, no combat skill) was in neither while a Harpy and three orcs
+    // walked her hp from 50 to 5, and this policy answered "rest" twice on the
+    // way down (g_Odessa.console.txt:1338,1360-1361). The same 12-tile radius
+    // DoSurvive uses, so the goal loop and the watchdog see one board.
+    std::vector<HostileHit> around;
+    ScanHostiles(12, around);
+    v.hostilesNear = static_cast<i32>(around.size());
+    if (v.hostilesNear > 0) survivalLastHostileMs_ = now;
+    v.quietSeconds = survivalLastHostileMs_ == 0
+        ? combat::kRestAllClearSeconds
+        : static_cast<i32>((now - survivalLastHostileMs_) / 1000);
 
     const combat::Tactic t = combat::Decide(v);
     if (static_cast<int>(t) != survivalLastTactic_ || now - survivalLastLogMs_ > 5000) {
-        LogInfo("[survival] hp %d/%d (%d%%) -> %s\n", v.hpNow, v.hpMax,
-                combat::HealthPercent(v), combat::TacticName(t));
+        LogInfo("[survival] hp %d/%d (%d%%) hostiles=%d quiet=%ds -> %s\n",
+                v.hpNow, v.hpMax, combat::HealthPercent(v), v.hostilesNear,
+                v.quietSeconds, combat::TacticName(t));
         survivalLastTactic_ = static_cast<int>(t);
         survivalLastLogMs_ = now;
     }
@@ -1040,28 +1890,26 @@ void Client::SurvivalTick() {
             break;   // nothing to do; the fight is already happening
 
         case combat::Tactic::DrinkPotion: {
-            if (potion) {
-                LogEvent("survival_potion", "");
-                ActionUseObject(potion);
-                survivalNextActionMs_ = now + 2000;
+            if (potion && !action_.Active()) {
+                if (ActionDrinkPotion(potion)) {
+                    LogEvent("survival_potion", "");
+                    survivalNextActionMs_ = now + 2000;
+                } else {
+                    survivalNextActionMs_ = now + 1000;
+                }
             }
             break;
         }
 
         case combat::Tactic::Disengage:
         case combat::Tactic::Flee:
-            // Leaving war mode alone is not a disengage: a bot that sheathed
-            // and stood still kept being hit, out of war mode and no longer
-            // hitting back, which is strictly worse than fighting on. So
-            // disengaging is also a WALK away from the attacker -- an ordinary
-            // move a player makes. A journey already running is left alone:
-            // it is somebody's deliberate way out.
+            // Leaving war mode is the disengage. Walking away is the travel
+            // layer's job, not this tick's -- issuing steps from here would
+            // fight whatever journey is already running.
             if (WarModeOn()) {
                 LogEvent("survival_disengage", combat::TacticName(t));
                 ExitWarMode();
             }
-            if ((v.enemyAdjacent || v.underAttack) && !journey_.Active())
-                SurvivalRetreat(target);
             survivalNextActionMs_ = now + 1500;
             break;
 
@@ -1083,37 +1931,6 @@ void Client::SurvivalTick() {
         case combat::Tactic::Count:
             break;
     }
-}
-
-// Walk kRetreatTiles directly away from the attacker. Deliberately dumb: one
-// straight leg, re-aimed every survival tick while we are still being hit. No
-// teleport, no speed a player lacks -- the same ActionGoto the bot uses for
-// every other walk, and the server may refuse any step of it.
-void Client::SurvivalRetreat(u32 fromSerial) {
-    const i64 now = NowMs();
-    if (now < survivalRetreatUntilMs_ && (nav_.bot.active || !nav_.movement.pending.empty()))
-        return;   // the current leg is still walking; let it
-
-    i32 fx = 0, fy = 0;
-    if (!fromSerial || !MobilePosition(fromSerial, &fx, &fy)) {
-        // No known attacker: something is hitting us, but we cannot see what.
-        // Walking a random way is as likely to go toward it as away, so stay.
-        return;
-    }
-    i32 dx = playerX_ - fx, dy = playerY_ - fy;
-    if (dx == 0 && dy == 0) dx = 1;   // same tile: any direction is "away"
-    const i32 ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
-    const i32 len = ax > ay ? ax : ay;
-    const i32 tx = playerX_ + dx * kRetreatTiles / len;
-    const i32 ty = playerY_ + dy * kRetreatTiles / len;
-
-    LogInfo("[survival] retreating from 0x%08X (%d,%d) -> (%d,%d)\n",
-            fromSerial, fx, fy, tx, ty);
-    char ev[96];
-    std::snprintf(ev, sizeof(ev), "from=0x%08X to=(%d,%d)", fromSerial, tx, ty);
-    LogEvent("survival_retreat", ev);
-    survivalRetreatUntilMs_ = now + 6000;
-    ActionGoto(tx, ty);
 }
 
 void Client::WarModeTick() {
@@ -1151,7 +1968,10 @@ void Client::WarModeTick() {
 // indirection is why a label has to be resolved rather than read inline, and
 // it is what lets us match a radio button to the destination name beside it.
 void Client::OnGenericGump(const u8* data, usize size) {
-    gump_ = ActiveGump{};
+    // A malformed or short packet must leave any OPEN gump alone. Clearing
+    // gump_ up front (the shape before 2026-09-02) meant anything that reached
+    // this function and failed a bounds check silently threw away a dialog the
+    // server still considers open -- and Sphere will not resend one.
     if (size < 23) return;
 
     const u32 serial  = LoadBE32(data + 3);
@@ -1159,6 +1979,7 @@ void Client::OnGenericGump(const u8* data, usize size) {
     const u16 ctrlLen = LoadBE16(data + 19);
     const usize ctrlStart = 21;
     if (ctrlStart + ctrlLen > size) return;
+    gump_ = ActiveGump{};
 
     // Text table follows the controls.
     std::vector<std::string> texts;
@@ -1242,6 +2063,8 @@ void Client::OnGenericGump(const u8* data, usize size) {
     gump_.active = true;
     gump_.serial = serial;
     gump_.context = context;
+    lastGumpSerial_  = serial;
+    lastGumpContext_ = context;
     gump_.options = std::move(options);
     gump_.texts = texts;
 
@@ -1499,7 +2322,7 @@ bool Client::AnswerGump(u32 button, u32 optionId) {
     const u32 checks[1] = { optionId };
     SendGumpResponse(gump_.serial, gump_.context, button,
                      optionId ? checks : nullptr, optionId ? 1u : 0u);
-    gump_ = ActiveGump{};
+    ForgetAnsweredGump();
     return true;
 }
 
@@ -1507,8 +2330,584 @@ bool Client::CloseGump() {
     if (!gump_.active) return false;
     // Button 0 is "cancel" by Sphere convention (`onbutton=0` / no match).
     SendGumpResponse(gump_.serial, gump_.context, 0, nullptr, 0);
-    gump_ = ActiveGump{};
+    ForgetAnsweredGump();
     return true;
+}
+
+// A dialog we have replied to is no longer pending on the server, so it must
+// not look "stale" to the moongate retry path. Without this, a gate whose gump
+// was answered during the approach was cancelled again by the transit leg a
+// moment later (g_Vorar.err.txt 12:31:57.916, gate 0x400028A0) -- harmless
+// there, but a cancel aimed at a dialog somebody else may since have opened.
+void Client::ForgetAnsweredGump() {
+    if (lastGumpSerial_ == gump_.serial && lastGumpContext_ == gump_.context) {
+        lastGumpSerial_  = 0;
+        lastGumpContext_ = 0;
+    }
+    gump_ = ActiveGump{};
+}
+
+// ---------------------------------------------------------------------------
+// M4 world/perception helpers for the life layer.
+//
+// Both of these answer questions a HUMAN CLIENT can answer. The tree lookup
+// reads the shard's own statics, which every client is sent; the hostile scan
+// reads notoriety and the health bar, which is what a player sees over a
+// mobile's head. Neither reaches for anything the server does not send.
+// ---------------------------------------------------------------------------
+
+namespace {
+
+// THE SHARD'S OWN LIST, not a name heuristic.
+//
+// Every graphic here carries `TYPE=t_tree` in runtime/scripts/items/
+// i_vegetation.scp -- 51 of them, extracted from the itemdefs rather than
+// guessed. That distinction is load-bearing: the first M4 live run filtered
+// statics by "the tiledata name contains 'tree'", which also matches
+// decorative foliage and canopy tiles, and Source-X answered every swing with
+// `It appears immune to your blow` (CClientTarg.cpp:1990 -- the target
+// resolved to an item that is not a harvestable type).
+//
+// A static NOT in this list cannot be chopped on this shard, however much its
+// name looks like a tree.
+constexpr u16 kTreeGraphics[] = {
+    0x224A, 0x224B, 0x224C, 0x224D, 0x246C, 0x2476, 0x247D, 0x26ED,
+    0x309C, 0x30BD, 0x30C3, 0x30C8, 0x30CF, 0x30D4, 0x30DA, 0x9E38,
+    0x0CCA, 0x0CCB, 0x0CCC, 0x0CCD, 0x0CD0, 0x0CD3, 0x0CD6, 0x0CD8,
+    0x0CD9, 0x0CDA, 0x0CDD, 0x0CE0, 0x0CE3, 0x0CE6, 0x0CF8, 0x0CFB,
+    0x0CFE, 0x0D01, 0x0D41, 0x0D42, 0x0D43, 0x0D44, 0x0D57, 0x0D58,
+    0x0D59, 0x0D5A, 0x0D5B, 0x0D6E, 0x0D6F, 0x0D70, 0x0D71, 0x0D72,
+    0x0D84, 0x0D85, 0x0D86,
+};
+
+bool GraphicIsTree(u16 graphic) {
+    for (u16 g : kTreeGraphics) {
+        if (g == graphic) return true;
+    }
+    return false;
+}
+
+}  // namespace
+
+bool Client::NearestTree(i32 x, i32 y, int radius, TreeHit* out,
+                         const std::vector<std::pair<i32, i32>>* exclude,
+                         bool* allGuarded) {
+    if (allGuarded) *allGuarded = false;
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_) return false;
+    if (radius < 0) radius = 0;
+    // Atlas is a separate load from the map statics above; harmless to ask
+    // again if a prior caller already brought it up.
+    EnsureWorldKnowledge();
+
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(x, y, radius, hits);
+
+    bool found = false;
+    bool sawCandidate = false;   // passed graphic+exclude, before the guard test
+    i32 bestDist = 0;
+    for (const world::StaticHit& h : hits) {
+        if (!GraphicIsTree(h.itemId)) continue;
+        if (exclude) {
+            bool skip = false;
+            for (const auto& e : *exclude) {
+                if (e.first == h.x && e.second == h.y) { skip = true; break; }
+            }
+            if (skip) continue;
+        }
+        sawCandidate = true;
+        // OWNER RULE: no gathering inside guarded zones. Tarath chopped a
+        // tree at (1449,1635) inside guarded a_townBritain because nothing
+        // here ever asked the atlas. A candidate whose own tile is guarded
+        // is skipped outright, exactly like a worked-out trunk.
+        if (world_knowledge_ && world_knowledge_->ok) {
+            const wm::Region* r = world_knowledge_->atlas.RegionAt(h.x, h.y);
+            if (r && r->flags.guarded) continue;
+        }
+        const i32 dx = h.x > x ? h.x - x : x - h.x;
+        const i32 dy = h.y > y ? h.y - y : y - h.y;
+        const i32 d = dx > dy ? dx : dy;
+        if (found && d >= bestDist) continue;
+        bestDist = d;
+        out->x = h.x;
+        out->y = h.y;
+        out->z = h.z;
+        out->graphic = h.itemId;
+        found = true;
+    }
+    // Every survivor of exclude+graphic was guarded away: this is a town
+    // square, not an empty forest.
+    if (allGuarded) *allGuarded = !found && sawCandidate;
+    return found;
+}
+
+bool Client::NearestForge(i32 x, i32 y, int radius, TreeHit* out,
+                          const std::vector<std::pair<i32, i32>>* exclude) {
+    if (!out) return false;
+    if (radius < 0) radius = 0;
+
+    // FORGES ARE WORLD ITEMS, NOT MAP STATICS.
+    //
+    // An earlier version of this read the .mul statics, on the strength of a
+    // grep over the save files that found nothing. That grep was wrong twice:
+    // the world save keys items by DEFNAME, not by hex id, and the keyword is
+    // WORLDITEM, not ITEM -- so `^ITEM 0*(fb1|197a)` could never have matched
+    // anything. There are 107 forges in spherestatics.scp: 21 i_forge, 26
+    // i_forge_large_bellows and 60 i_forge_large. Six of them stand in The
+    // Forgery in Minoc (2467-2469, 555/557), one beside the Minoc armorer at
+    // 2535,571, and one INSIDE the Minoc mine at 2561,501 -- which is why a
+    // miner can often smelt without leaving the rock face at all.
+    //
+    // The server sends these like any other item, so the item list is the
+    // right place to look and the map statics never held them.
+    //
+    // Which ids count comes from TYPE=t_forge and its DUPEITEM runs:
+    // 0fb1 i_forge, 02dd8 i_forge_elven, and 0197a..019a9, which are the
+    // animation frames of a lit forge -- so the id actually on the wire is
+    // usually not the base. 0fb0 is deliberately excluded: it looks like it
+    // belongs beside 0fb1 but dupes to 0faf, which is i_anvil.
+    auto isForgeId = [](u16 id) -> bool {
+        return id == 0x0FB1 || id == 0x2DD8 ||
+               (id >= 0x197A && id <= 0x19A9) ||
+               (id >= 0x423B && id <= 0x4243) ||
+               (id >= 0x4263 && id <= 0x4272) ||
+               (id >= 0x4277 && id <= 0x4286) ||
+               (id >= 0x44C7 && id <= 0x44CA);
+    };
+
+    bool found = false;
+    i32 bestDist = 0;
+    for (const auto& kv : items_) {
+        if (!isForgeId(kv.second.itemId)) continue;
+        if (exclude) {
+            bool skip = false;
+            for (const auto& e : *exclude)
+                if (e.first == kv.second.x && e.second == kv.second.y) {
+                    skip = true; break;
+                }
+            if (skip) continue;
+        }
+        const i32 dx = kv.second.x > x ? kv.second.x - x : x - kv.second.x;
+        const i32 dy = kv.second.y > y ? kv.second.y - y : y - kv.second.y;
+        const i32 d = dx > dy ? dx : dy;      // Chebyshev, as isneartype uses
+        if (d > radius) continue;
+        if (found && d >= bestDist) continue;
+        bestDist = d;
+        out->x = kv.second.x;
+        out->y = kv.second.y;
+        out->z = static_cast<i8>(kv.second.z);
+        out->graphic = kv.second.itemId;
+        forgeSerial_ = kv.first;   // the forge itself is what gets clicked
+        found = true;
+    }
+    return found;
+}
+
+int Client::TreeCount(i32 x, i32 y, int radius) {
+    if (!EnsureWorldLoaded() || !world_) return 0;
+    if (radius < 0) radius = 0;
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(x, y, radius, hits);
+    int n = 0;
+    for (const world::StaticHit& h : hits) {
+        if (GraphicIsTree(h.itemId)) ++n;
+    }
+    return n;
+}
+
+bool Client::JournalSaidSince(const char* needle, i64 sinceMs) const {
+    if (!needle || !needle[0]) return false;
+    std::string want(needle);
+    for (char& c : want) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    }
+    for (auto it = journal_.rbegin(); it != journal_.rend(); ++it) {
+        if (it->timeMs < sinceMs) break;   // journal is in time order
+        std::string hay = it->text;
+        for (char& c : hay) {
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        }
+        if (hay.find(want) != std::string::npos) return true;
+    }
+    return false;
+}
+
+i64 Client::JournalLastSaidMs(const char* needle, i64 sinceMs) const {
+    if (!needle || !needle[0]) return -1;
+    std::string want(needle);
+    for (char& c : want) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    }
+    for (auto it = journal_.rbegin(); it != journal_.rend(); ++it) {
+        if (it->timeMs < sinceMs) break;   // journal is in time order
+        std::string hay = it->text;
+        for (char& c : hay) {
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        }
+        if (hay.find(want) != std::string::npos) return it->timeMs;
+    }
+    return -1;
+}
+
+i32 Client::JournalNumberSince(const char* needle, i64 sinceMs) const {
+    if (!needle || !needle[0]) return -1;
+    std::string want(needle);
+    for (char& c : want) {
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+    }
+    for (auto it = journal_.rbegin(); it != journal_.rend(); ++it) {
+        if (it->timeMs < sinceMs) break;
+        std::string hay = it->text;
+        for (char& c : hay) {
+            if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
+        }
+        if (hay.find(want) == std::string::npos) continue;
+        for (usize i = 0; i < it->text.size(); ++i) {
+            if (it->text[i] < '0' || it->text[i] > '9') continue;
+            i64 v = 0;
+            while (i < it->text.size() && it->text[i] >= '0' && it->text[i] <= '9') {
+                v = v * 10 + (it->text[i] - '0');
+                if (v > 100000000) return -1;   // not a price
+                ++i;
+            }
+            return static_cast<i32>(v);
+        }
+        return -1;   // matched the line but it carries no number
+    }
+    return -1;
+}
+
+// AN EXCLUSIVE MARK. "Read replies after this point" has to EXCLUDE the line
+// that was already there, and this returned the last entry's own timestamp
+// while JournalSaidSince breaks on `timeMs < sinceMs` -- so the entry equal to
+// the mark was still matched. The mark included the very message it existed to
+// exclude.
+//
+// What that cost: Ysolde asked Alenne to teach Meditation and Alenne answered
+// "You already know as much as I can teach of Meditation". That line became
+// the last journal entry. She then walked to Caedmon, the mage guildmaster who
+// CAN teach it, marked the journal -- getting Alenne's timestamp, because
+// nothing had been said since -- asked him, and he said nothing at all. Two
+// seconds later the refusal scan matched ALENNE's line and recorded a durable
+// verdict against CAEDMON, who was thereafter skipped for a refusal he never
+// made (run_m5/p0gate7:433-438; there is no Caedmon reply in that window).
+//
+// A silent NPC was therefore always recorded as repeating whatever the
+// previous NPC had said. The same hazard applies to every other watermarked
+// read -- the chop result, the craft result, the fishing cast. One call site
+// had already worked around it locally with a `+ 1`; the mark itself was the
+// bug.
+i64 Client::JournalNowMs() const {
+    if (journal_.empty()) return NowMs();
+    return journal_.back().timeMs + 1;
+}
+
+// Everything nearby, no notoriety filter. Same record as ScanHostiles so a
+// caller can share code; the only difference is who is left out, and here
+// nobody is.
+int Client::PlayersNearby(int maxDist) const {
+    int n = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        // Human bodies only: 0x0190 male, 0x0191 female. A sheep is not an
+        // audience.
+        if (m.body != 0x0190 && m.body != 0x0191) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+        if ((ax > ay ? ax : ay) > maxDist) continue;
+        // AN UNKNOWN TITLE IS NOT A PLAYER.
+        //
+        // The first version counted a mobile whose paperdoll had not arrived
+        // as a person, on the grounds that being wrong that way was harmless.
+        // It is not: paperdolls arrive only when asked for, so a bank full of
+        // NPCs reads as a bank full of customers, and Corwyn announced "WTS 30
+        // i_ingot_iron" six times to a room with nobody in it.
+        //
+        // Requiring a KNOWN title with no " the " in it means the answer is
+        // "yes, a person" only where there is evidence of one. The cost of
+        // being wrong the other way is a missed sale; the cost of being wrong
+        // this way was the shouting the owner asked to stop.
+        const char* title = PaperdollTitle(m.serial);
+        if (!title || !*title) continue;                    // unknown: assume NPC
+        if (std::strstr(title, " the ")) continue;           // a titled NPC
+        ++n;
+    }
+    return n;
+}
+
+bool Client::KnownPlayer(u32 serial) const {
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial != serial || (m.body != 0x0190 && m.body != 0x0191)) continue;
+        const char* title = PaperdollTitle(serial);
+        return title && *title && !std::strstr(title, " the ");
+    }
+    return false;
+}
+
+int Client::CombatSupportNear(u32 target, std::vector<HostileHit>& out) const {
+    out.clear();
+    i32 tx = 0, ty = 0;
+    if (!MobilePosition(target, &tx, &ty)) return 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_ || m.serial == target || !KnownPlayer(m.serial) ||
+            (m.noto != 1 && m.noto != 2) || !m.warMode || m.deadRemoveMs ||
+            IsAttackingMe(m.serial)) continue;
+        if (m.hpMax > 0 && m.hpCur * 2 < m.hpMax) continue;
+        if (std::max(std::abs(m.x - playerX_), std::abs(m.y - playerY_)) > 8 ||
+            std::max(std::abs(m.x - tx), std::abs(m.y - ty)) > 6) continue;
+        HostileHit h;
+        h.serial = m.serial;
+        const char* name = MobileName(m.serial);
+        h.name = name ? name : "";
+        h.x = m.x; h.y = m.y; h.z = m.z; h.noto = m.noto;
+        h.warMode = true; h.hpCur = m.hpCur; h.hpMax = m.hpMax;
+        out.push_back(h);
+    }
+    return static_cast<int>(out.size());
+}
+
+u32 Client::AudienceFingerprint(int maxDist) const {
+    // Same test PlayersNearby uses, summed rather than counted. XOR would
+    // cancel a pair out; a sum of serials will not, and exact identity is not
+    // needed -- only "has this room changed".
+    u32 sum = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        if (m.body != 0x0190 && m.body != 0x0191) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+        if ((ax > ay ? ax : ay) > maxDist) continue;
+        const char* title = PaperdollTitle(m.serial);
+        if (!title || !*title) continue;
+        if (std::strstr(title, " the ")) continue;
+        sum += m.serial;
+    }
+    return sum;
+}
+
+int Client::ScanMobiles(int maxDist, std::vector<HostileHit>& out) const {
+    out.clear();
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        const int dx = m.x - playerX_, dy = m.y - playerY_;
+        const int d = (dx < 0 ? -dx : dx) > (dy < 0 ? -dy : dy)
+                          ? (dx < 0 ? -dx : dx)
+                          : (dy < 0 ? -dy : dy);
+        if (d > maxDist) continue;
+        HostileHit h;
+        h.serial = m.serial;
+        h.x = m.x; h.y = m.y; h.z = m.z;
+        h.noto = m.noto;
+        const char* nm = MobileName(m.serial);
+        if (nm) h.name = nm;
+        out.push_back(h);
+    }
+    return static_cast<int>(out.size());
+}
+
+int Client::ScanHostiles(int maxDist, std::vector<HostileHit>& out) const {
+    out.clear();
+    if (maxDist < 0) maxDist = 0;
+    for (const MobileObj& m : mobileCache_) {
+        if (m.serial == playerSerial_) continue;
+        // Notoriety is the whole filter, and it is deliberately conservative.
+        // 1 = innocent (the farm animals a guard will execute us over),
+        // 2 = guild ally, 7 = invulnerable (guards, some NPCs). Everything
+        // else -- gray, orange, red -- is something a player may lawfully
+        // fight. A mobile whose notoriety has not arrived yet (0) is NOT
+        // assumed hostile: an unknown is not a target.
+        if (m.noto == 0 || m.noto == 1 || m.noto == 2 || m.noto == 7) continue;
+        const i32 dx = m.x > playerX_ ? m.x - playerX_ : playerX_ - m.x;
+        const i32 dy = m.y > playerY_ ? m.y - playerY_ : playerY_ - m.y;
+        const i32 d = dx > dy ? dx : dy;
+        if (d > maxDist) continue;
+        HostileHit h;
+        h.serial = m.serial;
+        h.x = m.x;
+        h.y = m.y;
+        h.z = m.z;
+        h.noto = m.noto;
+        h.hpCur = m.hpCur;
+        h.hpMax = m.hpMax;
+        h.warMode = m.warMode;
+        const char* name = MobileName(m.serial);
+        h.name = name ? name : "";
+        out.push_back(std::move(h));
+    }
+    return static_cast<int>(out.size());
+}
+
+
+void Client::JournalHeardSince(i64 sinceMs, std::vector<Heard>& out) const {
+    out.clear();
+    for (const JournalEntry& e : journal_) {
+        if (e.timeMs <= sinceMs) continue;
+        // Our own speech is not news. Without this a seller answers its own
+        // WTS and opens a trade window with itself.
+        if (e.sourceSerial == playerSerial_) continue;
+        // System messages carry no speaker to walk to.
+        if (e.sourceSerial == 0 || e.sourceSerial == 0xFFFFFFFFu) continue;
+        Heard h;
+        h.speaker = e.sourceSerial;
+        h.text = e.text;
+        h.timeMs = e.timeMs;
+        h.hasPosition = e.hasPosition;
+        h.x = e.x; h.y = e.y; h.z = e.z;
+        if (const char* n = MobileName(e.sourceSerial)) h.name = n;
+        out.push_back(std::move(h));
+    }
+}
+
+
+// Is there water at (tx,ty), in either physical form? Fills z with the
+// surface a cast should target and graphic with 0 (wet land) or the wet
+// static's id. Shared by NearestWater and NearestFishingSpot so the two can
+// never disagree about what counts as water -- they disagreed once, and the
+// fisher looped between them for a whole session.
+bool Client::WaterAt(i32 tx, i32 ty, i8* z, u16* graphic) {
+    if (tx < 0 || ty < 0) return false;
+    map::LandCell cell{};
+    if (!worldMap_->ReadCell(static_cast<u32>(tx), static_cast<u32>(ty),
+                             &cell)) {
+        return false;
+    }
+    if ((tileData_->Land(cell.tileId).flags & tiledata::kFlagWet) != 0) {
+        if (z) *z = cell.z;
+        if (graphic) *graphic = 0;
+        return true;
+    }
+    // Wet STATICS: the coastline form (see the WaterHit comment in Client.h).
+    // The test is the tiledata Wet flag, not an id whitelist -- the flag is
+    // what makes 0x1796-0x17B2 water, and a whitelist is exactly the kind of
+    // client-side guess that once rejected all the near water.
+    std::vector<world::StaticHit> hits;
+    world_->CollectStatics(tx, ty, 0, hits);
+    for (const world::StaticHit& h : hits) {
+        if ((tileData_->Static(h.itemId).flags & tiledata::kFlagWet) == 0)
+            continue;
+        if (z) *z = h.z;
+        if (graphic) *graphic = h.itemId;
+        return true;
+    }
+    return false;
+}
+
+bool Client::NearestWater(i32 x, i32 y, int radius, WaterHit* out) {
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_) return false;
+    if (radius < 0) radius = 0;
+
+    // Nearest-first, so a character fishes from where it stands rather than
+    // walking to the far side of the lake. r STARTS AT 0, which makes
+    // radius 0 mean "is THIS tile water" -- the form a caller needs when it
+    // already knows which tile it wants to test.
+    for (int r = 0; r <= radius; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                // Only the ring at distance r; the interior was covered by a
+                // previous pass.
+                if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
+                const i32 tx = x + dx, ty = y + dy;
+
+                // NO STATIC FILTER. The first version rejected any water tile
+                // carrying a static that provides a surface, meaning to skip
+                // planks and bridges -- and around a dock that is most of the
+                // near water, so the search skipped everything close and
+                // returned a tile ten tiles out that could not be reached.
+                //
+                // Deciding what is fishable is the SERVER'S job. Sphere
+                // answers a bad target itself, and this project's whole
+                // discipline is to ask rather than to out-think it: the cast
+                // reads the reply and moves on. Guessing here cost a fisher
+                // its entire session.
+                i8 wz = 0;
+                u16 gfx = 0;
+                if (!WaterAt(tx, ty, &wz, &gfx)) continue;
+
+                out->x = tx;
+                out->y = ty;
+                out->z = wz;
+                out->graphic = gfx;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+bool Client::NearestFishingSpot(i32 x, i32 y, int radius, FishingSpot* out,
+                                const std::vector<std::pair<i32, i32>>* exclude) {
+    if (!out) return false;
+    if (!EnsureWorldLoaded() || !world_ || !worldMap_ || !tileData_) return false;
+    if (radius < 0) radius = 0;
+
+    auto excluded = [&](i32 tx, i32 ty) -> bool {
+        if (!exclude) return false;
+        for (const auto& e : *exclude)
+            if (e.first == tx && e.second == ty) return true;
+        return false;
+    };
+
+    // Search outward from where the character stands, so it fishes from the
+    // nearest bank rather than hiking to the far side of the bay.
+    for (int r = 0; r <= radius; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                if (std::max(std::abs(dx), std::abs(dy)) != r) continue;
+                const i32 sx = x + dx, sy = y + dy;
+                if (sx < 0 || sy < 0) continue;
+                if (excluded(sx, sy)) continue;
+
+                // The STANDING tile must be one the character can actually
+                // occupy, and the ONLY judge of that is the pathfinder's own
+                // World::QueryCell, statics included. "Dry by land tiledata"
+                // once nominated (1463,1754), a tile under a coastline water
+                // static (walkable:false), and the walk to it could not
+                // succeed by construction: the A* worker itself refuses an
+                // unwalkable goal ("goal not walkable", Navigation.cpp
+                // BotPollPathPlanner). QueryCell alone is also the right
+                // wetness test -- wet land is unwalkable by definition
+                // (World.cpp treats Wet like Impassable) and a dock plank
+                // over a wet static IS a legal place to stand, which a
+                // separate "no water here" check would wrongly reject.
+                world::WalkQuery q{};
+                q.x = static_cast<u32>(sx);
+                q.y = static_cast<u32>(sy);
+                q.fromZ = playerZ_;
+                if (!world_->QueryCell(q).walkable) continue;
+
+                // ...and water has to be in casting reach of it. RANGE=4 in
+                // skill18_fishing.scp is the MAXIMUM; there is also a minimum
+                // the script does not state and the server does:
+                //
+                //     "You cannot fish so close to yourself."
+                //
+                // Adjacent water is refused, so the search starts at 2. Found
+                // live, by casting -- which is the point: the shard answers
+                // this question and guessing at it is what wasted the session
+                // before.
+                for (int wr = 2; wr <= 4; ++wr) {
+                    for (i32 wy = -wr; wy <= wr; ++wy) {
+                        for (i32 wx = -wr; wx <= wr; ++wx) {
+                            if (std::max(std::abs(wx), std::abs(wy)) != wr) continue;
+                            const i32 tx = sx + wx, ty = sy + wy;
+                            if (excluded(tx, ty)) continue;
+                            i8 wz = 0;
+                            u16 gfx = 0;
+                            if (!WaterAt(tx, ty, &wz, &gfx)) continue;
+                            out->standX = sx; out->standY = sy;
+                            out->waterX = tx; out->waterY = ty;
+                            out->waterZ = wz;
+                            out->waterGraphic = gfx;
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return false;
 }
 
 } // namespace uo

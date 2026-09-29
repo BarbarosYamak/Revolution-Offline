@@ -1,0 +1,93 @@
+start: Delras is a lumberjack_swordsman and lives in Britain -> starting city index 2
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+map: verdata 'C:\Projects\RevolutionOffline\runtime\mul/verdata.mul' applied (685 patch block(s))
+[00:19:34.388] WARN  [mk3_Delras] [bot] 0x20 resync; aborting path
+[00:19:39.224] WARN  [mk3_Delras] [bot] no path to (1470,1614) avoiding 0 block(s); stopping (search 1637475.1us)
+[00:19:39.224] WARN  [mk3_Delras] [bot] start (1476,1612,20) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 109 item(s), 7 mobile(s))
+[00:19:42.423] WARN  [mk3_Delras] [bot] no path to (1470,1614) avoiding 0 block(s); stopping (search 1913466.7us)
+[00:19:42.423] WARN  [mk3_Delras] [bot] start (1476,1612,20) exits: open=6 terrain=0 mobile=2 dynamic=0 door=0 blacklist=0 (overlay saw 109 item(s), 9 mobile(s))
+[00:20:05.204] WARN  [mk3_Delras] [0x21] move REJECTED seq=63; server says (1455,1613,20) facing=5
+[00:20:17.955] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:19.222] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:20.512] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:23.327] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:24.597] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:25.835] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:30.155] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:31.473] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:32.804] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:38.686] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:40.024] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:41.326] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:41.389] WARN  [mk3_Delras] [travel] route exhausted at (1450,1617,20); trying to reach (1448,1608,20) to get somewhere routable (escape 1/3)
+[00:20:45.156] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:46.446] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:47.719] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:50.569] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:51.841] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:53.066] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:57.458] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:20:58.774] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:21:00.115] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:21:05.987] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:21:07.257] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:21:08.559] WARN  [mk3_Delras] [bot] goal (1430,1597) is not walkable; skipping A* and stopping
+[00:21:08.621] WARN  [mk3_Delras] [travel] route exhausted at (1448,1608,20); trying to reach (1432,1592,20) to get somewhere routable (escape 2/3)
+[00:21:08.682] WARN  [mk3_Delras] [bot] no path to (1432,1592) avoiding 0 block(s); stopping (search 381.9us)
+[00:21:08.682] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 10 mobile(s))
+[00:21:08.743] WARN  [mk3_Delras] [travel] route exhausted at (1448,1608,20); trying to reach (1448,1592,20) to get somewhere routable (escape 3/3)
+[00:21:08.804] WARN  [mk3_Delras] [bot] no path to (1448,1592) avoiding 0 block(s); stopping (search 359.7us)
+[00:21:08.804] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 10 mobile(s))
+[00:21:11.557] WARN  [mk3_Delras] [bot] no path to (1416,1640) avoiding 0 block(s); stopping (search 447.8us)
+[00:21:11.557] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 11 mobile(s))
+[00:21:12.867] WARN  [mk3_Delras] [bot] no path to (1416,1640) avoiding 0 block(s); stopping (search 331.2us)
+[00:21:12.867] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 11 mobile(s))
+[00:21:14.216] WARN  [mk3_Delras] [bot] no path to (1416,1640) avoiding 0 block(s); stopping (search 326.6us)
+[00:21:14.216] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 11 mobile(s))
+[00:21:17.138] WARN  [mk3_Delras] [bot] no path to (1464,1640) avoiding 0 block(s); stopping (search 317.7us)
+[00:21:17.138] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 11 mobile(s))
+[00:21:18.484] WARN  [mk3_Delras] [bot] no path to (1464,1640) avoiding 0 block(s); stopping (search 380.0us)
+[00:21:18.485] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 11 mobile(s))
+[00:21:19.863] WARN  [mk3_Delras] [bot] no path to (1464,1640) avoiding 0 block(s); stopping (search 429.9us)
+[00:21:19.863] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 11 mobile(s))
+[00:21:24.213] WARN  [mk3_Delras] [bot] no path to (1480,1640) avoiding 0 block(s); stopping (search 368.1us)
+[00:21:24.213] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:25.535] WARN  [mk3_Delras] [bot] no path to (1480,1640) avoiding 0 block(s); stopping (search 330.9us)
+[00:21:25.535] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:26.860] WARN  [mk3_Delras] [bot] no path to (1480,1640) avoiding 0 block(s); stopping (search 499.3us)
+[00:21:26.860] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:32.799] WARN  [mk3_Delras] [bot] no path to (1480,1624) avoiding 0 block(s); stopping (search 381.1us)
+[00:21:32.800] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:34.092] WARN  [mk3_Delras] [bot] no path to (1480,1624) avoiding 0 block(s); stopping (search 325.3us)
+[00:21:34.092] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:35.458] WARN  [mk3_Delras] [bot] no path to (1480,1624) avoiding 0 block(s); stopping (search 347.6us)
+[00:21:35.458] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:35.519] WARN  [mk3_Delras] [travel] route exhausted at (1448,1608,20); trying to reach (1432,1592,20) to get somewhere routable (escape 1/3)
+[00:21:35.581] WARN  [mk3_Delras] [bot] no path to (1432,1592) avoiding 0 block(s); stopping (search 349.5us)
+[00:21:35.581] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:35.641] WARN  [mk3_Delras] [travel] route exhausted at (1448,1608,20); trying to reach (1448,1592,20) to get somewhere routable (escape 2/3)
+[00:21:35.703] WARN  [mk3_Delras] [bot] no path to (1448,1592) avoiding 0 block(s); stopping (search 386.9us)
+[00:21:35.703] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:35.763] WARN  [mk3_Delras] [travel] route exhausted at (1448,1608,20); trying to reach (1464,1592,20) to get somewhere routable (escape 3/3)
+[00:21:35.824] WARN  [mk3_Delras] [bot] no path to (1464,1592) avoiding 0 block(s); stopping (search 400.3us)
+[00:21:35.824] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:38.625] WARN  [mk3_Delras] [bot] no path to (1416,1640) avoiding 0 block(s); stopping (search 411.2us)
+[00:21:38.625] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:39.949] WARN  [mk3_Delras] [bot] no path to (1416,1640) avoiding 0 block(s); stopping (search 365.7us)
+[00:21:39.949] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:41.275] WARN  [mk3_Delras] [bot] no path to (1416,1640) avoiding 0 block(s); stopping (search 338.5us)
+[00:21:41.275] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:44.121] WARN  [mk3_Delras] [bot] no path to (1464,1640) avoiding 0 block(s); stopping (search 529.7us)
+[00:21:44.121] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:45.458] WARN  [mk3_Delras] [bot] no path to (1464,1640) avoiding 0 block(s); stopping (search 213.5us)
+[00:21:45.458] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 12 mobile(s))
+[00:21:46.763] WARN  [mk3_Delras] [bot] no path to (1464,1640) avoiding 0 block(s); stopping (search 372.9us)
+[00:21:46.763] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 11 mobile(s))
+[00:21:51.074] WARN  [mk3_Delras] [bot] no path to (1480,1640) avoiding 0 block(s); stopping (search 336.3us)
+[00:21:51.074] WARN  [mk3_Delras] [bot] start (1448,1608,20) exits: open=2 terrain=6 mobile=0 dynamic=0 door=0 blacklist=0 (overlay saw 204 item(s), 11 mobile(s))
+[00:22:32.789] WARN  [mk3_Delras] [0x21] move REJECTED seq=50; server says (1426,1701,1) facing=5
+[00:22:33.515] WARN  [mk3_Delras] [0x21] move REJECTED seq=0; server says (1426,1701,1) facing=5
+[00:23:04.422] WARN  [mk3_Delras] [bot] watchdog: oldest move unacked 5s; aborting path
+[00:23:04.594] WARN  [mk3_Delras] [0x22] unsolicited ack seq=40
+[00:25:28.205] WARN  [mk3_Delras] [0x21] move REJECTED seq=15; server says (635,2168,0) facing=5
+[00:25:28.220] WARN  [mk3_Delras] [bot] 0x20 resync; aborting path

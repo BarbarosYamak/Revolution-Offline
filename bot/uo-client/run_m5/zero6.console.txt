@@ -1,0 +1,94 @@
+[18:43:28.930] INFO  session 0: 127.0.0.1:2593 user='RevolutionSoak42' char=Ysolde tag='zero6'
+[18:43:28.931] LOG   [zero6] event session_start: text log opened
+[18:43:28.931] LOG   [zero6] event net_connect_begin: connect 127.0.0.1:2593
+[18:43:28.931] INFO  [zero6] [net] connecting to 127.0.0.1:2593 ...
+[18:43:28.932] LOG   [zero6] event net_connected: connect 127.0.0.1:2593
+[18:43:28.932] INFO  [zero6] [net] connected.
+[18:43:28.932] INFO  [zero6] [seed] sent 0x7F000001 (plaintext)
+[18:43:28.932] LOG   [zero6] event seed_out: 0x7F000001 hex=7f000001
+[18:43:28.933] INFO  [life] loaded persistent state for Ysolde (0 places, 1 suppliers, 7 events, 0 prior sessions)
+[18:43:28.933] INFO  [life] needs: reading 'scribe' from the profession catalogue
+[18:43:28.933] INFO  [life] build plan 'scribe': 240.0 resolved + 460.0 unresolved = 700.0/700.0, stats 30/20/100 = 150
+[18:43:28.933] INFO  [zero6] [life] autonomous player active for 'Ysolde' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 25 min)
+[18:43:28.944] INFO  [zero6] [0xA8] 1 server(s):
+[18:43:28.945] INFO  [zero6]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[18:43:28.960] INFO  [zero6] [0x8C] game server = 127.0.0.1:2593  seed=0xF0B4C7C7
+[18:43:28.960] LOG   [zero6] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0xF0B4C7C7
+[18:43:28.960] INFO  [zero6] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:43:28.960] LOG   [zero6] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:43:28.960] INFO  [zero6] [0xB9] server features = 0x0005
+[18:43:28.960] INFO  [zero6] [0xA9] 5 slot(s) (populated 1):
+[18:43:28.960] INFO  [zero6]   [0] Ysolde
+[18:43:28.960] INFO  [zero6]   [1] <empty>
+[18:43:28.960] INFO  [zero6]   [2] <empty>
+[18:43:28.960] INFO  [zero6]   [3] <empty>
+[18:43:28.960] INFO  [zero6]   [4] <empty>
+[18:43:28.960] INFO  [zero6] [ui] playing slot 0 ('Ysolde')
+[18:43:28.975] INFO  [zero6] [0x1B] serial=0x00014261 body=0x0190 pos=(1485,1549,32)
+[18:43:28.975] LOG   [zero6] event login_confirm: serial=0x00014261 body=0x0190 pos=(1485,1549,32)
+[18:43:28.975] INFO  [zero6] [0x20] player @(1485,1549,32) facing=3
+[18:43:28.975] INFO  [zero6] [0x55] login complete — entering world
+[18:43:28.975] LOG   [zero6] event in_world: 0x55 received
+[18:43:28.975] INFO  [zero6] [backpack] opening 0x4001425D
+[18:43:28.975] INFO  [zero6] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:43:28.975] INFO  [zero6] [chat ascii] System: There are 2 other players here.
+[18:43:28.975] INFO  [zero6] [chat ascii] System: Last logged: 2026/08/28 18:38:46
+[18:43:28.975] INFO  [zero6] [chat ascii] System: You are under the protection of the city guards
+[18:43:28.979] INFO  [zero6] [action] requesting the skill list
+[18:43:28.979] INFO  [life] in world; asked the server for the skill list
+[18:43:28.979] INFO  [zero6] [0x24] open container 0x4001425D gump=60
+[18:43:28.979] INFO  [zero6] [0x3C] container contents: 9 item(s)
+[18:43:28.979] LOG   [zero6] event backpack_contents: serial=0x4001425D items=9
+[18:43:31.587] INFO  [zero6] [bot] world data loaded (0 blacklisted spot(s)).
+[18:43:31.587] INFO  [life] reconciliation: resuming a life, 0 field(s) differed
+[18:43:31.587] INFO  [life]   gold         persisted=781        server=781        -> server value accepted
+[18:43:31.587] INFO  [life]   str          persisted=10         server=10         -> server value accepted
+[18:43:31.587] INFO  [life]   dex          persisted=10         server=10         -> server value accepted
+[18:43:31.587] INFO  [life]   int          persisted=30         server=30         -> server value accepted
+[18:43:31.587] INFO  [life]   skill_23     persisted=50.0       server=50.0       -> server value accepted
+[18:43:31.587] INFO  [life]   skill_25     persisted=50.0       server=50.0       -> server value accepted
+[18:43:31.587] INFO  [life]   skill_46     persisted=21.9       server=21.9       -> server value accepted
+[18:43:31.587] INFO  [life]   position     persisted=1485,1549  server=1485,1549  -> server value accepted
+[18:43:31.587] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:43:31.587] INFO  [zero6] [survival] on
+[18:43:31.587] LOG   [zero6] event survival_mode: on
+[18:43:31.589] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:43:31.589] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:43:31.641] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:43:31.641] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:43:31.641] INFO  [life]   score=10.0
+[18:43:31.641] INFO  [life]   reason: fallback: nothing else scored
+[18:43:31.641] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:43:36.648] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:43:41.671] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:43:46.726] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:43:46.728] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:43:46.728] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:43:46.785] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:43:46.785] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:43:46.785] INFO  [life]   score=10.0
+[18:43:46.785] INFO  [life]   reason: fallback: nothing else scored
+[18:43:46.785] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:43:51.787] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:43:56.798] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:43:58.795] INFO  [zero6] [chat ascii] Xanthe: What is it thou wishest?
+[18:44:01.835] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:44:01.838] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:44:01.838] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:44:01.898] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:44:01.898] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:44:01.898] INFO  [life]   score=10.0
+[18:44:01.898] INFO  [life]   reason: fallback: nothing else scored
+[18:44:01.898] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)
+[18:44:06.864] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:44:11.680] INFO  [zero6] [chat ascii] Alenne: I am listening to thee.
+[18:44:11.879] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:44:16.889] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:44:21.931] INFO  [life] goal_completed=IDLE_BRIEFLY progress=0
+[18:44:21.933] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionsoak42.ysolde/state.json
+[18:44:21.933] INFO  [zero6] [survival] hp 10/10 (100%) -> fight
+[18:44:21.990] INFO  [life] goal=IDLE_BRIEFLY reason="no goal was running"
+[18:44:21.991] INFO  [life] needs considered: NeedTraining(Inscription BLOCKED 0.28) NeedTraining(Magery BLOCKED 0.28) NeedTraining(Meditation BLOCKED 0.26) NeedFood(food 0.25)  | tools defined=1 held=[spellbook,]
+[18:44:21.991] INFO  [life]   score=10.0
+[18:44:21.991] INFO  [life]   reason: fallback: nothing else scored
+[18:44:21.991] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (Inscription 50.0 -> 100.0)

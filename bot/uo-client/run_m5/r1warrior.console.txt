@@ -1,0 +1,1566 @@
+[08:59:17.593] INFO  session 0: 127.0.0.1:2593 user='RevolutionWarrior01' char=Kaelen tag='r1warrior'
+[08:59:17.594] LOG   [r1warrior] event session_start: text log opened
+[08:59:17.595] LOG   [r1warrior] event net_connect_begin: connect 127.0.0.1:2593
+[08:59:17.595] INFO  [r1warrior] [net] connecting to 127.0.0.1:2593 ...
+[08:59:17.596] LOG   [r1warrior] event net_connected: connect 127.0.0.1:2593
+[08:59:17.596] INFO  [r1warrior] [net] connected.
+[08:59:17.596] INFO  [r1warrior] [seed] sent 0x7F000001 (plaintext)
+[08:59:17.596] LOG   [r1warrior] event seed_out: 0x7F000001 hex=7f000001
+[08:59:17.596] INFO  [life] no prior state for revolutionwarrior01.kaelen: a new Fencer
+[08:59:17.596] INFO  [life] creation request: skill 42 50.0 + Tactics 50.0, stats 20/25/5 = 50
+[08:59:17.596] INFO  [life] needs: reading 'fencer' from the profession catalogue
+[08:59:17.596] INFO  [life] home: Kaelen lives in Britain
+[08:59:17.596] INFO  [life] build plan 'fencer': 600.0 resolved + 100.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[08:59:17.596] INFO  [r1warrior] [life] autonomous player active for 'Kaelen' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 20 min)
+[08:59:17.620] INFO  [r1warrior] [0xA8] 1 server(s):
+[08:59:17.620] INFO  [r1warrior]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[08:59:17.635] INFO  [r1warrior] [0x8C] game server = 127.0.0.1:2593  seed=0x3996AFF7
+[08:59:17.635] LOG   [r1warrior] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x3996AFF7
+[08:59:17.635] INFO  [r1warrior] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[08:59:17.635] LOG   [r1warrior] event relay_same_socket: no seed re-sent; 0x91 follows
+[08:59:17.635] INFO  [r1warrior] [0xB9] server features = 0x0005
+[08:59:17.635] INFO  [r1warrior] [0xA9] 5 slot(s) (populated 0):
+[08:59:17.635] INFO  [r1warrior]   [0] <empty>
+[08:59:17.635] INFO  [r1warrior]   [1] <empty>
+[08:59:17.636] INFO  [r1warrior]   [2] <empty>
+[08:59:17.636] INFO  [r1warrior]   [3] <empty>
+[08:59:17.636] INFO  [r1warrior]   [4] <empty>
+[08:59:17.636] INFO  [r1warrior] [0x00] requested skills 42:50 27:50 48:0
+[08:59:17.636] INFO  [r1warrior] [0x00] requested stats STR 20 DEX 25 INT 5
+[08:59:17.636] INFO  [r1warrior] [0x00] creating character 'Kaelen' in slot 0
+[08:59:17.636] LOG   [r1warrior] event char_create_sent: Kaelen
+[08:59:17.652] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0190 pos=(633,858,0)
+[08:59:17.652] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0190 pos=(633,858,0)
+[08:59:17.652] INFO  [r1warrior] [0x20] player @(633,858,0) facing=3
+[08:59:17.652] INFO  [r1warrior] [0x55] login complete — entering world
+[08:59:17.652] LOG   [r1warrior] event in_world: 0x55 received
+[08:59:17.652] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[08:59:17.652] INFO  [r1warrior] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[08:59:17.652] INFO  [r1warrior] [chat ascii] System: There is 1 other player here.
+[08:59:17.652] INFO  [r1warrior] [chat ascii] System: You are under the protection of the town guards
+[08:59:17.657] INFO  [r1warrior] [action] requesting the skill list
+[08:59:17.657] INFO  [life] in world; asked the server for the skill list
+[08:59:17.657] INFO  [r1warrior] [0x24] open container 0x40015DF6 gump=60
+[08:59:17.657] INFO  [r1warrior] [0x3C] container contents: 5 item(s)
+[08:59:17.657] LOG   [r1warrior] event backpack_contents: serial=0x40015DF6 items=5
+[08:59:20.232] INFO  [r1warrior] [bot] world data loaded (0 blacklisted spot(s)).
+[08:59:20.232] INFO  [life] reconciliation: first ever login, 11 field(s) differed
+[08:59:20.232] INFO  [life]   gold         persisted=0          server=1000       -> server value accepted
+[08:59:20.232] INFO  [life]   str          persisted=0          server=20         -> server value accepted
+[08:59:20.232] INFO  [life]   dex          persisted=0          server=25         -> server value accepted
+[08:59:20.232] INFO  [life]   int          persisted=0          server=5          -> server value accepted
+[08:59:20.232] INFO  [life]   skill_42     persisted=0.0        server=50.0       -> server value accepted
+[08:59:20.232] INFO  [life]   skill_27     persisted=0.0        server=50.0       -> server value accepted
+[08:59:20.232] INFO  [life]   skill_1      persisted=0.0        server=8.2        -> server value accepted
+[08:59:20.232] INFO  [life]   skill_17     persisted=0.0        server=5.2        -> server value accepted
+[08:59:20.232] INFO  [life]   skill_30     persisted=0.0        server=9.2        -> server value accepted
+[08:59:20.232] INFO  [life]   skill_5      persisted=0.0        server=9.5        -> server value accepted
+[08:59:20.232] INFO  [life]   position     persisted=0,0        server=633,858    -> server value accepted
+[08:59:20.232] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[08:59:20.232] INFO  [r1warrior] [survival] on
+[08:59:20.232] LOG   [r1warrior] event survival_mode: on
+[08:59:20.234] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[08:59:20.234] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[08:59:20.286] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[08:59:20.286] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(Anatomy 0.45) NeedTraining(Anatomy 0.38) NeedTraining(skill 5 0.38) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=Anatomy (target 100.0)
+[08:59:20.286] INFO  [life]   score=90.0
+[08:59:20.286] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[08:59:20.286] INFO  [life]   reason: Anatomy 8.2 -> 100.0, gold 1000 (fee is quoted on arrival, roughly 300)
+[08:59:20.286] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[08:59:20.286] INFO  [life] training: looking for a 'healer' to teach Anatomy (trip 1)
+[08:59:20.286] INFO  [r1warrior] [travel] Britain healer -> (1471,1611) r=5 from (633,858)
+[08:59:20.286] LOG   [r1warrior] event travel_start: label='Britain healer' target=(1471,1611) radius=5 from=(633,858)
+[08:59:20.286] INFO  [r1warrior] [travel] mode moongate         usable   <- chosen
+[08:59:20.286] INFO  [r1warrior] [travel] mode walk             usable
+[08:59:20.286] INFO  [r1warrior] [travel] mode loose_rune_recall no: no rune marked at that destination
+[08:59:20.286] INFO  [r1warrior] [travel] mode runebook_recall  no: no runebook page for that destination
+[08:59:20.286] LOG   [r1warrior] event travel_mode: moongate
+[08:59:20.286] INFO  [r1warrior] [travel] plan Britain healer: ok legs=19 ~760 tiles transit=1 nodes=916
+[08:59:20.346] INFO  [r1warrior] [action] goto (664,856) from (633,858,0)
+[08:59:20.346] LOG   [r1warrior] event goto_start: target=(664,856) from=(633,858)
+[08:59:20.346] INFO  [r1warrior] [bot] running from (633,858,0) to (664,856)
+[08:59:20.346] INFO  [r1warrior] [bot] planning path to (664,856) in background
+[08:59:20.409] INFO  [r1warrior] [bot] replan to (664,856): 31 steps in 6072.0us
+[08:59:25.258] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[08:59:29.745] INFO  [r1warrior] [bot] arrived at (664,856,0)
+[08:59:29.745] INFO  [r1warrior] [action] goto finished at (664,856,0); target (664,856); ARRIVED (off by 0 tile(s))
+[08:59:29.745] LOG   [r1warrior] event goto_done: at=(664,856) target=(664,856) arrived=1 off=0
+[08:59:29.745] INFO  [r1warrior] [action] goto (696,840) from (664,856,0)
+[08:59:29.745] LOG   [r1warrior] event goto_start: target=(696,840) from=(664,856)
+[08:59:29.745] INFO  [r1warrior] [bot] running from (664,856,0) to (696,840)
+[08:59:29.745] INFO  [r1warrior] [bot] planning path to (696,840) in background
+[08:59:29.806] INFO  [r1warrior] [bot] replan to (696,840): 36 steps in 8358.0us
+[08:59:30.267] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[08:59:35.296] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[08:59:36.277] INFO  [r1warrior] [chat ascii] System: You have left the protection of the town guards
+[08:59:40.354] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[08:59:42.318] INFO  [r1warrior] [bot] arrived at (696,840,0)
+[08:59:42.318] INFO  [r1warrior] [action] goto finished at (696,840,0); target (696,840); ARRIVED (off by 0 tile(s))
+[08:59:42.318] LOG   [r1warrior] event goto_done: at=(696,840) target=(696,840) arrived=1 off=0
+[08:59:42.318] INFO  [r1warrior] [action] goto (728,808) from (696,840,0)
+[08:59:42.318] LOG   [r1warrior] event goto_start: target=(728,808) from=(696,840)
+[08:59:42.318] INFO  [r1warrior] [bot] running from (696,840,0) to (728,808)
+[08:59:42.318] INFO  [r1warrior] [bot] planning path to (728,808) in background
+[08:59:42.380] INFO  [r1warrior] [bot] replan to (728,808): 40 steps in 10829.7us
+[08:59:45.381] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[08:59:50.406] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[08:59:55.463] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[08:59:56.611] INFO  [r1warrior] [bot] arrived at (728,808,0)
+[08:59:56.611] INFO  [r1warrior] [action] goto finished at (728,808,0); target (728,808); ARRIVED (off by 0 tile(s))
+[08:59:56.611] LOG   [r1warrior] event goto_done: at=(728,808) target=(728,808) arrived=1 off=0
+[08:59:56.611] INFO  [r1warrior] [action] goto (760,776) from (728,808,0)
+[08:59:56.611] LOG   [r1warrior] event goto_start: target=(760,776) from=(728,808)
+[08:59:56.611] INFO  [r1warrior] [bot] running from (728,808,0) to (760,776)
+[08:59:56.611] INFO  [r1warrior] [bot] planning path to (760,776) in background
+[08:59:56.671] INFO  [r1warrior] [bot] replan to (760,776): 37 steps in 12765.5us
+[09:00:00.476] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:05.483] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:08.990] INFO  [r1warrior] [bot] arrived at (760,776,0)
+[09:00:08.991] INFO  [r1warrior] [action] goto finished at (760,776,0); target (760,776); ARRIVED (off by 0 tile(s))
+[09:00:08.991] LOG   [r1warrior] event goto_done: at=(760,776) target=(760,776) arrived=1 off=0
+[09:00:08.991] INFO  [r1warrior] [action] goto (776,760) from (760,776,0)
+[09:00:08.991] LOG   [r1warrior] event goto_start: target=(776,760) from=(760,776)
+[09:00:08.991] INFO  [r1warrior] [bot] running from (760,776,0) to (776,760)
+[09:00:08.991] INFO  [r1warrior] [bot] planning path to (776,760) in background
+[09:00:09.051] INFO  [r1warrior] [bot] replan to (776,760): 20 steps in 2125.4us
+[09:00:10.534] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:15.579] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:16.848] INFO  [r1warrior] [bot] arrived at (776,760,0)
+[09:00:16.848] INFO  [r1warrior] [action] goto finished at (776,760,0); target (776,760); ARRIVED (off by 0 tile(s))
+[09:00:16.848] LOG   [r1warrior] event goto_done: at=(776,760) target=(776,760) arrived=1 off=0
+[09:00:16.848] INFO  [r1warrior] [action] goto (771,752) from (776,760,0)
+[09:00:16.848] LOG   [r1warrior] event goto_start: target=(771,752) from=(776,760)
+[09:00:16.848] INFO  [r1warrior] [bot] running from (776,760,0) to (771,752)
+[09:00:16.848] INFO  [r1warrior] [bot] planning path to (771,752) in background
+[09:00:16.909] INFO  [r1warrior] [bot] replan to (771,752): 8 steps in 156.9us
+[09:00:20.239] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:00:20.315] INFO  [r1warrior] [gump] 0x400028B7 context=0x80A003F8: 13 option(s), 15 text(s)
+[09:00:20.316] INFO  [r1warrior] [gump]   button 1000 = 'OKAY'
+[09:00:20.316] INFO  [r1warrior] [gump]   button 0 = 'CANCEL'
+[09:00:20.316] INFO  [r1warrior] [gump]   button 1 = 'Felucca'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 1 = 'Moonglow'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 2 = 'Britain'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 3 = 'Jhelom'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 4 = 'Yew'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 5 = 'New Magincia'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 6 = 'Minoc'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 7 = 'Trinsic'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 8 = 'Skara Brae'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 9 = 'Buccaneer's Den'
+[09:00:20.316] INFO  [r1warrior] [gump]   choice 10 = 'Ocllo (Newplayers)'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 0 = 'Pick your destination:'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 1 = 'OKAY'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 2 = 'CANCEL'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 3 = 'Felucca'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 4 = 'Felucca'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 5 = 'Moonglow'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 6 = 'Britain'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 7 = 'Jhelom'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 8 = 'Yew'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 9 = 'New Magincia'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 10 = 'Minoc'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 11 = 'Trinsic'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 12 = 'Skara Brae'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 13 = 'Buccaneer's Den'
+[09:00:20.316] INFO  [r1warrior] [gump]   text 14 = 'Ocllo (Newplayers)'
+[09:00:20.316] LOG   [r1warrior] event gump_open: serial=0x400028B7 context=0x80A003F8 options=13
+[09:00:20.316] INFO  [r1warrior] [travel] gate gump: choosing 'Britain' (choice 2, button 1000)
+[09:00:20.316] LOG   [r1warrior] event moongate_use: destination='Britain' choice=2 button=1000
+[09:00:20.316] INFO  [r1warrior] [bot] arrived at (771,752,5)
+[09:00:20.316] INFO  [r1warrior] [action] goto finished at (771,752,5); target (771,752); ARRIVED (off by 0 tile(s))
+[09:00:20.316] LOG   [r1warrior] event goto_done: at=(771,752) target=(771,752) arrived=1 off=0
+[09:00:20.316] INFO  [r1warrior] [travel] using moongate 0x400028B7 for 'Britain' (gump active=0 serial=0x00000000)
+[09:00:20.316] INFO  [r1warrior] [0x20] player @(1336,1997,5) facing=7
+[09:00:20.316] INFO  [r1warrior] [0x20] player @(1336,1997,5) facing=7
+[09:00:20.330] INFO  [r1warrior] [chat ascii] System: You can't see the target
+[09:00:20.392] INFO  [r1warrior] [action] goto (1336,1960) from (1336,1997,5)
+[09:00:20.392] LOG   [r1warrior] event goto_start: target=(1336,1960) from=(1336,1997)
+[09:00:20.392] INFO  [r1warrior] [bot] running from (1336,1997,5) to (1336,1960)
+[09:00:20.392] INFO  [r1warrior] [bot] planning path to (1336,1960) in background
+[09:00:20.452] INFO  [r1warrior] [bot] replan to (1336,1960): 37 steps in 15855.0us
+[09:00:20.634] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:20.756] INFO  [r1warrior] [chat ascii] System: You have been revealed
+[09:00:25.682] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:30.740] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:32.869] INFO  [r1warrior] [bot] arrived at (1336,1960,0)
+[09:00:32.869] INFO  [r1warrior] [action] goto finished at (1336,1960,0); target (1336,1960); ARRIVED (off by 0 tile(s))
+[09:00:32.869] LOG   [r1warrior] event goto_done: at=(1336,1960) target=(1336,1960) arrived=1 off=0
+[09:00:32.869] INFO  [r1warrior] [action] goto (1336,1928) from (1336,1960,0)
+[09:00:32.869] LOG   [r1warrior] event goto_start: target=(1336,1928) from=(1336,1960)
+[09:00:32.869] INFO  [r1warrior] [bot] running from (1336,1960,0) to (1336,1928)
+[09:00:32.869] INFO  [r1warrior] [bot] planning path to (1336,1928) in background
+[09:00:32.930] INFO  [r1warrior] [bot] replan to (1336,1928): 33 steps in 7504.5us
+[09:00:35.768] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:40.816] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:43.628] INFO  [r1warrior] [bot] arrived at (1336,1928,0)
+[09:00:43.628] INFO  [r1warrior] [action] goto finished at (1336,1928,0); target (1336,1928); ARRIVED (off by 0 tile(s))
+[09:00:43.628] LOG   [r1warrior] event goto_done: at=(1336,1928) target=(1336,1928) arrived=1 off=0
+[09:00:43.628] INFO  [r1warrior] [action] goto (1336,1896) from (1336,1928,0)
+[09:00:43.628] LOG   [r1warrior] event goto_start: target=(1336,1896) from=(1336,1928)
+[09:00:43.628] INFO  [r1warrior] [bot] running from (1336,1928,0) to (1336,1896)
+[09:00:43.628] INFO  [r1warrior] [bot] planning path to (1336,1896) in background
+[09:00:43.688] INFO  [r1warrior] [bot] replan to (1336,1896): 32 steps in 10176.1us
+[09:00:45.856] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:50.913] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:00:54.853] INFO  [r1warrior] [bot] arrived at (1336,1896,0)
+[09:00:54.853] INFO  [r1warrior] [action] goto finished at (1336,1896,0); target (1336,1896); ARRIVED (off by 0 tile(s))
+[09:00:54.853] LOG   [r1warrior] event goto_done: at=(1336,1896) target=(1336,1896) arrived=1 off=0
+[09:00:54.853] INFO  [r1warrior] [action] goto (1336,1864) from (1336,1896,0)
+[09:00:54.853] LOG   [r1warrior] event goto_start: target=(1336,1864) from=(1336,1896)
+[09:00:54.853] INFO  [r1warrior] [bot] running from (1336,1896,0) to (1336,1864)
+[09:00:54.853] INFO  [r1warrior] [bot] planning path to (1336,1864) in background
+[09:00:54.914] INFO  [r1warrior] [bot] replan to (1336,1864): 37 steps in 7606.7us
+[09:00:55.973] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:01.011] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:06.053] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:08.852] INFO  [r1warrior] [bot] arrived at (1336,1864,0)
+[09:01:08.852] INFO  [r1warrior] [action] goto finished at (1336,1864,0); target (1336,1864); ARRIVED (off by 0 tile(s))
+[09:01:08.852] LOG   [r1warrior] event goto_done: at=(1336,1864) target=(1336,1864) arrived=1 off=0
+[09:01:08.852] INFO  [r1warrior] [action] goto (1336,1832) from (1336,1864,0)
+[09:01:08.852] LOG   [r1warrior] event goto_start: target=(1336,1832) from=(1336,1864)
+[09:01:08.852] INFO  [r1warrior] [bot] running from (1336,1864,0) to (1336,1832)
+[09:01:08.852] INFO  [r1warrior] [bot] planning path to (1336,1832) in background
+[09:01:08.911] INFO  [r1warrior] [bot] replan to (1336,1832): 33 steps in 6624.6us
+[09:01:11.058] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:16.089] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:20.297] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:01:21.109] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:21.171] INFO  [r1warrior] [bot] arrived at (1336,1832,0)
+[09:01:21.171] INFO  [r1warrior] [action] goto finished at (1336,1832,0); target (1336,1832); ARRIVED (off by 0 tile(s))
+[09:01:21.171] LOG   [r1warrior] event goto_done: at=(1336,1832) target=(1336,1832) arrived=1 off=0
+[09:01:21.171] INFO  [r1warrior] [action] goto (1336,1800) from (1336,1832,0)
+[09:01:21.171] LOG   [r1warrior] event goto_start: target=(1336,1800) from=(1336,1832)
+[09:01:21.171] INFO  [r1warrior] [bot] running from (1336,1832,0) to (1336,1800)
+[09:01:21.171] INFO  [r1warrior] [bot] planning path to (1336,1800) in background
+[09:01:21.216] INFO  [r1warrior] [bot] replan to (1336,1800): 32 steps in 6056.5us
+[09:01:26.138] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:30.809] INFO  [r1warrior] [bot] arrived at (1336,1800,0)
+[09:01:30.809] INFO  [r1warrior] [action] goto finished at (1336,1800,0); target (1336,1800); ARRIVED (off by 0 tile(s))
+[09:01:30.809] LOG   [r1warrior] event goto_done: at=(1336,1800) target=(1336,1800) arrived=1 off=0
+[09:01:30.809] INFO  [r1warrior] [action] goto (1352,1766) from (1336,1800,0)
+[09:01:30.809] LOG   [r1warrior] event goto_start: target=(1352,1766) from=(1336,1800)
+[09:01:30.809] INFO  [r1warrior] [bot] running from (1336,1800,0) to (1352,1766)
+[09:01:30.809] INFO  [r1warrior] [bot] planning path to (1352,1766) in background
+[09:01:30.871] INFO  [r1warrior] [bot] replan to (1352,1766): 49 steps in 15226.4us
+[09:01:31.191] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:36.195] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:41.232] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:45.590] INFO  [r1warrior] [bot] arrived at (1352,1766,15)
+[09:01:45.590] INFO  [r1warrior] [action] goto finished at (1352,1766,15); target (1352,1766); ARRIVED (off by 0 tile(s))
+[09:01:45.590] LOG   [r1warrior] event goto_done: at=(1352,1766) target=(1352,1766) arrived=1 off=0
+[09:01:45.590] INFO  [r1warrior] [action] goto (1386,1728) from (1352,1766,15)
+[09:01:45.590] LOG   [r1warrior] event goto_start: target=(1386,1728) from=(1352,1766)
+[09:01:45.590] INFO  [r1warrior] [bot] running from (1352,1766,15) to (1386,1728)
+[09:01:45.590] INFO  [r1warrior] [bot] planning path to (1386,1728) in background
+[09:01:45.650] INFO  [r1warrior] [bot] replan to (1386,1728): 64 steps in 41220.5us
+[09:01:46.265] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:51.286] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:51.456] INFO  [r1warrior] [chat ascii] System: World save in 10 seconds
+[09:01:56.289] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:01:57.307] INFO  [r1warrior] [chat ascii] System: You are now under the protection of the city guards
+[09:01:58.888] INFO  [r1warrior] [bot] lookahead patched around block at step 5: anchor=9 new segment=13 path=22 in 555.7us
+[09:02:01.312] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:01.480] INFO  [r1warrior] [chat ascii] System: World save has been initiated.
+[09:02:04.902] INFO  [r1warrior] [chat ascii] System: You have left the protection of the city guards
+[09:02:05.330] INFO  [r1warrior] [bot] arrived at (1386,1728,0)
+[09:02:05.330] INFO  [r1warrior] [action] goto finished at (1386,1728,0); target (1386,1728); ARRIVED (off by 0 tile(s))
+[09:02:05.330] LOG   [r1warrior] event goto_done: at=(1386,1728) target=(1386,1728) arrived=1 off=0
+[09:02:05.330] INFO  [r1warrior] [action] goto (1416,1688) from (1386,1728,0)
+[09:02:05.330] LOG   [r1warrior] event goto_start: target=(1416,1688) from=(1386,1728)
+[09:02:05.330] INFO  [r1warrior] [bot] running from (1386,1728,0) to (1416,1688)
+[09:02:05.330] INFO  [r1warrior] [bot] planning path to (1416,1688) in background
+[09:02:05.390] INFO  [r1warrior] [bot] replan to (1416,1688): 52 steps in 9771.4us
+[09:02:06.281] INFO  [r1warrior] [chat ascii] System: You are now under the protection of the city guards
+[09:02:06.343] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:11.353] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:16.403] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:20.309] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:02:21.453] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:21.638] INFO  [r1warrior] [bot] arrived at (1416,1688,0)
+[09:02:21.638] INFO  [r1warrior] [action] goto finished at (1416,1688,0); target (1416,1688); ARRIVED (off by 0 tile(s))
+[09:02:21.638] LOG   [r1warrior] event goto_done: at=(1416,1688) target=(1416,1688) arrived=1 off=0
+[09:02:21.638] INFO  [r1warrior] [action] goto (1448,1656) from (1416,1688,0)
+[09:02:21.638] LOG   [r1warrior] event goto_start: target=(1448,1656) from=(1416,1688)
+[09:02:21.638] INFO  [r1warrior] [bot] running from (1416,1688,0) to (1448,1656)
+[09:02:21.638] INFO  [r1warrior] [bot] planning path to (1448,1656) in background
+[09:02:21.699] INFO  [r1warrior] [bot] replan to (1448,1656): 46 steps in 3341.5us
+[09:02:26.501] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:30.493] INFO  [r1warrior] [bot] step (1432,1666,10)->(1433,1665,10) rejected; OpenDoor + retry
+[09:02:31.242] INFO  [r1warrior] [bot] step (1432,1666,10)->(1433,1665,10) rejected; avoiding edge + rerouting
+[09:02:31.242] INFO  [r1warrior] [bot] planning path to (1448,1656) in background
+[09:02:31.304] INFO  [r1warrior] [bot] replan to (1448,1656): 20 steps in 1055.0us
+[09:02:31.551] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:36.579] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:38.080] INFO  [r1warrior] [bot] arrived at (1448,1656,10)
+[09:02:38.080] INFO  [r1warrior] [action] goto finished at (1448,1656,10); target (1448,1656); ARRIVED (off by 0 tile(s))
+[09:02:38.080] LOG   [r1warrior] event goto_done: at=(1448,1656) target=(1448,1656) arrived=1 off=0
+[09:02:38.080] INFO  [r1warrior] [travel] avoiding 2 teleporter pad(s) on this leg
+[09:02:38.080] INFO  [r1warrior] [action] goto (1464,1624) from (1448,1656,10)
+[09:02:38.080] LOG   [r1warrior] event goto_start: target=(1464,1624) from=(1448,1656)
+[09:02:38.080] INFO  [r1warrior] [bot] running from (1448,1656,10) to (1464,1624)
+[09:02:38.080] INFO  [r1warrior] [bot] planning path to (1464,1624) in background
+[09:02:38.139] INFO  [r1warrior] [bot] replan to (1464,1624): 43 steps in 4074.7us
+[09:02:41.618] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:46.671] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:51.457] INFO  [r1warrior] [bot] arrived at (1464,1624,20)
+[09:02:51.457] INFO  [r1warrior] [action] goto finished at (1464,1624,20); target (1464,1624); ARRIVED (off by 0 tile(s))
+[09:02:51.457] LOG   [r1warrior] event goto_done: at=(1464,1624) target=(1464,1624) arrived=1 off=0
+[09:02:51.457] INFO  [r1warrior] [travel] avoiding 2 teleporter pad(s) on this leg
+[09:02:51.457] INFO  [r1warrior] [action] goto (1471,1611) from (1464,1624,20)
+[09:02:51.457] LOG   [r1warrior] event goto_start: target=(1471,1611) from=(1464,1624)
+[09:02:51.457] INFO  [r1warrior] [bot] running from (1464,1624,20) to (1471,1611,z20)
+[09:02:51.457] INFO  [r1warrior] [bot] planning path to (1471,1611) in background
+[09:02:51.518] INFO  [r1warrior] [bot] replan to (1471,1611): 31 steps in 14429.2us
+[09:02:51.703] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:56.706] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:02:58.424] INFO  [r1warrior] [bot] door ahead at (1479,1612,z20); OpenDoor before step
+[09:02:58.438] INFO  [r1warrior] [chat ascii] System: Opening door...
+[09:03:00.046] INFO  [r1warrior] [travel] Britain healer ARRIVED at (1476,1612,20)
+[09:03:00.046] LOG   [r1warrior] event travel_done: label='Britain healer' ok=1 at=(1476,1612) legs=19 plans=1 why=''
+[09:03:00.092] INFO  [life] training: arrived at 1476,1612 -- asking who is here
+[09:03:00.093] INFO  [r1warrior] [action] scanning nearby mobiles for names
+[09:03:00.093] INFO  [r1warrior] [action] requested 2 paperdoll(s) for trade titles
+[09:03:00.108] INFO  [r1warrior] [mobiles] nearby (8):
+[09:03:00.108] INFO  [r1warrior]   Dale 0x000010C1
+[09:03:00.108] INFO  [r1warrior]   Natasha 0x00001194
+[09:03:00.108] INFO  [r1warrior]   Rat 0x00000D7B
+[09:03:00.108] INFO  [r1warrior]   Caimile 0x00001239
+[09:03:00.108] INFO  [r1warrior]   Dog 0x00002DA7
+[09:03:00.108] INFO  [r1warrior]   Dog 0x00002655
+[09:03:00.108] INFO  [r1warrior]   Dog 0x00000230
+[09:03:00.108] INFO  [r1warrior]   Audny 0x00001076
+[09:03:00.108] INFO  [r1warrior] [0x88] paperdoll 0x000010C1: "Dale, the healer"
+[09:03:00.108] INFO  [r1warrior] [world] Dale, the healer is a healer at (1469,1613)
+[09:03:00.108] INFO  [r1warrior] [0x88] paperdoll 0x00001194: "Natasha, the healer guildmistress"
+[09:03:00.108] INFO  [r1warrior] [world] Natasha, the healer guildmistress is a healer at (1468,1611)
+[09:03:01.708] INFO  [r1warrior] [bot] arrived at (1471,1611,20)
+[09:03:01.708] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:02.648] INFO  [life] training: a 'healer guildmaster' is here -- asking them rather than the shopkeeper
+[09:03:02.648] INFO  [life] training: 'healer' is 3 tiles and 0 z away -- walking to them before speaking (approach 1 of 3)
+[09:03:02.648] INFO  [r1warrior] [travel] mobile 0x00001194 -> (1468,1611) r=1 from (1471,1611)
+[09:03:02.648] LOG   [r1warrior] event travel_start: label='mobile 0x00001194' target=(1468,1611) radius=1 from=(1471,1611)
+[09:03:02.648] INFO  [r1warrior] [travel] mode walk             usable   <- chosen
+[09:03:02.648] INFO  [r1warrior] [travel] mode moongate         usable
+[09:03:02.648] INFO  [r1warrior] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:03:02.648] INFO  [r1warrior] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:03:02.648] LOG   [r1warrior] event travel_mode: walk
+[09:03:02.648] INFO  [r1warrior] [travel] plan mobile 0x00001194: ok legs=1 ~3 tiles transit=0 nodes=0
+[09:03:02.710] INFO  [r1warrior] [action] goto finished at (1471,1611,20); target (1471,1611); ARRIVED (off by 0 tile(s))
+[09:03:02.710] LOG   [r1warrior] event goto_done: at=(1471,1611) target=(1471,1611) arrived=1 off=0
+[09:03:02.710] INFO  [r1warrior] [action] goto (1468,1611) from (1471,1611,20)
+[09:03:02.710] LOG   [r1warrior] event goto_start: target=(1468,1611) from=(1471,1611)
+[09:03:02.710] INFO  [r1warrior] [bot] running from (1471,1611,20) to (1468,1611,z20)
+[09:03:02.710] INFO  [r1warrior] [bot] planning path to (1468,1611) in background
+[09:03:04.364] INFO  [r1warrior] [action] goto finished at (1471,1611,20); target (1468,1611); stopped short (off by 3 tile(s))
+[09:03:04.364] LOG   [r1warrior] event goto_done: at=(1471,1611) target=(1468,1611) arrived=0 off=3
+[09:03:05.588] INFO  [r1warrior] [travel] mode walk             usable   <- chosen
+[09:03:05.588] INFO  [r1warrior] [travel] mode moongate         usable
+[09:03:05.588] INFO  [r1warrior] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:03:05.588] INFO  [r1warrior] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:03:05.588] LOG   [r1warrior] event travel_mode: walk
+[09:03:05.588] INFO  [r1warrior] [travel] plan mobile 0x00001194: ok legs=1 ~3 tiles transit=0 nodes=0
+[09:03:06.732] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:07.131] INFO  [r1warrior] [action] goto (1468,1611) from (1471,1611,20)
+[09:03:07.131] LOG   [r1warrior] event goto_start: target=(1468,1611) from=(1471,1611)
+[09:03:07.131] INFO  [r1warrior] [bot] running from (1471,1611,20) to (1468,1611,z20)
+[09:03:07.131] INFO  [r1warrior] [bot] planning path to (1468,1611) in background
+[09:03:08.591] INFO  [r1warrior] [action] goto finished at (1471,1611,20); target (1468,1611); stopped short (off by 3 tile(s))
+[09:03:08.591] LOG   [r1warrior] event goto_done: at=(1471,1611) target=(1468,1611) arrived=0 off=3
+[09:03:09.817] INFO  [r1warrior] [travel] mode walk             usable   <- chosen
+[09:03:09.817] INFO  [r1warrior] [travel] mode moongate         usable
+[09:03:09.817] INFO  [r1warrior] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:03:09.817] INFO  [r1warrior] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:03:09.817] LOG   [r1warrior] event travel_mode: walk
+[09:03:09.817] INFO  [r1warrior] [travel] plan mobile 0x00001194: ok legs=1 ~3 tiles transit=0 nodes=0
+[09:03:11.188] INFO  [r1warrior] [travel] mobile 0x00001194 ARRIVED at (1471,1611,20)
+[09:03:11.188] LOG   [r1warrior] event travel_done: label='mobile 0x00001194' ok=1 at=(1471,1611) legs=0 plans=0 why=''
+[09:03:11.249] INFO  [life] training: asking the trainer about Anatomy
+[09:03:11.249] INFO  [r1warrior] [ACTION] npc_train start
+[09:03:11.249] INFO  [r1warrior] [TRAIN] ask 0x00001194 say='Natasha train Anatomy'
+[09:03:11.249] LOG   [r1warrior] event npc_train_ask: Natasha train Anatomy
+[09:03:11.250] INFO  [r1warrior] [chat uni  ] : Natasha train Anatomy
+[09:03:11.250] INFO  [r1warrior] [chat ascii] Natasha: For 218 gold I will train you in all I know of Anatomy. For less gold I will teach you less
+[09:03:11.250] INFO  [r1warrior] [ACTION_RESULT] npc_train success (1ms) For 218 gold I will train you in all I know of Anatomy. For less gold I will teach you less
+[09:03:11.250] LOG   [r1warrior] event action_result: npc_train success took=1ms For 218 gold I will train you in all I know of Anatomy. For less gold I will teach you less
+[09:03:11.742] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:13.780] INFO  [r1warrior] [action] open backpack
+[09:03:13.780] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:03:13.796] INFO  [r1warrior] [0x24] open container 0x40015DF6 gump=60
+[09:03:13.796] INFO  [r1warrior] [0x3C] container contents: 5 item(s)
+[09:03:15.014] INFO  [life] training: paying the quoted 218 gold for Anatomy (purse 1000)
+[09:03:15.014] INFO  [r1warrior] [GIVE] 0x40015DF4 x218 -> 0x00001194 (gold 1000)
+[09:03:15.014] INFO  [r1warrior] [ITEM] drag serial=0x40015DF4 amount=218
+[09:03:15.014] INFO  [r1warrior] [ITEM] drop container=0x00001194
+[09:03:15.014] LOG   [r1warrior] event npc_give: item=0x40015DF4 amount=218 to=0x00001194
+[09:03:15.014] INFO  [r1warrior] [chat ascii] Natasha: Let me show you something of how this is done
+[09:03:15.014] INFO  [r1warrior] [chat ascii] Natasha: That is all I can teach.
+[09:03:16.744] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:19.022] INFO  [r1warrior] [action] requesting the skill list
+[09:03:20.326] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:03:21.776] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:26.780] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:27.176] INFO  [r1warrior] [chat ascii] Dale: I'm listenin'.
+[09:03:31.279] INFO  [life] training: paid 218 for Healing but the server still reports 5.2 after 15s
+[09:03:31.832] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:32.784] INFO  [life] training: asking the trainer about Healing
+[09:03:32.784] INFO  [r1warrior] [ACTION] npc_train start
+[09:03:32.784] INFO  [r1warrior] [TRAIN] ask 0x00001194 say='Natasha train Healing'
+[09:03:32.784] LOG   [r1warrior] event npc_train_ask: Natasha train Healing
+[09:03:32.784] INFO  [r1warrior] [chat uni  ] : Natasha train Healing
+[09:03:32.784] INFO  [r1warrior] [chat ascii] Natasha: For 248 gold I will train you in all I know of Healing. For less gold I will teach you less
+[09:03:32.784] INFO  [r1warrior] [ACTION_RESULT] npc_train success (1ms) For 248 gold I will train you in all I know of Healing. For less gold I will teach you less
+[09:03:32.784] LOG   [r1warrior] event action_result: npc_train success took=1ms For 248 gold I will train you in all I know of Healing. For less gold I will teach you less
+[09:03:35.301] INFO  [r1warrior] [action] open backpack
+[09:03:35.301] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:03:35.316] INFO  [r1warrior] [0x24] open container 0x40015DF6 gump=60
+[09:03:35.316] INFO  [r1warrior] [0x3C] container contents: 5 item(s)
+[09:03:36.504] INFO  [life] training: paying the quoted 248 gold for Healing (purse 782)
+[09:03:36.504] INFO  [r1warrior] [GIVE] 0x40015770 x248 -> 0x00001194 (gold 782)
+[09:03:36.504] INFO  [r1warrior] [ITEM] drag serial=0x40015770 amount=248
+[09:03:36.504] INFO  [r1warrior] [ITEM] drop container=0x00001194
+[09:03:36.504] LOG   [r1warrior] event npc_give: item=0x40015770 amount=248 to=0x00001194
+[09:03:36.884] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:40.513] INFO  [r1warrior] [action] requesting the skill list
+[09:03:41.942] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:46.966] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:51.975] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:52.782] INFO  [life] training: paid 248 for Healing but the server still reports 5.2 after 15s
+[09:03:54.322] INFO  [life] training: asking the trainer about Healing
+[09:03:54.322] INFO  [r1warrior] [ACTION] npc_train start
+[09:03:54.323] INFO  [r1warrior] [TRAIN] ask 0x00001194 say='Natasha train Healing'
+[09:03:54.323] LOG   [r1warrior] event npc_train_ask: Natasha train Healing
+[09:03:54.338] INFO  [r1warrior] [chat uni  ] : Natasha train Healing
+[09:03:54.338] INFO  [r1warrior] [chat ascii] Natasha: For 248 gold I will train you in all I know of Healing. For less gold I will teach you less
+[09:03:54.338] INFO  [r1warrior] [ACTION_RESULT] npc_train success (16ms) For 248 gold I will train you in all I know of Healing. For less gold I will teach you less
+[09:03:54.338] LOG   [r1warrior] event action_result: npc_train success took=16ms For 248 gold I will train you in all I know of Healing. For less gold I will teach you less
+[09:03:56.878] INFO  [r1warrior] [action] open backpack
+[09:03:56.878] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:03:56.894] INFO  [r1warrior] [0x24] open container 0x40015DF6 gump=60
+[09:03:56.894] INFO  [r1warrior] [0x3C] container contents: 6 item(s)
+[09:03:57.017] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:03:58.089] INFO  [life] training: paying the quoted 248 gold for Healing (purse 782)
+[09:03:58.089] INFO  [r1warrior] [GIVE] 0x400127CC x248 -> 0x00001194 (gold 782)
+[09:03:58.089] INFO  [r1warrior] [ITEM] drag serial=0x400127CC amount=248
+[09:03:58.089] INFO  [r1warrior] [ITEM] drop container=0x00001194
+[09:03:58.089] LOG   [r1warrior] event npc_give: item=0x400127CC amount=248 to=0x00001194
+[09:03:58.105] INFO  [r1warrior] [chat ascii] Natasha: Let me show you something of how this is done
+[09:03:58.105] INFO  [r1warrior] [chat ascii] Natasha: That is all I can teach.
+[09:04:02.049] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:02.110] INFO  [r1warrior] [action] requesting the skill list
+[09:04:03.625] INFO  [life] training: skill 5 5.2 -> 9.5, bought from a trainer
+[09:04:03.627] INFO  [life] checkpoint (skill bought from a trainer) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:04:03.627] INFO  [life] goal_completed=TRAIN_AT_NPC progress=0
+[09:04:03.629] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:04:03.687] INFO  [life] goal=TRAIN_AT_NPC reason="no goal was running"
+[09:04:03.687] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.38) NeedTraining(Anatomy 0.32) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[09:04:03.687] INFO  [life]   score=90.0
+[09:04:03.687] INFO  [life]   reason: NeedSkillTraining urgency 0.45 x 200 = 90.0
+[09:04:03.687] INFO  [life]   reason: skill 5 9.5 -> 100.0, gold 534 (fee is quoted on arrival, roughly 300)
+[09:04:03.687] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[09:04:03.687] INFO  [life] training: asking the trainer about skill 5
+[09:04:03.687] INFO  [r1warrior] [ACTION] npc_train start
+[09:04:03.687] INFO  [r1warrior] [TRAIN] ask 0x00001194 say='Natasha train '
+[09:04:03.687] LOG   [r1warrior] event npc_train_ask: Natasha train 
+[09:04:03.688] INFO  [r1warrior] [chat uni  ] : Natasha train 
+[09:04:03.688] INFO  [r1warrior] [chat ascii] Natasha: For a fee I can teach thee of Forensics, SpiritSpeak and Wrestling.
+[09:04:07.106] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:11.708] LOG   [r1warrior] event action_result: npc_train timeout
+[09:04:12.122] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:16.896] INFO  [life] training: no quote and no refusal after 12s (ask 1 of 3)
+[09:04:17.142] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:18.440] INFO  [life] training: asking the trainer about skill 5
+[09:04:18.440] INFO  [r1warrior] [ACTION] npc_train start
+[09:04:18.440] INFO  [r1warrior] [TRAIN] ask 0x00001194 say='Natasha train '
+[09:04:18.440] LOG   [r1warrior] event npc_train_ask: Natasha train 
+[09:04:18.440] INFO  [r1warrior] [chat uni  ] : Natasha train 
+[09:04:18.440] INFO  [r1warrior] [chat ascii] Natasha: For a fee I can teach thee of Forensics, SpiritSpeak and Wrestling.
+[09:04:22.182] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:26.458] LOG   [r1warrior] event action_result: npc_train timeout
+[09:04:27.238] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:31.660] INFO  [life] training: no quote and no refusal after 12s (ask 2 of 3)
+[09:04:32.272] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:33.177] INFO  [life] training: asking the trainer about skill 5
+[09:04:33.177] INFO  [r1warrior] [ACTION] npc_train start
+[09:04:33.177] INFO  [r1warrior] [TRAIN] ask 0x00001194 say='Natasha train '
+[09:04:33.177] LOG   [r1warrior] event npc_train_ask: Natasha train 
+[09:04:33.178] INFO  [r1warrior] [chat uni  ] : Natasha train 
+[09:04:33.178] INFO  [r1warrior] [chat ascii] Natasha: For a fee I can teach thee of Forensics, SpiritSpeak and Wrestling.
+[09:04:37.275] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:41.185] LOG   [r1warrior] event action_result: npc_train timeout
+[09:04:42.331] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:46.354] INFO  [life] training: no quote and no refusal after 12s (ask 3 of 3)
+[09:04:46.354] INFO  [life] goal_failed=TRAIN_AT_NPC reason="'healer' never answered about skill 5"
+[09:04:46.415] INFO  [life] goal=TRAIN_COMBAT reason="previous goal abandoned: the trainer never answered"
+[09:04:46.415] INFO  [life] needs considered: NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.38) NeedTraining(Anatomy 0.32) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[09:04:46.415] INFO  [life]   score=41.4
+[09:04:46.415] INFO  [life]   reason: NeedTraining urgency 0.38 x 110 = 41.4
+[09:04:46.415] INFO  [life]   reason: skill 5 9.5 -> 100.0
+[09:04:46.415] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[09:04:46.415] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 179s after achieving nothing
+[09:04:47.336] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:47.903] INFO  [life] hunt: no fight in reach -- going to the nearest graveyard (trip 1)
+[09:04:47.903] INFO  [r1warrior] [travel] Britain Graveyard -> (1384,1492) r=8 from (1471,1611)
+[09:04:47.903] LOG   [r1warrior] event travel_start: label='Britain Graveyard' target=(1384,1492) radius=8 from=(1471,1611)
+[09:04:47.903] INFO  [r1warrior] [travel] mode moongate         usable   <- chosen
+[09:04:47.903] INFO  [r1warrior] [travel] mode walk             usable
+[09:04:47.903] INFO  [r1warrior] [travel] mode loose_rune_recall no: no rune marked at that destination
+[09:04:47.903] INFO  [r1warrior] [travel] mode runebook_recall  no: no runebook page for that destination
+[09:04:47.903] LOG   [r1warrior] event travel_mode: moongate
+[09:04:47.903] INFO  [r1warrior] [travel] plan Britain Graveyard: ok legs=4 ~152 tiles transit=0 nodes=38
+[09:04:47.963] INFO  [r1warrior] [travel] avoiding 2 teleporter pad(s) on this leg
+[09:04:47.964] INFO  [r1warrior] [action] goto (1432,1576) from (1471,1611,20)
+[09:04:47.964] LOG   [r1warrior] event goto_start: target=(1432,1576) from=(1471,1611)
+[09:04:47.964] INFO  [r1warrior] [bot] running from (1471,1611,20) to (1432,1576)
+[09:04:47.964] INFO  [r1warrior] [bot] planning path to (1432,1576) in background
+[09:04:48.024] INFO  [r1warrior] [bot] replan to (1432,1576): 72 steps in 11931.4us
+[09:04:48.191] INFO  [r1warrior] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=72 in 213.6us
+[09:04:50.676] INFO  [r1warrior] [bot] door ahead at (1479,1611,z20); OpenDoor before step
+[09:04:50.676] INFO  [r1warrior] [chat ascii] System: Opening door...
+[09:04:50.919] INFO  [life] engaging Rat (noto 3) at 1486,1607
+[09:04:50.919] INFO  [r1warrior] [war] entering war mode
+[09:04:50.919] INFO  [r1warrior] [ACTION] attack start
+[09:04:50.919] INFO  [r1warrior] [ACTION] attack serial=0x00000D7B
+[09:04:50.920] INFO  [r1warrior] [0xAA] attacking 0x00000D7B
+[09:04:50.920] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:04:50.920] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:04:51.916] INFO  [r1warrior] [bot] door ahead at (1480,1610,z20); OpenDoor before step
+[09:04:51.916] INFO  [r1warrior] [chat ascii] System: Opening door...
+[09:04:52.161] INFO  [r1warrior] [ACTION] attack start
+[09:04:52.161] INFO  [r1warrior] [ACTION] attack serial=0x00000D7B
+[09:04:52.162] INFO  [r1warrior] [0xAA] attacking 0x00000D7B
+[09:04:52.162] INFO  [r1warrior] [ACTION_RESULT] attack success (1ms) server accepted the target
+[09:04:52.162] LOG   [r1warrior] event action_result: attack success took=1ms server accepted the target
+[09:04:52.345] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:04:53.367] INFO  [r1warrior] [ACTION] attack start
+[09:04:53.367] INFO  [r1warrior] [ACTION] attack serial=0x00000D7B
+[09:04:53.382] INFO  [r1warrior] [0xAA] attacking 0x00000D7B
+[09:04:53.382] INFO  [r1warrior] [ACTION_RESULT] attack success (16ms) server accepted the target
+[09:04:53.382] LOG   [r1warrior] event action_result: attack success took=16ms server accepted the target
+[09:04:54.608] INFO  [r1warrior] [ACTION] attack start
+[09:04:54.608] INFO  [r1warrior] [ACTION] attack serial=0x00000D7B
+[09:04:54.608] INFO  [r1warrior] [0xAA] attacking 0x00000D7B
+[09:04:54.608] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:04:54.608] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:04:57.367] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:02.370] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:03.639] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:05:04.389] INFO  [r1warrior] [war] dropping war mode: combat target has not been seen for a while
+[09:05:04.389] LOG   [r1warrior] event war_timeout: combat target has not been seen for a while
+[09:05:04.389] INFO  [r1warrior] [war] leaving war mode
+[09:05:07.421] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:10.077] INFO  [r1warrior] [bot] arrived at (1432,1576,30)
+[09:05:10.077] INFO  [r1warrior] [action] goto finished at (1432,1576,30); target (1432,1576); ARRIVED (off by 0 tile(s))
+[09:05:10.077] LOG   [r1warrior] event goto_done: at=(1432,1576) target=(1432,1576) arrived=1 off=0
+[09:05:10.077] INFO  [r1warrior] [action] goto (1432,1544) from (1432,1576,30)
+[09:05:10.077] LOG   [r1warrior] event goto_start: target=(1432,1544) from=(1432,1576)
+[09:05:10.077] INFO  [r1warrior] [bot] running from (1432,1576,30) to (1432,1544)
+[09:05:10.077] INFO  [r1warrior] [bot] planning path to (1432,1544) in background
+[09:05:10.139] INFO  [r1warrior] [bot] replan to (1432,1544): 32 steps in 555.5us
+[09:05:12.461] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:17.473] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:18.235] INFO  [r1warrior] [bot] arrived at (1432,1544,30)
+[09:05:18.235] INFO  [r1warrior] [action] goto finished at (1432,1544,30); target (1432,1544); ARRIVED (off by 0 tile(s))
+[09:05:18.235] LOG   [r1warrior] event goto_done: at=(1432,1544) target=(1432,1544) arrived=1 off=0
+[09:05:18.235] INFO  [r1warrior] [action] goto (1400,1512) from (1432,1544,30)
+[09:05:18.235] LOG   [r1warrior] event goto_start: target=(1400,1512) from=(1432,1544)
+[09:05:18.235] INFO  [r1warrior] [bot] running from (1432,1544,30) to (1400,1512)
+[09:05:18.235] INFO  [r1warrior] [bot] planning path to (1400,1512) in background
+[09:05:18.297] INFO  [r1warrior] [bot] replan to (1400,1512): 44 steps in 6083.7us
+[09:05:20.952] INFO  [r1warrior] [chat ascii] System: You have retreated from the battle with Rat
+[09:05:22.533] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:27.577] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:28.958] INFO  [r1warrior] [chat ascii] System: You have left the protection of the city guards
+[09:05:32.607] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:32.684] INFO  [r1warrior] [bot] arrived at (1400,1512,10)
+[09:05:32.684] INFO  [r1warrior] [action] goto finished at (1400,1512,10); target (1400,1512); ARRIVED (off by 0 tile(s))
+[09:05:32.684] LOG   [r1warrior] event goto_done: at=(1400,1512) target=(1400,1512) arrived=1 off=0
+[09:05:32.684] INFO  [r1warrior] [action] goto (1384,1492) from (1400,1512,10)
+[09:05:32.684] LOG   [r1warrior] event goto_start: target=(1384,1492) from=(1400,1512)
+[09:05:32.684] INFO  [r1warrior] [bot] running from (1400,1512,10) to (1384,1492,z10)
+[09:05:32.684] INFO  [r1warrior] [bot] planning path to (1384,1492) in background
+[09:05:32.744] INFO  [r1warrior] [bot] replan to (1384,1492): 25 steps in 2640.6us
+[09:05:35.460] INFO  [life] engaging a hostile (noto 6) at 1378,1504
+[09:05:35.460] INFO  [r1warrior] [war] entering war mode
+[09:05:35.460] INFO  [r1warrior] [ACTION] attack start
+[09:05:35.460] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:35.475] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:35.475] INFO  [r1warrior] [ACTION_RESULT] attack success (15ms) server accepted the target
+[09:05:35.475] LOG   [r1warrior] event action_result: attack success took=15ms server accepted the target
+[09:05:35.475] INFO  [life] goal_changed=SURVIVE from=TRAIN_COMBAT reason="SURVIVE 550.0 superseded TRAIN_COMBAT 41.4"
+[09:05:35.475] INFO  [life] needs considered: StayAlive(a fight already started 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 0.38) NeedTraining(Anatomy 0.32) NeedTraining(skill 42 0.28) NeedTraining(Tactics 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[09:05:35.475] INFO  [life]   score=550.0
+[09:05:35.475] INFO  [life]   reason: StayAlive urgency 0.55 x 1000 = 550.0
+[09:05:35.475] INFO  [life]   reason: attackers=1 hostiles_seen=1 hp=100%
+[09:05:35.475] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[09:05:35.475] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 130s after achieving nothing
+[09:05:36.682] INFO  [r1warrior] [ACTION] attack start
+[09:05:36.682] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:36.682] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:36.682] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:05:36.682] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:05:37.326] INFO  [r1warrior] [chat ascii] Skeletal Mage: *Skeletal Mage is attacking you!*
+[09:05:37.633] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:37.892] INFO  [r1warrior] [ACTION] attack start
+[09:05:37.893] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:37.908] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:37.908] INFO  [r1warrior] [ACTION_RESULT] attack success (16ms) server accepted the target
+[09:05:37.908] LOG   [r1warrior] event action_result: attack success took=16ms server accepted the target
+[09:05:38.224] INFO  [r1warrior] [travel] Britain Graveyard ARRIVED at (1386,1499,10)
+[09:05:38.225] LOG   [r1warrior] event travel_done: label='Britain Graveyard' ok=1 at=(1386,1499) legs=4 plans=1 why=''
+[09:05:39.112] INFO  [r1warrior] [ACTION] attack start
+[09:05:39.112] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:39.127] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:39.127] INFO  [r1warrior] [ACTION_RESULT] attack success (16ms) server accepted the target
+[09:05:39.127] LOG   [r1warrior] event action_result: attack success took=16ms server accepted the target
+[09:05:40.217] INFO  [r1warrior] [bot] arrived at (1384,1492,10)
+[09:05:40.337] INFO  [r1warrior] [ACTION] attack start
+[09:05:40.337] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:40.337] INFO  [r1warrior] [action] goto finished at (1384,1492,10); target (1384,1492); ARRIVED (off by 0 tile(s))
+[09:05:40.337] LOG   [r1warrior] event goto_done: at=(1384,1492) target=(1384,1492) arrived=1 off=0
+[09:05:40.337] INFO  [r1warrior] [action] goto_mobile 0x00002629 at (1383,1499)
+[09:05:40.337] INFO  [r1warrior] [action] goto (1384,1499) from (1384,1492,10)
+[09:05:40.337] LOG   [r1warrior] event goto_start: target=(1384,1499) from=(1384,1492)
+[09:05:40.338] INFO  [r1warrior] [bot] running from (1384,1492,10) to (1384,1499)
+[09:05:40.338] INFO  [r1warrior] [bot] planning path to (1384,1499) in background
+[09:05:40.338] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:40.338] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:05:40.338] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:05:40.383] INFO  [r1warrior] [bot] replan to (1384,1499): 7 steps in 155.9us
+[09:05:41.589] INFO  [r1warrior] [ACTION] attack start
+[09:05:41.589] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:41.589] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:41.589] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:05:41.589] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:05:42.323] INFO  [r1warrior] [bot] arrived at (1384,1499,10)
+[09:05:42.691] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:42.812] INFO  [r1warrior] [ACTION] attack start
+[09:05:42.812] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:42.812] INFO  [r1warrior] [action] goto finished at (1384,1499,10); target (1384,1499); ARRIVED (off by 0 tile(s))
+[09:05:42.812] LOG   [r1warrior] event goto_done: at=(1384,1499) target=(1384,1499) arrived=1 off=0
+[09:05:42.812] INFO  [r1warrior] [action] goto_mobile 0x00002629 at (1383,1497)
+[09:05:42.812] INFO  [r1warrior] [action] goto (1384,1497) from (1384,1499,10)
+[09:05:42.812] LOG   [r1warrior] event goto_start: target=(1384,1497) from=(1384,1499)
+[09:05:42.812] INFO  [r1warrior] [bot] running from (1384,1499,10) to (1384,1497)
+[09:05:42.812] INFO  [r1warrior] [bot] planning path to (1384,1497) in background
+[09:05:42.812] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:42.812] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:05:42.812] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:05:42.812] INFO  [r1warrior] [bot] replan to (1384,1497): 2 steps in 40.8us
+[09:05:42.920] INFO  [r1warrior] [bot] lookahead patched around block at step 1: anchor=2 new segment=4 path=4 in 267.4us
+[09:05:44.026] INFO  [r1warrior] [ACTION] attack start
+[09:05:44.026] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:44.026] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:44.026] INFO  [r1warrior] [ACTION_RESULT] attack success (1ms) server accepted the target
+[09:05:44.026] LOG   [r1warrior] event action_result: attack success took=1ms server accepted the target
+[09:05:44.729] INFO  [r1warrior] [bot] arrived at (1384,1497,10)
+[09:05:45.141] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:05:45.232] INFO  [r1warrior] [ACTION] attack start
+[09:05:45.232] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:45.232] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:45.232] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:05:45.232] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:05:46.486] INFO  [r1warrior] [ACTION] attack start
+[09:05:46.487] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:46.487] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:46.487] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:05:46.487] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:05:47.712] INFO  [r1warrior] [ACTION] attack start
+[09:05:47.712] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:47.712] INFO  [r1warrior] [survival] hp 20/20 (100%) -> fight
+[09:05:47.728] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:47.728] INFO  [r1warrior] [ACTION_RESULT] attack success (16ms) server accepted the target
+[09:05:47.728] LOG   [r1warrior] event action_result: attack success took=16ms server accepted the target
+[09:05:48.912] INFO  [r1warrior] [ACTION] attack start
+[09:05:48.912] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:48.912] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:48.912] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:05:48.912] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:05:50.125] INFO  [r1warrior] [ACTION] attack start
+[09:05:50.125] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:50.140] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:50.140] INFO  [r1warrior] [ACTION_RESULT] attack success (15ms) server accepted the target
+[09:05:50.140] LOG   [r1warrior] event action_result: attack success took=15ms server accepted the target
+[09:05:51.365] INFO  [r1warrior] [ACTION] attack start
+[09:05:51.365] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:51.365] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:51.365] INFO  [r1warrior] [ACTION_RESULT] attack success (1ms) server accepted the target
+[09:05:51.365] LOG   [r1warrior] event action_result: attack success took=1ms server accepted the target
+[09:05:52.623] INFO  [r1warrior] [ACTION] attack start
+[09:05:52.623] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:52.639] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:52.639] INFO  [r1warrior] [ACTION_RESULT] attack success (16ms) server accepted the target
+[09:05:52.639] LOG   [r1warrior] event action_result: attack success took=16ms server accepted the target
+[09:05:52.762] INFO  [r1warrior] [survival] hp 16/20 (80%) -> fight
+[09:05:53.847] INFO  [r1warrior] [ACTION] attack start
+[09:05:53.847] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:53.862] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:53.862] INFO  [r1warrior] [ACTION_RESULT] attack success (16ms) server accepted the target
+[09:05:53.862] LOG   [r1warrior] event action_result: attack success took=16ms server accepted the target
+[09:05:55.060] INFO  [r1warrior] [ACTION] attack start
+[09:05:55.060] INFO  [r1warrior] [ACTION] attack serial=0x00002629
+[09:05:55.060] INFO  [r1warrior] [0xAA] attacking 0x00002629
+[09:05:55.060] INFO  [r1warrior] [ACTION_RESULT] attack success (0ms) server accepted the target
+[09:05:55.060] LOG   [r1warrior] event action_result: attack success took=0ms server accepted the target
+[09:05:56.021] INFO  [r1warrior] [survival] hp 3/20 (15%) -> flee
+[09:05:56.021] LOG   [r1warrior] event survival_disengage: flee
+[09:05:56.021] INFO  [r1warrior] [war] leaving war mode
+[09:05:56.021] INFO  [life] goal_changed=IDLE_BRIEFLY from=SURVIVE reason="IDLE_BRIEFLY 10.0 superseded SURVIVE 0.0"
+[09:05:56.021] INFO  [life] needs considered: Heal(bandage BLOCKED 1.00) NeedEquipment(bandages BLOCKED 0.50) NeedSkillTraining(skill 5 0.45) NeedTraining(skill 5 BLOCKED 0.38) NeedTraining(Anatomy BLOCKED 0.32) NeedTraining(skill 42 BLOCKED 0.28) NeedTraining(Tactics BLOCKED 0.28) NeedFood(food 0.25)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[09:05:56.021] INFO  [life]   score=10.0
+[09:05:56.021] INFO  [life]   reason: fallback: nothing else scored
+[09:05:56.021] INFO  [life]   BLOCKED_NEED HEAL: wounded with no bandages carried (hp=3/20 bandages=0)
+[09:05:56.022] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[09:05:56.022] INFO  [life]   BLOCKED_NEED TRAIN_COMBAT: below target, but nothing is here to practise combat on (skill 5 9.5 -> 100.0)
+[09:05:56.022] INFO  [life]   BLOCKED_NEED TRAIN_AT_NPC: on cooldown for another 110s after achieving nothing
+[09:05:57.523] INFO  [r1warrior] [survival] hp 3/20 (15%) -> rest
+[09:06:03.573] INFO  [r1warrior] [survival] hp 4/20 (20%) -> rest
+[09:06:03.699] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:06:05.477] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:05.477] INFO  [r1warrior] [0x2C] resurrection menu action=0
+[09:06:05.477] LOG   [r1warrior] event resurrect_menu: prompt
+[09:06:05.477] INFO  [r1warrior] [STATE] dead (0x2C resurrect menu)
+[09:06:05.477] LOG   [r1warrior] event state_dead: 0x2C received
+[09:06:05.477] LOG   [r1warrior] event death_location: at=(1384,1497,10) region=a_britain_territory_1 via=0x2C resurrect menu
+[09:06:05.477] INFO  [r1warrior] [0x6C] TARGET requested id=0x00000000 type=object subtype=3 gen=1
+[09:06:05.477] LOG   [r1warrior] event target_requested: id=0x00000000 type=0 subtype=3 gen=1
+[09:06:05.477] INFO  [life] goal_changed=SURVIVE from=IDLE_BRIEFLY reason="SURVIVE 1000.0 superseded IDLE_BRIEFLY 10.0 (emergency preempt)"
+[09:06:05.477] INFO  [life] needs considered: StayAlive(resurrection 1.00)  | tools defined=0 held=[] want_train=skill 5 (target 100.0)
+[09:06:05.477] INFO  [life]   score=1000.0
+[09:06:05.477] INFO  [life]   reason: StayAlive urgency 1.00 x 1000 = 1000.0
+[09:06:05.477] INFO  [life]   reason: life=dead
+[09:06:06.352] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:06.352] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:06.353] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:06.353] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:06.353] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:06.353] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:06.353] LOG   [r1warrior] event corpse_located: corpse=0x40012679 at=(1384,1497,10)
+[09:06:06.353] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:06.353] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:06.353] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:06.353] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:06.368] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:09.367] LOG   [r1warrior] event action_result: resurrect invalid_state took=3014ms superseded
+[09:06:09.367] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:09.367] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:09.382] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:09.382] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:09.382] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:09.382] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:09.382] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:09.382] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:09.382] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:09.382] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:09.382] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:11.032] INFO  [r1warrior] [war] dropping war mode: war mode idle with no target
+[09:06:11.033] LOG   [r1warrior] event war_timeout: war mode idle with no target
+[09:06:11.033] INFO  [r1warrior] [war] leaving war mode
+[09:06:12.388] LOG   [r1warrior] event action_result: resurrect invalid_state took=3022ms superseded
+[09:06:12.388] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:12.388] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:12.388] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:12.388] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:12.388] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:12.388] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:12.388] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:12.388] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:12.388] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:12.388] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:12.388] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:15.388] LOG   [r1warrior] event action_result: resurrect invalid_state took=3000ms superseded
+[09:06:15.388] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:15.388] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:15.388] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:15.388] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:15.388] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:15.388] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:15.388] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:15.388] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:15.388] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:15.388] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:15.404] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:18.412] LOG   [r1warrior] event action_result: resurrect invalid_state took=3024ms superseded
+[09:06:18.412] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:18.412] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:18.413] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:18.413] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:18.413] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:18.413] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:18.413] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:18.413] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:18.413] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:18.413] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:18.413] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:21.427] LOG   [r1warrior] event action_result: resurrect invalid_state took=3015ms superseded
+[09:06:21.427] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:21.427] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:21.443] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:21.443] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:21.443] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:21.443] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:21.443] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:21.443] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:21.443] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:21.443] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:21.443] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:24.465] LOG   [r1warrior] event action_result: resurrect invalid_state took=3038ms superseded
+[09:06:24.465] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:24.465] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:24.481] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:24.481] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:24.481] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:24.481] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:24.481] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:24.481] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:24.481] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:24.481] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:24.481] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:27.506] LOG   [r1warrior] event action_result: resurrect invalid_state took=3040ms superseded
+[09:06:27.506] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:27.506] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:27.522] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:27.522] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:27.522] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:27.522] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:27.522] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:27.522] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:27.522] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:27.522] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:27.522] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:30.534] LOG   [r1warrior] event action_result: resurrect invalid_state took=3029ms superseded
+[09:06:30.534] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:30.534] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:30.550] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:30.550] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:30.550] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:30.550] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:30.550] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:30.550] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:30.550] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:30.550] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:30.550] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:33.579] LOG   [r1warrior] event action_result: resurrect invalid_state took=3045ms superseded
+[09:06:33.579] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:33.579] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:33.579] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:33.579] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:33.579] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:33.579] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:33.579] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:33.579] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:33.579] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:33.579] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:33.594] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:36.603] LOG   [r1warrior] event action_result: resurrect invalid_state took=3024ms superseded
+[09:06:36.603] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:36.603] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:36.618] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:36.618] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:36.618] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:36.618] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:36.618] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:36.619] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:36.619] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:36.619] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:36.619] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:39.616] LOG   [r1warrior] event action_result: resurrect invalid_state took=3013ms superseded
+[09:06:39.616] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:39.616] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:39.617] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:39.617] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:39.617] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:39.617] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:39.617] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:39.617] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:39.617] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:39.617] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:39.632] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:42.656] LOG   [r1warrior] event action_result: resurrect invalid_state took=3040ms superseded
+[09:06:42.656] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:42.656] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:42.656] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:42.656] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:42.656] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:42.656] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:42.656] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:42.656] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:42.657] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:42.657] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:42.657] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:45.698] LOG   [r1warrior] event action_result: resurrect invalid_state took=3042ms superseded
+[09:06:45.698] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:45.698] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:45.698] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:45.698] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:45.698] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:45.698] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:45.698] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:45.698] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:45.698] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:45.698] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:45.698] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:48.709] LOG   [r1warrior] event action_result: resurrect invalid_state took=3010ms superseded
+[09:06:48.709] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:48.709] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:48.709] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:48.709] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:48.709] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:48.709] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:48.709] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:48.709] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:48.709] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:48.709] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:48.725] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:51.760] LOG   [r1warrior] event action_result: resurrect invalid_state took=3051ms superseded
+[09:06:51.760] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:51.760] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:51.760] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:51.760] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:51.760] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:51.760] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:51.760] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:51.760] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:51.760] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:51.760] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:51.776] INFO  [r1warrior] [chat ascii] System: World save in 10 seconds
+[09:06:51.776] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:54.767] LOG   [r1warrior] event action_result: resurrect invalid_state took=3007ms superseded
+[09:06:54.767] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:54.767] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:54.783] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:54.784] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:54.784] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:54.784] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:54.784] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:54.784] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:54.784] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:54.784] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:54.784] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:06:57.795] LOG   [r1warrior] event action_result: resurrect invalid_state took=3028ms superseded
+[09:06:57.795] INFO  [r1warrior] [ACTION] resurrect start
+[09:06:57.795] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:06:57.796] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:06:57.796] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:57.796] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:06:57.796] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:06:57.796] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:06:57.796] INFO  [r1warrior] [0x55] login complete — entering world
+[09:06:57.796] LOG   [r1warrior] event in_world: 0x55 received
+[09:06:57.796] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:06:57.811] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:00.854] LOG   [r1warrior] event action_result: resurrect invalid_state took=3058ms superseded
+[09:07:00.854] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:00.854] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:00.854] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:00.854] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:00.854] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:00.854] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:00.854] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:00.854] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:00.854] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:00.854] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:00.869] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:01.809] INFO  [r1warrior] [chat ascii] System: World save has been initiated.
+[09:07:03.707] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:07:03.888] LOG   [r1warrior] event action_result: resurrect invalid_state took=3035ms superseded
+[09:07:03.889] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:03.889] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:03.889] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:03.889] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:03.889] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:03.889] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:03.889] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:03.889] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:03.889] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:03.889] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:03.889] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:06.924] LOG   [r1warrior] event action_result: resurrect invalid_state took=3035ms superseded
+[09:07:06.924] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:06.924] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:06.924] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:06.924] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:06.924] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:06.924] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:06.924] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:06.924] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:06.924] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:06.924] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:06.924] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:09.982] LOG   [r1warrior] event action_result: resurrect invalid_state took=3059ms superseded
+[09:07:09.982] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:09.982] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:09.997] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:09.997] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:09.997] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:09.997] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:09.997] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:09.997] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:09.997] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:09.997] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:09.998] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:13.005] LOG   [r1warrior] event action_result: resurrect invalid_state took=3023ms superseded
+[09:07:13.005] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:13.005] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:13.005] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:13.005] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:13.005] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:13.005] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:13.005] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:13.005] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:13.005] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:13.005] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:13.021] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:16.015] LOG   [r1warrior] event action_result: resurrect invalid_state took=3010ms superseded
+[09:07:16.015] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:16.015] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:16.016] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:16.016] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:16.016] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:16.016] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:16.016] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:16.016] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:16.016] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:16.016] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:16.031] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:19.018] LOG   [r1warrior] event action_result: resurrect invalid_state took=3003ms superseded
+[09:07:19.018] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:19.018] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:19.018] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:19.019] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:19.019] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:19.019] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:19.019] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:19.019] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:19.019] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:19.019] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:19.034] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:22.038] LOG   [r1warrior] event action_result: resurrect invalid_state took=3019ms superseded
+[09:07:22.038] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:22.038] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:22.053] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:22.053] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:22.053] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:22.053] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:22.053] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:22.053] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:22.053] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:22.053] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:22.053] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:25.043] LOG   [r1warrior] event action_result: resurrect invalid_state took=3006ms superseded
+[09:07:25.043] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:25.043] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:25.058] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:25.058] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:25.058] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:25.058] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:25.058] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:25.058] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:25.058] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:25.059] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:25.059] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:28.094] LOG   [r1warrior] event action_result: resurrect invalid_state took=3051ms superseded
+[09:07:28.094] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:28.094] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:28.110] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:28.110] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:28.110] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:28.110] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:28.110] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:28.110] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:28.110] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:28.110] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:28.110] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:31.127] LOG   [r1warrior] event action_result: resurrect invalid_state took=3033ms superseded
+[09:07:31.127] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:31.127] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:31.143] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:31.143] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:31.143] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:31.143] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:31.143] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:31.143] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:31.143] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:31.143] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:31.143] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:34.159] LOG   [r1warrior] event action_result: resurrect invalid_state took=3032ms superseded
+[09:07:34.159] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:34.159] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:34.175] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:34.175] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:34.175] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:34.175] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:34.175] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:34.175] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:34.175] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:34.175] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:34.175] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:37.164] LOG   [r1warrior] event action_result: resurrect invalid_state took=3005ms superseded
+[09:07:37.164] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:37.164] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:37.165] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:37.165] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:37.165] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:37.165] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:37.165] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:37.165] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:37.165] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:37.165] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:37.180] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:40.207] LOG   [r1warrior] event action_result: resurrect invalid_state took=3042ms superseded
+[09:07:40.207] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:40.207] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:40.207] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:40.207] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:40.207] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:40.207] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:40.207] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:40.207] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:40.207] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:40.207] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:40.222] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:43.258] LOG   [r1warrior] event action_result: resurrect invalid_state took=3052ms superseded
+[09:07:43.258] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:43.259] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:43.275] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:43.275] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:43.275] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:43.275] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:43.275] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:43.275] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:43.275] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:43.275] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:43.275] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:46.309] LOG   [r1warrior] event action_result: resurrect invalid_state took=3050ms superseded
+[09:07:46.309] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:46.309] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:46.325] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:46.325] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:46.325] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:46.325] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:46.325] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:46.325] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:46.325] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:46.325] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:46.325] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:49.316] LOG   [r1warrior] event action_result: resurrect invalid_state took=3008ms superseded
+[09:07:49.316] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:49.316] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:49.316] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:49.316] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:49.316] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:49.316] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:49.316] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:49.316] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:49.316] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:49.316] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:49.331] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:52.331] LOG   [r1warrior] event action_result: resurrect invalid_state took=3015ms superseded
+[09:07:52.331] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:52.331] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:52.347] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:52.347] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:52.347] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:52.347] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:52.347] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:52.347] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:52.347] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:52.347] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:52.347] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:55.386] LOG   [r1warrior] event action_result: resurrect invalid_state took=3054ms superseded
+[09:07:55.386] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:55.386] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:55.386] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:55.386] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:55.386] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:55.386] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:55.386] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:55.386] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:55.386] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:55.386] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:55.386] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:07:58.425] LOG   [r1warrior] event action_result: resurrect invalid_state took=3040ms superseded
+[09:07:58.425] INFO  [r1warrior] [ACTION] resurrect start
+[09:07:58.425] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:07:58.425] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:07:58.425] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:58.426] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:07:58.426] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:07:58.426] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:07:58.426] INFO  [r1warrior] [0x55] login complete — entering world
+[09:07:58.426] LOG   [r1warrior] event in_world: 0x55 received
+[09:07:58.426] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:07:58.440] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:01.452] LOG   [r1warrior] event action_result: resurrect invalid_state took=3026ms superseded
+[09:08:01.452] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:01.452] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:01.467] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:01.467] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:01.467] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:01.467] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:01.467] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:01.467] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:01.467] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:01.467] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:01.467] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:03.749] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:08:04.488] LOG   [r1warrior] event action_result: resurrect invalid_state took=3037ms superseded
+[09:08:04.488] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:04.488] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:04.488] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:04.488] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:04.488] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:04.488] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:04.488] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:04.488] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:04.488] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:04.488] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:04.503] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:07.535] LOG   [r1warrior] event action_result: resurrect invalid_state took=3047ms superseded
+[09:08:07.535] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:07.535] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:07.535] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:07.535] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:07.535] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:07.535] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:07.535] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:07.535] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:07.535] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:07.535] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:07.550] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:10.584] LOG   [r1warrior] event action_result: resurrect invalid_state took=3048ms superseded
+[09:08:10.584] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:10.584] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:10.584] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:10.584] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:10.584] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:10.584] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:10.584] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:10.584] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:10.584] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:10.584] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:10.599] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:13.603] LOG   [r1warrior] event action_result: resurrect invalid_state took=3020ms superseded
+[09:08:13.603] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:13.603] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:13.619] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:13.619] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:13.619] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:13.619] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:13.619] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:13.619] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:13.619] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:13.619] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:13.620] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:16.658] LOG   [r1warrior] event action_result: resurrect invalid_state took=3055ms superseded
+[09:08:16.658] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:16.658] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:16.659] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:16.659] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:16.659] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:16.659] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:16.659] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:16.659] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:16.659] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:16.659] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:16.659] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:19.702] LOG   [r1warrior] event action_result: resurrect invalid_state took=3044ms superseded
+[09:08:19.702] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:19.702] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:19.702] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:19.702] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:19.702] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:19.702] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:19.702] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:19.702] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:19.702] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:19.702] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:19.702] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:22.710] LOG   [r1warrior] event action_result: resurrect invalid_state took=3008ms superseded
+[09:08:22.710] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:22.710] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:22.710] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:22.710] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:22.710] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:22.710] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:22.710] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:22.710] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:22.710] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:22.710] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:22.710] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:25.760] LOG   [r1warrior] event action_result: resurrect invalid_state took=3050ms superseded
+[09:08:25.761] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:25.761] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:25.761] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:25.761] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:25.761] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:25.761] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:25.761] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:25.761] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:25.761] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:25.761] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:25.776] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:28.792] LOG   [r1warrior] event action_result: resurrect invalid_state took=3032ms superseded
+[09:08:28.793] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:28.793] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:28.793] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:28.793] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:28.793] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:28.793] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:28.793] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:28.793] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:28.793] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:28.793] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:28.793] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:31.793] LOG   [r1warrior] event action_result: resurrect invalid_state took=3000ms superseded
+[09:08:31.793] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:31.793] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:31.793] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:31.793] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:31.793] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:31.793] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:31.793] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:31.793] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:31.793] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:31.793] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:31.808] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:34.817] LOG   [r1warrior] event action_result: resurrect invalid_state took=3024ms superseded
+[09:08:34.817] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:34.817] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:34.817] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:34.817] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:34.817] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:34.817] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:34.817] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:34.817] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:34.817] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:34.817] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:34.817] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:37.869] LOG   [r1warrior] event action_result: resurrect invalid_state took=3053ms superseded
+[09:08:37.869] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:37.869] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:37.870] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:37.870] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:37.870] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:37.870] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:37.870] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:37.870] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:37.870] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:37.870] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:37.870] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:40.912] LOG   [r1warrior] event action_result: resurrect invalid_state took=3042ms superseded
+[09:08:40.912] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:40.912] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:40.912] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:40.912] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:40.912] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:40.912] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:40.912] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:40.912] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:40.912] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:40.912] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:40.912] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:43.952] LOG   [r1warrior] event action_result: resurrect invalid_state took=3040ms superseded
+[09:08:43.952] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:43.952] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:43.967] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:43.967] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:43.967] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:43.967] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:43.967] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:43.967] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:43.967] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:43.967] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:43.967] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:47.011] LOG   [r1warrior] event action_result: resurrect invalid_state took=3058ms superseded
+[09:08:47.011] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:47.011] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:47.011] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:47.011] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:47.011] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:47.011] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:47.011] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:47.011] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:47.011] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:47.011] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:47.011] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:50.037] LOG   [r1warrior] event action_result: resurrect invalid_state took=3027ms superseded
+[09:08:50.037] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:50.037] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:50.038] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:50.038] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:50.038] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:50.038] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:50.038] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:50.038] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:50.038] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:50.038] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:50.038] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:53.070] LOG   [r1warrior] event action_result: resurrect invalid_state took=3033ms superseded
+[09:08:53.070] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:53.070] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:53.071] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:53.071] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:53.071] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:53.071] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:53.071] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:53.071] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:53.071] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:53.071] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:53.071] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:56.126] LOG   [r1warrior] event action_result: resurrect invalid_state took=3056ms superseded
+[09:08:56.126] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:56.126] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:56.127] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:56.127] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:56.127] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:56.127] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:56.127] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:56.127] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:56.127] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:56.127] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:56.127] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:08:59.164] LOG   [r1warrior] event action_result: resurrect invalid_state took=3037ms superseded
+[09:08:59.164] INFO  [r1warrior] [ACTION] resurrect start
+[09:08:59.164] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:08:59.164] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:08:59.164] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:59.164] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:08:59.164] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:08:59.164] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:08:59.164] INFO  [r1warrior] [0x55] login complete — entering world
+[09:08:59.164] LOG   [r1warrior] event in_world: 0x55 received
+[09:08:59.164] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:08:59.164] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:02.192] LOG   [r1warrior] event action_result: resurrect invalid_state took=3029ms superseded
+[09:09:02.192] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:02.192] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:02.192] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:02.192] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:02.192] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:02.192] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:02.192] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:02.192] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:02.192] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:02.192] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:02.192] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:03.772] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revolutionwarrior01.kaelen/state.json
+[09:09:05.240] LOG   [r1warrior] event action_result: resurrect invalid_state took=3048ms superseded
+[09:09:05.240] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:05.240] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:05.240] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:05.240] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:05.240] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:05.240] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:05.240] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:05.240] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:05.240] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:05.240] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:05.240] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:08.241] LOG   [r1warrior] event action_result: resurrect invalid_state took=3001ms superseded
+[09:09:08.241] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:08.241] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:08.256] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:08.257] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:08.257] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:08.257] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:08.257] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:08.257] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:08.257] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:08.257] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:08.257] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:11.262] LOG   [r1warrior] event action_result: resurrect invalid_state took=3021ms superseded
+[09:09:11.262] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:11.262] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:11.263] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:11.263] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:11.263] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:11.263] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:11.263] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:11.263] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:11.263] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:11.263] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:11.277] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:14.270] LOG   [r1warrior] event action_result: resurrect invalid_state took=3008ms superseded
+[09:09:14.270] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:14.270] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:14.270] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:14.270] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:14.270] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:14.270] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:14.270] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:14.270] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:14.270] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:14.270] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:14.286] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:17.300] LOG   [r1warrior] event action_result: resurrect invalid_state took=3030ms superseded
+[09:09:17.300] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:17.300] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:17.301] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:17.301] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:17.301] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:17.301] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:17.301] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:17.301] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:17.301] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:17.301] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:17.301] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:20.303] LOG   [r1warrior] event action_result: resurrect invalid_state took=3003ms superseded
+[09:09:20.303] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:20.303] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:20.303] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:20.303] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:20.303] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:20.303] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:20.303] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:20.303] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:20.303] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:20.303] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:20.319] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:23.317] LOG   [r1warrior] event action_result: resurrect invalid_state took=3014ms superseded
+[09:09:23.317] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:23.317] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:23.318] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:23.318] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:23.318] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:23.318] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:23.318] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:23.318] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:23.318] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:23.318] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:23.318] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:26.367] LOG   [r1warrior] event action_result: resurrect invalid_state took=3049ms superseded
+[09:09:26.367] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:26.367] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:26.367] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:26.367] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:26.367] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:26.367] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:26.367] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:26.367] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:26.367] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:26.367] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:26.367] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:29.424] LOG   [r1warrior] event action_result: resurrect invalid_state took=3057ms superseded
+[09:09:29.424] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:29.424] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:29.425] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:29.425] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:29.425] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:29.425] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:29.425] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:29.425] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:29.425] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:29.425] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:29.440] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.
+[09:09:32.470] LOG   [r1warrior] event action_result: resurrect invalid_state took=3046ms superseded
+[09:09:32.470] INFO  [r1warrior] [ACTION] resurrect start
+[09:09:32.470] INFO  [r1warrior] [ACTION] resurrect: waiting for the server to raise us
+[09:09:32.470] INFO  [r1warrior] [chat ascii] System: You are a ghost
+[09:09:32.470] INFO  [r1warrior] [0x1B] serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:32.470] LOG   [r1warrior] event login_confirm: serial=0x00015DF9 body=0x0192 pos=(1384,1497,10)
+[09:09:32.470] INFO  [r1warrior] [0x20] player @(1384,1497,10) facing=4
+[09:09:32.470] INFO  [r1warrior] [0x3C] container contents: 10 item(s)
+[09:09:32.470] INFO  [r1warrior] [0x55] login complete — entering world
+[09:09:32.470] LOG   [r1warrior] event in_world: 0x55 received
+[09:09:32.470] INFO  [r1warrior] [backpack] opening 0x40015DF6
+[09:09:32.485] INFO  [r1warrior] [chat ascii] System: Your ghostly hand passes through the object.

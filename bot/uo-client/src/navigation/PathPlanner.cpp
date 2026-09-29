@@ -105,6 +105,15 @@ bool ExtraBlocked(i32 x, i32 y, i8 z, void* user) {
         IsMobileBlocking(*overlay->request, x, y, z)) {
         return true;
     }
+    // The exact teleporter-pad tile is exempt from the dynamic-item verdict:
+    // Sphere's own decorative overlay for the spot (pentagram / a reused
+    // shield graphic standing in for the t_telepad item) reads as an
+    // obstacle to this model, but standing on it is precisely how the
+    // mechanic fires. The mobile check above still applies.
+    if (overlay->request->allowBlockedGoal && overlay->request->hasGoalZ &&
+        x == overlay->request->goalX && y == overlay->request->goalY) {
+        return false;
+    }
     return IsDynamicItemBlocking(*overlay, x, y, z);
 }
 
@@ -163,7 +172,21 @@ StartEnclosure ClassifyStartEnclosure(const world::World& world,
     return e;
 }
 
-bool GoalColumnIsWalkable(const world::World& world, const PathRequest& request) {
+// A goal can be MUL-walkable (empty floor in the offline generator's raw map
+// data) and still be occupied in the live world: the atlas/navgrid never sees
+// Sphere's decorator-placed statics (furniture dropped into a shop/library at
+// runtime), only the client's static MULs. Without this check the request
+// sails past goalWalkable, and the full tile A* then burns its entire node
+// budget (a search against ~300 nearby overlay items is not cheap) probing
+// every approach to a tile that was never reachable, instead of taking the
+// cheap "snap to a nearby standable tile" salvage the same as a literal tree
+// or rock goal already gets. Proven case: Britain's scribe library at
+// (1416,1592) carries a live i_bookcase_full sitting exactly on the navgrid
+// anchor tile (spherestatics.scp, not in the client MULs) -- three different
+// starts all burned a ~1s full-budget search against the same occupied tile
+// before a macro replan finally routed around it.
+bool GoalColumnIsWalkable(const world::World& world, const RuntimeOverlay& overlay,
+                          const PathRequest& request) {
     world::WalkQuery q{};
     q.x = static_cast<u32>(request.goalX);
     q.y = static_cast<u32>(request.goalY);
@@ -173,9 +196,28 @@ bool GoalColumnIsWalkable(const world::World& world, const PathRequest& request)
     q.hasPreferredZ = request.hasGoalZ;
     q.preferredZ = static_cast<i8>(request.goalZ);
     const auto result = world.QueryCell(q);
+
+    if (request.allowBlockedGoal && request.hasGoalZ) {
+        // A known teleporter pad: the terrain/z-tolerance/dynamic-item
+        // verdicts are skipped for this one cell (see ExtraBlocked's comment
+        // for why they routinely misfire here); only a live body actually
+        // standing on the pad right now still blocks the trip.
+        const i8 standZ = result.walkable ? result.standZ
+                                           : static_cast<i8>(request.goalZ);
+        return request.ignoreMobiles ||
+               !IsMobileBlocking(request, request.goalX, request.goalY, standZ);
+    }
+
     if (!result.walkable) return false;
-    if (!request.hasGoalZ) return true;
-    return AbsDiff(static_cast<i32>(result.standZ), request.goalZ) <= kGoalZTolerance;
+    if (request.hasGoalZ &&
+        AbsDiff(static_cast<i32>(result.standZ), request.goalZ) > kGoalZTolerance) {
+        return false;
+    }
+    if (!request.ignoreMobiles &&
+        IsMobileBlocking(request, request.goalX, request.goalY, result.standZ)) {
+        return false;
+    }
+    return !IsDynamicItemBlocking(overlay, request.goalX, request.goalY, result.standZ);
 }
 
 }
@@ -264,7 +306,12 @@ void PathPlanner::WorkerLoop() {
 
         result.worldReady = EnsureWorldLoaded();
         if (result.worldReady) {
-            if (!GoalColumnIsWalkable(*world_, request)) {
+            RuntimeOverlay overlay;
+            overlay.tileData = tileData_.get();
+            overlay.world = world_.get();
+            overlay.request = &request;
+
+            if (!GoalColumnIsWalkable(*world_, overlay, request)) {
                 result.goalWalkable = false;
             } else {
                 bot::PathOptions opts;
@@ -273,12 +320,9 @@ void PathPlanner::WorkerLoop() {
                 opts.foliagePenalty = request.foliagePenalty;
                 opts.hasGoalZ = request.hasGoalZ;
                 opts.goalZ = request.goalZ;
+                opts.allowBlockedGoal = request.allowBlockedGoal;
                 opts.maxNodesExpanded = request.maxNodesExpanded;
 
-                RuntimeOverlay overlay;
-                overlay.tileData = tileData_.get();
-                overlay.world = world_.get();
-                overlay.request = &request;
                 opts.extraBlocked = &ExtraBlocked;
                 opts.extraBlockedStep = &ExtraBlockedStep;
                 opts.extraBlockedUser = &overlay;

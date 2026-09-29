@@ -1,0 +1,26 @@
+# bot-core memory
+
+- [Sphere reach is two tiles](sphere-reach-is-two-tiles.md) — CanTouch refuses beyond Chebyshev 2; take the threshold from `sphere::kTouchDist`, never a fresh literal
+- [LOS is reach, not identity](los-is-reach-not-identity.md) — gating "who is this NPC" on line of sight erased a known alchemist and burned a whole errand
+- [No NPC sells it is not no source](no-npc-sells-it-is-not-no-source.md) — buy-side vs sell-side refusals; a missing material routes to self-produce or the player market
+- [Vendor shelves are random](vendor-shelves-are-random.md) — a mage shop rolls four random scrolls; "this one has none" is one NPC's roll, not the trade's answer
+- [A timeout means an unrecognised answer](action-timeout-means-unrecognised-answer.md) — four times now the server DID reply; read the journal between request and timeout
+- [State flags need the latest statement](state-flags-need-the-latest-statement.md) — "was it ever said" latches forever; the action's own outcome line restates the new state
+- [Hunger ticks every 30 minutes](hunger-ticks-every-30-minutes.md) — a 5-minute gate cannot observe eating; pick a hungry subject from the world save and run 35+ min
+- [A death record outlives the corpse](a-death-record-outlives-the-corpse.md) — corpses decay in 7 min but the record persists; "corpse known" is not "corpse visible", and serial 0 is nobody
+- [A deferral needs a bound](a-deferral-needs-a-bound.md) — "not while busy" with no time limit is a permanent veto; the session clock must always win
+- [Using a tool wields it](using-a-tool-wields-it.md) — double-click in the pack = wield; the 0x1D is a move not a consumption, it displaces the hands, and re-equipping what is worn strips it
+- [A craft route is not a recipe](craft-route-is-not-the-recipe.md) — CRAFT needs a menu route as well as a recipe; WorldProcessed outputs have no menu at all and belong to another goal
+- [Verdict attribution can be wrong](verdict-attribution-can-be-wrong.md) — a wave verdict named a character/item pair that is not in the console at all; re-derive from g_*.console.txt first
+- [Identity.cpp in progress 2026-09-02](identity-cpp-in-progress-2026-09-02.md) — another agent is adding kCraftMenus tailoring rows; wool cloth chain verified against Source-X, DoMakeCloth already matches it
+- [rawResource blocks a WTB forever](rawresource-blocks-wtb-forever.md) — Shortfall's WhoProduces-empty test made yarn/wool/cloth permanently unaskable; fixed in Market.cpp, not Needs.cpp
+- [A station is a DUPELIST, not one graphic](a-station-is-a-dupelist-not-one-graphic.md) — wheels/looms are placed as dupe DISPIDs, live in spherestatics.scp, and found-within-10 is not reach-within-2
+- [A dismount reads as horselessness](dismount-reads-as-horselessness.md) — deliberate state changes need an "on purpose" bit in Observation, or a need re-scores against you; mount clicks never confirm
+- [Bank withdraw is a drag-split](bank-withdraw-is-a-drag-split.md) — not speech; it works, and the proof is the need going quiet on the next tick, not a packet
+- [Function-local statics break silently when split](function-local-statics-break-silently-when-split.md) — one definition per lazy table accessor or the loader fills a copy the reader never sees; prove it with dumpbin, not a log line
+- [A pickup is a deletion](a-pickup-is-a-deletion.md) — our own lift arrives as a real 0x1D; OnDeleteObject used to erase a still-open container's own contents cache on every equip/unequip round-trip
+- [Goal exit is one hook](goal-exit-is-one-hook.md) — Runner::LeaveGoal cancels errands/actions on a real goal change; a same-kind re-pick must still reset nothing
+- [Offline life harness](offline-life-harness.md) — real Runner + real Client with no server; no atlas means no travel, and Client::Tick never sweeps, so assert lifetime not outcomes
+- [Spellbook gump is 0xFFFF](spellbook-gump-is-0xffff.md) — it OPENS the book, Sphere never closes with 0x24, and an empty book gets no 0x3C at all
+- [A scan cap can hide the only banker](a-scan-cap-can-hide-the-only-banker.md) — ActionScanMobiles caps at 8 paperdolls/call; a crowded market can starve the banker's title for a whole errand if it only scans once
+- [Pure decisions need their own seam](pure-decisions-need-their-own-seam.md) — Client::world_ is never set in any offline test, so NearestMobileWithTrade's success path is untestable; extract the decision, test that instead

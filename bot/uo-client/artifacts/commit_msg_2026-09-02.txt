@@ -1,0 +1,37 @@
+Wave 2026-09-02 fixes: eat loop, reagents, taming, moongate, WTB funding, spellbook yield, craft routes
+
+Life planner / runner
+- Eat loop: typed sysmessage classification, latched hunger cleared on server eat.
+- Reagent restock via NeedSupplies/BUY_SUPPLIES; Create Food falls back to
+  buying food when a reagent is short (spell table from spells_magery.scp,
+  data/revolution_spells.tsv via tools/spellgen.py). Practice reads the full
+  spell table, no hard-coded spell.
+- Hector: corpse recovery + session limit overrun grace (60 s).
+- Fisher equips pole via PlayerEquipLayerOf / EquipWouldBeNoOp.
+- Tamer: any tamable in the gain window near home (data/revolution_tamables.tsv,
+  tools/tamablegen.py, 4708 creatures / 50 kinds / 393 clusters); taming
+  replies are SysMessages, handler now hears them and blacklists refused
+  serials.
+- Moongate: missing break in packet dispatch let sound/effect packets clear a
+  held gump.
+- Trade: WTB broadcast no longer parsed as a reply to our own WTS
+  (market::ClassifyBuyLine); buyer plan persisted (tradeWant_) and funded by
+  market::FundOpenWindow; partner name backfilled from the 0x6F OPEN packet.
+- FILL_SPELLBOOK stands down when nobody sells scrolls (15 min rest, doubling
+  to 60); shelf check no longer re-buys the same scroll.
+- CRAFT consults kCraftMenus as well as FindRecipe; unroutable outputs give a
+  typed refusal once instead of REFUSE_MISSING_RECIPE every tick.
+- NeedBank: unsold stock >= surplusWorthTrip now outranks gathering more
+  (Elvar carried 27 ingots all session).
+- Forge approach cap 4 -> 2 before striking a forge off.
+- EXPLORE fenced to the home region; nothing new at home stands down instead
+  of hopping city to city (Odessa Britain -> Cove -> Minoc).
+
+Tooling / governance
+- tools/rev.py default MINUTES=5; run_gates/ and run_r4/ output ignored.
+- Agent memories, artifacts/ evidence for every fix above.
+
+ctest 43/43.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Koq8Mh5N7z61EFdfDUUEqG

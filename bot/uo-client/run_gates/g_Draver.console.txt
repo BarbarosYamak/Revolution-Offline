@@ -1,0 +1,722 @@
+[18:19:19.205] INFO  session 0: 127.0.0.1:2593 user='RevGen3_01' char=Draver tag='g_Draver'
+[18:19:19.206] LOG   [g_Draver] event session_start: text log opened
+[18:19:19.206] LOG   [g_Draver] event net_connect_begin: connect 127.0.0.1:2593
+[18:19:19.206] INFO  [g_Draver] [net] connecting to 127.0.0.1:2593 ...
+[18:19:19.207] LOG   [g_Draver] event net_connected: connect 127.0.0.1:2593
+[18:19:19.207] INFO  [g_Draver] [net] connected.
+[18:19:19.207] INFO  [g_Draver] [seed] sent 0x7F000001 (plaintext)
+[18:19:19.207] LOG   [g_Draver] event seed_out: 0x7F000001 hex=7f000001
+[18:19:19.208] INFO  [life] loaded persistent state for Draver (6 places, 0 suppliers, 8 events, 4 prior sessions)
+[18:19:19.208] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[18:19:19.208] INFO  [life] build plan 'miner_smith': 250.0 resolved + 450.0 unresolved = 700.0/700.0, stats 100/100/25 = 225
+[18:19:19.208] INFO  [g_Draver] [life] autonomous player active for 'Draver' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 5 min)
+[18:19:19.247] INFO  [g_Draver] [0xA8] 1 server(s):
+[18:19:19.247] INFO  [g_Draver]   [0] MyShard                   1.0.0.127  full=0%  tz=0
+[18:19:19.262] INFO  [g_Draver] [0x8C] game server = 127.0.0.1:2593  seed=0x6A287272
+[18:19:19.262] LOG   [g_Draver] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x6A287272
+[18:19:19.262] INFO  [g_Draver] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[18:19:19.262] LOG   [g_Draver] event relay_same_socket: no seed re-sent; 0x91 follows
+[18:19:19.263] INFO  [g_Draver] [0xB9] server features = 0x0005
+[18:19:19.263] INFO  [g_Draver] [0xA9] 5 slot(s) (populated 1):
+[18:19:19.263] INFO  [g_Draver]   [0] Draver
+[18:19:19.263] INFO  [g_Draver]   [1] <empty>
+[18:19:19.263] INFO  [g_Draver]   [2] <empty>
+[18:19:19.263] INFO  [g_Draver]   [3] <empty>
+[18:19:19.263] INFO  [g_Draver]   [4] <empty>
+[18:19:19.263] INFO  [g_Draver] [ui] playing slot 0 ('Draver')
+[18:19:19.277] INFO  [g_Draver] [0x1B] serial=0x000105FC body=0x0191 pos=(2476,569,5)
+[18:19:19.277] LOG   [g_Draver] event login_confirm: serial=0x000105FC body=0x0191 pos=(2476,569,5)
+[18:19:19.277] INFO  [g_Draver] [0x20] player @(2476,569,5) facing=7
+[18:19:19.278] INFO  [g_Draver] [0x55] login complete — entering world
+[18:19:19.278] LOG   [g_Draver] event in_world: 0x55 received
+[18:19:19.278] INFO  [g_Draver] [backpack] opening 0x400105FA
+[18:19:19.278] INFO  [g_Draver] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[18:19:19.278] INFO  [g_Draver] [chat ascii] System: There is 1 other player here.
+[18:19:19.278] INFO  [g_Draver] [chat ascii] System: Last logged: 2026/09/04 18:03:30
+[18:19:19.278] INFO  [g_Draver] [chat ascii] System: You are under the protection of the town guards
+[18:19:19.281] INFO  [g_Draver] [action] requesting the skill list
+[18:19:19.281] INFO  [life] in world; asked the server for the skill list
+[18:19:19.282] INFO  [g_Draver] [0x24] open container 0x400105FA gump=60
+[18:19:19.282] INFO  [g_Draver] [0x3C] container contents: 19 item(s)
+[18:19:19.282] LOG   [g_Draver] event backpack_contents: serial=0x400105FA items=19
+[18:19:21.881] INFO  [g_Draver] [bot] world data loaded (0 blacklisted spot(s)).
+[18:19:21.881] INFO  [life] reconciliation: resuming a life, 1 field(s) differed
+[18:19:21.881] INFO  [life]   gold         persisted=9938       server=9938       -> server value accepted
+[18:19:21.881] INFO  [life]   str          persisted=50         server=50         -> server value accepted
+[18:19:21.881] INFO  [life]   dex          persisted=20         server=20         -> server value accepted
+[18:19:21.881] INFO  [life]   int          persisted=10         server=10         -> server value accepted
+[18:19:21.881] INFO  [life]   skill_7      persisted=50.4       server=50.4       -> server value accepted
+[18:19:21.881] INFO  [life]   skill_45     persisted=50.2       server=50.3       -> server value accepted
+[18:19:21.881] INFO  [life]   skill_37     persisted=20.6       server=20.6       -> server value accepted
+[18:19:21.881] INFO  [life]   position     persisted=2476,569   server=2476,569   -> server value accepted
+[18:19:21.881] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[18:19:21.881] INFO  [life]   restored objective KEPT: SMELT (progress 0)
+[18:19:21.881] INFO  [g_Draver] [survival] on
+[18:19:21.881] LOG   [g_Draver] event survival_mode: on
+[18:19:21.883] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[18:19:21.883] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:19:21.936] INFO  [life] smelt: forge at 2468,557 is 12 tiles off -- standing at 2468,558 (orthogonal side)
+[18:19:21.936] INFO  [g_Draver] [travel] forge -> (2468,558) r=0 from (2476,569)
+[18:19:21.936] LOG   [g_Draver] event travel_start: label='forge' target=(2468,558) radius=0 from=(2476,569)
+[18:19:21.936] INFO  [g_Draver] [travel] mode walk             usable   <- chosen
+[18:19:21.936] INFO  [g_Draver] [travel] mode moongate         usable
+[18:19:21.936] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:19:21.936] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:19:21.936] LOG   [g_Draver] event travel_mode: walk
+[18:19:21.936] INFO  [g_Draver] [travel] plan forge: ok legs=1 ~11 tiles transit=0 nodes=0
+[18:19:21.998] INFO  [g_Draver] [action] goto (2468,558) from (2476,569,5)
+[18:19:21.998] LOG   [g_Draver] event goto_start: target=(2468,558) from=(2476,569)
+[18:19:21.998] INFO  [g_Draver] [bot] running from (2476,569,5) to (2468,558)
+[18:19:21.998] INFO  [g_Draver] [bot] planning path to (2468,558) in background
+[18:19:22.059] INFO  [g_Draver] [bot] replan to (2468,558): 15 steps in 239.3us
+[18:19:22.292] INFO  [g_Draver] [chat ascii] System: Kharain has arrived in Minoc Mine 1.
+[18:19:23.805] INFO  [g_Draver] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=9 in 49.9us
+[18:19:24.849] INFO  [g_Draver] [chat ascii] Curtis: Hmm?
+[18:19:26.138] INFO  [g_Draver] [travel] forge ARRIVED at (2469,559,5)
+[18:19:26.138] LOG   [g_Draver] event travel_done: label='forge' ok=1 at=(2469,559) legs=1 plans=1 why=''
+[18:19:26.199] INFO  [g_Draver] [action] goto finished at (2469,559,5); target (2468,558); stopped short (off by 2 tile(s))
+[18:19:26.199] LOG   [g_Draver] event goto_done: at=(2469,559) target=(2468,558) arrived=0 off=2
+[18:19:26.199] INFO  [life] smelt: travel stopped 1 tile(s) short of the stand tile beside the forge at 2468,557 -- stepping onto 2468,558
+[18:19:26.199] INFO  [g_Draver] [action] goto (2468,558) from (2469,559,5)
+[18:19:26.199] LOG   [g_Draver] event goto_start: target=(2468,558) from=(2469,559)
+[18:19:26.199] INFO  [g_Draver] [bot] running from (2469,559,5) to (2468,558)
+[18:19:26.199] INFO  [g_Draver] [bot] planning path to (2468,558) in background
+[18:19:26.199] INFO  [g_Draver] [bot] replan to (2468,558): 1 steps in 13.6us
+[18:19:26.383] INFO  [g_Draver] [bot] arrived at (2468,558,5)
+[18:19:26.936] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:19:27.704] INFO  [g_Draver] [action] goto finished at (2468,558,5); target (2468,558); ARRIVED (off by 0 tile(s))
+[18:19:27.704] LOG   [g_Draver] event goto_done: at=(2468,558) target=(2468,558) arrived=1 off=0
+[18:19:27.704] INFO  [life] smelt: opening the forge at 2468,557
+[18:19:27.704] INFO  [g_Draver] [ACTION] use_object start
+[18:19:27.704] INFO  [g_Draver] [ACTION] use_object serial=0x4000742E
+[18:19:27.719] INFO  [g_Draver] [0x20] player @(2468,558,5) facing=0
+[18:19:27.719] INFO  [g_Draver] [0x6C] TARGET requested id=0x000002C3 type=object subtype=0 gen=1
+[18:19:27.719] LOG   [g_Draver] event target_requested: id=0x000002C3 type=0 subtype=0 gen=1
+[18:19:27.719] INFO  [g_Draver] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[18:19:27.719] LOG   [g_Draver] event action_result: use_object success took=15ms server armed a target cursor
+[18:19:29.251] INFO  [life] smelt: giving the forge's cursor the ore (i_ore_iron hue 0x0000, 18 ore, 2 i_ingot_iron so far)
+[18:19:29.251] INFO  [g_Draver] [TARGET] reply serial=0x4000CD69 gen=1
+[18:19:29.251] INFO  [g_Draver] [target] object 0x4000CD69 (0,0,0) model 0x0000
+[18:19:29.267] INFO  [g_Draver] [0x20] player @(2468,558,5) facing=1
+[18:19:29.267] INFO  [g_Draver] [chat ascii] Draver: *You smelt Iron Ore*
+[18:19:29.267] INFO  [g_Draver] [chat ascii] System: You smelt the Iron Ore but are left with nothing useful.
+[18:19:31.788] INFO  [life] smelt: opening the forge at 2468,557
+[18:19:31.788] INFO  [g_Draver] [ACTION] use_object start
+[18:19:31.788] INFO  [g_Draver] [ACTION] use_object serial=0x4000742E
+[18:19:31.788] INFO  [g_Draver] [0x20] player @(2468,558,5) facing=0
+[18:19:31.788] INFO  [g_Draver] [0x6C] TARGET requested id=0x000002C3 type=object subtype=0 gen=2
+[18:19:31.788] LOG   [g_Draver] event target_requested: id=0x000002C3 type=0 subtype=0 gen=2
+[18:19:31.788] INFO  [g_Draver] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:19:31.788] LOG   [g_Draver] event action_result: use_object success took=0ms server armed a target cursor
+[18:19:31.972] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:19:33.326] INFO  [life] smelt: giving the forge's cursor the ore (i_ore_iron hue 0x0000, 17 ore, 2 i_ingot_iron so far)
+[18:19:33.326] INFO  [g_Draver] [TARGET] reply serial=0x4000CD69 gen=2
+[18:19:33.326] INFO  [g_Draver] [target] object 0x4000CD69 (0,0,0) model 0x0000
+[18:19:33.327] INFO  [g_Draver] [0x20] player @(2468,558,5) facing=1
+[18:19:33.327] INFO  [g_Draver] [chat ascii] Draver: *You smelt Iron Ore*
+[18:19:33.327] INFO  [g_Draver] [chat ascii] System: You put the iron ingots in your pack.
+[18:19:35.837] INFO  [life] smelt: no ore in the pack to melt
+[18:19:35.837] INFO  [life] goal_completed=SMELT progress=0
+[18:19:35.839] INFO  [life] checkpoint (goal completed) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[18:19:35.898] INFO  [life] goal=BUY_MOUNT reason="no goal was running"
+[18:19:35.898] INFO  [life] needs considered: NeedMount(riding horse 0.80) NeedOre(ore 0.61) NeedTrade(buy from a player 0.55) NeedGold(sell surplus 0.53) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Tinkering 0.45)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[18:19:35.898] INFO  [life]   score=204.0
+[18:19:35.898] INFO  [life]   reason: NeedMount urgency 0.80 x 255 = 204.0
+[18:19:35.898] INFO  [life]   reason: gold 9938 reserve 500 price<=500 stood_down=0 last_fail_session=1 session=5
+[18:19:35.898] INFO  [life] mount: looking for an animal trainer to sell a horse
+[18:19:35.923] INFO  [g_Draver] [travel] place: skipping Delucia animaltrainer -- 1844 tiles and 4 gates for a service Minoc animaltrainer offers
+[18:19:35.923] INFO  [g_Draver] [travel] Minoc animaltrainer -> (2526,375) r=5 from (2468,558)
+[18:19:35.923] LOG   [g_Draver] event travel_start: label='Minoc animaltrainer' target=(2526,375) radius=5 from=(2468,558)
+[18:19:35.923] INFO  [g_Draver] [travel] mode moongate         usable   <- chosen
+[18:19:35.923] INFO  [g_Draver] [travel] mode walk             usable
+[18:19:35.923] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:19:35.923] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:19:35.923] LOG   [g_Draver] event travel_mode: moongate
+[18:19:35.923] INFO  [g_Draver] [travel] plan Minoc animaltrainer: ok legs=6 ~200 tiles transit=0 nodes=206
+[18:19:35.976] INFO  [g_Draver] [action] goto (2488,520) from (2468,558,5)
+[18:19:35.976] LOG   [g_Draver] event goto_start: target=(2488,520) from=(2468,558)
+[18:19:35.976] INFO  [g_Draver] [bot] running from (2468,558,5) to (2488,520)
+[18:19:35.976] INFO  [g_Draver] [bot] planning path to (2488,520) in background
+[18:19:36.039] INFO  [g_Draver] [bot] replan to (2488,520): 72 steps in 3562.1us
+[18:19:36.990] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:19:37.082] INFO  [g_Draver] [bot] lookahead patched around block at step 3: anchor=5 new segment=4 path=68 in 53.2us
+[18:19:42.027] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:19:47.055] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:19:52.078] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:19:56.757] INFO  [g_Draver] [bot] arrived at (2488,520,0)
+[18:19:56.757] INFO  [g_Draver] [action] goto finished at (2488,520,0); target (2488,520); ARRIVED (off by 0 tile(s))
+[18:19:56.757] LOG   [g_Draver] event goto_done: at=(2488,520) target=(2488,520) arrived=1 off=0
+[18:19:56.757] INFO  [g_Draver] [action] goto (2488,488) from (2488,520,0)
+[18:19:56.757] LOG   [g_Draver] event goto_start: target=(2488,488) from=(2488,520)
+[18:19:56.757] INFO  [g_Draver] [bot] running from (2488,520,0) to (2488,488)
+[18:19:56.757] INFO  [g_Draver] [bot] planning path to (2488,488) in background
+[18:19:56.817] INFO  [g_Draver] [bot] replan to (2488,488): 32 steps in 354.8us
+[18:19:57.124] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:02.184] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:04.778] INFO  [g_Draver] [bot] arrived at (2488,488,15)
+[18:20:04.778] INFO  [g_Draver] [action] goto finished at (2488,488,15); target (2488,488); ARRIVED (off by 0 tile(s))
+[18:20:04.778] LOG   [g_Draver] event goto_done: at=(2488,488) target=(2488,488) arrived=1 off=0
+[18:20:04.778] INFO  [g_Draver] [action] goto (2504,456) from (2488,488,15)
+[18:20:04.778] LOG   [g_Draver] event goto_start: target=(2504,456) from=(2488,488)
+[18:20:04.778] INFO  [g_Draver] [bot] running from (2488,488,15) to (2504,456)
+[18:20:04.778] INFO  [g_Draver] [bot] planning path to (2504,456) in background
+[18:20:04.839] INFO  [g_Draver] [bot] replan to (2504,456): 32 steps in 539.4us
+[18:20:07.239] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:12.240] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:14.649] INFO  [g_Draver] [bot] arrived at (2504,456,15)
+[18:20:14.649] INFO  [g_Draver] [action] goto finished at (2504,456,15); target (2504,456); ARRIVED (off by 0 tile(s))
+[18:20:14.649] LOG   [g_Draver] event goto_done: at=(2504,456) target=(2504,456) arrived=1 off=0
+[18:20:14.649] INFO  [g_Draver] [action] goto (2520,424) from (2504,456,15)
+[18:20:14.649] LOG   [g_Draver] event goto_start: target=(2520,424) from=(2504,456)
+[18:20:14.649] INFO  [g_Draver] [bot] running from (2504,456,15) to (2520,424)
+[18:20:14.649] INFO  [g_Draver] [bot] planning path to (2520,424) in background
+[18:20:14.709] INFO  [g_Draver] [bot] replan to (2520,424): 35 steps in 3848.4us
+[18:20:17.268] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:19.185] INFO  [g_Draver] [bot] step (2509,440,15)->(2510,439,15) rejected; OpenDoor + retry
+[18:20:19.924] INFO  [g_Draver] [bot] lookahead patched around block at step 1: anchor=5 new segment=5 path=20 in 50.9us
+[18:20:22.294] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:26.392] INFO  [g_Draver] [bot] arrived at (2521,423,15)
+[18:20:26.392] INFO  [g_Draver] [action] goto finished at (2521,423,15); target (2520,424); stopped short (off by 2 tile(s))
+[18:20:26.392] LOG   [g_Draver] event goto_done: at=(2521,423) target=(2520,424) arrived=0 off=2
+[18:20:26.392] INFO  [g_Draver] [action] goto (2520,388) from (2521,423,15)
+[18:20:26.392] LOG   [g_Draver] event goto_start: target=(2520,388) from=(2521,423)
+[18:20:26.392] INFO  [g_Draver] [bot] running from (2521,423,15) to (2520,388)
+[18:20:26.392] INFO  [g_Draver] [bot] planning path to (2520,388) in background
+[18:20:26.452] INFO  [g_Draver] [bot] replan to (2520,388): 55 steps in 9173.1us
+[18:20:27.296] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:32.341] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:35.845] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[18:20:37.369] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:42.415] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:42.538] INFO  [g_Draver] [bot] arrived at (2520,388,15)
+[18:20:42.538] INFO  [g_Draver] [action] goto finished at (2520,388,15); target (2520,388); ARRIVED (off by 0 tile(s))
+[18:20:42.538] LOG   [g_Draver] event goto_done: at=(2520,388) target=(2520,388) arrived=1 off=0
+[18:20:42.538] INFO  [g_Draver] [action] goto (2526,375) from (2520,388,15)
+[18:20:42.538] LOG   [g_Draver] event goto_start: target=(2526,375) from=(2520,388)
+[18:20:42.538] INFO  [g_Draver] [bot] running from (2520,388,15) to (2526,375,z23)
+[18:20:42.538] INFO  [g_Draver] [bot] planning path to (2526,375) in background
+[18:20:42.599] INFO  [g_Draver] [bot] replan to (2526,375): 18 steps in 732.0us
+[18:20:47.381] INFO  [g_Draver] [travel] Minoc animaltrainer ARRIVED at (2527,380,23)
+[18:20:47.381] LOG   [g_Draver] event travel_done: label='Minoc animaltrainer' ok=1 at=(2527,380) legs=6 plans=1 why=''
+[18:20:47.445] INFO  [g_Draver] [action] scanning nearby mobiles for names
+[18:20:47.445] INFO  [g_Draver] [action] requested 1 paperdoll(s) for trade titles
+[18:20:47.445] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:47.445] INFO  [g_Draver] [mobiles] nearby (1):
+[18:20:47.445] INFO  [g_Draver]   Absinthe 0x00004C4E
+[18:20:47.445] INFO  [g_Draver] [0x20] player @(2527,380,23) facing=0
+[18:20:47.445] INFO  [g_Draver] [0x88] paperdoll 0x00004C4E: "Absinthe, the animal trainer"
+[18:20:47.445] INFO  [g_Draver] [world] Absinthe, the animal trainer is a stablemaster at (2525,373)
+[18:20:49.967] INFO  [g_Draver] [travel] entity stand candidate 1/4 at (2526,374)
+[18:20:49.967] INFO  [g_Draver] [travel] mobile 0x00004C4E -> (2526,374) r=0 from (2527,380)
+[18:20:49.967] LOG   [g_Draver] event travel_start: label='mobile 0x00004C4E' target=(2526,374) radius=0 from=(2527,380)
+[18:20:49.967] INFO  [g_Draver] [travel] mode walk             usable   <- chosen
+[18:20:49.967] INFO  [g_Draver] [travel] mode moongate         usable
+[18:20:49.967] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:20:49.967] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:20:49.967] LOG   [g_Draver] event travel_mode: walk
+[18:20:49.967] INFO  [g_Draver] [travel] plan mobile 0x00004C4E: ok legs=1 ~6 tiles transit=0 nodes=0
+[18:20:50.028] INFO  [g_Draver] [action] goto finished at (2527,380,23); target (2526,375); stopped short (off by 6 tile(s))
+[18:20:50.028] LOG   [g_Draver] event goto_done: at=(2527,380) target=(2526,375) arrived=0 off=6
+[18:20:50.028] INFO  [g_Draver] [action] goto (2526,374) from (2527,380,23)
+[18:20:50.028] LOG   [g_Draver] event goto_start: target=(2526,374) from=(2527,380)
+[18:20:50.028] INFO  [g_Draver] [bot] running from (2527,380,23) to (2526,374,z23)
+[18:20:50.028] INFO  [g_Draver] [bot] planning path to (2526,374) in background
+[18:20:50.090] INFO  [g_Draver] [bot] replan to (2526,374): 6 steps in 67.6us
+[18:20:51.539] INFO  [g_Draver] [travel] mobile 0x00004C4E ARRIVED at (2526,375,23)
+[18:20:51.539] LOG   [g_Draver] event travel_done: label='mobile 0x00004C4E' ok=1 at=(2526,375) legs=1 plans=1 why=''
+[18:20:51.971] INFO  [g_Draver] [travel] entity stand candidate 2/4 at (2526,373)
+[18:20:51.971] INFO  [g_Draver] [travel] mobile 0x00004C4E -> (2526,373) r=0 from (2526,375)
+[18:20:51.971] LOG   [g_Draver] event travel_start: label='mobile 0x00004C4E' target=(2526,373) radius=0 from=(2526,375)
+[18:20:51.971] INFO  [g_Draver] [travel] mode walk             usable   <- chosen
+[18:20:51.971] INFO  [g_Draver] [travel] mode moongate         usable
+[18:20:51.971] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:20:51.971] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:20:51.971] LOG   [g_Draver] event travel_mode: walk
+[18:20:51.971] INFO  [g_Draver] [travel] plan mobile 0x00004C4E: ok legs=1 ~2 tiles transit=0 nodes=0
+[18:20:52.032] INFO  [g_Draver] [action] goto finished at (2526,375,23); target (2526,374); stopped short (off by 1 tile(s))
+[18:20:52.033] LOG   [g_Draver] event goto_done: at=(2526,375) target=(2526,374) arrived=0 off=1
+[18:20:52.033] INFO  [g_Draver] [action] goto (2526,373) from (2526,375,23)
+[18:20:52.033] LOG   [g_Draver] event goto_start: target=(2526,373) from=(2526,375)
+[18:20:52.033] INFO  [g_Draver] [bot] running from (2526,375,23) to (2526,373,z23)
+[18:20:52.033] INFO  [g_Draver] [bot] planning path to (2526,373) in background
+[18:20:52.094] INFO  [g_Draver] [bot] replan to (2526,373): 2 steps in 23.5us
+[18:20:52.464] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:52.525] INFO  [g_Draver] [travel] mobile 0x00004C4E ARRIVED at (2526,374,23)
+[18:20:52.525] LOG   [g_Draver] event travel_done: label='mobile 0x00004C4E' ok=1 at=(2526,374) legs=1 plans=1 why=''
+[18:20:54.000] INFO  [g_Draver] [ACTION] vendor_buy start
+[18:20:54.000] INFO  [g_Draver] [VENDOR] open vendor=0x00004C4E say='Absinthe buy'
+[18:20:54.001] INFO  [g_Draver] [chat uni  ] Draver: Absinthe buy
+[18:20:54.001] INFO  [g_Draver] [chat ascii] Absinthe: What dost thou need?
+[18:20:54.001] INFO  [g_Draver] [chat ascii] Absinthe: If thou seekest supplies, thou canst buy from me.
+[18:20:54.001] INFO  [g_Draver] [0x3C] container contents: 7 item(s)
+[18:20:54.001] INFO  [g_Draver] [0x74] vendor shop data: cont=0x40004C47 7 item(s), layer=0x1A
+[18:20:54.001] INFO  [g_Draver] [0x74]   tan horse                    gfx=0x259E qty=3    price=555
+[18:20:54.001] INFO  [g_Draver] [0x74]   gray horse                   gfx=0x2599 qty=2    price=564
+[18:20:54.001] INFO  [g_Draver] [0x74]   light brown horse            gfx=0x2120 qty=1    price=519
+[18:20:54.001] INFO  [g_Draver] [0x74]   dark brown horse             gfx=0x2121 qty=1    price=573
+[18:20:54.001] INFO  [g_Draver] [0x74]   pack horse                   gfx=0x2126 qty=1    price=361
+[18:20:54.002] INFO  [g_Draver] [0x74]   pack llama                   gfx=0x2127 qty=1    price=179
+[18:20:54.002] INFO  [g_Draver] [0x74]   sheaf of hay                 gfx=0x0F36 qty=20   price=3
+[18:20:54.002] INFO  [g_Draver] [0x3C] container contents: 0 item(s)
+[18:20:54.002] INFO  [g_Draver] [0x74] vendor shop data: cont=0x400049FA 0 item(s), layer=0x1B
+[18:20:54.002] INFO  [g_Draver] [VENDOR] offer from 0x00004C4E: 7 item(s)
+[18:20:54.002] INFO  [g_Draver] [VENDOR]   0x400185CF tan horse              x3   555 gp
+[18:20:54.002] INFO  [g_Draver] [VENDOR]   0x400185CE gray horse             x2   564 gp
+[18:20:54.002] INFO  [g_Draver] [VENDOR]   0x400185CD light brown horse      x1   519 gp
+[18:20:54.002] INFO  [g_Draver] [VENDOR]   0x400185CC dark brown horse       x1   573 gp
+[18:20:54.002] INFO  [g_Draver] [VENDOR]   0x400185CB pack horse             x1   361 gp
+[18:20:54.002] INFO  [g_Draver] [VENDOR]   0x400185CA pack llama             x1   179 gp
+[18:20:54.002] INFO  [g_Draver] [VENDOR]   0x400185C9 sheaf of hay           x20  3 gp
+[18:20:54.002] LOG   [g_Draver] event vendor_offer: vendor=0x00004C4E items=7
+[18:20:54.002] INFO  [g_Draver] [ACTION_RESULT] vendor_buy success (1ms) vendor offer received
+[18:20:54.002] LOG   [g_Draver] event action_result: vendor_buy success took=1ms vendor offer received
+[18:20:54.002] INFO  [g_Draver] [0x24] vendor buy gump for 0x00004C4E
+[18:20:56.520] INFO  [life] memory_learned=SUPPLIER need=riding_horse name="tan horse" price=555 qty=3
+[18:20:56.520] INFO  [life] mount: buying a tan horse for 555 gold
+[18:20:56.520] INFO  [g_Draver] [ACTION] vendor_buy start
+[18:20:56.520] INFO  [g_Draver] [policy] allowed NPC purchase of i_pet_horse_tan (0x259E): NPC purchase is allowed when the item is actually offered; NPC selling remains separately restricted [REVOLUTION_NPC_VERIFIED]
+[18:20:56.520] INFO  [g_Draver] [VENDOR] buy item=0x400185CF qty=1 from vendor=0x00004C4E gold=9938
+[18:20:56.536] INFO  [g_Draver] [ACTION_RESULT] vendor_buy success (15ms) purchased item delivered
+[18:20:56.536] LOG   [g_Draver] event action_result: vendor_buy success took=15ms purchased item delivered
+[18:20:56.536] INFO  [g_Draver] [chat ascii] Absinthe: Here you are, Draver That will be 555 gold coins.  I thank thee for thy business.
+[18:20:56.536] INFO  [g_Draver] [0x3B] vendor transaction closed: vendor=0x00004C4E flag=0
+[18:20:57.503] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:20:59.050] INFO  [life] mount: double-clicking the horse 0x00014B5B to mount (attempt 1 of 3)
+[18:20:59.050] INFO  [g_Draver] [ACTION] use_object start
+[18:20:59.050] INFO  [g_Draver] [ACTION] use_object serial=0x00014B5B
+[18:20:59.051] INFO  [g_Draver] [move] mounted (0x3E9F); step cadence now 100/200ms
+[18:20:59.051] LOG   [g_Draver] event mount_state: mounted
+[18:20:59.051] INFO  [life] goal_changed=EARN_GOLD from=BUY_MOUNT reason="EARN_GOLD 79.5 superseded BUY_MOUNT 0.0"
+[18:20:59.051] INFO  [life] needs considered: NeedGold(sell surplus 0.53) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Tinkering 0.45) NeedOre(ore 0.43) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[18:20:59.051] INFO  [life]   score=79.5
+[18:20:59.051] INFO  [life]   reason: NeedGold urgency 0.53 x 150 = 79.5
+[18:20:59.051] INFO  [life]   reason: 19 x i_dagger spare, a load is 20 (bench still funds 0), buyer: an NPC
+[18:21:01.053] INFO  [life] earn_gold: looking for a 'blacksmith' to buy 8 i_dagger (trip 1)
+[18:21:04.007] INFO  [g_Draver] [travel] Minoc blacksmith -> (2471,564) r=5 from (2526,374)
+[18:21:04.007] LOG   [g_Draver] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2526,374)
+[18:21:04.007] INFO  [g_Draver] [travel] mode moongate         usable   <- chosen
+[18:21:04.007] INFO  [g_Draver] [travel] mode walk             usable
+[18:21:04.007] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:21:04.007] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:21:04.007] LOG   [g_Draver] event travel_mode: moongate
+[18:21:04.007] INFO  [g_Draver] [travel] plan Minoc blacksmith: ok legs=6 ~216 tiles transit=0 nodes=218
+[18:21:04.007] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:04.007] LOG   [g_Draver] event action_result: use_object timeout
+[18:21:04.061] INFO  [g_Draver] [action] goto finished at (2526,374,23); target (2526,373); stopped short (off by 1 tile(s))
+[18:21:04.061] LOG   [g_Draver] event goto_done: at=(2526,374) target=(2526,373) arrived=0 off=1
+[18:21:04.061] INFO  [g_Draver] [action] goto (2514,408) from (2526,374,23)
+[18:21:04.061] LOG   [g_Draver] event goto_start: target=(2514,408) from=(2526,374)
+[18:21:04.061] INFO  [g_Draver] [bot] running from (2526,374,23) to (2514,408)
+[18:21:04.061] INFO  [g_Draver] [bot] planning path to (2514,408) in background
+[18:21:05.352] INFO  [g_Draver] [action] goto finished at (2526,374,23); target (2514,408); stopped short (off by 46 tile(s))
+[18:21:05.352] LOG   [g_Draver] event goto_done: at=(2526,374) target=(2514,408) arrived=0 off=46
+[18:21:06.581] INFO  [g_Draver] [action] goto (2514,408) from (2526,374,23)
+[18:21:06.581] LOG   [g_Draver] event goto_start: target=(2514,408) from=(2526,374)
+[18:21:06.581] INFO  [g_Draver] [bot] running from (2526,374,23) to (2514,408)
+[18:21:06.581] INFO  [g_Draver] [bot] planning path to (2514,408) in background
+[18:21:07.809] INFO  [g_Draver] [action] goto finished at (2526,374,23); target (2514,408); stopped short (off by 46 tile(s))
+[18:21:07.809] LOG   [g_Draver] event goto_done: at=(2526,374) target=(2514,408) arrived=0 off=46
+[18:21:09.044] INFO  [g_Draver] [action] goto (2514,408) from (2526,374,23)
+[18:21:09.044] LOG   [g_Draver] event goto_start: target=(2514,408) from=(2526,374)
+[18:21:09.044] INFO  [g_Draver] [bot] running from (2526,374,23) to (2514,408)
+[18:21:09.044] INFO  [g_Draver] [bot] planning path to (2514,408) in background
+[18:21:09.044] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:10.395] INFO  [g_Draver] [action] goto finished at (2526,374,23); target (2514,408); stopped short (off by 46 tile(s))
+[18:21:10.395] LOG   [g_Draver] event goto_done: at=(2526,374) target=(2514,408) arrived=0 off=46
+[18:21:11.622] INFO  [g_Draver] [travel] mode moongate         usable   <- chosen
+[18:21:11.622] INFO  [g_Draver] [travel] mode walk             usable
+[18:21:11.622] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:21:11.622] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:21:11.622] LOG   [g_Draver] event travel_mode: moongate
+[18:21:11.622] INFO  [g_Draver] [travel] plan Minoc blacksmith: ok legs=6 ~232 tiles transit=0 nodes=240
+[18:21:13.156] INFO  [g_Draver] [action] goto (2504,406) from (2526,374,23)
+[18:21:13.156] LOG   [g_Draver] event goto_start: target=(2504,406) from=(2526,374)
+[18:21:13.156] INFO  [g_Draver] [bot] running from (2526,374,23) to (2504,406)
+[18:21:13.156] INFO  [g_Draver] [bot] planning path to (2504,406) in background
+[18:21:13.218] INFO  [g_Draver] [bot] replan to (2504,406): 42 steps in 6351.9us
+[18:21:14.084] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:19.128] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:19.881] INFO  [g_Draver] [bot] arrived at (2504,406,15)
+[18:21:19.881] INFO  [g_Draver] [action] goto finished at (2504,406,15); target (2504,406); ARRIVED (off by 0 tile(s))
+[18:21:19.881] LOG   [g_Draver] event goto_done: at=(2504,406) target=(2504,406) arrived=1 off=0
+[18:21:19.881] INFO  [g_Draver] [action] goto (2520,440) from (2504,406,15)
+[18:21:19.881] LOG   [g_Draver] event goto_start: target=(2520,440) from=(2504,406)
+[18:21:19.881] INFO  [g_Draver] [bot] running from (2504,406,15) to (2520,440)
+[18:21:19.881] INFO  [g_Draver] [bot] planning path to (2520,440) in background
+[18:21:19.941] INFO  [g_Draver] [bot] replan to (2520,440): 38 steps in 6675.7us
+[18:21:24.167] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:26.290] INFO  [g_Draver] [bot] arrived at (2520,440,15)
+[18:21:26.290] INFO  [g_Draver] [action] goto finished at (2520,440,15); target (2520,440); ARRIVED (off by 0 tile(s))
+[18:21:26.290] LOG   [g_Draver] event goto_done: at=(2520,440) target=(2520,440) arrived=1 off=0
+[18:21:26.290] INFO  [g_Draver] [action] goto (2520,472) from (2520,440,15)
+[18:21:26.290] LOG   [g_Draver] event goto_start: target=(2520,472) from=(2520,440)
+[18:21:26.290] INFO  [g_Draver] [bot] running from (2520,440,15) to (2520,472)
+[18:21:26.290] INFO  [g_Draver] [bot] planning path to (2520,472) in background
+[18:21:26.351] INFO  [g_Draver] [bot] replan to (2520,472): 33 steps in 12509.5us
+[18:21:29.177] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:31.925] INFO  [g_Draver] [bot] arrived at (2520,472,15)
+[18:21:31.925] INFO  [g_Draver] [action] goto finished at (2520,472,15); target (2520,472); ARRIVED (off by 0 tile(s))
+[18:21:31.925] LOG   [g_Draver] event goto_done: at=(2520,472) target=(2520,472) arrived=1 off=0
+[18:21:31.925] INFO  [g_Draver] [action] goto (2520,502) from (2520,472,15)
+[18:21:31.925] LOG   [g_Draver] event goto_start: target=(2520,502) from=(2520,472)
+[18:21:31.925] INFO  [g_Draver] [bot] running from (2520,472,15) to (2520,502)
+[18:21:31.925] INFO  [g_Draver] [bot] planning path to (2520,502) in background
+[18:21:31.986] INFO  [g_Draver] [bot] replan to (2520,502): 35 steps in 14203.2us
+[18:21:34.234] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:35.895] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[18:21:38.082] INFO  [g_Draver] [bot] arrived at (2520,502,15)
+[18:21:38.083] INFO  [g_Draver] [action] goto finished at (2520,502,15); target (2520,502); ARRIVED (off by 0 tile(s))
+[18:21:38.083] LOG   [g_Draver] event goto_done: at=(2520,502) target=(2520,502) arrived=1 off=0
+[18:21:38.083] INFO  [g_Draver] [action] goto (2504,536) from (2520,502,15)
+[18:21:38.083] LOG   [g_Draver] event goto_start: target=(2504,536) from=(2520,502)
+[18:21:38.083] INFO  [g_Draver] [bot] running from (2520,502,15) to (2504,536)
+[18:21:38.083] INFO  [g_Draver] [bot] planning path to (2504,536) in background
+[18:21:38.143] INFO  [g_Draver] [bot] replan to (2504,536): 42 steps in 4327.8us
+[18:21:39.250] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:44.301] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:45.435] INFO  [g_Draver] [bot] arrived at (2504,536,0)
+[18:21:45.435] INFO  [g_Draver] [action] goto finished at (2504,536,0); target (2504,536); ARRIVED (off by 0 tile(s))
+[18:21:45.435] LOG   [g_Draver] event goto_done: at=(2504,536) target=(2504,536) arrived=1 off=0
+[18:21:45.435] INFO  [g_Draver] [action] goto (2471,564) from (2504,536,0)
+[18:21:45.435] LOG   [g_Draver] event goto_start: target=(2471,564) from=(2504,536)
+[18:21:45.435] INFO  [g_Draver] [bot] running from (2504,536,0) to (2471,564,z5)
+[18:21:45.435] INFO  [g_Draver] [bot] planning path to (2471,564) in background
+[18:21:45.495] INFO  [g_Draver] [bot] replan to (2471,564): 73 steps in 50374.9us
+[18:21:49.302] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:52.579] INFO  [g_Draver] [chat ascii] System: World save in 10 seconds
+[18:21:54.318] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:57.002] INFO  [g_Draver] [travel] Minoc blacksmith ARRIVED at (2476,569,5)
+[18:21:57.002] LOG   [g_Draver] event travel_done: label='Minoc blacksmith' ok=1 at=(2476,569) legs=6 plans=2 why=''
+[18:21:57.065] INFO  [life] earn_gold: arrived at 2476,569 -- asking who is here
+[18:21:57.065] INFO  [g_Draver] [action] scanning nearby mobiles for names
+[18:21:57.065] INFO  [g_Draver] [action] requested 2 paperdoll(s) for trade titles
+[18:21:57.080] INFO  [g_Draver] [mobiles] nearby (2):
+[18:21:57.080] INFO  [g_Draver]   Olin 0x00009646
+[18:21:57.080] INFO  [g_Draver]   Curtis 0x00009693
+[18:21:57.080] INFO  [g_Draver] [0x20] player @(2476,569,5) facing=7
+[18:21:57.080] INFO  [g_Draver] [0x88] paperdoll 0x00009646: "Olin, the blacksmith"
+[18:21:57.080] INFO  [g_Draver] [world] Olin, the blacksmith is a blacksmith at (2474,565)
+[18:21:57.080] INFO  [g_Draver] [0x88] paperdoll 0x00009693: "Curtis, the blacksmith"
+[18:21:57.080] INFO  [g_Draver] [world] Curtis, the blacksmith is a blacksmith at (2470,560)
+[18:21:59.370] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:21:59.616] INFO  [life] earn_gold: the 'blacksmith' is 5 tiles and 0 z away -- walking up before speaking, or the nearest other vendor answers instead
+[18:21:59.616] INFO  [g_Draver] [travel] entity stand candidate 1/8 at (2474,565)
+[18:21:59.616] INFO  [g_Draver] [travel] mobile 0x00009646 -> (2474,565) r=0 from (2476,569)
+[18:21:59.616] LOG   [g_Draver] event travel_start: label='mobile 0x00009646' target=(2474,565) radius=0 from=(2476,569)
+[18:21:59.616] INFO  [g_Draver] [travel] mode walk             usable   <- chosen
+[18:21:59.616] INFO  [g_Draver] [travel] mode moongate         usable
+[18:21:59.616] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:21:59.616] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:21:59.616] LOG   [g_Draver] event travel_mode: walk
+[18:21:59.616] INFO  [g_Draver] [travel] plan mobile 0x00009646: ok legs=1 ~4 tiles transit=0 nodes=0
+[18:21:59.678] INFO  [g_Draver] [action] goto finished at (2476,569,5); target (2471,564); stopped short (off by 10 tile(s))
+[18:21:59.678] LOG   [g_Draver] event goto_done: at=(2476,569) target=(2471,564) arrived=0 off=10
+[18:21:59.678] INFO  [g_Draver] [action] goto (2474,565) from (2476,569,5)
+[18:21:59.678] LOG   [g_Draver] event goto_start: target=(2474,565) from=(2476,569)
+[18:21:59.678] INFO  [g_Draver] [bot] running from (2476,569,5) to (2474,565,z5)
+[18:21:59.678] INFO  [g_Draver] [bot] planning path to (2474,565) in background
+[18:21:59.740] INFO  [g_Draver] [bot] replan to (2474,565): 7 steps in 249.7us
+[18:22:00.674] INFO  [g_Draver] [travel] mobile 0x00009646 ARRIVED at (2473,566,5)
+[18:22:00.674] LOG   [g_Draver] event travel_done: label='mobile 0x00009646' ok=1 at=(2473,566) legs=1 plans=1 why=''
+[18:22:01.655] INFO  [life] earn_gold: asking the 'blacksmith' what it buys
+[18:22:01.655] INFO  [g_Draver] [ACTION] vendor_sell start
+[18:22:01.655] INFO  [g_Draver] [VENDOR] open sell vendor=0x00009646 say='Olin sell'
+[18:22:01.672] INFO  [g_Draver] [chat uni  ] Draver: Olin sell
+[18:22:01.672] INFO  [g_Draver] [chat ascii] Olin: Hello! ?
+[18:22:01.672] INFO  [g_Draver] [chat ascii] Olin: If thou'rt wantin' to but somethin', then say the word.  Buy... that's the word. Or give me what thou'rt wantin' to sell me.
+[18:22:01.672] INFO  [g_Draver] [VENDOR] sell list from 0x00009646: 8 item(s)
+[18:22:01.672] INFO  [g_Draver] [VENDOR]   0x4000C556 dagger                 x1   18 gp
+[18:22:01.672] INFO  [g_Draver] [VENDOR]   0x4000C2F6 dagger                 x1   18 gp
+[18:22:01.672] INFO  [g_Draver] [VENDOR]   0x40015552 dagger                 x1   18 gp
+[18:22:01.672] INFO  [g_Draver] [VENDOR]   0x40015512 dagger                 x1   18 gp
+[18:22:01.672] INFO  [g_Draver] [VENDOR]   0x400154F6 dagger                 x1   18 gp
+[18:22:01.672] INFO  [g_Draver] [VENDOR]   0x400153FE dagger                 x1   18 gp
+[18:22:01.672] INFO  [g_Draver] [VENDOR]   0x40015214 dagger                 x1   18 gp
+[18:22:01.672] INFO  [g_Draver] [VENDOR]   0x40014EA8 iron ingots            x19  8 gp
+[18:22:01.672] LOG   [g_Draver] event vendor_sell_list: vendor=0x00009646 items=8
+[18:22:01.672] INFO  [g_Draver] [ACTION_RESULT] vendor_sell success (17ms) vendor sell list received
+[18:22:01.672] LOG   [g_Draver] event action_result: vendor_sell success took=17ms vendor sell list received
+[18:22:02.608] INFO  [g_Draver] [chat ascii] System: World save has been initiated.
+[18:22:04.176] INFO  [life] earn_gold: the 'blacksmith' is 3 tiles off -- stepping in before the sale
+[18:22:04.176] INFO  [g_Draver] [travel] entity stand candidate 2/5 at (2475,563)
+[18:22:04.176] INFO  [g_Draver] [travel] mobile 0x00009646 -> (2475,563) r=0 from (2473,566)
+[18:22:04.176] LOG   [g_Draver] event travel_start: label='mobile 0x00009646' target=(2475,563) radius=0 from=(2473,566)
+[18:22:04.176] INFO  [g_Draver] [travel] mode walk             usable   <- chosen
+[18:22:04.176] INFO  [g_Draver] [travel] mode moongate         usable
+[18:22:04.176] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:22:04.176] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:22:04.176] LOG   [g_Draver] event travel_mode: walk
+[18:22:04.176] INFO  [g_Draver] [travel] plan mobile 0x00009646: ok legs=1 ~3 tiles transit=0 nodes=0
+[18:22:04.238] INFO  [g_Draver] [action] goto finished at (2473,566,5); target (2474,565); stopped short (off by 2 tile(s))
+[18:22:04.238] LOG   [g_Draver] event goto_done: at=(2473,566) target=(2474,565) arrived=0 off=2
+[18:22:04.238] INFO  [g_Draver] [action] goto (2475,563) from (2473,566,5)
+[18:22:04.238] LOG   [g_Draver] event goto_start: target=(2475,563) from=(2473,566)
+[18:22:04.238] INFO  [g_Draver] [bot] running from (2473,566,5) to (2475,563,z5)
+[18:22:04.238] INFO  [g_Draver] [bot] planning path to (2475,563) in background
+[18:22:04.299] INFO  [g_Draver] [bot] replan to (2475,563): 3 steps in 74.2us
+[18:22:04.375] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:04.680] INFO  [g_Draver] [travel] mobile 0x00009646 ARRIVED at (2474,564,5)
+[18:22:04.680] LOG   [g_Draver] event travel_done: label='mobile 0x00009646' ok=1 at=(2474,564) legs=1 plans=1 why=''
+[18:22:05.680] INFO  [life] earn_gold: 'blacksmith' offers 18 gold each for i_dagger; selling 7 in 7 lot(s)
+[18:22:05.680] INFO  [g_Draver] [ACTION] vendor_sell start
+[18:22:05.680] INFO  [g_Draver] [VENDOR] sell 7 item(s) totalling 7 to vendor=0x00009646 gold=9383
+[18:22:05.696] INFO  [g_Draver] [chat ascii] Olin: Here you are, 126 gold coins. I thank thee for thy business.
+[18:22:05.696] INFO  [g_Draver] [0x3B] vendor transaction closed: vendor=0x00009646 flag=0
+[18:22:05.696] INFO  [life] goal_changed=TRADE_WITH_PLAYER from=EARN_GOLD reason="TRADE_WITH_PLAYER 76.9 superseded EARN_GOLD 0.0"
+[18:22:05.696] INFO  [life] needs considered: NeedTrade(sell to a player 0.53) NeedGold(sell surplus BLOCKED 0.53) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Tinkering 0.45) NeedOre(ore 0.43) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[18:22:05.696] INFO  [life]   score=76.9
+[18:22:05.696] INFO  [life]   reason: NeedTrade urgency 0.53 x 145 = 76.9
+[18:22:05.696] INFO  [life]   reason: 19 x i_ingot_iron spare
+[18:22:05.696] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (19 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[18:22:05.741] INFO  [g_Draver] [ACTION_RESULT] vendor_sell success (61ms) gold 9383 -> 9509
+[18:22:05.741] LOG   [g_Draver] event action_result: vendor_sell success took=61ms gold 9383 -> 9509
+[18:22:08.729] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[18:22:08.729] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=130s need=800s
+[18:22:08.791] INFO  [life] goal=CRAFT reason="previous goal abandoned: not enough session left for the trip"
+[18:22:08.791] INFO  [life] needs considered: NeedGold(sell surplus BLOCKED 0.53) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Tinkering 0.45) NeedOre(ore 0.43) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[18:22:08.791] INFO  [life]   score=65.0
+[18:22:08.791] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[18:22:08.791] INFO  [life]   reason: i_dagger: every input is in the pack
+[18:22:08.791] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (19 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[18:22:08.791] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[18:22:08.791] INFO  [life] craft: i_dagger needs a forge -- walking to the one in sight
+[18:22:08.791] INFO  [g_Draver] [travel] forge -> (2467,556) r=0 from (2474,564)
+[18:22:08.791] LOG   [g_Draver] event travel_start: label='forge' target=(2467,556) radius=0 from=(2474,564)
+[18:22:08.791] INFO  [g_Draver] [travel] mode walk             usable   <- chosen
+[18:22:08.792] INFO  [g_Draver] [travel] mode moongate         usable
+[18:22:08.792] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:22:08.792] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:22:08.792] LOG   [g_Draver] event travel_mode: walk
+[18:22:08.792] INFO  [g_Draver] [travel] plan forge: ok legs=1 ~8 tiles transit=0 nodes=0
+[18:22:08.852] INFO  [g_Draver] [action] goto finished at (2474,564,5); target (2475,563); stopped short (off by 2 tile(s))
+[18:22:08.852] LOG   [g_Draver] event goto_done: at=(2474,564) target=(2475,563) arrived=0 off=2
+[18:22:08.852] INFO  [g_Draver] [action] goto (2467,556) from (2474,564,5)
+[18:22:08.852] LOG   [g_Draver] event goto_start: target=(2467,556) from=(2474,564)
+[18:22:08.852] INFO  [g_Draver] [bot] running from (2474,564,5) to (2467,556)
+[18:22:08.852] INFO  [g_Draver] [bot] planning path to (2467,556) in background
+[18:22:08.913] INFO  [g_Draver] [bot] replan to (2467,556): 13 steps in 424.8us
+[18:22:09.421] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:10.791] INFO  [life] craft: putting away what is in hand to free HAND1 for the smith tool
+[18:22:10.791] INFO  [g_Draver] [ACTION] unequip start
+[18:22:10.791] INFO  [g_Draver] [ACTION] unequip serial=0x400105EE -> backpack 0x400105FA
+[18:22:10.791] INFO  [g_Draver] [ITEM] drag serial=0x400105EE amount=1
+[18:22:10.791] INFO  [g_Draver] [ITEM] drop container=0x400105FA
+[18:22:10.792] INFO  [g_Draver] [ACTION_RESULT] unequip success (0ms) item is in the destination
+[18:22:10.792] LOG   [g_Draver] event action_result: unequip success took=0ms item is in the destination
+[18:22:11.133] INFO  [g_Draver] [bot] arrived at (2467,556,5)
+[18:22:11.133] INFO  [g_Draver] [action] goto finished at (2467,556,5); target (2467,556); ARRIVED (off by 0 tile(s))
+[18:22:11.133] LOG   [g_Draver] event goto_done: at=(2467,556) target=(2467,556) arrived=1 off=0
+[18:22:11.133] INFO  [g_Draver] [travel] forge ARRIVED at (2467,556,5)
+[18:22:11.133] LOG   [g_Draver] event travel_done: label='forge' ok=1 at=(2467,556) legs=1 plans=1 why=''
+[18:22:13.838] INFO  [life] craft: taking the smith tool into HAND1 -- the menu reads LAYER_HAND1
+[18:22:13.838] INFO  [g_Draver] [ACTION] equip start
+[18:22:13.838] INFO  [g_Draver] [ACTION] equip serial=0x400105EC layer=1
+[18:22:13.838] INFO  [g_Draver] [ITEM] drag serial=0x400105EC amount=1
+[18:22:13.854] INFO  [g_Draver] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[18:22:13.854] LOG   [g_Draver] event action_result: equip success took=16ms worn on the requested layer
+[18:22:14.423] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:17.855] INFO  [life] craft: making i_dagger -- double-clicking the smith hammer
+[18:22:17.855] INFO  [g_Draver] [ACTION] use_object start
+[18:22:17.855] INFO  [g_Draver] [ACTION] use_object serial=0x400105EC
+[18:22:17.871] INFO  [g_Draver] [chat ascii] System: What do you want to use this on?
+[18:22:17.871] INFO  [g_Draver] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=3
+[18:22:17.871] LOG   [g_Draver] event target_requested: id=0x000002CE type=0 subtype=1 gen=3
+[18:22:17.871] INFO  [g_Draver] [ACTION_RESULT] use_object success (16ms) server armed a target cursor
+[18:22:17.871] LOG   [g_Draver] event action_result: use_object success took=16ms server armed a target cursor
+[18:22:19.405] INFO  [life] craft: giving the smith hammer cursor i_ingot_iron to open the menu
+[18:22:19.405] INFO  [g_Draver] [TARGET] reply serial=0x40014EA8 gen=3
+[18:22:19.405] INFO  [g_Draver] [target] object 0x40014EA8 (0,0,0) model 0x0000
+[18:22:19.423] INFO  [g_Draver] [0x7C] dialog id=0x000105FC menu=690: "Blacksmithing" (4 options)
+[18:22:19.423] INFO  [g_Draver]         1) Repair
+[18:22:19.423] INFO  [g_Draver]         2) Shields
+[18:22:19.424] INFO  [g_Draver]         3) Armor
+[18:22:19.424] INFO  [g_Draver]         4) Weapons
+[18:22:19.424] LOG   [g_Draver] event dialog: Blacksmithing
+[18:22:19.424] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:21.945] INFO  [g_Draver] [0x7D] answering dialog id=0x000105FC menu=690 index=4
+[18:22:21.945] INFO  [life] craft: chose 'Weapons'
+[18:22:21.946] INFO  [g_Draver] [0x7C] dialog id=0x000105FC menu=690: "Swords & Blades" (7 options)
+[18:22:21.946] INFO  [g_Draver]         1) broadsword (12 iron ingots)
+[18:22:21.946] INFO  [g_Draver]         2) cutlass (8 iron ingots)
+[18:22:21.946] INFO  [g_Draver]         3) dagger (4 iron ingots)
+[18:22:21.946] INFO  [g_Draver]         4) katana (8 iron ingots)
+[18:22:21.946] INFO  [g_Draver]         5) kryss (8 iron ingots)
+[18:22:21.946] INFO  [g_Draver]         6) scimitar (10 iron ingots)
+[18:22:21.946] INFO  [g_Draver]         7) viking sword (14 iron ingots)
+[18:22:21.946] LOG   [g_Draver] event dialog: Swords & Blades
+[18:22:24.446] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:28.842] INFO  [life] goal_changed=MINE from=CRAFT reason="MINE 79.9 superseded CRAFT 65.0"
+[18:22:28.842] INFO  [life] needs considered: NeedOre(ore 0.61) NeedGold(sell surplus BLOCKED 0.53) NeedCraft(make goods to sell 0.50) NeedSkillTraining(Tinkering 0.45) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[18:22:28.842] INFO  [life]   score=79.9
+[18:22:28.842] INFO  [life]   reason: NeedOre urgency 0.61 x 130 = 79.9
+[18:22:28.842] INFO  [life]   reason: 39 ore+ingots of the 550 wanted before smith training (smithing 50.4) at_work_site=1
+[18:22:28.842] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (19 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[18:22:28.842] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 579s after achieving nothing
+[18:22:28.842] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[18:22:28.842] INFO  [g_Draver] [ACTION] equip start
+[18:22:28.842] INFO  [g_Draver] [ACTION] equip serial=0x400105EE layer=0
+[18:22:28.842] INFO  [g_Draver] [ITEM] drag serial=0x400105EE amount=1
+[18:22:28.842] INFO  [g_Draver] [chat ascii] System: You put the pickaxe in your pack.
+[18:22:28.842] INFO  [g_Draver] [chat ascii] System: Previous targeting cancelled.
+[18:22:28.857] LOG   [g_Draver] event drag_cancel: reason=5 unspecified
+[18:22:28.857] LOG   [g_Draver] event action_result: equip rejected took=15ms unspecified
+[18:22:29.504] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:30.884] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[18:22:30.884] INFO  [g_Draver] [ACTION] equip start
+[18:22:30.884] INFO  [g_Draver] [ACTION] equip serial=0x400105EE layer=0
+[18:22:30.884] INFO  [g_Draver] [ITEM] drag serial=0x400105EE amount=1
+[18:22:30.901] INFO  [g_Draver] [chat ascii] System: You put the smith's hammer in your pack.
+[18:22:30.901] INFO  [g_Draver] [ACTION_RESULT] equip success (16ms) worn on the requested layer
+[18:22:30.901] LOG   [g_Draver] event action_result: equip success took=16ms worn on the requested layer
+[18:22:32.900] INFO  [life] mine: Minoc resident going directly to the interior of Minoc Mine 1 at 2568,487 (trip 1)
+[18:22:32.900] INFO  [g_Draver] [travel] Minoc Mine 1 interior -> (2568,487) r=3 from (2467,556)
+[18:22:32.900] LOG   [g_Draver] event travel_start: label='Minoc Mine 1 interior' target=(2568,487) radius=3 from=(2467,556)
+[18:22:32.900] INFO  [g_Draver] [travel] mode moongate         usable   <- chosen
+[18:22:32.900] INFO  [g_Draver] [travel] mode walk             usable
+[18:22:32.900] INFO  [g_Draver] [travel] mode loose_rune_recall no: no rune marked at that destination
+[18:22:32.900] INFO  [g_Draver] [travel] mode runebook_recall  no: no runebook page for that destination
+[18:22:32.900] LOG   [g_Draver] event travel_mode: moongate
+[18:22:32.900] INFO  [g_Draver] [travel] plan Minoc Mine 1 interior: ok legs=3 ~128 tiles transit=0 nodes=121
+[18:22:32.962] INFO  [g_Draver] [action] goto (2504,520) from (2467,556,5)
+[18:22:32.962] LOG   [g_Draver] event goto_start: target=(2504,520) from=(2467,556)
+[18:22:32.962] INFO  [g_Draver] [bot] running from (2467,556,5) to (2504,520)
+[18:22:32.962] INFO  [g_Draver] [bot] planning path to (2504,520) in background
+[18:22:33.024] INFO  [g_Draver] [bot] replan to (2504,520): 81 steps in 12515.0us
+[18:22:34.563] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:35.918] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[18:22:39.597] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:44.629] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:46.240] INFO  [g_Draver] [bot] arrived at (2504,520,0)
+[18:22:46.240] INFO  [g_Draver] [action] goto finished at (2504,520,0); target (2504,520); ARRIVED (off by 0 tile(s))
+[18:22:46.240] LOG   [g_Draver] event goto_done: at=(2504,520) target=(2504,520) arrived=1 off=0
+[18:22:46.240] INFO  [g_Draver] [action] goto (2530,504) from (2504,520,0)
+[18:22:46.240] LOG   [g_Draver] event goto_start: target=(2530,504) from=(2504,520)
+[18:22:46.240] INFO  [g_Draver] [bot] running from (2504,520,0) to (2530,504)
+[18:22:46.240] INFO  [g_Draver] [bot] planning path to (2530,504) in background
+[18:22:46.302] INFO  [g_Draver] [bot] replan to (2530,504): 28 steps in 2662.4us
+[18:22:49.673] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:50.940] INFO  [g_Draver] [bot] arrived at (2530,504,15)
+[18:22:50.941] INFO  [g_Draver] [action] goto finished at (2530,504,15); target (2530,504); ARRIVED (off by 0 tile(s))
+[18:22:50.941] LOG   [g_Draver] event goto_done: at=(2530,504) target=(2530,504) arrived=1 off=0
+[18:22:50.941] INFO  [g_Draver] [action] goto (2568,487) from (2530,504,15)
+[18:22:50.941] LOG   [g_Draver] event goto_start: target=(2568,487) from=(2530,504)
+[18:22:50.941] INFO  [g_Draver] [bot] running from (2530,504,15) to (2568,487)
+[18:22:50.941] INFO  [g_Draver] [bot] planning path to (2568,487) in background
+[18:22:51.001] INFO  [g_Draver] [bot] replan to (2568,487): 44 steps in 3253.1us
+[18:22:54.693] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:22:55.662] INFO  [g_Draver] [bot] step (2555,501,1)->(2555,500,0) rejected; OpenDoor + retry
+[18:22:56.399] INFO  [g_Draver] [bot] step (2555,501,1)->(2555,500,0) rejected; avoiding edge + rerouting
+[18:22:56.399] INFO  [g_Draver] [bot] planning path to (2568,487) in background
+[18:22:56.460] INFO  [g_Draver] [bot] replan to (2568,487): 15 steps in 553.3us
+[18:22:56.889] INFO  [g_Draver] [chat ascii] System: You have left the protection of the guards
+[18:22:57.137] INFO  [g_Draver] [bot] step (2556,501,0)->(2556,500,0) rejected; OpenDoor + retry
+[18:22:57.905] INFO  [g_Draver] [bot] step (2556,501,0)->(2556,500,0) rejected; avoiding edge + rerouting
+[18:22:57.905] INFO  [g_Draver] [bot] planning path to (2568,487) in background
+[18:22:57.967] INFO  [g_Draver] [bot] replan to (2568,487): 15 steps in 349.2us
+[18:22:59.700] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:00.761] INFO  [g_Draver] [bot] arrived at (2568,487,0)
+[18:23:00.761] INFO  [g_Draver] [action] goto finished at (2568,487,0); target (2568,487); ARRIVED (off by 0 tile(s))
+[18:23:00.761] LOG   [g_Draver] event goto_done: at=(2568,487) target=(2568,487) arrived=1 off=0
+[18:23:00.761] INFO  [g_Draver] [travel] Minoc Mine 1 interior ARRIVED at (2568,487,0)
+[18:23:00.761] LOG   [g_Draver] event travel_done: label='Minoc Mine 1 interior' ok=1 at=(2568,487) legs=3 plans=1 why=''
+[18:23:00.822] INFO  [life] mine: the rock is at 2566,484, 3 tiles off -- standing at 2566,485 to reach it
+[18:23:00.822] INFO  [g_Draver] [action] goto (2566,485) from (2568,487,0)
+[18:23:00.822] LOG   [g_Draver] event goto_start: target=(2566,485) from=(2568,487)
+[18:23:00.822] INFO  [g_Draver] [bot] running from (2568,487,0) to (2566,485)
+[18:23:00.822] INFO  [g_Draver] [bot] planning path to (2566,485) in background
+[18:23:00.851] INFO  [g_Draver] [bot] replan to (2566,485): 2 steps in 32.1us
+[18:23:01.221] INFO  [g_Draver] [bot] arrived at (2566,485,0)
+[18:23:03.367] INFO  [g_Draver] [action] goto finished at (2566,485,0); target (2566,485); ARRIVED (off by 0 tile(s))
+[18:23:03.367] LOG   [g_Draver] event goto_done: at=(2566,485) target=(2566,485) arrived=1 off=0
+[18:23:03.367] INFO  [life] mine: striking the rock at 2566,484,0 (cave floor, 1 tiles)
+[18:23:03.367] INFO  [g_Draver] [ACTION] use_object start
+[18:23:03.367] INFO  [g_Draver] [ACTION] use_object serial=0x400105EE
+[18:23:03.368] INFO  [g_Draver] [chat ascii] System: Where do you want to use the pickaxe?
+[18:23:03.368] INFO  [g_Draver] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=4
+[18:23:03.368] LOG   [g_Draver] event target_requested: id=0x000002CE type=1 subtype=1 gen=4
+[18:23:03.368] INFO  [g_Draver] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:23:03.368] LOG   [g_Draver] event action_result: use_object success took=0ms server armed a target cursor
+[18:23:04.733] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:05.898] INFO  [g_Draver] [TARGET] reply static=(2566,484,0) gfx=0x053B gen=4
+[18:23:05.898] INFO  [g_Draver] [target] static 0x053B (2566,484,0)
+[18:23:05.898] INFO  [g_Draver] [0x20] player @(2566,485,0) facing=0
+[18:23:05.898] INFO  [g_Draver] [chat ascii] System: You can't mine while riding.
+[18:23:09.740] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:14.781] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:19.803] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:21.213] INFO  [life] mine: no verdict from 2566,484 in 15s -- moving on
+[18:23:21.213] INFO  [life] mine: striking the rock at 2566,484,0 (cave floor, 1 tiles)
+[18:23:21.213] INFO  [g_Draver] [ACTION] use_object start
+[18:23:21.213] INFO  [g_Draver] [ACTION] use_object serial=0x400105EE
+[18:23:21.213] INFO  [g_Draver] [chat ascii] System: Where do you want to use the pickaxe?
+[18:23:21.213] INFO  [g_Draver] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=5
+[18:23:21.213] LOG   [g_Draver] event target_requested: id=0x000002CE type=1 subtype=1 gen=5
+[18:23:21.213] INFO  [g_Draver] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:23:21.213] LOG   [g_Draver] event action_result: use_object success took=0ms server armed a target cursor
+[18:23:23.746] INFO  [g_Draver] [TARGET] reply static=(2566,484,0) gfx=0x053B gen=5
+[18:23:23.747] INFO  [g_Draver] [target] static 0x053B (2566,484,0)
+[18:23:23.747] INFO  [g_Draver] [chat ascii] System: You can't mine while riding.
+[18:23:24.853] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:29.913] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:34.924] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:35.973] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[18:23:39.124] INFO  [life] mine: no verdict from 2566,484 in 15s -- moving on
+[18:23:39.124] INFO  [life] mine: striking the rock at 2566,484,0 (cave floor, 1 tiles)
+[18:23:39.124] INFO  [g_Draver] [ACTION] use_object start
+[18:23:39.124] INFO  [g_Draver] [ACTION] use_object serial=0x400105EE
+[18:23:39.124] INFO  [g_Draver] [chat ascii] System: Where do you want to use the pickaxe?
+[18:23:39.124] INFO  [g_Draver] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=6
+[18:23:39.124] LOG   [g_Draver] event target_requested: id=0x000002CE type=1 subtype=1 gen=6
+[18:23:39.124] INFO  [g_Draver] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:23:39.124] LOG   [g_Draver] event action_result: use_object success took=0ms server armed a target cursor
+[18:23:39.969] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:41.659] INFO  [g_Draver] [TARGET] reply static=(2566,484,0) gfx=0x053B gen=6
+[18:23:41.659] INFO  [g_Draver] [target] static 0x053B (2566,484,0)
+[18:23:41.675] INFO  [g_Draver] [chat ascii] System: You can't mine while riding.
+[18:23:42.210] INFO  [g_Draver] [chat ascii] Kharain: *You see Kharain smelt Iron Ore*
+[18:23:44.980] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:46.272] INFO  [g_Draver] [chat ascii] Kharain: *You see Kharain smelt Rusty Ore*
+[18:23:50.017] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:50.338] INFO  [g_Draver] [chat ascii] Kharain: *You see Kharain smelt Rusty Ore*
+[18:23:54.405] INFO  [g_Draver] [chat ascii] Kharain: *You see Kharain smelt Rusty Ore*
+[18:23:55.019] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:23:57.001] INFO  [life] mine: no verdict from 2566,484 in 15s -- moving on
+[18:23:57.001] INFO  [life] mine: striking the rock at 2566,484,0 (cave floor, 1 tiles)
+[18:23:57.001] INFO  [g_Draver] [ACTION] use_object start
+[18:23:57.001] INFO  [g_Draver] [ACTION] use_object serial=0x400105EE
+[18:23:57.001] INFO  [g_Draver] [chat ascii] System: Where do you want to use the pickaxe?
+[18:23:57.001] INFO  [g_Draver] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=7
+[18:23:57.001] LOG   [g_Draver] event target_requested: id=0x000002CE type=1 subtype=1 gen=7
+[18:23:57.001] INFO  [g_Draver] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:23:57.001] LOG   [g_Draver] event action_result: use_object success took=0ms server armed a target cursor
+[18:23:59.526] INFO  [g_Draver] [TARGET] reply static=(2566,484,0) gfx=0x053B gen=7
+[18:23:59.526] INFO  [g_Draver] [target] static 0x053B (2566,484,0)
+[18:23:59.526] INFO  [g_Draver] [chat ascii] System: You can't mine while riding.
+[18:24:00.049] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:24:05.063] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:24:10.103] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:24:14.838] INFO  [life] mine: no verdict from 2566,484 in 15s -- moving on
+[18:24:14.838] INFO  [life] mine: striking the rock at 2566,484,0 (cave floor, 1 tiles)
+[18:24:14.838] INFO  [g_Draver] [ACTION] use_object start
+[18:24:14.838] INFO  [g_Draver] [ACTION] use_object serial=0x400105EE
+[18:24:14.839] INFO  [g_Draver] [chat ascii] System: Where do you want to use the pickaxe?
+[18:24:14.839] INFO  [g_Draver] [0x6C] TARGET requested id=0x000002CE type=ground subtype=1 gen=8
+[18:24:14.839] LOG   [g_Draver] event target_requested: id=0x000002CE type=1 subtype=1 gen=8
+[18:24:14.839] INFO  [g_Draver] [ACTION_RESULT] use_object success (0ms) server armed a target cursor
+[18:24:14.839] LOG   [g_Draver] event action_result: use_object success took=0ms server armed a target cursor
+[18:24:15.148] INFO  [g_Draver] [survival] hp 50/50 (100%) -> fight
+[18:24:17.368] INFO  [g_Draver] [TARGET] reply static=(2566,484,0) gfx=0x053B gen=8
+[18:24:17.369] INFO  [g_Draver] [target] static 0x053B (2566,484,0)
+[18:24:17.369] INFO  [g_Draver] [chat ascii] System: You can't mine while riding.
+[18:24:19.334] INFO  [life] session_end_requested reason="session time limit reached"
+[18:24:19.396] INFO  [life] wind-down: arrived somewhere safe at 2566,485
+[18:24:19.458] INFO  [life] session_summary duration=300s goals=1/5 gold=9938->9509 skills=121.3->121.3 logs=+0 kills=0 deaths=0 places=6 suppliers=0
+[18:24:19.458] INFO  [life] session_goals families=3 picks=5 top=60% varied=0 self_superseded=0 | upkeep=1(20%) work=3(60%) social=1(20%) | EARN_GOLD=1(20%) TRADE_WITH_PLAYER=1(20%) CRAFT=1(20%) MINE=1(20%) BUY_MOUNT=1(20%)
+[18:24:19.461] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_01.draver/state.json
+[18:24:19.461] INFO  [life] logging out
+[18:24:19.461] INFO  [g_Draver] [action] logout requested
+[18:24:19.461] LOG   [g_Draver] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[18:24:19.473] INFO  [g_Draver] [0xD1] logout acknowledged (accepted=1)
+[18:24:19.473] LOG   [g_Draver] event logout_ack: accepted
+[18:24:19.473] INFO  [g_Draver] [net] closing connection (logout acknowledged)
+[18:24:19.473] LOG   [g_Draver] event logout_complete: acked

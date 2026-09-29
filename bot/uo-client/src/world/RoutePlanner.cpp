@@ -37,6 +37,25 @@ struct OpenNode {
     bool operator>(const OpenNode& o) const { return f > o.f; }
 };
 
+const i32 kNeighbour[8][2] = {
+    {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1},
+};
+
+// How many connected cells make a cell part of the world rather than a sealed
+// pocket. ONE EDGE IS NOT CONNECTIVITY: the Papua fix asked only "does this
+// cell have an edge", which is true of every cell in Minoc Mine 1's ledge
+// pocket -- five cells at z 15/40/60 with edges only to each other, sitting
+// over the cave floor at z 0 where the miner actually stands. Kharain snapped
+// from his island onto a two-cell neighbour and the macro search still had
+// nowhere to go ("no place offers banker" x58, 2026-09-06). 24 cells is small
+// enough that a genuine walled-off area still routes internally and large
+// enough that no one-storey pocket passes.
+constexpr usize kConnectedComponentCells = 24;
+
+// How far to look for a connected cell. Three rings is ~48 tiles, the same
+// budget NearestPassable uses.
+constexpr i32 kSnapRings = 3;
+
 } // namespace
 
 const char* LegKindName(LegKind k) {
@@ -71,9 +90,24 @@ void RoutePlanner::BuildTransitIndex() {
     for (const wm::TransitNode& t : atlas_.Transits()) {
         if (t.kind == wm::TransitKind::Unknown) continue;
 
+        // The destination of a transit is an exact server tile, but the
+        // coarse navgrid samples a cell.  Gate/pad art can make that one cell
+        // appear non-walkable even though a player can stand beside it and
+        // use it.  Anchor the graph edge at the nearest sampled ground while
+        // retaining the exact entry point for the final interaction leg.
+        i32 fromCx = navgrid::NavGrid::TileToCell(t.from.x);
+        i32 fromCy = navgrid::NavGrid::TileToCell(t.from.y);
+        i32 toCx = navgrid::NavGrid::TileToCell(t.to.x);
+        i32 toCy = navgrid::NavGrid::TileToCell(t.to.y);
+        if (!grid_.NearestPassable(fromCx, fromCy, 3, &fromCx, &fromCy) ||
+            !grid_.NearestPassable(toCx, toCy, 3, &toCx, &toCy))
+            continue;
+
         TransitEdge e;
-        e.fromCell = CellIndex(t.from.x, t.from.y);
-        e.toCell   = CellIndex(t.to.x, t.to.y);
+        e.fromCell = static_cast<u32>(fromCy) * grid_.CellsX() +
+                     static_cast<u32>(fromCx);
+        e.toCell   = static_cast<u32>(toCy) * grid_.CellsX() +
+                     static_cast<u32>(toCx);
         e.entry    = t.from;
         e.arrive   = t.to;
         e.kind     = t.kind;
@@ -97,6 +131,85 @@ void RoutePlanner::BuildTransitIndex() {
     transitEdges_.reserve(transitCellKeys_.size());
     for (u32 key : transitCellKeys_)
         transitEdges_.push_back(byCell[key]);
+
+    // Both ends, so a room that can only be teleported INTO is not mistaken
+    // for a sealed pocket by the connectivity test.
+    for (const auto& kv : byCell) {
+        transitTouchedCells_.push_back(kv.first);
+        for (const TransitEdge& e : kv.second)
+            transitTouchedCells_.push_back(e.toCell);
+    }
+    std::sort(transitTouchedCells_.begin(), transitTouchedCells_.end());
+    transitTouchedCells_.erase(
+        std::unique(transitTouchedCells_.begin(), transitTouchedCells_.end()),
+        transitTouchedCells_.end());
+}
+
+bool RoutePlanner::TouchesTransit(u32 cell) const {
+    return std::binary_search(transitTouchedCells_.begin(),
+                              transitTouchedCells_.end(), cell);
+}
+
+usize RoutePlanner::ComponentReach(i32 cx, i32 cy, usize cap,
+                                   bool inbound) const {
+    if (cap == 0 || !grid_.Passable(cx, cy)) return 0;
+    const i32 cellsX = static_cast<i32>(grid_.CellsX());
+    const u32 start = static_cast<u32>(cy) * static_cast<u32>(cellsX) +
+                      static_cast<u32>(cx);
+    if (TouchesTransit(start)) return cap;
+
+    std::unordered_map<u32, bool> seen;
+    seen.reserve(cap * 2);
+    std::vector<u32> stack;
+    seen[start] = true;
+    stack.push_back(start);
+    usize count = 1;
+    while (!stack.empty() && count < cap) {
+        const u32 cur = stack.back();
+        stack.pop_back();
+        i32 x, y;
+        CellCoords(cur, &x, &y);
+        for (u8 dir = 0; dir < 8; ++dir) {
+            const i32 nx = x + kNeighbour[dir][0];
+            const i32 ny = y + kNeighbour[dir][1];
+            if (!grid_.Passable(nx, ny)) continue;
+            // Edges live on the source cell: walking the graph backwards means
+            // asking the neighbour about the opposite heading.
+            const bool open =
+                inbound ? grid_.EdgeOpen(nx, ny, static_cast<u8>((dir + 4) & 7))
+                        : grid_.EdgeOpen(x, y, dir);
+            if (!open) continue;
+            const u32 next = static_cast<u32>(ny) * static_cast<u32>(cellsX) +
+                             static_cast<u32>(nx);
+            if (seen.find(next) != seen.end()) continue;
+            seen[next] = true;
+            if (TouchesTransit(next)) return cap;
+            ++count;
+            if (count >= cap) break;
+            stack.push_back(next);
+        }
+    }
+    return count;
+}
+
+bool RoutePlanner::SnapToConnected(i32 cx, i32 cy, i32 maxRings, bool inbound,
+                                   i32* outCx, i32* outCy) const {
+    for (i32 r = 1; r <= maxRings; ++r) {
+        for (i32 dy = -r; dy <= r; ++dy) {
+            for (i32 dx = -r; dx <= r; ++dx) {
+                if (dx != -r && dx != r && dy != -r && dy != r) continue;
+                const i32 nx = cx + dx, ny = cy + dy;
+                if (!grid_.Passable(nx, ny)) continue;
+                if (ComponentReach(nx, ny, kConnectedComponentCells, inbound) <
+                    kConnectedComponentCells)
+                    continue;
+                *outCx = nx;
+                *outCy = ny;
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 const std::vector<RoutePlanner::TransitEdge>* RoutePlanner::EdgesFrom(
@@ -170,6 +283,21 @@ WorldRoute RoutePlanner::Plan(i32 startX, i32 startY, i32 goalX, i32 goalY,
         out.failure = "no walkable ground near the destination";
         return out;
     }
+    // A cell can be passable yet an island: its anchor landed on a roof, a
+    // fenced yard or a shop floor the edge pass could not walk out of, so it
+    // has no edge to any neighbour. A character standing there is not
+    // stranded -- the tile walker leaves such pockets fine -- but a macro
+    // search seeded from it finds nothing. Faustus' ghost logged in on one at
+    // (5674,3136) in Papua and every healer trip ended "no place offers
+    // healer" (2026-09-05). Seed from the nearest connected cell instead.
+    if (ComponentReach(startCx, startCy, kConnectedComponentCells,
+                       /*inbound=*/false) < kConnectedComponentCells)
+        SnapToConnected(startCx, startCy, kSnapRings, /*inbound=*/false,
+                        &startCx, &startCy);
+    if (ComponentReach(goalCx, goalCy, kConnectedComponentCells,
+                       /*inbound=*/true) < kConnectedComponentCells)
+        SnapToConnected(goalCx, goalCy, kSnapRings, /*inbound=*/true,
+                        &goalCx, &goalCy);
 
     const u32 cellsX = grid_.CellsX();
     const u32 startCell = static_cast<u32>(startCy) * cellsX + startCx;
@@ -203,6 +331,16 @@ WorldRoute RoutePlanner::Plan(i32 startX, i32 startY, i32 goalX, i32 goalY,
         open;
 
     auto heuristic = [&](u32 cell) {
+        // A straight-line distance is only admissible while every useful edge
+        // is a walk.  A moongate/teleporter can jump hundreds of tiles for a
+        // small fixed cost, so using geographic distance here makes A* close
+        // the distant goal before it ever expands the cell holding the gate.
+        // That is why a route could say "mode moongate" yet emit zero transit
+        // hops and walk across Britannia.  Fall back to Dijkstra for journeys
+        // allowed to use transit; correctness matters more than a speculative
+        // shortcut, and the measured navgrid keeps this search bounded.
+        if (opt.allowMoongates || opt.allowTeleporters)
+            return 0;
         i32 cx, cy;
         CellCoords(cell, &cx, &cy);
         return Chebyshev(cx * static_cast<i32>(navgrid::kCellTiles),
@@ -289,6 +427,54 @@ WorldRoute RoutePlanner::Plan(i32 startX, i32 startY, i32 goalX, i32 goalY,
     }
 
     if (!found) {
+        // A disconnected sampled component must not hide a real moongate.
+        // Try each promising gate as two ordinary walk routes before reporting
+        // failure; this is the same player-visible journey as the normal
+        // transit edge and is essential for city interiors / island cells.
+        if (opt.allowMoongates) {
+            std::vector<const wm::TransitNode*> gates;
+            for (const wm::TransitNode& t : atlas_.Transits()) {
+                if (t.kind != wm::TransitKind::Moongate) continue;
+                gates.push_back(&t);
+            }
+            std::sort(gates.begin(), gates.end(), [&](const auto* a, const auto* b) {
+                const i32 aEstimate = Chebyshev(startX, startY, a->from.x, a->from.y) +
+                                      kMoongateCost +
+                                      Chebyshev(a->to.x, a->to.y, goalX, goalY);
+                const i32 bEstimate = Chebyshev(startX, startY, b->from.x, b->from.y) +
+                                      kMoongateCost +
+                                      Chebyshev(b->to.x, b->to.y, goalX, goalY);
+                return aEstimate < bEstimate;
+            });
+            for (const wm::TransitNode* gateNode : gates) {
+                RouteOptions walkOnly = opt;
+                walkOnly.allowMoongates = false;
+                WorldRoute before = Plan(startX, startY, gateNode->from.x,
+                                         gateNode->from.y, walkOnly);
+                WorldRoute after = Plan(gateNode->to.x, gateNode->to.y,
+                                        goalX, goalY, walkOnly);
+                if (before.ok && after.ok) {
+                    WorldRoute gated;
+                    gated.ok = true;
+                    gated.estimatedTiles = before.estimatedTiles +
+                                           kMoongateCost + after.estimatedTiles;
+                    gated.nodesExpanded = out.nodesExpanded + before.nodesExpanded +
+                                          after.nodesExpanded;
+                    gated.legs = std::move(before.legs);
+                    RouteLeg gate;
+                    gate.kind = LegKind::Moongate;
+                    gate.target = gateNode->from;
+                    gate.arrive = gateNode->to;
+                    gate.transitId = gateNode->id;
+                    gate.label = gateNode->label;
+                    gated.legs.push_back(std::move(gate));
+                    for (RouteLeg& leg : after.legs)
+                        gated.legs.push_back(std::move(leg));
+                    gated.transitHops = before.transitHops + 1 + after.transitHops;
+                    return gated;
+                }
+            }
+        }
         out.failure = "no world route to the destination";
         return out;
     }
@@ -386,6 +572,56 @@ WorldRoute RoutePlanner::Plan(i32 startX, i32 startY, i32 goalX, i32 goalY,
 
     out.ok = !out.legs.empty();
     if (!out.ok) out.failure = "route collapsed to no legs";
+
+    // The macro graph normally discovers a gate edge itself.  Keep a
+    // deterministic fallback for the sparse-grid case: an actual gate can be
+    // usable while the cell edge to its sampled anchor is missing (doors,
+    // bridges and decoration all make that possible).  Choose the promising
+    // gate from real map distances, then plan both walk portions normally;
+    // this never teleports the character or invents a destination.
+    if (out.ok && opt.allowMoongates && out.transitHops == 0) {
+        const wm::TransitNode* bestGate = nullptr;
+        i32 bestStraight = Chebyshev(startX, startY, goalX, goalY);
+        for (const wm::TransitNode& t : atlas_.Transits()) {
+            if (t.kind != wm::TransitKind::Moongate) continue;
+            const i32 estimate = Chebyshev(startX, startY, t.from.x, t.from.y) +
+                                 kMoongateCost +
+                                 Chebyshev(t.to.x, t.to.y, goalX, goalY);
+            if (estimate < bestStraight) {
+                bestStraight = estimate;
+                bestGate = &t;
+            }
+        }
+        if (bestGate) {
+            RouteOptions walkOnly = opt;
+            walkOnly.allowMoongates = false;
+            WorldRoute before = Plan(startX, startY, bestGate->from.x,
+                                     bestGate->from.y, walkOnly);
+            WorldRoute after = Plan(bestGate->to.x, bestGate->to.y,
+                                    goalX, goalY, walkOnly);
+            const i32 gateCost = before.estimatedTiles + kMoongateCost +
+                                 after.estimatedTiles;
+            if (before.ok && after.ok && gateCost < out.estimatedTiles) {
+                WorldRoute gated;
+                gated.ok = true;
+                gated.estimatedTiles = gateCost;
+                gated.nodesExpanded = out.nodesExpanded + before.nodesExpanded +
+                                    after.nodesExpanded;
+                gated.legs = std::move(before.legs);
+                RouteLeg gate;
+                gate.kind = LegKind::Moongate;
+                gate.target = bestGate->from;
+                gate.arrive = bestGate->to;
+                gate.transitId = bestGate->id;
+                gate.label = bestGate->label;
+                gated.legs.push_back(std::move(gate));
+                for (RouteLeg& leg : after.legs)
+                    gated.legs.push_back(std::move(leg));
+                gated.transitHops = before.transitHops + 1 + after.transitHops;
+                out = std::move(gated);
+            }
+        }
+    }
     return out;
 }
 

@@ -1,0 +1,562 @@
+[00:19:05.311] INFO  session 0: 127.0.0.1:2593 user='RevGen3_04' char=Zarthal tag='mk3_Zarthal'
+[00:19:05.312] LOG   [mk3_Zarthal] event session_start: text log opened
+[00:19:05.312] LOG   [mk3_Zarthal] event net_connect_begin: connect 127.0.0.1:2593
+[00:19:05.312] INFO  [mk3_Zarthal] [net] connecting to 127.0.0.1:2593 ...
+[00:19:05.313] LOG   [mk3_Zarthal] event net_connected: connect 127.0.0.1:2593
+[00:19:05.313] INFO  [mk3_Zarthal] [net] connected.
+[00:19:05.313] INFO  [mk3_Zarthal] [seed] sent 0x7F000001 (plaintext)
+[00:19:05.313] LOG   [mk3_Zarthal] event seed_out: 0x7F000001 hex=7f000001
+[00:19:05.313] INFO  [life] no prior state for revgen3_04.zarthal: a new Miner / Blacksmith
+[00:19:05.313] INFO  [life] creation request: Mining 50.0 + Blacksmithing 50.0, stats 56/16/8 = 80
+[00:19:05.313] INFO  [life] needs: reading 'miner_smith' from the profession catalogue
+[00:19:05.313] INFO  [life] home: Zarthal lives in Minoc
+[00:19:05.313] INFO  [life] build plan 'miner_smith': 300.0 resolved + 400.0 unresolved = 700.0/700.0, stats 100/45/80 = 225
+[00:19:05.313] INFO  [mk3_Zarthal] [life] autonomous player active for 'Zarthal' (data root 'C:\Projects\RevolutionOffline\bot\uo-client\bot_data', session limit 3 min)
+[00:19:05.340] INFO  [mk3_Zarthal] [0xA8] 1 server(s):
+[00:19:05.341] INFO  [mk3_Zarthal]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[00:19:05.355] INFO  [mk3_Zarthal] [0x8C] game server = 127.0.0.1:2593  seed=0x1A4286FD
+[00:19:05.355] LOG   [mk3_Zarthal] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x1A4286FD
+[00:19:05.355] INFO  [mk3_Zarthal] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[00:19:05.355] LOG   [mk3_Zarthal] event relay_same_socket: no seed re-sent; 0x91 follows
+[00:19:05.356] INFO  [mk3_Zarthal] [0xB9] server features = 0x0005
+[00:19:05.356] INFO  [mk3_Zarthal] [0xA9] 5 slot(s) (populated 0):
+[00:19:05.356] INFO  [mk3_Zarthal]   [0] <empty>
+[00:19:05.356] INFO  [mk3_Zarthal]   [1] <empty>
+[00:19:05.356] INFO  [mk3_Zarthal]   [2] <empty>
+[00:19:05.356] INFO  [mk3_Zarthal]   [3] <empty>
+[00:19:05.356] INFO  [mk3_Zarthal]   [4] <empty>
+[00:19:05.356] INFO  [mk3_Zarthal] create: appearance sex=M skin=0x03FE hair=0x2045/0x0460 shirt=0x0368 pants=0x0388
+[00:19:05.356] INFO  [mk3_Zarthal] [0x00] starting city index 1
+[00:19:05.356] INFO  [mk3_Zarthal] [0x00] requested skills 45:50 7:50 37:0
+[00:19:05.356] INFO  [mk3_Zarthal] [0x00] requested stats STR 56 DEX 16 INT 8
+[00:19:05.356] INFO  [mk3_Zarthal] [0x00] creating character 'Zarthal' in slot 0
+[00:19:05.356] LOG   [mk3_Zarthal] event char_create_sent: Zarthal
+[00:19:05.373] INFO  [mk3_Zarthal] [0x1B] serial=0x000163A2 body=0x0190 pos=(2476,413,15)
+[00:19:05.373] LOG   [mk3_Zarthal] event login_confirm: serial=0x000163A2 body=0x0190 pos=(2476,413,15)
+[00:19:05.373] INFO  [mk3_Zarthal] [0x20] player @(2476,413,15) facing=3
+[00:19:05.373] INFO  [mk3_Zarthal] [0x55] login complete — entering world
+[00:19:05.374] LOG   [mk3_Zarthal] event in_world: 0x55 received
+[00:19:05.374] INFO  [mk3_Zarthal] [backpack] opening 0x4001639E
+[00:19:05.374] INFO  [mk3_Zarthal] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[00:19:05.374] INFO  [mk3_Zarthal] [chat ascii] System: There are 3 other players here.
+[00:19:05.374] INFO  [mk3_Zarthal] [chat ascii] System: You are under the protection of the town guards
+[00:19:05.377] INFO  [mk3_Zarthal] [action] requesting the skill list
+[00:19:05.377] INFO  [life] in world; asked the server for the skill list
+[00:19:05.377] INFO  [mk3_Zarthal] [0x24] open container 0x4001639E gump=60
+[00:19:05.377] INFO  [mk3_Zarthal] [0x3C] container contents: 9 item(s)
+[00:19:05.377] LOG   [mk3_Zarthal] event backpack_contents: serial=0x4001639E items=9
+[00:19:07.991] INFO  [mk3_Zarthal] [bot] world data loaded (0 blacklisted spot(s)).
+[00:19:07.991] INFO  [life] common knowledge: The Old Miner's Supplies at 2460,429 (16 tiles away)
+[00:19:07.991] INFO  [life] common knowledge: Minoc Miner's Guild at 2456,493 (80 tiles away)
+[00:19:07.991] INFO  [life] common knowledge: Minoc Mine 1 at 2558,499 (86 tiles away)
+[00:19:07.991] INFO  [life] seeded 3 ore hint(s) of 29 the atlas knows -- everything else is earned
+[00:19:07.991] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[00:19:07.991] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[00:19:07.991] INFO  [life]   str          persisted=0          server=56         -> server value accepted
+[00:19:07.991] INFO  [life]   dex          persisted=0          server=16         -> server value accepted
+[00:19:07.991] INFO  [life]   int          persisted=0          server=8          -> server value accepted
+[00:19:07.991] INFO  [life]   skill_7      persisted=0.0        server=50.0       -> server value accepted
+[00:19:07.991] INFO  [life]   skill_45     persisted=0.0        server=50.0       -> server value accepted
+[00:19:07.991] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[00:19:07.991] INFO  [life]   skill_4      persisted=0.0        server=0.0        -> server value accepted
+[00:19:07.991] INFO  [life]   position     persisted=0,0        server=2476,413   -> server value accepted
+[00:19:07.991] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[00:19:07.991] INFO  [mk3_Zarthal] [survival] on
+[00:19:07.991] LOG   [mk3_Zarthal] event survival_mode: on
+[00:19:07.993] INFO  [life] checkpoint (login reconciled) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[00:19:07.993] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:08.044] INFO  [life] goal=BANK reason="no goal was running"
+[00:19:08.044] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:19:08.044] INFO  [life]   score=150.0
+[00:19:08.044] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[00:19:08.044] INFO  [life]   reason: on_hand=10000 (total 10000) reserve=500 carry=1000 spare=9000 risk=1.00
+[00:19:08.044] INFO  [life]   reason: no bank learned yet -30
+[00:19:08.044] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:19:08.044] INFO  [mk3_Zarthal] [action] scanning nearby mobiles for names
+[00:19:08.044] INFO  [mk3_Zarthal] [action] requested 8 paperdoll(s) for trade titles
+[00:19:08.044] INFO  [life] bank: asking who is standing in the bank
+[00:19:08.060] INFO  [mk3_Zarthal] [mobiles] nearby (8):
+[00:19:08.061] INFO  [mk3_Zarthal]   Kharain 0x00016AE8
+[00:19:08.061] INFO  [mk3_Zarthal]   Elvar 0x00016948
+[00:19:08.061] INFO  [mk3_Zarthal]   Draver 0x00016DBB
+[00:19:08.061] INFO  [mk3_Zarthal]   Gabrielle 0x0000912C
+[00:19:08.061] INFO  [mk3_Zarthal]   Einar 0x0000913A
+[00:19:08.061] INFO  [mk3_Zarthal]   Jarvia 0x0000911D
+[00:19:08.061] INFO  [mk3_Zarthal]   Bavol 0x0000910D
+[00:19:08.061] INFO  [mk3_Zarthal]   Autumn 0x000090E3
+[00:19:08.061] INFO  [mk3_Zarthal] [0x20] player @(2476,413,15) facing=0
+[00:19:08.061] INFO  [mk3_Zarthal] [0x88] paperdoll 0x0000913A: "Einar, the cook"
+[00:19:08.061] INFO  [mk3_Zarthal] [world] Einar, the cook is a cook at (2478,397)
+[00:19:08.061] INFO  [mk3_Zarthal] [0x88] paperdoll 0x0000912C: "Gabrielle, the waitress"
+[00:19:08.061] INFO  [mk3_Zarthal] [0x20] player @(2476,413,15) facing=4
+[00:19:08.061] INFO  [mk3_Zarthal] [0x88] paperdoll 0x0000911D: "Jarvia, the warrior guildmistress"
+[00:19:08.061] INFO  [mk3_Zarthal] [0x20] player @(2476,413,15) facing=0
+[00:19:08.061] INFO  [mk3_Zarthal] [0x88] paperdoll 0x0000910D: "Bavol, the tavernkeeper"
+[00:19:08.061] INFO  [mk3_Zarthal] [world] Bavol, the tavernkeeper is a innkeeper at (2476,397)
+[00:19:08.061] INFO  [mk3_Zarthal] [0x88] paperdoll 0x000090E3: "Autumn, the tavernkeeper"
+[00:19:08.061] INFO  [mk3_Zarthal] [world] Autumn, the tavernkeeper is a innkeeper at (2475,397)
+[00:19:08.061] INFO  [mk3_Zarthal] [0x20] player @(2476,413,15) facing=3
+[00:19:08.061] INFO  [mk3_Zarthal] [0x88] paperdoll 0x00016DBB: "Draver, Apprentice Miner"
+[00:19:08.061] INFO  [mk3_Zarthal] [0x88] paperdoll 0x00016AE8: "Kharain, Apprentice Miner"
+[00:19:08.061] INFO  [mk3_Zarthal] [0x88] paperdoll 0x00016948: "Elvar, Apprentice Miner"
+[00:19:08.432] INFO  [mk3_Zarthal] [chat ascii] System: Vorar has arrived in Britain.
+[00:19:10.051] INFO  [life] bank: no banker in sight
+[00:19:10.051] INFO  [life] goal_failed=BANK status=retryable_failure reason="no banker in sight"
+[00:19:10.112] INFO  [life] goal=REPLACE_EQUIPMENT reason="previous goal abandoned: no banker answered"
+[00:19:10.112] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedEquipment(heal potions 0.50) NeedCraft(make goods to sell 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:19:10.112] INFO  [life]   score=130.0
+[00:19:10.112] INFO  [life]   reason: NeedEquipment urgency 0.50 x 260 = 130.0
+[00:19:10.112] INFO  [life]   reason: potions=0 low=2 gold=10000
+[00:19:10.112] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 299s after achieving nothing
+[00:19:10.112] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:19:11.497] INFO  [mk3_Zarthal] [chat ascii] System: Halain has arrived in Britain.
+[00:19:13.003] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:14.637] INFO  [mk3_Zarthal] [chat ascii] System: Delras has arrived in Britain.
+[00:19:15.099] INFO  [life] plan=buy reason="none held, and it may be bought"
+[00:19:15.099] INFO  [life] potions: carrying 0 heal potion(s), below 2 -- buying up to 4
+[00:19:15.101] INFO  [mk3_Zarthal] [travel] Minoc healer -> (2577,599) r=5 from (2476,413)
+[00:19:15.101] LOG   [mk3_Zarthal] event travel_start: label='Minoc healer' target=(2577,599) radius=5 from=(2476,413)
+[00:19:15.101] INFO  [life] potions: walking to a 'healer' (trip 1)
+[00:19:15.101] INFO  [mk3_Zarthal] [travel] mode moongate         usable   <- chosen
+[00:19:15.101] INFO  [mk3_Zarthal] [travel] mode walk             usable
+[00:19:15.101] INFO  [mk3_Zarthal] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:19:15.101] INFO  [mk3_Zarthal] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:19:15.101] LOG   [mk3_Zarthal] event travel_mode: moongate
+[00:19:15.101] INFO  [mk3_Zarthal] [travel] plan Minoc healer: ok legs=6 ~248 tiles transit=0 nodes=67
+[00:19:15.160] INFO  [mk3_Zarthal] [action] goto (2488,440) from (2476,413,15)
+[00:19:15.161] LOG   [mk3_Zarthal] event goto_start: target=(2488,440) from=(2476,413)
+[00:19:15.161] INFO  [mk3_Zarthal] [bot] running from (2476,413,15) to (2488,440)
+[00:19:15.161] INFO  [mk3_Zarthal] [bot] planning path to (2488,440) in background
+[00:19:15.192] INFO  [mk3_Zarthal] [bot] replan to (2488,440): 32 steps in 2068.9us
+[00:19:17.703] INFO  [mk3_Zarthal] [chat ascii] System: Cyras has arrived in Britain.
+[00:19:18.039] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:20.736] INFO  [mk3_Zarthal] [chat ascii] System: Rhaler has arrived in Minoc.
+[00:19:23.071] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:23.256] INFO  [mk3_Zarthal] [bot] arrived at (2488,440,15)
+[00:19:23.256] INFO  [mk3_Zarthal] [action] goto finished at (2488,440,15); target (2488,440); ARRIVED (off by 0 tile(s))
+[00:19:23.256] LOG   [mk3_Zarthal] event goto_done: at=(2488,440) target=(2488,440) arrived=1 off=0
+[00:19:23.256] INFO  [mk3_Zarthal] [action] goto (2504,472) from (2488,440,15)
+[00:19:23.256] LOG   [mk3_Zarthal] event goto_start: target=(2504,472) from=(2488,440)
+[00:19:23.256] INFO  [mk3_Zarthal] [bot] running from (2488,440,15) to (2504,472)
+[00:19:23.256] INFO  [mk3_Zarthal] [bot] planning path to (2504,472) in background
+[00:19:23.318] INFO  [mk3_Zarthal] [bot] replan to (2504,472): 32 steps in 1473.1us
+[00:19:23.783] INFO  [mk3_Zarthal] [chat ascii] System: Ghalor has arrived in Minoc.
+[00:19:26.825] INFO  [mk3_Zarthal] [chat ascii] System: Falen has arrived in Minoc.
+[00:19:28.071] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:29.908] INFO  [mk3_Zarthal] [chat ascii] System: Aelia has arrived in Britain.
+[00:19:32.954] INFO  [mk3_Zarthal] [bot] arrived at (2504,472,15)
+[00:19:32.954] INFO  [mk3_Zarthal] [action] goto finished at (2504,472,15); target (2504,472); ARRIVED (off by 0 tile(s))
+[00:19:32.954] LOG   [mk3_Zarthal] event goto_done: at=(2504,472) target=(2504,472) arrived=1 off=0
+[00:19:32.954] INFO  [mk3_Zarthal] [action] goto (2504,502) from (2504,472,15)
+[00:19:32.954] LOG   [mk3_Zarthal] event goto_start: target=(2504,502) from=(2504,472)
+[00:19:32.954] INFO  [mk3_Zarthal] [bot] running from (2504,472,15) to (2504,502)
+[00:19:32.954] INFO  [mk3_Zarthal] [bot] planning path to (2504,502) in background
+[00:19:33.015] INFO  [mk3_Zarthal] [bot] replan to (2504,502): 31 steps in 9492.1us
+[00:19:33.077] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:33.079] INFO  [mk3_Zarthal] [chat ascii] System: Amara has arrived in Britain.
+[00:19:36.130] INFO  [mk3_Zarthal] [chat ascii] System: Elara has arrived in Magincia.
+[00:19:38.083] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:39.272] INFO  [mk3_Zarthal] [chat ascii] System: Selene has arrived in Magincia.
+[00:19:41.594] INFO  [mk3_Zarthal] [bot] arrived at (2504,502,15)
+[00:19:41.594] INFO  [mk3_Zarthal] [action] goto finished at (2504,502,15); target (2504,502); ARRIVED (off by 0 tile(s))
+[00:19:41.594] LOG   [mk3_Zarthal] event goto_done: at=(2504,502) target=(2504,502) arrived=1 off=0
+[00:19:41.594] INFO  [mk3_Zarthal] [action] goto (2520,536) from (2504,502,15)
+[00:19:41.594] LOG   [mk3_Zarthal] event goto_start: target=(2520,536) from=(2504,502)
+[00:19:41.594] INFO  [mk3_Zarthal] [bot] running from (2504,502,15) to (2520,536)
+[00:19:41.595] INFO  [mk3_Zarthal] [bot] planning path to (2520,536) in background
+[00:19:41.655] INFO  [mk3_Zarthal] [bot] replan to (2520,536): 41 steps in 10498.1us
+[00:19:42.349] INFO  [mk3_Zarthal] [chat ascii] System: Lyra has arrived in Moonglow.
+[00:19:43.126] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:45.356] INFO  [mk3_Zarthal] [chat ascii] System: Thalia has arrived in Moonglow.
+[00:19:48.158] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:48.422] INFO  [mk3_Zarthal] [chat ascii] System: Dorvar has arrived in Skara Brae.
+[00:19:51.483] INFO  [mk3_Zarthal] [chat ascii] System: Ithion has arrived in Skara Brae.
+[00:19:53.162] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:19:54.532] INFO  [mk3_Zarthal] [chat ascii] System: Odessa has arrived in Britain.
+[00:19:54.533] INFO  [mk3_Zarthal] [bot] arrived at (2520,536,0)
+[00:19:54.533] INFO  [mk3_Zarthal] [action] goto finished at (2520,536,0); target (2520,536); ARRIVED (off by 0 tile(s))
+[00:19:54.533] LOG   [mk3_Zarthal] event goto_done: at=(2520,536) target=(2520,536) arrived=1 off=0
+[00:19:54.533] INFO  [mk3_Zarthal] [action] goto (2552,568) from (2520,536,0)
+[00:19:54.533] LOG   [mk3_Zarthal] event goto_start: target=(2552,568) from=(2520,536)
+[00:19:54.533] INFO  [mk3_Zarthal] [bot] running from (2520,536,0) to (2552,568)
+[00:19:54.533] INFO  [mk3_Zarthal] [bot] planning path to (2552,568) in background
+[00:19:54.547] INFO  [mk3_Zarthal] [bot] replan to (2552,568): 53 steps in 9680.0us
+[00:19:57.598] INFO  [mk3_Zarthal] [chat ascii] System: Serena has arrived in Britain.
+[00:19:58.179] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:00.645] INFO  [mk3_Zarthal] [chat ascii] System: Aurelius has arrived in Moonglow.
+[00:20:03.217] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:03.868] INFO  [mk3_Zarthal] [chat ascii] System: Leander has arrived in Moonglow.
+[00:20:06.980] INFO  [mk3_Zarthal] [chat ascii] System: Illyria has arrived in Britain.
+[00:20:08.006] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[00:20:08.264] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:08.280] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 100.6us
+[00:20:09.742] INFO  [mk3_Zarthal] [bot] arrived at (2552,568,0)
+[00:20:09.743] INFO  [mk3_Zarthal] [action] goto finished at (2552,568,0); target (2552,568); ARRIVED (off by 0 tile(s))
+[00:20:09.743] LOG   [mk3_Zarthal] event goto_done: at=(2552,568) target=(2552,568) arrived=1 off=0
+[00:20:09.743] INFO  [mk3_Zarthal] [action] goto (2577,599) from (2552,568,0)
+[00:20:09.743] LOG   [mk3_Zarthal] event goto_start: target=(2577,599) from=(2552,568)
+[00:20:09.743] INFO  [mk3_Zarthal] [bot] running from (2552,568,0) to (2577,599,z0)
+[00:20:09.743] INFO  [mk3_Zarthal] [bot] planning path to (2577,599) in background
+[00:20:09.804] INFO  [mk3_Zarthal] [bot] replan to (2577,599): 46 steps in 22010.9us
+[00:20:10.022] INFO  [mk3_Zarthal] [chat ascii] System: Hector has arrived in Trinsic.
+[00:20:11.829] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=44 in 240.6us
+[00:20:12.476] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=40 in 188.6us
+[00:20:12.785] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=40 in 399.5us
+[00:20:13.035] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=39 in 225.5us
+[00:20:13.076] INFO  [mk3_Zarthal] [chat ascii] System: Castor has arrived in Trinsic.
+[00:20:13.271] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:13.488] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=38 in 169.6us
+[00:20:13.734] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=37 in 169.7us
+[00:20:14.194] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=36 in 241.7us
+[00:20:14.456] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=35 in 206.8us
+[00:20:14.657] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=34 in 211.0us
+[00:20:15.087] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=33 in 214.4us
+[00:20:15.286] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=32 in 329.7us
+[00:20:15.748] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=31 in 169.6us
+[00:20:15.951] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=30 in 245.2us
+[00:20:16.106] INFO  [mk3_Zarthal] [chat ascii] System: Faustus has arrived in Britain.
+[00:20:16.429] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=28 in 139.5us
+[00:20:16.891] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=27 in 159.4us
+[00:20:17.150] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=27 in 207.4us
+[00:20:17.598] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=25 in 301.6us
+[00:20:18.094] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=24 in 293.7us
+[00:20:18.277] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:18.340] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=23 in 193.3us
+[00:20:18.587] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=5 path=22 in 261.5us
+[00:20:18.788] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=22 in 195.1us
+[00:20:19.161] INFO  [mk3_Zarthal] [chat ascii] System: Titus has arrived in Skara Brae.
+[00:20:19.298] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=22 in 447.8us
+[00:20:19.497] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=3 path=18 in 72.0us
+[00:20:19.772] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=44 path=55 in 15974.8us
+[00:20:19.958] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=54 in 247.4us
+[00:20:20.342] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=4 path=52 in 87.1us
+[00:20:22.309] INFO  [mk3_Zarthal] [chat ascii] System: Rhea has arrived in Britain.
+[00:20:22.909] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=45 in 161.4us
+[00:20:23.170] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=44 in 103.2us
+[00:20:23.294] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:23.401] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=43 in 98.7us
+[00:20:23.660] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=41 in 50.6us
+[00:20:24.412] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 3: anchor=5 new segment=6 path=39 in 121.3us
+[00:20:24.857] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=40 in 317.5us
+[00:20:25.376] INFO  [mk3_Zarthal] [chat ascii] System: Xerxes has arrived in Vesper.
+[00:20:25.436] INFO  [mk3_Zarthal] [chat uni  ] : Erskine buy
+[00:20:25.436] INFO  [mk3_Zarthal] [chat ascii] Erskine: Yes?
+[00:20:25.436] INFO  [mk3_Zarthal] [chat ascii] Erskine: I'm here to sell thee supplies.
+[00:20:25.512] INFO  [mk3_Zarthal] [chat ascii] Erskine: Here you are, Draver That will be 120 gold coins.  I thank thee for thy business.
+[00:20:27.027] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=9 path=38 in 624.7us
+[00:20:28.315] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:29.172] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 3: anchor=5 new segment=2 path=29 in 44.8us
+[00:20:29.540] INFO  [mk3_Zarthal] [travel] Minoc healer ARRIVED at (2580,604,0)
+[00:20:29.540] LOG   [mk3_Zarthal] event travel_done: label='Minoc healer' ok=1 at=(2580,604) legs=6 plans=1 why=''
+[00:20:29.540] INFO  [mk3_Zarthal] [action] scanning nearby mobiles for names
+[00:20:29.541] INFO  [mk3_Zarthal] [action] requested 2 paperdoll(s) for trade titles
+[00:20:29.541] INFO  [life] potions: at the shop, asking who is here (scan 1 of 3)
+[00:20:29.556] INFO  [mk3_Zarthal] [mobiles] nearby (6):
+[00:20:29.556] INFO  [mk3_Zarthal]   Elvar 0x00016948
+[00:20:29.556] INFO  [mk3_Zarthal]   Kharain 0x00016AE8
+[00:20:29.556] INFO  [mk3_Zarthal]   Riley 0x0000960A
+[00:20:29.556] INFO  [mk3_Zarthal]   Erskine 0x00009619
+[00:20:29.556] INFO  [mk3_Zarthal]   Draver 0x00016DBB
+[00:20:29.556] INFO  [mk3_Zarthal]   Rat 0x0000960B
+[00:20:29.556] INFO  [mk3_Zarthal] [0x20] player @(2580,604,0) facing=7
+[00:20:29.556] INFO  [mk3_Zarthal] [0x88] paperdoll 0x0000960A: "Riley, the healer guildmaster"
+[00:20:29.556] INFO  [mk3_Zarthal] [world] Riley, the healer guildmaster is a healer at (2575,599)
+[00:20:29.556] INFO  [mk3_Zarthal] [0x88] paperdoll 0x00009619: "Erskine, the healer"
+[00:20:29.556] INFO  [mk3_Zarthal] [world] Erskine, the healer is a healer at (2577,598)
+[00:20:31.149] INFO  [mk3_Zarthal] [chat uni  ] Kharain: Erskine buy
+[00:20:31.149] INFO  [mk3_Zarthal] [chat ascii] Erskine: Good morrow!  How can I help thee?
+[00:20:31.150] INFO  [mk3_Zarthal] [chat ascii] Erskine: I'm here to sell thee supplies.
+[00:20:31.164] INFO  [mk3_Zarthal] [chat ascii] Erskine: Here you are, Kharain That will be 120 gold coins.  I thank thee for thy business.
+[00:20:32.542] INFO  [life] potions: found a 'healer'
+[00:20:32.602] INFO  [mk3_Zarthal] [travel] mobile 0x00009619 -> (2577,598) r=1 from (2580,604)
+[00:20:32.602] LOG   [mk3_Zarthal] event travel_start: label='mobile 0x00009619' target=(2577,598) radius=1 from=(2580,604)
+[00:20:32.602] INFO  [life] potions: the 'healer' is 6 tiles off (dz 0) -- walking into reach (chase 1 of 3)
+[00:20:32.603] INFO  [mk3_Zarthal] [travel] mode walk             usable   <- chosen
+[00:20:32.603] INFO  [mk3_Zarthal] [travel] mode moongate         usable
+[00:20:32.603] INFO  [mk3_Zarthal] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:32.603] INFO  [mk3_Zarthal] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:32.603] LOG   [mk3_Zarthal] event travel_mode: walk
+[00:20:32.603] INFO  [mk3_Zarthal] [travel] plan mobile 0x00009619: ok legs=1 ~6 tiles transit=0 nodes=0
+[00:20:32.664] INFO  [mk3_Zarthal] [action] goto finished at (2580,604,0); target (2577,599); stopped short (off by 8 tile(s))
+[00:20:32.664] LOG   [mk3_Zarthal] event goto_done: at=(2580,604) target=(2577,599) arrived=0 off=8
+[00:20:32.664] INFO  [mk3_Zarthal] [action] goto (2577,598) from (2580,604,0)
+[00:20:32.664] LOG   [mk3_Zarthal] event goto_start: target=(2577,598) from=(2580,604)
+[00:20:32.664] INFO  [mk3_Zarthal] [bot] running from (2580,604,0) to (2577,598,z0)
+[00:20:32.664] INFO  [mk3_Zarthal] [bot] planning path to (2577,598) in background
+[00:20:33.369] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:35.743] INFO  [mk3_Zarthal] [action] goto finished at (2580,604,0); target (2577,598); stopped short (off by 9 tile(s))
+[00:20:35.743] LOG   [mk3_Zarthal] event goto_done: at=(2580,604) target=(2577,598) arrived=0 off=9
+[00:20:36.974] INFO  [mk3_Zarthal] [action] goto (2577,598) from (2580,604,0)
+[00:20:36.974] LOG   [mk3_Zarthal] event goto_start: target=(2577,598) from=(2580,604)
+[00:20:36.974] INFO  [mk3_Zarthal] [bot] running from (2580,604,0) to (2577,598,z0)
+[00:20:36.975] INFO  [mk3_Zarthal] [bot] planning path to (2577,598) in background
+[00:20:37.036] INFO  [mk3_Zarthal] [bot] replan to (2577,598): 7 steps in 217.4us
+[00:20:38.394] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:39.161] INFO  [mk3_Zarthal] [chat ascii] Erskine: Thou wishest to speak with me?
+[00:20:39.346] INFO  [mk3_Zarthal] [travel] mobile 0x00009619 ARRIVED at (2577,599,0)
+[00:20:39.346] LOG   [mk3_Zarthal] event travel_done: label='mobile 0x00009619' ok=1 at=(2577,599) legs=1 plans=1 why=''
+[00:20:39.407] INFO  [life] potions: within reach
+[00:20:39.408] INFO  [mk3_Zarthal] [ACTION] vendor_buy start
+[00:20:39.408] INFO  [mk3_Zarthal] [VENDOR] open vendor=0x00009619 say='Erskine buy'
+[00:20:39.408] INFO  [life] potions: asking the 'healer' to show heal potion (attempt 1)
+[00:20:39.423] INFO  [mk3_Zarthal] [chat uni  ] : Erskine buy
+[00:20:39.423] INFO  [mk3_Zarthal] [chat ascii] Erskine: I would gladly sell to thee of my many wares.
+[00:20:39.423] INFO  [mk3_Zarthal] [0x3C] container contents: 5 item(s)
+[00:20:39.423] INFO  [mk3_Zarthal] [0x74] pairing: straight (straight 5, mirrored 1 of 5 rows)
+[00:20:39.423] INFO  [mk3_Zarthal] [0x74] vendor shop data: cont=0x40009613 5 item(s), layer=0x1A
+[00:20:39.423] INFO  [mk3_Zarthal] [0x74]   clean bandages               gfx=0x0E21 qty=19   price=1
+[00:20:39.423] INFO  [mk3_Zarthal] [0x74]   Heal                         gfx=0x0F0C qty=4    price=30
+[00:20:39.423] INFO  [mk3_Zarthal] [0x74]   Ginseng                      gfx=0x0F85 qty=17   price=3
+[00:20:39.423] INFO  [mk3_Zarthal] [0x74]   Garlic                       gfx=0x0F84 qty=19   price=3
+[00:20:39.423] INFO  [mk3_Zarthal] [0x74]   Refresh                      gfx=0x0F0B qty=24   price=16
+[00:20:39.423] INFO  [mk3_Zarthal] [0x3C] container contents: 0 item(s)
+[00:20:39.423] INFO  [mk3_Zarthal] [0x74] vendor shop data: cont=0x40009215 0 item(s), layer=0x1B
+[00:20:39.423] INFO  [mk3_Zarthal] [VENDOR] offer from 0x00009619: 5 item(s)
+[00:20:39.423] INFO  [mk3_Zarthal] [VENDOR]   0x40017161 clean bandages         x19  1 gp
+[00:20:39.423] INFO  [mk3_Zarthal] [VENDOR]   0x40017151 Heal                   x4   30 gp
+[00:20:39.423] INFO  [mk3_Zarthal] [VENDOR]   0x40017141 Ginseng                x17  3 gp
+[00:20:39.423] INFO  [mk3_Zarthal] [VENDOR]   0x4001713E Garlic                 x19  3 gp
+[00:20:39.423] INFO  [mk3_Zarthal] [VENDOR]   0x4001713B Refresh                x24  16 gp
+[00:20:39.423] LOG   [mk3_Zarthal] event vendor_offer: vendor=0x00009619 items=5
+[00:20:39.423] INFO  [mk3_Zarthal] [ACTION_RESULT] vendor_buy success (16ms) vendor offer received
+[00:20:39.423] LOG   [mk3_Zarthal] event action_result: vendor_buy success took=16ms vendor offer received
+[00:20:39.423] INFO  [mk3_Zarthal] [0x24] vendor buy gump for 0x00009619
+[00:20:39.424] INFO  [life] potions: the shop is open
+[00:20:39.484] INFO  [mk3_Zarthal] [ACTION] vendor_buy start
+[00:20:39.484] INFO  [mk3_Zarthal] [policy] allowed NPC purchase of i_potion_heal (0x0F0C): basic healing: a life with no Healing skill has no other way to treat itself, and the shard's own healer sells it [BASIC_HEALING]
+[00:20:39.484] INFO  [mk3_Zarthal] [VENDOR] buy item=0x40017151 qty=4 from vendor=0x00009619 gold=10000
+[00:20:39.484] INFO  [life] potions: buying 4 heal potion at 30 each from the 'healer' (shelf holds 4) -- waiting for the pack
+[00:20:39.500] INFO  [mk3_Zarthal] [ACTION_RESULT] vendor_buy success (17ms) purchased item delivered
+[00:20:39.500] LOG   [mk3_Zarthal] event action_result: vendor_buy success took=17ms purchased item delivered
+[00:20:39.500] INFO  [mk3_Zarthal] [chat ascii] Erskine: Here you are, Zarthal That will be 120 gold coins.  I thank thee for thy business.
+[00:20:39.500] INFO  [mk3_Zarthal] [0x3B] vendor transaction closed: vendor=0x00009619 flag=0
+[00:20:39.500] INFO  [mk3_Zarthal] [bot] arrived at (2577,598,0)
+[00:20:39.501] INFO  [life] goal_changed=TRADE_WITH_PLAYER from=REPLACE_EQUIPMENT reason="TRADE_WITH_PLAYER 79.8 superseded REPLACE_EQUIPMENT 0.0"
+[00:20:39.501] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedTrade(sell to a player 0.55) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:39.501] INFO  [life]   score=79.8
+[00:20:39.501] INFO  [life]   reason: NeedTrade urgency 0.55 x 145 = 79.8
+[00:20:39.501] INFO  [life]   reason: 30 x i_ingot_iron spare
+[00:20:39.501] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 210s after achieving nothing
+[00:20:39.501] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:39.501] INFO  [life] market: the market is britain_bank_2 (Britain banker) at 1425,1690, radius 5, guarded
+[00:20:39.501] INFO  [life] goal_blocked=TRADE_WITH_PLAYER reason="not enough session left for the trip" left=85s need=800s
+[00:20:39.561] INFO  [life] goal=CRAFT reason="previous goal abandoned: not enough session left for the trip"
+[00:20:39.561] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedOre(ore 0.42) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTravel(a place where work is possible 0.20) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:20:39.561] INFO  [life]   score=65.0
+[00:20:39.561] INFO  [life]   reason: NeedCraft urgency 0.50 x 130 = 65.0
+[00:20:39.561] INFO  [life]   reason: i_dagger: every input is in the pack
+[00:20:39.561] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 210s after achieving nothing
+[00:20:39.561] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:20:39.561] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 599s after achieving nothing
+[00:20:39.561] INFO  [life] craft: i_dagger needs a forge -- going to find a smithy
+[00:20:39.578] INFO  [mk3_Zarthal] [travel] Minoc blacksmith -> (2471,564) r=5 from (2577,598)
+[00:20:39.578] LOG   [mk3_Zarthal] event travel_start: label='Minoc blacksmith' target=(2471,564) radius=5 from=(2577,598)
+[00:20:39.578] INFO  [mk3_Zarthal] [travel] mode moongate         usable   <- chosen
+[00:20:39.578] INFO  [mk3_Zarthal] [travel] mode walk             usable
+[00:20:39.578] INFO  [mk3_Zarthal] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:20:39.578] INFO  [mk3_Zarthal] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:20:39.578] LOG   [mk3_Zarthal] event travel_mode: moongate
+[00:20:39.578] INFO  [mk3_Zarthal] [travel] plan Minoc blacksmith: ok legs=4 ~128 tiles transit=0 nodes=33
+[00:20:39.578] INFO  [mk3_Zarthal] [action] goto finished at (2577,598,0); target (2577,598); ARRIVED (off by 0 tile(s))
+[00:20:39.578] LOG   [mk3_Zarthal] event goto_done: at=(2577,598) target=(2577,598) arrived=1 off=0
+[00:20:39.578] INFO  [mk3_Zarthal] [action] goto (2552,598) from (2577,598,0)
+[00:20:39.578] LOG   [mk3_Zarthal] event goto_start: target=(2552,598) from=(2577,598)
+[00:20:39.578] INFO  [mk3_Zarthal] [bot] running from (2577,598,0) to (2552,598)
+[00:20:39.578] INFO  [mk3_Zarthal] [bot] planning path to (2552,598) in background
+[00:20:39.637] INFO  [mk3_Zarthal] [bot] replan to (2552,598): 32 steps in 14128.5us
+[00:20:42.596] INFO  [mk3_Zarthal] [chat uni  ] Elvar: Erskine buy
+[00:20:42.596] INFO  [mk3_Zarthal] [chat ascii] Erskine: Greetings.  What might I do for thee?
+[00:20:42.597] INFO  [mk3_Zarthal] [chat ascii] Erskine: My shop sells many things.
+[00:20:43.405] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:48.422] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:51.610] INFO  [mk3_Zarthal] [bot] arrived at (2552,598,0)
+[00:20:51.610] INFO  [mk3_Zarthal] [action] goto finished at (2552,598,0); target (2552,598); ARRIVED (off by 0 tile(s))
+[00:20:51.610] LOG   [mk3_Zarthal] event goto_done: at=(2552,598) target=(2552,598) arrived=1 off=0
+[00:20:51.610] INFO  [mk3_Zarthal] [action] goto (2520,600) from (2552,598,0)
+[00:20:51.610] LOG   [mk3_Zarthal] event goto_start: target=(2520,600) from=(2552,598)
+[00:20:51.610] INFO  [mk3_Zarthal] [bot] running from (2552,598,0) to (2520,600)
+[00:20:51.610] INFO  [mk3_Zarthal] [bot] planning path to (2520,600) in background
+[00:20:51.656] INFO  [mk3_Zarthal] [bot] replan to (2520,600): 32 steps in 21380.8us
+[00:20:53.434] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:20:58.450] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:03.320] INFO  [mk3_Zarthal] [bot] arrived at (2520,600,0)
+[00:21:03.320] INFO  [mk3_Zarthal] [action] goto finished at (2520,600,0); target (2520,600); ARRIVED (off by 0 tile(s))
+[00:21:03.320] LOG   [mk3_Zarthal] event goto_done: at=(2520,600) target=(2520,600) arrived=1 off=0
+[00:21:03.320] INFO  [mk3_Zarthal] [action] goto (2488,584) from (2520,600,0)
+[00:21:03.320] LOG   [mk3_Zarthal] event goto_start: target=(2488,584) from=(2520,600)
+[00:21:03.320] INFO  [mk3_Zarthal] [bot] running from (2520,600,0) to (2488,584)
+[00:21:03.320] INFO  [mk3_Zarthal] [bot] planning path to (2488,584) in background
+[00:21:03.380] INFO  [mk3_Zarthal] [bot] replan to (2488,584): 35 steps in 19963.2us
+[00:21:03.504] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:08.008] INFO  [life] checkpoint (periodic) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[00:21:08.525] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:11.192] INFO  [mk3_Zarthal] [chat ascii] System: Observer has arrived in Minoc.
+[00:21:13.570] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:14.571] INFO  [mk3_Zarthal] [chat ascii] System: Observer has departed from Minoc.
+[00:21:15.001] INFO  [mk3_Zarthal] [bot] reject at (2489,585): mobile in the way — waiting 500ms, retrying (1) [no blacklist]
+[00:21:15.001] INFO  [mk3_Zarthal] [bot] planning path to (2488,584) in background
+[00:21:18.468] INFO  [mk3_Zarthal] [action] goto finished at (2490,586,0); target (2488,584); stopped short (off by 4 tile(s))
+[00:21:18.468] LOG   [mk3_Zarthal] event goto_done: at=(2490,586) target=(2488,584) arrived=0 off=4
+[00:21:18.468] INFO  [mk3_Zarthal] [action] goto (2471,564) from (2490,586,0)
+[00:21:18.468] LOG   [mk3_Zarthal] event goto_start: target=(2471,564) from=(2490,586)
+[00:21:18.468] INFO  [mk3_Zarthal] [bot] running from (2490,586,0) to (2471,564,z5)
+[00:21:18.468] INFO  [mk3_Zarthal] [bot] planning path to (2471,564) in background
+[00:21:18.529] INFO  [mk3_Zarthal] [bot] replan to (2471,564): 45 steps in 15114.2us
+[00:21:18.591] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:23.612] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:28.639] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:30.114] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=8 path=12 in 340.0us
+[00:21:30.438] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 2: anchor=5 new segment=5 path=11 in 119.8us
+[00:21:32.524] INFO  [mk3_Zarthal] [travel] Minoc blacksmith ARRIVED at (2472,569,5)
+[00:21:32.524] LOG   [mk3_Zarthal] event travel_done: label='Minoc blacksmith' ok=1 at=(2472,569) legs=4 plans=1 why=''
+[00:21:32.585] INFO  [life] craft: i_dagger needs a forge -- walking to the one in sight
+[00:21:32.585] INFO  [mk3_Zarthal] [travel] forge -> (2466,556) r=0 from (2472,569)
+[00:21:32.585] LOG   [mk3_Zarthal] event travel_start: label='forge' target=(2466,556) radius=0 from=(2472,569)
+[00:21:32.585] INFO  [mk3_Zarthal] [travel] mode walk             usable   <- chosen
+[00:21:32.585] INFO  [mk3_Zarthal] [travel] mode moongate         usable
+[00:21:32.585] INFO  [mk3_Zarthal] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:32.585] INFO  [mk3_Zarthal] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:32.585] LOG   [mk3_Zarthal] event travel_mode: walk
+[00:21:32.585] INFO  [mk3_Zarthal] [travel] plan forge: ok legs=1 ~13 tiles transit=0 nodes=0
+[00:21:33.659] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:34.323] INFO  [mk3_Zarthal] [bot] arrived at (2471,564,5)
+[00:21:34.323] INFO  [mk3_Zarthal] [action] goto finished at (2471,564,5); target (2471,564); ARRIVED (off by 0 tile(s))
+[00:21:34.323] LOG   [mk3_Zarthal] event goto_done: at=(2471,564) target=(2471,564) arrived=1 off=0
+[00:21:34.323] INFO  [mk3_Zarthal] [action] goto (2466,556) from (2471,564,5)
+[00:21:34.323] LOG   [mk3_Zarthal] event goto_start: target=(2466,556) from=(2471,564)
+[00:21:34.323] INFO  [mk3_Zarthal] [bot] running from (2471,564,5) to (2466,556)
+[00:21:34.323] INFO  [mk3_Zarthal] [bot] planning path to (2466,556) in background
+[00:21:34.383] INFO  [mk3_Zarthal] [bot] replan to (2466,556): 13 steps in 766.0us
+[00:21:35.181] INFO  [mk3_Zarthal] [chat ascii] Curtis: What's thee wantin'?
+[00:21:35.181] INFO  [mk3_Zarthal] [chat ascii] Curtis: Hmm?
+[00:21:37.146] INFO  [life] craft: making i_dagger -- double-clicking the smith hammer
+[00:21:37.146] INFO  [mk3_Zarthal] [ACTION] use_object start
+[00:21:37.146] INFO  [mk3_Zarthal] [ACTION] use_object serial=0x40016354
+[00:21:37.162] INFO  [mk3_Zarthal] [chat ascii] System: What do you want to use this on?
+[00:21:37.162] INFO  [mk3_Zarthal] [0x6C] TARGET requested id=0x000002CE type=object subtype=1 gen=1
+[00:21:37.162] LOG   [mk3_Zarthal] event target_requested: id=0x000002CE type=0 subtype=1 gen=1
+[00:21:37.162] INFO  [mk3_Zarthal] [ACTION_RESULT] use_object success (15ms) server armed a target cursor
+[00:21:37.162] LOG   [mk3_Zarthal] event action_result: use_object success took=15ms server armed a target cursor
+[00:21:37.392] INFO  [life] goal_changed=MINE from=CRAFT reason="MINE 78.6 superseded CRAFT 65.0"
+[00:21:37.392] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedOre(ore 0.60) NeedGold(sell surplus BLOCKED 0.55) NeedSkillTraining(Tinkering 0.55) NeedCraft(make goods to sell 0.50) NeedBank(put unsold stock away 0.40) NeedFood(food 0.25) NeedTrade(sell to a player BLOCKED 0.00)  | tools defined=2 held=[pickaxe,smith hammer,] want_train=Tinkering (target 50.0)
+[00:21:37.393] INFO  [life]   score=78.6
+[00:21:37.393] INFO  [life]   reason: NeedOre urgency 0.60 x 130 = 78.6
+[00:21:37.393] INFO  [life]   reason: 50 ore+ingots of the 550 wanted before smith training (smithing 50.0) at_work_site=1
+[00:21:37.393] INFO  [life]   BLOCKED_NEED BANK: on cooldown for another 152s after achieving nothing
+[00:21:37.393] INFO  [life]   BLOCKED_NEED EARN_GOLD: carrying its own output with nobody known to buy it (30 x i_ingot_iron spare, and no buyer known -- on this shard it is a player-market good)
+[00:21:37.393] INFO  [life]   BLOCKED_NEED TRADE_WITH_PLAYER: on cooldown for another 542s after achieving nothing
+[00:21:38.670] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[00:21:38.670] INFO  [mk3_Zarthal] [ACTION] equip start
+[00:21:38.670] INFO  [mk3_Zarthal] [ACTION] equip serial=0x40016357 layer=0
+[00:21:38.670] INFO  [mk3_Zarthal] [ITEM] drag serial=0x40016357 amount=1
+[00:21:38.670] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:38.686] INFO  [mk3_Zarthal] [chat ascii] System: You put the pickaxe in your pack.
+[00:21:38.686] INFO  [mk3_Zarthal] [chat ascii] System: Previous targeting cancelled.
+[00:21:38.686] LOG   [mk3_Zarthal] event drag_cancel: reason=5 unspecified
+[00:21:38.686] LOG   [mk3_Zarthal] event action_result: equip rejected took=16ms unspecified
+[00:21:38.810] INFO  [mk3_Zarthal] [travel] forge ARRIVED at (2466,557,5)
+[00:21:38.810] LOG   [mk3_Zarthal] event travel_done: label='forge' ok=1 at=(2466,557) legs=1 plans=1 why=''
+[00:21:38.994] INFO  [mk3_Zarthal] [bot] arrived at (2466,556,5)
+[00:21:40.704] INFO  [life] mine: taking the pickaxe in hand -- mining reads SRC.WEAPON
+[00:21:40.704] INFO  [mk3_Zarthal] [ACTION] equip start
+[00:21:40.704] INFO  [mk3_Zarthal] [ACTION] equip serial=0x40016357 layer=0
+[00:21:40.704] INFO  [mk3_Zarthal] [ITEM] drag serial=0x40016357 amount=1
+[00:21:40.705] INFO  [mk3_Zarthal] [chat ascii] System: You put the smith's hammer in your pack.
+[00:21:40.705] INFO  [mk3_Zarthal] [ACTION_RESULT] equip success (1ms) worn on the requested layer
+[00:21:40.705] LOG   [mk3_Zarthal] event action_result: equip success took=1ms worn on the requested layer
+[00:21:42.749] INFO  [mk3_Zarthal] [action] goto finished at (2466,556,5); target (2466,556); ARRIVED (off by 0 tile(s))
+[00:21:42.749] LOG   [mk3_Zarthal] event goto_done: at=(2466,556) target=(2466,556) arrived=1 off=0
+[00:21:42.749] INFO  [life] mine: the ore is 43 tiles off -- walking into the mining area first (trip 1)
+[00:21:42.749] INFO  [mk3_Zarthal] [travel] Minoc Miner's Guild -> (2456,493) r=20 from (2466,556)
+[00:21:42.749] LOG   [mk3_Zarthal] event travel_start: label='Minoc Miner's Guild' target=(2456,493) radius=20 from=(2466,556)
+[00:21:42.749] INFO  [mk3_Zarthal] [travel] mode moongate         usable   <- chosen
+[00:21:42.749] INFO  [mk3_Zarthal] [travel] mode walk             usable
+[00:21:42.749] INFO  [mk3_Zarthal] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:21:42.749] INFO  [mk3_Zarthal] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:21:42.749] LOG   [mk3_Zarthal] event travel_mode: moongate
+[00:21:42.749] INFO  [mk3_Zarthal] [travel] plan Minoc Miner's Guild: ok legs=2 ~72 tiles transit=0 nodes=18
+[00:21:42.811] INFO  [mk3_Zarthal] [action] goto (2456,520) from (2466,556,5)
+[00:21:42.811] LOG   [mk3_Zarthal] event goto_start: target=(2456,520) from=(2466,556)
+[00:21:42.811] INFO  [mk3_Zarthal] [bot] running from (2466,556,5) to (2456,520)
+[00:21:42.811] INFO  [mk3_Zarthal] [bot] planning path to (2456,520) in background
+[00:21:42.873] INFO  [mk3_Zarthal] [bot] replan to (2456,520): 80 steps in 58210.2us
+[00:21:43.674] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:47.592] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 1: anchor=5 new segment=8 path=69 in 329.6us
+[00:21:47.777] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 1: anchor=5 new segment=3 path=67 in 108.7us
+[00:21:48.719] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:49.024] INFO  [mk3_Zarthal] [chat ascii] Olin: Aye?
+[00:21:49.025] INFO  [mk3_Zarthal] [chat ascii] Olin: I'm listenin'.
+[00:21:51.040] INFO  [mk3_Zarthal] [chat ascii] Olin: What's thee wantin'?
+[00:21:51.040] INFO  [mk3_Zarthal] [chat ascii] Olin: What's thee wantin'?
+[00:21:53.724] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:21:54.240] INFO  [mk3_Zarthal] [chat ascii] Curtis: Aye?
+[00:21:58.644] INFO  [mk3_Zarthal] [chat ascii] System: Draver has departed from Minoc.
+[00:21:58.766] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:03.818] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:05.406] INFO  [life] session_end_requested reason="session time limit reached"
+[00:22:07.575] INFO  [mk3_Zarthal] [bot] arrived at (2456,520,15)
+[00:22:07.575] INFO  [mk3_Zarthal] [action] goto finished at (2456,520,15); target (2456,520); ARRIVED (off by 0 tile(s))
+[00:22:07.575] LOG   [mk3_Zarthal] event goto_done: at=(2456,520) target=(2456,520) arrived=1 off=0
+[00:22:07.575] INFO  [mk3_Zarthal] [action] goto (2456,493) from (2456,520,15)
+[00:22:07.575] LOG   [mk3_Zarthal] event goto_start: target=(2456,493) from=(2456,520)
+[00:22:07.575] INFO  [mk3_Zarthal] [bot] running from (2456,520,15) to (2456,493)
+[00:22:07.575] INFO  [mk3_Zarthal] [bot] planning path to (2456,493) in background
+[00:22:07.637] INFO  [mk3_Zarthal] [bot] replan to (2456,493): 28 steps in 4091.7us
+[00:22:08.847] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:09.675] INFO  [mk3_Zarthal] [travel] Minoc Miner's Guild ARRIVED at (2456,512,15)
+[00:22:09.675] LOG   [mk3_Zarthal] event travel_done: label='Minoc Miner's Guild' ok=1 at=(2456,512) legs=2 plans=1 why=''
+[00:22:09.736] INFO  [life] wind-down: no bank learned yet; asking the world for one (attempt 1)
+[00:22:09.752] INFO  [mk3_Zarthal] [travel] Minoc banker -> (2503,552) r=5 from (2456,512)
+[00:22:09.752] LOG   [mk3_Zarthal] event travel_start: label='Minoc banker' target=(2503,552) radius=5 from=(2456,512)
+[00:22:09.752] INFO  [mk3_Zarthal] [travel] mode walk             usable   <- chosen
+[00:22:09.752] INFO  [mk3_Zarthal] [travel] mode moongate         usable
+[00:22:09.752] INFO  [mk3_Zarthal] [travel] mode loose_rune_recall no: no rune marked at that destination
+[00:22:09.752] INFO  [mk3_Zarthal] [travel] mode runebook_recall  no: no runebook page for that destination
+[00:22:09.752] LOG   [mk3_Zarthal] event travel_mode: walk
+[00:22:09.752] INFO  [mk3_Zarthal] [travel] plan Minoc banker: ok legs=2 ~64 tiles transit=0 nodes=7
+[00:22:13.898] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:14.869] INFO  [mk3_Zarthal] [bot] door ahead at (2458,495,z15); OpenDoor before step
+[00:22:14.869] INFO  [mk3_Zarthal] [chat ascii] System: Opening door...
+[00:22:16.471] INFO  [mk3_Zarthal] [bot] arrived at (2456,493,15)
+[00:22:16.471] INFO  [mk3_Zarthal] [action] goto finished at (2456,493,15); target (2456,493); ARRIVED (off by 0 tile(s))
+[00:22:16.471] LOG   [mk3_Zarthal] event goto_done: at=(2456,493) target=(2456,493) arrived=1 off=0
+[00:22:16.471] INFO  [mk3_Zarthal] [action] goto (2488,552) from (2456,493,15)
+[00:22:16.471] LOG   [mk3_Zarthal] event goto_start: target=(2488,552) from=(2456,493)
+[00:22:16.471] INFO  [mk3_Zarthal] [bot] running from (2456,493,15) to (2488,552)
+[00:22:16.471] INFO  [mk3_Zarthal] [bot] planning path to (2488,552) in background
+[00:22:16.532] INFO  [mk3_Zarthal] [bot] replan to (2488,552): 75 steps in 57507.5us
+[00:22:17.920] INFO  [mk3_Zarthal] [bot] door ahead at (2459,496,z15); OpenDoor before step
+[00:22:17.935] INFO  [mk3_Zarthal] [chat ascii] System: Opening door...
+[00:22:18.938] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:18.954] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=71 in 532.6us
+[00:22:23.945] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:24.146] INFO  [mk3_Zarthal] [bot] lookahead patched around block at step 5: anchor=6 new segment=7 path=56 in 415.9us
+[00:22:28.952] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:33.977] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:38.419] INFO  [mk3_Zarthal] [chat ascii] System: Vorar has departed from Britain.
+[00:22:38.992] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:39.439] INFO  [mk3_Zarthal] [chat ascii] System: Selene has departed from Magincia.
+[00:22:40.224] INFO  [mk3_Zarthal] [bot] arrived at (2488,552,0)
+[00:22:40.224] INFO  [mk3_Zarthal] [action] goto finished at (2488,552,0); target (2488,552); ARRIVED (off by 0 tile(s))
+[00:22:40.224] LOG   [mk3_Zarthal] event goto_done: at=(2488,552) target=(2488,552) arrived=1 off=0
+[00:22:40.224] INFO  [mk3_Zarthal] [action] goto (2503,552) from (2488,552,0)
+[00:22:40.224] LOG   [mk3_Zarthal] event goto_start: target=(2503,552) from=(2488,552)
+[00:22:40.224] INFO  [mk3_Zarthal] [bot] running from (2488,552,0) to (2503,552,z0)
+[00:22:40.224] INFO  [mk3_Zarthal] [bot] planning path to (2503,552) in background
+[00:22:40.285] INFO  [mk3_Zarthal] [bot] replan to (2503,552): 25 steps in 4585.6us
+[00:22:44.026] INFO  [mk3_Zarthal] [survival] hp 56/56 (100%) -> fight
+[00:22:45.184] INFO  [mk3_Zarthal] [bot] door ahead at (2503,559,z0); OpenDoor before step
+[00:22:45.200] INFO  [mk3_Zarthal] [chat ascii] System: Opening door...
+[00:22:46.772] INFO  [mk3_Zarthal] [travel] Minoc banker ARRIVED at (2503,556,0)
+[00:22:46.772] LOG   [mk3_Zarthal] event travel_done: label='Minoc banker' ok=1 at=(2503,556) legs=2 plans=1 why=''
+[00:22:46.772] INFO  [life] wind-down: arrived somewhere safe at 2503,556
+[00:22:46.834] INFO  [life] session_summary duration=221s goals=0/5 gold=10000->9880 skills=100.0->100.0 logs=+0 kills=0 deaths=0 places=2 suppliers=0
+[00:22:46.834] INFO  [life] session_goals families=3 picks=5 top=40% varied=0 self_superseded=0 | upkeep=2(40%) work=2(40%) social=1(20%) | REPLACE_EQUIPMENT=1(20%) BANK=1(20%) TRADE_WITH_PLAYER=1(20%) CRAFT=1(20%) MINE=1(20%)
+[00:22:46.836] INFO  [life] checkpoint (clean logout) -> C:\Projects\RevolutionOffline\bot\uo-client\bot_data/revgen3_04.zarthal/state.json
+[00:22:46.836] INFO  [life] logging out
+[00:22:46.836] INFO  [mk3_Zarthal] [action] logout requested
+[00:22:46.836] LOG   [mk3_Zarthal] event logout_requested: 0xD1 sent; awaiting ack, then closing
+[00:22:46.851] INFO  [mk3_Zarthal] [0xD1] logout acknowledged (accepted=1)
+[00:22:46.851] LOG   [mk3_Zarthal] event logout_ack: accepted
+[00:22:46.851] INFO  [mk3_Zarthal] [net] closing connection (logout acknowledged)
+[00:22:46.851] LOG   [mk3_Zarthal] event logout_complete: acked

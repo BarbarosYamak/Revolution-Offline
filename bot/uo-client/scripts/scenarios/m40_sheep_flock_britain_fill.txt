@@ -1,0 +1,40 @@
+# Tick the relocated Britain flock gem (0x40010b7b at 1321,1815) to AMOUNT.
+# Same mechanism and idempotence as m40_sheep_flocks_fill.txt (ISPV_START).
+# RUN ONLY AS THE ADMIN ACCOUNT (character "Observer") via run_admin.ps1.
+
+wait_world
+sleep 3000
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .serv.uid.040010b7b.start
+sleep 1200
+say .save
+sleep 15000

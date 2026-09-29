@@ -1,0 +1,130 @@
+[19:50:08.520] INFO  session 0: 127.0.0.1:2593 user='RevZ02' char=Testb tag='v_Testb'
+[19:50:08.521] LOG   [v_Testb] event session_start: text log opened
+[19:50:08.521] LOG   [v_Testb] event net_connect_begin: connect 127.0.0.1:2593
+[19:50:08.521] INFO  [v_Testb] [net] connecting to 127.0.0.1:2593 ...
+[19:50:08.523] LOG   [v_Testb] event net_connected: connect 127.0.0.1:2593
+[19:50:08.523] INFO  [v_Testb] [net] connected.
+[19:50:08.523] INFO  [v_Testb] [seed] sent 0x7F000001 (plaintext)
+[19:50:08.523] LOG   [v_Testb] event seed_out: 0x7F000001 hex=7f000001
+[19:50:08.523] INFO  [life] no prior state for revz02.testb: a new Tailor
+[19:50:08.523] INFO  [life] creation request: Tailoring 50.0 + Arms Lore 50.0, stats 24/24/32 = 80
+[19:50:08.523] INFO  [life] needs: reading 'tailor' from the profession catalogue
+[19:50:08.523] INFO  [life] home: Testb lives in Britain
+[19:50:08.523] INFO  [life] build plan 'tailor': 225.0 resolved + 475.0 unresolved = 700.0/700.0, stats 40/60/100 = 200
+[19:50:08.523] INFO  [v_Testb] [life] autonomous player active for 'Testb' (data root 'bot_data', session limit 2 min)
+[19:50:08.529] INFO  [v_Testb] [0xA8] 1 server(s):
+[19:50:08.529] INFO  [v_Testb]   [0] MyShard                   1.0.0.127  full=1%  tz=0
+[19:50:08.543] INFO  [v_Testb] [0x8C] game server = 127.0.0.1:2593  seed=0x9DB4FAFB
+[19:50:08.544] LOG   [v_Testb] event game_server_assigned: ip=127.0.0.1 port=2593 seed=0x9DB4FAFB
+[19:50:08.544] INFO  [v_Testb] [0x8C] staying on the login socket (advertised 127.0.0.1:2593 == peer 0x7F000001:2593)
+[19:50:08.544] LOG   [v_Testb] event relay_same_socket: no seed re-sent; 0x91 follows
+[19:50:08.544] INFO  [v_Testb] [0xB9] server features = 0x0005
+[19:50:08.544] INFO  [v_Testb] [0xA9] 5 slot(s) (populated 0):
+[19:50:08.544] INFO  [v_Testb]   [0] <empty>
+[19:50:08.544] INFO  [v_Testb]   [1] <empty>
+[19:50:08.544] INFO  [v_Testb]   [2] <empty>
+[19:50:08.544] INFO  [v_Testb]   [3] <empty>
+[19:50:08.544] INFO  [v_Testb]   [4] <empty>
+[19:50:08.544] INFO  [v_Testb] [0x00] appearance sex=female skin=0x041F hair=0x2046/0x0468 beard=0x0000/0x0000 shirt=0x0151 pants=0x0003
+[19:50:08.544] INFO  [v_Testb] [0x00] starting city index 2
+[19:50:08.544] INFO  [v_Testb] [0x00] requested skills 34:50 4:50 37:0
+[19:50:08.544] INFO  [v_Testb] [0x00] requested stats STR 24 DEX 24 INT 32
+[19:50:08.544] INFO  [v_Testb] [0x00] creating character 'Testb' in slot 0
+[19:50:08.544] LOG   [v_Testb] event char_create_sent: Testb
+[19:50:08.560] INFO  [v_Testb] [0x1B] serial=0x0001961F body=0x0191 pos=(1496,1628,10)
+[19:50:08.560] LOG   [v_Testb] event login_confirm: serial=0x0001961F body=0x0191 pos=(1496,1628,10)
+[19:50:08.560] INFO  [v_Testb] [0x20] player @(1496,1628,10) facing=3
+[19:50:08.560] INFO  [v_Testb] [0x55] login complete — entering world
+[19:50:08.560] LOG   [v_Testb] event in_world: 0x55 received
+[19:50:08.560] INFO  [v_Testb] [backpack] opening 0x4001961D
+[19:50:08.560] INFO  [v_Testb] [chat ascii] System: SphereServer Version X1-Nightly [Windows-x86_64] by www.spherecommunity.net
+[19:50:08.560] INFO  [v_Testb] [chat ascii] System: There are 2 other players here.
+[19:50:08.560] INFO  [v_Testb] [chat ascii] System: You are under the protection of the city guards
+[19:50:08.564] INFO  [v_Testb] [action] requesting the skill list
+[19:50:08.564] INFO  [life] in world; asked the server for the skill list
+[19:50:08.564] INFO  [v_Testb] [0x24] open container 0x4001961D gump=60
+[19:50:08.564] INFO  [v_Testb] [0x3C] container contents: 8 item(s)
+[19:50:08.564] LOG   [v_Testb] event backpack_contents: serial=0x4001961D items=8
+[19:50:11.147] INFO  [v_Testb] [bot] world data loaded (0 blacklisted spot(s)).
+[19:50:11.147] INFO  [life] reconciliation: first ever login, 7 field(s) differed
+[19:50:11.147] INFO  [life]   gold         persisted=0          server=10000      -> server value accepted
+[19:50:11.147] INFO  [life]   str          persisted=0          server=24         -> server value accepted
+[19:50:11.147] INFO  [life]   dex          persisted=0          server=24         -> server value accepted
+[19:50:11.148] INFO  [life]   int          persisted=0          server=32         -> server value accepted
+[19:50:11.148] INFO  [life]   skill_34     persisted=0.0        server=50.0       -> server value accepted
+[19:50:11.148] INFO  [life]   skill_4      persisted=0.0        server=50.0       -> server value accepted
+[19:50:11.148] INFO  [life]   skill_37     persisted=0.0        server=0.0        -> server value accepted
+[19:50:11.148] INFO  [life]   skill_25     persisted=0.0        server=0.0        -> server value accepted
+[19:50:11.148] INFO  [life]   position     persisted=0,0        server=1496,1628  -> server value accepted
+[19:50:11.148] INFO  [life]   alive        persisted=alive      server=alive      -> server value accepted
+[19:50:11.148] INFO  [v_Testb] [survival] on
+[19:50:11.148] LOG   [v_Testb] event survival_mode: on
+[19:50:11.150] INFO  [life] checkpoint (login reconciled) -> bot_data/revz02.testb/state.json
+[19:50:11.150] INFO  [v_Testb] [survival] hp 24/24 (100%) -> fight
+[19:50:11.157] INFO  [life] goal=BANK reason="no goal was running"
+[19:50:11.157] INFO  [life] needs considered: NeedBank(deposit surplus gold 0.75) NeedSkillTraining(Tinkering 0.55) NeedEquipment(bandages BLOCKED 0.50) NeedPractice(Magery 0.45) NeedFood(food 0.25) NeedGear(gear 0.22) NeedCraft(make goods to sell BLOCKED 0.00)  | tools defined=2 held=[sewing kit,scissors,] want_train=Tinkering (target 50.0)
+[19:50:11.157] INFO  [life]   score=150.0
+[19:50:11.157] INFO  [life]   reason: NeedBank urgency 0.75 x 240 = 180.0
+[19:50:11.157] INFO  [life]   reason: gold=10000 reserve=400 carry=900 spare=9100 risk=1.00
+[19:50:11.157] INFO  [life]   reason: no bank learned yet -30
+[19:50:11.157] INFO  [life]   BLOCKED_NEED REPLACE_EQUIPMENT: below the bandage floor; a fight without them is a death (bandages=0 low=8, no supplier and the vendor policy grades a bandage UNKNOWN)
+[19:50:11.157] INFO  [life]   BLOCKED_NEED CRAFT: this life makes nothing sellable (nothing to make)
+[19:50:11.157] INFO  [life] bank: no bank learned yet; asking the world model for one (trip 1)
+[19:50:11.157] INFO  [v_Testb] [travel] Britain banker -> (1425,1690) r=5 from (1496,1628)
+[19:50:11.157] LOG   [v_Testb] event travel_start: label='Britain banker' target=(1425,1690) radius=5 from=(1496,1628)
+[19:50:11.157] INFO  [v_Testb] [travel] mode moongate         usable   <- chosen
+[19:50:11.157] INFO  [v_Testb] [travel] mode walk             usable
+[19:50:11.157] INFO  [v_Testb] [travel] mode loose_rune_recall no: no rune marked at that destination
+[19:50:11.157] INFO  [v_Testb] [travel] mode runebook_recall  no: no runebook page for that destination
+[19:50:11.157] LOG   [v_Testb] event travel_mode: moongate
+[19:50:11.157] INFO  [v_Testb] [travel] plan Britain banker: ok legs=2 ~96 tiles transit=0 nodes=11
+[19:50:11.218] INFO  [v_Testb] [travel] avoiding 2 teleporter pad(s) on this leg
+[19:50:11.218] INFO  [v_Testb] [action] goto (1464,1656) from (1496,1628,10)
+[19:50:11.218] LOG   [v_Testb] event goto_start: target=(1464,1656) from=(1496,1628)
+[19:50:11.218] INFO  [v_Testb] [bot] running from (1496,1628,10) to (1464,1656)
+[19:50:11.218] INFO  [v_Testb] [bot] planning path to (1464,1656) in background
+[19:50:11.279] INFO  [v_Testb] [bot] replan to (1464,1656): 36 steps in 2567.0us
+[19:50:13.460] INFO  [v_Testb] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=31 in 111.2us
+[19:50:13.953] INFO  [v_Testb] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=29 in 41.5us
+[19:50:14.937] INFO  [v_Testb] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=27 in 36.3us
+[19:50:15.304] INFO  [v_Testb] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=26 in 79.4us
+[19:50:16.160] INFO  [v_Testb] [survival] hp 24/24 (100%) -> fight
+[19:50:21.182] INFO  [v_Testb] [survival] hp 24/24 (100%) -> fight
+[19:50:22.362] INFO  [v_Testb] [bot] lookahead patched around block at step 5: anchor=6 new segment=6 path=6 in 89.6us
+[19:50:24.196] INFO  [v_Testb] [bot] arrived at (1464,1656,10)
+[19:50:24.197] INFO  [v_Testb] [action] goto finished at (1464,1656,10); target (1464,1656); ARRIVED (off by 0 tile(s))
+[19:50:24.197] LOG   [v_Testb] event goto_done: at=(1464,1656) target=(1464,1656) arrived=1 off=0
+[19:50:24.197] INFO  [v_Testb] [travel] avoiding 2 teleporter pad(s) on this leg
+[19:50:24.197] INFO  [v_Testb] [action] goto (1425,1690) from (1464,1656,10)
+[19:50:24.197] LOG   [v_Testb] event goto_start: target=(1425,1690) from=(1464,1656)
+[19:50:24.197] INFO  [v_Testb] [bot] running from (1464,1656,10) to (1425,1690,z0)
+[19:50:24.197] INFO  [v_Testb] [bot] planning path to (1425,1690) in background
+[19:50:24.258] INFO  [v_Testb] [bot] replan to (1425,1690): 60 steps in 10606.2us
+[19:50:26.205] INFO  [v_Testb] [survival] hp 24/24 (100%) -> fight
+[19:50:31.227] INFO  [v_Testb] [survival] hp 24/24 (100%) -> fight
+[19:50:34.943] INFO  [v_Testb] [bot] lookahead patched around block at step 5: anchor=6 new segment=11 path=27 in 338.4us
+[19:50:36.194] INFO  [v_Testb] [bot] lookahead patched around block at step 5: anchor=6 new segment=3 path=19 in 41.7us
+[19:50:36.195] INFO  [v_Testb] [bot] lookahead patched around block at step 4: anchor=5 new segment=6 path=20 in 57.6us
+[19:50:36.256] INFO  [v_Testb] [survival] hp 24/24 (100%) -> fight
+[19:50:36.713] INFO  [v_Testb] [bot] lookahead patched around block at step 5: anchor=6 new segment=5 path=18 in 79.6us
+[19:50:36.975] INFO  [v_Testb] [bot] lookahead patched around block at step 4: anchor=5 new segment=7 path=19 in 263.1us
+[19:50:37.423] INFO  [v_Testb] [bot] step (1440,1694,0)->(1439,1693,0) rejected; OpenDoor + retry
+[19:50:37.424] INFO  [v_Testb] [chat ascii] System: Opening door...
+[19:50:37.424] INFO  [v_Testb] [0x20] player @(1440,1694,0) facing=0
+[19:50:37.424] INFO  [v_Testb] [action] goto finished at (1440,1694,0); target (1425,1690); stopped short (off by 19 tile(s))
+[19:50:37.424] LOG   [v_Testb] event goto_done: at=(1440,1694) target=(1425,1690) arrived=0 off=19
+[19:50:38.632] INFO  [v_Testb] [action] goto (1425,1690) from (1440,1694,0)
+[19:50:38.632] LOG   [v_Testb] event goto_start: target=(1425,1690) from=(1440,1694)
+[19:50:38.632] INFO  [v_Testb] [bot] running from (1440,1694,0) to (1425,1690,z0)
+[19:50:38.632] INFO  [v_Testb] [bot] planning path to (1425,1690) in background
+[19:50:38.694] INFO  [v_Testb] [bot] replan to (1425,1690): 16 steps in 567.5us
+[19:50:39.169] INFO  [v_Testb] [bot] step (1439,1693,0)->(1438,1692,0) rejected; OpenDoor + retry
+[19:50:39.170] INFO  [v_Testb] [chat ascii] System: Opening door...
+[19:50:39.170] INFO  [v_Testb] [0x20] player @(1439,1693,0) facing=0
+[19:50:39.170] INFO  [v_Testb] [action] goto finished at (1439,1693,0); target (1425,1690); stopped short (off by 17 tile(s))
+[19:50:39.170] LOG   [v_Testb] event goto_done: at=(1439,1693) target=(1425,1690) arrived=0 off=17
+[19:50:40.427] INFO  [v_Testb] [action] goto (1425,1690) from (1439,1693,0)
+[19:50:40.427] LOG   [v_Testb] event goto_start: target=(1425,1690) from=(1439,1693)
+[19:50:40.427] INFO  [v_Testb] [bot] running from (1439,1693,0) to (1425,1690,z0)
+[19:50:40.427] INFO  [v_Testb] [bot] planning path to (1425,1690) in background
+[19:50:40.488] INFO  [v_Testb] [bot] replan to (1425,1690): 15 steps in 188.9us
