@@ -10,6 +10,7 @@
 #include "travel/PersonalKnowledge.h"
 #include "travel/WarMode.h"
 #include "uo/actions.h"
+#include "uo/sparring.h"
 #include "uo/log.h"
 #include "uo/progression.h"
 #include "uo/trade.h"
@@ -1064,6 +1065,8 @@ public:
     void NearbyPlayers(i32 radius, std::vector<HostileHit>& out) const;
     void ActionIdentifyNearbyPerson();
     bool SparringKit(u32 serial) const;
+    sparring::Kit SparringKitOf(u32 serial) const;  // pure verdict: uo/sparring.h KitFor
+    bool SparringHealthFresh(u32 peer) const;       // both health bars within kHealthFreshMs
     bool MobilePoisoned(u32 serial) const;
     bool PoisonPracticeReady(u32 peer) const;
     bool SparringReady(u32 peer) const;

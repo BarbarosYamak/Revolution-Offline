@@ -1586,6 +1586,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             const Observation obs = Observe(client, nowMs);
             if (TickPoisonPractice(client, obs)) return;
             if (TickSparring(client, obs)) return;
+            if (TickSparHealer(client, obs)) return;
             TickCraftOrders(client, obs);
             if (needCfg_.profession && !ActiveCraftOrder(false, obs.nowMs)) {
                 const std::string beforeItem = state_.productionBatch.item;

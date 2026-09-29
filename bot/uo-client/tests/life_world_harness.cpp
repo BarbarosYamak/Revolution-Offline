@@ -30,6 +30,7 @@ struct RunnerHarnessAccess {
         r.socialActivity_ = social::Activity::Spar;
         r.socialConsented_ = r.sparActive_ = true;
         r.socialStartedMs_ = now; r.sessionStartMs_ = now;
+        r.sparMeetingStartMs_ = now;
     }
     static bool SparTick(Runner& r, Client& c, const Observation& o) { return r.TickSparring(c,o); }
     static void SeedPoison(Runner& r, Client& c, i64 now) {
@@ -646,7 +647,7 @@ int main(int argc, char** argv) {
                 leftLateParty = true;
         Check(leftLateParty, "late membership after cancellation sends an explicit party leave");
         client->CompleteActionForTest(act::Result::Success, "fixture ready");
-        Check(!client->BeginSparringRound(0x1002), "party membership without training kit cannot spar");
+        Check(!client->BeginSparringRound(0x1002), "unknown health blocks even a bare-handed spar");
         const u8 layers[] = {4, 6, 7, 10, 13, 19};
         const u16 graphics[] = {0x1411, 0x1412, 0x1414, 0x1413, 0x1415, 0x1410};
         for (u32 who : {0x2002u, 0x1002u}) for (int i=0; i<6; ++i) {
@@ -680,6 +681,8 @@ int main(int argc, char** argv) {
         Check(!client->SentForTest().empty() && client->SentForTest().back().opcode == 0x05,
               "sparring uses real server attack packet");
         health(0x1002,59);
+        Check(client->SparringPeer() == 0x1002, "59%% is above the owner's 40%% stop line: the round goes on");
+        health(0x1002,39);
         Check(client->SparringPeer() == 0 && client->SentForTest().back().opcode == 0x72 &&
               client->SentForTest().back().bytes[1] == 0,
               "peer low HP immediately sends war off even before war acknowledgement");
@@ -698,7 +701,10 @@ int main(int argc, char** argv) {
               "partner switching to a sword immediately stops sparring");
         weapon = MakeEquip(0x40009999, 0x0F51, 1, 0x1002);
         client->DispatchPacketForTest(weapon.data(), weapon.size());
-        Check(client->BeginSparringRound(0x1002), "dagger is a permitted training weapon");
+        Check(!client->BeginSparringRound(0x1002), "a dagger never spars an empty-handed partner (kit mismatch)");
+        auto myDagger = MakeEquip(0x40009998, 0x0F52, 1, 0x2002);
+        client->DispatchPacketForTest(myDagger.data(), myDagger.size());
+        Check(client->BeginSparringRound(0x1002), "two iron-armoured players with daggers may spar");
         client->DispatchPacketForTest(removed, sizeof(removed));
         Check(client->SparringPeer() == 0 && !client->BeginSparringRound(0x1002),
               "party removal immediately stops and blocks further attacks");
@@ -711,12 +717,15 @@ int main(int argc, char** argv) {
         attacked = false;
         for (const auto& p : client->SentForTest()) if (p.opcode == 0x05) attacked = true;
         Check(!attacked, "consenting party still requires partner readiness before attacking");
-        auto ready = MakeAsciiMessage(0x1002, "Teacher", "Student: Ready for sparring round 1.");
+        bool saidReady = false;
+        for (const auto& p : client->SentForTest()) if (p.opcode == 0x03 || p.opcode == 0xAD) saidReady = true;
+        Check(saidReady, "the runner announces readiness once per meeting");
+        auto ready = MakeAsciiMessage(0x1002, "Teacher", "Student: Ready to spar.");
         client->DispatchPacketForTest(ready.data(), ready.size());
         life::RunnerHarnessAccess::SparTick(sparRunner, *client, obs);
         attacked = false;
         for (const auto& p : client->SentForTest()) if (p.opcode == 0x05) attacked = true;
-        Check(attacked, "addressed numbered readiness authorizes the agreed sparring round");
+        Check(attacked, "one addressed 'Ready to spar.' authorizes the rounds");
         client->SetClockForTest(206001); obs.nowMs = 206001;
         auto stop = MakeAsciiMessage(0x1002, "Teacher", "Student: Let's stop and regroup.");
         client->DispatchPacketForTest(stop.data(), stop.size());

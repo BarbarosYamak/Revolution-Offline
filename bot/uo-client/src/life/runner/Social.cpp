@@ -33,9 +33,10 @@ bool Runner::SocialSay(Client& client, i64 nowMs, const std::string& text) {
 void Runner::EndSocialGroup(Client& client, const char* reason) {
     if (socialActivity_ == social::Activity::Poison) client.AbandonGoalOwnedAction(reason);
     client.StopSparring(reason);
-    sparActive_ = sparRoundStarted_ = false;
-    sparReadyMs_ = sparPeerReadyMs_ = sparPollMs_ = sparRoundEndMs_ = 0;
-    sparRound_ = 1;
+    sparActive_ = sparRoundStarted_ = sparPeerReady_ = false;
+    sparReadyMs_ = sparPollMs_ = sparRoundEndMs_ = sparMeetingStartMs_ = 0;
+    sparRounds_ = 0;
+    sparKit_ = 0;
     poisonStudent_ = poisonSeen_ = false;
     poisonRound_ = 1; poisonReadyMs_ = 0;
     if (socialOwnParty_ || socialLeavePending_) {
@@ -136,6 +137,22 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
                 LogLine("social: local supply opportunity from %s", h.name.c_str());
             }
         }
+        // A spar consent between two OTHER players: a bystander who still
+        // wants Healing may go and bandage them (TickSparHealer).
+        if (!socialPeer_ && h.speaker != client.PlayerSerial()) {
+            const std::string consent = ": I consent to sparring. Stop when hurt.";
+            if (h.text.size() > consent.size() &&
+                h.text.compare(h.text.size() - consent.size(), consent.size(), consent) == 0) {
+                const std::string leader = h.text.substr(0, h.text.size() - consent.size());
+                u32 leaderSerial = 0;
+                for (const auto& p : players) if (p.name == leader) leaderSerial = p.serial;
+                if (leader != state_.identity.characterName && leaderSerial) {
+                    sparWatchA_ = h.speaker; sparWatchB_ = leaderSerial;
+                    sparWatchUntilMs_ = obs.nowMs + sparring::kBystanderWindowMs;
+                    LogLine("social: %s and %s are sparring nearby", h.name.c_str(), leader.c_str());
+                }
+            }
+        }
         social::Activity invitation = social::Activity::None;
         std::string invitationText = h.text;
         const std::string address = state_.identity.characterName + ": ";
@@ -143,7 +160,8 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
         if (social::IsInvitation(invitationText, &invitation) && socialPeer_ == 0 &&
             obs.nowMs >= socialRestUntilMs_ && !socialLeavePending_ && client.PartySize() == 0 &&
             (invitation != social::Activity::Spar ||
-             (MaySocialSpar(needCfg_.profession) && client.SparringKit(client.PlayerSerial()) && obs.bandages >= 10)) &&
+             (MaySocialSpar(needCfg_.profession) && obs.bandages >= sparring::kMinBandages &&
+              static_cast<int>(client.SparringKitOf(client.PlayerSerial())) == social::SparInvitationKit(invitationText))) &&
             (invitation != social::Activity::Poison || sparring::PoisonReceiver(
                 obs.SkillTenths(rules::kHealing), obs.SkillTenths(rules::kAnatomy), obs.bandages)) &&
             (invitation != social::Activity::Hunt || (needCfg_.profession && WantsToHunt(*needCfg_.profession)))) {
@@ -158,6 +176,7 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
             LogLine("social: consent reply '%s'", reply.c_str());
             socialPeer_ = h.speaker; socialPeerName_ = h.name;
             socialActivity_ = invitation;
+            if (invitation == social::Activity::Spar) sparKit_ = social::SparInvitationKit(invitationText);
             poisonStudent_ = false;
             socialConsented_ = true;
             socialAgreedMs_ = socialStartedMs_ = obs.nowMs;
@@ -236,14 +255,21 @@ bool Runner::DoSocialize(Client& client, const Observation& obs) {
         socialActivity_ = needCfg_.profession && WantsToHunt(*needCfg_.profession) &&
             (client.PlayerSerial() + state_.identity.sessions) % 2 == 0
             ? social::Activity::Hunt : social::Activity::Train;
-        if (MaySocialSpar(needCfg_.profession) && client.SparringKit(client.PlayerSerial()) &&
-            obs.bandages >= 10) socialActivity_ = social::Activity::Spar;
+        // Every fighter type may spar (owner ruling 2026-09-04): fists need no
+        // armour, a training weapon needs full iron.
+        if (MaySocialSpar(needCfg_.profession) && obs.bandages >= sparring::kMinBandages &&
+            client.SparringKit(client.PlayerSerial())) {
+            socialActivity_ = social::Activity::Spar;
+            sparKit_ = static_cast<int>(client.SparringKitOf(client.PlayerSerial()));
+        }
         if (WantsPoisonPractice(obs) && PickPoisonOpener(client, obs) >= 0) {
             socialActivity_ = social::Activity::Poison;
             poisonStudent_ = true;
         }
     }
-    if (obs.nowMs - socialStartedMs_ > 120000) {
+    // Meeting place + consent + party formation budget. A spar gets longer:
+    // its own 5-minute clock only starts once the party exists.
+    if (!sparActive_ && obs.nowMs - socialStartedMs_ > (socialActivity_ == social::Activity::Spar ? 180000 : 120000)) {
         const bool gained = socialTrainingGains_ > 0 || social::TrainingGains(socialTrainingSkills_, obs.skills) > 0;
         EndSocialGroup(client, gained ? "training gains confirmed" : "meeting window finished");
         socialRestUntilMs_ = obs.nowMs + 300000;
@@ -307,7 +333,7 @@ bool Runner::DoSocialize(Client& client, const Observation& obs) {
             SocialSay(client, obs.nowMs, preferred + (socialActivity_ == social::Activity::Hunt
                 ? "Anyone for a graveyard hunt? Meet here."
                 : socialActivity_ == social::Activity::Poison ? "Anyone for Poison spell practice? Healing and Anatomy above 60 required. Cure between casts."
-                : socialActivity_ == social::Activity::Spar ? "Anyone for consensual iron-armour sparring? Stop when hurt."
+                : socialActivity_ == social::Activity::Spar ? (sparKit_ == 1 ? social::kFistSparInvitation : social::kIronSparInvitation)
                 : "Anyone for training and healing practice? Meet here."));
         }
         return false;
@@ -361,8 +387,13 @@ bool Runner::DoSocialize(Client& client, const Observation& obs) {
         return false;
     }
     if (socialActivity_ == social::Activity::Spar) {
+        // The meeting clock starts HERE, when the party exists -- not at the
+        // invitation. v1 spent its whole budget walking and forming the party.
         sparActive_ = true;
+        sparMeetingStartMs_ = obs.nowMs;
         socialHeardMs_ = client.JournalNowMs();
+        LogLine("sparring: party formed with %s (%s)", socialPeerName_.c_str(),
+                sparring::KitName(static_cast<sparring::Kit>(sparKit_)));
         return false;
     }
     // Real skill use and real healing, never unconsented attacks on a player.
@@ -545,59 +576,127 @@ bool Runner::TickSparring(Client& client, const Observation& obs) {
     auto end = [&](const char* reason) {
         client.ActionSay((socialPeerName_ + ": Let's stop and regroup.").c_str());
         const bool gained = socialTrainingGains_ > 0;
+        LogLine("sparring: ended with %s after %d round(s): %s", socialPeerName_.c_str(), sparRounds_, reason);
         EndSocialGroup(client, reason);
         socialRestUntilMs_ = obs.nowMs + 300000;
         planner_.Finish(gained, reason, obs.nowMs);
     };
-    if (!socialConsented_ || obs.dead || !client.PartyContains(socialPeer_) ||
-        client.SparringExternalThreat(socialPeer_) || !client.SparringKit(client.PlayerSerial()) ||
-        !client.SparringKit(socialPeer_) || obs.bandages == 0 ||
-        obs.nowMs-socialStartedMs_ >= 120000 ||
-        (cfg_.sessionLimitMs > 0 && obs.nowMs-sessionStartMs_ >= cfg_.sessionLimitMs)) {
-        end("sparring ended or unsafe"); return false;
+    if (obs.dead || (cfg_.sessionLimitMs > 0 && obs.nowMs-sessionStartMs_ >= cfg_.sessionLimitMs)) {
+        end("session ending"); return false;
     }
+
     const i32 gain = social::TrainingGains(socialTrainingSkills_, obs.skills);
     socialTrainingSkills_ = obs.skills;
     if (gain > 0) { socialTrainingGains_ += gain; planner_.NoteProgress();
         LogLine("sparring: confirmed %d skill tenths with %s", gain, socialPeerName_.c_str()); }
-    const std::string ready = ": Ready for sparring round " + std::to_string(sparRound_) + ".";
+
     std::vector<Client::Heard> heard;
     client.JournalHeardSince(socialHeardMs_, heard);
     for (const auto& h : heard) {
         socialHeardMs_ = std::max(socialHeardMs_, h.timeMs);
         if (h.speaker != socialPeer_) continue;
-        if (h.text == state_.identity.characterName + ": Let's stop and regroup.") {
-            end("companion withdrew consent"); return false;
-        }
-        if (h.text == state_.identity.characterName + ready) sparPeerReadyMs_ = obs.nowMs;
+        if (h.text == state_.identity.characterName + ": Let's stop and regroup.") { end("companion withdrew consent"); return false; }
+        if (h.text == state_.identity.characterName + ": " + social::kSparReady) sparPeerReady_ = true;
     }
     if (obs.nowMs-sparPollMs_ >= 1000) {
         sparPollMs_ = obs.nowMs;
         client.RequestMobileStatus(client.PlayerSerial()); client.RequestMobileStatus(socialPeer_);
     }
-    if (sparRoundStarted_) {
-        if (client.SparringPeer()) return true;
-        // Each five-second lease requires a new numbered, mutual ready exchange.
-        sparRoundStarted_ = false; sparReadyMs_ = sparPeerReadyMs_ = 0;
+    // A round the client ended (safety stop or lease) is counted once.
+    if (sparRoundStarted_ && !client.SparringPeer()) {
+        sparRoundStarted_ = false;
         sparRoundEndMs_ = obs.nowMs;
-        LogLine("sparring: round %d stopped", sparRound_);
-        if (++sparRound_ > 3) { end("three sparring rounds finished"); return false; }
+        ++sparRounds_;
+        LogLine("sparring: round %d stopped", sparRounds_);
     }
-    if (client.ActionBusy()) return true;
-    if (obs.HpFraction() < 0.90 && obs.nowMs-socialPracticeMs_ >= 10000) {
-        const u32 bandage = client.FindBackpackItemByGraphic(0x0E21);
-        if (bandage) { client.ActionUseBandage(bandage, client.PlayerSerial()); socialPracticeMs_ = obs.nowMs; }
-        return true;
+
+    std::vector<Client::HostileHit> peers;
+    client.NearbyPlayers(3, peers);
+    i32 peerPct = -1;
+    for (const auto& p : peers) if (p.serial == socialPeer_ && p.hpMax > 0) peerPct = p.hpCur * 100 / p.hpMax;
+
+    sparring::RoundSight sight;
+    sight.nowMs = obs.nowMs;
+    sight.meetingStartMs = sparMeetingStartMs_;
+    sight.consented = socialConsented_;
+    sight.inParty = client.PartyContains(socialPeer_);
+    sight.peerReady = sparPeerReady_;
+    sight.readyAskedMs = sparReadyMs_;
+    sight.kitsCompatible = sparring::Compatible(client.SparringKitOf(client.PlayerSerial()),
+                                                client.SparringKitOf(socialPeer_));
+    sight.externalThreat = client.SparringExternalThreat(socialPeer_);
+    sight.healthFresh = client.SparringHealthFresh(socialPeer_);
+    sight.selfPct = obs.hpMax > 0 ? obs.hp * 100 / obs.hpMax : -1;
+    sight.peerPct = peerPct;
+    sight.bandages = obs.bandages;
+    sight.roundActive = sparRoundStarted_;
+    sight.lastRoundEndMs = sparRoundEndMs_;
+    sight.roundsDone = sparRounds_;
+    sight.busy = client.ActionBusy();
+
+    const sparring::RoundPlan plan = sparring::DecideRound(sight);
+    switch (plan.step) {
+        case sparring::Step::End: end(plan.reason); return false;
+        case sparring::Step::SayReady:
+            client.ActionSay((socialPeerName_ + ": " + social::kSparReady).c_str());
+            sparReadyMs_ = obs.nowMs;
+            return true;
+        case sparring::Step::Bandage:
+            if (obs.nowMs-socialPracticeMs_ >= 10000) {
+                const u32 bandage = client.FindBackpackItemByGraphic(0x0E21);
+                if (bandage) { client.ActionUseBandage(bandage, client.PlayerSerial()); socialPracticeMs_ = obs.nowMs; }
+            }
+            return true;
+        case sparring::Step::StartRound:
+            // SparringReady re-checks range, fresh health and threats at the
+            // very moment of the swing; a refusal just waits a tick.
+            if (client.BeginSparringRound(socialPeer_)) {
+                sparRoundStarted_ = true;
+                LogLine("sparring: round %d started with %s", sparRounds_ + 1, socialPeerName_.c_str());
+            }
+            return true;
+        case sparring::Step::Continue:
+        case sparring::Step::Wait:
+            return true;
     }
-    if (obs.nowMs-sparRoundEndMs_ < 6000 || !client.SparringReady(socialPeer_)) return true;
-    if (!sparReadyMs_ || obs.nowMs-sparReadyMs_ > 4000) {
-        if (!client.PrepareSparringRound(socialPeer_)) return true;
-        client.ActionSay((socialPeerName_ + ready).c_str()); sparReadyMs_ = obs.nowMs;
+    return true;
+}
+
+// A bystander who heard two players agree to spar, and still wants Healing,
+// walks over and bandages whichever of them is hurt -- the Revolution habit of
+// farming Healing on sparring partners. Only from idle or wandering time, never
+// during its own work, fights or trades.
+bool Runner::TickSparHealer(Client& client, const Observation& obs) {
+    if (!sparWatchUntilMs_) return false;
+    if (obs.nowMs >= sparWatchUntilMs_ || socialPeer_ || sparActive_) { sparWatchUntilMs_ = 0; return false; }
+    const GoalKind g = planner_.Current().kind;
+    if (g != GoalKind::IdleBriefly && g != GoalKind::Explore && g != GoalKind::Socialize && g != GoalKind::ReturnHome)
+        return false;
+    if (obs.dead || obs.underAttack || obs.attackersOnMe > 0 || obs.HpFraction() < 0.8 ||
+        obs.bandages < sparring::kMinBandages || client.ActionBusy()) return false;
+    bool wantsHealing = false;
+    for (const auto& skill : state_.plan.skills)
+        if (skill.skillId == rules::kHealing && obs.SkillTenths(rules::kHealing) < skill.tenths) wantsHealing = true;
+    if (!wantsHealing) { sparWatchUntilMs_ = 0; return false; }
+
+    std::vector<Client::HostileHit> around;
+    client.NearbyPlayers(12, around);
+    const Client::HostileHit* patient = nullptr;
+    i32 lowest = sparring::kBystanderHealBelow;
+    for (const auto& p : around) {
+        if ((p.serial != sparWatchA_ && p.serial != sparWatchB_) || p.hpMax <= 0 || p.hpCur <= 0) continue;
+        const i32 pct = p.hpCur * 100 / p.hpMax;
+        if (pct < lowest) { lowest = pct; patient = &p; }
     }
-    if (sparPeerReadyMs_ && obs.nowMs-sparPeerReadyMs_ <= 6000 && client.BeginSparringRound(socialPeer_)) {
-        sparRoundStarted_ = true;
-        LogLine("sparring: round %d started with %s", sparRound_, socialPeerName_.c_str());
-    }
+    if (!patient) return false;
+    if (TileDist(obs.x, obs.y, patient->x, patient->y) > 1) { client.ActionGotoMobile(patient->serial, 1); return true; }
+    if (obs.nowMs - sparHealMs_ < sparring::kBystanderBandageGapMs) return true;
+    const u32 bandage = client.FindBackpackItemByGraphic(0x0E21);
+    if (!bandage) return false;
+    client.ActionUseBandage(bandage, patient->serial);
+    sparHealMs_ = obs.nowMs;
+    LogLine("sparring: bystander bandage on %s (%d%%)", patient->name.c_str(), lowest);
+    social::Remember(state_.memory.relationships, patient->name, social::Encounter::Help, obs.nowMs);
     return true;
 }
 

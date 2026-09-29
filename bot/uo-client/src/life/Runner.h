@@ -285,9 +285,18 @@ private:
     bool poisonStudent_ = false, poisonSeen_ = false;
     i32 poisonRound_ = 1;
     i64 poisonReadyMs_ = 0;
-    bool sparActive_ = false, sparRoundStarted_ = false;
-    i64 sparReadyMs_ = 0, sparPeerReadyMs_ = 0, sparPollMs_ = 0, sparRoundEndMs_ = 0;
-    i32 sparRound_ = 1;
+    // Sparring v2 (uo/sparring.h DecideRound): one "Ready to spar." per
+    // meeting, rounds leased automatically, the meeting clock starting when
+    // the PARTY forms.
+    bool sparActive_ = false, sparRoundStarted_ = false, sparPeerReady_ = false;
+    i64 sparReadyMs_ = 0, sparPollMs_ = 0, sparRoundEndMs_ = 0, sparMeetingStartMs_ = 0;
+    i32 sparRounds_ = 0;
+    int sparKit_ = 0;   // 1 fists, 2 iron + training weapon (the invitation's kind)
+    // Bystander healer: heard sparring consent nearby and walks over to
+    // bandage the sparrers while it still wants Healing.
+    i64 sparWatchUntilMs_ = 0, sparHealMs_ = 0;
+    u32 sparWatchA_ = 0, sparWatchB_ = 0;
+    bool TickSparHealer(Client& client, const Observation& obs);
     bool FollowHuntingParty(Client& client, const Observation& obs);
     void EndSocialGroup(Client& client, const char* reason);
     bool SocialFoe(const std::string& name) const;

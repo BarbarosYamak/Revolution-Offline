@@ -828,3 +828,10 @@ target_include_directories(novice_engage PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME novice_engage COMMAND novice_engage)
+
+# Sparring v2: kit, compatibility, round plan and safety stop -- pure, no client.
+add_executable(sparring_rounds sparring_rounds.cpp)
+target_include_directories(sparring_rounds PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+add_test(NAME sparring_rounds COMMAND sparring_rounds)

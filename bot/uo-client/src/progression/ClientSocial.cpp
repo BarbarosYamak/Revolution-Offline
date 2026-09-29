@@ -90,20 +90,25 @@ void Client::ActionPartyLeave() {
 }
 
 
-bool Client::SparringKit(u32 serial) const {
+sparring::Kit Client::SparringKitOf(u32 serial) const {
     const auto* mobile = FindMobileBySerial(serial);
-    if (serial != playerSerial_ && !mobile) return false;
+    if (serial != playerSerial_ && !mobile) return sparring::Kit::None;
     const auto& equipment = serial == playerSerial_ ? playerEquip_ : mobile->equip;
-    for (u8 layer : {4, 6, 7, 10, 13, 19}) {
-        bool found = false;
-        for (const auto& e : equipment) if (e.layer == layer && e.hue == 0 && sparring::IronArmour(e.graphic)) found = true;
-        if (!found) return false;
-    }
-    for (const auto& e : equipment) {
-        if (e.layer == 25 || e.layer == 2) return false;
-        if (e.layer == 1 && (e.hue != 0 || !sparring::TrainingWeapon(e.graphic))) return false;
-    }
-    return true;
+    std::vector<sparring::Worn> worn;
+    worn.reserve(equipment.size());
+    for (const auto& e : equipment) worn.push_back({e.layer, e.graphic, e.hue});
+    return sparring::KitFor(worn.data(), worn.size());
+}
+
+bool Client::SparringHealthFresh(u32 peer) const {
+    const auto* m = FindMobileBySerial(peer);
+    const i64 now = NowMs();
+    return m && selfHealthSeenMs_ > 0 && now-selfHealthSeenMs_ <= sparring::kHealthFreshMs &&
+           m->healthSeenMs > 0 && now-m->healthSeenMs <= sparring::kHealthFreshMs;
+}
+
+bool Client::SparringKit(u32 serial) const {
+    return SparringKitOf(serial) != sparring::Kit::None;
 }
 
 bool Client::SparringExternalThreat(u32 peer) const {
@@ -121,7 +126,8 @@ bool Client::SparringReady(u32 peer) const {
     return peer && peer != playerSerial_ && m && KnownPlayer(peer) && !IsDead() &&
         PartyContains(playerSerial_) && PartyContains(peer) && PartySize() <= 3 &&
         std::max(std::abs(m->x-playerX_), std::abs(m->y-playerY_)) <= 2 &&
-        std::abs(m->z-playerZ_) <= 4 && SparringKit(playerSerial_) && SparringKit(peer) &&
+        std::abs(m->z-playerZ_) <= 4 &&
+        sparring::Compatible(SparringKitOf(playerSerial_), SparringKitOf(peer)) &&
         selfHealthSeenMs_ > 0 && now-selfHealthSeenMs_ <= sparring::kHealthFreshMs &&
         m->healthSeenMs > 0 && now-m->healthSeenMs <= sparring::kHealthFreshMs &&
         sparring::HealthAllows(player_.hpCur, player_.hpMax, sparring::kStartPercent) &&
@@ -175,15 +181,20 @@ void Client::SparringSafetyTick() {
     if (!sparringPeer_) return;
     const auto* m = FindMobileBySerial(sparringPeer_);
     const i64 now = NowMs();
-    if (!m || IsDead() || now >= sparringUntilMs_ || !PartyContains(sparringPeer_) ||
-        !PartyContains(playerSerial_) || PartySize() > 3 ||
-        !SparringKit(playerSerial_) || !SparringKit(sparringPeer_) ||
-        std::max(std::abs(m->x-playerX_), std::abs(m->y-playerY_)) > 2 ||
-        std::abs(m->z-playerZ_) > 4 || now-selfHealthSeenMs_ > sparring::kHealthFreshMs ||
-        now-m->healthSeenMs > sparring::kHealthFreshMs ||
-        !sparring::HealthAllows(player_.hpCur, player_.hpMax, sparring::kStopPercent) ||
-        !sparring::HealthAllows(m->hpCur, m->hpMax, sparring::kStopPercent) ||
-        SparringExternalThreat(sparringPeer_)) StopSparring("sparring safety stop");
+    if (!m || IsDead() || !PartyContains(sparringPeer_) || !PartyContains(playerSerial_) ||
+        PartySize() > 3 || !sparring::Compatible(SparringKitOf(playerSerial_), SparringKitOf(sparringPeer_))) {
+        StopSparring("sparring safety stop");
+        return;
+    }
+    const bool fresh = now-selfHealthSeenMs_ <= sparring::kHealthFreshMs &&
+                       now-m->healthSeenMs <= sparring::kHealthFreshMs;
+    const bool inRange = std::max(std::abs(m->x-playerX_), std::abs(m->y-playerY_)) <= 2 &&
+                         std::abs(m->z-playerZ_) <= 4;
+    const i32 selfPct = player_.hpMax > 0 ? static_cast<i32>(static_cast<i64>(player_.hpCur) * 100 / player_.hpMax) : -1;
+    const i32 peerPct = m->hpMax > 0 ? static_cast<i32>(static_cast<i64>(m->hpCur) * 100 / m->hpMax) : -1;
+    if (sparring::StopRound(selfPct, peerPct, fresh, SparringExternalThreat(sparringPeer_), inRange,
+                            now >= sparringUntilMs_))
+        StopSparring("sparring safety stop");
 }
 
 } // namespace uo

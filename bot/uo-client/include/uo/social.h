@@ -68,9 +68,24 @@ inline i32 TrainingGains(const Skills& before, const Skills& after) {
     return gained;
 }
 
+// Two spar invitations, one per kit (uo/sparring.h): iron + training weapon,
+// or bare hands (casters spar with a spellbook in hand). A character consents
+// only to the kind its own gear fits.
+inline constexpr const char* kIronSparInvitation = "Anyone for consensual iron-armour sparring? Stop when hurt.";
+inline constexpr const char* kFistSparInvitation = "Anyone for a bare-handed spar? Stop when hurt.";
+inline constexpr const char* kSparReady = "Ready to spar.";
+
+// Which kit a spar invitation asks for: 1 = fists, 2 = iron + training weapon, 0 = not a spar.
+inline int SparInvitationKit(const std::string& text) {
+    if (text == kFistSparInvitation) return 1;
+    if (text == kIronSparInvitation) return 2;
+    return 0;
+}
+
 inline bool IsInvitation(const std::string& text, Activity* activity) {
     if (text == "Anyone for Poison spell practice? Healing and Anatomy above 60 required. Cure between casts.") { *activity = Activity::Poison; return true; }
     if (text == "Anyone for consensual iron-armour sparring? Stop when hurt.") { *activity = Activity::Spar; return true; }
+    if (text == kFistSparInvitation) { *activity = Activity::Spar; return true; }
     if (text == "Anyone for a graveyard hunt? Meet here.") { *activity = Activity::Hunt; return true; }
     if (text == "Anyone for training and healing practice? Meet here.") { *activity = Activity::Train; return true; }
     return false;
