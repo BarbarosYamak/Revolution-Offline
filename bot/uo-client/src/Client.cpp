@@ -150,6 +150,10 @@ Client::Client(const Config& cfg)
 }
 
 Client::~Client() {
+    // A session that ended without a logout (server disconnect, fatal error)
+    // still writes its life back; ActionLogout already saved and cleared the
+    // flag for the clean case.
+    LifeSave("session_end");
     if (renderWindowOpen_) { mfb_close(); renderWindowOpen_ = false; }
     StopStdinThread();
     sock_.Close();
@@ -442,6 +446,7 @@ void Client::Tick(int waitMs) {
             TravelTick();
             WarModeTick();
             SurvivalTick();
+            LifeTick();
             BotTick();
             PurgeOutOfRange();  // cull mobiles/containers past viewRange_ (queues leave events)
             uo::js::TickClientEvents(NowMs());  // dispatch JS events + reject timeouts
@@ -930,6 +935,7 @@ void Client::OnLoginComplete(const u8* data, usize size) {
     LogInfo("[0x55] login complete — entering world\n");
     state_ = State::InWorld;
     LogEvent("in_world", "0x55 received");
+    LifeBegin();
     // Initialise the keepalive timer so the first keepalive fires
     // exactly 60s after entering the world (matches the original).
     lastActivityMs_ =
@@ -1868,6 +1874,9 @@ void Client::RecordOwnDeath(const char* how) {
                   r ? r->id.c_str() : "?", how ? how : "?");
     LogEvent("death_location", ev);
     if (journey_.Active()) TravelAbort("died");
+    // Death is the event most worth surviving a crash: the corpse run next
+    // session depends on it.
+    LifeSave("death");
 }
 
 void Client::OnResurrectionMenu(const u8* data, usize size) {
@@ -3278,6 +3287,7 @@ void Client::ActionOnBodyChange(u16 body) {
 void Client::ActionOnVendorOffer(u32 vendorSerial) {
     vendorOfferVendor_ = vendorSerial;
     vendorOffer_ = pendingVendor_;
+    NoteVendorStock(vendorSerial);
     LogInfo("[VENDOR] offer from 0x%08X: %zu item(s)\n",
             vendorSerial, vendorOffer_.size());
     for (usize i = 0; i < vendorOffer_.size() && i < 8; ++i) {
@@ -3551,6 +3561,11 @@ void Client::ActionLogout() {
     if (loggingOut_) return;
     loggingOut_ = true;
     LogInfo("[action] logout requested\n");
+    // Saved BEFORE the request goes out, at the spot we chose to leave from.
+    // After this the life is closed for the session: nothing that happens in
+    // the logout grace period is the character's doing.
+    LifeSave("logout");
+    lifeActive_ = false;
     u8 buf[4];
     const usize n = build::LogoutRequest(buf);
     Send(buf, n, "0xD1 LogoutRequest");

@@ -129,3 +129,20 @@ target_include_directories(m38_closure PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME m38_closure COMMAND m38_closure ${CMAKE_SOURCE_DIR}/data)
+
+# M4 step 1: the persistent character record -- targets, knowledge, the
+# two-clock crossing at logout, atomic save and corrupt-file refusal. Pure
+# logic plus a temp-dir file round trip; no server, no MULs, no world data.
+add_executable(m4_lifecycle m4_lifecycle.cpp
+    ${CMAKE_SOURCE_DIR}/src/lifecycle/CharacterRecord.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Supplier.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp
+    ${CMAKE_SOURCE_DIR}/src/travel/PersonalKnowledge.cpp
+    ${CMAKE_SOURCE_DIR}/src/world/WorldModel.cpp)
+target_include_directories(m4_lifecycle PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+
+add_test(NAME m4_lifecycle COMMAND m4_lifecycle)

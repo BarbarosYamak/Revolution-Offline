@@ -81,6 +81,8 @@ set(UO_CLIENT_SOURCES
     src/travel/Journey.cpp
     src/travel/PersonalKnowledge.cpp
     src/travel/WarMode.cpp
+    src/lifecycle/CharacterRecord.cpp
+    src/lifecycle/ClientLife.cpp
     src/render/Renderer.cpp
     src/render/Text.cpp
     src/render/Minimap.cpp

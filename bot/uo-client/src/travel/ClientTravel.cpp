@@ -343,6 +343,11 @@ void Client::TravelFinish(bool ok, const char* why) {
                   journey_.LegCount(), journey_.RoutePlans(), why ? why : "");
     LogEvent(ok ? "travel_done" : "travel_failed", ev);
     if (ok) TravelNotePlaceReached(playerX_, playerY_);
+    // Route memory is part of the persistent life (M4): a destination that
+    // keeps failing should stop being walked at every session.
+    if (lifeActive_)
+        life::NoteRoute(&lifeRecord_, travelLabel_.c_str(), ok, why,
+                        life::NowClock(NowMs()).wallMs);
 }
 
 void Client::TravelNotePlaceReached(i32 x, i32 y) {

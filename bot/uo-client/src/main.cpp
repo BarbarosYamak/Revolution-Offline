@@ -52,6 +52,9 @@ void PrintUsage() {
         "                     Generate with uo_atlasgen; without it the client\n"
         "                     still walks with `goto` but has no semantic\n"
         "                     destinations.\n"
+        "  --life-dir <dir>   M4: keep each character's persistent life in\n"
+        "                     <dir>/<Name>.life (created if missing). Loaded on\n"
+        "                     login, saved on logout, death and every minute.\n"
         "  -h, --help         this text\n"
         "\n"
         "Multiple sessions in one process:\n"
@@ -214,6 +217,7 @@ int main(int argc, char** argv) {
         else if (ArgIs(a, "--log"))       { baseLog = next; ++i; }
         else if (ArgIs(a, "--mul-dir"))   { mulDir = next; ++i; }
         else if (ArgIs(a, "--data-dir"))  { dataDir = next; ++i; }
+        else if (ArgIs(a, "--life-dir"))  { base.lifeDir = next; ++i; }
         else if (ArgIs(a, "--session"))   { sessionSpecs.push_back(next); ++i; }
         else {
             std::fprintf(stderr, "unknown option: %s\n", a);

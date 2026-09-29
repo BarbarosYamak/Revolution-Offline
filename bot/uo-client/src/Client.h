@@ -10,8 +10,10 @@
 #include "travel/PersonalKnowledge.h"
 #include "travel/WarMode.h"
 #include "uo/actions.h"
+#include "uo/lifecycle.h"
 #include "uo/log.h"
 #include "uo/progression.h"
+#include "uo/supplier.h"
 #include "uo/trade.h"
 #include "uo/types.h"
 #include "uo/world_model.h"
@@ -139,6 +141,10 @@ public:
         // uo_viewer turns it on -- an observer must SEE the out-of-era object
         // rather than silently miss it. See uo/safe_graphics.h.
         bool        renderPlaceholders;
+        // M4: directory holding persistent character records
+        // (<dir>/<Name>.life). nullptr = no persistence, which is what every
+        // pre-M4 scenario expects.
+        const char* lifeDir = nullptr;
     };
 
     explicit Client(const Config& cfg);
@@ -482,6 +488,20 @@ public:
     travel::PersonalKnowledge&       Knowledge()       { return knowledge_; }
     const travel::PersonalKnowledge& Knowledge() const { return knowledge_; }
 
+    // Suppliers this character has verified with its own eyes (a shop list it
+    // opened). Fed from every vendor offer; see uo/supplier.h.
+    supply::Registry&       Supplies()       { return supplies_; }
+    const supply::Registry& Supplies() const { return supplies_; }
+
+    // M4: the persistent life. Null until a record is loaded or begun, and
+    // always null without --life-dir.
+    const life::CharacterRecord* LifeRecord() const {
+        return lifeActive_ ? &lifeRecord_ : nullptr;
+    }
+    // Set what the character is currently doing, so the next session resumes
+    // it. Saved at the next autosave, not immediately.
+    void SetLifeObjective(life::ObjectiveKind kind, const char* target);
+
     // -----------------------------------------------------------------
     // War / peace.
     //
@@ -669,6 +689,14 @@ private:
     // actually reports our death is 0x2C -- so the death location was never
     // recorded and travel_corpse could never resolve a destination.
     void RecordOwnDeath(const char* how);
+
+    // M4 persistence. Begin on 0x55; save on logout, on death and every
+    // kLifeAutosaveMs in world.
+    void LifeBegin();
+    void LifeSave(const char* why);
+    void LifeTick();
+    // Record every mapped item in a vendor's offer as a verified supplier.
+    void NoteVendorStock(u32 vendorSerial);
     void OnOpenDialog         (const u8* data, usize size);  // 0x7C menu/dialog
     void OnDeathAnimation     (const u8* data, usize size);  // 0xAF
     void OnMobName            (const u8* data, usize size);  // 0x98
@@ -1282,6 +1310,15 @@ private:
     const world_atlas::SharedWorld* world_knowledge_ = nullptr;
     travel::Journey             journey_;
     travel::PersonalKnowledge   knowledge_;
+    supply::Registry            supplies_;
+    // M4 persistent life. `lifeActive_` is false when there is no --life-dir,
+    // and ALSO when a record exists but could not be read: a corrupt life is
+    // never overwritten by a fresh one.
+    static constexpr i64        kLifeAutosaveMs = 60000;
+    life::CharacterRecord       lifeRecord_;
+    std::string                 lifePath_;
+    bool                        lifeActive_ = false;
+    i64                         lifeLastSaveMs_ = 0;
     travel::WarModeWatchdog     war_;
     std::string travelFailure_;
     std::string travelLabel_;

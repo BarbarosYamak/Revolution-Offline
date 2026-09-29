@@ -149,6 +149,13 @@ public:
     usize Size() const { return suppliers_.size(); }
     void  Clear() { suppliers_.clear(); }
 
+    // M4 persistence. A saved registry is a set of past OBSERVATIONS, so
+    // restoring one re-admits records that were already verified once; it is
+    // not a second door into the registry. Timestamps are the caller's to
+    // translate -- a restored record comes back with whatever age it had.
+    const std::vector<Supplier>& All() const { return suppliers_; }
+    void Restore(const Supplier& s) { suppliers_.push_back(s); }
+
     static Freshness FreshnessOf(const Supplier& s, i64 nowMs);
 
 private:
