@@ -1383,6 +1383,60 @@ bool Runner::Checkpoint(Client& client, i64 nowMs, const char* why) {
     return true;
 }
 
+void Runner::PublishStatus(Client& client, const Observation& obs, const char* phase) {
+    if (!configured_) return;
+    lastStatusMs_ = obs.nowMs;
+    LiveStatus& s = status_;
+    s.character = state_.identity.characterName;
+    s.account = state_.identity.accountName;
+    s.family = state_.plan.family;
+    s.homeCity = state_.homeCity;
+    s.rhythm = persona::RhythmName(state_.persona.rhythm);
+    s.schedule = persona::Describe(state_.persona);
+    s.phase = phase;
+    s.online = obs.inWorld;
+    s.dead = obs.dead;
+    s.goal = GoalKindName(planner_.Current().kind);
+    s.goalFamily = GoalFamilyName(FamilyOf(planner_.Current().kind));
+    s.x = obs.x; s.y = obs.y;
+    s.hp = obs.hp; s.hpMax = obs.hpMax; s.mana = obs.mana; s.manaMax = obs.manaMax;
+    s.str = obs.str; s.dex = obs.dex; s.intel = obs.intel;
+    s.gold = obs.gold; s.goldAtLogin = session_.goldStart;
+    s.skillTenths = obs.SkillSumTenths();
+    s.kills = session_.kills; s.deaths = session_.deaths;
+    s.goalsCompleted = session_.goalsCompleted; s.goalsAttempted = session_.goalsAttempted;
+    s.partySize = static_cast<i32>(client.PartySize());
+    s.bandages = obs.bandages;
+    s.friends = s.foes = 0;
+    for (const social::Relationship& r : state_.memory.relationships) {
+        if (r.foe) ++s.foes;
+        else if (r.trust > 0) ++s.friends;
+    }
+    const i64 now = EpochMs();
+    if (!s.sessionStartEpochMs) s.sessionStartEpochMs = now - (obs.nowMs - sessionStartMs_);
+    s.sessionLimitMs = cfg_.sessionLimitMs;
+    s.updatedEpochMs = now;
+    s.recent = recentGoals_;
+    store_.SaveStatus(state_.identity.identityId, s);
+}
+
+void Runner::PublishOffline() {
+    if (!configured_) return;
+    if (status_.character.empty()) {       // logged out before the first live publish
+        status_.character = state_.identity.characterName;
+        status_.account = state_.identity.accountName;
+        status_.family = state_.plan.family;
+        status_.homeCity = state_.homeCity;
+        status_.rhythm = persona::RhythmName(state_.persona.rhythm);
+        status_.schedule = persona::Describe(state_.persona);
+    }
+    status_.online = false;
+    status_.phase = "offline";
+    status_.updatedEpochMs = EpochMs();
+    status_.recent = recentGoals_;
+    store_.SaveStatus(state_.identity.identityId, status_);
+}
+
 void Runner::EndSession(const char* why) {
     if (phase_ == Phase::WindDown || phase_ == Phase::LoggingOut ||
         phase_ == Phase::Done) {
@@ -1803,6 +1857,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
                             GoalKindName(planner_.Current().kind), why.c_str());
                 }
                 LogGoalChange(obs, why);
+                recentGoals_.push_back({EpochMs(), GoalKindName(planner_.Current().kind), why});
+                if (recentGoals_.size() > 8) recentGoals_.erase(recentGoals_.begin());
                 // A new goal starts from a clean transient slate -- but only
                 // if it is genuinely a NEW goal.
                 //
@@ -1841,6 +1897,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
             }
 
             RunGoal(client, obs);
+
+            if (nowMs - lastStatusMs_ >= kStatusIntervalMs) PublishStatus(client, obs, "live");
 
             // --- checkpoint ------------------------------------------------
             if (cfg_.checkpointIntervalMs > 0 &&
@@ -2250,6 +2308,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             lastHistogramMs_ = nowMs;
 
             Checkpoint(client, nowMs, "clean logout");
+            PublishOffline();
             LogLine("logging out");
             client.ActionLogout();
             phase_ = Phase::LoggingOut;

@@ -812,6 +812,64 @@ bool Store::Save(const PersistentState& st, std::string* err) const {
     return true;
 }
 
+std::string Store::StatusPathFor(const std::string& identityId) const {
+    return DirFor(identityId) + "/status.json";
+}
+
+bool Store::SaveStatus(const std::string& identityId, const LiveStatus& s) const {
+    if (identityId.empty()) return false;
+    EnsureDir(DirFor(identityId));
+    return json::WriteFileAtomic(StatusPathFor(identityId).c_str(), ToJson(s).Serialize(2));
+}
+
+json::Value ToJson(const LiveStatus& s) {
+    json::Value o = json::Value::MakeObject();
+    o.Set("character", s.character);
+    o.Set("account", s.account);
+    o.Set("family", s.family);
+    o.Set("home_city", s.homeCity);
+    o.Set("rhythm", s.rhythm);
+    o.Set("schedule", s.schedule);
+    o.Set("phase", s.phase);
+    o.Set("online", s.online);
+    o.Set("dead", s.dead);
+    o.Set("goal", s.goal);
+    o.Set("goal_family", s.goalFamily);
+    o.Set("x", static_cast<i64>(s.x));
+    o.Set("y", static_cast<i64>(s.y));
+    o.Set("hp", static_cast<i64>(s.hp));
+    o.Set("hp_max", static_cast<i64>(s.hpMax));
+    o.Set("mana", static_cast<i64>(s.mana));
+    o.Set("mana_max", static_cast<i64>(s.manaMax));
+    o.Set("str", static_cast<i64>(s.str));
+    o.Set("dex", static_cast<i64>(s.dex));
+    o.Set("int", static_cast<i64>(s.intel));
+    o.Set("gold", static_cast<i64>(s.gold));
+    o.Set("gold_at_login", static_cast<i64>(s.goldAtLogin));
+    o.Set("skill_total", s.skillTenths / 10.0);
+    o.Set("kills", static_cast<i64>(s.kills));
+    o.Set("deaths", static_cast<i64>(s.deaths));
+    o.Set("goals_completed", static_cast<i64>(s.goalsCompleted));
+    o.Set("goals_attempted", static_cast<i64>(s.goalsAttempted));
+    o.Set("party_size", static_cast<i64>(s.partySize));
+    o.Set("bandages", static_cast<i64>(s.bandages));
+    o.Set("friends", static_cast<i64>(s.friends));
+    o.Set("foes", static_cast<i64>(s.foes));
+    o.Set("session_start_ms", s.sessionStartEpochMs);
+    o.Set("session_limit_ms", s.sessionLimitMs);
+    o.Set("updated_ms", s.updatedEpochMs);
+    json::Value recent = json::Value::MakeArray();
+    for (const RecentGoal& g : s.recent) {
+        json::Value e = json::Value::MakeObject();
+        e.Set("at_ms", g.atEpochMs);
+        e.Set("goal", g.goal);
+        e.Set("why", g.why);
+        recent.Push(std::move(e));
+    }
+    o.Set("recent", std::move(recent));
+    return o;
+}
+
 bool Store::Exists(const std::string& identityId) const {
     std::string text;
     return json::ReadFile(PathFor(identityId).c_str(), &text);

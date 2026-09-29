@@ -10,6 +10,7 @@
 #include "world/NavGrid.h"
 #include "uo/endian.h"
 #include "uo/sparring.h"
+#include "uo/json.h"
 
 #include <cstdio>
 #include <cstring>
@@ -1714,6 +1715,16 @@ int main(int argc, char** argv) {
               "already inside the guarded landmark's radius resolves in one "
               "tick -- no re-run of the same zero-distance travel");
         Check(LogoutIssued(*client), "an 0xD1 logout request reached the wire");
+
+        // The observer's window says the character left, and who it is.
+        std::string statusText;
+        Check(json::ReadFile((root + "/winddown_guard/offline_world.winddown_guard/status.json").c_str(),
+                             &statusText), "logout leaves a status.json for the observer");
+        const json::Value status = json::Parse(statusText, nullptr);
+        Check(!status["online"].AsBool(true) && status["phase"].AsString() == "offline" &&
+              status["character"].AsString() == "winddown_guard" &&
+              status["family"].AsString() == "fencer" && !status["rhythm"].AsString().empty(),
+              "the status file marks the character offline with its family and play rhythm");
     }
 
     // --- wind-down regression: "arrived somewhere safe" must not repeat ----

@@ -2313,6 +2313,40 @@ struct PersistentState {
 json::Value ToJson(const PersistentState& st);
 bool FromJson(const json::Value& v, PersistentState* out, std::string* err);
 
+// WHAT THE OBSERVER SEES (tools/observer.py). A small, frequently rewritten
+// status.json beside state.json: never read back by the bot, never an
+// authority, only a window for the person watching the shard. Everything in
+// it is what this character itself observed.
+struct RecentGoal {
+    i64         atEpochMs = 0;
+    std::string goal;
+    std::string why;
+};
+
+struct LiveStatus {
+    std::string character, account, family, homeCity;
+    std::string rhythm, schedule;
+    std::string phase;             // live / wind_down / logging_out / offline
+    bool        online = false;
+    bool        dead = false;
+    std::string goal, goalFamily;
+    i32 x = 0, y = 0;
+    i32 hp = 0, hpMax = 0, mana = 0, manaMax = 0;
+    i32 str = 0, dex = 0, intel = 0;
+    i32 gold = 0, goldAtLogin = 0;
+    i32 skillTenths = 0;
+    i32 kills = 0, deaths = 0, goalsCompleted = 0, goalsAttempted = 0;
+    i32 partySize = 0;
+    i32 bandages = 0;
+    i32 friends = 0, foes = 0;
+    i64 sessionStartEpochMs = 0;
+    i64 updatedEpochMs = 0;
+    i64 sessionLimitMs = 0;
+    std::vector<RecentGoal> recent;   // newest last
+};
+
+json::Value ToJson(const LiveStatus& s);
+
 // A directory per identity: <root>/<identityId>/state.json. No passwords, no
 // credentials, ever -- the account name is stored, the password is not.
 class Store {
@@ -2329,6 +2363,8 @@ public:
     bool Load(const std::string& identityId, PersistentState* out,
               std::string* err) const;
     bool Exists(const std::string& identityId) const;
+    std::string StatusPathFor(const std::string& identityId) const;
+    bool SaveStatus(const std::string& identityId, const LiveStatus& s) const;
 
 private:
     std::string root_;

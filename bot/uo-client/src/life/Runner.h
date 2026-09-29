@@ -112,6 +112,10 @@ public:
 
     // Persist immediately (clean logout, host shutdown, a meaningful change).
     bool Checkpoint(Client& client, i64 nowMs, const char* why);
+    // The observer's window (status.json, tools/observer.py): every
+    // kStatusIntervalMs while live, and once more at logout marked offline.
+    void PublishStatus(Client& client, const Observation& obs, const char* phase);
+    void PublishOffline();
 
     // Ends the session deliberately: finish the current safe action, head
     // somewhere safe, persist, and log out.
@@ -564,6 +568,10 @@ private:
     bool windDownUnsafeLogout_ = false;
 
     SessionSummary session_;
+    static constexpr i64 kStatusIntervalMs = 10000;
+    i64 lastStatusMs_ = 0;
+    LiveStatus status_;
+    std::vector<RecentGoal> recentGoals_;
 
     // Transient per-goal working state. NONE of this is persisted -- it is
     // the ephemeral half of the truth split, and mixing it into state.json is
