@@ -169,10 +169,15 @@ const Row kMatrix[] = {
     {"i_shield_order",       VendorClass::PlayerCrafted},
     {"i_shield_scale",       VendorClass::PlayerCrafted},
 
-    // --- stock Sphere only ---------------------------------------------------
-    // Revolution players MARKED runes; that a stock vendor sells blanks is a
-    // Sphere fact, not a Revolution one.
-    {"i_rune_marker",     VendorClass::StockSphereOnly},
+    // --- blank runes: owner testimony (2026-09-30) ----------------------------
+    // Was StockSphereOnly on the reading "Revolution runes are marked, not
+    // bought". The project owner played RevolutionUO and states that BLANK
+    // RUNES WERE SOLD BY MAGE SHOPS -- the same first-hand testimony that
+    // resolved the reagents below, and consistent with the shard's own vendor
+    // table (tm_vend: SELL=i_rune_marker on the mage shop) and with
+    // REVOLUTION_GAMEPLAY_TRUTH.md:280 (sold by the mage shop for 2-10 gold).
+    // A player still MARKS it; buying the blank shortcuts nothing.
+    {"i_rune_marker",     VendorClass::RevolutionNpcVerified},
 
     // --- era conflicts: Necromancy reagents on a Renaissance mage shop -------
     // Necromancy is skill 49. This client ships skills 0-48 and cannot display

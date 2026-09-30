@@ -185,7 +185,7 @@ Left alone. A bot that never meets them cannot be corrupted by them.
 | `i_gears` | SELL[tinker] | Tinkering | `PLAYER_CRAFTED` | block |
 | 8 Magery reagents | SELL[alchemist, healer, mageshop, provis] | **UNKNOWN** — §4 | `UNKNOWN` | **§4** |
 | 18 Necromancy reagents | SELL[mageshop] | post-AoS | `ERA_CONFLICT` | **block** |
-| `i_rune_marker` | SELL[mageshop] | Revolution runes are marked, not bought | `STOCK_SPHERE_ONLY` | block |
+| `i_rune_marker` | SELL[mageshop] | Owner testimony (2026-09-30): mage shops sold blank runes; players marked them | `REVOLUTION_NPC_VERIFIED` | allow |
 | pack horse / pack llama | SELL[animaltrainer] | **03.11.2010, verbatim** | `REVOLUTION_NPC_VERIFIED` | **allow** |
 
 ### 3.1 The one item with a dated Revolution NPC entry

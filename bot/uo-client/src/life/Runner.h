@@ -131,6 +131,11 @@ public:
     i32  markX_ = 0, markY_ = 0;
     i8   markZ_ = 0;
     bool runesRestored_ = false;
+    bool runeWanted_ = false;
+    i64  runeBuyRestUntilMs_ = 0;
+    life::VendorErrand runeErrand_;
+    bool BuyBlankRune(Client& client, const Observation& obs);
+    void AddRuneNeeds(const Observation& obs, std::vector<Need>& needs);
     // PvP (runner/Pvp.cpp, uo/pvp.h).
     pvp::Role PvpRole() const;
     pvp::Self PvpSelf(Client& client, const Observation& obs) const;

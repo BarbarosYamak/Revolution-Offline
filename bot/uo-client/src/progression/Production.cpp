@@ -367,7 +367,7 @@ const LeafClass kLeaves[] = {
     {"i_reag_nightshade",    Provenance::Unknown},
     {"i_reag_spider_silk",   Provenance::Unknown},
     {"i_reag_sulfur_ash",    Provenance::Unknown},
-    {"i_rune_marker",        Provenance::Unknown},
+    {"i_rune_marker",        Provenance::NpcVerified},   // owner: mage shops sold blank runes
     {"i_ink_well",           Provenance::Unknown},
     {"i_sewing_needle",      Provenance::Unknown},
     {"i_bowl_wood",          Provenance::Unknown},

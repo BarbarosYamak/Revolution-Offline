@@ -2900,6 +2900,10 @@ static i32 BulkSupplyQty(const char* output, const std::string& input,
 bool Runner::DoBuySupplies(Client& client, const Observation& obs) {
     const prof::Profession* me = needCfg_.profession;
     if (!me) return true;
+    // A BLANK RUNE FIRST, when TickRunes asked for one: one rune, from a mage
+    // shop (owner 2026-09-30), its own small errand so the reagent band's
+    // "N x each" never applies to it.
+    if (runeWanted_) return BuyBlankRune(client, obs);
 
     // SETTLE THE PREVIOUS ASK FIRST, from the gold the server actually took.
     // The ledger is the economy's own books; it must record purchases that

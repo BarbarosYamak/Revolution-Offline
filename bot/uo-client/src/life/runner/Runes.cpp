@@ -8,12 +8,55 @@
 // a loose rune when there is no runebook page for it. The server is the only
 // witness: a rune is blank while its label is the stock name, and it counts
 // as marked only once the label the server gives back has CHANGED after the
-// cast. Blank runes are never bought -- the vendor policy blocks them
-// (data/revolution_vendor_policy.tsv, "marked, not bought") -- so this only
-// acts on one the character already owns.
+// cast. Blank runes are bought, one at a time, from a mage shop (owner
+// ruling 2026-09-30, .claude/agent-memory/revolution-god/
+// blank-runes-from-mage-shops.md); the marking still happens in game.
 
 namespace uo::life {
 using namespace runner_detail;
+
+// The rune errand: coin, a mage shop, one blank rune (0x1F14), verified by
+// the pack. A shop that has none, or a price over 50, rests it for an hour.
+bool Runner::BuyBlankRune(Client& client, const Observation& obs) {
+    if (client.BackpackItemCount(recall::kRuneGraphic) > 0) {
+        runeWanted_ = false; runeErrand_.Cancel();
+        LogLine("travel: bought a blank rune to mark at home");
+        planner_.NoteProgress();
+        return false;
+    }
+    if (FetchCoinForPurchase(client, obs, 60)) return false;
+    if (!runeErrand_.Running()) {
+        life::VendorErrandSpec spec;
+        spec.Sell("mage", wm::Service::Mage);
+        spec.graphic = recall::kRuneGraphic;
+        spec.qty = 1;
+        spec.what = "blank rune";
+        spec.maxPricePerUnit = 50;
+        runeErrand_.Begin(spec);
+    }
+    const life::VendorErrandResult r = runeErrand_.Tick(client, obs);
+    LogErrandReason("blank rune", r.why.c_str(), obs.nowMs);
+    if (r.wake == life::Wake::AfterDelay && r.delayMs > 0) nextActionMs_ = obs.nowMs + r.delayMs;
+    if (life::IsTerminal(r.status) && r.status != life::ActivityStatus::Success) {
+        runeErrand_.Cancel();
+        runeWanted_ = false;
+        runeBuyRestUntilMs_ = obs.nowMs + 60 * 60000;
+        LogLine("travel: no blank rune bought (%s)", r.why.c_str());
+    }
+    if (r.acted) planner_.NoteProgress();
+    return false;
+}
+
+void Runner::AddRuneNeeds(const Observation& obs, std::vector<Need>& needs) {
+    if (!runeWanted_ || obs.dead) return;
+    for (const Need& n : needs) if (n.kind == NeedKind::NeedSupplies) return;   // that trip carries it
+    Need n;
+    n.kind = NeedKind::NeedSupplies;
+    n.what = "blank rune";
+    n.urgency = 0.35;
+    n.reason = "a mage who can Mark has no rune for home";
+    needs.push_back(n);
+}
 
 void Runner::TickRunes(Client& client, const Observation& obs) {
     if (obs.nowMs - runeTickMs_ < 5000) return;
@@ -76,6 +119,11 @@ void Runner::TickRunes(Client& client, const Observation& obs) {
     }
 
     const HomeReturn home = ResolveHomeReturn(client.WorldAtlas(), state_.homeCity, obs.x, obs.y);
+    // No rune at all, and Mark within reach: buy one blank rune.
+    const bool ownHomeRune = home.resolved && client.Knowledge().BestRuneFor(home.x, home.y, 60) != nullptr;
+    runeWanted_ = client.BackpackItemCount(recall::kRuneGraphic) == 0 && !ownHomeRune && home.resolved &&
+                  obs.SkillTenths(rules::kMagery) >= recall::kMarkSkillTenths && obs.gold >= 200 &&
+                  obs.nowMs >= runeBuyRestUntilMs_;
     recall::MarkSight s;
     s.haveBlankRune = blank != 0;
     s.mageryTenths = obs.SkillTenths(rules::kMagery);

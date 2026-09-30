@@ -1873,6 +1873,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             AddTreasureNeeds(client, planningObs, needs);
             AddPvpNeeds(client, planningObs, needs);
             AddHousingNeeds(client, planningObs, needs);
+            AddRuneNeeds(planningObs, needs);
             std::string why;
             const GoalKind previous = planner_.Current().kind;
             const bool wasActive = planner_.Current().active;

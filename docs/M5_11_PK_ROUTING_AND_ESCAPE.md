@@ -61,9 +61,15 @@ longer treated as stranded.
 * A marked rune is remembered across sessions (a known place, "rune"). The
   travel layer can then choose **loose-rune Recall** for a trip home when the
   rune is still in the pack and landing there saves at least 150 tiles.
-* Blank runes are never bought: the vendor policy blocks them ("marked, not
-  bought"). This only acts on a rune the character already owns. Where
-  Revolution players got blank runes is UNKNOWN.
+* **Blank runes come from mage shops** (owner testimony, 2026-09-30). This
+  matches the shard's own vendor table (`SELL=i_rune_marker` on the mage
+  shop) and REVOLUTION_GAMEPLAY_TRUTH.md:280 (2-10 gold). `i_rune_marker` is
+  now `REVOLUTION_NPC_VERIFIED`; before, it was `STOCK_SPHERE_ONLY` on the old
+  "marked, not bought" reading.
+* A mage who can Mark (Magery 60), has no rune and no home rune yet, and has
+  at least 200 gold buys **one** blank rune on its next supplies trip. That is
+  its own one-item errand at a mage shop, with a price cap of 50 and an
+  hour's rest if the shop has none. It then marks the rune at home.
 
 ## Verified
 
