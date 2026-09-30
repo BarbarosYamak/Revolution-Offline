@@ -44,12 +44,39 @@ a vendor deed (vendor snapshot :42-48, :1256-1257, :1300). Until it exists:
 
 The price prompt and the pricing are ready for when it is.
 
+## Owners and buyers (built 2026-09-30, UNVERIFIED live)
+
+`src/life/runner/Vendors.cpp`, goal `RUN_VENDOR` (weight 125, in the Work
+family).
+
+**Owner:** a house owner (M5.8) with goods only players buy:
+1. takes coin from the bank and buys a **vendor deed**, matched by name. The
+   innkeeper and tavernkeeper carried `i_deed_vendor` in the shard's vendor
+   table; those lines are commented out today;
+2. uses the deed in its house, and remembers the vendor that appears (by its
+   paperdoll title) as `my_vendor`;
+3. drops one surplus stack at a time on the vendor and answers the **price
+   prompt** with `AskingPrice` × qty, up to 5 listings per visit;
+4. finishes by saying "vendor collect".
+
+If no prompt comes, it stops for 4 hours. If the deed places nothing, or no
+innkeeper sells one, it blocks the need.
+
+**Buyer:** a character short of something (`market::Shortfall`), within 120
+tiles of a player vendor it remembers, and not there in the last 2 hours:
+1. walks there;
+2. finds the vendor by its title;
+3. says "buy";
+4. buys **one** shortfall item that passes `WorthBuying` (cheaper than the NPC
+   shop, worth it to the buyer, within a quarter of its gold);
+5. records the price as a player trade in its own price book.
+
 ## Next, once the server has it
 
-1. **Owner:** it places the deed in its house (M5.8), drops surplus on the
-   vendor, and answers each price prompt with `AskingPrice`.
-2. **Buyer:** it walks to a remembered player vendor, says "buy", and uses the
-   existing NPC shop flow with `WorthBuying` as the filter.
+Uncomment `SELL=i_deed_vendor` on the innkeeper/tavernkeeper templates.
+Then a live run shows whether this tree's vendor behaves as stock Sphere
+does: a drop raises a price prompt, "buy" opens its shop, and "vendor
+collect" hands over the takings.
 
 ## Verified
 

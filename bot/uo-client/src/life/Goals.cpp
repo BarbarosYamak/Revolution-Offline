@@ -44,6 +44,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::HuntPlayers:           return "HUNT_PLAYERS";
         case GoalKind::BuyHouse:              return "BUY_HOUSE";
         case GoalKind::Family:                return "FAMILY";
+        case GoalKind::RunVendor:             return "RUN_VENDOR";
         case GoalKind::Count:                 break;
     }
     return "?";
@@ -106,6 +107,7 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::MakeBandagesForSale:
         case GoalKind::HarvestWool:
         case GoalKind::HuntTreasure:
+        case GoalKind::RunVendor:
             return GoalFamily::Work;
         case GoalKind::TrainCombat:
         case GoalKind::TrainAtNpc:
@@ -272,6 +274,9 @@ const GoalSpec kGoals[] = {
     // Social like SOCIALIZE, a little under it: founding a family is rare and
     // slow; inviting a friend who stands right here (0.60) should happen now.
     {GoalKind::Family,                NeedKind::NeedFamily,        140.0},
+    // Under the day's work: selling through a vendor is what the surplus is
+    // for once NPCs refuse it; browsing is an idle-time errand (0.25).
+    {GoalKind::RunVendor,             NeedKind::NeedVendor,        125.0},
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},

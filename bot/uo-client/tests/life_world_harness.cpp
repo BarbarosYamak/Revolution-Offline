@@ -73,6 +73,14 @@ struct RunnerHarnessAccess {
     static bool FamilyGoal(Runner& r, Client& c, const Observation& o) { return r.DoFamily(c, o); }
     static const std::string& FamilyName(const Runner& r) { return r.state_.family.surname; }
     static bool FamilyHead(const Runner& r) { return r.state_.family.head; }
+    static void SeedVendorOwner(Runner& r, i32 x, i32 y, u32 vendor, i32 pendingPrice, i64 now) {
+        r.state_.memory.NotePlace("house", "my house", x, y, 0, now);
+        char hex[16]; std::snprintf(hex, sizeof(hex), "%08X", vendor);
+        r.state_.memory.NotePlace("my_vendor", hex, x, y, 0, now);
+        r.vendorPricePending_ = pendingPrice; r.vendorDropMs_ = now;
+    }
+    static bool OwnVendor(Runner& r, Client& c, const Observation& o) { return r.OwnVendor(c, o); }
+    static u32 MyVendor(const Runner& r) { return r.MyVendorSerial(); }
     static void SeedHuntParty(Runner& r, u32 leader, const char* name, i64 now) {
         r.state_.identity.characterName = "Member";
         r.needCfg_.profession = prof::Find("fencer");
@@ -2246,6 +2254,18 @@ int main(int argc, char** argv) {
                 LoadBE32(p.bytes.data() + 11) == 1 && std::string(reinterpret_cast<const char*>(p.bytes.data() + 15)) == "125")
                 answered = true;
         Check(answered && !client->PromptActive(), "the reply names the prompt, type 1, the text NUL-terminated");
+
+        // An owner who just dropped goods on its vendor answers the price prompt.
+        life::RunnerHarnessAccess::SeedVendorOwner(runner, 1500, 1600, 0x1010, 250, obs.nowMs);
+        Check(life::RunnerHarnessAccess::MyVendor(runner) == 0x1010, "our own vendor is remembered by serial");
+        client->DispatchPacketForTest(prompt.data(), prompt.size());
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::OwnVendor(runner, *client, obs);
+        bool priced = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x9A && p.bytes.size() > 15 && std::string(reinterpret_cast<const char*>(p.bytes.data() + 15)) == "250")
+                priced = true;
+        Check(priced, "the owner answers the vendor's price prompt with the price it chose");
     }
 
     // --- PvP: the PK ambushes a lone miner; nobody ambushes inside the rules --

@@ -1418,6 +1418,8 @@ enum class NeedKind : u8 {
     NeedHousing,
     // Found a family, or invite a trusted friend into ours (uo/family.h).
     NeedFamily,
+    // Stock our own player vendor, or browse one we know (uo/player_vendor.h).
+    NeedVendor,
     Count,
 };
 
@@ -1918,6 +1920,8 @@ enum class GoalKind : u8 {
     BuyHouse,
     // Buy and use a family deed, or an invitation deed on a friend.
     Family,
+    // Own a player vendor (place, stock, price, collect) or buy from one.
+    RunVendor,
     Count,
 };
 

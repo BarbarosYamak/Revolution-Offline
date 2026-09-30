@@ -142,6 +142,16 @@ public:
     void AddFamilyNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
     u32  FamilyInviteCandidate(Client& client, const Observation& obs) const;
     bool DoFamily(Client& client, const Observation& obs);
+    // Player vendors, owner and buyer (runner/Vendors.cpp).
+    u32  MyVendorSerial() const;
+    void AddVendorNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoRunVendor(Client& client, const Observation& obs);
+    bool OwnVendor(Client& client, const Observation& obs);
+    bool BrowseVendor(Client& client, const Observation& obs);
+    life::VendorErrand vendorErrand_;
+    i32  vendorPricePending_ = 0, vendorListed_ = 0;
+    i64  vendorDropMs_ = 0, vendorPlacedMs_ = 0, vendorScanAskMs_ = 0, vendorStockedMs_ = 0;
+    i64  vendorVisitedMs_ = 0, vendorBrowseStartMs_ = 0, vendorOpenMs_ = 0, vendorRestUntilMs_ = 0;
     life::VendorErrand familyErrand_;
     std::string familyPendingSurname_, familyPendingHead_;
     i64  familyTickMs_ = 0, familyHeardMs_ = 0, familyPromptMs_ = 0, familyRestUntilMs_ = 0, familyCursorMs_ = 0;
