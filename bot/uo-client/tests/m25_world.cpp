@@ -294,6 +294,36 @@ void TestRouteAvoidance() {
     Check(blocked.failure && *blocked.failure, "failure carries a reason");
 }
 
+// A murderer's route: guarded towns are walls, not just forbidden endpoints
+// (GuardsOnMurderers=1, GuardsInstantKill=1).
+void TestGuardedCellsForMurderers() {
+    Section("murderer routing around guarded towns");
+    world_atlas::Atlas atlas; MakeAtlas(atlas);
+    navgrid::NavGrid grid;
+    MakeGrid(grid, /*withWall=*/false);
+    route::RoutePlanner planner(atlas, grid);
+    const auto guarded = planner.GuardedCells();
+    Check(guarded.count(planner.CellIndex(40, 40)) && guarded.count(planner.CellIndex(400, 400)),
+          "both towns' cells are guarded");
+    Check(!guarded.count(planner.CellIndex(200, 200)), "the moor is not");
+    route::RouteOptions opt;
+    opt.allowTeleporters = false;
+    opt.allowMoongates = false;
+    route::WorldRoute plain = planner.Plan(0, 40, 120, 40, opt);
+    bool plainEnters = false;
+    for (const route::RouteLeg& leg : plain.legs)
+        if (leg.target.x >= 20 && leg.target.x <= 60 && leg.target.y >= 20 && leg.target.y <= 60) plainEnters = true;
+    Check(plain.ok, "an ordinary character walks straight on");
+    opt.forbiddenCells = &guarded;
+    route::WorldRoute red = planner.Plan(0, 40, 120, 40, opt);
+    bool redEnters = false;
+    for (const route::RouteLeg& leg : red.legs)
+        if (leg.target.x >= 22 && leg.target.x <= 58 && leg.target.y >= 22 && leg.target.y <= 58) redEnters = true;
+    Check(red.ok && !redEnters, "a red character goes round the guarded town, never through it");
+    Check(red.estimatedTiles >= plain.estimatedTiles, "and the detour is not shorter");
+    (void)plainEnters;
+}
+
 void TestTransitsNear() {
     Section("transit pads near a point");
     world_atlas::Atlas a; MakeAtlas(a);
@@ -1048,6 +1078,7 @@ int main() {
     TestTravelLegality();
     TestRoutePlanning();
     TestRouteAvoidance();
+    TestGuardedCellsForMurderers();
     TestTransitsNear();
     TestEscapeCandidates();
     TestJourneySequencing();

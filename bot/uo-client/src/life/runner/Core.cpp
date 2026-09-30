@@ -1696,6 +1696,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             if (TickSparHealer(client, obs)) return;
             if (TickPartySupport(client, obs)) return;
             TickRunebook(client, obs);
+            TickRunes(client, obs);
             TickCraftOrders(client, obs);
             if (needCfg_.profession && !ActiveCraftOrder(false, obs.nowMs)) {
                 const std::string beforeItem = state_.productionBatch.item;

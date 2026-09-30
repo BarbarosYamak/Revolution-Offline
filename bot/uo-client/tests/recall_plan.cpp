@@ -36,6 +36,20 @@ int main() {
     Check(!ShouldReadBook(true, false, false, false, 1000, 0) && !ShouldReadBook(true, false, true, true, 1000, 0),
           "never in danger or mid-action");
     Check(!ShouldReadBook(true, false, true, false, 60000, 1000), "a failed try waits two minutes");
+    Check(LooksBlankRune("a recall rune") && LooksBlankRune("Recall Rune") && LooksBlankRune("a blank rune"),
+          "the stock name means a blank rune");
+    Check(!LooksBlankRune("Britain") && !LooksBlankRune("Minoc bank"), "a region name means marked");
+    MarkSight m; m.haveBlankRune = true; m.mageryTenths = 650; m.mana = 40; m.reagents = true;
+    m.atHome = true; m.safe = true;
+    Check(ShouldMark(m), "a mage at home with a blank rune and reagents marks it");
+    MarkSight low = m; low.mageryTenths = 590;
+    Check(!ShouldMark(low), "Magery 60 is Mark's requirement");
+    MarkSight away = m; away.atHome = false;
+    Check(!ShouldMark(away), "only at home: the rune is for coming back");
+    MarkSight already = m; already.ownRuneNearHome = true;
+    Check(!ShouldMark(already), "one home rune is enough");
+    MarkSight broke = m; broke.reagents = false;
+    Check(!ShouldMark(broke), "no reagents, no Mark");
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures ? 1 : 0;
 }

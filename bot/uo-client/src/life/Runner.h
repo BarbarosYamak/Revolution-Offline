@@ -123,6 +123,14 @@ public:
     void PublishStatus(Client& client, const Observation& obs, const char* phase);
     void PublishOffline();
     void TickRunebook(Client& client, const Observation& obs);
+    // Marking our own runes (runner/Runes.cpp).
+    void TickRunes(Client& client, const Observation& obs);
+    i64  runeTickMs_ = 0, runeLookMs_ = 0, markCastMs_ = 0, markLookedMs_ = 0, markRestUntilMs_ = 0;
+    u32  markRune_ = 0;
+    std::string markLabelBefore_;
+    i32  markX_ = 0, markY_ = 0;
+    i8   markZ_ = 0;
+    bool runesRestored_ = false;
     // PvP (runner/Pvp.cpp, uo/pvp.h).
     pvp::Role PvpRole() const;
     pvp::Self PvpSelf(Client& client, const Observation& obs) const;

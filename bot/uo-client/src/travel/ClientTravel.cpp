@@ -1128,6 +1128,23 @@ void Client::TravelPlanRoute() {
 
     const i32 straightTiles =
         Chebyshev(playerX_, playerY_, journey_.GoalX(), journey_.GoalY());
+    // A LOOSE RUNE THIS CHARACTER MARKED ITSELF (life runner, Runes.cpp):
+    // the only rune destinations it knows. It must still be in the pack, and
+    // landing there must clearly beat walking (the same bar as a book page).
+    u32 looseRune = 0;
+    if (const travel::KnownRune* k = knowledge_.BestRuneFor(journey_.GoalX(), journey_.GoalY(),
+                                                             recall::kMaxLandingTiles)) {
+        const u16 runeGfx = recall::kRuneGraphic;
+        const u32 pack = BackpackSerial();
+        bool inPack = false;
+        for (usize i = 0; pack && i < ContainerItemCount(pack); ++i) {
+            u32 s = 0; u16 g = 0, a = 0;
+            if (ContainerItemAt(pack, i, &s, &g, &a) && s == k->serial && g == runeGfx) inPack = true;
+        }
+        const i32 after = Chebyshev(k->x, k->y, journey_.GoalX(), journey_.GoalY());
+        if (inPack && straightTiles - after >= recall::kMinSavingTiles) looseRune = k->serial;
+    }
+    cap.haveMarkedRune = looseRune != 0;
     const travelmode::Mode picked = travelmode::Choose(cap, straightTiles);
 
     // Log the whole ranking, not just the winner. A planner that only shows what
@@ -1150,6 +1167,12 @@ void Client::TravelPlanRoute() {
     // works the walk is short, and if it fizzles, lacks mana or finds an empty
     // page the journey simply plans from here and walks. Nothing is faked and
     // nothing is skipped -- a failed recall costs a few seconds, not a lie.
+    if (picked == travelmode::Mode::LooseRuneRecall && looseRune && !runebookRecallDone_) {
+        runebookRecallDone_ = true;   // one recall per journey, as for the book
+        LogInfo("[travel] recalling with our own rune 0x%08X\n", looseRune);
+        LogEvent("rune_recall_begin", "");
+        ActionCastSpell(32, looseRune);
+    }
     if (picked == travelmode::Mode::RunebookRecall && rbPage != 0 &&
         !runebookRecallDone_) {
         runebookRecallDone_ = true;   // set before, not after: a refusal still
@@ -1163,6 +1186,19 @@ void Client::TravelPlanRoute() {
     opt.allowMoongates = travelUseMoongates_ ||
                          (picked == travelmode::Mode::Moongate);
     opt.avoidCells = &journey_.AvoidCells();
+    // A red character does not even pass THROUGH guarded ground: every cell
+    // of a guarded region is a wall for this search (the start excepted).
+    if (murdererRouting_) {
+        if (!guardedCellsBuilt_) {
+            guardedCells_ = world_knowledge_->planner->GuardedCells();
+            guardedCellsBuilt_ = true;
+            LogInfo("[travel] murderer routing: %zu guarded cells are walls\n", guardedCells_.size());
+        }
+        // Already standing on guarded ground: the shortest way out is the
+        // only sensible plan, so this one plan runs without the walls.
+        if (!guardedCells_.count(world_knowledge_->planner->CellIndex(playerX_, playerY_)))
+            opt.forbiddenCells = &guardedCells_;
+    }
 
     const route::WorldRoute r = world_knowledge_->planner->Plan(
         playerX_, playerY_, journey_.GoalX(), journey_.GoalY(), opt);

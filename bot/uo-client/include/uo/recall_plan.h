@@ -1,6 +1,7 @@
 #pragma once
 #include "uo/types.h"
 
+#include <cctype>
 #include <cstdlib>
 #include <string>
 #include <vector>
@@ -84,6 +85,35 @@ inline bool HasRecallReagents(u32 blackPearl, u32 bloodMoss, u32 mandrake, i32 e
 // at the bank, not mid-fight.
 inline bool ShouldReadBook(bool haveBook, bool alreadyRead, bool safe, bool busy, i64 nowMs, i64 lastTryMs) {
     return haveBook && !alreadyRead && safe && !busy && (lastTryMs == 0 || nowMs - lastTryMs >= 120000);
+}
+
+// ---- marking our own runes ---------------------------------------------------------
+// A rune (i_rune_marker 0x1F14) is created blank; Mark renames it to the region
+// it was marked in (REVOLUTION_GAMEPLAY_TRUTH.md:280, :487-501: NAME=Britain).
+// So the server's label is the evidence: the stock name means blank.
+inline constexpr u16 kRuneGraphic = 0x1F14;
+inline constexpr i32 kMarkSkillTenths = 600;   // Mark: Magery 60.0 (data/revolution_spells.tsv)
+inline constexpr i32 kMarkMana = 20;
+
+inline bool LooksBlankRune(const std::string& label) {
+    std::string t;
+    for (unsigned char c : label) t.push_back(static_cast<char>(std::tolower(c)));
+    return t == "recall rune" || t == "a recall rune" || t == "rune" || t == "a rune" ||
+           t.find("blank") != std::string::npos;
+}
+
+struct MarkSight {
+    bool haveBlankRune = false;
+    i32  mageryTenths = 0, mana = 0;
+    bool reagents = false;          // one each of black pearl, blood moss, mandrake
+    bool atHome = false;            // standing in the home region
+    bool safe = false, busy = false;
+    bool ownRuneNearHome = false;   // a rune we marked already lands near home
+};
+
+inline bool ShouldMark(const MarkSight& s) {
+    return s.haveBlankRune && s.mageryTenths >= kMarkSkillTenths && s.mana >= kMarkMana &&
+           s.reagents && s.atHome && s.safe && !s.busy && !s.ownRuneNearHome;
 }
 
 }  // namespace uo::recall

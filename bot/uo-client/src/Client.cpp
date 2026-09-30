@@ -2970,6 +2970,17 @@ i32 Client::PlayerHp() const { return player_.hpCur; }
 i32 Client::PlayerHpMax() const { return player_.hpMax; }
 i32 Client::PlayerGold() const { return player_.gold; }
 
+void Client::ActionLookAt(u32 serial) {
+    u8 p[5] = {0x09};
+    StoreBE32(p + 1, serial);
+    Send(p, sizeof(p), "0x09 single click");
+}
+
+const std::string* Client::ServerItemName(u32 serial) const {
+    const auto it = serverItemNames_.find(serial);
+    return it == serverItemNames_.end() ? nullptr : &it->second;
+}
+
 u8 Client::PlayerNotoriety() const {
     const MobileObj* m = FindMobileBySerial(playerSerial_);
     return m ? m->noto : 0;
@@ -5972,6 +5983,17 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
     RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
                            speaker.c_str(), text.c_str());
     LogInfo("[chat ascii] %s: %s\n", speaker.c_str(), text.c_str());
+    // An ITEM'S NAME, as the server labels it after a single click: the only
+    // way a client learns what Mark renamed a rune to.
+    if (sourceSerial != 0 && sourceSerial != 0xFFFFFFFFu) {
+        const u32 s = sourceSerial & 0x7FFFFFFFu;
+        bool isItem = items_.count(s) != 0;
+        for (const auto& c : containerItems_) {
+            if (isItem) break;
+            for (const ContainerItem& ci : c.second) if (ci.serial == s) { isItem = true; break; }
+        }
+        if (isItem) serverItemNames_[s] = text;
+    }
     NoteAttackEmote(sourceSerial, text.c_str());
 
     // Stamina signal: the server denies movement and says "too fatigued to

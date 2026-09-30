@@ -207,6 +207,10 @@ public:
     // Our own notoriety as the server last sent it for our mobile (0x77/0x78);
     // 0 = not seen. 6 = murderer: the guards kill us on sight.
     u8   PlayerNotoriety() const;
+    // Single-click an item (0x09) so the server labels it; ServerItemName is
+    // the last name it said, nullptr until then.
+    void ActionLookAt(u32 serial);
+    const std::string* ServerItemName(u32 serial) const;
     // A murderer never plans a trip INTO guarded ground (GuardsOnMurderers=1,
     // GuardsInstantKill=1). Set by the life runner from PlayerNotoriety().
     void SetMurdererRouting(bool on) { murdererRouting_ = on; }
@@ -1442,6 +1446,9 @@ private:
     struct MultiObj { u16 model; i32 x, y; i64 seenMs; };
     std::unordered_map<u32, MultiObj> multis_;
     bool murdererRouting_ = false;
+    std::unordered_map<u32, std::string> serverItemNames_;
+    std::unordered_set<u32> guardedCells_;     // built once, the first time a red trip plans
+    bool guardedCellsBuilt_ = false;
     u16 multiModel_ = 0;                // armed by 0x99, spent by ActionPlaceMulti
     void OnMapPin             (const u8* data, usize size);  // 0x56
     std::unordered_map<u32, MapView> maps_;

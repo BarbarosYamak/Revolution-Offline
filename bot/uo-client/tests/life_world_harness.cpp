@@ -1882,6 +1882,19 @@ int main(int argc, char** argv) {
             if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == 0x40007001)
                 opened = true;
         Check(opened, "the escape opens the runebook (the server still casts, checks and may fizzle)");
+
+        // A rune's name comes only from the server's label after a click.
+        auto rune = MakeAddItem(0x40007200, 0x1F14, 1, 0x40007000);
+        client->DispatchPacketForTest(rune.data(), rune.size());
+        client->ClearSentForTest();
+        client->ActionLookAt(0x40007200);
+        Check(!client->SentForTest().empty() && client->SentForTest().back().opcode == 0x09,
+              "looking at a rune sends a real single click");
+        Check(client->ServerItemName(0x40007200) == nullptr, "no name before the server says one");
+        auto label = MakeAsciiMessage(0x40007200, "", "a recall rune");
+        client->DispatchPacketForTest(label.data(), label.size());
+        Check(client->ServerItemName(0x40007200) && recall::LooksBlankRune(*client->ServerItemName(0x40007200)),
+              "the server's label is kept, and the stock name reads as blank");
     }
 
     // --- a murderer plans no trip into the guards ------------------------------
