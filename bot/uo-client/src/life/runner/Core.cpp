@@ -517,6 +517,12 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         obs.homeKnown = home.resolved;
         obs.inHomeRegion = !home.resolved || home.inHome;
         obs.tilesFromHome = home.tiles;
+        // A character that can recall home is not as far from home as the
+        // walk (TravelTilesWithGates counts moongates only).
+        if (home.resolved && !home.inHome) {
+            const i32 byRecall = client.RecallTilesTo(home.x, home.y);
+            if (byRecall >= 0 && byRecall < obs.tilesFromHome) obs.tilesFromHome = byRecall;
+        }
         obs.onErrandGround = home.onErrandGround;
     }
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
@@ -1685,6 +1691,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
             const Observation obs = Observe(client, nowMs);
             if (TickPoisonPractice(client, obs)) return;
             if (TickSparring(client, obs)) return;
+            // A red character plans no trip into guarded ground (uo/pvp.h).
+            client.SetMurdererRouting(client.PlayerNotoriety() == 6);
             if (TickSparHealer(client, obs)) return;
             if (TickPartySupport(client, obs)) return;
             TickRunebook(client, obs);

@@ -1864,6 +1864,54 @@ int main(int argc, char** argv) {
               "a trip to a Britain shop picks the Britain page by its point, whatever the trip's label");
         Check(client->RunebookPageForGoal(2520, 500) == 2, "and a Minoc trip the Minoc page");
         Check(client->RunebookPageForGoal(150, 120) == 0, "a short trip just walks");
+
+        // A charged book (from 13.05.2009, the default era is 2010) needs no
+        // Magery: the character can leave a losing fight by recall, and a
+        // trip home by recall counts as short.
+        std::vector<std::string> charged = texts;
+        charged[1] = "Charges: 05";
+        auto chargedGump = MakeGump(0x40007001, 0x1234, layout, charged);
+        client->DispatchPacketForTest(chargedGump.data(), chargedGump.size());
+        const i32 walk = 1480 - 100;
+        const i32 byRecall = client->RecallTilesTo(1480, 1600);
+        Check(byRecall >= 0 && byRecall < walk / 4, "a trip to Britain costs far less by recall than on foot");
+        client->ClearSentForTest();
+        Check(client->ActionEscapeByRecall(), "a character losing a fight can recall away");
+        bool opened = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == 0x40007001)
+                opened = true;
+        Check(opened, "the escape opens the runebook (the server still casts, checks and may fizzle)");
+    }
+
+    // --- a murderer plans no trip into the guards ------------------------------
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "murderer";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1000000);
+        Check(client->WorldKnowledgeReady(), "real Client loads atlas and grid");
+        i32 gx = -1, gy = -1;
+        for (const auto& r : client->WorldAtlas()->Regions()) {
+            const wm::Region* at = client->WorldAtlas()->RegionAt(r.center.x, r.center.y);
+            if (at && at->flags.guarded) { gx = r.center.x; gy = r.center.y; break; }
+        }
+        Check(gx >= 0, "the atlas has guarded ground to test against");
+        client->SetMurdererRouting(true);
+        Check(!client->TravelToPoint(gx, gy, 2, "bank") &&
+              std::string(client->TravelFailureText()).find("murderer") != std::string::npos,
+              "a red character refuses a trip into guarded ground");
+        client->SetMurdererRouting(false);
+        client->TravelToPoint(gx, gy, 2, "bank");
+        Check(std::string(client->TravelFailureText()).find("murderer") == std::string::npos,
+              "a blue character is not refused for that reason");
     }
 
     // --- treasure: decode, dig, open, loot -- every step read back from state

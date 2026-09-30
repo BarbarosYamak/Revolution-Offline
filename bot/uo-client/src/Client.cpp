@@ -2970,6 +2970,11 @@ i32 Client::PlayerHp() const { return player_.hpCur; }
 i32 Client::PlayerHpMax() const { return player_.hpMax; }
 i32 Client::PlayerGold() const { return player_.gold; }
 
+u8 Client::PlayerNotoriety() const {
+    const MobileObj* m = FindMobileBySerial(playerSerial_);
+    return m ? m->noto : 0;
+}
+
 bool Client::ContainerKnown(u32 serial) const {
     return containerItems_.find(serial) != containerItems_.end();
 }

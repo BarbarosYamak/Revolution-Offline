@@ -204,6 +204,13 @@ public:
     // -----------------------------------------------------------------
     bool IsInWorld() const { return state_ == State::InWorld; }
     u32  PlayerSerial() const { return playerSerial_; }
+    // Our own notoriety as the server last sent it for our mobile (0x77/0x78);
+    // 0 = not seen. 6 = murderer: the guards kill us on sight.
+    u8   PlayerNotoriety() const;
+    // A murderer never plans a trip INTO guarded ground (GuardsOnMurderers=1,
+    // GuardsInstantKill=1). Set by the life runner from PlayerNotoriety().
+    void SetMurdererRouting(bool on) { murdererRouting_ = on; }
+    bool MurdererRouting() const { return murdererRouting_; }
     // The day of Revolution's history this character lives in (uo/era.h).
     i32  EraDate() const { return cfg_.eraDate ? cfg_.eraDate : era::kDefaultDate; }
     // Runebook knowledge for the life runner: does the pack hold a book, and
@@ -214,6 +221,14 @@ public:
         int n = 0; for (const auto& p : runebookPages_) n += p.filled; return n;
     }
     int  RunebookPageForGoal(i32 toX, i32 toY) const;            // by map point, 0 = none
+    // Leave NOW: recall to the marked page farthest from here (at least 50
+    // tiles), if the book has been read and the cast can be paid for --
+    // a charge (from 13.05.2009) or Magery 40, 11 mana and the reagents.
+    bool ActionEscapeByRecall();
+    // What a trip to (x, y) costs in tiles when this character can recall to
+    // a page near it and pay for the cast: the walk from the landing point
+    // plus a fixed 20 for the cast itself. -1 = no usable recall.
+    i32  RecallTilesTo(i32 x, i32 y) const;
     // TEXT PROMPTS (0x9A). Sphere asks for a line of text this way -- a
     // player vendor's "set a price" is the case that matters here. Answered
     // with the same packet; one prompt open at a time, as in the real client.
@@ -1426,6 +1441,7 @@ private:
     std::string promptText_;
     struct MultiObj { u16 model; i32 x, y; i64 seenMs; };
     std::unordered_map<u32, MultiObj> multis_;
+    bool murdererRouting_ = false;
     u16 multiModel_ = 0;                // armed by 0x99, spent by ActionPlaceMulti
     void OnMapPin             (const u8* data, usize size);  // 0x56
     std::unordered_map<u32, MapView> maps_;

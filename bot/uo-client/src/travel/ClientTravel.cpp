@@ -169,6 +169,22 @@ bool Client::TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
         travelFailure_ = WorldKnowledgeError();
         return false;
     }
+    // A MURDERER DOES NOT WALK INTO THE GUARDS. GuardsOnMurderers=1 and
+    // GuardsInstantKill=1 (sphere.ini) mean a red character entering guarded
+    // ground dies on the spot, so the trip is refused here -- the one door
+    // every errand goes through -- and the goal that asked finds another way
+    // (Buccaneer's Den banks, wilderness spots). Passing THROUGH a town on a
+    // longer route is not yet avoided (docs/M5_11_PK_ROUTING_AND_ESCAPE.md).
+    if (murdererRouting_ && world_knowledge_) {
+        if (const wm::Region* r = world_knowledge_->atlas.RegionAt(x, y)) {
+            if (r->flags.guarded) {
+                travelFailure_ = "a murderer does not walk into the guards";
+                LogInfo("[travel] %s refused: (%d,%d) is guarded ground and we are red\n",
+                        label ? label : "", x, y);
+                return false;
+            }
+        }
+    }
     // Travelling is a peaceful intent. Saying so here is what makes every
     // journey drop a stale war mode without each caller remembering to.
     war_.OnPeacefulIntent(NowMs());
@@ -2217,6 +2233,37 @@ int Client::RunebookPageForGoal(i32 toX, i32 toY) const {
     for (const RunebookPage& p : runebookPages_)
         pages.push_back({p.page, p.name, p.x, p.y, p.filled && p.x > 0});
     return recall::BestPage(pages, playerX_, playerY_, toX, toY).page;
+}
+
+i32 Client::RecallTilesTo(i32 x, i32 y) const {
+    if (!RunebookRead()) return -1;
+    const bool charged = runebookCharges_ > 0 && era::Active(era::Feature::RunebookCharges, EraDate());
+    const bool canCast = PlayerSkillBase(static_cast<u16>(rules::kMagery)) >= 400 &&
+                         PlayerMana() >= 11 && HasRecallReagents();
+    if (!charged && !canCast) return -1;
+    std::vector<recall::Page> pages;
+    for (const RunebookPage& p : runebookPages_)
+        pages.push_back({p.page, p.name, p.x, p.y, p.filled && p.x > 0});
+    const recall::Choice c = recall::BestPage(pages, playerX_, playerY_, x, y);
+    return c.page ? c.walkAfter + 20 : -1;
+}
+
+bool Client::ActionEscapeByRecall() {
+    if (!RunebookRead() || pendingRunebookPage_ || IsDead()) return false;
+    const bool charged = runebookCharges_ > 0 && era::Active(era::Feature::RunebookCharges, EraDate());
+    const bool canCast = PlayerSkillBase(static_cast<u16>(rules::kMagery)) >= 400 &&
+                         PlayerMana() >= 11 && HasRecallReagents();
+    if (!charged && !canCast) return false;
+    int best = 0;
+    i32 bestD = 49;
+    for (const RunebookPage& p : runebookPages_) {
+        if (!p.filled || p.x <= 0) continue;
+        const i32 d = recall::Tiles(playerX_, playerY_, p.x, p.y);
+        if (d > bestD) { bestD = d; best = p.page; }
+    }
+    if (!best) return false;
+    if (TravelBusy()) TravelAbort("escaping by recall");
+    return BeginRunebookRecall(best);
 }
 
 bool Client::ActionReadRunebook() {

@@ -703,6 +703,28 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
                                        obs.x, obs.y, obs.nowMs);
         }
     }
+    // LOSING TO A PLAYER: RECALL OUT. A PK is not outrun the way a zombie is;
+    // a player who can reach a runebook page leaves by magic. The judgement
+    // is pvp::ShouldBreakOff (nerve, the race, the odds, bandages), never a
+    // constant; if the recall fizzles -- it can, under blows -- the ordinary
+    // retreat below still runs.
+    if (obs.nowMs - pvpEscapeMs_ >= 15000) {
+        u32 playerFoe = 0;
+        i32 foeHp = -1;
+        for (const auto& h : hostiles)
+            if (client.IsAttackingMe(h.serial) && client.KnownPlayer(h.serial)) {
+                playerFoe = h.serial;
+                foeHp = (h.hpCur >= 0 && h.hpMax > 0) ? h.hpCur * 100 / h.hpMax : -1;
+            }
+        if (playerFoe && pvp::ShouldBreakOff(obs.HpFraction(), foeHp, nerve, support,
+                                             obs.attackersOnMe, obs.bandages) &&
+            client.ActionEscapeByRecall()) {
+            pvpEscapeMs_ = obs.nowMs;
+            LogLine("pvp: losing to a player at %.0f%% -- recalling away", obs.HpFraction() * 100.0);
+            nextActionMs_ = obs.nowMs + 3000;
+            return false;
+        }
+    }
     const i32 board = static_cast<i32>(
         novice::RetreatBoard(static_cast<int>(obs.attackersOnMe),
                              std::max(obs.attackersOnMe, inReach - support)));
