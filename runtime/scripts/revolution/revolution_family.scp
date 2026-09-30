@@ -1,0 +1,188 @@
+// ****************************************************************************
+// RevolutionUO family system (last names).
+//
+// Evidence: OWNER TESTIMONY, 2026-09-30 (the project owner played
+// RevolutionUO; .claude/agent-memory/revolution-god/family-last-names.md):
+//
+//   "you had a family deed for 50k or something, then you were family head,
+//    choose a last name, then you invite a player per deed which is 10k or
+//    20k, and they have the same last name"
+//
+//   Being in the same family was social, a shared home/house, and allies in
+//   PvP.
+//
+// WHAT IS EVIDENCE AND WHAT IS RECONSTRUCTION
+//
+// Evidence-backed: a family deed (~50,000 gold) makes its user the family
+// head; the head chooses the last name; each invitation costs a deed of about
+// 10,000-20,000 gold (15,000 here); an invited player carries the same last
+// name.
+//
+// Reconstructed, and marked as such because nothing written survives:
+//   * which NPC sold the deeds. NOT added to any vendor here -- add
+//     `SELL=i_deed_family` / `SELL=i_deed_family_invite` to the vendor
+//     template Revolution used (see docs/M5_12_FAMILIES.md). GMs can `.add`
+//     them meanwhile.
+//   * the last name is appended to the character's NAME ("Ayse Yilmaz"),
+//     and the original name is kept in TAG.family_basename.
+//   * the invited player accepts or declines in a small gump.
+//   * a last name is 2-16 letters and unique across the shard.
+//   * no leaving/disbanding command (unknown; not invented).
+//
+// Nothing here touches notoriety, skills or items beyond the deed itself:
+// family PvP alliance is how the PLAYERS behave, not a server rule.
+//
+// UNVERIFIED on this tree: the PROMPTCONSOLE and STRREGEX forms below are
+// Source-X script syntax that has not been loaded on this server yet.
+// Resync and use each deed once as a GM before enabling it for players.
+// ****************************************************************************
+
+[DEFNAME revolution_family]
+family_deed_value     50000
+family_invite_value   15000
+family_max_name_len   16
+
+[ITEMDEF i_deed_family]
+ID=014f0
+NAME=family deed
+TYPE=t_normal
+VALUE=50000
+WEIGHT=1.0
+CATEGORY=Provisions - Deeds
+SUBSECTION=Family
+DESCRIPTION=Family deed
+
+ON=@DClick
+    IF (<SRC.TAG0.family>)
+        SRC.SYSMESSAGE=You already belong to the <SRC.TAG.family> family.
+        RETURN 1
+    ENDIF
+    IF (<TOPOBJ> != <SRC.UID>)
+        SRC.SYSMESSAGE=The deed must be in your backpack.
+        RETURN 1
+    ENDIF
+    SRC.TAG.family_deed=<UID>
+    SRC.PROMPTCONSOLE f_family_found,Choose your family's last name (2-16 letters):
+    RETURN 1
+
+// The head's answer to the prompt. ARGS is the text the player typed.
+[FUNCTION f_family_found]
+    LOCAL.name=<STRTRIM <ARGS>>
+    IF (!<STRREGEX ^[A-Za-z]{2,16}$ <LOCAL.name>>)
+        SYSMESSAGE=A last name is 2-16 letters, nothing else.
+        RETURN 1
+    ENDIF
+    IF (<VAR0.family_<LOCAL.name>>)
+        SYSMESSAGE=The <LOCAL.name> family already exists.
+        RETURN 1
+    ENDIF
+    REF1=<TAG0.family_deed>
+    IF (!<REF1.UID>) || (<REF1.TOPOBJ> != <UID>)
+        SYSMESSAGE=The family deed is no longer in your backpack.
+        RETURN 1
+    ENDIF
+    VAR.family_<LOCAL.name>=<UID>
+    TAG.family=<LOCAL.name>
+    TAG.family_head=<UID>
+    TAG.family_basename=<NAME>
+    NAME=<NAME> <LOCAL.name>
+    TAG.family_deed=
+    REF1.REMOVE
+    SYSMESSAGE=You are now the head of the <LOCAL.name> family.
+    RETURN 1
+
+[ITEMDEF i_deed_family_invite]
+ID=014f0
+NAME=family invitation deed
+TYPE=t_normal
+VALUE=15000
+WEIGHT=1.0
+CATEGORY=Provisions - Deeds
+SUBSECTION=Family
+DESCRIPTION=Family invitation deed
+
+ON=@DClick
+    IF (<SRC.TAG0.family_head> != <SRC.UID>)
+        SRC.SYSMESSAGE=Only a family head can invite.
+        RETURN 1
+    ENDIF
+    IF (<TOPOBJ> != <SRC.UID>)
+        SRC.SYSMESSAGE=The deed must be in your backpack.
+        RETURN 1
+    ENDIF
+    SRC.TAG.family_invite_deed=<UID>
+    SRC.SYSMESSAGE=Whom do you invite to the <SRC.TAG.family> family?
+    SRC.TARGETF=f_family_invite
+    RETURN 1
+
+// The head targeted someone: offer them the family in a gump.
+[FUNCTION f_family_invite]
+    REF1=<ACT>
+    IF (!<REF1.UID>) || (!<REF1.ISPLAYER>)
+        SYSMESSAGE=You can only invite a player.
+        RETURN 1
+    ENDIF
+    IF (<REF1.UID> == <UID>)
+        RETURN 1
+    ENDIF
+    IF (<REF1.TAG0.family>)
+        SYSMESSAGE=<REF1.NAME> already belongs to a family.
+        RETURN 1
+    ENDIF
+    IF (<DISTANCE <REF1.UID>> > 8)
+        SYSMESSAGE=<REF1.NAME> is too far away.
+        RETURN 1
+    ENDIF
+    REF1.TAG.family_offer=<TAG.family>
+    REF1.TAG.family_offer_from=<UID>
+    REF1.TAG.family_offer_name=<NAME>
+    REF1.DIALOGCLOSE=d_family_invite
+    REF1.DIALOG=d_family_invite
+    SYSMESSAGE=You offer <REF1.NAME> a place in the <TAG.family> family.
+    RETURN 1
+
+// Shown to the invited player. Texts are fixed so a client can read them:
+// text 0 "Aile daveti", text 1 the inviter's name, text 2 the last name.
+[DIALOG d_family_invite]
+80,80
+Page 0
+Resizepic 0 0 5054 320 150
+DText 20 14 0481 Aile daveti
+DText 20 44 0480 <TAG0.family_offer_name>
+DText 20 64 0480 <TAG0.family_offer>
+DText 20 90 0480 Kabul / Accept
+Button 120 88 4005 4007 1 0 1
+DText 180 90 0480 Red / Decline
+Button 270 88 4017 4018 1 0 0
+
+[DIALOG d_family_invite BUTTON]
+ON=0
+    TAG.family_offer=
+    TAG.family_offer_from=
+    TAG.family_offer_name=
+    SYSMESSAGE=You decline.
+    RETURN 1
+
+ON=1
+    REF1=<TAG0.family_offer_from>
+    IF (!<REF1.UID>) || (<REF1.TAG0.family_head> != <REF1.UID>) || (<REF1.TAG0.family> != <TAG0.family_offer>)
+        SYSMESSAGE=That invitation is no longer valid.
+        RETURN 1
+    ENDIF
+    REF2=<REF1.TAG0.family_invite_deed>
+    IF (!<REF2.UID>) || (<REF2.TOPOBJ> != <REF1.UID>)
+        SYSMESSAGE=<REF1.NAME> no longer has an invitation deed.
+        RETURN 1
+    ENDIF
+    TAG.family=<TAG.family_offer>
+    TAG.family_head=<REF1.UID>
+    TAG.family_basename=<NAME>
+    NAME=<NAME> <TAG.family>
+    TAG.family_offer=
+    TAG.family_offer_from=
+    TAG.family_offer_name=
+    REF1.TAG.family_invite_deed=
+    REF2.REMOVE
+    SYSMESSAGE=You join the <TAG.family> family.
+    REF1.SYSMESSAGE=<TAG.family_basename> joins the family.
+    RETURN 1

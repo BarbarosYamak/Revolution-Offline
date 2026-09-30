@@ -136,6 +136,16 @@ public:
     life::VendorErrand runeErrand_;
     bool BuyBlankRune(Client& client, const Observation& obs);
     void AddRuneNeeds(const Observation& obs, std::vector<Need>& needs);
+    // Families (runner/Family.cpp, uo/family.h).
+    bool FamilyMember(const std::string& name) const;
+    void TickFamily(Client& client, const Observation& obs);
+    void AddFamilyNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    u32  FamilyInviteCandidate(Client& client, const Observation& obs) const;
+    bool DoFamily(Client& client, const Observation& obs);
+    life::VendorErrand familyErrand_;
+    std::string familyPendingSurname_, familyPendingHead_;
+    i64  familyTickMs_ = 0, familyHeardMs_ = 0, familyPromptMs_ = 0, familyRestUntilMs_ = 0, familyCursorMs_ = 0;
+    u32  familyCursorTarget_ = 0;
     // PvP (runner/Pvp.cpp, uo/pvp.h).
     pvp::Role PvpRole() const;
     pvp::Self PvpSelf(Client& client, const Observation& obs) const;

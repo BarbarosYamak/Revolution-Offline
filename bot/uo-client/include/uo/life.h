@@ -1416,6 +1416,8 @@ enum class NeedKind : u8 {
     NeedPvp,
     // Savings enough for a house, or a deed waiting to be placed (uo/housing.h).
     NeedHousing,
+    // Found a family, or invite a trusted friend into ours (uo/family.h).
+    NeedFamily,
     Count,
 };
 
@@ -1914,6 +1916,8 @@ enum class GoalKind : u8 {
     HuntPlayers,
     // Buy a house deed from an architect and place it outside town.
     BuyHouse,
+    // Buy and use a family deed, or an invitation deed on a friend.
+    Family,
     Count,
 };
 
@@ -2297,6 +2301,16 @@ struct PersistentState {
     // schedule to decide when this character logs in.
     persona::Persona persona;
 
+    // FAMILY (uo/family.h). The last name the server gave us, whether we are
+    // the head, who the head is, and the members we have seen carry it.
+    struct Family {
+        std::string surname;
+        bool head = false;
+        std::string headName;
+        std::vector<std::string> members;
+        int surnameAttempt = 0;       // how many names the server refused
+    } family;
+
     // The current objective, so a session RESUMES rather than restarts. It is
     // re-validated against server truth on login and may be dropped.
     GoalState goal;
@@ -2339,6 +2353,8 @@ struct LiveStatus {
     std::string character, account, family, homeCity;
     std::string rhythm, schedule;
     std::string era;               // uo/era.h date this character lives in
+    std::string familyName;        // last name, "" = no family (uo/family.h)
+    bool        familyHead = false;
     std::string phase;             // live / wind_down / logging_out / offline
     bool        online = false;
     bool        dead = false;

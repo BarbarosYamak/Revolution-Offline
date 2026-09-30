@@ -890,3 +890,8 @@ add_test(NAME player_vendor COMMAND player_vendor)
 add_executable(party_hunt party_hunt.cpp)
 target_include_directories(party_hunt PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME party_hunt COMMAND party_hunt)
+
+# Families (last names) -- founding, inviting, accepting, recognising. Pure.
+add_executable(family family.cpp)
+target_include_directories(family PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME family COMMAND family)

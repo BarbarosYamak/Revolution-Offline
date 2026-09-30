@@ -126,7 +126,7 @@ const GATHER=/miner|lumber|fisher/;
 let DATA=window.__DATA__||null, sortKey='live', sortDir=-1;
 const COLS=[['character','Name'],['family','Family'],['live','State'],['goal','Goal'],['home_city','Home'],
  ['hp','HP'],['gold','Gold'],['gold_delta','Earned'],['skill_total','Skills'],['kills','Kills'],
- ['deaths','Deaths'],['party_size','Party'],['rhythm','Plays'],['age_s','Updated']];
+ ['deaths','Deaths'],['party_size','Party'],['last_name','Family'],['rhythm','Plays'],['age_s','Updated']];
 function color(b){const css=getComputedStyle(document.documentElement);
  if(b.dead)return css.getPropertyValue('--dead');const f=b.family||'';
  return css.getPropertyValue(FIGHT.test(f)?'--fight':GATHER.test(f)?'--gather':'--craft');}
@@ -157,7 +157,7 @@ function render(){if(!DATA)return;const s=DATA.summary,p=DATA.population;
   ${recent?`<details><summary class="muted">recent</summary><div style="white-space:normal;max-width:520px">${recent}</div></details>`:''}</td>
   <td>${esc(b.family)}</td><td>${st}</td><td>${esc(b.goal)}</td><td>${esc(b.home_city)}</td>
   <td>${b.hp}/${b.hp_max}</td><td>${b.gold}</td><td>${b.gold_delta}</td><td>${b.skill_total}</td>
-  <td>${b.kills}</td><td>${b.deaths}</td><td>${b.party_size||''}</td><td title="${esc(b.schedule)}">${esc(b.rhythm)}</td><td>${b.age_s}s ago</td></tr>`;}).join('');}
+  <td>${b.kills}</td><td>${b.deaths}</td><td>${b.party_size||''}</td><td>${esc(b.last_name||'')}${b.family_head?' (head)':''}</td><td title="${esc(b.schedule)}">${esc(b.rhythm)}</td><td>${b.age_s}s ago</td></tr>`;}).join('');}
 document.addEventListener('click',e=>{const k=e.target.dataset&&e.target.dataset.k;if(!k)return;
  if(k===sortKey)sortDir=-sortDir;else{sortKey=k;sortDir=-1;}render();});
 document.getElementById('filter').addEventListener('input',render);

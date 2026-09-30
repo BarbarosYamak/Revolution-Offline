@@ -96,6 +96,10 @@ struct VendorErrandSpec {
     // The item, by graphic. Zero means "the caller will choose from the
     // offer itself" and Tick stops at OfferOpen.
     u16 graphic = 0;
+    // Optional: the shop row's NAME must contain this (case-insensitive).
+    // Deeds share one graphic (0x14F0) -- a house deed and a family deed are
+    // told apart only by what the shop calls them.
+    const char* nameContains = nullptr;
     // How many are wanted. The errand clamps this to what the shelf actually
     // holds -- see Client::ActionVendorBuy.
     i32 qty = 1;

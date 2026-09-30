@@ -1430,6 +1430,8 @@ void Runner::PublishStatus(Client& client, const Observation& obs, const char* p
     s.rhythm = persona::RhythmName(state_.persona.rhythm);
     s.schedule = persona::Describe(state_.persona);
     s.era = era::Format(eraDate_);
+    s.familyName = state_.family.surname;
+    s.familyHead = state_.family.head;
     s.phase = phase;
     s.online = obs.inWorld;
     s.dead = obs.dead;
@@ -1697,6 +1699,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             if (TickPartySupport(client, obs)) return;
             TickRunebook(client, obs);
             TickRunes(client, obs);
+            TickFamily(client, obs);
             TickCraftOrders(client, obs);
             if (needCfg_.profession && !ActiveCraftOrder(false, obs.nowMs)) {
                 const std::string beforeItem = state_.productionBatch.item;
@@ -1874,6 +1877,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             AddPvpNeeds(client, planningObs, needs);
             AddHousingNeeds(client, planningObs, needs);
             AddRuneNeeds(planningObs, needs);
+            AddFamilyNeeds(client, planningObs, needs);
             std::string why;
             const GoalKind previous = planner_.Current().kind;
             const bool wasActive = planner_.Current().active;
@@ -2910,6 +2914,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::HuntTreasure:          done = DoHuntTreasure(client, obs); break;
         case GoalKind::HuntPlayers:           done = DoHuntPlayers(client, obs); break;
         case GoalKind::BuyHouse:              done = DoBuyHouse(client, obs); break;
+        case GoalKind::Family:                done = DoFamily(client, obs); break;
         case GoalKind::Count:                 break;
     }
 

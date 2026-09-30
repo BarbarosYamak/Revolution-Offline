@@ -1,3 +1,4 @@
+#include <cctype>
 #include "uo/vendor_errand.h"
 
 #include "Client.h"
@@ -359,6 +360,12 @@ VendorErrandResult VendorErrand::Tick(Client& client, const Observation& obs) {
 
             for (const Client::VendorItem& v : client.VendorOffer()) {
                 if (v.graphic != spec_.graphic) continue;
+                if (spec_.nameContains && *spec_.nameContains) {
+                    std::string have = v.name, want = spec_.nameContains;
+                    for (char& c : have) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+                    for (char& c : want) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+                    if (have.find(want) == std::string::npos) continue;
+                }
                 if (v.amount == 0) continue;
                 // A PRICE CEILING (section 16). A bot with a full purse will
                 // otherwise pay whatever number the shop says.

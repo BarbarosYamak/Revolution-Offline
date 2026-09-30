@@ -1278,6 +1278,10 @@ public:
     // then press OKAY.
     struct GumpOption { u32 id; bool button; std::string label; };
     bool GumpActive() const { return gump_.active; }
+    // The open gump's whole text table (DText captions included).
+    const std::vector<std::string>& GumpTexts() const { return gump_.texts; }
+    // Our own character's name as the server last sent it ("" before).
+    std::string PlayerName() const { const char* n = MobileName(playerSerial_); return n ? n : ""; }
     const std::vector<GumpOption>& GumpOptions() const { return gump_.options; }
     u32  GumpContext() const { return gump_.context; }
     bool AnswerGump(u32 button, u32 optionId);

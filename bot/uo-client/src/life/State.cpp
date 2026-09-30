@@ -245,6 +245,17 @@ json::Value ToJson(const PersistentState& st) {
 
         root.Set("home_city", st.homeCity);
 
+        if (!st.family.surname.empty() || st.family.surnameAttempt > 0) {
+            json::Value fam = json::Value::MakeObject();
+            fam.Set("surname", st.family.surname);
+            fam.Set("head", st.family.head);
+            fam.Set("head_name", st.family.headName);
+            fam.Set("surname_attempt", static_cast<i64>(st.family.surnameAttempt));
+            json::Value mem = json::Value::MakeArray();
+            for (const std::string& m : st.family.members) mem.Push(json::Value(m));
+            fam.Set("members", std::move(mem));
+            root.Set("family", std::move(fam));
+        }
         if (st.persona.set) {
             json::Value per = json::Value::MakeObject();
             per.Set("rhythm", persona::RhythmName(st.persona.rhythm));
@@ -478,6 +489,18 @@ bool FromJson(const json::Value& v, PersistentState* out, std::string* err) {
 
     st.homeCity = v["home_city"].AsString();
 
+    {
+        const json::Value& fam = v["family"];
+        if (fam.isObject()) {
+            st.family.surname = fam["surname"].AsString();
+            st.family.head = fam["head"].AsBool(false);
+            st.family.headName = fam["head_name"].AsString();
+            st.family.surnameAttempt = static_cast<int>(fam["surname_attempt"].AsInt(0));
+            const json::Value& mem = fam["members"];
+            for (usize i = 0; i < mem.Size(); ++i)
+                if (!mem.At(i).AsString().empty()) st.family.members.push_back(mem.At(i).AsString());
+        }
+    }
     {
         // Absent before the population manager: Runner::Configure derives it
         // from the identity id, which gives the same persona the file would.
@@ -831,6 +854,8 @@ json::Value ToJson(const LiveStatus& s) {
     o.Set("rhythm", s.rhythm);
     o.Set("schedule", s.schedule);
     o.Set("era", s.era);
+    o.Set("last_name", s.familyName);        // "family" is the profession family
+    o.Set("family_head", s.familyHead);
     o.Set("phase", s.phase);
     o.Set("online", s.online);
     o.Set("dead", s.dead);

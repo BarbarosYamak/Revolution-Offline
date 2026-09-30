@@ -43,6 +43,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::HuntTreasure:          return "HUNT_TREASURE";
         case GoalKind::HuntPlayers:           return "HUNT_PLAYERS";
         case GoalKind::BuyHouse:              return "BUY_HOUSE";
+        case GoalKind::Family:                return "FAMILY";
         case GoalKind::Count:                 break;
     }
     return "?";
@@ -117,6 +118,7 @@ GoalFamily FamilyOf(GoalKind k) {
             return GoalFamily::Training;
         case GoalKind::TradeWithPlayer:
         case GoalKind::Socialize:
+        case GoalKind::Family:
             return GoalFamily::Social;
         case GoalKind::TravelToRequiredPlace:
         case GoalKind::Explore:
@@ -267,6 +269,9 @@ const GoalSpec kGoals[] = {
     // Under the day's work: a house is what savings are FOR, not a reason to
     // stop earning. A deed in the pack (0.70) still wins an idle moment.
     {GoalKind::BuyHouse,              NeedKind::NeedHousing,       120.0},
+    // Social like SOCIALIZE, a little under it: founding a family is rare and
+    // slow; inviting a friend who stands right here (0.60) should happen now.
+    {GoalKind::Family,                NeedKind::NeedFamily,        140.0},
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},

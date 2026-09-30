@@ -125,6 +125,7 @@ set(UO_CLIENT_SOURCES
     src/life/runner/Housing.cpp
     src/life/runner/PartyHunt.cpp
     src/life/runner/Runes.cpp
+    src/life/runner/Family.cpp
     src/progression/ClientSocial.cpp
     src/life/runner/Train.cpp
     src/life/runner/Tame.cpp

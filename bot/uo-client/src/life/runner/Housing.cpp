@@ -109,6 +109,7 @@ bool Runner::DoBuyHouse(Client& client, const Observation& obs) {
         life::VendorErrandSpec spec;
         spec.Sell("architect", wm::Service::Carpenter);
         spec.graphic = housing::kDeedGraphic;
+        spec.nameContains = "house";          // not a family or vendor deed
         spec.qty = 1;
         spec.what = "house deed";
         spec.maxPricePerUnit = s.deedBudget;

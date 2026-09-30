@@ -11,6 +11,7 @@
 #include "uo/endian.h"
 #include "uo/sparring.h"
 #include "uo/json.h"
+#include "uo/family.h"
 
 #include <cstdio>
 #include <cstring>
@@ -64,6 +65,14 @@ struct RunnerHarnessAccess {
     }
     static bool OwnsHouse(const Runner& r) { return r.OwnsHouse(); }
     static void Vendors(Runner& r, Client& c, const Observation& o) { r.ObservePlayerVendors(c, o); }
+    static void TrustFriend(Runner& r, const char* name, i32 trust) {
+        social::Remember(r.state_.memory.relationships, name, social::Encounter::Greeting, 1);
+        for (auto& rel : r.state_.memory.relationships) if (rel.name == name) rel.trust = trust;
+    }
+    static void FamilyTick(Runner& r, Client& c, const Observation& o) { r.familyTickMs_ = 0; r.TickFamily(c, o); }
+    static bool FamilyGoal(Runner& r, Client& c, const Observation& o) { return r.DoFamily(c, o); }
+    static const std::string& FamilyName(const Runner& r) { return r.state_.family.surname; }
+    static bool FamilyHead(const Runner& r) { return r.state_.family.head; }
     static void SeedHuntParty(Runner& r, u32 leader, const char* name, i64 now) {
         r.state_.identity.characterName = "Member";
         r.needCfg_.profession = prof::Find("fencer");
@@ -2115,6 +2124,77 @@ int main(int argc, char** argv) {
         Check(bandaged, "with a real bandage double-click");
         Check(!life::RunnerHarnessAccess::LootTurn(runner, *client) && life::RunnerHarnessAccess::LootTurn(runner, *client),
               "the first kill is the leader's to loot, the second ours");
+    }
+
+    // --- families: an invitation from a friend is accepted; a founder names it
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(970000);
+        auto login = MakeLoginConfirm(0x2002, 500, 500);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto myName = MakeMobName(0x2002, "Ayse");
+        client->DispatchPacketForTest(myName.data(), myName.size());
+        life::Runner runner;
+        life::RunnerConfig rc;
+        std::filesystem::remove_all(root + "/family");
+        rc.dataRoot = root + "/family";
+        rc.accountName = "offline_world";
+        rc.characterName = "Ayse";
+        rc.professionId = "tailor";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 970000; obs.x = obs.y = 500;
+        obs.hp = obs.hpMax = 60;
+        life::RunnerHarnessAccess::TrustFriend(runner, "Kemal Yilmaz", 4);
+        std::string layout = "{ button 120 88 4005 4007 1 0 1 }{ button 270 88 4017 4018 1 0 0 }";
+        auto gump = MakeGump(0x2002, 0x5151, layout, {"Aile daveti", "Kemal Yilmaz", "Yilmaz", "Kabul / Accept", "Red / Decline"});
+        client->DispatchPacketForTest(gump.data(), gump.size());
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::FamilyTick(runner, *client, obs);
+        bool accepted = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0xB1 && p.bytes.size() >= 15 && LoadBE32(p.bytes.data() + 11) == 1) accepted = true;
+        Check(accepted, "a trusted friend's family invitation is accepted (button 1 of the server's gump)");
+        Check(life::RunnerHarnessAccess::FamilyName(runner).empty(), "not a member until the server renames us");
+        auto renamed = MakeMobName(0x2002, "Ayse Yilmaz");
+        client->DispatchPacketForTest(renamed.data(), renamed.size());
+        obs.nowMs += 3000; client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::FamilyTick(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::FamilyName(runner) == "Yilmaz" && !life::RunnerHarnessAccess::FamilyHead(runner),
+              "once our own name carries it, we are of the Yilmaz family (not its head)");
+
+        // A stranger's invitation is declined.
+        life::Runner loner;
+        rc.dataRoot = root + "/family_loner"; rc.characterName = "Mert";
+        std::filesystem::remove_all(rc.dataRoot);
+        Check(loner.Configure(rc, &error), error.c_str());
+        client->DispatchPacketForTest(gump.data(), gump.size());
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::FamilyTick(loner, *client, obs);
+        bool declined = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0xB1 && p.bytes.size() >= 15 && LoadBE32(p.bytes.data() + 11) == 0) declined = true;
+        Check(declined, "an invitation from a stranger is declined");
+
+        // A founder answers the server's name prompt with a Turkish last name.
+        std::vector<u8> prompt(15, 0);
+        prompt[0] = 0x9A;
+        StoreBE32(&prompt[3], 0x2002); StoreBE32(&prompt[7], 0x99);
+        const char q[] = "Choose your family's last name (2-16 letters):";
+        for (char ch : q) prompt.push_back(static_cast<u8>(ch));
+        StoreBE16(&prompt[1], static_cast<u16>(prompt.size()));
+        client->DispatchPacketForTest(prompt.data(), prompt.size());
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::FamilyGoal(loner, *client, obs);
+        std::string answered;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x9A && p.bytes.size() > 15) answered = reinterpret_cast<const char*>(p.bytes.data() + 15);
+        int n = 0; const char* const* names = family::Surnames(&n);
+        bool isSurname = false;
+        for (int i = 0; i < n; ++i) isSurname = isSurname || answered == names[i];
+        Check(isSurname, "the founder names the family from the Turkish surname list");
     }
 
     // --- player vendors: noticed by their title; a price prompt answered ----

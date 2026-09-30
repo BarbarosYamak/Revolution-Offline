@@ -41,13 +41,14 @@ enum class Topic : u8 {
     Condolence,    // to someone else who died
     Idle,          // town small talk
     Rival,         // to a foe, from a safe distance
+    GreetFamily,   // someone carrying our last name
     Count
 };
 
 inline const char* TopicName(Topic t) {
     static const char* kNames[] = {"greet", "greet_back", "answer_sa", "greet_friend", "worker_greet",
                                    "thanks", "farewell", "after_kill", "after_death", "condolence",
-                                   "idle", "rival"};
+                                   "idle", "rival", "greet_family"};
     return static_cast<int>(t) < static_cast<int>(Topic::Count) ? kNames[static_cast<int>(t)] : "?";
 }
 
@@ -70,6 +71,8 @@ inline Lines LinesFor(Topic t) {
                                        "reagent fiyatlari artmis", "yarin guild war var mi", "bu aksam dungeon'a giden var mi",
                                        "cok sikildim ya", "britain her zamanki gibi"};
     static const char* const rival[] = {"yine mi sen", "bakariz", "seni gordum", "uzak dur", "sonra konusuruz"};
+    static const char* const greetFamily[] = {"selam kuzen", "naber kardesim", "hosgeldin, aile toplaniyor",
+                                              "aileden biri geldi", "selam abi, nasilsin"};
     switch (t) {
         case Topic::Greet:       return {greet, 7};
         case Topic::GreetBack:   return {greetBack, 5};
@@ -83,6 +86,7 @@ inline Lines LinesFor(Topic t) {
         case Topic::Condolence:  return {condolence, 4};
         case Topic::Idle:        return {idle, 8};
         case Topic::Rival:       return {rival, 5};
+        case Topic::GreetFamily: return {greetFamily, 5};
         default:                 return {nullptr, 0};
     }
 }

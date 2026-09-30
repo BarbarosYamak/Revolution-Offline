@@ -99,8 +99,9 @@ void Runner::TickSmallTalk(Client& client, const Observation& obs, bool safe) {
         }
         if (rel && rel->trust >= 2 && (p.noto == 1 || p.noto == 2)) {
             if (chatter::WantsToSpeak(sociable, me + p.name, obs.nowMs / 600000, 30))
-                Chat(client, obs.nowMs, client.ActionBusy() ? chatter::Topic::GreetFriend
-                                                            : chatter::Topic::WorkerGreet, p.name);
+                Chat(client, obs.nowMs, FamilyMember(p.name) ? chatter::Topic::GreetFamily
+                                        : client.ActionBusy() ? chatter::Topic::GreetFriend
+                                                              : chatter::Topic::WorkerGreet, p.name);
             else
                 chatWith_[p.name] = obs.nowMs;
             return;
