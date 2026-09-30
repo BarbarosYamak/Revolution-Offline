@@ -687,8 +687,33 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             // 2026-09-07 knight deaths cost (combat.h, SpeciesCeiling).
             policy.maxSpeciesDanger =
                 combat::SpeciesCeiling(BestFightSkillTenths(obs));
-            const int prey = combat::ChoosePrey(cands, me, combat::RevolutionCrimeRules(),
-                                                policy, obs.HpFraction(), danger);
+            int prey = combat::ChoosePrey(cands, me, combat::RevolutionCrimeRules(),
+                                          policy, obs.HpFraction(), danger);
+            // FOCUS FIRE. In a hunting party a follower hits what the leader
+            // called ("hedef: <monster>") or is fighting, not its own nearest
+            // pick -- and an archer or caster holds its first blow until the
+            // leader is engaged, so the melee takes the monster's attention.
+            if (InHuntingParty(client) && client.PartyLeader() != client.PlayerSerial()) {
+                std::vector<party::Seen> seenPos;
+                for (const combat::Candidate& cand : cands) {
+                    i32 cx = 0, cy = 0;
+                    client.MobilePosition(cand.serial, &cx, &cy);
+                    seenPos.push_back({cand.name, cx, cy});
+                }
+                const int focus = PartyFocusIndex(client, obs, seenPos);
+                const bool leaderEngaged = focusUntilMs_ > obs.nowMs ||
+                                           client.MobileWarMode(client.PartyLeader());
+                if (focus >= 0 && (prey >= 0 || cands[static_cast<usize>(focus)].dist <= 3)) {
+                    if (focus != prey)
+                        LogLine("party: focusing the leader's target '%s'", cands[static_cast<usize>(focus)].name.c_str());
+                    prey = focus;
+                }
+                if (prey >= 0 && !party::MayOpen(MyPartyRole(), leaderEngaged) &&
+                    !cands[static_cast<usize>(prey)].attackingMe) {
+                    nextActionMs_ = obs.nowMs + 1000;
+                    return false;   // let the tank open
+                }
+            }
             if (prey >= 0) {
                 const combat::Candidate& c = cands[static_cast<usize>(prey)];
                 // GIVE UP BEFORE RE-ATTACKING, NOT AFTER. ChoosePrey returns
@@ -813,6 +838,7 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
                 HuntSupport(client, obs, c.serial, true);
                 currentFoe_ = c.serial;
                 currentFoeName_ = c.name;
+                CallFocus(client, obs.nowMs, c.serial, c.name);
                 // TRAIN_COMBAT opens the fight, but SURVIVE owns it as soon
                 // as the target retaliates.  Initialise the shared fight
                 // window here; waiting for DoSurvive to see a *different*
@@ -940,6 +966,41 @@ bool Runner::DoTrainCombat(Client& client, const Observation& obs) {
             // The follower fights locally but never chooses a competing destination.
             nextActionMs_ = obs.nowMs + 1000;
             return false;
+        }
+        // A DUNGEON TRIP. The group agreed on a place in the invitation
+        // ("Anyone for a Despise hunt?"); the leader takes it to that
+        // dungeon's first level and patrols there. A route that fails sends
+        // the group back to the graveyards rather than retrying forever.
+        if (InHuntingParty(client) && huntGround_ != party::Ground::Graveyard) {
+            if (huntDungeonState_ == 0) {
+                if (client.TravelToRegion(party::GroundRegion(huntGround_))) {
+                    huntDungeonState_ = 1;
+                    LogLine("party: leading the group to %s", party::GroundName(huntGround_));
+                    nextActionMs_ = obs.nowMs + 3000;
+                    return false;
+                }
+                LogLine("party: no route to %s -- back to the graveyards", party::GroundName(huntGround_));
+                huntGround_ = party::Ground::Graveyard;
+            } else if (huntDungeonState_ == 1) {
+                if (client.TravelBusy()) { nextActionMs_ = obs.nowMs + 2000; return false; }
+                if (*client.TravelFailureText()) {
+                    LogLine("party: the way to %s failed (%s) -- back to the graveyards",
+                            party::GroundName(huntGround_), client.TravelFailureText());
+                    huntGround_ = party::Ground::Graveyard;
+                    huntDungeonState_ = 0;
+                } else {
+                    huntDungeonState_ = 2;
+                    huntDungeonX_ = obs.x; huntDungeonY_ = obs.y;
+                    LogLine("party: in %s", party::GroundName(huntGround_));
+                }
+            }
+            if (huntDungeonState_ == 2) {
+                static const i32 kPatrol[4][2] = {{12, 0}, {0, 12}, {-12, 0}, {0, -12}};
+                const auto& step = kPatrol[huntDungeonPatrol_++ % 4];
+                client.TravelToPoint(huntDungeonX_ + step[0], huntDungeonY_ + step[1], 2, "dungeon patrol");
+                nextActionMs_ = obs.nowMs + 4000;
+                return false;
+            }
         }
         if (atlas) {
             // Try each yard at most once; personal danger still rules it out.

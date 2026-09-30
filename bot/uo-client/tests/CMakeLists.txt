@@ -885,3 +885,8 @@ add_test(NAME housing COMMAND housing)
 add_executable(player_vendor player_vendor.cpp)
 target_include_directories(player_vendor PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME player_vendor COMMAND player_vendor)
+
+# Party hunting -- group size, ground, focus fire, healing, loot turns, roles.
+add_executable(party_hunt party_hunt.cpp)
+target_include_directories(party_hunt PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME party_hunt COMMAND party_hunt)

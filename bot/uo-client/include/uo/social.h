@@ -86,7 +86,9 @@ inline bool IsInvitation(const std::string& text, Activity* activity) {
     if (text == "Anyone for Poison spell practice? Healing and Anatomy above 60 required. Cure between casts.") { *activity = Activity::Poison; return true; }
     if (text == "Anyone for consensual iron-armour sparring? Stop when hurt.") { *activity = Activity::Spar; return true; }
     if (text == kFistSparInvitation) { *activity = Activity::Spar; return true; }
-    if (text == "Anyone for a graveyard hunt? Meet here.") { *activity = Activity::Hunt; return true; }
+    if (text == "Anyone for a graveyard hunt? Meet here." ||
+        text == "Anyone for a Despise hunt? Meet here." ||
+        text == "Anyone for a Covetous hunt? Meet here.") { *activity = Activity::Hunt; return true; }
     if (text == "Anyone for training and healing practice? Meet here.") { *activity = Activity::Train; return true; }
     return false;
 }

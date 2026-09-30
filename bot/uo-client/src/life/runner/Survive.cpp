@@ -162,8 +162,14 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
             state_.memory.NoteEvent("confirmed_kill", currentFoeName_.c_str(), "",
                                     obs.x, obs.y, obs.nowMs);
             LogLine("hunt: confirmed kill target='%s' corpse=0x%08X", currentFoeName_.c_str(), corpse);
-            huntLootCorpse_ = corpse;
-            huntLootFailures_ = 0;
+            // In a hunting party kills are looted in turn round the roster
+            // (uo/party_hunt.h MyLootTurn): a friend's turn is left to them.
+            if (PartyLootTurn(client)) {
+                huntLootCorpse_ = corpse;
+                huntLootFailures_ = 0;
+            } else {
+                LogLine("party: this kill is a friend's turn to loot");
+            }
             currentFoe_ = 0;
         }
     }

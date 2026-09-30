@@ -100,6 +100,17 @@ sparring::Kit Client::SparringKitOf(u32 serial) const {
     return sparring::KitFor(worn.data(), worn.size());
 }
 
+bool Client::MobileWarMode(u32 serial) const {
+    const auto* m = FindMobileBySerial(serial);
+    return m && m->warMode;
+}
+
+i32 Client::MobileHpPercent(u32 serial) const {
+    const auto* m = FindMobileBySerial(serial);
+    if (!m || m->hpCur < 0 || m->hpMax <= 0) return -1;
+    return m->hpCur * 100 / m->hpMax;
+}
+
 u16 Client::MobileEquipGraphic(u32 serial, u8 layer) const {
     const auto* mobile = FindMobileBySerial(serial);
     if (serial != playerSerial_ && !mobile) return 0;

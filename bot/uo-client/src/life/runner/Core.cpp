@@ -1686,6 +1686,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             if (TickPoisonPractice(client, obs)) return;
             if (TickSparring(client, obs)) return;
             if (TickSparHealer(client, obs)) return;
+            if (TickPartySupport(client, obs)) return;
             TickRunebook(client, obs);
             TickCraftOrders(client, obs);
             if (needCfg_.profession && !ActiveCraftOrder(false, obs.nowMs)) {

@@ -64,6 +64,19 @@ struct RunnerHarnessAccess {
     }
     static bool OwnsHouse(const Runner& r) { return r.OwnsHouse(); }
     static void Vendors(Runner& r, Client& c, const Observation& o) { r.ObservePlayerVendors(c, o); }
+    static void SeedHuntParty(Runner& r, u32 leader, const char* name, i64 now) {
+        r.state_.identity.characterName = "Member";
+        r.needCfg_.profession = prof::Find("fencer");
+        r.socialActivity_ = social::Activity::Hunt;
+        r.socialPeer_ = leader; r.socialPeerName_ = name;
+        r.socialConsented_ = true;
+        r.socialGroupUntilMs_ = now + 600000;
+    }
+    static int Focus(Runner& r, Client& c, const Observation& o, const std::vector<party::Seen>& seen) {
+        return r.PartyFocusIndex(c, o, seen);
+    }
+    static bool PartySupport(Runner& r, Client& c, const Observation& o) { return r.TickPartySupport(c, o); }
+    static bool LootTurn(Runner& r, Client& c) { return r.PartyLootTurn(c); }
     static int KnownVendors(const Runner& r) {
         int n = 0;
         for (const auto& p : r.state_.memory.Places()) n += p.kind == "player_vendor";
@@ -1997,6 +2010,50 @@ int main(int argc, char** argv) {
         needs.clear();
         life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
         Check(needs.empty(), "one house per account (MaxHousesAccount=1): no second one wanted");
+    }
+
+    // --- party hunting: the call is heard, a hurt friend bandaged, loot shared
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(950000);
+        auto login = MakeLoginConfirm(0x2002, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(0x4000C000, 0x0E75, 0x15, 0x2002);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        auto bandages = MakeAddItem(0x4000C001, 0x0E21, 20, 0x4000C000);
+        client->DispatchPacketForTest(bandages.data(), bandages.size());
+        SpawnHostile(*client, 0x1002, 101, 100, 1);
+        u8 doll[66]{}; doll[0] = 0x88;
+        StoreBE32(doll + 1, 0x1002);
+        std::memcpy(doll + 5, "Leader", 6);
+        client->DispatchPacketForTest(doll, sizeof(doll));
+        auto name = MakeMobName(0x1002, "Leader");
+        client->DispatchPacketForTest(name.data(), name.size());
+        u8 roster[] = {0xBF, 0, 15, 0, 6, 1, 2, 0, 0, 0x10, 2, 0, 0, 0x20, 2};   // leader 0x1002, then us
+        client->DispatchPacketForTest(roster, sizeof(roster));
+        life::Runner runner;
+        life::RunnerHarnessAccess::SeedHuntParty(runner, 0x1002, "Leader", 950000);
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 950000; obs.x = obs.y = 100;
+        obs.hp = obs.hpMax = 80; obs.bandages = 20;
+        auto call = MakeAsciiMessage(0x1002, "Leader", "hedef: a skeleton");
+        client->DispatchPacketForTest(call.data(), call.size());
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        std::vector<party::Seen> seen = {{"a zombie", 102, 100}, {"a skeleton", 104, 101}};
+        Check(life::RunnerHarnessAccess::Focus(runner, *client, obs, seen) == 1,
+              "a member hits the monster the leader called, not the nearer zombie");
+        u8 hurt[9] = {0xA1}; StoreBE32(hurt + 1, 0x1002); StoreBE16(hurt + 5, 100); StoreBE16(hurt + 7, 45);
+        client->DispatchPacketForTest(hurt, sizeof(hurt));
+        client->ClearSentForTest();
+        Check(life::RunnerHarnessAccess::PartySupport(runner, *client, obs), "a hurt leader in reach is tended");
+        bool bandaged = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == 0x4000C001)
+                bandaged = true;
+        Check(bandaged, "with a real bandage double-click");
+        Check(!life::RunnerHarnessAccess::LootTurn(runner, *client) && life::RunnerHarnessAccess::LootTurn(runner, *client),
+              "the first kill is the leader's to loot, the second ours");
     }
 
     // --- player vendors: noticed by their title; a price prompt answered ----

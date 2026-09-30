@@ -287,6 +287,10 @@ public:
     // scenario cannot assume a fixed tile for a vendor or a banker.
     bool ActionGotoMobile(u32 serial, int stopWithin = 1);
     bool MobilePosition(u32 serial, i32* x, i32* y, i8* z = nullptr) const;
+    // Another mobile's war mode (0x77/0x78) and health bar as a percentage
+    // (-1 = never seen) -- what a party member reads off a friend.
+    bool MobileWarMode(u32 serial) const;
+    i32  MobileHpPercent(u32 serial) const;
     // A nearby mobile is not necessarily visible: update packets cross rooms,
     // whereas vendors and trainers require normal Sphere line of sight.  The
     // banking errand's explicit at-known-bank speech fallback is the only
@@ -1140,6 +1144,7 @@ public:
     u32 PartyLeader() const { return partyMembers_.empty() ? 0 : partyMembers_.front(); }
     u32 PartyInviter() const { return partyInviter_; }
     usize PartySize() const { return partyMembers_.size(); }
+    const std::vector<u32>& PartyMembers() const { return partyMembers_; }
     void ActionPartyInvite();
     void ActionPartyAccept(u32 leader);
     void ActionPartyLeave();

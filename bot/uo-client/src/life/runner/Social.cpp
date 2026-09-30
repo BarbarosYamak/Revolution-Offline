@@ -137,6 +137,17 @@ void Runner::EndSocialGroup(Client& client, const char* reason) {
     socialPracticeMs_ = 0;
     socialTrainingGains_ = 0;
     socialTrainingSkills_.clear();
+    huntGround_ = party::Ground::Graveyard;
+    huntDesired_ = 2;
+    socialInviter_ = false;
+    huntExtras_.clear();
+    huntInviting_ = 0;
+    huntGatherUntilMs_ = huntReshoutMs_ = 0;
+    focusName_.clear();
+    focusUntilMs_ = focusCalledMs_ = 0;
+    focusCalledSerial_ = 0;
+    partyKills_ = 0;
+    huntDungeonState_ = 0;
 }
 
 void Runner::ObserveSocial(Client& client, const Observation& obs) {
@@ -193,6 +204,15 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
             socialRestUntilMs_ = obs.nowMs + 120000;
             continue;
         }
+        // The leader's call: "hedef: <monster>".
+        if (socialGroupUntilMs_ && (h.speaker == socialPeer_ || h.speaker == client.PartyLeader())) {
+            std::string monster;
+            if (party::ParseFocusCall(h.text, &monster)) {
+                focusName_ = monster;
+                focusUntilMs_ = obs.nowMs + party::kFocusMs;
+                continue;
+            }
+        }
         if (!safe) continue;
         // Existing market matching decides actual demand, surplus and prices.
         // This listener only wakes that verified trading loop during other work.
@@ -242,6 +262,8 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
         std::string invitationText = h.text;
         const std::string address = state_.identity.characterName + ": ";
         if (invitationText.compare(0, address.size(), address) == 0) invitationText.erase(0, address.size());
+        party::Ground ground = party::Ground::Graveyard;
+        const bool huntCall = party::ParseInvitation(invitationText, &ground);
         if (social::IsInvitation(invitationText, &invitation) && socialPeer_ == 0 &&
             obs.nowMs >= socialRestUntilMs_ && !socialLeavePending_ && client.PartySize() == 0 &&
             (invitation != social::Activity::Spar ||
@@ -249,7 +271,8 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
               static_cast<int>(client.SparringKitOf(client.PlayerSerial())) == social::SparInvitationKit(invitationText))) &&
             (invitation != social::Activity::Poison || sparring::PoisonReceiver(
                 obs.SkillTenths(rules::kHealing), obs.SkillTenths(rules::kAnatomy), obs.bandages)) &&
-            (invitation != social::Activity::Hunt || (needCfg_.profession && WantsToHunt(*needCfg_.profession)))) {
+            (invitation != social::Activity::Hunt || (needCfg_.profession && WantsToHunt(*needCfg_.profession) &&
+                                                       (!huntCall || party::GroundSuits(ground, BestFightSkillTenths(obs)))))) {
             // Lower serial leads if two players invite each other simultaneously.
             if (socialStartedMs_ && client.PlayerSerial() < h.speaker) continue;
             // A consent reply is latched to one peer below. Let it follow our
@@ -262,6 +285,8 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
             socialPeer_ = h.speaker; socialPeerName_ = h.name;
             socialActivity_ = invitation;
             if (invitation == social::Activity::Spar) sparKit_ = social::SparInvitationKit(invitationText);
+            if (invitation == social::Activity::Hunt) huntGround_ = ground;
+            socialInviter_ = false;
             poisonStudent_ = false;
             socialConsented_ = true;
             socialAgreedMs_ = socialStartedMs_ = obs.nowMs;
@@ -274,6 +299,17 @@ void Runner::ObserveSocial(Client& client, const Observation& obs) {
                    h.text == social::JoinReply(state_.identity.characterName, socialActivity_)) {
             socialPeer_ = h.speaker; socialPeerName_ = h.name;
             socialConsented_ = true; socialAgreedMs_ = obs.nowMs;
+        } else if (socialInviter_ && socialActivity_ == social::Activity::Hunt && socialConsented_ &&
+                   h.speaker != socialPeer_ && !client.PartyContains(h.speaker) &&
+                   h.text == social::JoinReply(state_.identity.characterName, social::Activity::Hunt) &&
+                   static_cast<int>(huntExtras_.size()) + 2 < huntDesired_) {
+            // Another one wants in: the leader will invite them while gathering.
+            bool already = false;
+            for (const auto& e : huntExtras_) already = already || e.first == h.speaker;
+            if (!already) {
+                huntExtras_.push_back({h.speaker, h.name});
+                LogLine("social: %s will join the hunt too", h.name.c_str());
+            }
         } else if (h.speaker != client.PlayerSerial()) {
             // Small talk: "sa" gets "as", "selam" gets a greeting back, a
             // friend gets a warmer one. Once per person per ten minutes, so
@@ -353,12 +389,15 @@ bool Runner::DoSocialize(Client& client, const Observation& obs) {
         socialStartedMs_ = obs.nowMs;
         socialTrainingStart_ = obs.SkillSumTenths();
         socialTrainingSkills_ = obs.skills;
-        socialActivity_ = needCfg_.profession && WantsToHunt(*needCfg_.profession) &&
-            (client.PlayerSerial() + state_.identity.sessions) % 2 == 0
-            ? social::Activity::Hunt : social::Activity::Train;
+        // A HUNTER'S FREE TIME GOES TO HUNTING: two sessions in three it asks
+        // for a hunt (uo/party_hunt.h PrefersHunt); the third it spars if its
+        // kit allows, otherwise it trains. Was a coin flip per session.
+        const bool hunter = needCfg_.profession && WantsToHunt(*needCfg_.profession);
+        const bool prefersHunt = party::PrefersHunt(hunter, client.PlayerSerial(), state_.identity.sessions);
+        socialActivity_ = prefersHunt ? social::Activity::Hunt : social::Activity::Train;
         // Every fighter type may spar (owner ruling 2026-09-04): fists need no
         // armour, a training weapon needs full iron.
-        if (MaySocialSpar(needCfg_.profession) && obs.bandages >= sparring::kMinBandages &&
+        if (!prefersHunt && MaySocialSpar(needCfg_.profession) && obs.bandages >= sparring::kMinBandages &&
             client.SparringKit(client.PlayerSerial())) {
             socialActivity_ = social::Activity::Spar;
             sparKit_ = static_cast<int>(client.SparringKitOf(client.PlayerSerial()));
@@ -367,10 +406,17 @@ bool Runner::DoSocialize(Client& client, const Observation& obs) {
             socialActivity_ = social::Activity::Poison;
             poisonStudent_ = true;
         }
+        if (socialActivity_ == social::Activity::Hunt) {
+            huntDesired_ = party::DesiredGroupSize(state_.persona.sociability);
+            huntGround_ = party::ChooseGround(BestFightSkillTenths(obs), huntDesired_);
+            LogLine("social: looking for a %s hunt, a group of up to %d",
+                    party::GroundName(huntGround_), huntDesired_);
+        }
     }
     // Meeting place + consent + party formation budget. A spar gets longer:
     // its own 5-minute clock only starts once the party exists.
-    if (!sparActive_ && obs.nowMs - socialStartedMs_ > (socialActivity_ == social::Activity::Spar ? 180000 : 120000)) {
+    if (!sparActive_ && huntGatherUntilMs_ <= obs.nowMs &&
+        obs.nowMs - socialStartedMs_ > (socialActivity_ == social::Activity::Spar ? 180000 : 120000)) {
         const bool gained = socialTrainingGains_ > 0 || social::TrainingGains(socialTrainingSkills_, obs.skills) > 0;
         EndSocialGroup(client, gained ? "training gains confirmed" : "meeting window finished");
         socialRestUntilMs_ = obs.nowMs + 300000;
@@ -431,8 +477,9 @@ bool Runner::DoSocialize(Client& client, const Observation& obs) {
                     (p.noto != 1 && p.noto != 2)) continue;
                 bestTrust = relation->trust; socialPreferred_ = p.serial; preferred = p.name + ": ";
             }
+            if (socialActivity_ == social::Activity::Hunt) socialInviter_ = true;
             SocialSay(client, obs.nowMs, preferred + (socialActivity_ == social::Activity::Hunt
-                ? "Anyone for a graveyard hunt? Meet here."
+                ? party::Invitation(huntGround_)
                 : socialActivity_ == social::Activity::Poison ? "Anyone for Poison spell practice? Healing and Anatomy above 60 required. Cure between casts."
                 : socialActivity_ == social::Activity::Spar ? (sparKit_ == 1 ? social::kFistSparInvitation : social::kIronSparInvitation)
                 : "Anyone for training and healing practice? Meet here."));
@@ -462,7 +509,10 @@ bool Runner::DoSocialize(Client& client, const Observation& obs) {
         }
         if (client.PartyInviter() == socialPeer_) {
             client.ActionPartyAccept(socialPeer_); socialOwnParty_ = true;
-        } else if (client.PlayerSerial() < socialPeer_) {
+        } else if (socialActivity_ == social::Activity::Hunt ? socialInviter_
+                                                             : client.PlayerSerial() < socialPeer_) {
+            // A hunt is led, and invited, by whoever called it; the serial
+            // tie-break stays for the two-person activities.
             if (!socialInviteMs_) {
                 socialTargetGeneration_ = client.TargetGeneration();
                 socialInviteMs_ = obs.nowMs;
@@ -475,7 +525,42 @@ bool Runner::DoSocialize(Client& client, const Observation& obs) {
     }
     social::Remember(state_.memory.relationships, socialPeerName_, social::Encounter::Greeting, obs.nowMs);
     socialLastSeenMs_ = obs.nowMs;
+    if (socialActivity_ == social::Activity::Hunt && socialInviter_ &&
+        static_cast<int>(client.PartySize()) < huntDesired_) {
+        // GATHER THE REST OF THE GROUP. The first companion is in; wait a
+        // minute at the meeting place for more, inviting each one that said
+        // it would join, and call the hunt once more for any latecomer.
+        if (!huntGatherUntilMs_) huntGatherUntilMs_ = obs.nowMs + party::kGatherMs;
+        if (obs.nowMs < huntGatherUntilMs_) {
+            if (huntInviting_) {
+                if (client.PartyContains(huntInviting_)) {
+                    LogLine("social: the hunting party is now %zu strong", client.PartySize());
+                    huntInviting_ = 0;
+                } else if (client.TargetActive() && client.TargetGeneration() != socialTargetGeneration_) {
+                    client.ActionTargetObject(huntInviting_);
+                    socialTargetGeneration_ = client.TargetGeneration();
+                } else if (obs.nowMs - socialInviteMs_ > 15000) {
+                    huntInviting_ = 0;   // that one did not come; carry on
+                }
+                return false;
+            }
+            for (const auto& extra : huntExtras_) {
+                if (client.PartyContains(extra.first)) continue;
+                huntInviting_ = extra.first;
+                socialTargetGeneration_ = client.TargetGeneration();
+                socialInviteMs_ = obs.nowMs;
+                client.ActionPartyInvite();
+                return false;
+            }
+            if (obs.nowMs - huntReshoutMs_ > 30000) {
+                huntReshoutMs_ = obs.nowMs;
+                client.ActionSay(party::Invitation(huntGround_).c_str());
+            }
+            return false;
+        }
+    }
     if (socialActivity_ == social::Activity::Hunt) {
+        huntGatherUntilMs_ = 0;
         socialGroupUntilMs_ = obs.nowMs + 10 * 60000;
         SocialSay(client, obs.nowMs, socialPeerName_ + ": Ready. Stay together and regroup if hurt.");
         LogLine("social: confirmed hunting party with %s leader=0x%08X", socialPeerName_.c_str(), client.PartyLeader());
@@ -561,10 +646,13 @@ bool Runner::FollowHuntingParty(Client& client, const Observation& obs) {
     socialLastSeenMs_ = obs.nowMs;
     const i32 distance = TileDist(obs.x, obs.y, x, y);
     if (client.PartyLeader() != client.PlayerSerial()) {
-        if (distance > 3 && !client.ActionBusy() && !client.GotoBusy() && !client.TravelBusy())
-            client.ActionGotoMobile(socialPeer_, 2);
+        // The melee stays at the leader's shoulder; an archer or a caster
+        // keeps a few steps back (uo/party_hunt.h FollowDistance).
+        const i32 keep = party::FollowDistance(MyPartyRole());
+        if (distance > keep + 1 && !client.ActionBusy() && !client.GotoBusy() && !client.TravelBusy())
+            client.ActionGotoMobile(socialPeer_, keep);
         // Let nearby combat targeting run; suppress independent long trips below.
-        return distance > 3;
+        return distance > keep + 1;
     }
     if (distance > 8 && obs.hostilesNear == 0) {
         if (client.TravelBusy()) client.TravelAbort("wait for hunting companion");

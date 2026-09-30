@@ -19,6 +19,7 @@
 #include "uo/needgate.h"
 #include "uo/chatter.h"
 #include "uo/pvp.h"
+#include "uo/party_hunt.h"
 #include "uo/world_model.h"
 #include "uo/activities/acquire.h"
 #include "uo/activities/buy.h"
@@ -133,6 +134,27 @@ public:
     bool OwnsHouse() const;
     // Player vendors (runner/Social.cpp, uo/player_vendor.h).
     void ObservePlayerVendors(Client& client, const Observation& obs);
+    // Party hunting (runner/PartyHunt.cpp, uo/party_hunt.h).
+    bool InHuntingParty(Client& client) const;
+    party::Role MyPartyRole() const;
+    void CallFocus(Client& client, i64 nowMs, u32 target, const std::string& name);
+    int  PartyFocusIndex(Client& client, const Observation& obs,
+                         const std::vector<party::Seen>& hostiles) const;
+    bool TickPartySupport(Client& client, const Observation& obs);
+    bool PartyLootTurn(Client& client);
+    party::Ground huntGround_ = party::Ground::Graveyard;
+    int  huntDesired_ = 2;
+    bool socialInviter_ = false;                 // we shouted the invitation: we lead and invite
+    std::vector<std::pair<u32, std::string>> huntExtras_;   // more joiners for the leader to invite
+    u32  huntInviting_ = 0;
+    i64  huntGatherUntilMs_ = 0, huntReshoutMs_ = 0;
+    std::string focusName_;
+    i64  focusUntilMs_ = 0, focusCalledMs_ = 0, partyHealMs_ = 0, partyStatusMs_ = 0;
+    u32  focusCalledSerial_ = 0;
+    int  partyKills_ = 0;
+    int  huntDungeonState_ = 0;                  // 0 not going, 1 on the way, 2 inside
+    i32  huntDungeonX_ = 0, huntDungeonY_ = 0;
+    int  huntDungeonPatrol_ = 0;
     i64  vendorScanMs_ = 0;
     void AddHousingNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
     bool DoBuyHouse(Client& client, const Observation& obs);
