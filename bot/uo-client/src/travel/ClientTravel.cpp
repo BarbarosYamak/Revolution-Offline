@@ -169,6 +169,22 @@ bool Client::TravelBegin(const char* label, i32 x, i32 y, i32 arriveRadius,
         travelFailure_ = WorldKnowledgeError();
         return false;
     }
+    // A MURDERER DOES NOT WALK INTO THE GUARDS. GuardsOnMurderers=1 and
+    // GuardsInstantKill=1 (sphere.ini) mean a red character entering guarded
+    // ground dies on the spot, so the trip is refused here -- the one door
+    // every errand goes through -- and the goal that asked finds another way
+    // (Buccaneer's Den banks, wilderness spots). Passing THROUGH a town on a
+    // longer route is not yet avoided (docs/M5_11_PK_ROUTING_AND_ESCAPE.md).
+    if (murdererRouting_ && world_knowledge_) {
+        if (const wm::Region* r = world_knowledge_->atlas.RegionAt(x, y)) {
+            if (r->flags.guarded) {
+                travelFailure_ = "a murderer does not walk into the guards";
+                LogInfo("[travel] %s refused: (%d,%d) is guarded ground and we are red\n",
+                        label ? label : "", x, y);
+                return false;
+            }
+        }
+    }
     // Travelling is a peaceful intent. Saying so here is what makes every
     // journey drop a stale war mode without each caller remembering to.
     war_.OnPeacefulIntent(NowMs());
@@ -1076,7 +1092,9 @@ void Client::TravelPlanRoute() {
     // per-character reagent count yet, so this stays true and is recorded as
     // debt rather than faked: a Recall arm that silently assumed reagents would
     // be exactly the kind of unearned optimism this project keeps withdrawing.
-    cap.haveReagents = true;
+    // Counted from the pack now (black pearl, blood moss, mandrake root, at
+    // the era's per-cast cost). A charged book spends a stored scroll instead.
+    cap.haveReagents = HasRecallReagents();
     cap.dead         = IsDead();
     cap.inCombat     = WarModeOn();
     cap.moongateRouteKnown = true;   // M2.5 proved the gate network live
@@ -1099,12 +1117,34 @@ void Client::TravelPlanRoute() {
     // near moongate, other cities") is exactly why: a rune marked inside the
     // Britain mage shop is named for Britain, so a route labelled for a shop
     // still has to match a page named for its town.
-    const int rbPage = RunebookPageFor(travelLabel_);
+    // By name first (a trip labelled for a town), then by map point: the
+    // page whose rune lands nearest the goal, if that clearly beats walking.
+    int rbPage = RunebookPageFor(travelLabel_);
+    if (!rbPage) rbPage = RunebookPageForGoal(journey_.GoalX(), journey_.GoalY());
     cap.haveRunebookPage = (rbPage != 0);
-    cap.runebookCharges  = runebookCharges_;
+    // A charged runebook needs no Magery only from 13.05.2009 (uo/era.h);
+    // before that a character does not know to rely on charges.
+    cap.runebookCharges  = era::Active(era::Feature::RunebookCharges, EraDate()) ? runebookCharges_ : 0;
 
     const i32 straightTiles =
         Chebyshev(playerX_, playerY_, journey_.GoalX(), journey_.GoalY());
+    // A LOOSE RUNE THIS CHARACTER MARKED ITSELF (life runner, Runes.cpp):
+    // the only rune destinations it knows. It must still be in the pack, and
+    // landing there must clearly beat walking (the same bar as a book page).
+    u32 looseRune = 0;
+    if (const travel::KnownRune* k = knowledge_.BestRuneFor(journey_.GoalX(), journey_.GoalY(),
+                                                             recall::kMaxLandingTiles)) {
+        const u16 runeGfx = recall::kRuneGraphic;
+        const u32 pack = BackpackSerial();
+        bool inPack = false;
+        for (usize i = 0; pack && i < ContainerItemCount(pack); ++i) {
+            u32 s = 0; u16 g = 0, a = 0;
+            if (ContainerItemAt(pack, i, &s, &g, &a) && s == k->serial && g == runeGfx) inPack = true;
+        }
+        const i32 after = Chebyshev(k->x, k->y, journey_.GoalX(), journey_.GoalY());
+        if (inPack && straightTiles - after >= recall::kMinSavingTiles) looseRune = k->serial;
+    }
+    cap.haveMarkedRune = looseRune != 0;
     const travelmode::Mode picked = travelmode::Choose(cap, straightTiles);
 
     // Log the whole ranking, not just the winner. A planner that only shows what
@@ -1127,6 +1167,12 @@ void Client::TravelPlanRoute() {
     // works the walk is short, and if it fizzles, lacks mana or finds an empty
     // page the journey simply plans from here and walks. Nothing is faked and
     // nothing is skipped -- a failed recall costs a few seconds, not a lie.
+    if (picked == travelmode::Mode::LooseRuneRecall && looseRune && !runebookRecallDone_) {
+        runebookRecallDone_ = true;   // one recall per journey, as for the book
+        LogInfo("[travel] recalling with our own rune 0x%08X\n", looseRune);
+        LogEvent("rune_recall_begin", "");
+        ActionCastSpell(32, looseRune);
+    }
     if (picked == travelmode::Mode::RunebookRecall && rbPage != 0 &&
         !runebookRecallDone_) {
         runebookRecallDone_ = true;   // set before, not after: a refusal still
@@ -1140,6 +1186,19 @@ void Client::TravelPlanRoute() {
     opt.allowMoongates = travelUseMoongates_ ||
                          (picked == travelmode::Mode::Moongate);
     opt.avoidCells = &journey_.AvoidCells();
+    // A red character does not even pass THROUGH guarded ground: every cell
+    // of a guarded region is a wall for this search (the start excepted).
+    if (murdererRouting_) {
+        if (!guardedCellsBuilt_) {
+            guardedCells_ = world_knowledge_->planner->GuardedCells();
+            guardedCellsBuilt_ = true;
+            LogInfo("[travel] murderer routing: %zu guarded cells are walls\n", guardedCells_.size());
+        }
+        // Already standing on guarded ground: the shortest way out is the
+        // only sensible plan, so this one plan runs without the walls.
+        if (!guardedCells_.count(world_knowledge_->planner->CellIndex(playerX_, playerY_)))
+            opt.forbiddenCells = &guardedCells_;
+    }
 
     const route::WorldRoute r = world_knowledge_->planner->Plan(
         playerX_, playerY_, journey_.GoalX(), journey_.GoalY(), opt);
@@ -2082,6 +2141,12 @@ void Client::OnGenericGump(const u8* data, usize size) {
 
     // A recall we started is waiting for exactly this gump.
     if (pendingRunebookPage_ && AnswerRunebookTravelGump()) return;
+    // Opened only to read it: the pages are noted, close the book (button 0).
+    if (runebookReadPending_ && !gump_.texts.empty() && gump_.texts[0] == "Runebook") {
+        runebookReadPending_ = false;
+        AnswerGump(0, 0);
+        return;
+    }
     char ev[128];
     std::snprintf(ev, sizeof(ev), "serial=0x%08X context=0x%08X options=%zu",
                   serial, context, gump_.options.size());
@@ -2157,6 +2222,7 @@ void Client::NoteRunebookGump() {
         p.point = (nameIdx + 1 < gump_.texts.size()) ? gump_.texts[nameIdx + 1]
                                                      : std::string();
         p.filled = (p.name != "(empty)" && !p.name.empty());
+        if (p.filled && !recall::ParsePoint(p.point, &p.x, &p.y)) p.x = p.y = 0;
         runebookPages_.push_back(std::move(p));
     }
 
@@ -2194,6 +2260,55 @@ int Client::RunebookPageFor(const std::string& destination) const {
             return p.page;
     }
     return 0;
+}
+
+// Which page lands nearest this goal, if landing there clearly beats walking
+// (uo/recall_plan.h). Pages whose point did not parse only match by name.
+int Client::RunebookPageForGoal(i32 toX, i32 toY) const {
+    std::vector<recall::Page> pages;
+    for (const RunebookPage& p : runebookPages_)
+        pages.push_back({p.page, p.name, p.x, p.y, p.filled && p.x > 0});
+    return recall::BestPage(pages, playerX_, playerY_, toX, toY).page;
+}
+
+i32 Client::RecallTilesTo(i32 x, i32 y) const {
+    if (!RunebookRead()) return -1;
+    const bool charged = runebookCharges_ > 0 && era::Active(era::Feature::RunebookCharges, EraDate());
+    const bool canCast = PlayerSkillBase(static_cast<u16>(rules::kMagery)) >= 400 &&
+                         PlayerMana() >= 11 && HasRecallReagents();
+    if (!charged && !canCast) return -1;
+    std::vector<recall::Page> pages;
+    for (const RunebookPage& p : runebookPages_)
+        pages.push_back({p.page, p.name, p.x, p.y, p.filled && p.x > 0});
+    const recall::Choice c = recall::BestPage(pages, playerX_, playerY_, x, y);
+    return c.page ? c.walkAfter + 20 : -1;
+}
+
+bool Client::ActionEscapeByRecall() {
+    if (!RunebookRead() || pendingRunebookPage_ || IsDead()) return false;
+    const bool charged = runebookCharges_ > 0 && era::Active(era::Feature::RunebookCharges, EraDate());
+    const bool canCast = PlayerSkillBase(static_cast<u16>(rules::kMagery)) >= 400 &&
+                         PlayerMana() >= 11 && HasRecallReagents();
+    if (!charged && !canCast) return false;
+    int best = 0;
+    i32 bestD = 49;
+    for (const RunebookPage& p : runebookPages_) {
+        if (!p.filled || p.x <= 0) continue;
+        const i32 d = recall::Tiles(playerX_, playerY_, p.x, p.y);
+        if (d > bestD) { bestD = d; best = p.page; }
+    }
+    if (!best) return false;
+    if (TravelBusy()) TravelAbort("escaping by recall");
+    return BeginRunebookRecall(best);
+}
+
+bool Client::ActionReadRunebook() {
+    const u32 book = FindBackpackItemByGraphic(0x22C5);
+    if (!book || pendingRunebookPage_) return false;
+    runebookReadPending_ = true;
+    LogInfo("[runebook] opening book 0x%08X to read its pages\n", book);
+    ActionUseObject(book);
+    return true;
 }
 
 // Start a Recall the travel layer decided on: open the book so its gump comes

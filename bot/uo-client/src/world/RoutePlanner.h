@@ -27,6 +27,7 @@
 #include "world/NavGrid.h"
 
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 namespace uo::route {
@@ -63,6 +64,12 @@ struct RouteOptions {
     // Cleared per trip by the caller, never shared between sessions.
     const std::vector<u32>* avoidCells = nullptr;
 
+    // Cells this character must never enter at all -- a murderer and guarded
+    // ground (RoutePlanner::GuardedCells). The goal cell is exempt (the trip
+    // itself was already allowed); a caller standing inside a forbidden cell
+    // should not pass the set at all, so it can still walk out.
+    const std::unordered_set<u32>* forbiddenCells = nullptr;
+
     // Safety valve. Britannia is ~115k cells; a real cross-world route expands
     // far fewer, and a search that blows this budget has found no route.
     u32 maxNodesExpanded = 300000;
@@ -92,6 +99,8 @@ public:
     // Cell index helpers, shared with the caller so a failing leg can be
     // reported back as an avoid-cell without duplicating the arithmetic.
     u32  CellIndex(i32 tileX, i32 tileY) const;
+    // Every macro cell touched by a GUARDED region's rectangles.
+    std::unordered_set<u32> GuardedCells() const;
     void CellCoords(u32 index, i32* cx, i32* cy) const;
 
     // Standable anchors of the cells around (x, y), nearest first, excluding

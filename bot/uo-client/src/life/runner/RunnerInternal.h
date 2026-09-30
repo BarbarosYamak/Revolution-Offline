@@ -34,6 +34,7 @@
 #include "uo/world_model.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cstdarg>
 #include <cstdio>
 #include <unordered_map>
@@ -41,6 +42,13 @@
 
 namespace uo::life {
 namespace runner_detail {
+
+// Wall-clock milliseconds since the epoch, for the observer only. The
+// runner's own clock (nowMs) stays the tick clock it always was.
+inline i64 EpochMs() {
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::system_clock::now().time_since_epoch()).count();
+}
 
 // --- defined once in RunnerShared.cpp --------------------------------
 std::string Fmt2(const char* fmt, ...);

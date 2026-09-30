@@ -3,6 +3,7 @@
 #include "bot/Blacklist.h"
 #include "uo/world.h"
 
+#include <algorithm>
 #include <queue>
 #include <unordered_map>
 #include <vector>

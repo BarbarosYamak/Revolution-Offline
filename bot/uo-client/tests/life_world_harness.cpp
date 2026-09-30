@@ -10,6 +10,7 @@
 #include "world/NavGrid.h"
 #include "uo/endian.h"
 #include "uo/sparring.h"
+#include "uo/json.h"
 
 #include <cstdio>
 #include <cstring>
@@ -30,6 +31,7 @@ struct RunnerHarnessAccess {
         r.socialActivity_ = social::Activity::Spar;
         r.socialConsented_ = r.sparActive_ = true;
         r.socialStartedMs_ = now; r.sessionStartMs_ = now;
+        r.sparMeetingStartMs_ = now;
     }
     static bool SparTick(Runner& r, Client& c, const Observation& o) { return r.TickSparring(c,o); }
     static void SeedPoison(Runner& r, Client& c, i64 now) {
@@ -48,7 +50,44 @@ struct RunnerHarnessAccess {
         r.state_.identity.characterName = "Student";
         r.state_.plan.skills.push_back({rules::kAnatomy, 1000});
     }
+    static void SocialChatty(Runner& r, i32 sociability) {
+        r.state_.persona.set = true;
+        r.state_.persona.sociability = sociability;
+    }
     static void SocialEnd(Runner& r, Client& c) { r.EndSocialGroup(c, "test finished"); }
+    static bool Treasure(Runner& r, Client& c, const Observation& o) { return r.DoHuntTreasure(c, o); }
+    static void PvpObserve(Runner& r, Client& c, const Observation& o) { r.ObservePvp(c, o); }
+    static void SeedHouseSite(Runner& r, i32 x, i32 y) { r.houseSites_ = {{x, y}}; r.houseSite_ = 0; }
+    static bool House(Runner& r, Client& c, const Observation& o) { return r.DoBuyHouse(c, o); }
+    static void HousingNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) {
+        r.AddHousingNeeds(c, o, needs);
+    }
+    static bool OwnsHouse(const Runner& r) { return r.OwnsHouse(); }
+    static void Vendors(Runner& r, Client& c, const Observation& o) { r.ObservePlayerVendors(c, o); }
+    static void SeedHuntParty(Runner& r, u32 leader, const char* name, i64 now) {
+        r.state_.identity.characterName = "Member";
+        r.needCfg_.profession = prof::Find("fencer");
+        r.socialActivity_ = social::Activity::Hunt;
+        r.socialPeer_ = leader; r.socialPeerName_ = name;
+        r.socialConsented_ = true;
+        r.socialGroupUntilMs_ = now + 600000;
+    }
+    static int Focus(Runner& r, Client& c, const Observation& o, const std::vector<party::Seen>& seen) {
+        return r.PartyFocusIndex(c, o, seen);
+    }
+    static bool PartySupport(Runner& r, Client& c, const Observation& o) { return r.TickPartySupport(c, o); }
+    static bool LootTurn(Runner& r, Client& c) { return r.PartyLootTurn(c); }
+    static int KnownVendors(const Runner& r) {
+        int n = 0;
+        for (const auto& p : r.state_.memory.Places()) n += p.kind == "player_vendor";
+        return n;
+    }
+    static void PvpNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) { r.AddPvpNeeds(c, o, needs); }
+    static bool PvpHunt(Runner& r, Client& c, const Observation& o) { return r.DoHuntPlayers(c, o); }
+    static const char* PvpRoleName(const Runner& r) { return pvp::RoleName(r.PvpRole()); }
+    static void TreasureNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) {
+        r.AddTreasureNeeds(c, o, needs);
+    }
     static void SocialPendingAcceptance(Runner& r) { r.socialOwnParty_ = true; }
     static void SocialJustSpoke(Runner& r, i64 nowMs) { r.socialChatMs_ = nowMs; }
     static void SocialNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) {
@@ -459,6 +498,67 @@ std::vector<u8> MakeEquip(u32 item, u16 graphic, u8 layer, u32 mobile) {
 
 // 0x25 ADD_ITEM_TO_CONTAINER: serial(4) graphic(2) gfxOffset(1) amount(2)
 // x(2) y(2) container(4) hue(2).
+// 0xB0 GENERIC_GUMP: serial(4) context(4) x(4) y(4) layoutLen(2) layout,
+// then count(2) and UTF-16BE texts -- the shape Client::OnGenericGump reads.
+std::vector<u8> MakeGump(u32 serial, u32 context, const std::string& layout,
+                         const std::vector<std::string>& texts) {
+    std::vector<u8> p(21, 0);
+    p[0] = 0xB0;
+    StoreBE32(&p[3], serial);
+    StoreBE32(&p[7], context);
+    StoreBE16(&p[19], static_cast<u16>(layout.size() + 1));
+    for (char c : layout) p.push_back(static_cast<u8>(c));
+    p.push_back(0);
+    p.push_back(static_cast<u8>(texts.size() >> 8)); p.push_back(static_cast<u8>(texts.size()));
+    for (const std::string& t : texts) {
+        p.push_back(static_cast<u8>(t.size() >> 8)); p.push_back(static_cast<u8>(t.size()));
+        for (char c : t) { p.push_back(0); p.push_back(static_cast<u8>(c)); }
+    }
+    StoreBE16(&p[1], static_cast<u16>(p.size()));
+    return p;
+}
+
+// 0x1A WORLD_ITEM (old form, no amount/hue/flags): serial(4) graphic(2)
+// x(2) y(2) z(1).
+std::vector<u8> MakeWorldItem(u32 serial, u16 graphic, u16 x, u16 y) {
+    std::vector<u8> p(14, 0);
+    p[0] = 0x1A;
+    StoreBE16(&p[1], 14);
+    StoreBE32(&p[3], serial);
+    StoreBE16(&p[7], graphic);
+    StoreBE16(&p[9], x);
+    StoreBE16(&p[11], y);
+    return p;
+}
+
+// 0x6C TARGET_CURSOR from the server: type(1) cursorId(4) cursorType(1) + 12.
+std::vector<u8> MakeTargetCursor(u8 type, u32 cursorId) {
+    std::vector<u8> p(19, 0);
+    p[0] = 0x6C;
+    p[1] = type;
+    StoreBE32(&p[2], cursorId);
+    return p;
+}
+
+// 0x90 MAP_DETAILS and 0x56 MAP_PIN (add pin), as Sphere sends a decoded map.
+std::vector<u8> MakeMapDetails(u32 serial, u16 ulx, u16 uly, u16 lrx, u16 lry, u16 w, u16 h) {
+    std::vector<u8> p(19, 0);
+    p[0] = 0x90;
+    StoreBE32(&p[1], serial);
+    StoreBE16(&p[5], 0x139D);
+    StoreBE16(&p[7], ulx); StoreBE16(&p[9], uly); StoreBE16(&p[11], lrx); StoreBE16(&p[13], lry);
+    StoreBE16(&p[15], w); StoreBE16(&p[17], h);
+    return p;
+}
+std::vector<u8> MakeMapPin(u32 serial, u16 px, u16 py) {
+    std::vector<u8> p(11, 0);
+    p[0] = 0x56;
+    StoreBE32(&p[1], serial);
+    p[5] = 1;
+    StoreBE16(&p[7], px); StoreBE16(&p[9], py);
+    return p;
+}
+
 std::vector<u8> MakeAddItem(u32 serial, u16 graphic, u16 amount, u32 container) {
     std::vector<u8> p(20, 0);
     p[0] = 0x25;
@@ -590,6 +690,7 @@ int main(int argc, char** argv) {
         client->DispatchPacketForTest(name.data(), name.size());
         life::Runner runner;
         life::RunnerHarnessAccess::SocialIdentity(runner);
+        life::RunnerHarnessAccess::SocialChatty(runner, 100);
         life::Observation obs; obs.nowMs = 200000; obs.x = obs.y = 100;
         obs.hp = obs.hpMax = 50;
         client->ClearSentForTest();
@@ -646,7 +747,7 @@ int main(int argc, char** argv) {
                 leftLateParty = true;
         Check(leftLateParty, "late membership after cancellation sends an explicit party leave");
         client->CompleteActionForTest(act::Result::Success, "fixture ready");
-        Check(!client->BeginSparringRound(0x1002), "party membership without training kit cannot spar");
+        Check(!client->BeginSparringRound(0x1002), "unknown health blocks even a bare-handed spar");
         const u8 layers[] = {4, 6, 7, 10, 13, 19};
         const u16 graphics[] = {0x1411, 0x1412, 0x1414, 0x1413, 0x1415, 0x1410};
         for (u32 who : {0x2002u, 0x1002u}) for (int i=0; i<6; ++i) {
@@ -680,6 +781,8 @@ int main(int argc, char** argv) {
         Check(!client->SentForTest().empty() && client->SentForTest().back().opcode == 0x05,
               "sparring uses real server attack packet");
         health(0x1002,59);
+        Check(client->SparringPeer() == 0x1002, "59%% is above the owner's 40%% stop line: the round goes on");
+        health(0x1002,39);
         Check(client->SparringPeer() == 0 && client->SentForTest().back().opcode == 0x72 &&
               client->SentForTest().back().bytes[1] == 0,
               "peer low HP immediately sends war off even before war acknowledgement");
@@ -698,7 +801,10 @@ int main(int argc, char** argv) {
               "partner switching to a sword immediately stops sparring");
         weapon = MakeEquip(0x40009999, 0x0F51, 1, 0x1002);
         client->DispatchPacketForTest(weapon.data(), weapon.size());
-        Check(client->BeginSparringRound(0x1002), "dagger is a permitted training weapon");
+        Check(!client->BeginSparringRound(0x1002), "a dagger never spars an empty-handed partner (kit mismatch)");
+        auto myDagger = MakeEquip(0x40009998, 0x0F52, 1, 0x2002);
+        client->DispatchPacketForTest(myDagger.data(), myDagger.size());
+        Check(client->BeginSparringRound(0x1002), "two iron-armoured players with daggers may spar");
         client->DispatchPacketForTest(removed, sizeof(removed));
         Check(client->SparringPeer() == 0 && !client->BeginSparringRound(0x1002),
               "party removal immediately stops and blocks further attacks");
@@ -711,12 +817,15 @@ int main(int argc, char** argv) {
         attacked = false;
         for (const auto& p : client->SentForTest()) if (p.opcode == 0x05) attacked = true;
         Check(!attacked, "consenting party still requires partner readiness before attacking");
-        auto ready = MakeAsciiMessage(0x1002, "Teacher", "Student: Ready for sparring round 1.");
+        bool saidReady = false;
+        for (const auto& p : client->SentForTest()) if (p.opcode == 0x03 || p.opcode == 0xAD) saidReady = true;
+        Check(saidReady, "the runner announces readiness once per meeting");
+        auto ready = MakeAsciiMessage(0x1002, "Teacher", "Student: Ready to spar.");
         client->DispatchPacketForTest(ready.data(), ready.size());
         life::RunnerHarnessAccess::SparTick(sparRunner, *client, obs);
         attacked = false;
         for (const auto& p : client->SentForTest()) if (p.opcode == 0x05) attacked = true;
-        Check(attacked, "addressed numbered readiness authorizes the agreed sparring round");
+        Check(attacked, "one addressed 'Ready to spar.' authorizes the rounds");
         client->SetClockForTest(206001); obs.nowMs = 206001;
         auto stop = MakeAsciiMessage(0x1002, "Teacher", "Student: Let's stop and regroup.");
         client->DispatchPacketForTest(stop.data(), stop.size());
@@ -1705,6 +1814,485 @@ int main(int argc, char** argv) {
               "already inside the guarded landmark's radius resolves in one "
               "tick -- no re-run of the same zero-distance travel");
         Check(LogoutIssued(*client), "an 0xD1 logout request reached the wire");
+
+        // The observer's window says the character left, and who it is.
+        std::string statusText;
+        Check(json::ReadFile((root + "/winddown_guard/offline_world.winddown_guard/status.json").c_str(),
+                             &statusText), "logout leaves a status.json for the observer");
+        const json::Value status = json::Parse(statusText, nullptr);
+        Check(!status["online"].AsBool(true) && status["phase"].AsString() == "offline" &&
+              status["character"].AsString() == "winddown_guard" &&
+              status["family"].AsString() == "fencer" && !status["rhythm"].AsString().empty(),
+              "the status file marks the character offline with its family and play rhythm");
+    }
+
+    // --- travel: the runebook is read, then chosen by where the trip goes --
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(400000);
+        auto login = MakeLoginConfirm(0x2002, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(0x40007000, 0x0E75, 0x15, 0x2002);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        auto book = MakeAddItem(0x40007001, 0x22C5, 1, 0x40007000);
+        client->DispatchPacketForTest(book.data(), book.size());
+        Check(client->HasRunebook() && !client->RunebookRead(), "a carried book has not been read yet");
+        Check(!client->HasRecallReagents(), "no reagents in the pack: an uncharged Recall is not affordable");
+        for (u16 g : {0x0F7A, 0x0F7B, 0x0F86}) {
+            auto reg = MakeAddItem(0x40007100 + g, g, 5, 0x40007000);
+            client->DispatchPacketForTest(reg.data(), reg.size());
+        }
+        Check(client->HasRecallReagents(), "one of each Recall reagent counted from the pack");
+
+        client->ClearSentForTest();
+        Check(client->ActionReadRunebook(), "the runner can open its book to read it");
+        std::vector<std::string> texts = {"Runebook", "Charges: 00", "Page", "Name", "Destination", "Travel", "Rune",
+                                          "1", "Britain", "1490,1555,30", "2", "Minoc", "2500,480,0"};
+        for (int n = 3; n <= 8; ++n) { texts.push_back(std::to_string(n)); texts.push_back("(empty)"); texts.push_back("-"); }
+        std::string layout;
+        for (int n = 1; n <= 8; ++n) layout += "{ button 10 10 2103 2104 1 0 " + std::to_string(10 + n) + " }";
+        auto gump = MakeGump(0x40007001, 0x1234, layout, texts);
+        client->DispatchPacketForTest(gump.data(), gump.size());
+        bool closed = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0xB1 && p.bytes.size() >= 15 && LoadBE32(p.bytes.data() + 11) == 0) closed = true;
+        Check(client->RunebookRead() && client->RunebookFilledPages() == 2, "both marked pages are read from the gump");
+        Check(closed, "a book opened only to read it is closed again (button 0)");
+        Check(client->RunebookPageForGoal(1480, 1600) == 1,
+              "a trip to a Britain shop picks the Britain page by its point, whatever the trip's label");
+        Check(client->RunebookPageForGoal(2520, 500) == 2, "and a Minoc trip the Minoc page");
+        Check(client->RunebookPageForGoal(150, 120) == 0, "a short trip just walks");
+
+        // A charged book (from 13.05.2009, the default era is 2010) needs no
+        // Magery: the character can leave a losing fight by recall, and a
+        // trip home by recall counts as short.
+        std::vector<std::string> charged = texts;
+        charged[1] = "Charges: 05";
+        auto chargedGump = MakeGump(0x40007001, 0x1234, layout, charged);
+        client->DispatchPacketForTest(chargedGump.data(), chargedGump.size());
+        const i32 walk = 1480 - 100;
+        const i32 byRecall = client->RecallTilesTo(1480, 1600);
+        Check(byRecall >= 0 && byRecall < walk / 4, "a trip to Britain costs far less by recall than on foot");
+        client->ClearSentForTest();
+        Check(client->ActionEscapeByRecall(), "a character losing a fight can recall away");
+        bool opened = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == 0x40007001)
+                opened = true;
+        Check(opened, "the escape opens the runebook (the server still casts, checks and may fizzle)");
+
+        // A rune's name comes only from the server's label after a click.
+        auto rune = MakeAddItem(0x40007200, 0x1F14, 1, 0x40007000);
+        client->DispatchPacketForTest(rune.data(), rune.size());
+        client->ClearSentForTest();
+        client->ActionLookAt(0x40007200);
+        Check(!client->SentForTest().empty() && client->SentForTest().back().opcode == 0x09,
+              "looking at a rune sends a real single click");
+        Check(client->ServerItemName(0x40007200) == nullptr, "no name before the server says one");
+        auto label = MakeAsciiMessage(0x40007200, "", "a recall rune");
+        client->DispatchPacketForTest(label.data(), label.size());
+        Check(client->ServerItemName(0x40007200) && recall::LooksBlankRune(*client->ServerItemName(0x40007200)),
+              "the server's label is kept, and the stock name reads as blank");
+    }
+
+    // --- a murderer plans no trip into the guards ------------------------------
+    {
+        Client::Config config{};
+        config.loginHost = "127.0.0.1";
+        config.username = config.password = "offline_world";
+        config.version = "2.0.7";
+        config.sessionTag = "murderer";
+        config.atlasPath = atlasPath.c_str();
+        config.navgridPath = gridPath.c_str();
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetInWorldForTest();
+        client->SetClockForTest(1000000);
+        Check(client->WorldKnowledgeReady(), "real Client loads atlas and grid");
+        i32 gx = -1, gy = -1;
+        for (const auto& r : client->WorldAtlas()->Regions()) {
+            const wm::Region* at = client->WorldAtlas()->RegionAt(r.center.x, r.center.y);
+            if (at && at->flags.guarded) { gx = r.center.x; gy = r.center.y; break; }
+        }
+        Check(gx >= 0, "the atlas has guarded ground to test against");
+        client->SetMurdererRouting(true);
+        Check(!client->TravelToPoint(gx, gy, 2, "bank") &&
+              std::string(client->TravelFailureText()).find("murderer") != std::string::npos,
+              "a red character refuses a trip into guarded ground");
+        client->SetMurdererRouting(false);
+        client->TravelToPoint(gx, gy, 2, "bank");
+        Check(std::string(client->TravelFailureText()).find("murderer") == std::string::npos,
+              "a blue character is not refused for that reason");
+    }
+
+    // --- treasure: decode, dig, open, loot -- every step read back from state
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(500000);
+        auto login = MakeLoginConfirm(0x2002, 1000, 1000);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(0x40008000, 0x0E75, 0x15, 0x2002);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        const u32 kMap = 0x40008001, kShovel = 0x40008002, kPick = 0x40008003, kChest = 0x40008100;
+        for (auto item : {MakeAddItem(kMap, 0x14EB, 1, 0x40008000), MakeAddItem(kShovel, 0x0F39, 1, 0x40008000),
+                          MakeAddItem(kPick, 0x14FC, 1, 0x40008000)})
+            client->DispatchPacketForTest(item.data(), item.size());
+        life::Runner runner;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/treasure";
+        rc.accountName = "offline_world";
+        rc.characterName = "treasure_hunter";
+        rc.professionId = "treasure_hunter";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 500000; obs.x = obs.y = 1000;
+        obs.hp = obs.hpMax = 80; obs.maxWeight = 400; obs.weight = 50;
+        obs.skills = {{rules::kCartography, 1000}, {rules::kLockpicking, 1000}};
+        std::vector<life::Need> needs;
+        life::RunnerHarnessAccess::TreasureNeeds(runner, *client, obs, needs);
+        Check(needs.size() == 1 && needs[0].kind == life::NeedKind::NeedTreasure,
+              "a treasure hunter with a map in the pack needs to hunt it");
+        auto used = [&](u32 serial) {
+            for (const auto& p : client->SentForTest())
+                if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == serial)
+                    return true;
+            return false;
+        };
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        Check(used(kMap), "first step: double-click the map to decode it");
+        client->CompleteActionForTest(act::Result::Success, "map shown");
+        // The server shows the decoded map: a 200x200-tile area at 100x100
+        // pixels with a pin at pixel 50,50 -> world 1000,1000 (where we stand).
+        auto details = MakeMapDetails(kMap, 900, 900, 1100, 1100, 100, 100);
+        client->DispatchPacketForTest(details.data(), details.size());
+        auto pin = MakeMapPin(kMap, 50, 50);
+        client->DispatchPacketForTest(pin.data(), pin.size());
+        Check(client->MapViewOf(kMap) && client->MapViewOf(kMap)->pins.size() == 1, "the map view and its pin are kept");
+        obs.nowMs += 6000; client->SetClockForTest(obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        Check(used(kShovel), "standing on the pinned spot: dig with the shovel");
+        auto cursor = MakeTargetCursor(1, 0x77);
+        client->DispatchPacketForTest(cursor.data(), cursor.size());
+        client->ClearSentForTest();
+        obs.nowMs += 600; client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        bool groundAt = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x6C && p.bytes.size() >= 19 && LoadBE16(p.bytes.data() + 11) == 1000 &&
+                LoadBE16(p.bytes.data() + 13) == 1000) groundAt = true;
+        Check(groundAt, "the dig cursor is answered with the pinned tile");
+        client->CompleteActionForTest(act::Result::Success, "dug");
+        auto chest = MakeWorldItem(kChest, 0x0E40, 1001, 1000);
+        client->DispatchPacketForTest(chest.data(), chest.size());
+        obs.nowMs += 5000; client->SetClockForTest(obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        Check(used(kChest), "the chest that came up is opened");
+        client->CompleteActionForTest(act::Result::Success, "opened");
+        auto gold = MakeAddItem(0x40008101, 0x0EED, 500, kChest);
+        client->DispatchPacketForTest(gold.data(), gold.size());
+        obs.nowMs += 4000; client->SetClockForTest(obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        bool lifted = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x07 && p.bytes.size() >= 5 && LoadBE32(p.bytes.data() + 1) == 0x40008101) lifted = true;
+        Check(lifted, "the treasure is lifted into the pack");
+        obs.hostilesNear = 2;
+        client->CompleteActionForTest(act::Result::Success, "moved");
+        client->ClearSentForTest();
+        obs.nowMs += 2000;
+        life::RunnerHarnessAccess::Treasure(runner, *client, obs);
+        Check(client->SentForTest().empty(), "guardians near: the treasure step waits and lets the fight run");
+    }
+
+    // --- housing: a deed is used, the 0x99 cursor answered, the multi seen --
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(800000);
+        auto login = MakeLoginConfirm(0x2002, 3000, 3000);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(0x4000A000, 0x0E75, 0x15, 0x2002);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        life::Runner runner;
+        life::RunnerConfig rc;
+        std::filesystem::remove_all(root + "/house");   // a fresh life, not last run's house
+        rc.dataRoot = root + "/house";
+        rc.accountName = "offline_world";
+        rc.characterName = "house";
+        rc.professionId = "miner_smith";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 800000; obs.x = obs.y = 3000;
+        obs.hp = obs.hpMax = 80; obs.gold = 500;
+        std::vector<life::Need> needs;
+        life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
+        Check(needs.empty(), "500 gold and no deed: no house wanted");
+        auto deed = MakeAddItem(0x4000A001, 0x14F0, 1, 0x4000A000);
+        client->DispatchPacketForTest(deed.data(), deed.size());
+        life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
+        Check(needs.size() == 1 && needs[0].kind == life::NeedKind::NeedHousing,
+              "a deed in the pack wants placing");
+        life::RunnerHarnessAccess::SeedHouseSite(runner, 3000, 3000);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::House(runner, *client, obs);
+        bool usedDeed = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == 0x4000A001)
+                usedDeed = true;
+        Check(usedDeed, "standing on the site: the deed is double-clicked");
+        client->CompleteActionForTest(act::Result::Success, "deed used");
+        u8 place[26]{}; place[0] = 0x99; place[1] = 1;
+        StoreBE32(place + 2, 0x0000ABCD);
+        StoreBE16(place + 18, 0x0064);
+        client->DispatchPacketForTest(place, sizeof(place));
+        Check(client->MultiCursorActive(), "the server's 0x99 placement cursor is recognised");
+        obs.nowMs += 2000; client->SetClockForTest(obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::House(runner, *client, obs);
+        bool placed = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x6C && p.bytes.size() >= 19 && LoadBE16(p.bytes.data() + 11) == 3000 &&
+                LoadBE16(p.bytes.data() + 17) == 0x0064) placed = true;
+        Check(placed, "the cursor is answered with the site and the house's multi model");
+        auto multi = MakeWorldItem(0x4000A100, 0x4064, 3002, 3001);   // 0x4000 = multi
+        client->DispatchPacketForTest(multi.data(), multi.size());
+        obs.nowMs += 3000; client->SetClockForTest(obs.nowMs);
+        Check(life::RunnerHarnessAccess::House(runner, *client, obs) && life::RunnerHarnessAccess::OwnsHouse(runner),
+              "a multi at the site is the proof: the house is remembered as ours");
+        needs.clear();
+        life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
+        Check(needs.empty(), "one house per account (MaxHousesAccount=1): no second one wanted");
+    }
+
+    // --- party hunting: the call is heard, a hurt friend bandaged, loot shared
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(950000);
+        auto login = MakeLoginConfirm(0x2002, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(0x4000C000, 0x0E75, 0x15, 0x2002);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        auto bandages = MakeAddItem(0x4000C001, 0x0E21, 20, 0x4000C000);
+        client->DispatchPacketForTest(bandages.data(), bandages.size());
+        SpawnHostile(*client, 0x1002, 101, 100, 1);
+        u8 doll[66]{}; doll[0] = 0x88;
+        StoreBE32(doll + 1, 0x1002);
+        std::memcpy(doll + 5, "Leader", 6);
+        client->DispatchPacketForTest(doll, sizeof(doll));
+        auto name = MakeMobName(0x1002, "Leader");
+        client->DispatchPacketForTest(name.data(), name.size());
+        u8 roster[] = {0xBF, 0, 15, 0, 6, 1, 2, 0, 0, 0x10, 2, 0, 0, 0x20, 2};   // leader 0x1002, then us
+        client->DispatchPacketForTest(roster, sizeof(roster));
+        life::Runner runner;
+        life::RunnerHarnessAccess::SeedHuntParty(runner, 0x1002, "Leader", 950000);
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 950000; obs.x = obs.y = 100;
+        obs.hp = obs.hpMax = 80; obs.bandages = 20;
+        auto call = MakeAsciiMessage(0x1002, "Leader", "hedef: a skeleton");
+        client->DispatchPacketForTest(call.data(), call.size());
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        std::vector<party::Seen> seen = {{"a zombie", 102, 100}, {"a skeleton", 104, 101}};
+        Check(life::RunnerHarnessAccess::Focus(runner, *client, obs, seen) == 1,
+              "a member hits the monster the leader called, not the nearer zombie");
+        u8 hurt[9] = {0xA1}; StoreBE32(hurt + 1, 0x1002); StoreBE16(hurt + 5, 100); StoreBE16(hurt + 7, 45);
+        client->DispatchPacketForTest(hurt, sizeof(hurt));
+        client->ClearSentForTest();
+        Check(life::RunnerHarnessAccess::PartySupport(runner, *client, obs), "a hurt leader in reach is tended");
+        bool bandaged = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == 0x4000C001)
+                bandaged = true;
+        Check(bandaged, "with a real bandage double-click");
+        Check(!life::RunnerHarnessAccess::LootTurn(runner, *client) && life::RunnerHarnessAccess::LootTurn(runner, *client),
+              "the first kill is the leader's to loot, the second ours");
+    }
+
+    // --- player vendors: noticed by their title; a price prompt answered ----
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(900000);
+        auto login = MakeLoginConfirm(0x2002, 1500, 1600);
+        client->DispatchPacketForTest(login.data(), login.size());
+        SpawnHostile(*client, 0x1010, 1503, 1600, 1);
+        auto doll = MakePaperdoll(0x1010, "Kemal the vendor");
+        client->DispatchPacketForTest(doll.data(), doll.size());
+        SpawnHostile(*client, 0x1011, 1502, 1601, 1);
+        auto shop = MakePaperdoll(0x1011, "Aldo the provisioner");
+        client->DispatchPacketForTest(shop.data(), shop.size());
+        life::Runner runner;
+        life::RunnerConfig rc;
+        std::filesystem::remove_all(root + "/vendor_seen");
+        rc.dataRoot = root + "/vendor_seen";
+        rc.accountName = "offline_world";
+        rc.characterName = "vendor_seen";
+        rc.professionId = "tailor";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 900000; obs.x = 1500; obs.y = 1600;
+        obs.hp = obs.hpMax = 60;
+        life::RunnerHarnessAccess::Vendors(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::KnownVendors(runner) == 1,
+              "a player vendor walked past is remembered; the NPC provisioner is not one");
+        obs.nowMs += 40000;
+        life::RunnerHarnessAccess::Vendors(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::KnownVendors(runner) == 1, "and only once");
+
+        const char text[] = "Set the price:";
+        std::vector<u8> prompt(15, 0);
+        prompt[0] = 0x9A;
+        StoreBE32(&prompt[3], 0x4000B001);
+        StoreBE32(&prompt[7], 0x77);
+        for (char ch : text) prompt.push_back(static_cast<u8>(ch));
+        StoreBE16(&prompt[1], static_cast<u16>(prompt.size()));
+        client->DispatchPacketForTest(prompt.data(), prompt.size());
+        Check(client->PromptActive() && client->PromptText() == "Set the price:", "a 0x9A prompt is recognised");
+        client->ClearSentForTest();
+        Check(client->ActionAnswerPrompt("125"), "and can be answered");
+        bool answered = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x9A && p.bytes.size() >= 19 && LoadBE32(p.bytes.data() + 7) == 0x77 &&
+                LoadBE32(p.bytes.data() + 11) == 1 && std::string(reinterpret_cast<const char*>(p.bytes.data() + 15)) == "125")
+                answered = true;
+        Check(answered && !client->PromptActive(), "the reply names the prompt, type 1, the text NUL-terminated");
+    }
+
+    // --- PvP: the PK ambushes a lone miner; nobody ambushes inside the rules --
+    {
+        auto makePlayer = [](Client& c, u32 serial, u16 x, u16 y, u8 noto, const char* nm) {
+            SpawnHostile(c, serial, x, y, noto);
+            u8 doll[66]{}; doll[0] = 0x88;
+            StoreBE32(doll + 1, serial);
+            std::memcpy(doll + 5, nm, std::strlen(nm));
+            c.DispatchPacketForTest(doll, sizeof(doll));
+            auto name = MakeMobName(serial, nm);
+            c.DispatchPacketForTest(name.data(), name.size());
+        };
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(600000);
+        auto login = MakeLoginConfirm(0x2002, 2000, 2000);
+        client->DispatchPacketForTest(login.data(), login.size());
+        makePlayer(*client, 0x1004, 2004, 2000, 1, "Miner");
+        auto pick = MakeEquip(0x40009100, 0x0E86, 1, 0x1004);
+        client->DispatchPacketForTest(pick.data(), pick.size());
+        life::Runner pk;
+        life::RunnerConfig rc;
+        rc.dataRoot = root + "/pvp_pk";
+        rc.accountName = "offline_world";
+        rc.characterName = "pk";
+        rc.professionId = "pk";
+        std::string error;
+        Check(pk.Configure(rc, &error), error.c_str());
+        Check(std::string(life::RunnerHarnessAccess::PvpRoleName(pk)) == "pk", "the pk profession plays the PK role");
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 600000; obs.x = obs.y = 2000;
+        obs.hp = obs.hpMax = 90; obs.bandages = 30;
+        std::vector<life::Need> needs;
+        life::RunnerHarnessAccess::PvpNeeds(pk, *client, obs, needs);
+        Check(needs.size() == 1 && needs[0].urgency > 0.85, "a lone miner in the wild is an opening");
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::PvpHunt(pk, *client, obs);
+        bool attacked = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x05 && p.bytes.size() >= 5 && LoadBE32(p.bytes.data() + 1) == 0x1004) attacked = true;
+        Check(attacked, "the PK ambushes with a real attack request");
+
+        // A witness changes everything: two more players beside the miner.
+        makePlayer(*client, 0x1005, 2005, 2001, 1, "Friend");
+        makePlayer(*client, 0x1006, 2003, 2001, 1, "Other");
+        needs.clear();
+        life::RunnerHarnessAccess::PvpNeeds(pk, *client, obs, needs);
+        Check(needs.size() == 1 && needs[0].urgency < 0.5, "with witnesses beside the victim there is no opening");
+
+        // The victim's side: attacked by a player, the character shouts for help.
+        life::Runner victim;
+        rc.dataRoot = root + "/pvp_victim";
+        rc.characterName = "victim";
+        rc.professionId = "miner_smith";
+        Check(victim.Configure(rc, &error), error.c_str());
+        Client::Config vconfig{};
+        auto vclient = std::make_unique<Client>(vconfig);
+        vclient->SetOfflineForTest(true);
+        vclient->SetClockForTest(700000);
+        auto vlogin = MakeLoginConfirm(0x2003, 2000, 2000);
+        vclient->DispatchPacketForTest(vlogin.data(), vlogin.size());
+        makePlayer(*vclient, 0x1007, 2001, 2000, 6, "Reddy");
+        u8 swing[10] = {0x2F};   // 0x2F SWING: attacker(4)@2 defender(4)@6
+        StoreBE32(swing + 2, 0x1007);
+        StoreBE32(swing + 6, 0x2003);
+        vclient->DispatchPacketForTest(swing, sizeof(swing));
+        vclient->ClearSentForTest();
+        life::Observation vobs = obs; vobs.nowMs = 700000;
+        life::RunnerHarnessAccess::PvpObserve(victim, *vclient, vobs);
+        bool shouted = false;
+        for (const auto& p : vclient->SentForTest())
+            if (p.opcode == 0x03 && p.bytes.size() > 8 &&
+                std::string(reinterpret_cast<const char*>(p.bytes.data() + 8)).find("PK var") == 0) shouted = true;
+        Check(shouted, "a player attacked by a red shouts \"PK var! yardim!\"");
+    }
+
+    // --- small talk: "sa" is answered "as", once, never a handshake --------
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(300000);
+        auto login = MakeLoginConfirm(0x2002, 100, 100);
+        client->DispatchPacketForTest(login.data(), login.size());
+        SpawnHostile(*client, 0x1003, 102, 100, 1);
+        u8 doll[66]{}; doll[0] = 0x88;
+        StoreBE32(doll + 1, 0x1003);
+        std::memcpy(doll + 5, "Mert", 4);
+        client->DispatchPacketForTest(doll, sizeof(doll));
+        auto name = MakeMobName(0x1003, "Mert");
+        client->DispatchPacketForTest(name.data(), name.size());
+        life::Runner runner;
+        life::RunnerHarnessAccess::SocialIdentity(runner);
+        life::RunnerHarnessAccess::SocialChatty(runner, 100);
+        life::Observation obs; obs.nowMs = 300000; obs.x = obs.y = 100;
+        obs.hp = obs.hpMax = 50;
+        auto said = [&]() {
+            std::vector<std::string> lines;
+            for (const auto& p : client->SentForTest())
+                if (p.opcode == 0x03 && p.bytes.size() > 8)
+                    lines.emplace_back(reinterpret_cast<const char*>(p.bytes.data() + 8));
+            return lines;
+        };
+        auto sa = MakeAsciiMessage(0x1003, "Mert", "Sa!");
+        client->DispatchPacketForTest(sa.data(), sa.size());
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        const auto first = said();
+        bool answered = false;
+        for (const auto& line : first)
+            answered = answered || line == "as" || line == "as hosgeldin" || line == "aleykumselam";
+        Check(answered, "a nearby player's \"sa\" is answered with \"as\"");
+        bool handshake = false;
+        for (const auto& line : first) {
+            social::Activity a = social::Activity::None;
+            handshake = handshake || social::IsInvitation(line, &a);
+        }
+        Check(!handshake, "small talk never reads as an invitation");
+
+        client->SetClockForTest(340000); obs.nowMs = 340000;
+        auto again = MakeAsciiMessage(0x1003, "Mert", "selam");
+        client->DispatchPacketForTest(again.data(), again.size());
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::SocialObserve(runner, *client, obs);
+        Check(said().empty(), "a second greeting from the same person within ten minutes gets no reply "
+                              "(two bots cannot greet each other forever)");
     }
 
     // --- wind-down regression: "arrived somewhere safe" must not repeat ----

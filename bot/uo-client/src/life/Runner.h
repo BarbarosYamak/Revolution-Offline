@@ -17,6 +17,9 @@
 
 #include "uo/life.h"
 #include "uo/needgate.h"
+#include "uo/chatter.h"
+#include "uo/pvp.h"
+#include "uo/party_hunt.h"
 #include "uo/world_model.h"
 #include "uo/activities/acquire.h"
 #include "uo/activities/buy.h"
@@ -34,6 +37,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace uo {
@@ -56,6 +60,8 @@ struct RunnerConfig {
     // persists, and logs out properly.
     i64 sessionLimitMs = 30 * 60 * 1000;
     i32 goalLimit = 0;              // 0 = no goal-count limit
+    i32 eraDate = 0;                // uo/era.h yyyymmdd; 0 = era::kDefaultDate
+    bool noPvp = false;             // --no-pvp: no PK ambushes, no anti-PK hunting
 
     // Bounded checkpoint frequency. Too often and a 300-bot host is writing
     // constantly; too rarely and a crash loses a session's learning.
@@ -112,6 +118,81 @@ public:
 
     // Persist immediately (clean logout, host shutdown, a meaningful change).
     bool Checkpoint(Client& client, i64 nowMs, const char* why);
+    // The observer's window (status.json, tools/observer.py): every
+    // kStatusIntervalMs while live, and once more at logout marked offline.
+    void PublishStatus(Client& client, const Observation& obs, const char* phase);
+    void PublishOffline();
+    void TickRunebook(Client& client, const Observation& obs);
+    // Marking our own runes (runner/Runes.cpp).
+    void TickRunes(Client& client, const Observation& obs);
+    i64  runeTickMs_ = 0, runeLookMs_ = 0, markCastMs_ = 0, markLookedMs_ = 0, markRestUntilMs_ = 0;
+    u32  markRune_ = 0;
+    std::string markLabelBefore_;
+    i32  markX_ = 0, markY_ = 0;
+    i8   markZ_ = 0;
+    bool runesRestored_ = false;
+    bool runeWanted_ = false;
+    i64  runeBuyRestUntilMs_ = 0;
+    life::VendorErrand runeErrand_;
+    bool BuyBlankRune(Client& client, const Observation& obs);
+    void AddRuneNeeds(const Observation& obs, std::vector<Need>& needs);
+    // PvP (runner/Pvp.cpp, uo/pvp.h).
+    pvp::Role PvpRole() const;
+    pvp::Self PvpSelf(Client& client, const Observation& obs) const;
+    std::vector<pvp::Target> PvpTargets(Client& client, const Observation& obs) const;
+    void ObservePvp(Client& client, const Observation& obs);
+    void AddPvpNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoHuntPlayers(Client& client, const Observation& obs);
+    // Housing (runner/Housing.cpp, uo/housing.h).
+    bool OwnsHouse() const;
+    // Player vendors (runner/Social.cpp, uo/player_vendor.h).
+    void ObservePlayerVendors(Client& client, const Observation& obs);
+    // Party hunting (runner/PartyHunt.cpp, uo/party_hunt.h).
+    bool InHuntingParty(Client& client) const;
+    party::Role MyPartyRole() const;
+    void CallFocus(Client& client, i64 nowMs, u32 target, const std::string& name);
+    int  PartyFocusIndex(Client& client, const Observation& obs,
+                         const std::vector<party::Seen>& hostiles) const;
+    bool TickPartySupport(Client& client, const Observation& obs);
+    bool PartyLootTurn(Client& client);
+    party::Ground huntGround_ = party::Ground::Graveyard;
+    int  huntDesired_ = 2;
+    bool socialInviter_ = false;                 // we shouted the invitation: we lead and invite
+    std::vector<std::pair<u32, std::string>> huntExtras_;   // more joiners for the leader to invite
+    u32  huntInviting_ = 0;
+    i64  huntGatherUntilMs_ = 0, huntReshoutMs_ = 0;
+    std::string focusName_;
+    i64  focusUntilMs_ = 0, focusCalledMs_ = 0, partyHealMs_ = 0, partyStatusMs_ = 0;
+    u32  focusCalledSerial_ = 0;
+    int  partyKills_ = 0;
+    int  huntDungeonState_ = 0;                  // 0 not going, 1 on the way, 2 inside
+    i32  huntDungeonX_ = 0, huntDungeonY_ = 0;
+    int  huntDungeonPatrol_ = 0;
+    i64  vendorScanMs_ = 0;
+    void AddHousingNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoBuyHouse(Client& client, const Observation& obs);
+    life::VendorErrand houseErrand_;
+    std::vector<std::pair<i32, i32>> houseSites_;
+    int  houseSite_ = 0, houseTriesHere_ = 0;
+    i64  houseTriedMs_ = 0;
+    bool houseDeedFailed_ = false;
+    i64  pvpEscapeMs_ = 0;
+    i64  pvpAlarmSaidMs_ = 0, pvpHeardMs_ = 0, pvpAlarmUntilMs_ = 0, pvpRoamMs_ = 0;
+    i32  pvpAlarmX_ = 0, pvpAlarmY_ = 0;
+    bool pvpRoamFlip_ = false;
+    // Treasure hunting (runner/Treasure.cpp, uo/treasure.h).
+    bool WantsTreasure() const;
+    void AddTreasureNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoHuntTreasure(Client& client, const Observation& obs);
+    void EndTreasure(const char* why);
+    u32  treasureMap_ = 0, treasureChest_ = 0;
+    bool treasurePointKnown_ = false;
+    i32  treasureX_ = 0, treasureY_ = 0;
+    int  treasureDecodeTries_ = 0, treasureDigTries_ = 0, treasureOpenTries_ = 0, treasurePickTries_ = 0;
+    int  treasureCursorPending_ = 0;     // 1 = dig cursor, 2 = lockpick cursor
+    i64  treasureLastMs_ = 0;
+    i64  runebookTryMs_ = 0;
+    bool runebookLogged_ = false;
 
     // Ends the session deliberately: finish the current safe action, head
     // somewhere safe, persist, and log out.
@@ -285,9 +366,18 @@ private:
     bool poisonStudent_ = false, poisonSeen_ = false;
     i32 poisonRound_ = 1;
     i64 poisonReadyMs_ = 0;
-    bool sparActive_ = false, sparRoundStarted_ = false;
-    i64 sparReadyMs_ = 0, sparPeerReadyMs_ = 0, sparPollMs_ = 0, sparRoundEndMs_ = 0;
-    i32 sparRound_ = 1;
+    // Sparring v2 (uo/sparring.h DecideRound): one "Ready to spar." per
+    // meeting, rounds leased automatically, the meeting clock starting when
+    // the PARTY forms.
+    bool sparActive_ = false, sparRoundStarted_ = false, sparPeerReady_ = false;
+    i64 sparReadyMs_ = 0, sparPollMs_ = 0, sparRoundEndMs_ = 0, sparMeetingStartMs_ = 0;
+    i32 sparRounds_ = 0;
+    int sparKit_ = 0;   // 1 fists, 2 iron + training weapon (the invitation's kind)
+    // Bystander healer: heard sparring consent nearby and walks over to
+    // bandage the sparrers while it still wants Healing.
+    i64 sparWatchUntilMs_ = 0, sparHealMs_ = 0;
+    u32 sparWatchA_ = 0, sparWatchB_ = 0;
+    bool TickSparHealer(Client& client, const Observation& obs);
     bool FollowHuntingParty(Client& client, const Observation& obs);
     void EndSocialGroup(Client& client, const char* reason);
     bool SocialFoe(const std::string& name) const;
@@ -297,6 +387,14 @@ private:
     u32 socialPreferred_ = 0;
     std::string socialPeerName_;
     i64 socialHeardMs_ = 0, socialChatMs_ = 0, socialRestUntilMs_ = 0;
+    // Small talk (uo/chatter.h). chatWith_ remembers when we last exchanged
+    // words with each name this session, so two bots answering each other's
+    // "selam" cannot ping-pong forever.
+    std::unordered_map<std::string, i64> chatWith_;
+    i64  chatIdleMs_ = 0, chatKillMs_ = 0;
+    bool chatAfterDeath_ = false;
+    bool Chat(Client& client, i64 nowMs, chatter::Topic topic, const std::string& to = "");
+    void TickSmallTalk(Client& client, const Observation& obs, bool safe);
     i64 socialStartedMs_ = 0, socialAgreedMs_ = 0, socialLastSeenMs_ = 0;
     i64 socialInviteMs_ = 0, socialScanMs_ = 0, socialGroupUntilMs_ = 0;
     i64 socialMarketUntilMs_ = 0, socialPracticeMs_ = 0;
@@ -555,6 +653,11 @@ private:
     bool windDownUnsafeLogout_ = false;
 
     SessionSummary session_;
+    i32 eraDate_ = 0;                          // uo/era.h, set in Configure
+    static constexpr i64 kStatusIntervalMs = 10000;
+    i64 lastStatusMs_ = 0;
+    LiveStatus status_;
+    std::vector<RecentGoal> recentGoals_;
 
     // Transient per-goal working state. NONE of this is persisted -- it is
     // the ephemeral half of the truth split, and mixing it into state.json is

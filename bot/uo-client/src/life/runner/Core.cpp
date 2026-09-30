@@ -177,6 +177,31 @@ bool Runner::Configure(const RunnerConfig& cfg, std::string* err) {
                 state_.homeCity.c_str());
     }
 
+    // Which Revolution this character lives in (uo/era.h).
+    eraDate_ = cfg.eraDate ? cfg.eraDate : era::kDefaultDate;
+    {
+        int n = 0, known = 0;
+        const era::Change* changes = era::Changes(&n);
+        for (int i = 0; i < n; ++i) known += changes[i].date <= eraDate_;
+        LogLine("era: living on %s (%d of %d dated Revolution changes have happened)%s",
+                era::Format(eraDate_).c_str(), known, n,
+                era::InProfile(eraDate_) ? "" : " -- OUTSIDE the server's 2009-2010 profile: "
+                "the character may expect things the server does not have");
+    }
+
+    // Temperament and play hours, once per life (uo/persona.h). A file saved
+    // before personas existed gets the one its identity id always implied.
+    if (!state_.persona.set) {
+        state_.persona = persona::Make(state_.identity.identityId);
+        LogLine("persona: %s is a new %s player", state_.identity.characterName.c_str(),
+                persona::RhythmName(state_.persona.rhythm));
+    }
+    needCfg_.riskShift = state_.persona.riskShift / 100.0;
+    LogLine("persona: rhythm=%s nerve=%.2f sociability=%d schedule=\"%s\" (%d min/week)",
+            persona::RhythmName(state_.persona.rhythm), Nerve(needCfg_),
+            state_.persona.sociability, persona::Describe(state_.persona).c_str(),
+            persona::WeeklyMinutes(state_.persona));
+
     // Whatever the source -- a fresh plan or one reloaded from disk -- it has
     // to be a legal Revolution build before the character acts on it.
     const PlanCheck check = ValidatePlan(rules::Revolution(), state_.plan);
@@ -492,6 +517,12 @@ Observation Runner::Observe(Client& client, i64 nowMs) const {
         obs.homeKnown = home.resolved;
         obs.inHomeRegion = !home.resolved || home.inHome;
         obs.tilesFromHome = home.tiles;
+        // A character that can recall home is not as far from home as the
+        // walk (TravelTilesWithGates counts moongates only).
+        if (home.resolved && !home.inHome) {
+            const i32 byRecall = client.RecallTilesTo(home.x, home.y);
+            if (byRecall >= 0 && byRecall < obs.tilesFromHome) obs.tilesFromHome = byRecall;
+        }
         obs.onErrandGround = home.onErrandGround;
     }
     obs.treeAdjacent = client.TreeCount(obs.x, obs.y, 2) > 0;
@@ -1370,6 +1401,79 @@ bool Runner::Checkpoint(Client& client, i64 nowMs, const char* why) {
     return true;
 }
 
+// A player knows what is in their own runebook because they looked. Once per
+// session, when nothing else is going on, open the book so the travel layer
+// can pick a page by where a trip is going (uo/recall_plan.h). Opening is an
+// ordinary double-click; the gump is closed again as soon as it is read.
+void Runner::TickRunebook(Client& client, const Observation& obs) {
+    const bool safe = !obs.dead && !obs.underAttack && obs.attackersOnMe == 0 && obs.hostilesNear == 0;
+    const bool busy = client.ActionBusy() || client.TravelBusy();
+    if (client.RunebookRead() && !runebookLogged_) {
+        runebookLogged_ = true;
+        LogLine("travel: runebook read -- %d marked page(s); recall %s", client.RunebookFilledPages(),
+                client.HasRecallReagents() ? "reagents in the pack" : "needs reagents or charges");
+    }
+    if (!recall::ShouldReadBook(client.HasRunebook(), client.RunebookRead(), safe, busy,
+                                obs.nowMs, runebookTryMs_)) return;
+    runebookTryMs_ = obs.nowMs;
+    if (client.ActionReadRunebook()) LogLine("travel: opening the runebook to see its pages");
+}
+
+void Runner::PublishStatus(Client& client, const Observation& obs, const char* phase) {
+    if (!configured_) return;
+    lastStatusMs_ = obs.nowMs;
+    LiveStatus& s = status_;
+    s.character = state_.identity.characterName;
+    s.account = state_.identity.accountName;
+    s.family = state_.plan.family;
+    s.homeCity = state_.homeCity;
+    s.rhythm = persona::RhythmName(state_.persona.rhythm);
+    s.schedule = persona::Describe(state_.persona);
+    s.era = era::Format(eraDate_);
+    s.phase = phase;
+    s.online = obs.inWorld;
+    s.dead = obs.dead;
+    s.goal = GoalKindName(planner_.Current().kind);
+    s.goalFamily = GoalFamilyName(FamilyOf(planner_.Current().kind));
+    s.x = obs.x; s.y = obs.y;
+    s.hp = obs.hp; s.hpMax = obs.hpMax; s.mana = obs.mana; s.manaMax = obs.manaMax;
+    s.str = obs.str; s.dex = obs.dex; s.intel = obs.intel;
+    s.gold = obs.gold; s.goldAtLogin = session_.goldStart;
+    s.skillTenths = obs.SkillSumTenths();
+    s.kills = session_.kills; s.deaths = session_.deaths;
+    s.goalsCompleted = session_.goalsCompleted; s.goalsAttempted = session_.goalsAttempted;
+    s.partySize = static_cast<i32>(client.PartySize());
+    s.bandages = obs.bandages;
+    s.friends = s.foes = 0;
+    for (const social::Relationship& r : state_.memory.relationships) {
+        if (r.foe) ++s.foes;
+        else if (r.trust > 0) ++s.friends;
+    }
+    const i64 now = EpochMs();
+    if (!s.sessionStartEpochMs) s.sessionStartEpochMs = now - (obs.nowMs - sessionStartMs_);
+    s.sessionLimitMs = cfg_.sessionLimitMs;
+    s.updatedEpochMs = now;
+    s.recent = recentGoals_;
+    store_.SaveStatus(state_.identity.identityId, s);
+}
+
+void Runner::PublishOffline() {
+    if (!configured_) return;
+    if (status_.character.empty()) {       // logged out before the first live publish
+        status_.character = state_.identity.characterName;
+        status_.account = state_.identity.accountName;
+        status_.family = state_.plan.family;
+        status_.homeCity = state_.homeCity;
+        status_.rhythm = persona::RhythmName(state_.persona.rhythm);
+        status_.schedule = persona::Describe(state_.persona);
+    }
+    status_.online = false;
+    status_.phase = "offline";
+    status_.updatedEpochMs = EpochMs();
+    status_.recent = recentGoals_;
+    store_.SaveStatus(state_.identity.identityId, status_);
+}
+
 void Runner::EndSession(const char* why) {
     if (phase_ == Phase::WindDown || phase_ == Phase::LoggingOut ||
         phase_ == Phase::Done) {
@@ -1418,6 +1522,7 @@ void Runner::TrackDeathEdge(Client& client, i64 nowMs) {
         ++state_.recentDeaths;
         // AND THE SESSION'S OWN TALLY.
         ++session_.deaths;
+        chatAfterDeath_ = true;            // small talk once back on our feet
         state_.lastDeathMs = nowMs;
         const i32 x = client.PlayerX(), y = client.PlayerY();
         // NAME THE KILLER, NOT JUST THE TILE. This used to tag the danger
@@ -1586,6 +1691,12 @@ void Runner::Tick(Client& client, i64 nowMs) {
             const Observation obs = Observe(client, nowMs);
             if (TickPoisonPractice(client, obs)) return;
             if (TickSparring(client, obs)) return;
+            // A red character plans no trip into guarded ground (uo/pvp.h).
+            client.SetMurdererRouting(client.PlayerNotoriety() == 6);
+            if (TickSparHealer(client, obs)) return;
+            if (TickPartySupport(client, obs)) return;
+            TickRunebook(client, obs);
+            TickRunes(client, obs);
             TickCraftOrders(client, obs);
             if (needCfg_.profession && !ActiveCraftOrder(false, obs.nowMs)) {
                 const std::string beforeItem = state_.productionBatch.item;
@@ -1753,10 +1864,16 @@ void Runner::Tick(Client& client, i64 nowMs) {
             // and DoReplaceEquipment read them this tick.
             ResolveConsumableThresholds(needCfg_, planningObs.gold);
             ObserveSocial(client, planningObs);
+            ObservePvp(client, planningObs);
+            ObservePlayerVendors(client, planningObs);
             std::vector<Need> needs =
                 AssessNeeds(state_.plan, state_.memory, planningObs, needCfg_);
             AddSocialNeeds(client, planningObs, needs);
             AddCraftOrderNeeds(planningObs, needs);
+            AddTreasureNeeds(client, planningObs, needs);
+            AddPvpNeeds(client, planningObs, needs);
+            AddHousingNeeds(client, planningObs, needs);
+            AddRuneNeeds(planningObs, needs);
             std::string why;
             const GoalKind previous = planner_.Current().kind;
             const bool wasActive = planner_.Current().active;
@@ -1789,6 +1906,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
                             GoalKindName(planner_.Current().kind), why.c_str());
                 }
                 LogGoalChange(obs, why);
+                recentGoals_.push_back({EpochMs(), GoalKindName(planner_.Current().kind), why});
+                if (recentGoals_.size() > 8) recentGoals_.erase(recentGoals_.begin());
                 // A new goal starts from a clean transient slate -- but only
                 // if it is genuinely a NEW goal.
                 //
@@ -1827,6 +1946,8 @@ void Runner::Tick(Client& client, i64 nowMs) {
             }
 
             RunGoal(client, obs);
+
+            if (nowMs - lastStatusMs_ >= kStatusIntervalMs) PublishStatus(client, obs, "live");
 
             // --- checkpoint ------------------------------------------------
             if (cfg_.checkpointIntervalMs > 0 &&
@@ -2236,6 +2357,15 @@ void Runner::Tick(Client& client, i64 nowMs) {
             lastHistogramMs_ = nowMs;
 
             Checkpoint(client, nowMs, "clean logout");
+            PublishOffline();
+            if (client.PlayersNearby(10) > 0) {
+                // "iyi oyunlar": a word to whoever is standing here. Direct,
+                // not through the chat timer -- this is the last tick.
+                const char* bye = chatter::Pick(chatter::Topic::Farewell,
+                                                state_.identity.characterName, nowMs / 60000);
+                client.ActionSay(bye);
+                LogLine("chat: farewell ('%s')", bye);
+            }
             LogLine("logging out");
             client.ActionLogout();
             phase_ = Phase::LoggingOut;
@@ -2777,6 +2907,9 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::StatFarm:             done = DoStatFarm(client, obs); break;
         case GoalKind::IdleBriefly:           done = DoIdle(client, obs); break;
         case GoalKind::Socialize:             done = DoSocialize(client, obs); break;
+        case GoalKind::HuntTreasure:          done = DoHuntTreasure(client, obs); break;
+        case GoalKind::HuntPlayers:           done = DoHuntPlayers(client, obs); break;
+        case GoalKind::BuyHouse:              done = DoBuyHouse(client, obs); break;
         case GoalKind::Count:                 break;
     }
 

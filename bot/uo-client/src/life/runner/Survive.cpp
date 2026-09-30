@@ -143,6 +143,7 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
         const u32 corpse = client.CorpseOfMobile(currentFoe_);
         if (corpse) {
             ++session_.kills;
+            chatKillMs_ = obs.nowMs;       // small talk: a word after the kill
             // The trip's owner gets the credit, not whichever goal happens
             // to hold the slot during the fight. See Runner::huntKillsPending_.
             ++huntKillsPending_;
@@ -161,8 +162,14 @@ bool Runner::ProcessHuntAftermath(Client& client, const Observation& obs) {
             state_.memory.NoteEvent("confirmed_kill", currentFoeName_.c_str(), "",
                                     obs.x, obs.y, obs.nowMs);
             LogLine("hunt: confirmed kill target='%s' corpse=0x%08X", currentFoeName_.c_str(), corpse);
-            huntLootCorpse_ = corpse;
-            huntLootFailures_ = 0;
+            // In a hunting party kills are looted in turn round the roster
+            // (uo/party_hunt.h MyLootTurn): a friend's turn is left to them.
+            if (PartyLootTurn(client)) {
+                huntLootCorpse_ = corpse;
+                huntLootFailures_ = 0;
+            } else {
+                LogLine("party: this kill is a friend's turn to loot");
+            }
             currentFoe_ = 0;
         }
     }
@@ -653,7 +660,7 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
     double bailAt = needCfg_.fleeHpFraction;
     double nerve = 0.5;
     if (needCfg_.profession) {
-        nerve = needCfg_.profession->riskTolerance;
+        nerve = Nerve(needCfg_);
         bailAt = std::min(0.75, std::max(0.20,
                     needCfg_.fleeHpFraction + (0.5 - nerve) * 0.4));
     }
@@ -694,6 +701,28 @@ bool Runner::DoSurvive(Client& client, const Observation& obs) {
             if (!recorded)
                 state_.memory.NoteEvent("attacked_by_player", h.name.c_str(), "combat",
                                        obs.x, obs.y, obs.nowMs);
+        }
+    }
+    // LOSING TO A PLAYER: RECALL OUT. A PK is not outrun the way a zombie is;
+    // a player who can reach a runebook page leaves by magic. The judgement
+    // is pvp::ShouldBreakOff (nerve, the race, the odds, bandages), never a
+    // constant; if the recall fizzles -- it can, under blows -- the ordinary
+    // retreat below still runs.
+    if (obs.nowMs - pvpEscapeMs_ >= 15000) {
+        u32 playerFoe = 0;
+        i32 foeHp = -1;
+        for (const auto& h : hostiles)
+            if (client.IsAttackingMe(h.serial) && client.KnownPlayer(h.serial)) {
+                playerFoe = h.serial;
+                foeHp = (h.hpCur >= 0 && h.hpMax > 0) ? h.hpCur * 100 / h.hpMax : -1;
+            }
+        if (playerFoe && pvp::ShouldBreakOff(obs.HpFraction(), foeHp, nerve, support,
+                                             obs.attackersOnMe, obs.bandages) &&
+            client.ActionEscapeByRecall()) {
+            pvpEscapeMs_ = obs.nowMs;
+            LogLine("pvp: losing to a player at %.0f%% -- recalling away", obs.HpFraction() * 100.0);
+            nextActionMs_ = obs.nowMs + 3000;
+            return false;
         }
     }
     const i32 board = static_cast<i32>(
@@ -1556,7 +1585,7 @@ bool Runner::DoRecoverCorpse(Client& client, const Observation& obs) {
     see.gearInPack = false;
 
     RecoveryTuning tune;
-    if (needCfg_.profession) tune.riskTolerance = needCfg_.profession->riskTolerance;
+    if (needCfg_.profession) tune.riskTolerance = Nerve(needCfg_);
     tune.minHpToReturn = needCfg_.healHpFraction;
 
     // Starting a trip consumes its attempt. Let that last permitted trip

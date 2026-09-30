@@ -10,6 +10,9 @@
 #include "travel/PersonalKnowledge.h"
 #include "travel/WarMode.h"
 #include "uo/actions.h"
+#include "uo/sparring.h"
+#include "uo/era.h"
+#include "uo/recall_plan.h"
 #include "uo/log.h"
 #include "uo/progression.h"
 #include "uo/trade.h"
@@ -141,6 +144,11 @@ public:
         const char* professionId = nullptr;   // uo::prof::All() id; required with --autonomous
         i32         lifeMinutes = 30;         // session length before a clean logout
         i32         lifeGoalLimit = 0;        // 0 = no goal-count limit
+        // Which day of Revolution's history this character lives in
+        // (uo/era.h); 0 = era::kDefaultDate. Changes what it knows to do,
+        // never what the server allows.
+        i32         eraDate = 0;
+        bool        noPvp = false;            // --no-pvp
         bool        logPackets;       // write PKT hex lines to the log file
         u32         keepaliveIntervalMs;  // 0 = use the built-in default
         bool        acceptDoors;      // A* routes through door tiles, opened at runtime
@@ -196,6 +204,60 @@ public:
     // -----------------------------------------------------------------
     bool IsInWorld() const { return state_ == State::InWorld; }
     u32  PlayerSerial() const { return playerSerial_; }
+    // Our own notoriety as the server last sent it for our mobile (0x77/0x78);
+    // 0 = not seen. 6 = murderer: the guards kill us on sight.
+    u8   PlayerNotoriety() const;
+    // Single-click an item (0x09) so the server labels it; ServerItemName is
+    // the last name it said, nullptr until then.
+    void ActionLookAt(u32 serial);
+    const std::string* ServerItemName(u32 serial) const;
+    // A murderer never plans a trip INTO guarded ground (GuardsOnMurderers=1,
+    // GuardsInstantKill=1). Set by the life runner from PlayerNotoriety().
+    void SetMurdererRouting(bool on) { murdererRouting_ = on; }
+    bool MurdererRouting() const { return murdererRouting_; }
+    // The day of Revolution's history this character lives in (uo/era.h).
+    i32  EraDate() const { return cfg_.eraDate ? cfg_.eraDate : era::kDefaultDate; }
+    // Runebook knowledge for the life runner: does the pack hold a book, and
+    // has this session read its pages yet (RunebookPageForGoal needs them).
+    bool HasRunebook() const { return FindBackpackItemByGraphic(0x22C5) != 0; }
+    bool RunebookRead() const { return runebookSerial_ != 0; }
+    int  RunebookFilledPages() const {
+        int n = 0; for (const auto& p : runebookPages_) n += p.filled; return n;
+    }
+    int  RunebookPageForGoal(i32 toX, i32 toY) const;            // by map point, 0 = none
+    // Leave NOW: recall to the marked page farthest from here (at least 50
+    // tiles), if the book has been read and the cast can be paid for --
+    // a charge (from 13.05.2009) or Magery 40, 11 mana and the reagents.
+    bool ActionEscapeByRecall();
+    // What a trip to (x, y) costs in tiles when this character can recall to
+    // a page near it and pay for the cast: the walk from the landing point
+    // plus a fixed 20 for the cast itself. -1 = no usable recall.
+    i32  RecallTilesTo(i32 x, i32 y) const;
+    // TEXT PROMPTS (0x9A). Sphere asks for a line of text this way -- a
+    // player vendor's "set a price" is the case that matters here. Answered
+    // with the same packet; one prompt open at a time, as in the real client.
+    bool PromptActive() const { return promptSerial_ != 0 || promptId_ != 0; }
+    const std::string& PromptText() const { return promptText_; }
+    bool ActionAnswerPrompt(const std::string& text);
+    // Mobiles near us whose paperdoll title we have read, with where they
+    // stand: how a character notices "Ayse's vendor" in a house it walks past.
+    struct TitledMobile { u32 serial = 0; std::string title; i32 x = 0, y = 0; };
+    void TitledMobilesNear(i32 radius, std::vector<TitledMobile>& out) const;
+
+    // HOUSES. A house deed's cursor (0x99) is answered with the footprint's
+    // spot; a multi seen near that spot afterwards is the proof it stood.
+    bool MultiCursorActive() const { return multiModel_ != 0 && target_.Active(); }
+    bool ActionPlaceMulti(i32 x, i32 y, i8 z);
+    u32  FindMultiNear(i32 x, i32 y, i32 radius, i64 sinceMs = 0) const;
+    // What another mobile wears on a layer (1/2 hands, 25 mount), 0 = nothing seen.
+    u16  MobileEquipGraphic(u32 serial, u8 layer) const;
+    // Open the book only to read it; the gump is closed once its pages are noted.
+    bool ActionReadRunebook();
+    // Enough reagents for one uncharged Recall under this era's cost.
+    bool HasRecallReagents() const {
+        return recall::HasRecallReagents(BackpackItemCount(0x0F7A), BackpackItemCount(0x0F7B),
+                                         BackpackItemCount(0x0F86), era::RecallReagentsEach(EraDate()));
+    }
     i32  PlayerX() const { return playerX_; }
     i32  PlayerY() const { return playerY_; }
     i8   PlayerZ() const { return playerZ_; }
@@ -244,6 +306,10 @@ public:
     // scenario cannot assume a fixed tile for a vendor or a banker.
     bool ActionGotoMobile(u32 serial, int stopWithin = 1);
     bool MobilePosition(u32 serial, i32* x, i32* y, i8* z = nullptr) const;
+    // Another mobile's war mode (0x77/0x78) and health bar as a percentage
+    // (-1 = never seen) -- what a party member reads off a friend.
+    bool MobileWarMode(u32 serial) const;
+    i32  MobileHpPercent(u32 serial) const;
     // A nearby mobile is not necessarily visible: update packets cross rooms,
     // whereas vendors and trainers require normal Sphere line of sight.  The
     // banking errand's explicit at-known-bank speech fallback is the only
@@ -536,6 +602,23 @@ public:
     // ground beside a spinning wheel answers "You can't think of a way to use
     // that item."
     u32  FindWorldItemByGraphic(u16 graphic, i32 maxDist = 8) const;
+    // The nearest world item of any of these graphics within `radius` of a
+    // POINT (not of the player): the chest a dig raised at the map's spot.
+    u32  FindWorldItemNear(const u16* graphics, usize count, i32 x, i32 y, i32 radius) const;
+
+    // A MAP THE SERVER SHOWED US (0x90 map details + 0x56 pins). A decoded
+    // treasure map arrives as exactly this: the map's world rectangle, its
+    // pixel size, and a pin on the spot (uo/treasure.h converts the pin).
+    struct MapView {
+        u32 serial = 0;
+        i32 ulx = 0, uly = 0, lrx = 0, lry = 0, width = 0, height = 0;
+        std::vector<std::pair<i32, i32>> pins;   // pixel coordinates
+        i64 seenMs = 0;
+    };
+    const MapView* MapViewOf(u32 serial) const {
+        const auto it = maps_.find(serial);
+        return it == maps_.end() ? nullptr : &it->second;
+    }
     // The same search, ignoring stations this caller has already struck off --
     // a loom behind a counter with no walkable tile beside it is not a loom
     // this character can use, and the next-nearest one is the answer.
@@ -1064,6 +1147,8 @@ public:
     void NearbyPlayers(i32 radius, std::vector<HostileHit>& out) const;
     void ActionIdentifyNearbyPerson();
     bool SparringKit(u32 serial) const;
+    sparring::Kit SparringKitOf(u32 serial) const;  // pure verdict: uo/sparring.h KitFor
+    bool SparringHealthFresh(u32 peer) const;       // both health bars within kHealthFreshMs
     bool MobilePoisoned(u32 serial) const;
     bool PoisonPracticeReady(u32 peer) const;
     bool SparringReady(u32 peer) const;
@@ -1078,6 +1163,7 @@ public:
     u32 PartyLeader() const { return partyMembers_.empty() ? 0 : partyMembers_.front(); }
     u32 PartyInviter() const { return partyInviter_; }
     usize PartySize() const { return partyMembers_.size(); }
+    const std::vector<u32>& PartyMembers() const { return partyMembers_; }
     void ActionPartyInvite();
     void ActionPartyAccept(u32 leader);
     void ActionPartyLeave();
@@ -1352,6 +1438,20 @@ private:
     void OnOpenPaperdoll      (const u8* data, usize size);  // 0x88 paperdoll (carries title)
     void OnOverallLightLevel  (const u8* data, usize size);  // 0x4F
     void OnPersonalLightLevel (const u8* data, usize size);  // 0x4E
+    void OnMapDetails         (const u8* data, usize size);  // 0x90
+    void OnMultiPlacement     (const u8* data, usize size);  // 0x99
+    void OnAsciiPrompt        (const u8* data, usize size);  // 0x9A
+    u32 promptSerial_ = 0, promptId_ = 0, promptType_ = 0;
+    std::string promptText_;
+    struct MultiObj { u16 model; i32 x, y; i64 seenMs; };
+    std::unordered_map<u32, MultiObj> multis_;
+    bool murdererRouting_ = false;
+    std::unordered_map<u32, std::string> serverItemNames_;
+    std::unordered_set<u32> guardedCells_;     // built once, the first time a red trip plans
+    bool guardedCellsBuilt_ = false;
+    u16 multiModel_ = 0;                // armed by 0x99, spent by ActionPlaceMulti
+    void OnMapPin             (const u8* data, usize size);  // 0x56
+    std::unordered_map<u32, MapView> maps_;
     void OnMobileMove         (const u8* data, usize size);  // 0x77
     void OnMobileIncoming     (const u8* data, usize size);  // 0x78
     void OnSwing              (const u8* data, usize size);  // 0x2F fight/swing
@@ -2155,9 +2255,11 @@ private:
         int         page = 0;
         std::string name;
         std::string point;
+        i32         x = 0, y = 0;   // parsed from `point`; 0 = unreadable
         bool        filled = false;
     };
     std::vector<RunebookPage> runebookPages_;
+    bool runebookReadPending_ = false;  // opened only to read it; close the gump
     u32  runebookSerial_ = 0;    // the book whose gump filled the list above
     int  runebookCharges_ = 0;
     void NoteRunebookGump();                       // called after a gump parse

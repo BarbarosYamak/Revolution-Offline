@@ -25,6 +25,7 @@
 
 #include "uo/market.h"
 #include "uo/social.h"
+#include "uo/persona.h"
 #include "uo/professions.h"
 #include "uo/production.h"
 #include "uo/rules.h"
@@ -1409,6 +1410,12 @@ enum class NeedKind : u8 {
     // Papua case this was written for.
     NeedHome,
     NeedSocial,
+    // A treasure map in the pack (or a dug chest waiting): uo/treasure.h.
+    NeedTreasure,
+    // A PK's roam for a victim, or an anti-PK's lawful target / alarm (uo/pvp.h).
+    NeedPvp,
+    // Savings enough for a house, or a deed waiting to be placed (uo/housing.h).
+    NeedHousing,
     Count,
 };
 
@@ -1452,6 +1459,9 @@ struct NeedConfig {
     const ProductionBatch* productionBatch = nullptr;
     double fleeHpFraction   = 0.32;  // M3.9.1 live: disengaged at ~32% and survived
     double healHpFraction   = 0.80;
+    // This character's own nerve on top of its profession's (persona.h),
+    // in the same 0..1 units as Profession::riskTolerance.
+    double riskShift        = 0.0;
     // RESOLVED PER CHARACTER, NOT A GLOBAL. See ResolveConsumableThresholds:
     // these two are rewritten every planning tick from the life's own
     // catalogue entry and its purse. The values here are only what a
@@ -1632,6 +1642,14 @@ inline BandageSupplyPlan PlanBandageSupply(const prof::Profession* p, i32 gold,
 
 inline const char* BandageSupplyName(BandageSupply r) {
     return r == BandageSupply::AskPlayers ? "ASK_PLAYERS" : "CUT_CLOTH";
+}
+
+// THIS CHARACTER'S NERVE: the profession's riskTolerance plus its own
+// persona shift, clamped. Every reader of riskTolerance goes through here so
+// the need model, the flee interrupt and prey choice agree.
+inline double Nerve(const NeedConfig& cfg) {
+    const double base = cfg.profession ? cfg.profession->riskTolerance : 0.5;
+    return std::min(0.95, std::max(0.05, base + cfg.riskShift));
 }
 
 // WHERE "TOO HEAVY" STARTS for this life. A fighter's line is the hunt gate
@@ -1890,6 +1908,12 @@ enum class GoalKind : u8 {
     ReturnHome,
     IdleBriefly,
     Socialize,
+    // Decode a map, go there, dig, open the chest, fight its guardians, loot.
+    HuntTreasure,
+    // Ambush a victim (PK) or engage a red / criminal / war enemy (anti-PK).
+    HuntPlayers,
+    // Buy a house deed from an architect and place it outside town.
+    BuyHouse,
     Count,
 };
 
@@ -2268,6 +2292,11 @@ struct PersistentState {
     // every evening.
     std::string homeCity;
 
+    // TEMPERAMENT AND PLAY HOURS (uo/persona.h). Chosen once from the identity
+    // id, like the home, and kept: the population manager reads the same
+    // schedule to decide when this character logs in.
+    persona::Persona persona;
+
     // The current objective, so a session RESUMES rather than restarts. It is
     // re-validated against server truth on login and may be dropped.
     GoalState goal;
@@ -2296,6 +2325,41 @@ struct PersistentState {
 json::Value ToJson(const PersistentState& st);
 bool FromJson(const json::Value& v, PersistentState* out, std::string* err);
 
+// WHAT THE OBSERVER SEES (tools/observer.py). A small, frequently rewritten
+// status.json beside state.json: never read back by the bot, never an
+// authority, only a window for the person watching the shard. Everything in
+// it is what this character itself observed.
+struct RecentGoal {
+    i64         atEpochMs = 0;
+    std::string goal;
+    std::string why;
+};
+
+struct LiveStatus {
+    std::string character, account, family, homeCity;
+    std::string rhythm, schedule;
+    std::string era;               // uo/era.h date this character lives in
+    std::string phase;             // live / wind_down / logging_out / offline
+    bool        online = false;
+    bool        dead = false;
+    std::string goal, goalFamily;
+    i32 x = 0, y = 0;
+    i32 hp = 0, hpMax = 0, mana = 0, manaMax = 0;
+    i32 str = 0, dex = 0, intel = 0;
+    i32 gold = 0, goldAtLogin = 0;
+    i32 skillTenths = 0;
+    i32 kills = 0, deaths = 0, goalsCompleted = 0, goalsAttempted = 0;
+    i32 partySize = 0;
+    i32 bandages = 0;
+    i32 friends = 0, foes = 0;
+    i64 sessionStartEpochMs = 0;
+    i64 updatedEpochMs = 0;
+    i64 sessionLimitMs = 0;
+    std::vector<RecentGoal> recent;   // newest last
+};
+
+json::Value ToJson(const LiveStatus& s);
+
 // A directory per identity: <root>/<identityId>/state.json. No passwords, no
 // credentials, ever -- the account name is stored, the password is not.
 class Store {
@@ -2312,6 +2376,8 @@ public:
     bool Load(const std::string& identityId, PersistentState* out,
               std::string* err) const;
     bool Exists(const std::string& identityId) const;
+    std::string StatusPathFor(const std::string& identityId) const;
+    bool SaveStatus(const std::string& identityId, const LiveStatus& s) const;
 
 private:
     std::string root_;

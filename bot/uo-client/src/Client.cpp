@@ -261,6 +261,8 @@ bool Client::Start() {
                                                                : lc.accountName;
         lc.sessionLimitMs = static_cast<i64>(cfg_.lifeMinutes) * 60 * 1000;
         lc.goalLimit = cfg_.lifeGoalLimit;
+        lc.eraDate = EraDate();
+        lc.noPvp = cfg_.noPvp;
         lc.professionId = cfg_.professionId ? cfg_.professionId : "";
         lifeRunner_ = std::make_unique<life::Runner>();
         std::string lerr;
@@ -587,6 +589,10 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0xAF: OnDeathAnimation(data, size); break;
         case 0x3A: OnSkills(data, size); break;
         case 0x4E: OnPersonalLightLevel(data, size); break;
+        case 0x90: OnMapDetails(data, size); break;
+        case 0x99: OnMultiPlacement(data, size); break;
+        case 0x9A: OnAsciiPrompt(data, size); break;
+        case 0x56: OnMapPin(data, size); break;
         case 0x4F: OnOverallLightLevel(data, size); break;
         case 0xD1: OnLogoutAck(data, size); break;
         case 0x27: OnDragCancel(data, size); break;
@@ -1254,6 +1260,7 @@ void Client::OnObjectInfo(const u8* data, usize size) {
     // graphic high bit => a graphic-increment byte (itemIdOffset) follows
     // immediately; it selects a door's open/closed frame (drawn = id + offset).
     const bool hasOffset = (g & 0x8000) != 0;
+    const bool isMulti = (g & 0x4000) != 0;   // a house or a ship
     const u16 itemId = static_cast<u16>(g & 0x3FFF);
 
     u8 gfxOffset = 0;
@@ -1291,6 +1298,7 @@ void Client::OnObjectInfo(const u8* data, usize size) {
     // (lamp posts, doors, decor). Keyed by serial; removed on 0x1D.
     const bool isNewItem = items_.find(serial) == items_.end();
     items_[serial] = ItemObj{itemId, x, y, z, gfxOffset, hue};
+    if (isMulti) multis_[serial] = MultiObj{itemId, x, y, NowMs()};
     if (isNewItem) itemOrder_.push_back(serial);
     while (items_.size() > kMaxItemCache && !itemOrder_.empty()) {
         const u32 oldSerial = itemOrder_.front();
@@ -2962,6 +2970,22 @@ i32 Client::PlayerHp() const { return player_.hpCur; }
 i32 Client::PlayerHpMax() const { return player_.hpMax; }
 i32 Client::PlayerGold() const { return player_.gold; }
 
+void Client::ActionLookAt(u32 serial) {
+    u8 p[5] = {0x09};
+    StoreBE32(p + 1, serial);
+    Send(p, sizeof(p), "0x09 single click");
+}
+
+const std::string* Client::ServerItemName(u32 serial) const {
+    const auto it = serverItemNames_.find(serial);
+    return it == serverItemNames_.end() ? nullptr : &it->second;
+}
+
+u8 Client::PlayerNotoriety() const {
+    const MobileObj* m = FindMobileBySerial(playerSerial_);
+    return m ? m->noto : 0;
+}
+
 bool Client::ContainerKnown(u32 serial) const {
     return containerItems_.find(serial) != containerItems_.end();
 }
@@ -3349,6 +3373,51 @@ u32 Client::FindWorldItemByGraphic(u16 graphic, i32 maxDist,
     return best;
 }
 
+u32 Client::FindWorldItemNear(const u16* graphics, usize count, i32 x, i32 y, i32 radius) const {
+    u32 best = 0;
+    i32 bestD = radius + 1;
+    for (const auto& kv : items_) {
+        bool match = false;
+        for (usize i = 0; i < count && !match; ++i) match = kv.second.itemId == graphics[i];
+        if (!match) continue;
+        const i32 dx = std::abs(kv.second.x - x), dy = std::abs(kv.second.y - y);
+        const i32 d = dx > dy ? dx : dy;
+        if (d < bestD) { bestD = d; best = kv.first; }
+    }
+    return best;
+}
+
+// 0x90 MAP DETAILS (19): serial(4) gumpArt(2) ulx(2) uly(2) lrx(2) lry(2)
+// width(2) height(2). Sphere sends it when a map is opened (CItemMap); a new
+// one replaces the old view of that map, pins included.
+void Client::OnMapDetails(const u8* data, usize size) {
+    if (size < 19) return;
+    MapView v;
+    v.serial = LoadBE32(data + 1);
+    v.ulx = LoadBE16(data + 7);  v.uly = LoadBE16(data + 9);
+    v.lrx = LoadBE16(data + 11); v.lry = LoadBE16(data + 13);
+    v.width = LoadBE16(data + 15); v.height = LoadBE16(data + 17);
+    v.seenMs = NowMs();
+    maps_[v.serial] = v;
+    LogInfo("[map] 0x%08X shows (%d,%d)-(%d,%d) at %dx%d\n", v.serial, v.ulx, v.uly,
+            v.lrx, v.lry, v.width, v.height);
+}
+
+// 0x56 MAP PIN (11): serial(4) command(1) pin(1) x(2) y(2). Command 1 adds a
+// pin, 5 clears them; the rest are the owner editing their own map.
+void Client::OnMapPin(const u8* data, usize size) {
+    if (size < 11) return;
+    const u32 serial = LoadBE32(data + 1);
+    MapView& v = maps_[serial];
+    v.serial = serial;
+    const u8 command = data[5];
+    if (command == 5) { v.pins.clear(); return; }
+    if (command == 1 || command == 2) {
+        v.pins.emplace_back(LoadBE16(data + 7), LoadBE16(data + 9));
+        LogInfo("[map] 0x%08X pin at pixel %u,%u\n", serial, LoadBE16(data + 7), LoadBE16(data + 9));
+    }
+}
+
 bool Client::WorldItemPosition(u32 serial, i32* x, i32* y, i8* z) const {
     const auto it = items_.find(serial);
     if (it == items_.end()) return false;
@@ -3602,6 +3671,76 @@ bool Client::ActionTargetGround(i32 x, i32 y, i8 z) {
 
 bool Client::ActionMenuChoose(u16 index) {
     return AnswerDialog(index);
+}
+
+// 0x99 PLACE MULTI (26): allowGround(1) targetId(4)@2 ... multiModel(2)@18.
+// Sphere sends it when a house deed is used: a ground cursor carrying the
+// house's multi so the client can preview the footprint. It is answered like
+// any location cursor (0x6C), naming the multi model as the graphic.
+void Client::OnMultiPlacement(const u8* data, usize size) {
+    if (size < 20) return;
+    const u32 id = LoadBE32(data + 2);
+    multiModel_ = LoadBE16(data + 18);
+    target_.OnArmed(id, 1, 0, NowMs());
+    LogInfo("[0x99] place multi 0x%04X requested id=0x%08X\n", multiModel_, id);
+    LogEvent("multi_placement_requested", "");
+}
+
+// 0x9A ASCII PROMPT: len(2) serial(4) promptId(4) type(4) [text]. The reply
+// is the same packet with type 1 and the answer, NUL-terminated (type 0 would
+// cancel). Kept verbatim so the answer names the prompt it answers.
+void Client::OnAsciiPrompt(const u8* data, usize size) {
+    if (size < 15) return;
+    promptSerial_ = LoadBE32(data + 3);
+    promptId_ = LoadBE32(data + 7);
+    promptType_ = LoadBE32(data + 11);
+    promptText_.assign(reinterpret_cast<const char*>(data + 15), size - 15);
+    while (!promptText_.empty() && promptText_.back() == '\0') promptText_.pop_back();
+    LogInfo("[0x9A] prompt serial=0x%08X id=0x%08X '%s'\n", promptSerial_, promptId_, promptText_.c_str());
+    LogEvent("prompt_requested", promptText_.c_str());
+}
+
+bool Client::ActionAnswerPrompt(const std::string& text) {
+    if (!PromptActive()) return false;
+    std::vector<u8> p(15, 0);
+    p[0] = 0x9A;
+    StoreBE32(&p[3], promptSerial_);
+    StoreBE32(&p[7], promptId_);
+    StoreBE32(&p[11], 1);
+    for (char c : text) p.push_back(static_cast<u8>(c));
+    p.push_back(0);
+    StoreBE16(&p[1], static_cast<u16>(p.size()));
+    LogInfo("[0x9A] answering prompt 0x%08X with '%s'\n", promptId_, text.c_str());
+    promptSerial_ = promptId_ = promptType_ = 0;
+    promptText_.clear();
+    return Send(p.data(), p.size(), "0x9A prompt reply");
+}
+
+void Client::TitledMobilesNear(i32 radius, std::vector<TitledMobile>& out) const {
+    out.clear();
+    for (const auto& kv : paperdollTitles_) {
+        const MobileObj* m = FindMobileBySerial(kv.first);
+        if (!m || kv.first == playerSerial_) continue;
+        const i32 dx = std::abs(m->x - playerX_), dy = std::abs(m->y - playerY_);
+        if ((dx > dy ? dx : dy) > radius) continue;
+        out.push_back({kv.first, kv.second, m->x, m->y});
+    }
+}
+
+bool Client::ActionPlaceMulti(i32 x, i32 y, i8 z) {
+    if (!target_.Active() || !multiModel_) return false;
+    LogInfo("[TARGET] place multi 0x%04X at (%d,%d,%d)\n", multiModel_, x, y, static_cast<int>(z));
+    TargetRespondStatic(x, y, z, multiModel_);
+    multiModel_ = 0;
+    return true;
+}
+
+u32 Client::FindMultiNear(i32 x, i32 y, i32 radius, i64 sinceMs) const {
+    for (const auto& kv : multis_) {
+        const i32 dx = std::abs(kv.second.x - x), dy = std::abs(kv.second.y - y);
+        if ((dx > dy ? dx : dy) <= radius && kv.second.seenMs >= sinceMs) return kv.first;
+    }
+    return 0;
 }
 
 bool Client::ActionTargetStatic(i32 x, i32 y, i8 z, u16 graphic) {
@@ -5844,6 +5983,17 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
     RememberJournalMessage(sourceSerial, sourceBody, type, hue, font,
                            speaker.c_str(), text.c_str());
     LogInfo("[chat ascii] %s: %s\n", speaker.c_str(), text.c_str());
+    // An ITEM'S NAME, as the server labels it after a single click: the only
+    // way a client learns what Mark renamed a rune to.
+    if (sourceSerial != 0 && sourceSerial != 0xFFFFFFFFu) {
+        const u32 s = sourceSerial & 0x7FFFFFFFu;
+        bool isItem = items_.count(s) != 0;
+        for (const auto& c : containerItems_) {
+            if (isItem) break;
+            for (const ContainerItem& ci : c.second) if (ci.serial == s) { isItem = true; break; }
+        }
+        if (isItem) serverItemNames_[s] = text;
+    }
     NoteAttackEmote(sourceSerial, text.c_str());
 
     // Stamina signal: the server denies movement and says "too fatigued to

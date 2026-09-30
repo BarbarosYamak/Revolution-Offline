@@ -828,3 +828,65 @@ target_include_directories(novice_engage PRIVATE
     ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME novice_engage COMMAND novice_engage)
+
+# Sparring v2: kit, compatibility, round plan and safety stop -- pure, no client.
+add_executable(sparring_rounds sparring_rounds.cpp)
+target_include_directories(sparring_rounds PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+add_test(NAME sparring_rounds COMMAND sparring_rounds)
+
+# Personas and play schedules -- pure; the vectors are shared with
+# tools/fleet_ramp.py so the population manager and the bot agree.
+add_executable(persona persona.cpp)
+target_include_directories(persona PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME persona COMMAND persona ${CMAKE_CURRENT_SOURCE_DIR}/data/persona_vectors.tsv)
+
+# Small talk -- the phrasebook never collides with a handshake or a trade line.
+add_executable(chatter chatter.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Market.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/activities/AcquirePlan.cpp
+    ${CMAKE_SOURCE_DIR}/src/economy/Faucets.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Production.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/VendorPolicy.cpp
+    ${CMAKE_SOURCE_DIR}/src/life/Professions.cpp
+    ${CMAKE_SOURCE_DIR}/src/progression/Rules.cpp)
+target_include_directories(chatter PRIVATE
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src)
+add_test(NAME chatter COMMAND chatter)
+
+# The shard calendar -- dated Revolution changes, pure.
+add_executable(era era.cpp)
+target_include_directories(era PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME era COMMAND era)
+
+# Recall travel -- which runebook page shortens a trip, pure.
+add_executable(recall_plan recall_plan.cpp)
+target_include_directories(recall_plan PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME recall_plan COMMAND recall_plan)
+
+# Treasure hunting -- the pure step machine.
+add_executable(treasure treasure.cpp)
+target_include_directories(treasure PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME treasure COMMAND treasure)
+
+# PvP -- the PK's victim choice, anti-PK targets, break-off, alarm. Pure.
+add_executable(pvp pvp.cpp)
+target_include_directories(pvp PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME pvp COMMAND pvp)
+
+# Housing -- when to buy, where to try, what to do next. Pure.
+add_executable(housing housing.cpp)
+target_include_directories(housing PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME housing COMMAND housing)
+
+# Player vendors -- pricing after tax, what to list, what to buy. Pure.
+add_executable(player_vendor player_vendor.cpp)
+target_include_directories(player_vendor PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME player_vendor COMMAND player_vendor)
+
+# Party hunting -- group size, ground, focus fire, healing, loot turns, roles.
+add_executable(party_hunt party_hunt.cpp)
+target_include_directories(party_hunt PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME party_hunt COMMAND party_hunt)

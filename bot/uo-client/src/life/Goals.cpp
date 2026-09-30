@@ -40,6 +40,9 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::ReturnHome:           return "RETURN_HOME";
         case GoalKind::IdleBriefly:           return "IDLE_BRIEFLY";
         case GoalKind::Socialize:             return "SOCIALIZE";
+        case GoalKind::HuntTreasure:          return "HUNT_TREASURE";
+        case GoalKind::HuntPlayers:           return "HUNT_PLAYERS";
+        case GoalKind::BuyHouse:              return "BUY_HOUSE";
         case GoalKind::Count:                 break;
     }
     return "?";
@@ -83,6 +86,7 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::MakeBandages:
         case GoalKind::UpgradeGear:
         case GoalKind::BuyMount:
+        case GoalKind::BuyHouse:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Mine:
@@ -100,6 +104,7 @@ GoalFamily FamilyOf(GoalKind k) {
         // the tailor SELLS, not something it needs for itself.
         case GoalKind::MakeBandagesForSale:
         case GoalKind::HarvestWool:
+        case GoalKind::HuntTreasure:
             return GoalFamily::Work;
         case GoalKind::TrainCombat:
         case GoalKind::TrainAtNpc:
@@ -108,6 +113,7 @@ GoalFamily FamilyOf(GoalKind k) {
         // a stat: the character is putting hours in rather than earning or
         // shopping, and the day's balance should count it that way.
         case GoalKind::StatFarm:
+        case GoalKind::HuntPlayers:
             return GoalFamily::Training;
         case GoalKind::TradeWithPlayer:
         case GoalKind::Socialize:
@@ -251,6 +257,16 @@ const GoalSpec kGoals[] = {
     // shorter errand, and the player market is for what it refuses.
     {GoalKind::TradeWithPlayer,       NeedKind::NeedTrade,         145.0},
     {GoalKind::Socialize,             NeedKind::NeedSocial,        150.0},
+    // A treasure hunter's work, a little above ordinary gathering: a map is
+    // a rare, finite opportunity, and a dug chest (urgency 1.0) must not be
+    // abandoned for a routine errand.
+    {GoalKind::HuntTreasure,          NeedKind::NeedTreasure,      135.0},
+    // Beside TRAIN_COMBAT: for a PK this IS the fighting it trains by, and a
+    // good opening (0.90) or a rescue (0.85) outbids a routine hunt.
+    {GoalKind::HuntPlayers,           NeedKind::NeedPvp,           130.0},
+    // Under the day's work: a house is what savings are FOR, not a reason to
+    // stop earning. A deed in the pack (0.70) still wins an idle moment.
+    {GoalKind::BuyHouse,              NeedKind::NeedHousing,       120.0},
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},
@@ -607,6 +623,8 @@ i64 Planner::TimeLimitFor(GoalKind k) const {
     // trip budget (kMarketTripMs + kWindDownBudgetMs) with margin.
     if (k == GoalKind::Socialize) return 180000;
     if (k == GoalKind::TradeWithPlayer) return 14 * 60 * 1000;
+    if (k == GoalKind::HuntTreasure) return 20 * 60 * 1000;   // the trip, the dig and the guardians
+    if (k == GoalKind::BuyHouse) return 20 * 60 * 1000;       // architect, then site after site
     return cfg_.maxGoalMs;
 }
 

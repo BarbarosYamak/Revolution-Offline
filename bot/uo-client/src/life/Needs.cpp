@@ -43,6 +43,9 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedWoolIncome: return "NeedWoolIncome";
         case NeedKind::NeedStrength:  return "NeedStrength";
         case NeedKind::NeedSocial:    return "NeedSocial";
+        case NeedKind::NeedTreasure:  return "NeedTreasure";
+        case NeedKind::NeedPvp:       return "NeedPvp";
+        case NeedKind::NeedHousing:   return "NeedHousing";
         case NeedKind::NeedHome:      return "NeedHome";
         case NeedKind::Count:         break;
     }
@@ -932,7 +935,7 @@ std::vector<Need> AssessNeeds(const BuildPlan& plan, const Memory& mem,
         // at full health.
         double bailAt = cfg.fleeHpFraction;
         if (cfg.profession) {
-            const double nerve = cfg.profession->riskTolerance;   // 0..1
+            const double nerve = Nerve(cfg);   // 0..1, persona included
             bailAt = std::min(0.75, std::max(0.20,
                         cfg.fleeHpFraction + (0.5 - nerve) * 0.4));
         }

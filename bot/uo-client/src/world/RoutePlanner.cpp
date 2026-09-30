@@ -77,6 +77,23 @@ u32 RoutePlanner::CellIndex(i32 tileX, i32 tileY) const {
     return static_cast<u32>(cy) * grid_.CellsX() + static_cast<u32>(cx);
 }
 
+std::unordered_set<u32> RoutePlanner::GuardedCells() const {
+    std::unordered_set<u32> out;
+    const i32 maxX = static_cast<i32>(grid_.WidthTiles()) - 1, maxY = static_cast<i32>(grid_.HeightTiles()) - 1;
+    const i32 step = static_cast<i32>(navgrid::kCellTiles);
+    for (const wm::Region& r : atlas_.Regions()) {
+        if (!r.flags.guarded) continue;
+        for (const wm::Rect& rc : r.rects) {
+            const i32 x1 = std::max(0, rc.x1), y1 = std::max(0, rc.y1);
+            const i32 x2 = std::min(maxX, rc.x2), y2 = std::min(maxY, rc.y2);
+            for (i32 y = y1 - y1 % step; y <= y2; y += step)
+                for (i32 x = x1 - x1 % step; x <= x2; x += step)
+                    out.insert(CellIndex(x, y));
+        }
+    }
+    return out;
+}
+
 void RoutePlanner::CellCoords(u32 index, i32* cx, i32* cy) const {
     const u32 w = grid_.CellsX() ? grid_.CellsX() : 1;
     if (cx) *cx = static_cast<i32>(index % w);
@@ -380,6 +397,7 @@ WorldRoute RoutePlanner::Plan(i32 startX, i32 startY, i32 goalX, i32 goalY,
 
         auto relax = [&](u32 next, i32 cost, const TransitEdge* via) {
             if (isAvoided(next)) return;
+            if (opt.forbiddenCells && next != goalCell && opt.forbiddenCells->count(next)) return;
             const i32 ng = baseG + cost;
             auto it = seen.find(next);
             if (it != seen.end()) {
