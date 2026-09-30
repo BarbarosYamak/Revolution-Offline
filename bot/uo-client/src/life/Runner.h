@@ -196,6 +196,14 @@ public:
     int  houseSite_ = 0, houseTriesHere_ = 0;
     i64  houseTriedMs_ = 0;
     bool houseDeedFailed_ = false;
+    // House storage (runner/Housing.cpp).
+    bool HouseChest(u32* serial, i32* x, i32* y) const;
+    void AddHouseStoreNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoHouseStore(Client& client, const Observation& obs);
+    life::VendorErrand houseBagErrand_;
+    u32  houseSecureBag_ = 0;
+    i64  houseSecureMs_ = 0, houseSecureAskMs_ = 0, houseStoreRestUntilMs_ = 0;
+    int  houseStoreOpens_ = 0;
     i64  pvpEscapeMs_ = 0;
     i64  pvpAlarmSaidMs_ = 0, pvpHeardMs_ = 0, pvpAlarmUntilMs_ = 0, pvpRoamMs_ = 0;
     i32  pvpAlarmX_ = 0, pvpAlarmY_ = 0;

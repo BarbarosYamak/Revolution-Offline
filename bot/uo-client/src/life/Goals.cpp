@@ -45,6 +45,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::BuyHouse:              return "BUY_HOUSE";
         case GoalKind::Family:                return "FAMILY";
         case GoalKind::RunVendor:             return "RUN_VENDOR";
+        case GoalKind::HouseStore:            return "HOUSE_STORE";
         case GoalKind::Count:                 break;
     }
     return "?";
@@ -89,6 +90,7 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::UpgradeGear:
         case GoalKind::BuyMount:
         case GoalKind::BuyHouse:
+        case GoalKind::HouseStore:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Mine:
@@ -277,6 +279,9 @@ const GoalSpec kGoals[] = {
     // Under the day's work: selling through a vendor is what the surplus is
     // for once NPCs refuse it; browsing is an idle-time errand (0.25).
     {GoalKind::RunVendor,             NeedKind::NeedVendor,        125.0},
+    // Housekeeping beside BANK's neighbourhood, below it: the house holds
+    // trade goods, the bank still holds everything else.
+    {GoalKind::HouseStore,            NeedKind::NeedHouseStore,    200.0},
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},

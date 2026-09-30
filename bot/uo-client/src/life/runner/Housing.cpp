@@ -2,6 +2,8 @@
 #include "uo/housing.h"
 #include "uo/persona.h"
 
+#include <cstdlib>
+
 // HOUSES (uo/housing.h). A character that has saved enough buys a deed from
 // an architect, walks out of town and uses it; the server's 0x99 placement
 // cursor is answered with the spot, and a house multi appearing there is the
@@ -127,6 +129,146 @@ bool Runner::DoBuyHouse(Client& client, const Observation& obs) {
         }
     }
     if (r.acted) planner_.NoteProgress();
+    return false;
+}
+
+}  // namespace uo::life
+
+// HOUSE STORAGE. A house owner keeps a secured container in the house and
+// puts its trade surplus there instead of hauling it. The container is a bag
+// from a provisioner -- boxes and chests are carpenter-made on this shard
+// (the vendor table only BUYS them), so a bag is the one an owner can buy.
+// Securing is the stock Sphere house speech, "I wish to secure this", then a
+// target on the container. UNVERIFIED on this tree; the chest counts as ours
+// only once it still lies in the house after the server had its say.
+namespace uo::life {
+
+bool Runner::HouseChest(u32* serial, i32* x, i32* y) const {
+    for (const KnownPlace& p : state_.memory.Places())
+        if (p.kind == "house_chest") {
+            if (serial) *serial = static_cast<u32>(std::strtoul(p.name.c_str(), nullptr, 16));
+            if (x) *x = p.x;
+            if (y) *y = p.y;
+            return true;
+        }
+    return false;
+}
+
+void Runner::AddHouseStoreNeeds(Client& client, const Observation& obs, std::vector<Need>& needs) {
+    if (!OwnsHouse() || obs.dead || obs.underAttack || obs.attackersOnMe > 0 || !needCfg_.profession) return;
+    if (obs.nowMs < houseStoreRestUntilMs_) return;
+    Need n;
+    n.kind = NeedKind::NeedHouseStore;
+    if (!HouseChest(nullptr, nullptr, nullptr)) {
+        if (obs.gold < 500) return;
+        n.what = "a secured chest"; n.urgency = 0.30; n.reason = "a house with nowhere to keep things";
+        needs.push_back(n);
+        return;
+    }
+    market::TradeIntent offer;
+    if (obs.WeightFraction() >= 0.5 &&
+        market::ChooseSellOffer(*needCfg_.profession, obs.pack, state_.prices, tradePolicy_, &offer)) {
+        n.what = "store surplus at home"; n.urgency = 0.45; n.reason = "carrying goods only players buy";
+        needs.push_back(n);
+    }
+    (void)client;
+}
+
+bool Runner::DoHouseStore(Client& client, const Observation& obs) {
+    const KnownPlace* house = nullptr;
+    for (const KnownPlace& p : state_.memory.Places()) if (p.kind == "house") house = &p;
+    if (!house) return true;
+    if (client.TravelBusy() || client.ActionBusy()) return false;
+    if (TileDist(obs.x, obs.y, house->x, house->y) > 3) {
+        client.TravelToPoint(house->x, house->y, 2, "my house");
+        return false;
+    }
+    u32 chest = 0;
+    if (HouseChest(&chest, nullptr, nullptr)) {
+        if (!client.ContainerKnown(chest)) {
+            client.ActionOpenContainer(chest);
+            nextActionMs_ = obs.nowMs + 2000;
+            if (++houseStoreOpens_ > 3) {
+                houseStoreOpens_ = 0;
+                return BlockNeed(GoalKind::HouseStore, NeedKind::NeedHouseStore, BlockScope::Window,
+                                 "the house chest will not open", 6LL * 60 * 60000, obs.nowMs);
+            }
+            return false;
+        }
+        houseStoreOpens_ = 0;
+        market::TradeIntent offer;
+        if (!market::ChooseSellOffer(*needCfg_.profession, obs.pack, state_.prices, tradePolicy_, &offer))
+            return true;
+        i32 have = 0;
+        const u32 stack = FindBackpackItemByName(client, offer.item.c_str(), &have);
+        if (!stack) return true;
+        LogLine("house: storing %d %s in the house chest", have, offer.item.c_str());
+        client.ActionMoveItem(stack, static_cast<u16>(have), chest);
+        planner_.NoteProgress();
+        nextActionMs_ = obs.nowMs + 1200;
+        return false;
+    }
+
+    // No chest yet: a bag, dropped in the house, then secured.
+    constexpr u16 kBag = 0x0E76;
+    if (houseSecureBag_) {
+        if (client.TargetActive()) {
+            client.ActionTargetObject(houseSecureBag_);
+            houseSecureMs_ = obs.nowMs;
+            nextActionMs_ = obs.nowMs + 3000;
+            return false;
+        }
+        if (houseSecureMs_ && obs.nowMs - houseSecureMs_ >= 3000) {
+            i32 bx = 0, by = 0;
+            if (client.WorldItemPosition(houseSecureBag_, &bx, &by) && TileDist(bx, by, house->x, house->y) <= 12) {
+                char hex[16];
+                std::snprintf(hex, sizeof(hex), "%08X", houseSecureBag_);
+                state_.memory.NotePlace("house_chest", hex, bx, by, 0, obs.nowMs);
+                LogLine("house: a secured bag now stands in the house");
+                Checkpoint(client, obs.nowMs, "house chest");
+            } else {
+                LogLine("house: the bag was not secured");
+                houseStoreRestUntilMs_ = obs.nowMs + 6LL * 60 * 60000;
+            }
+            houseSecureBag_ = 0; houseSecureMs_ = 0;
+            return true;
+        }
+        if (obs.nowMs - houseSecureAskMs_ > 8000) {   // no cursor came
+            houseSecureBag_ = 0;
+            houseStoreRestUntilMs_ = obs.nowMs + 6LL * 60 * 60000;
+            return true;
+        }
+        return false;
+    }
+    const u32 bag = client.FindBackpackItemByGraphic(kBag);
+    if (bag) {
+        LogLine("house: setting a bag down in the house to secure it");
+        client.ActionDropGround(bag, 1, obs.x, obs.y, static_cast<i8>(client.PlayerZ()));
+        client.ActionSay("I wish to secure this");
+        houseSecureBag_ = bag;
+        houseSecureAskMs_ = obs.nowMs;
+        nextActionMs_ = obs.nowMs + 1500;
+        return false;
+    }
+    if (FetchCoinForPurchase(client, obs, 100)) return false;
+    if (!houseBagErrand_.Running()) {
+        life::VendorErrandSpec spec;
+        spec.Sell("provisioner", wm::Service::Provisioner);
+        spec.graphic = kBag;
+        spec.qty = 1;
+        spec.what = "bag";
+        spec.maxPricePerUnit = 100;
+        houseBagErrand_.Begin(spec);
+    }
+    const life::VendorErrandResult r = houseBagErrand_.Tick(client, obs);
+    LogErrandReason("bag", r.why.c_str(), obs.nowMs);
+    if (r.wake == life::Wake::AfterDelay && r.delayMs > 0) nextActionMs_ = obs.nowMs + r.delayMs;
+    if (life::IsTerminal(r.status)) {
+        houseBagErrand_.Cancel();
+        if (r.status != life::ActivityStatus::Success)
+            return BlockNeed(GoalKind::HouseStore, NeedKind::NeedHouseStore, BlockScope::Window,
+                             "no provisioner sells a bag", 6LL * 60 * 60000, obs.nowMs);
+    }
     return false;
 }
 

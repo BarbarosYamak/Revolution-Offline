@@ -64,6 +64,8 @@ struct RunnerHarnessAccess {
         r.AddHousingNeeds(c, o, needs);
     }
     static bool OwnsHouse(const Runner& r) { return r.OwnsHouse(); }
+    static bool HouseStore(Runner& r, Client& c, const Observation& o) { return r.DoHouseStore(c, o); }
+    static bool HasHouseChest(const Runner& r) { return r.HouseChest(nullptr, nullptr, nullptr); }
     static void Vendors(Runner& r, Client& c, const Observation& o) { r.ObservePlayerVendors(c, o); }
     static void TrustFriend(Runner& r, const char* name, i32 trust) {
         social::Remember(r.state_.memory.relationships, name, social::Encounter::Greeting, 1);
@@ -2088,6 +2090,36 @@ int main(int argc, char** argv) {
         needs.clear();
         life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
         Check(needs.empty(), "one house per account (MaxHousesAccount=1): no second one wanted");
+
+        // House storage: a bag is set down in the house and secured.
+        auto bag = MakeAddItem(0x4000A002, 0x0E76, 1, 0x4000A000);
+        client->DispatchPacketForTest(bag.data(), bag.size());
+        client->CompleteActionForTest(act::Result::Success, "idle");
+        client->ClearSentForTest();
+        obs.nowMs += 1000; client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::HouseStore(runner, *client, obs);
+        bool dropped = false, spoke = false;
+        for (const auto& p : client->SentForTest()) {
+            if (p.opcode == 0x08) dropped = true;
+            if (p.opcode == 0x03 && p.bytes.size() > 8 &&
+                std::string(reinterpret_cast<const char*>(p.bytes.data() + 8)) == "I wish to secure this") spoke = true;
+        }
+        Check(dropped && spoke, "the bag is set down in the house and the owner says \"I wish to secure this\"");
+        client->CompleteActionForTest(act::Result::Success, "dropped");
+        auto secureCursor = MakeTargetCursor(0, 0x55);
+        client->DispatchPacketForTest(secureCursor.data(), secureCursor.size());
+        client->ClearSentForTest();
+        obs.nowMs += 1600; client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::HouseStore(runner, *client, obs);
+        bool targeted = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x6C && p.bytes.size() >= 11 && LoadBE32(p.bytes.data() + 7) == 0x4000A002) targeted = true;
+        Check(targeted, "the secure cursor is answered with the bag");
+        auto bagOnFloor = MakeWorldItem(0x4000A002, 0x0E76, 3000, 3000);
+        client->DispatchPacketForTest(bagOnFloor.data(), bagOnFloor.size());
+        obs.nowMs += 3500; client->SetClockForTest(obs.nowMs);
+        life::RunnerHarnessAccess::HouseStore(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::HasHouseChest(runner), "the bag still standing in the house is remembered as the house chest");
     }
 
     // --- party hunting: the call is heard, a hurt friend bandaged, loot shared

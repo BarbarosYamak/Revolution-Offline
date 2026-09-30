@@ -41,14 +41,27 @@ one.
 * **To enable it:** uncomment the deed SELL lines in the vendor template on
   the server.
 
+## House storage (built 2026-09-30, UNVERIFIED live)
+
+Goal `HOUSE_STORE` (weight 200, in the Upkeep family).
+* A house owner without a chest buys a **bag** from a provisioner. Boxes and
+  chests are carpenter-made on this shard; the vendor table only buys them.
+* It sets the bag down in the house, says **"I wish to secure this"** (the
+  stock Sphere house speech) and answers the cursor with the bag.
+* The bag counts as the house chest only if it still lies in the house 3
+  seconds later.
+* Afterwards, a character carrying goods only players buy, with a pack at 50%
+  weight or more, stores them in the chest when it is home.
+* If the chest won't open or the bag is refused, it rests for 6 hours.
+
 ## UNKNOWN / not done
 
 * Revolution's house rules: sizes, prices, where building is allowed, decay,
   lockdowns, friends and co-owners. The rules pages `/ev_cesitleri` and
   `/ev_kurallari` were never captured.
-* **Using the house:** storing goods (lockdowns, secure chests) and placing a
-  vendor in it need the house's own menus, which are unknown on this tree.
-  Today the house is a remembered home spot and nothing more.
+* **Using the house:** a secured bag for storage and a player vendor are now
+  built (see below and M5.9). Both use stock Sphere house behaviour and are
+  unverified on this tree.
 * Which deed the architect sells first when it lists several; the errand's
   price cap bounds it.
 

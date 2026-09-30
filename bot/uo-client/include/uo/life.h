@@ -1420,6 +1420,8 @@ enum class NeedKind : u8 {
     NeedFamily,
     // Stock our own player vendor, or browse one we know (uo/player_vendor.h).
     NeedVendor,
+    // A secured chest in our house, or surplus to put in it.
+    NeedHouseStore,
     Count,
 };
 
@@ -1922,6 +1924,8 @@ enum class GoalKind : u8 {
     Family,
     // Own a player vendor (place, stock, price, collect) or buy from one.
     RunVendor,
+    // Secure a container in our house and keep surplus there.
+    HouseStore,
     Count,
 };
 

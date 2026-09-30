@@ -48,6 +48,7 @@ const char* NeedKindName(NeedKind k) {
         case NeedKind::NeedHousing:   return "NeedHousing";
         case NeedKind::NeedFamily:    return "NeedFamily";
         case NeedKind::NeedVendor:    return "NeedVendor";
+        case NeedKind::NeedHouseStore: return "NeedHouseStore";
         case NeedKind::NeedHome:      return "NeedHome";
         case NeedKind::Count:         break;
     }

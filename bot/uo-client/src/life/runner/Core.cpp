@@ -1879,6 +1879,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             AddRuneNeeds(planningObs, needs);
             AddFamilyNeeds(client, planningObs, needs);
             AddVendorNeeds(client, planningObs, needs);
+            AddHouseStoreNeeds(client, planningObs, needs);
             std::string why;
             const GoalKind previous = planner_.Current().kind;
             const bool wasActive = planner_.Current().active;
@@ -2917,6 +2918,7 @@ void Runner::RunGoal(Client& client, const Observation& obs) {
         case GoalKind::BuyHouse:              done = DoBuyHouse(client, obs); break;
         case GoalKind::Family:                done = DoFamily(client, obs); break;
         case GoalKind::RunVendor:             done = DoRunVendor(client, obs); break;
+        case GoalKind::HouseStore:            done = DoHouseStore(client, obs); break;
         case GoalKind::Count:                 break;
     }
 
