@@ -875,3 +875,8 @@ add_test(NAME treasure COMMAND treasure)
 add_executable(pvp pvp.cpp)
 target_include_directories(pvp PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME pvp COMMAND pvp)
+
+# Housing -- when to buy, where to try, what to do next. Pure.
+add_executable(housing housing.cpp)
+target_include_directories(housing PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME housing COMMAND housing)

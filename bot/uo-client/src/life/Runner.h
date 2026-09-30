@@ -129,6 +129,15 @@ public:
     void ObservePvp(Client& client, const Observation& obs);
     void AddPvpNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
     bool DoHuntPlayers(Client& client, const Observation& obs);
+    // Housing (runner/Housing.cpp, uo/housing.h).
+    bool OwnsHouse() const;
+    void AddHousingNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
+    bool DoBuyHouse(Client& client, const Observation& obs);
+    life::VendorErrand houseErrand_;
+    std::vector<std::pair<i32, i32>> houseSites_;
+    int  houseSite_ = 0, houseTriesHere_ = 0;
+    i64  houseTriedMs_ = 0;
+    bool houseDeedFailed_ = false;
     i64  pvpAlarmSaidMs_ = 0, pvpHeardMs_ = 0, pvpAlarmUntilMs_ = 0, pvpRoamMs_ = 0;
     i32  pvpAlarmX_ = 0, pvpAlarmY_ = 0;
     bool pvpRoamFlip_ = false;

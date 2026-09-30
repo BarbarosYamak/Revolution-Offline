@@ -57,6 +57,12 @@ struct RunnerHarnessAccess {
     static void SocialEnd(Runner& r, Client& c) { r.EndSocialGroup(c, "test finished"); }
     static bool Treasure(Runner& r, Client& c, const Observation& o) { return r.DoHuntTreasure(c, o); }
     static void PvpObserve(Runner& r, Client& c, const Observation& o) { r.ObservePvp(c, o); }
+    static void SeedHouseSite(Runner& r, i32 x, i32 y) { r.houseSites_ = {{x, y}}; r.houseSite_ = 0; }
+    static bool House(Runner& r, Client& c, const Observation& o) { return r.DoBuyHouse(c, o); }
+    static void HousingNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) {
+        r.AddHousingNeeds(c, o, needs);
+    }
+    static bool OwnsHouse(const Runner& r) { return r.OwnsHouse(); }
     static void PvpNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) { r.AddPvpNeeds(c, o, needs); }
     static bool PvpHunt(Runner& r, Client& c, const Observation& o) { return r.DoHuntPlayers(c, o); }
     static const char* PvpRoleName(const Runner& r) { return pvp::RoleName(r.PvpRole()); }
@@ -1924,6 +1930,67 @@ int main(int argc, char** argv) {
         obs.nowMs += 2000;
         life::RunnerHarnessAccess::Treasure(runner, *client, obs);
         Check(client->SentForTest().empty(), "guardians near: the treasure step waits and lets the fight run");
+    }
+
+    // --- housing: a deed is used, the 0x99 cursor answered, the multi seen --
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(800000);
+        auto login = MakeLoginConfirm(0x2002, 3000, 3000);
+        client->DispatchPacketForTest(login.data(), login.size());
+        auto pack = MakeEquip(0x4000A000, 0x0E75, 0x15, 0x2002);
+        client->DispatchPacketForTest(pack.data(), pack.size());
+        life::Runner runner;
+        life::RunnerConfig rc;
+        std::filesystem::remove_all(root + "/house");   // a fresh life, not last run's house
+        rc.dataRoot = root + "/house";
+        rc.accountName = "offline_world";
+        rc.characterName = "house";
+        rc.professionId = "miner_smith";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 800000; obs.x = obs.y = 3000;
+        obs.hp = obs.hpMax = 80; obs.gold = 500;
+        std::vector<life::Need> needs;
+        life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
+        Check(needs.empty(), "500 gold and no deed: no house wanted");
+        auto deed = MakeAddItem(0x4000A001, 0x14F0, 1, 0x4000A000);
+        client->DispatchPacketForTest(deed.data(), deed.size());
+        life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
+        Check(needs.size() == 1 && needs[0].kind == life::NeedKind::NeedHousing,
+              "a deed in the pack wants placing");
+        life::RunnerHarnessAccess::SeedHouseSite(runner, 3000, 3000);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::House(runner, *client, obs);
+        bool usedDeed = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x06 && p.bytes.size() >= 5 && (LoadBE32(p.bytes.data() + 1) & 0x7FFFFFFF) == 0x4000A001)
+                usedDeed = true;
+        Check(usedDeed, "standing on the site: the deed is double-clicked");
+        client->CompleteActionForTest(act::Result::Success, "deed used");
+        u8 place[26]{}; place[0] = 0x99; place[1] = 1;
+        StoreBE32(place + 2, 0x0000ABCD);
+        StoreBE16(place + 18, 0x0064);
+        client->DispatchPacketForTest(place, sizeof(place));
+        Check(client->MultiCursorActive(), "the server's 0x99 placement cursor is recognised");
+        obs.nowMs += 2000; client->SetClockForTest(obs.nowMs);
+        client->ClearSentForTest();
+        life::RunnerHarnessAccess::House(runner, *client, obs);
+        bool placed = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x6C && p.bytes.size() >= 19 && LoadBE16(p.bytes.data() + 11) == 3000 &&
+                LoadBE16(p.bytes.data() + 17) == 0x0064) placed = true;
+        Check(placed, "the cursor is answered with the site and the house's multi model");
+        auto multi = MakeWorldItem(0x4000A100, 0x4064, 3002, 3001);   // 0x4000 = multi
+        client->DispatchPacketForTest(multi.data(), multi.size());
+        obs.nowMs += 3000; client->SetClockForTest(obs.nowMs);
+        Check(life::RunnerHarnessAccess::House(runner, *client, obs) && life::RunnerHarnessAccess::OwnsHouse(runner),
+              "a multi at the site is the proof: the house is remembered as ours");
+        needs.clear();
+        life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
+        Check(needs.empty(), "one house per account (MaxHousesAccount=1): no second one wanted");
     }
 
     // --- PvP: the PK ambushes a lone miner; nobody ambushes inside the rules --

@@ -42,6 +42,7 @@ const char* GoalKindName(GoalKind g) {
         case GoalKind::Socialize:             return "SOCIALIZE";
         case GoalKind::HuntTreasure:          return "HUNT_TREASURE";
         case GoalKind::HuntPlayers:           return "HUNT_PLAYERS";
+        case GoalKind::BuyHouse:              return "BUY_HOUSE";
         case GoalKind::Count:                 break;
     }
     return "?";
@@ -85,6 +86,7 @@ GoalFamily FamilyOf(GoalKind k) {
         case GoalKind::MakeBandages:
         case GoalKind::UpgradeGear:
         case GoalKind::BuyMount:
+        case GoalKind::BuyHouse:
             return GoalFamily::Upkeep;
         case GoalKind::GatherLogs:
         case GoalKind::Mine:
@@ -262,6 +264,9 @@ const GoalSpec kGoals[] = {
     // Beside TRAIN_COMBAT: for a PK this IS the fighting it trains by, and a
     // good opening (0.90) or a rescue (0.85) outbids a routine hunt.
     {GoalKind::HuntPlayers,           NeedKind::NeedPvp,           130.0},
+    // Under the day's work: a house is what savings are FOR, not a reason to
+    // stop earning. A deed in the pack (0.70) still wins an idle moment.
+    {GoalKind::BuyHouse,              NeedKind::NeedHousing,       120.0},
     // Beside GatherLogs: it is the same kind of thing, the productive work
     // this life does, and it must not outrank housekeeping.
     {GoalKind::Fish,                  NeedKind::NeedCatch,         130.0},
@@ -619,6 +624,7 @@ i64 Planner::TimeLimitFor(GoalKind k) const {
     if (k == GoalKind::Socialize) return 180000;
     if (k == GoalKind::TradeWithPlayer) return 14 * 60 * 1000;
     if (k == GoalKind::HuntTreasure) return 20 * 60 * 1000;   // the trip, the dig and the guardians
+    if (k == GoalKind::BuyHouse) return 20 * 60 * 1000;       // architect, then site after site
     return cfg_.maxGoalMs;
 }
 

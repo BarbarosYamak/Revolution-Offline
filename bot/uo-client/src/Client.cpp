@@ -590,6 +590,7 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x3A: OnSkills(data, size); break;
         case 0x4E: OnPersonalLightLevel(data, size); break;
         case 0x90: OnMapDetails(data, size); break;
+        case 0x99: OnMultiPlacement(data, size); break;
         case 0x56: OnMapPin(data, size); break;
         case 0x4F: OnOverallLightLevel(data, size); break;
         case 0xD1: OnLogoutAck(data, size); break;
@@ -1258,6 +1259,7 @@ void Client::OnObjectInfo(const u8* data, usize size) {
     // graphic high bit => a graphic-increment byte (itemIdOffset) follows
     // immediately; it selects a door's open/closed frame (drawn = id + offset).
     const bool hasOffset = (g & 0x8000) != 0;
+    const bool isMulti = (g & 0x4000) != 0;   // a house or a ship
     const u16 itemId = static_cast<u16>(g & 0x3FFF);
 
     u8 gfxOffset = 0;
@@ -1295,6 +1297,7 @@ void Client::OnObjectInfo(const u8* data, usize size) {
     // (lamp posts, doors, decor). Keyed by serial; removed on 0x1D.
     const bool isNewItem = items_.find(serial) == items_.end();
     items_[serial] = ItemObj{itemId, x, y, z, gfxOffset, hue};
+    if (isMulti) multis_[serial] = MultiObj{itemId, x, y, NowMs()};
     if (isNewItem) itemOrder_.push_back(serial);
     while (items_.size() > kMaxItemCache && !itemOrder_.empty()) {
         const u32 oldSerial = itemOrder_.front();
@@ -3651,6 +3654,35 @@ bool Client::ActionTargetGround(i32 x, i32 y, i8 z) {
 
 bool Client::ActionMenuChoose(u16 index) {
     return AnswerDialog(index);
+}
+
+// 0x99 PLACE MULTI (26): allowGround(1) targetId(4)@2 ... multiModel(2)@18.
+// Sphere sends it when a house deed is used: a ground cursor carrying the
+// house's multi so the client can preview the footprint. It is answered like
+// any location cursor (0x6C), naming the multi model as the graphic.
+void Client::OnMultiPlacement(const u8* data, usize size) {
+    if (size < 20) return;
+    const u32 id = LoadBE32(data + 2);
+    multiModel_ = LoadBE16(data + 18);
+    target_.OnArmed(id, 1, 0, NowMs());
+    LogInfo("[0x99] place multi 0x%04X requested id=0x%08X\n", multiModel_, id);
+    LogEvent("multi_placement_requested", "");
+}
+
+bool Client::ActionPlaceMulti(i32 x, i32 y, i8 z) {
+    if (!target_.Active() || !multiModel_) return false;
+    LogInfo("[TARGET] place multi 0x%04X at (%d,%d,%d)\n", multiModel_, x, y, static_cast<int>(z));
+    TargetRespondStatic(x, y, z, multiModel_);
+    multiModel_ = 0;
+    return true;
+}
+
+u32 Client::FindMultiNear(i32 x, i32 y, i32 radius, i64 sinceMs) const {
+    for (const auto& kv : multis_) {
+        const i32 dx = std::abs(kv.second.x - x), dy = std::abs(kv.second.y - y);
+        if ((dx > dy ? dx : dy) <= radius && kv.second.seenMs >= sinceMs) return kv.first;
+    }
+    return 0;
 }
 
 bool Client::ActionTargetStatic(i32 x, i32 y, i8 z, u16 graphic) {

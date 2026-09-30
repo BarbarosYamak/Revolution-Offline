@@ -1414,6 +1414,8 @@ enum class NeedKind : u8 {
     NeedTreasure,
     // A PK's roam for a victim, or an anti-PK's lawful target / alarm (uo/pvp.h).
     NeedPvp,
+    // Savings enough for a house, or a deed waiting to be placed (uo/housing.h).
+    NeedHousing,
     Count,
 };
 
@@ -1910,6 +1912,8 @@ enum class GoalKind : u8 {
     HuntTreasure,
     // Ambush a victim (PK) or engage a red / criminal / war enemy (anti-PK).
     HuntPlayers,
+    // Buy a house deed from an architect and place it outside town.
+    BuyHouse,
     Count,
 };
 

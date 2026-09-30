@@ -214,6 +214,11 @@ public:
         int n = 0; for (const auto& p : runebookPages_) n += p.filled; return n;
     }
     int  RunebookPageForGoal(i32 toX, i32 toY) const;            // by map point, 0 = none
+    // HOUSES. A house deed's cursor (0x99) is answered with the footprint's
+    // spot; a multi seen near that spot afterwards is the proof it stood.
+    bool MultiCursorActive() const { return multiModel_ != 0 && target_.Active(); }
+    bool ActionPlaceMulti(i32 x, i32 y, i8 z);
+    u32  FindMultiNear(i32 x, i32 y, i32 radius, i64 sinceMs = 0) const;
     // What another mobile wears on a layer (1/2 hands, 25 mount), 0 = nothing seen.
     u16  MobileEquipGraphic(u32 serial, u8 layer) const;
     // Open the book only to read it; the gump is closed once its pages are noted.
@@ -1399,6 +1404,10 @@ private:
     void OnOverallLightLevel  (const u8* data, usize size);  // 0x4F
     void OnPersonalLightLevel (const u8* data, usize size);  // 0x4E
     void OnMapDetails         (const u8* data, usize size);  // 0x90
+    void OnMultiPlacement     (const u8* data, usize size);  // 0x99
+    struct MultiObj { u16 model; i32 x, y; i64 seenMs; };
+    std::unordered_map<u32, MultiObj> multis_;
+    u16 multiModel_ = 0;                // armed by 0x99, spent by ActionPlaceMulti
     void OnMapPin             (const u8* data, usize size);  // 0x56
     std::unordered_map<u32, MapView> maps_;
     void OnMobileMove         (const u8* data, usize size);  // 0x77
