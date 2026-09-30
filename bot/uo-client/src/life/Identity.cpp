@@ -634,6 +634,10 @@ const CraftMenuPath kCraftMenus[] = {
     {"i_sash",               "Misc.",          "sash",           nullptr},
     {"i_robe",               "Shirts",         "robe",           nullptr},
     {"i_leather_tunic",      "Leather Armour", "leather tunic",  nullptr},
+    // INSCRIPTION: the runebook. A top-level "Runebook" option, as the
+    // sm_inscription addition in docs/M5_13_RUNEBOOK_CRAFTING.md lays it out.
+    // Not in this tree's menu yet -- see Production.cpp.
+    {"i_spellbook_runebook", "Runebook",       nullptr,          nullptr},
 };
 
 const CraftMenuPath* CraftMenuFor(const std::string& item) {

@@ -291,11 +291,14 @@ const std::vector<Recipe>& Table() {
      {{"i_scroll_blank", 1}, {"i_reag_blood_moss", 1}, {"i_reag_garlic", 1}, {"i_reag_ginseng", 1}},
      "SCRIPT SKILLMAKE=Inscription 80.0,Magery 70.0; REVOLUTION forum 59111 band 80-100"},
 
-    // The runebook itself. NOTE: this recipe is currently UNREACHABLE -- the
-    // item is in no skill menu, so the graph knows how to make it and the
-    // runtime offers no door. That is the honest state and it is why
-    // LEGITIMATE_RUNEBOOK_CRAFTING is still NOT PROVEN.
-    {"i_spellbook_runebook", 1, Provenance::PlayerMarket, Station::None, Tool::PenAndInk,
+    // The runebook itself. A scribe's craft (Inscription 45, pen and ink) --
+    // Revolution's 13.05.2009 entry puts runebook operations in the
+    // Inscription MENU. On THIS tree the item is still in no skill menu
+    // (docs/M5_13_RUNEBOOK_CRAFTING.md gives the one-line sm_inscription
+    // addition), so until the owner adds it a scribe that tries is told
+    // "no such option" and backs off; the graph, the orders and the menu path
+    // (Identity.cpp CraftMenuFor) are ready for the day it is there.
+    {"i_spellbook_runebook", 1, Provenance::PlayerCrafted, Station::None, Tool::PenAndInk,
      kInscription, 450, kNoSkill, 0,
      {{"i_scroll_blank", 8}, {"i_rune_marker", 1}, {"i_scroll_recall", 1}, {"i_scroll_gate_travel", 1}},
      "SCRIPT i_spellbook_runebook"},

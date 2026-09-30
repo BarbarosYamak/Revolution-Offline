@@ -1575,11 +1575,19 @@ const std::vector<Profession>& All() {
             // Inscription ~70-80 for a gain of 0.0 (g_Lyra/g_Thalia 12:52-
             // 12:57, 2026-09-04).
             p.produces = {"i_scroll_resurrection", "i_scroll_gate_travel",
-                          "i_scroll_recall", "i_scroll_poison"};
+                          "i_scroll_recall", "i_scroll_poison",
+                          // LAST, on purpose: ChooseCraft takes the first
+                          // entry that survives, so the book never displaces
+                          // the scroll ladder -- a scribe makes one to ORDER
+                          // (Orders.cpp CanMakeOrder reads `produces`).
+                          "i_spellbook_runebook"};
             p.consumes = {"i_scroll_blank", "i_reag_nightshade",
                           "i_reag_black_pearl", "i_reag_blood_moss",
                           "i_reag_mandrake_root", "i_reag_garlic",
-                          "i_reag_ginseng", "i_reag_sulfur_ash"};
+                          "i_reag_ginseng", "i_reag_sulfur_ash",
+                          // the runebook's one rune: a mage shop sells it
+                          // blank (owner, 2026-09-30)
+                          "i_rune_marker"};
             p.tools = {{"spellbook", {kSpellbook}, false}};
             p.consumables = {CrafterHealPotions(), Food()};
             p.riskTolerance = 0.20;

@@ -480,6 +480,7 @@ const GraphicRow kGraphics[] = {
     {0x1541, "i_sash"},
     {0x1F03, "i_robe"},          {0x1F04, "i_robe"},
     {0x1F14, "i_rune_marker"},
+    {0x22C5, "i_spellbook_runebook"},   // revolution_runebook.scp ITEMDEF 022c5
     // ALL FOUR big fish, plus the small one and the cooked steak. Only
     // 0x09CC was listed, so a character that caught a fish of any other kind
     // could not SEE it: the pack counter reads these names, Surplus() reads

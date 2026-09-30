@@ -105,6 +105,15 @@ market::TradeIntent CraftOrderWant(const prof::Profession& p, const Observation&
             [](const auto& input) { return !Orderable(input.item); }), orderPolicy.productionInputs.end());
         market::ChooseBuyWant(active, holdings, prices, orderPolicy, obs.gold, &want);
     }
+    // A RUNEBOOK FOR A MAGE WHO CAN RECALL. Ordered from a scribe like any
+    // other crafted good; Orderable() keeps this silent until a scribe can
+    // really make one (menu path + player-crafted recipe).
+    if (!want.Valid() && WantsSpellCombat(p) && obs.SkillTenths(rules::kMagery) >= 400 &&
+        market::QtyOf(holdings, "i_spellbook_runebook") == 0 && Orderable("i_spellbook_runebook")) {
+        const auto ask = market::ComputeCraftedGoodAsk("i_spellbook_runebook", prices, 0);
+        const i32 price = ask.applies && ask.high > 0 ? ask.high : 1500;
+        if (price <= obs.gold - p.goldReserve) want = {"i_spellbook_runebook", 1, price};
+    }
     if (!want.Valid() && WantsSpellCombat(p) && obs.SpellbookRead()) {
         for (const auto& recipe : prod::KnownRecipes()) {
             if (recipe.skillId != rules::kInscription) continue;
