@@ -52,7 +52,8 @@ std::vector<pvp::Target> Runner::PvpTargets(Client& client, const Observation& o
         const auto* rel = social::Find(state_.memory.relationships, p.name);
         t.friendOfOurs = (rel && !rel->foe && rel->trust >= 2) || client.PartyContains(p.serial) ||
                          p.noto == 2 ||   // guild-green: our own guild or an ally
-                         FamilyMember(p.name);   // family stands together (owner, 2026-09-30)
+                         FamilyMember(p.name) ||  // family stands together (owner, 2026-09-30)
+                         GuildMate(client, p.serial, p.noto);   // our own guild tag
         t.beatUsBefore = SocialFoe(p.name) && rel && rel->foe;
         for (const auto& q : players) {
             if (q.serial == p.serial) continue;
@@ -60,7 +61,7 @@ std::vector<pvp::Target> Runner::PvpTargets(Client& client, const Observation& o
             const auto* qr = social::Find(state_.memory.relationships, q.name);
             if (TileDist(obs.x, obs.y, q.x, q.y) <= 8) {
                 if ((qr && !qr->foe && qr->trust >= 2) || client.PartyContains(q.serial) || q.noto == 2 ||
-                    FamilyMember(q.name))
+                    FamilyMember(q.name) || GuildMate(client, q.serial, q.noto))
                     ++t.myAlliesNear;
                 else if (q.noto == 6 || q.noto == 4) ++t.hostilePlayersNear;
             }

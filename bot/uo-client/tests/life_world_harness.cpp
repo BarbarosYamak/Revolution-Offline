@@ -75,6 +75,8 @@ struct RunnerHarnessAccess {
     static bool FamilyGoal(Runner& r, Client& c, const Observation& o) { return r.DoFamily(c, o); }
     static const std::string& FamilyName(const Runner& r) { return r.state_.family.surname; }
     static bool FamilyHead(const Runner& r) { return r.state_.family.head; }
+    static void GuildTick(Runner& r, Client& c, const Observation& o) { r.guildTickMs_ = 0; r.TickGuild(c, o); }
+    static bool IsGuildMate(Runner& r, Client& c, u32 serial, u8 noto) { return r.GuildMate(c, serial, noto); }
     static void SeedVendorOwner(Runner& r, i32 x, i32 y, u32 vendor, i32 pendingPrice, i64 now) {
         r.state_.memory.NotePlace("house", "my house", x, y, 0, now);
         char hex[16]; std::snprintf(hex, sizeof(hex), "%08X", vendor);
@@ -2235,6 +2237,30 @@ int main(int argc, char** argv) {
         bool isSurname = false;
         for (int i = 0; i < n; ++i) isSurname = isSurname || answered == names[i];
         Check(isSurname, "the founder names the family from the Turkish surname list");
+    }
+
+    // --- guilds: the [ABC] tag in name labels marks a guildmate --------------
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(980000);
+        auto login = MakeLoginConfirm(0x2002, 600, 600);
+        client->DispatchPacketForTest(login.data(), login.size());
+        SpawnHostile(*client, 0x1020, 602, 600, 1);
+        SpawnHostile(*client, 0x1021, 603, 600, 1);
+        auto myLabel = MakeAsciiMessage(0x2002, "Ayse", "Ayse [RVL]");
+        client->DispatchPacketForTest(myLabel.data(), myLabel.size());
+        auto mateLabel = MakeAsciiMessage(0x1020, "Kemal", "Kemal [RVL]");
+        client->DispatchPacketForTest(mateLabel.data(), mateLabel.size());
+        auto otherLabel = MakeAsciiMessage(0x1021, "Deniz", "Deniz [XYZ]");
+        client->DispatchPacketForTest(otherLabel.data(), otherLabel.size());
+        Check(client->MobileGuildTag(0x2002) == "RVL" && client->MobileGuildTag(0x1020) == "RVL" &&
+              client->MobileGuildTag(0x1021) == "XYZ", "guild tags are read from the server's name labels");
+        life::Runner runner;
+        Check(life::RunnerHarnessAccess::IsGuildMate(runner, *client, 0x1020, 1), "same tag: a guildmate");
+        Check(!life::RunnerHarnessAccess::IsGuildMate(runner, *client, 0x1021, 1), "another guild's tag: not ours");
+        Check(life::RunnerHarnessAccess::IsGuildMate(runner, *client, 0x1021, 2), "the server's guild-green always counts");
     }
 
     // --- player vendors: noticed by their title; a price prompt answered ----

@@ -2976,6 +2976,11 @@ void Client::ActionLookAt(u32 serial) {
     Send(p, sizeof(p), "0x09 single click");
 }
 
+std::string Client::MobileGuildTag(u32 serial) const {
+    const auto it = mobileGuildTags_.find(serial);
+    return it == mobileGuildTags_.end() ? std::string() : it->second;
+}
+
 const std::string* Client::ServerItemName(u32 serial) const {
     const auto it = serverItemNames_.find(serial);
     return it == serverItemNames_.end() ? nullptr : &it->second;
@@ -5993,6 +5998,14 @@ void Client::OnAsciiMessage(const u8* data, usize size) {
             for (const ContainerItem& ci : c.second) if (ci.serial == s) { isItem = true; break; }
         }
         if (isItem) serverItemNames_[s] = text;
+        // A MOBILE'S GUILD TAG. Sphere labels a guild member "Name [ABC]" when
+        // the guild shows its abbreviation; the bracketed part is all a
+        // passer-by ever learns about someone's guild.
+        else if (!speaker.empty() && text.compare(0, speaker.size(), speaker) == 0) {
+            const usize open = text.rfind('['), close = text.rfind(']');
+            if (open != std::string::npos && close != std::string::npos && close > open + 1 && close - open <= 6)
+                mobileGuildTags_[s] = text.substr(open + 1, close - open - 1);
+        }
     }
     NoteAttackEmote(sourceSerial, text.c_str());
 

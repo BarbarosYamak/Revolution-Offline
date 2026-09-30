@@ -101,6 +101,41 @@ void Runner::TickFamily(Client& client, const Observation& obs) {
     }
 }
 
+// GUILDMATES. The guild stone scripts are not in this repo, so a bot cannot
+// found or join a guild yet (UNKNOWN menus; docs/M5_14_GUILDS.md). What it can
+// do is what any player does: read the "[ABC]" guild tag the server shows in
+// name labels, and treat someone with its own tag -- or the server's
+// guild-green notoriety -- as a guildmate: trusted, a PvP ally, a first pick
+// for a party.
+bool Runner::GuildMate(Client& client, u32 serial, u8 noto) const {
+    if (noto == 2) return true;
+    const std::string mine = client.MobileGuildTag(client.PlayerSerial());
+    return !mine.empty() && client.MobileGuildTag(serial) == mine;
+}
+
+void Runner::TickGuild(Client& client, const Observation& obs) {
+    if (obs.nowMs - guildTickMs_ < 10000) return;
+    guildTickMs_ = obs.nowMs;
+    if (!guildSelfLooked_) { guildSelfLooked_ = true; client.ActionLookAt(client.PlayerSerial()); return; }
+    const std::string mine = client.MobileGuildTag(client.PlayerSerial());
+    if (mine != guildTag_) {
+        guildTag_ = mine;
+        if (!mine.empty()) LogLine("guild: we wear the [%s] tag", mine.c_str());
+    }
+    std::vector<Client::HostileHit> players;
+    client.NearbyPlayers(18, players);
+    for (const auto& p : players) {
+        if (p.name.empty() || !GuildMate(client, p.serial, p.noto)) continue;
+        social::Relationship* r = nullptr;
+        for (auto& rel : state_.memory.relationships) if (rel.name == p.name) r = &rel;
+        if (!r) {
+            social::Remember(state_.memory.relationships, p.name, social::Encounter::Greeting, obs.nowMs);
+            for (auto& rel : state_.memory.relationships) if (rel.name == p.name) r = &rel;
+        }
+        if (r && !r->foe && r->trust < 4) r->trust = 4;
+    }
+}
+
 void Runner::AddFamilyNeeds(Client& client, const Observation& obs, std::vector<Need>& needs) {
     if (obs.dead || obs.underAttack || obs.attackersOnMe > 0 || !needCfg_.profession) return;
     const auto& fam = state_.family;

@@ -211,6 +211,10 @@ public:
     // the last name it said, nullptr until then.
     void ActionLookAt(u32 serial);
     const std::string* ServerItemName(u32 serial) const;
+    // The guild abbreviation the server showed in a mobile's name label
+    // ("Ayse [ABC]" -> "ABC"); "" when none was seen. Our own too, once we
+    // have single-clicked ourselves.
+    std::string MobileGuildTag(u32 serial) const;
     // A murderer never plans a trip INTO guarded ground (GuardsOnMurderers=1,
     // GuardsInstantKill=1). Set by the life runner from PlayerNotoriety().
     void SetMurdererRouting(bool on) { murdererRouting_ = on; }
@@ -1451,6 +1455,7 @@ private:
     std::unordered_map<u32, MultiObj> multis_;
     bool murdererRouting_ = false;
     std::unordered_map<u32, std::string> serverItemNames_;
+    std::unordered_map<u32, std::string> mobileGuildTags_;
     std::unordered_set<u32> guardedCells_;     // built once, the first time a red trip plans
     bool guardedCellsBuilt_ = false;
     u16 multiModel_ = 0;                // armed by 0x99, spent by ActionPlaceMulti

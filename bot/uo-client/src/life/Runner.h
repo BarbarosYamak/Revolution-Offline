@@ -138,6 +138,11 @@ public:
     void AddRuneNeeds(const Observation& obs, std::vector<Need>& needs);
     // Families (runner/Family.cpp, uo/family.h).
     bool FamilyMember(const std::string& name) const;
+    bool GuildMate(Client& client, u32 serial, u8 noto) const;
+    void TickGuild(Client& client, const Observation& obs);
+    std::string guildTag_;
+    i64  guildTickMs_ = 0;
+    bool guildSelfLooked_ = false;
     void TickFamily(Client& client, const Observation& obs);
     void AddFamilyNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
     u32  FamilyInviteCandidate(Client& client, const Observation& obs) const;

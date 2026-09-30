@@ -2362,6 +2362,7 @@ struct LiveStatus {
     std::string rhythm, schedule;
     std::string era;               // uo/era.h date this character lives in
     std::string familyName;        // last name, "" = no family (uo/family.h)
+    std::string guildTag;          // "[ABC]" the server shows on us, "" = none
     bool        familyHead = false;
     std::string phase;             // live / wind_down / logging_out / offline
     bool        online = false;

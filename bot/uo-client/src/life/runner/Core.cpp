@@ -1431,6 +1431,7 @@ void Runner::PublishStatus(Client& client, const Observation& obs, const char* p
     s.schedule = persona::Describe(state_.persona);
     s.era = era::Format(eraDate_);
     s.familyName = state_.family.surname;
+    s.guildTag = guildTag_;
     s.familyHead = state_.family.head;
     s.phase = phase;
     s.online = obs.inWorld;
@@ -1700,6 +1701,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             TickRunebook(client, obs);
             TickRunes(client, obs);
             TickFamily(client, obs);
+            TickGuild(client, obs);
             TickCraftOrders(client, obs);
             if (needCfg_.profession && !ActiveCraftOrder(false, obs.nowMs)) {
                 const std::string beforeItem = state_.productionBatch.item;

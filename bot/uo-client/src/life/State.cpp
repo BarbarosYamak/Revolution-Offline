@@ -855,6 +855,7 @@ json::Value ToJson(const LiveStatus& s) {
     o.Set("schedule", s.schedule);
     o.Set("era", s.era);
     o.Set("last_name", s.familyName);        // "family" is the profession family
+    o.Set("guild", s.guildTag);
     o.Set("family_head", s.familyHead);
     o.Set("phase", s.phase);
     o.Set("online", s.online);
