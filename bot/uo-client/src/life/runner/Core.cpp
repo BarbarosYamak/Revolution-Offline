@@ -1855,6 +1855,7 @@ void Runner::Tick(Client& client, i64 nowMs) {
             ResolveConsumableThresholds(needCfg_, planningObs.gold);
             ObserveSocial(client, planningObs);
             ObservePvp(client, planningObs);
+            ObservePlayerVendors(client, planningObs);
             std::vector<Need> needs =
                 AssessNeeds(state_.plan, state_.memory, planningObs, needCfg_);
             AddSocialNeeds(client, planningObs, needs);

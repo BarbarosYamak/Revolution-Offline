@@ -880,3 +880,8 @@ add_test(NAME pvp COMMAND pvp)
 add_executable(housing housing.cpp)
 target_include_directories(housing PRIVATE ${CMAKE_SOURCE_DIR}/include)
 add_test(NAME housing COMMAND housing)
+
+# Player vendors -- pricing after tax, what to list, what to buy. Pure.
+add_executable(player_vendor player_vendor.cpp)
+target_include_directories(player_vendor PRIVATE ${CMAKE_SOURCE_DIR}/include)
+add_test(NAME player_vendor COMMAND player_vendor)

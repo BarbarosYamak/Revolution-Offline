@@ -2,6 +2,7 @@
 #include "world/Atlas.h"
 #include "uo/rules.h"
 #include "uo/sparring.h"
+#include "uo/player_vendor.h"
 
 namespace uo::life {
 using namespace runner_detail;
@@ -12,6 +13,25 @@ using namespace runner_detail;
 // sparring loop; crafters can still chat, trade, and join ordinary work groups.
 static bool MaySocialSpar(const prof::Profession* profession) {
     return profession && (WantsToHunt(*profession) || WantsSpellCombat(*profession));
+}
+
+// A player vendor someone placed is worth remembering: it is where goods no
+// NPC sells may be found again. Learned only by walking past it and reading
+// its paperdoll title -- never from any list of vendors.
+void Runner::ObservePlayerVendors(Client& client, const Observation& obs) {
+    if (obs.nowMs - vendorScanMs_ < 30000) return;
+    vendorScanMs_ = obs.nowMs;
+    std::vector<Client::TitledMobile> titled;
+    client.TitledMobilesNear(14, titled);
+    for (const auto& m : titled) {
+        if (!vendors::IsPlayerVendorTitle(m.title)) continue;
+        bool known = false;
+        for (const KnownPlace& p : state_.memory.Places())
+            if (p.kind == "player_vendor" && TileDist(p.x, p.y, m.x, m.y) <= 3) known = true;
+        if (known) continue;
+        state_.memory.NotePlace("player_vendor", m.title.c_str(), m.x, m.y, 0, obs.nowMs);
+        LogLine("market: noticed a player vendor, '%s' at %d,%d", m.title.c_str(), m.x, m.y);
+    }
 }
 
 bool Runner::SocialFoe(const std::string& name) const {

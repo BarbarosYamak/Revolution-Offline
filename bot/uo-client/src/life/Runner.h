@@ -131,6 +131,9 @@ public:
     bool DoHuntPlayers(Client& client, const Observation& obs);
     // Housing (runner/Housing.cpp, uo/housing.h).
     bool OwnsHouse() const;
+    // Player vendors (runner/Social.cpp, uo/player_vendor.h).
+    void ObservePlayerVendors(Client& client, const Observation& obs);
+    i64  vendorScanMs_ = 0;
     void AddHousingNeeds(Client& client, const Observation& obs, std::vector<Need>& needs);
     bool DoBuyHouse(Client& client, const Observation& obs);
     life::VendorErrand houseErrand_;

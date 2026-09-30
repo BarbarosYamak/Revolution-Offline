@@ -214,6 +214,17 @@ public:
         int n = 0; for (const auto& p : runebookPages_) n += p.filled; return n;
     }
     int  RunebookPageForGoal(i32 toX, i32 toY) const;            // by map point, 0 = none
+    // TEXT PROMPTS (0x9A). Sphere asks for a line of text this way -- a
+    // player vendor's "set a price" is the case that matters here. Answered
+    // with the same packet; one prompt open at a time, as in the real client.
+    bool PromptActive() const { return promptSerial_ != 0 || promptId_ != 0; }
+    const std::string& PromptText() const { return promptText_; }
+    bool ActionAnswerPrompt(const std::string& text);
+    // Mobiles near us whose paperdoll title we have read, with where they
+    // stand: how a character notices "Ayse's vendor" in a house it walks past.
+    struct TitledMobile { u32 serial = 0; std::string title; i32 x = 0, y = 0; };
+    void TitledMobilesNear(i32 radius, std::vector<TitledMobile>& out) const;
+
     // HOUSES. A house deed's cursor (0x99) is answered with the footprint's
     // spot; a multi seen near that spot afterwards is the proof it stood.
     bool MultiCursorActive() const { return multiModel_ != 0 && target_.Active(); }
@@ -1405,6 +1416,9 @@ private:
     void OnPersonalLightLevel (const u8* data, usize size);  // 0x4E
     void OnMapDetails         (const u8* data, usize size);  // 0x90
     void OnMultiPlacement     (const u8* data, usize size);  // 0x99
+    void OnAsciiPrompt        (const u8* data, usize size);  // 0x9A
+    u32 promptSerial_ = 0, promptId_ = 0, promptType_ = 0;
+    std::string promptText_;
     struct MultiObj { u16 model; i32 x, y; i64 seenMs; };
     std::unordered_map<u32, MultiObj> multis_;
     u16 multiModel_ = 0;                // armed by 0x99, spent by ActionPlaceMulti

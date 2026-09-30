@@ -63,6 +63,12 @@ struct RunnerHarnessAccess {
         r.AddHousingNeeds(c, o, needs);
     }
     static bool OwnsHouse(const Runner& r) { return r.OwnsHouse(); }
+    static void Vendors(Runner& r, Client& c, const Observation& o) { r.ObservePlayerVendors(c, o); }
+    static int KnownVendors(const Runner& r) {
+        int n = 0;
+        for (const auto& p : r.state_.memory.Places()) n += p.kind == "player_vendor";
+        return n;
+    }
     static void PvpNeeds(Runner& r, Client& c, const Observation& o, std::vector<Need>& needs) { r.AddPvpNeeds(c, o, needs); }
     static bool PvpHunt(Runner& r, Client& c, const Observation& o) { return r.DoHuntPlayers(c, o); }
     static const char* PvpRoleName(const Runner& r) { return pvp::RoleName(r.PvpRole()); }
@@ -1991,6 +1997,57 @@ int main(int argc, char** argv) {
         needs.clear();
         life::RunnerHarnessAccess::HousingNeeds(runner, *client, obs, needs);
         Check(needs.empty(), "one house per account (MaxHousesAccount=1): no second one wanted");
+    }
+
+    // --- player vendors: noticed by their title; a price prompt answered ----
+    {
+        Client::Config config{};
+        auto client = std::make_unique<Client>(config);
+        client->SetOfflineForTest(true);
+        client->SetClockForTest(900000);
+        auto login = MakeLoginConfirm(0x2002, 1500, 1600);
+        client->DispatchPacketForTest(login.data(), login.size());
+        SpawnHostile(*client, 0x1010, 1503, 1600, 1);
+        auto doll = MakePaperdoll(0x1010, "Kemal the vendor");
+        client->DispatchPacketForTest(doll.data(), doll.size());
+        SpawnHostile(*client, 0x1011, 1502, 1601, 1);
+        auto shop = MakePaperdoll(0x1011, "Aldo the provisioner");
+        client->DispatchPacketForTest(shop.data(), shop.size());
+        life::Runner runner;
+        life::RunnerConfig rc;
+        std::filesystem::remove_all(root + "/vendor_seen");
+        rc.dataRoot = root + "/vendor_seen";
+        rc.accountName = "offline_world";
+        rc.characterName = "vendor_seen";
+        rc.professionId = "tailor";
+        std::string error;
+        Check(runner.Configure(rc, &error), error.c_str());
+        life::Observation obs; obs.inWorld = true; obs.nowMs = 900000; obs.x = 1500; obs.y = 1600;
+        obs.hp = obs.hpMax = 60;
+        life::RunnerHarnessAccess::Vendors(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::KnownVendors(runner) == 1,
+              "a player vendor walked past is remembered; the NPC provisioner is not one");
+        obs.nowMs += 40000;
+        life::RunnerHarnessAccess::Vendors(runner, *client, obs);
+        Check(life::RunnerHarnessAccess::KnownVendors(runner) == 1, "and only once");
+
+        const char text[] = "Set the price:";
+        std::vector<u8> prompt(15, 0);
+        prompt[0] = 0x9A;
+        StoreBE32(&prompt[3], 0x4000B001);
+        StoreBE32(&prompt[7], 0x77);
+        for (char ch : text) prompt.push_back(static_cast<u8>(ch));
+        StoreBE16(&prompt[1], static_cast<u16>(prompt.size()));
+        client->DispatchPacketForTest(prompt.data(), prompt.size());
+        Check(client->PromptActive() && client->PromptText() == "Set the price:", "a 0x9A prompt is recognised");
+        client->ClearSentForTest();
+        Check(client->ActionAnswerPrompt("125"), "and can be answered");
+        bool answered = false;
+        for (const auto& p : client->SentForTest())
+            if (p.opcode == 0x9A && p.bytes.size() >= 19 && LoadBE32(p.bytes.data() + 7) == 0x77 &&
+                LoadBE32(p.bytes.data() + 11) == 1 && std::string(reinterpret_cast<const char*>(p.bytes.data() + 15)) == "125")
+                answered = true;
+        Check(answered && !client->PromptActive(), "the reply names the prompt, type 1, the text NUL-terminated");
     }
 
     // --- PvP: the PK ambushes a lone miner; nobody ambushes inside the rules --

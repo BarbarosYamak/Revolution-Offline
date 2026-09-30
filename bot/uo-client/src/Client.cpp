@@ -591,6 +591,7 @@ void Client::Dispatch(const u8* data, usize size) {
         case 0x4E: OnPersonalLightLevel(data, size); break;
         case 0x90: OnMapDetails(data, size); break;
         case 0x99: OnMultiPlacement(data, size); break;
+        case 0x9A: OnAsciiPrompt(data, size); break;
         case 0x56: OnMapPin(data, size); break;
         case 0x4F: OnOverallLightLevel(data, size); break;
         case 0xD1: OnLogoutAck(data, size); break;
@@ -3667,6 +3668,47 @@ void Client::OnMultiPlacement(const u8* data, usize size) {
     target_.OnArmed(id, 1, 0, NowMs());
     LogInfo("[0x99] place multi 0x%04X requested id=0x%08X\n", multiModel_, id);
     LogEvent("multi_placement_requested", "");
+}
+
+// 0x9A ASCII PROMPT: len(2) serial(4) promptId(4) type(4) [text]. The reply
+// is the same packet with type 1 and the answer, NUL-terminated (type 0 would
+// cancel). Kept verbatim so the answer names the prompt it answers.
+void Client::OnAsciiPrompt(const u8* data, usize size) {
+    if (size < 15) return;
+    promptSerial_ = LoadBE32(data + 3);
+    promptId_ = LoadBE32(data + 7);
+    promptType_ = LoadBE32(data + 11);
+    promptText_.assign(reinterpret_cast<const char*>(data + 15), size - 15);
+    while (!promptText_.empty() && promptText_.back() == '\0') promptText_.pop_back();
+    LogInfo("[0x9A] prompt serial=0x%08X id=0x%08X '%s'\n", promptSerial_, promptId_, promptText_.c_str());
+    LogEvent("prompt_requested", promptText_.c_str());
+}
+
+bool Client::ActionAnswerPrompt(const std::string& text) {
+    if (!PromptActive()) return false;
+    std::vector<u8> p(15, 0);
+    p[0] = 0x9A;
+    StoreBE32(&p[3], promptSerial_);
+    StoreBE32(&p[7], promptId_);
+    StoreBE32(&p[11], 1);
+    for (char c : text) p.push_back(static_cast<u8>(c));
+    p.push_back(0);
+    StoreBE16(&p[1], static_cast<u16>(p.size()));
+    LogInfo("[0x9A] answering prompt 0x%08X with '%s'\n", promptId_, text.c_str());
+    promptSerial_ = promptId_ = promptType_ = 0;
+    promptText_.clear();
+    return Send(p.data(), p.size(), "0x9A prompt reply");
+}
+
+void Client::TitledMobilesNear(i32 radius, std::vector<TitledMobile>& out) const {
+    out.clear();
+    for (const auto& kv : paperdollTitles_) {
+        const MobileObj* m = FindMobileBySerial(kv.first);
+        if (!m || kv.first == playerSerial_) continue;
+        const i32 dx = std::abs(m->x - playerX_), dy = std::abs(m->y - playerY_);
+        if ((dx > dy ? dx : dy) > radius) continue;
+        out.push_back({kv.first, kv.second, m->x, m->y});
+    }
 }
 
 bool Client::ActionPlaceMulti(i32 x, i32 y, i8 z) {
